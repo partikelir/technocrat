@@ -59,14 +59,13 @@ article.format-status footer.entry-meta {
 
 /* Standard */
 .format-standard .entry-content>p+p {
-	text-indent: 0.75em;
+	/* text-indent: 0.75em; */
 }
 .format-standard .entry-content>p:first-child:first-line {
-	font-variant: small-caps;
+	/* font-variant: small-caps; */
 }
 
 /* Aside */
-
 article.format-aside h1 {
 	margin-bottom: 24px;
 	margin-bottom: 1.714285714rem;
@@ -296,8 +295,10 @@ article.format-quote .entry-content blockquote {
 	}
 	.previous-image .nav-text {
 		margin-left: 12px;
+		margin-left: 0.857142857rem;
 	}
 	.next-image .nav-text {
 		margin-right: 12px;
+		margin-right: 0.857142857rem;
 	}
 }
