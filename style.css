@@ -202,64 +202,63 @@ article.format-quote .entry-content blockquote {
 	font-size: 0.928571429rem;
 	line-height: 1.846153846;
 }
-
 #image-navigation {
 	position: relative;
-	height: 90px;
+	height: 96px;
 	margin: 24px 0;
 	margin: 1.714285714rem 0;
 	padding-top: 24px;
 	padding-top: 1.714285714rem;
-	overflow: visible;	
+	overflow: visible;
+	width: 100%;
 }
-
 .previous-image {
 	float: left;
-	width: 150px;
-	text-align: center;
+	width: 30%;
+	text-align: left;
 	line-height: 80px;
 }
-.return-image {
+.gallery-return {
+	display: none;
 	float: left;
-	width: 50%;
+	width: 40%;
 	text-align: center;
 	line-height: 80px;
 }
 .next-image {
 	float: right;
-	width: 150px;
-	text-align: center;
+	width: 30%;
+	text-align: right;
 	line-height: 80px;
 }
-.previous-image .nav-text,
-.next-image .nav-text {
-	position: relative;
-	z-index: 2;
-	padding: 10px;
+.previous-image img,
+.next-image img {
+	display: none;
+}
+.previous-image img {
+	float: left;
+}
+.next-image img {
+	float: right;
+}
+.gallery-return,
+.nav-text {
 	font-size: 100%;
 	text-transform: uppercase;
 	font-weight: bold;
-}
-.previous-image .nav-text {
-	padding-left: 24px;
-	padding-left: 1.714285714rem;
-}
-.next-image .nav-text {
-	padding-right: 24px;
-	padding-right: 1.714285714rem;
 }
 .attachment-thumbnail-gallery {
 	border-radius: 3px;
 	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 }
-.previous-image .attachment-thumbnail-gallery {
+/*.previous-image .attachment-thumbnail-gallery {
 	position: absolute;
 	left: 0px;
 }
 .next-image .attachment-thumbnail-gallery {
 	position: absolute;
 	right: 0px;
-}
+}*/
 
 /* === PLUGINS === */
 
@@ -281,11 +280,24 @@ article.format-quote .entry-content blockquote {
 		border-top-right-radius: 3px;
 		border-bottom-left-radius: 3px;
 	}
+	.gallery-return {
+		display: block;
+	}
 }
 
 @media screen and (min-width: 960px) {
 	body .site {
 		margin-top: 0;
 		margin-bottom: 0;
+	}
+	.previous-image img,
+	.next-image img {
+		display: block;
+	}
+	.previous-image .nav-text {
+		margin-left: 12px;
+	}
+	.next-image .nav-text {
+		margin-right: 12px;
 	}
 }

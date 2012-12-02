@@ -72,13 +72,13 @@ endif;
 					</div><!-- .entry-content -->
 					
 					<nav id="image-navigation" class="navigation" role="navigation">
-						<div class="previous-image"><?php previous_image_link( 'thumbnail-gallery' ); ?><span class="nav-text"><?php previous_image_link( false, __( '&larr; Previous', 'twentytwelve' ) ); ?></span></div>
-						<div class="return-image"><?php printf( __( 'Return to <a href="%1$s" title="Return to %2$s" rel="gallery">%3$s</a>.', 'pendrell' ),
+						<div class="previous-image"><?php previous_image_link( 'thumbnail-gallery' ); ?><span class="nav-text"><?php previous_image_link( false, __( '&larr; Previous', 'twentytwelve' ) ); ?></span>&nbsp;</div>
+						<div class="gallery-return"><?php printf( __( '<a href="%1$s" title="Return to %2$s" rel="gallery">&uarr; Return to %3$s</a>', 'pendrell' ),
 									esc_url( get_permalink( $post->post_parent ) ),
 									esc_attr( strip_tags( get_the_title( $post->post_parent ) ) ),
 									get_the_title( $post->post_parent )
 								); ?></div>
-						<div class="next-image"><?php next_image_link( 'thumbnail-gallery' ); ?><span class="nav-text"><?php next_image_link( false, __( 'Next &rarr;', 'twentytwelve' ) ); ?></span></div>
+						<div class="next-image">&nbsp;<span class="nav-text"><?php next_image_link( false, __( 'Next &rarr;', 'twentytwelve' ) ); ?></span><?php next_image_link( 'thumbnail-gallery' ); ?></div>
 					</nav><!-- #image-navigation -->
 					
 					<footer class="entry-meta">
