@@ -1,0 +1,291 @@
+/*   
+Theme Name: Pendrell
+Theme URI: http://synapticism.com
+Author: Alexander Synaptic
+Author URI: http://www.alexandersynaptic.com
+Description: A child theme for personal usage.
+Version: 0.1
+License: GNU General Public Licence 2.0
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: light, gray, white, one-column, two-columns, right-sidebar, flexible-width, custom-background, custom-header, custom-menu, editor-style, featured-images, flexible-header, full-width-template, microformats, post-formats, rtl-language-support, sticky-post, theme-options, translation-ready
+Text Domain: twentytwelve
+Template: twentytwelve
+*/
+@import url("../twentytwelve/style.css");
+
+.header-image {
+	margin-top: 0;
+}
+
+img.header-image {
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+}
+
+.site-header {
+	padding-top: 0;
+}
+
+.entry-content,
+.entry-summary {
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+	-ms-hyphens: auto;
+	-o-hyphens: auto;
+	hyphens: auto;
+}
+
+/* .post-format-link {
+	font-size: 16px;
+	text-decoration: none;
+}
+a.post-format-link {
+	text-decoration: none;
+} */
+
+/* === POST FORMATS === */
+
+/* Shared Post Format styling */
+article.format-quote footer.entry-meta,
+article.format-link footer.entry-meta,
+article.format-status footer.entry-meta {
+	margin-top: 24px;
+	margin-top: 1.714285714rem;
+	font-size: 13px;
+	font-size: 0.928571429rem;
+	line-height: 1.846153846;
+	color: #777;
+}
+
+/* Standard */
+.format-standard .entry-content>p+p {
+	text-indent: 0.75em;
+}
+.format-standard .entry-content>p:first-child:first-line {
+	font-variant: small-caps;
+}
+
+/* Aside */
+
+article.format-aside h1 {
+	margin-bottom: 24px;
+	margin-bottom: 1.714285714rem;
+}
+article.format-aside h1 a {
+	text-decoration: none;
+	color: #4d525a;
+}
+article.format-aside h1 a:hover {
+	color: #2e3542;
+}
+article.format-aside .aside {
+	padding: 0;
+	background: none;
+	border-left: none;
+}
+article.format-aside p {
+	font-size: 13px;
+	font-size: 0.928571429rem;
+	line-height: 1.846153846;
+	color: #4a5466;
+}
+article.format-aside blockquote:last-child,
+article.format-aside p:last-child {
+	margin-bottom: 0;
+}
+
+/* Link */
+article.format-link header {
+	padding: 0;
+	float: none;
+	font-size: 11px;
+	font-size: 0.785714286rem;
+	line-height: 2.181818182;
+	font-weight: normal;
+	font-style: normal;
+	text-transform: none;
+	background-color: #fff;
+	border-radius: 0;
+}
+article.format-link .entry-content {
+	max-width: 80%;
+	float: left;
+}
+article.format-link .entry-content a {
+	font-size: 22px;
+	font-size: 1.571428571rem;
+	line-height: 1.090909091;
+	text-decoration: none;
+}
+/*
+article.format-link header.entry-header {
+	margin-bottom: 24px;
+	margin-bottom: 1.714285714rem;
+}
+article.format-link header.entry-header .entry-title {
+	font-size: 20px;
+	font-size: 1.428571429rem;
+	line-height: 1.2;
+	font-weight: normal;
+}
+article.format-link header.entry-header .entry-title a {
+	text-decoration: none;
+}*/
+
+/* Quotation */
+article.format-quote .entry-content blockquote {
+	font-style: italic;
+	font-weight: bold;
+	margin: 0;
+	padding: 0;
+	background: none;
+}
+.format-quote blockquote p {
+	margin: 0;
+}
+.format-quote blockquote p:first-child {
+	text-indent: -0.4em;
+}
+.format-quote p:first-child::before {
+	content: "\201C";
+}
+.format-quote p:last-child::after {
+	content: "\201D";
+}
+.format-quote blockquote>p+p {
+	text-indent: 0.75em;
+}
+.format-quote .entry-content footer {
+	text-align: right;
+	margin-bottom: 24px;
+	margin-bottom: 1.714285714rem;
+}
+
+/* Status posts */
+.format-status .entry-header {
+	margin-bottom: 24px;
+	margin-bottom: 1.714285714rem;
+	margin: 0;
+}
+.format-status .entry-content {
+	font-size: 16px;
+	/*font-size: 1.071428571rem;*/
+	font-weight: normal;
+	line-height: 1.6;
+	margin: 0;
+}
+.format-status .entry-header {
+	float: left;
+	margin-right: 12px;
+	margin-right: 0.857142857rem;
+}
+.format-status .entry-header img {
+	margin: 0;
+	margin-bottom: 12px;
+	margin-bottom: 0.857142857rem;
+	border-radius: 3px;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Image info */
+.image-info {
+	border-top: 1px solid #ededed;
+	margin: 24px 0;
+	margin: 1.714285714rem 0;
+	padding-top: 24px;
+	padding-top: 1.714285714rem;
+	overflow: hidden;
+}
+.image-description {
+	color: #777;
+	font-size: 13px;
+	font-size: 0.928571429rem;
+	line-height: 1.846153846;
+}
+
+#image-navigation {
+	position: relative;
+	height: 90px;
+	margin: 24px 0;
+	margin: 1.714285714rem 0;
+	padding-top: 24px;
+	padding-top: 1.714285714rem;
+	overflow: visible;	
+}
+
+.previous-image {
+	float: left;
+	width: 150px;
+	text-align: center;
+	line-height: 80px;
+}
+.return-image {
+	float: left;
+	width: 50%;
+	text-align: center;
+	line-height: 80px;
+}
+.next-image {
+	float: right;
+	width: 150px;
+	text-align: center;
+	line-height: 80px;
+}
+.previous-image .nav-text,
+.next-image .nav-text {
+	position: relative;
+	z-index: 2;
+	padding: 10px;
+	font-size: 100%;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+.previous-image .nav-text {
+	padding-left: 24px;
+	padding-left: 1.714285714rem;
+}
+.next-image .nav-text {
+	padding-right: 24px;
+	padding-right: 1.714285714rem;
+}
+.attachment-thumbnail-gallery {
+	border-radius: 3px;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+.previous-image .attachment-thumbnail-gallery {
+	position: absolute;
+	left: 0px;
+}
+.next-image .attachment-thumbnail-gallery {
+	position: absolute;
+	right: 0px;
+}
+
+/* === PLUGINS === */
+
+#disqus_thread {
+	margin-top: 24px;
+	margin-top: 1.714285714rem;
+}
+
+/* === MEDIA QUERIES === */
+
+@media screen and (min-width: 600px) {
+	.with-header-image {
+		position: absolute;
+		bottom: -2px;
+		left: -2px;
+		background: rgba(255, 255, 255, 1);
+		padding-right: 24px;
+		padding-right: 1.714285714rem;
+		border-top-right-radius: 3px;
+		border-bottom-left-radius: 3px;
+	}
+}
+
+@media screen and (min-width: 960px) {
+	body .site {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+}
