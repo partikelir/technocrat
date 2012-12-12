@@ -158,8 +158,13 @@ samp {
 	box-shadow: inset 0 0 8px 2px #c6c6c6, 0 1px 0 0 #f4f4f4;
 	border: none;
 }
-.edit-link {
+.edit-link, .leave-reply {
 	float: right;
+	margin-left: 12px;
+	margin-left: 0.857142857rem;
+}
+.page .entry-meta .by-author {
+	display: inline;
 }
 
 
@@ -338,6 +343,9 @@ article.format-quote .entry-content blockquote {
 	width: 40%;
 	text-align: center;
 	line-height: 80px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 .next-image {
 	float: right;

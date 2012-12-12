@@ -84,7 +84,6 @@ endif;
 					<footer class="entry-meta">
 						<?php pendrell_image_info( wp_get_attachment_metadata() ); ?>
 						<?php twentytwelve_entry_meta(); ?>
-						<?php edit_post_link( __( 'Edit', 'twentytwelve' ), '<span class="edit-link">', '</span>' ); ?>
 					</footer><!-- .entry-meta -->
 
 				</article><!-- #post -->

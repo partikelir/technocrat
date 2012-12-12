@@ -15,8 +15,6 @@ function pendrell_setup() {
 	// Add full post format support.
 	add_theme_support( 'post-formats', array( 'aside', 'gallery', 'link', 'image', 'quote', 'status', 'audio', 'chat', 'video' ) );
 	
-	//set_post_thumbnail_size( 624, 9999 ); no need to redefine; this is in 2012 already, isn't it?
-	
 	// Add a few additional image sizes for various usages
 	add_image_size( 'thumbnail-150', 150, 150 );
 	add_image_size( 'thumbnail-gallery', 150, 80, true );
@@ -130,6 +128,7 @@ function pendrell_date() {
 add_filter( 'get_the_date', 'pendrell_date' );
 
 function twentytwelve_entry_meta() {
+
 	global $post;
 
 	$categories_list = get_the_category_list( __( ', ', 'twentytwelve' ) );
@@ -164,10 +163,16 @@ function twentytwelve_entry_meta() {
 	}
 	
 	$parent = '';
-	if ( is_attachment() && wp_attachment_is_image() && $post->post_parent ) {
-		$parent = sprintf( __( '<a href="%1$s" title="Return to %2$s" rel="gallery">%3$s</a>', 'pendrell' ),
+	if ( ( is_attachment() && wp_attachment_is_image() && $post->post_parent ) || ( is_page() && $post->post_parent ) ) {
+		if ( is_attachment() && wp_attachment_is_image() && $post->post_parent ) {
+			$parent_rel = 'gallery';
+		} elseif ( is_page() && $post->post_parent ) {
+			$parent_rel = 'parent';
+		}
+		$parent = sprintf( __( '<a href="%1$s" title="Return to %2$s" rel="%3$s">%4$s</a>', 'pendrell' ),
 			esc_url( get_permalink( $post->post_parent ) ),
 			esc_attr( strip_tags( get_the_title( $post->post_parent ) ) ),
+			$parent_rel,
 			get_the_title( $post->post_parent )
 		);
 	}
@@ -179,13 +184,12 @@ function twentytwelve_entry_meta() {
 		$utility_text = __( 'This %5$s was posted %3$s in %1$s<span class="by-author"> by %4$s</span>.', 'pendrell' );
 	} elseif ( is_attachment() && wp_attachment_is_image() && $post->post_parent ) {
 		$utility_text = __( 'This %5$s was posted %3$s in %6$s.', 'pendrell' );
+	} elseif ( is_page() && $post->post_parent ) {
+		$utility_text = __( 'This page was posted under %6$s<span class="by-author"> by %4$s</span>.', 'pendrell' );
+	} elseif ( is_page() ) {
+		$utility_text = __( 'This page was posted<span class="by-author"> by %4$s</span>.', 'pendrell' );
 	} else {
 		$utility_text = __( 'This %5$s was posted %3$s<span class="by-author"> by %4$s</span>.', 'pendrell' );
-	}
-
-	if ( comments_open() && !is_singular() ) { ?>
-		<span class="leave-reply button"><?php comments_popup_link( __( 'Leave a response', 'pendrell' ), __( '1 Response', 'pendrell' ), __( '% Responses', 'pendrell' ) );
-		?></span><br/><br/><?php 
 	}
 
 	printf(
@@ -198,7 +202,13 @@ function twentytwelve_entry_meta() {
 		$parent
 	);
 
+	if ( comments_open() && !is_singular() ) { ?>
+		<span class="leave-reply button"><?php comments_popup_link( __( 'Respond', 'pendrell' ), __( '1 Response', 'pendrell' ), __( '% Responses', 'pendrell' ) );
+		?></span><?php 
+	}
+
 	edit_post_link( __( 'Edit', 'twentytwelve' ), ' <span class="edit-link button">', '</span>' );
+
 }
 
 // Redirect user to single search result: http://wpglee.com/2011/04/redirect-when-search-query-only-returns-one-match/
