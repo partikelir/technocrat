@@ -22,11 +22,6 @@
 				<a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'Permalink to %s', 'twentytwelve' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark"><?php the_title(); ?></a>
 			</h1>
 			<?php endif; // is_single() ?>
-			<?php if ( comments_open() ) : ?>
-				<div class="comments-link">
-					<?php comments_popup_link( '<span class="leave-reply">' . __( 'Leave a reply', 'twentytwelve' ) . '</span>', __( '1 Reply', 'twentytwelve' ), __( '% Replies', 'twentytwelve' ) ); ?>
-				</div><!-- .comments-link -->
-			<?php endif; // comments_open() ?>
 		</header><!-- .entry-header -->
 
 		<?php if ( is_search() ) : // Only display Excerpts for Search ?>
@@ -43,8 +38,7 @@
 
 		<footer class="entry-meta">
 			<?php twentytwelve_entry_meta(); ?>
-			<?php edit_post_link( __( 'Edit', 'twentytwelve' ), '<span class="edit-link">', '</span>' ); ?>
-			<?php if ( is_singular() && get_the_author_meta( 'description' ) ) : // If a user has filled out their description show a bio on their entries. ?>
+			<?php if ( is_singular() && get_the_author_meta( 'description' ) && PENDRELL_AUTHOR_BOX ) : // If a user has filled out their description show a bio on their entries. ?>
 				<div class="author-info">
 					<div class="author-avatar">
 						<?php echo get_avatar( get_the_author_meta( 'user_email' ), apply_filters( 'pendrell_author_bio_avatar_size', 80 ) ); ?>

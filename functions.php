@@ -183,6 +183,11 @@ function twentytwelve_entry_meta() {
 		$utility_text = __( 'This %5$s was posted %3$s<span class="by-author"> by %4$s</span>.', 'pendrell' );
 	}
 
+	if ( comments_open() && !is_singular() ) { ?>
+		<span class="leave-reply button"><?php comments_popup_link( __( 'Leave a response', 'pendrell' ), __( '1 Response', 'pendrell' ), __( '% Responses', 'pendrell' ) );
+		?></span><br/><br/><?php 
+	}
+
 	printf(
 		$utility_text,
 		$categories_list,
@@ -192,6 +197,8 @@ function twentytwelve_entry_meta() {
 		$format,
 		$parent
 	);
+
+	edit_post_link( __( 'Edit', 'twentytwelve' ), ' <span class="edit-link button">', '</span>' );
 }
 
 // Redirect user to single search result: http://wpglee.com/2011/04/redirect-when-search-query-only-returns-one-match/
@@ -319,5 +326,40 @@ function pendrell_analytics() {
 	}
 }
 add_action( 'wp_footer', 'pendrell_analytics' );
+
+// Excerpt functions from Twentyeleven, slightly modified
+function pendrell_continue_reading_link() {
+	return ' <a href="'. esc_url( get_permalink() ) . '">' . __( 'Continue reading&nbsp;&rarr;', 'plasticity' ) . '</a>';
+}
+add_filter( 'the_content_more_link', 'pendrell_continue_reading_link');
+function pendrell_auto_excerpt_more( $more ) {
+	return '&hellip;' . pendrell_continue_reading_link();
+}
+add_filter( 'excerpt_more', 'pendrell_auto_excerpt_more' );
+function pendrelly_custom_excerpt_more( $output ) {
+	if ( has_excerpt() && ! is_attachment() ) {
+		$output .= pendrell_continue_reading_link();
+	}
+	return $output;
+}
+add_filter( 'get_the_excerpt', 'pendrell_custom_excerpt_more' );
+
+// Custom excerpt length; source: http://digwp.com/2010/03/wordpress-functions-php-template-custom-functions/
+function pendrell_excerpt_length( $length ) {
+	return 48;
+}
+add_filter( 'excerpt_length', 'pendrell_excerpt_length' );
+
+// Body class filter
+function pendrell_body_class( $classes ) {
+	$classes[] = PENDRELL_FONTSTACK;
+	return $classes;
+}
+add_filter( 'body_class', 'pendrell_body_class');
+
+// Allow HTML in author descriptions on single user blogs
+if ( !is_multi_author() ) {
+	remove_filter( 'pre_user_description', 'wp_filter_kses' );
+}
 
 ?>

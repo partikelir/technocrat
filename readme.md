@@ -21,13 +21,17 @@ Above and beyond what Twenty Twelve provides, of course...
 * Better, more informative and SEO-friendly page titles
 * Human-readable dates on recent entries (e.g. posted 21 hours ago)
 * Standardized entry meta data display
+* Comment and edit post actions are now buttons
+* Comment button is below content to improve appearance of shared content
 * Full post format support with Crowd Favorite's WP-Post-Formats plugin (recommended): https://github.com/crowdfavorite/wp-post-formats
 * EXIF data and other information for images on attachment pages
 * Thumbnail-based navigation within image galleries
 * Clean search rewrites (e.g. website.com/search/query/ instead of website.com?s=query)
 * Unique search results redirect to matching post in one step
+* Serif, sans-serif, and monospace font stack switching
 * Reset admin-side HTML editor to a nicer font stack
-* Full-width images are displayed on pages using the full-width template
+* Full-width images are dynamically displayed on pages using the full-width template
+* Disqus compatibility; simply activate and it'll look sharp
 
 ### STILL TO DO
 
@@ -40,7 +44,6 @@ In no particular order...
 * Test for IE compatibility
 * Favicon/Apple touch icons
 * Post format icons
-* Serif, sans-serif, and monospace font stack switching
 * jQuery-based pullquotes; `<span class="pullquote">Text</span>` will be transformed into `<aside class="pulledquote">Text</aside>` and prepended
 * jQuery-based search query markup; surrounds search terms with `<mark>`
 * Infinite scrolling option

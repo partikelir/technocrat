@@ -24,6 +24,5 @@ $source_url = get_post_meta( $post->ID, '_format_quote_source_url', true );
 
 		<footer class="entry-meta">
 			<?php twentytwelve_entry_meta(); ?>
-			<?php edit_post_link( __( 'Edit', 'twentytwelve' ), '<span class="edit-link">', '</span>' ); ?>
 		</footer><!-- .entry-meta -->
 	</article><!-- #post -->
