@@ -16,6 +16,7 @@ if ( empty( $link_url ) )
 			<h1 class="entry-title">
 				<a href="<?php echo $link_url; ?>" title="<?php the_title(); ?>" rel="bookmark"><?php the_title(); ?></a>
 			</h1>
+			<footer><a href="<?php echo $link_url; ?>" title="<?php the_title(); ?>" rel="bookmark"><?php echo $link_url; ?></a></footer>
 		</header><!-- .entry-header -->
 
 		<div class="entry-content">

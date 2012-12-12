@@ -16,8 +16,7 @@ $source_url = get_post_meta( $post->ID, '_format_quote_source_url', true );
 				<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'twentytwelve' ) ); ?>
 			</blockquote>
 			
-			<?php if ( $source_name ) { 
-?>
+			<?php if ( $source_name ) { ?>
 				<footer>&#8213;<?php if ( $source_url ) { ?><a href="<?php echo $source_url; ?>"><?php } echo $source_name; if ( $source_url ) { ?></a><?php } ?></footer>
 			<?php } ?>
 		</div><!-- .entry-content -->

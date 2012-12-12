@@ -30,7 +30,7 @@
 		</div><!-- .entry-summary -->
 		<?php else : ?>
 		<div class="entry-content">
-			<?php the_post_thumbnail(); ?>
+			<?php if ( !pendrell_is_portfolio() ) { the_post_thumbnail(); } ?>
 			<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'twentytwelve' ) ); ?>
 			<?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'twentytwelve' ), 'after' => '</div>' ) ); ?>
 		</div><!-- .entry-content -->
@@ -41,7 +41,7 @@
 			<?php if ( is_singular() && get_the_author_meta( 'description' ) && PENDRELL_AUTHOR_BOX ) : // If a user has filled out their description show a bio on their entries. ?>
 				<div class="author-info">
 					<div class="author-avatar">
-						<?php echo get_avatar( get_the_author_meta( 'user_email' ), apply_filters( 'pendrell_author_bio_avatar_size', 80 ) ); ?>
+						<a href="<?php the_author_meta( 'user_url' ); ?>" title="<?php the_author_meta( 'nickname' ); ?>"><?php echo get_avatar( get_the_author_meta( 'user_email' ), 80 ); ?></a>
 					</div><!-- .author-avatar -->
 					<div class="author-description">
 						<h2><?php printf( __( 'About %s', 'twentytwelve' ), get_the_author() ); ?></h2>

@@ -56,6 +56,9 @@ img.header-image {
 .site-header .site-title, .site-header .site-description {
 	clear: none;
 }
+body.full-width .widget-area {
+	display: none;
+}
 
 
 
@@ -404,6 +407,15 @@ article.format-quote .entry-content blockquote {
 	}
 	.gallery-return {
 		display: block;
+	}
+	.author-avatar {
+		float: right;
+		margin-top: 8px;
+		margin-top: 0.571428571rem;
+	}
+	.author-description {
+		float: left;
+		width: 80%;
 	}
 }
 

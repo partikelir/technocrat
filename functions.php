@@ -9,7 +9,6 @@
 require_once( get_stylesheet_directory() . '/functions-config.php' );
 if ( is_admin() )
 	require_once( get_stylesheet_directory() . '/functions-admin.php' );
-add_action( 'after_setup_theme', 'pendrell_setup', 11 );
 
 function pendrell_setup() {
 	// Add full post format support.
@@ -19,7 +18,20 @@ function pendrell_setup() {
 	add_image_size( 'thumbnail-150', 150, 150 );
 	add_image_size( 'thumbnail-gallery', 150, 80, true );
 	add_image_size( 'full-width', 960, 9999 );
+	update_option( 'medium_size_w', 625 );
+	update_option( 'medium_size_h', 625 );
+	update_option( 'large_size_w', 960 );
+	update_option( 'large_size_h', 960 );
+	global $content_width;
+	$content_width = 960;
 }
+add_action( 'after_setup_theme', 'pendrell_setup', 11 );
+
+function pendrell_image_sizes( $sizes ) {
+	$sizes['full-width'] = __( 'Full Width', 'pendrell');
+	return $sizes;
+}
+add_filter( 'image_size_names_choose', 'pendrell_image_sizes' );
 
 // Head cleaner: removes useless fluff, Windows Live Writer support, version info, pointless relational links.
 function pendrell_init() {
@@ -363,9 +375,30 @@ add_filter( 'excerpt_length', 'pendrell_excerpt_length' );
 // Body class filter
 function pendrell_body_class( $classes ) {
 	$classes[] = PENDRELL_FONTSTACK;
+	if ( pendrell_is_portfolio() ) {
+		$classes[] = 'full-width';
+	}
 	return $classes;
 }
-add_filter( 'body_class', 'pendrell_body_class');
+add_filter( 'body_class', 'pendrell_body_class' );
+
+// Full width content function; is this even necessary?
+function pendrell_content_width() {
+	if ( pendrell_is_portfolio() ) {
+		global $content_width;
+		$content_width = 960;
+	}
+}
+//add_action( 'template_redirect', 'pendrell_content_width' );
+
+function pendrell_is_portfolio() {
+	global $pendrell_portfolio_cats;
+	if ( is_category( $pendrell_portfolio_cats ) || ( is_singular() && in_category( $pendrell_portfolio_cats ) ) ) {
+		return true;
+	} else {
+		return false;
+	}
+}
 
 // Allow HTML in author descriptions on single user blogs
 if ( !is_multi_author() ) {

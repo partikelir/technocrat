@@ -20,10 +20,11 @@ Above and beyond what Twenty Twelve provides, of course...
 * Custom header on top of navigation instead of below
 * Better, more informative and SEO-friendly page titles
 * Human-readable dates on recent entries (e.g. posted 21 hours ago)
-* Standardized entry meta data display
-* Comment and edit post actions are now buttons
-* Comment button is below content to improve appearance of shared content
+* Standardized entry meta data display across post formats
+* Comment and edit post actions are now clickable buttons
+* Comment button is now below content and only visible in post archives
 * Full post format support with Crowd Favorite's WP-Post-Formats plugin (recommended): https://github.com/crowdfavorite/wp-post-formats
+* Redesigned for full-width design and photography portfolios
 * EXIF data and other information for images on attachment pages
 * Thumbnail-based navigation within image galleries
 * Clean search rewrites (e.g. website.com/search/query/ instead of website.com?s=query)
@@ -65,6 +66,7 @@ These are some plugins I tend to use on my sites.
 * Akismet: http://wordpress.org/extend/plugins/akismet
 * AudioPlayer: http://wordpress.org/extend/plugins/audio-player/
 * Contact Form 7: http://wordpress.org/extend/plugins/contact-form-7/
+* Regenerate Thumbnails: http://wordpress.org/extend/plugins/regenerate-thumbnails/
 * Sociable: http://wordpress.org/extend/plugins/sociable/
 * Subscribe2: http://wordpress.org/extend/plugins/subscribe2/
 * SyntaxHighlighter Evolved: http://wordpress.org/extend/plugins/syntaxhighlighter/
@@ -77,7 +79,6 @@ These are some plugins I tend to use on my sites.
 
 * Dive Into HTML5: http://diveintohtml5.ep.io/
 * Google Page Speed Recommendations: http://code.google.com/speed/page-speed/docs/rendering.html
-* Initializr responsive template: http://verekia.com/initializr/responsive-template
 * SEOMoz: http://www.seomoz.org/
 * WordPress Codex
     * CSS Coding Standards: http://codex.wordpress.org/CSS_Coding_Standards
