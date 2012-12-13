@@ -28,6 +28,7 @@ Above and beyond what Twenty Twelve provides, of course...
 * Thumbnail-based navigation within image galleries
 * Clean search rewrites (e.g. website.com/search/query/ instead of website.com?s=query)
 * Singleton search results redirect to matching post in one step
+* More descriptive archive headers
 * Reset admin-side HTML editor to a nicer font stack
 * Full-width images are dynamically displayed on pages using the full-width template
 * Disqus compatibility; simply activate and it'll look sharp

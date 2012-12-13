@@ -31,7 +31,7 @@
 				$avatar_url = get_the_author_meta( 'user_url', PENDRELL_AUTHOR_ID );
 				if ( empty( $avatar_url ) )
 					$avatar_url = esc_url( home_url( '/' ) ); 
-				$avatar_title = get_the_author_meta( 'nickname', PENDRELL_AUTHOR_ID ); ?>
+				$avatar_title = get_the_author_meta( 'display_name', PENDRELL_AUTHOR_ID ); ?>
 					<a href="<?php echo $avatar_url; ?>" title="<?php echo $avatar_title; ?>" alt="<?php echo $avatar_title; ?>"><?php echo get_avatar( get_the_author_meta( 'user_email', PENDRELL_AUTHOR_ID ), 80 ); ?></a>
 				<?php endif; ?>
 				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>

@@ -54,7 +54,6 @@ add_action( 'init', 'pendrell_init' );
 // Enqueue scripts
 function pendrell_enqueue_scripts() {
 	if ( !is_admin() ) { // http://www.ericmmartin.com/5-tips-for-using-jquery-with-wordpress/
-		//wp_enqueue_script( 'jquery' );
 		wp_enqueue_script( 'pendrell-functions', get_stylesheet_directory_uri() . '/functions.js', array( 'jquery' ), '0.1', true );
 	}
 }
@@ -63,7 +62,7 @@ add_action( 'wp_enqueue_scripts', 'pendrell_enqueue_scripts' );
 // Output page-specific scripts
 function pendrell_print_scripts() {
 	// Capture search query for jQuery highlighter
-	$query  = get_search_query();
+	$query = get_search_query();
 	if ( strlen($query) > 0 ) { ?>
 		<script type="text/javascript">
 			var pendrell_search_query  = "<?php echo $query; ?>";
@@ -244,12 +243,16 @@ function twentytwelve_entry_meta() {
 		$parent
 	);
 
+	?><div class="entry-meta-buttons"><?php
+	
+	edit_post_link( __( 'Edit', 'twentytwelve' ), ' <span class="edit-link button">', '</span>' );
+	
 	if ( comments_open() && !is_singular() ) { ?>
 		<span class="leave-reply button"><?php comments_popup_link( __( 'Respond', 'pendrell' ), __( '1 Response', 'pendrell' ), __( '% Responses', 'pendrell' ) );
 		?></span><?php 
 	}
 
-	edit_post_link( __( 'Edit', 'twentytwelve' ), ' <span class="edit-link button">', '</span>' );
+	?></div><?php
 
 }
 
