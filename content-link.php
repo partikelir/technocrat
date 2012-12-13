@@ -14,7 +14,7 @@ if ( empty( $link_url ) )
 	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 		<header class="entry-header">
 			<h1 class="entry-title">
-				<a href="<?php echo $link_url; ?>" title="<?php the_title(); ?>" rel="bookmark"><?php the_title(); ?></a>
+				<a href="<?php echo $link_url; ?>" title="<?php the_title(); ?>" rel="bookmark"><?php the_title(); ?>&nbsp;&rarr;</a>
 			</h1>
 			<footer><a href="<?php echo $link_url; ?>" title="<?php the_title(); ?>" rel="bookmark"><?php echo $link_url; ?></a></footer>
 		</header><!-- .entry-header -->

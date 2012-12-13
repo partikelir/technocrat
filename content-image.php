@@ -16,8 +16,7 @@
 		</header><!-- .entry-header -->
 
 		<div class="entry-content">
-			<?php // The following needs to be updated.
-			$thumb = is_page_template( 'full-width.php' ) ? 'full-width' : 'medium-width'; the_post_thumbnail( $thumb ); ?>
+			<?php the_post_thumbnail(); ?>
 			<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'twentytwelve' ) ); ?>
 		</div><!-- .entry-content -->
 

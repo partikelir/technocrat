@@ -15,22 +15,6 @@ Template: twentytwelve
 
 
 
-/* === ADDITIONAL RESETS AND HACKS === */
-
-strike {
-	text-decoration: line-through;
-}
-.entry-content,
-.entry-summary {
-	-webkit-hyphens: auto;
-	-moz-hyphens: auto;
-	-ms-hyphens: auto;
-	-o-hyphens: auto;
-	hyphens: auto;
-}
-
-
-
 /* === HEADER === */
 
 .header-image {
@@ -69,50 +53,66 @@ body.full-width .widget-area {
 - Font Squirrel @font-face generator: http://www.fontsquirrel.com/fontface/generator
 - 10 Web Font Stacks: http://georgebutler.com/blog/typography/10-definitive-web-font-stacks-for-designers/ */
 
-.serif,
-.serif button,
-.serif input,
-.serif select,
-.serif textarea {
+body.serif,
+body.serif button,
+body.serif input,
+body.serif select,
+body.serif textarea {
 	font-family: Georgia, "Palatino Linotype", Palatino, "URW Palladio L", "Book Antiqua", "Times New Roman", serif;
 }
-.serif h1,
-.serif h2,
-.serif h3,
-.serif h4,
-.serif h5,
-.serif h6,
-.serif .pulledquote,
-.serif #main-nav a,
-.serif .format-quote blockquote {
+body.serif h1,
+body.serif h2,
+body.serif h3,
+body.serif h4,
+body.serif h5,
+body.serif h6,
+body.serif .pulledquote,
+body.serif .format-quote blockquote {
 	font-family: "PT Serif", Cambria, Constantia, "URW Palladio L", "Palatino Linotype", Palatino, Georgia, "Book Antiqua", "Times New Roman", serif;
 }
-.sans,
-.sans button,
-.sans input,
-.sans select,
-.sans textarea {
+body.sans,
+body.sans button,
+body.sans input,
+body.sans select,
+body.sans textarea {
 	font-family: Tahoma, "DejaVu Sans", "Lucida Sans", "Lucida Grande", "Bitstream Vera Sans", "Liberation Sans", Verdana, sans-serif;
 } /* Arial/Helvetica version: Corbel, Arial, Helvetica, "Nimbus Sans L", "Liberation Sans", sans-serif; */
-.sans h1,
-.sans h2,
-.sans h3,
-.sans h4,
-.sans h5,
-.sans h6,
-.sans .pulledquote,
-.sans #main-nav a,
-.sans .format-quote blockquote {
+body.sans h1,
+body.sans h2,
+body.sans h3,
+body.sans h4,
+body.sans h5,
+body.sans h6,
+body.sans .pulledquote,
+body.sans .format-quote blockquote {
 	font-family: Calibri, "DejaVu Sans Condensed", Tahoma, "Lucida Sans", "Lucida Grande", "Bitstream Vera Sans", "Liberation Sans", Verdana, sans-serif;
 }
-.monospace,
-.syntaxhighlighter,
+body.monospace,
+body.syntaxhighlighter,
 pre,
 code,
 kbd,
 samp {
 	font-family: Consolas, "Bitstream Vera Sans Mono", "Andale Mono", Monaco, "DejaVu Sans Mono", "Lucida Console", monospace;
 }
+.entry-content {
+	font-size: 16px;
+	font-size: 1.142857143rem;
+	line-height: 1.846153846;
+}
+footer.entry-meta,
+article.format-quote footer.entry-meta,
+article.format-link footer.entry-meta,
+article.format-status footer.entry-meta {
+	font-size: 12px;
+	font-size: 0.857142857rem;
+	line-height: 2;
+}
+
+
+
+
+
 
 
 
@@ -121,9 +121,9 @@ samp {
 .button a {
 	padding: 6px 10px;
 	padding: 0.428571429rem 0.714285714rem;
-	font-size: 11px;
-	font-size: 0.785714286rem;
-	line-height: 1.428571429;
+	font-size: 12px;
+	font-size: 0.857142857rem;
+	line-height: 2;
 	font-weight: normal;
 	color: #7c7c7c;
 	background-color: #e6e6e6;
@@ -174,16 +174,54 @@ samp {
 
 /* === POST FORMATS === */
 
-article.format-quote footer.entry-meta,
-article.format-link footer.entry-meta,
-article.format-status footer.entry-meta {
-	margin-top: 24px;
-	margin-top: 1.714285714rem;
-	font-size: 13px;
-	font-size: 0.928571429rem;
-	line-height: 1.846153846;
-	color: #777;
+/* Link posts */
+article.format-link header {
+	padding: 0;
+	float: none;
+	font-size: 11px;
+	font-size: 0.785714286rem;
+	line-height: 2.181818182;
+	font-weight: normal;
+	font-style: normal;
+	text-transform: none;
+	background-color: #fff;
+	border-radius: 0;
 }
+article.format-link .entry-content {
+	max-width: 100%;
+	float: none;
+}
+article.format-link .entry-content a {
+	font-size: 22px;
+	font-size: 1.571428571rem;
+	line-height: 1.090909091;
+	text-decoration: none;
+}
+
+/* Quote */
+article.format-quote .entry-content blockquote {
+	font-style: italic;
+	font-size: 18px;
+	font-size: 1.285714286rem;
+	background: #f8f8f8;
+	border-radius: 3px;
+}
+.format-quote p:first-child::before {
+	content: "\201C";
+}
+.format-quote p:last-child::after {
+	content: "\201D";
+}
+.format-quote .entry-content footer {
+	text-align: right;
+	margin-bottom: 24px;
+	margin-bottom: 1.714285714rem;
+}
+
+
+
+
+/* === POST FORMATS UNDER DEV === */
 
 /* Aside */
 article.format-aside h1 {
@@ -213,73 +251,6 @@ article.format-aside p:last-child {
 	margin-bottom: 0;
 }
 
-/* Link */
-article.format-link header {
-	padding: 0;
-	float: none;
-	font-size: 11px;
-	font-size: 0.785714286rem;
-	line-height: 2.181818182;
-	font-weight: normal;
-	font-style: normal;
-	text-transform: none;
-	background-color: #fff;
-	border-radius: 0;
-}
-article.format-link .entry-content {
-	max-width: 80%;
-	float: left;
-}
-article.format-link .entry-content a {
-	font-size: 22px;
-	font-size: 1.571428571rem;
-	line-height: 1.090909091;
-	text-decoration: none;
-}
-/*
-article.format-link header.entry-header {
-	margin-bottom: 24px;
-	margin-bottom: 1.714285714rem;
-}
-article.format-link header.entry-header .entry-title {
-	font-size: 20px;
-	font-size: 1.428571429rem;
-	line-height: 1.2;
-	font-weight: normal;
-}
-article.format-link header.entry-header .entry-title a {
-	text-decoration: none;
-}*/
-
-/* Quotation */
-article.format-quote .entry-content blockquote {
-	font-style: italic;
-	font-weight: bold;
-	margin: 0;
-	padding: 0;
-	background: none;
-}
-.format-quote blockquote p {
-	margin: 0;
-}
-.format-quote blockquote p:first-child {
-	text-indent: -0.4em;
-}
-.format-quote p:first-child::before {
-	content: "\201C";
-}
-.format-quote p:last-child::after {
-	content: "\201D";
-}
-.format-quote blockquote>p+p {
-	text-indent: 0.75em;
-}
-.format-quote .entry-content footer {
-	text-align: right;
-	margin-bottom: 24px;
-	margin-bottom: 1.714285714rem;
-}
-
 /* Status posts */
 .format-status .entry-header {
 	margin-bottom: 24px;
@@ -306,9 +277,11 @@ article.format-quote .entry-content blockquote {
 	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 }
 
+/* === END DEV === */
 
 
-/* === IMAGES === */
+
+/* === IMAGE ATTACHMENT PAGES === */
 
 .image-info {
 	border-top: 1px solid #ededed;
@@ -379,6 +352,22 @@ article.format-quote .entry-content blockquote {
 
 
 
+/* === ADDITIONAL RESETS AND HACKS === */
+
+strike {
+	text-decoration: line-through;
+}
+.entry-content,
+.entry-summary {
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+	-ms-hyphens: auto;
+	-o-hyphens: auto;
+	hyphens: auto;
+}
+
+
+
 /* === PLUGINS === */
 
 #disqus_thread {
@@ -436,4 +425,17 @@ article.format-quote .entry-content blockquote {
 		margin-right: 12px;
 		margin-right: 0.857142857rem;
 	}
+}
+
+/* === DEVELOPMENT AREA === */
+
+/* Enclose any text with <span class="pullquote"></span> and this style will be applied! */
+.pulledquote {
+	max-width: 30%;
+	margin: 0.6em -6em 0.6em 0.8em;
+	padding: 0.55em 0;
+	border-top: 1px solid;
+	border-bottom: 1px solid;
+	float: right;
+	color: #999;
 }

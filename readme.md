@@ -8,45 +8,45 @@ Pendrell is a simple child theme for the default Twenty Twelve WordPress theme. 
 
 You must have Twenty Twelve installed before using Pendrell. Drop the 'pendrell' directory into /wp-content/themes/ and activate it via the WordPress admin interface.
 
-There are several options at the top of the functions-config.php file. Most of these should be self-explanatory. No theme options page is included.
+There are several options at the top of the functions-config-sample.php file. Most of these should be self-explanatory. No theme options page is included.
 
 ## FEATURES
 
 Above and beyond what Twenty Twelve provides, of course...
 
-### WORKING
-
 * Slightly different look and feel; still clean and responsive
+* Entry content type set at 16px for easier reading
 * Custom header on top of navigation instead of below
 * Better, more informative and SEO-friendly page titles
 * Human-readable dates on recent entries (e.g. posted 21 hours ago)
 * Standardized entry meta data display across post formats
 * Comment and edit post actions are now clickable buttons
 * Comment button is now below content and only visible in post archives
-* Full post format support with Crowd Favorite's WP-Post-Formats plugin (recommended): https://github.com/crowdfavorite/wp-post-formats
-* Redesigned for full-width design and photography portfolios
+* Full post format support with Crowd Favorite's WP-Post-Formats plugin: https://github.com/crowdfavorite/wp-post-formats
+* Redesigned for full-width creative portfolios
 * EXIF data and other information for images on attachment pages
 * Thumbnail-based navigation within image galleries
 * Clean search rewrites (e.g. website.com/search/query/ instead of website.com?s=query)
-* Unique search results redirect to matching post in one step
-* Serif, sans-serif, and monospace font stack switching
+* Singleton search results redirect to matching post in one step
 * Reset admin-side HTML editor to a nicer font stack
 * Full-width images are dynamically displayed on pages using the full-width template
 * Disqus compatibility; simply activate and it'll look sharp
+* jQuery-based pullquotes; `<span class="pullquote">Text</span>` will be transformed into `<aside class="pulledquote">Text</aside>` and prepended
+* jQuery-based search query markup; surrounds search terms with `<mark>`
 
-### STILL TO DO
+## TO DO
 
 In no particular order...
 
 * Internationalization (i18n)
+* Serif, sans-serif, and monospace font stack switching
 * Smart 404 page
+* AJAXify image attachment pages
 * Related posts
 * Easily disable comments altogether
 * Test for IE compatibility
 * Favicon/Apple touch icons
 * Post format icons
-* jQuery-based pullquotes; `<span class="pullquote">Text</span>` will be transformed into `<aside class="pulledquote">Text</aside>` and prepended
-* jQuery-based search query markup; surrounds search terms with `<mark>`
 * Infinite scrolling option
 * Image slider e.g. Orbit: http://www.zurb.com/playground/orbit-jquery-image-slider
 * Front-end posting: http://scribu.net/wordpress/front-end-editor http://wordpress.org/extend/plugins/posthaste/

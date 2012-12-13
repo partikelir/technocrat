@@ -6,7 +6,13 @@
  * @subpackage Twenty_Twelve
  * @since Twenty Twelve 1.0
  */
-?>
+if ( pendrell_is_portfolio() && is_category() ) { ?>
+
+	<article id="post-<?php the_ID(); ?>" <?php post_class( 'portfolio-category'); ?>>
+
+	</article>
+
+<?php } else { ?>
 
 	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 		<?php if ( is_sticky() && is_home() && ! is_paged() ) : ?>
@@ -30,7 +36,7 @@
 		</div><!-- .entry-summary -->
 		<?php else : ?>
 		<div class="entry-content">
-			<?php if ( !pendrell_is_portfolio() ) { the_post_thumbnail(); } ?>
+			<?php the_post_thumbnail(); ?>
 			<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'twentytwelve' ) ); ?>
 			<?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'twentytwelve' ), 'after' => '</div>' ) ); ?>
 		</div><!-- .entry-content -->
@@ -58,3 +64,4 @@
 			<?php endif; ?>
 		</footer><!-- .entry-meta -->
 	</article><!-- #post -->
+<?php } ?>

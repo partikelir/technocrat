@@ -11,17 +11,22 @@ if ( is_admin() )
 	require_once( get_stylesheet_directory() . '/functions-admin.php' );
 
 function pendrell_setup() {
-	// Add full post format support.
+	// Add full post format support
 	add_theme_support( 'post-formats', array( 'aside', 'gallery', 'link', 'image', 'quote', 'status', 'audio', 'chat', 'video' ) );
 	
-	// Add a few additional image sizes for various usages
+	// Add a few additional image sizes for various purposes
 	add_image_size( 'thumbnail-150', 150, 150 );
 	add_image_size( 'thumbnail-gallery', 150, 80, true );
+	add_image_size( 'thumbnail-portfolio', 460, 460 );
 	add_image_size( 'full-width', 960, 9999 );
-	update_option( 'medium_size_w', 625 );
-	update_option( 'medium_size_h', 625 );
+
+	// Set the medium and large size image sizes under media settings
+	update_option( 'medium_size_w', 624 );
+	update_option( 'medium_size_h', 624 );
 	update_option( 'large_size_w', 960 );
 	update_option( 'large_size_h', 960 );
+
+	// $content_width limits the size of the largest image size available via the media uploader
 	global $content_width;
 	$content_width = 960;
 }
@@ -33,7 +38,7 @@ function pendrell_image_sizes( $sizes ) {
 }
 add_filter( 'image_size_names_choose', 'pendrell_image_sizes' );
 
-// Head cleaner: removes useless fluff, Windows Live Writer support, version info, pointless relational links.
+// Head cleaner: removes useless fluff, Windows Live Writer support, version info, pointless relational links
 function pendrell_init() {
 	if ( !is_admin() ) {
 		remove_action( 'wp_head', 'rsd_link' );
@@ -46,18 +51,39 @@ function pendrell_init() {
 }
 add_action( 'init', 'pendrell_init' );
 
-// Dynamic page titles; hooks into wp_title to improve search engine ranking without making a mess.
+// Enqueue scripts
+function pendrell_enqueue_scripts() {
+	if ( !is_admin() ) { // http://www.ericmmartin.com/5-tips-for-using-jquery-with-wordpress/
+		//wp_enqueue_script( 'jquery' );
+		wp_enqueue_script( 'pendrell-functions', get_stylesheet_directory_uri() . '/functions.js', array( 'jquery' ), '0.1', true );
+	}
+}
+add_action( 'wp_enqueue_scripts', 'pendrell_enqueue_scripts' );
+
+// Output page-specific scripts
+function pendrell_print_scripts() {
+	// Capture search query for jQuery highlighter
+	$query  = get_search_query();
+	if ( strlen($query) > 0 ) { ?>
+		<script type="text/javascript">
+			var pendrell_search_query  = "<?php echo $query; ?>";
+		</script>
+<?php }
+}
+add_action( 'wp_print_scripts', 'pendrell_print_scripts' );
+
+// Dynamic page titles; hooks into wp_title to improve search engine ranking without making a mess
 function pendrell_wp_title( $title, $sep = '-', $seplocation = 'right' ) {
 
-	// Flush out whatever came in; let's do it from scratch.
+	// Flush out whatever came in; let's do it from scratch
 	$title = '';
 
-	// Default seperator and spacing.
+	// Default seperator and spacing
 	if ( trim( $sep ) == '' )
 		$sep = '-';
 	$sep = ' ' . $sep . ' ';
 
-	// Call up page number; show in page title if greater than 1.
+	// Call up page number; show in page title if greater than 1
 	$page_num = '';
 	if ( is_paged() ) {
 		global $page, $paged;
@@ -84,7 +110,7 @@ function pendrell_wp_title( $title, $sep = '-', $seplocation = 'right' ) {
 			$title .= $sep . PENDRELL_DESC;
 	} 
 
-	// Archives; some guidance from Hybrid on times and dates.
+	// Archives; some guidance from Hybrid on times and dates
 	if ( is_archive() ) {
 		if ( is_author() )
 			$title = sprintf( __( 'Posts by %s', 'pendrell' ), get_the_author_meta( 'display_name', get_query_var( 'author' ) ) );
@@ -113,7 +139,7 @@ function pendrell_wp_title( $title, $sep = '-', $seplocation = 'right' ) {
 		$title .= $sep . PENDRELL_NAME;
 	}
 
-	// Single posts, pages, and attachments.
+	// Single posts, pages, and attachments
 	if ( is_singular() ) {
 		if ( is_attachment() )
 			$title = single_post_title( '', false );
@@ -124,18 +150,22 @@ function pendrell_wp_title( $title, $sep = '-', $seplocation = 'right' ) {
 
 	return esc_html( strip_tags( stripslashes( $title . $page_num ) ) );
 }
-// Ditch Twenty Twelve's default title filter.
+// Ditch Twenty Twelve's default title filter; there's no need for it
 remove_filter( 'wp_title', 'twentytwelve_wp_title', 10, 2 );
-// Lower priority than the parent theme function; this way it runs later and titles aren't doubled up.
+// Lower priority than the parent theme function; this way it runs later and titles aren't doubled up
 add_filter( 'wp_title', 'pendrell_wp_title', 11, 3 );
 
-// Output a human readable date wrapped in an HTML5 time tag.
-function pendrell_date() {
-	if ( ( current_time('timestamp') - get_the_time('U') ) < 86400 )
-		$pendrell_time = human_time_diff( get_the_time('U'), current_time('timestamp') ) . ' ago';
-	else
-		$pendrell_time = get_the_time('M j, Y, g:i a', '', '');
-	return '<time datetime="' . get_the_time('c') . '" pubdate>' . $pendrell_time . '</time>';
+// Output a human readable date wrapped in an HTML5 time tag
+function pendrell_date( $date ) {
+	if ( is_archive() ) {
+		return $date;
+	} else {
+		if ( ( current_time('timestamp') - get_the_time('U') ) < 86400 )
+			$pendrell_time = human_time_diff( get_the_time('U'), current_time('timestamp') ) . ' ago';
+		else
+			$pendrell_time = get_the_time('M j, Y, g:i a', '', '');
+		return '<time datetime="' . get_the_time('c') . '" pubdate>' . $pendrell_time . '</time>';		
+	}
 }
 add_filter( 'get_the_date', 'pendrell_date' );
 
@@ -236,85 +266,52 @@ function pendrell_search_redirect() {
 }
 add_action( 'template_redirect', 'pendrell_search_redirect' );
 
-// Allow HTML in author descriptions on single user blogs.
+// Allow HTML in author descriptions on single user blogs
 remove_filter( 'pre_user_description', 'wp_filter_kses' );
 
-// Display EXIF data.
+// Display EXIF data for photographs
 function pendrell_image_info( $metadata = array() ) {
-
 	if ( $metadata['image_meta'] ) {
-						?><div class="image-info">
-							<h2><?php _e( 'Image Info', 'pendrell' ); ?></h2>
-							<div class="image-description">
-							<?php if ( $metadata['height'] && $metadata['width'] ) { 
-									printf( __( 'Full Size: <a href="%1$s" title="Link to full size image">%2$s &times; %3$s</a></br>', 'pendrell' ),
-										esc_attr( wp_get_attachment_url() ),
-										$metadata['width'],
-										$metadata['height']
-									);
-								}
-								if ( $metadata['image_meta']['created_timestamp'] ) { printf( __( 'Taken: %s<br/>', 'pendrell' ), date( get_option('date_format'), $metadata['image_meta']['created_timestamp'] ) ); }
-								if ( $metadata['image_meta']['camera'] ) { printf( __( 'Camera: %s</br>', 'pendrell' ), $metadata['image_meta']['camera'] ); }
-								if ( $metadata['image_meta']['focal_length'] ) { printf( __( 'Focal Length: %s mm<br/>', 'pendrell' ), $metadata['image_meta']['focal_length'] ); }
-								if ( $metadata['image_meta']['aperture'] ) { printf( __( 'Aperture: f/%s<br/>', 'pendrell' ), $metadata['image_meta']['aperture'] ); }
-								if ( $metadata['image_meta']['shutter_speed'] ) {
-									// Based on http://technology.mattrude.com/2010/07/display-exif-data-on-wordpress-gallery-post-image-2/
-									$image_shutter_speed = $metadata['image_meta']['shutter_speed'];
-									if ( $image_shutter_speed > 0 ) {
-										if ( ( 1 / $image_shutter_speed ) > 1 ) {
-											if ((number_format((1 / $image_shutter_speed ), 1 ) ) == 1.3
-											or number_format( ( 1 / $image_shutter_speed ), 1 ) == 1.5
-											or number_format( ( 1 / $image_shutter_speed ), 1 ) == 1.6
-											or number_format( ( 1 / $image_shutter_speed ), 1 ) == 2.5) {
-												$pshutter = '1/' . number_format( ( 1 / $image_shutter_speed ), 1, '.', '') . ' ' . __('sec', 'pendrell');
-											} else {
-												$pshutter = '1/' . number_format( ( 1 / $image_shutter_speed ), 0, '.', '') . ' ' . __('sec', 'pendrell');
-											}
-										} else {
-											$pshutter = $image_shutter_speed . ' ' . __('sec', 'pendrell');
-										}
-									}
-							
-							
-							echo __( 'Shutter Speed: ', 'pendrell') . $pshutter . '<br/>';
-								}
-								if ( $metadata['image_meta']['iso'] ) { echo __( 'ISO/Film: ', 'pendrell') . $metadata['image_meta']['iso'] . '<br/>'; } ?>
-							</div>
-						</div>
+		?><div class="image-info">
+			<h2><?php _e( 'Image Info', 'pendrell' ); ?></h2>
+			<div class="image-description">
+			<?php if ( $metadata['height'] && $metadata['width'] ) { 
+					printf( __( 'Full Size: <a href="%1$s" title="Link to full size image">%2$s &times; %3$s</a></br>', 'pendrell' ),
+						esc_attr( wp_get_attachment_url() ),
+						$metadata['width'],
+						$metadata['height']
+					);
+				}
+				if ( $metadata['image_meta']['created_timestamp'] ) { printf( __( 'Taken: %s<br/>', 'pendrell' ), date( get_option( 'date_format' ), $metadata['image_meta']['created_timestamp'] ) ); }
+				if ( $metadata['image_meta']['camera'] ) { printf( __( 'Camera: %s</br>', 'pendrell' ), $metadata['image_meta']['camera'] ); }
+				if ( $metadata['image_meta']['focal_length'] ) { printf( __( 'Focal Length: %s mm<br/>', 'pendrell' ), $metadata['image_meta']['focal_length'] ); }
+				if ( $metadata['image_meta']['aperture'] ) { printf( __( 'Aperture: f/%s<br/>', 'pendrell' ), $metadata['image_meta']['aperture'] ); }
+				if ( $metadata['image_meta']['shutter_speed'] ) {
+					// Based on http://technology.mattrude.com/2010/07/display-exif-data-on-wordpress-gallery-post-image-2/
+					$image_shutter_speed = $metadata['image_meta']['shutter_speed'];
+					if ( $image_shutter_speed > 0 ) {
+						if ( ( 1 / $image_shutter_speed ) > 1 ) {
+							if ( ( number_format( (1 / $image_shutter_speed ), 1 ) ) == 1.3
+							or number_format( ( 1 / $image_shutter_speed ), 1 ) == 1.5
+							or number_format( ( 1 / $image_shutter_speed ), 1 ) == 1.6
+							or number_format( ( 1 / $image_shutter_speed ), 1 ) == 2.5) {
+								$pshutter = '1/' . number_format( ( 1 / $image_shutter_speed ), 1, '.', '') . ' ' . __( 'sec', 'pendrell');
+							} else {
+								$pshutter = '1/' . number_format( ( 1 / $image_shutter_speed ), 0, '.', '') . ' ' . __( 'sec', 'pendrell' );
+							}
+						} else {
+							$pshutter = $image_shutter_speed . ' ' . __( 'sec', 'pendrell' );
+						}
+					}
+			
+			
+			echo __( 'Shutter Speed: ', 'pendrell' ) . $pshutter . '<br/>';
+				}
+				if ( $metadata['image_meta']['iso'] ) { echo __( 'ISO/Film: ', 'pendrell') . $metadata['image_meta']['iso'] . '<br/>'; } ?>
+			</div>
+		</div>
 <?php
 	}
-}
-
-// === DEVELOPMENT AREA === //
-
-// 404 (TO DO); some suggestions: http://www.alistapart.com/articles/perfect404/ http://justintadlock.com/archives/2009/05/13/customize-your-404-page-from-the-wordpress-admin
-function pendrell_404() {
-	?><h2><?php _e( 'Nothing found', 'pendrell' ); ?></h2>
-	
-<?php // Prefill the search form with a half-decent guess.
-	$search_term = esc_url( $_SERVER['REQUEST_URI'] );
-	pendrell_search_form( $search_term ); 
-}
-
-// Smarter search form
-function pendrell_search_form( $search_term = '' ) {
-	global $search_num;
-	++$search_num;
-	?>
-				<form id="search-form<?php if ( $search_num ) echo "-{$search_num}"; ?>" method="get" action="<?php echo trailingslashit( home_url() ); ?>">
-					<div>
-						<input type="search" id="search-text<?php if ( $search_num ) echo "-{$search_num}"; ?>" class="search-field" name="s" value="<?php 
-							if ( is_search() ) {
-								the_search_query();
-							} elseif ( !empty( $search_term) ) {
-								echo $search_term;
-							} else {
-								_e( 'Search for&hellip;', 'pendrell' ); ?>" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;<?php
-							} ?>" />
-						<input type="submit" id="search-submit<?php if ( $search_num ) echo "-{$search_num}"; ?>" class="search-submit button" value="<?php _e( 'Go!', 'pendrell' ); ?>" />
-					</div>
-				</form>
-<?php 
 }
 
 // Footer credits
@@ -349,48 +346,17 @@ function pendrell_analytics() {
 }
 add_action( 'wp_footer', 'pendrell_analytics' );
 
-// Excerpt functions from Twentyeleven, slightly modified
-function pendrell_continue_reading_link() {
-	return ' <a href="'. esc_url( get_permalink() ) . '">' . __( 'Continue reading&nbsp;&rarr;', 'plasticity' ) . '</a>';
-}
-add_filter( 'the_content_more_link', 'pendrell_continue_reading_link');
-function pendrell_auto_excerpt_more( $more ) {
-	return '&hellip;' . pendrell_continue_reading_link();
-}
-add_filter( 'excerpt_more', 'pendrell_auto_excerpt_more' );
-function pendrelly_custom_excerpt_more( $output ) {
-	if ( has_excerpt() && ! is_attachment() ) {
-		$output .= pendrell_continue_reading_link();
-	}
-	return $output;
-}
-add_filter( 'get_the_excerpt', 'pendrell_custom_excerpt_more' );
-
-// Custom excerpt length; source: http://digwp.com/2010/03/wordpress-functions-php-template-custom-functions/
-function pendrell_excerpt_length( $length ) {
-	return 48;
-}
-add_filter( 'excerpt_length', 'pendrell_excerpt_length' );
-
 // Body class filter
 function pendrell_body_class( $classes ) {
 	$classes[] = PENDRELL_FONTSTACK;
 	if ( pendrell_is_portfolio() ) {
-		$classes[] = 'full-width';
+		$classes[] = 'full-width portfolio';
 	}
 	return $classes;
 }
 add_filter( 'body_class', 'pendrell_body_class' );
 
-// Full width content function; is this even necessary?
-function pendrell_content_width() {
-	if ( pendrell_is_portfolio() ) {
-		global $content_width;
-		$content_width = 960;
-	}
-}
-//add_action( 'template_redirect', 'pendrell_content_width' );
-
+// Test to see whether we are viewing a portfolio post or category archive
 function pendrell_is_portfolio() {
 	global $pendrell_portfolio_cats;
 	if ( is_category( $pendrell_portfolio_cats ) || ( is_singular() && in_category( $pendrell_portfolio_cats ) ) ) {
@@ -404,5 +370,65 @@ function pendrell_is_portfolio() {
 if ( !is_multi_author() ) {
 	remove_filter( 'pre_user_description', 'wp_filter_kses' );
 }
+
+
+// === DEVELOPMENT AREA === //
+// Everything below here might or might not be working... when it has been developed and tested move it above this line
+
+// 404 (TO DO); some suggestions: http://www.alistapart.com/articles/perfect404/ http://justintadlock.com/archives/2009/05/13/customize-your-404-page-from-the-wordpress-admin
+function pendrell_404() {
+	?><h2><?php _e( 'Nothing found', 'pendrell' ); ?></h2>
+	
+<?php // Prefill the search form with a half-decent guess.
+	$search_term = esc_url( $_SERVER['REQUEST_URI'] );
+	pendrell_search_form( $search_term ); 
+}
+
+// Smarter search form
+function pendrell_search_form( $search_term = '' ) {
+	global $search_num;
+	++$search_num;
+	?>
+				<form id="search-form<?php if ( $search_num ) echo "-{$search_num}"; ?>" method="get" action="<?php echo trailingslashit( home_url() ); ?>">
+					<div>
+						<input type="search" id="search-text<?php if ( $search_num ) echo "-{$search_num}"; ?>" class="search-field" name="s" value="<?php 
+							if ( is_search() ) {
+								the_search_query();
+							} elseif ( !empty( $search_term) ) {
+								echo $search_term;
+							} else {
+								_e( 'Search for&hellip;', 'pendrell' ); ?>" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;<?php
+							} ?>" />
+						<input type="submit" id="search-submit<?php if ( $search_num ) echo "-{$search_num}"; ?>" class="search-submit button" value="<?php _e( 'Go!', 'pendrell' ); ?>" />
+					</div>
+				</form>
+<?php 
+}
+
+// Excerpt functions from Twentyeleven, slightly modified
+function pendrell_continue_reading_link() {
+	return ' <a href="'. esc_url( get_permalink() ) . '">' . __( 'Continue reading&nbsp;&rarr;', 'plasticity' ) . '</a>';
+}
+add_filter( 'the_content_more_link', 'pendrell_continue_reading_link');
+function pendrell_auto_excerpt_more( $more ) {
+	return '&hellip;' . pendrell_continue_reading_link();
+}
+add_filter( 'excerpt_more', 'pendrell_auto_excerpt_more' );
+function pendrell_custom_excerpt_more( $output ) {
+	if ( has_excerpt() && ! is_attachment() ) {
+		$output .= pendrell_continue_reading_link();
+	}
+	return $output;
+}
+add_filter( 'get_the_excerpt', 'pendrell_custom_excerpt_more' );
+
+// Custom excerpt length; source: http://digwp.com/2010/03/wordpress-functions-php-template-custom-functions/
+function pendrell_excerpt_length( $length ) {
+	return 48;
+}
+add_filter( 'excerpt_length', 'pendrell_excerpt_length' );
+
+
+
 
 ?>
