@@ -159,10 +159,10 @@ function pendrell_date( $date ) {
 	if ( is_archive() && !pendrell_is_portfolio() ) {
 		return $date;
 	} else {
-		if ( ( current_time('timestamp') - get_the_time('U') ) < 86400 )
-			$pendrell_time = human_time_diff( get_the_time('U'), current_time('timestamp') ) . ' ago';
+		if ( ( current_time( 'timestamp' ) - get_the_time('U') ) < 86400 )
+			$pendrell_time = human_time_diff( get_the_time('U'), current_time( 'timestamp' ) ) . ' ago';
 		else
-			$pendrell_time = get_the_time('M j, Y, g:i a', '', '');
+			$pendrell_time = get_the_time( 'M j, Y, g:i a', '', '' );
 		return '<time datetime="' . get_the_time('c') . '" pubdate>' . $pendrell_time . '</time>';		
 	}
 }
@@ -370,31 +370,47 @@ function pendrell_is_portfolio() {
 }
 
 function pendrell_post_thumbnail( $html, $post_id, $post_thumbnail_id, $size, $attr ) {
-
 	// Source: http://wpengineer.com/1735/easier-better-solutions-to-get-pictures-on-your-posts/
 	if ( empty( $html ) ) {
 		$attachments = get_children( array(
 			'post_parent'    => get_the_ID(),
 			'post_type'      => 'attachment',
-			'numberposts'    => 1, // show all -1
+			'numberposts'    => 1,
 			'post_status'    => 'inherit',
 			'post_mime_type' => 'image',
 			'order'          => 'ASC',
 			'orderby'        => 'menu_order ASC'
-		) );
-		foreach ( $attachments as $attachment_id => $attachment ) {
-	    	echo wp_get_attachment_image( $attachment_id, $size );
+		), ARRAY_A );
+
+		if ( $attachments ) {
+			echo wp_get_attachment_image( current( array_keys( $attachments ) ), $size );
 		}
+		// To do: add a default thumbnail!
 	} else {
 		return $html;
 	}
 }
 add_filter( 'post_thumbnail_html', 'pendrell_post_thumbnail', 11, 5 );
 
+// Modify how many posts per page are displayed in different contexts (e.g. more portfolio items on category archives)
+function pendrell_posts_per_page( $query ) {
+	// Source: http://wordpress.stackexchange.com/questions/21/show-a-different-number-of-posts-per-page-depending-on-context-e-g-homepage
+    if ( pendrell_is_portfolio() ) {
+    	$query->set( 'posts_per_page', 12 );
+    }
+    if ( is_search() ) {
+        $query->set( 'posts_per_page', 20 );
+    }
+}
+add_action( 'pre_get_posts', 'pendrell_posts_per_page' );
+
 // Allow HTML in author descriptions on single user blogs
 if ( !is_multi_author() ) {
 	remove_filter( 'pre_user_description', 'wp_filter_kses' );
 }
+
+// Ditch the default gallery styling, yuck
+add_filter( 'use_default_gallery_style', '__return_false' );
 
 
 

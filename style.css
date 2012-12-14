@@ -180,6 +180,42 @@ article.format-quote .entry-content blockquote {
 	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 }
 
+/* Gallery */
+/* Modified from: http://theme.fm/2011/06/how-to-style-your-wordpress-gallery-43/ */
+.gallery { margin: 0 auto 24px; }
+.gallery .gallery-item {
+	float: left;
+	margin-top: 0;
+	text-align: center;
+	width: 33%;
+}
+.gallery-columns-2 .gallery-item { width: 50%; }
+.gallery-columns-4 .gallery-item { width: 25%; }
+.gallery .gallery-icon img {
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+	border: 1px solid white;
+	padding: 6px;
+	background: #f8f8f8;
+}
+.gallery .gallery-icon img:hover {
+	background: #fcfcfc;
+}
+.gallery-columns-2 .attachment-medium {
+	max-width: 92%;
+	height: auto;
+}
+.gallery-columns-4 .attachment-thumbnail {
+	max-width: 84%;
+	height: auto;
+}
+.gallery .gallery-caption {
+	color: #888;
+	font-size: 12px;
+	margin: 0 0 12px;
+}
+.gallery dl, .gallery dt { margin: 0; }
+.gallery br+br { display: none; }
+
 
 
 /* === IMAGE ATTACHMENT PAGES === */
@@ -214,7 +250,7 @@ article.format-quote .entry-content blockquote {
 	text-align: left;
 	line-height: 80px;
 }
-.gallery-return {
+.return-gallery {
 	display: none;
 	float: left;
 	width: 40%;
@@ -240,13 +276,13 @@ article.format-quote .entry-content blockquote {
 .next-image img {
 	float: right;
 }
-.gallery-return,
+.return-gallery,
 .nav-text {
 	font-size: 100%;
 	text-transform: uppercase;
 	font-weight: bold;
 }
-.attachment-thumbnail-gallery {
+.attachment-image-navigation {
 	border-radius: 3px;
 	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 }
@@ -332,6 +368,10 @@ strike {
 	-ms-hyphens: auto;
 	-o-hyphens: auto;
 	hyphens: auto;
+}
+/* Add "no-shadow" to any img; good for design work on a white background */
+img.no-shadow {
+	box-shadow: none;
 }
 
 

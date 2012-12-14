@@ -8,9 +8,11 @@
  */
 if ( pendrell_is_portfolio() && is_archive() ) { // Portfolio archive items 
 	
+	// Sourced from Hatch, probably by way of Hybrid: http://wordpress.org/extend/themes/hatch
+
 	global $counter; $counter++; // Initialize counter and then bump it to 1 on the first pass
 	
-	if ( ( $counter % 3 ) == 0 ) { // Sourced from Hatch, probably by way of Hybrid ?>
+	if ( ( $counter % 3 ) == 0 ) { ?>
 	
 	<article id="post-<?php the_ID(); ?>" <?php post_class( 'last' ); ?>>
 	<?php } else { ?>
@@ -24,7 +26,7 @@ if ( pendrell_is_portfolio() && is_archive() ) { // Portfolio archive items
 				<a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'Permalink to %s', 'twentytwelve' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark"><?php the_title(); ?></a>
 			</h1>
 		</header>
-		<footer class="entry-meta"><?php the_date(); ?></footer>
+		<footer class="entry-meta"><?php echo get_the_date(); ?></footer>
 	</article>
 
 <?php } else { ?>
