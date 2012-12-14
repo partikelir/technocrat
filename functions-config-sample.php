@@ -1,6 +1,6 @@
 <?php // === PENDRELL CONFIGURATION === //
 
-define( 'PENDRELL_VERSION', 0.1 );
+define( 'PENDRELL_VERSION', 0.2 );
 define( 'PENDRELL_NAME', get_bloginfo( 'name' ) );
 define( 'PENDRELL_DESC', get_bloginfo( 'description' ) );
 define( 'PENDRELL_HOME', get_bloginfo( 'url' ) );

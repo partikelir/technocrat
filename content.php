@@ -6,10 +6,25 @@
  * @subpackage Twenty_Twelve
  * @since Twenty Twelve 1.0
  */
-if ( pendrell_is_portfolio() && is_category() ) { ?>
-
-	<article id="post-<?php the_ID(); ?>" <?php post_class( 'portfolio-category'); ?>>
-
+if ( pendrell_is_portfolio() && is_archive() ) { // Portfolio archive items 
+	
+	global $counter; $counter++; // Initialize counter and then bump it to 1 on the first pass
+	
+	if ( ( $counter % 3 ) == 0 ) { // Sourced from Hatch, probably by way of Hybrid ?>
+	
+	<article id="post-<?php the_ID(); ?>" <?php post_class( 'last' ); ?>>
+	<?php } else { ?>
+	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+	<?php } ?>
+		<div class="entry-content">
+			<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" ><?php the_post_thumbnail( 'portfolio' ); ?></a>
+		</div>
+		<header class="entry-header">
+			<h1 class="entry-title">
+				<a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'Permalink to %s', 'twentytwelve' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark"><?php the_title(); ?></a>
+			</h1>
+		</header>
+		<footer class="entry-meta"><?php the_date(); ?></footer>
 	</article>
 
 <?php } else { ?>
@@ -21,13 +36,9 @@ if ( pendrell_is_portfolio() && is_category() ) { ?>
 		</div>
 		<?php endif; ?>
 		<header class="entry-header">
-			<?php if ( is_single() ) : ?>
-			<h1 class="entry-title"><?php the_title(); ?></h1>
-			<?php else : ?>
 			<h1 class="entry-title">
 				<a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'Permalink to %s', 'twentytwelve' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark"><?php the_title(); ?></a>
 			</h1>
-			<?php endif; // is_single() ?>
 		</header><!-- .entry-header -->
 
 		<?php if ( is_search() ) : // Only display Excerpts for Search ?>
@@ -36,7 +47,6 @@ if ( pendrell_is_portfolio() && is_category() ) { ?>
 		</div><!-- .entry-summary -->
 		<?php else : ?>
 		<div class="entry-content">
-			<?php the_post_thumbnail(); ?>
 			<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'twentytwelve' ) ); ?>
 			<?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'twentytwelve' ), 'after' => '</div>' ) ); ?>
 		</div><!-- .entry-content -->
@@ -64,4 +74,5 @@ if ( pendrell_is_portfolio() && is_category() ) { ?>
 			<?php endif; ?>
 		</footer><!-- .entry-meta -->
 	</article><!-- #post -->
+
 <?php } ?>

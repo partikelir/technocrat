@@ -16,7 +16,7 @@
 		</header><!-- .entry-header -->
 
 		<div class="entry-content">
-			<?php the_post_thumbnail(); ?>
+			<?php if ( has_post_thumbnail() ) { the_post_thumbnail(); } ?>
 			<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'twentytwelve' ) ); ?>
 		</div><!-- .entry-content -->
 

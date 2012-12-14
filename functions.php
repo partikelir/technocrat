@@ -16,8 +16,8 @@ function pendrell_setup() {
 	
 	// Add a few additional image sizes for various purposes
 	add_image_size( 'thumbnail-150', 150, 150 );
-	add_image_size( 'thumbnail-gallery', 150, 80, true );
-	add_image_size( 'thumbnail-portfolio', 460, 460 );
+	add_image_size( 'image-navigation', 150, 80, true );
+	add_image_size( 'portfolio', 300, 150, true );
 	add_image_size( 'full-width', 960, 9999 );
 
 	// Set the medium and large size image sizes under media settings
@@ -156,7 +156,7 @@ add_filter( 'wp_title', 'pendrell_wp_title', 11, 3 );
 
 // Output a human readable date wrapped in an HTML5 time tag
 function pendrell_date( $date ) {
-	if ( is_archive() ) {
+	if ( is_archive() && !pendrell_is_portfolio() ) {
 		return $date;
 	} else {
 		if ( ( current_time('timestamp') - get_the_time('U') ) < 86400 )
@@ -369,10 +369,33 @@ function pendrell_is_portfolio() {
 	}
 }
 
+function pendrell_post_thumbnail( $html, $post_id, $post_thumbnail_id, $size, $attr ) {
+
+	// Source: http://wpengineer.com/1735/easier-better-solutions-to-get-pictures-on-your-posts/
+	if ( empty( $html ) ) {
+		$attachments = get_children( array(
+			'post_parent'    => get_the_ID(),
+			'post_type'      => 'attachment',
+			'numberposts'    => 1, // show all -1
+			'post_status'    => 'inherit',
+			'post_mime_type' => 'image',
+			'order'          => 'ASC',
+			'orderby'        => 'menu_order ASC'
+		) );
+		foreach ( $attachments as $attachment_id => $attachment ) {
+	    	echo wp_get_attachment_image( $attachment_id, $size );
+		}
+	} else {
+		return $html;
+	}
+}
+add_filter( 'post_thumbnail_html', 'pendrell_post_thumbnail', 11, 5 );
+
 // Allow HTML in author descriptions on single user blogs
 if ( !is_multi_author() ) {
 	remove_filter( 'pre_user_description', 'wp_filter_kses' );
 }
+
 
 
 // === DEVELOPMENT AREA === //
@@ -430,8 +453,5 @@ function pendrell_excerpt_length( $length ) {
 	return 48;
 }
 add_filter( 'excerpt_length', 'pendrell_excerpt_length' );
-
-
-
 
 ?>

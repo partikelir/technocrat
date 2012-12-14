@@ -1,4 +1,4 @@
-# PENDRELL 0.1
+# PENDRELL 0.2
 
 Pendrell is a simple child theme for the default Twenty Twelve WordPress theme. I designed it for my own use, not for distribution, but you may find it to be a good starting point for your own projects.
 
@@ -7,6 +7,8 @@ Pendrell is a simple child theme for the default Twenty Twelve WordPress theme. 
 ## INSTALLATION
 
 You must have Twenty Twelve installed before using Pendrell. Drop the 'pendrell' directory into /wp-content/themes/ and activate it via the WordPress admin interface.
+
+Be sure to run "Regenerate Thumbnails" if you plan to keep using this theme.
 
 There are several options at the top of the functions-config-sample.php file. Most of these should be self-explanatory. No theme options page is included.
 
@@ -24,6 +26,7 @@ Above and beyond what Twenty Twelve provides, of course...
 * Comment button is now below content and only visible in post archives
 * Full post format support with Crowd Favorite's WP-Post-Formats plugin: https://github.com/crowdfavorite/wp-post-formats
 * Redesigned for full-width creative portfolios
+* Thumbnail fallback: if a featured image isn't set the appropriately-sized thumbnail of the first image will be displayed
 * EXIF data and other information for images on attachment pages
 * Thumbnail-based navigation within image galleries
 * Clean search rewrites (e.g. website.com/search/query/ instead of website.com?s=query)
@@ -47,7 +50,7 @@ In no particular order...
 * Easily disable comments altogether
 * Test for IE compatibility
 * Favicon/Apple touch icons
-* Post format icons
+* Post format icons?
 * Infinite scrolling option
 * Image slider e.g. Orbit: http://www.zurb.com/playground/orbit-jquery-image-slider
 * Front-end posting: http://scribu.net/wordpress/front-end-editor http://wordpress.org/extend/plugins/posthaste/
@@ -114,4 +117,4 @@ These are some plugins I tend to use on my sites.
 
 ## LICENCE
 
-GNU General Public Licence 2.0: http://www.gnu.org/licenses/gpl-2.0.html
+GNU General Public Licence: http://www.gnu.org/licenses/gpl.html

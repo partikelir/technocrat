@@ -14,7 +14,8 @@
 		</header>
 
 		<div class="entry-content">
-			<?php $thumb = is_page_template( 'page-templates/full-width.php' ) ? 'full-width' : ''; the_post_thumbnail( $thumb ); ?>
+			<?php $thumb = is_page_template( 'page-templates/full-width.php' ) ? 'full-width' : ''; ?>
+			<?php if ( has_post_thumbnail() ) { the_post_thumbnail(); } ?>
 			<?php the_content(); ?>
 			<?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'twentytwelve' ), 'after' => '</div>' ) ); ?>
 		</div><!-- .entry-content -->

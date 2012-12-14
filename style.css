@@ -84,6 +84,33 @@ body.full-width .widget-area {
 .page .entry-meta .by-author {
 	display: inline;
 }
+/* Portfolio archive; styling from Hatch */
+.portfolio.archive .hentry {
+	float: left;
+	width: 31.25%;
+	height: 192px;
+	margin: 0 3.125% 24px 0;
+	position: relative;
+	overflow: hidden;
+}
+.portfolio.archive .hentry.last {
+	margin-right: 0;
+}
+.portfolio.archive header h1.entry-title {
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	/* The following SHOULD work but it doesn't; hack it with padding instead
+	overflow-x: hidden;
+	overflow-y: visible; */
+	padding-bottom: 4px;
+}
+.portfolio.archive header.entry-header {
+	margin: 0;
+}
+.portfolio.archive footer.entry-meta {
+	margin: 0;
+}
 
 
 
@@ -171,7 +198,7 @@ article.format-quote .entry-content blockquote {
 	font-size: 0.928571429rem;
 	line-height: 1.846153846;
 }
-#image-navigation {
+.image-navigation {
 	position: relative;
 	height: 96px;
 	margin: 24px 0;
