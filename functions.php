@@ -1,4 +1,4 @@
-<?php // === PENDRELL COMMON FUNCTIONS === //
+<?php // === PENDRELL GENERAL FUNCTIONS === //
 
 // Pendrell is a child theme that relies on:
 // * Twenty Twelve
@@ -6,13 +6,18 @@
 // Translation notes: anything unmodified from twentytwelve will remain in its text domain; everything new or modified is under 'pendrell'.
 
 // Include theme configuration file, admin functions (only when logged into the dashboard), and call theme setup function
-require_once( get_stylesheet_directory() . '/functions-config.php' );
+if ( is_readable( get_stylesheet_directory() . '/functions-config.php' ) ) {
+	require_once( get_stylesheet_directory() . '/functions-config.php' );	
+} else {
+	require_once( get_stylesheet_directory() . '/functions-config-sample.php' );
+}
 if ( is_admin() )
 	require_once( get_stylesheet_directory() . '/functions-admin.php' );
 
 function pendrell_setup() {
 	// Add full post format support
-	add_theme_support( 'post-formats', array( 'aside', 'gallery', 'link', 'image', 'quote', 'status', 'audio', 'chat', 'video' ) );
+	global $pendrell_post_formats;
+	add_theme_support( 'post-formats', $pendrell_post_formats );
 	
 	// Add a few additional image sizes for various purposes
 	add_image_size( 'thumbnail-150', 150, 150 );

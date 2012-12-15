@@ -66,12 +66,13 @@ article.format-status footer.entry-meta {
 
 
 
-/* === LAYOUT === */
+/* === GENERAL LAYOUT === */
 
 /* Cheap trick to lose the sidebar on full-width view; surely there is a better way */
 body.full-width .widget-area {
 	display: none;
 }
+
 /* Needs some tweaking; long entry meta info will cause the buttons to slide to the next line */
 .entry-meta-buttons {
 	float: right;
@@ -80,36 +81,10 @@ body.full-width .widget-area {
 	margin-left: 12px;
 	margin-left: 0.857142857rem;
 }
+
 /* Show the author in entry meta on pages */
 .page .entry-meta .by-author {
 	display: inline;
-}
-/* Portfolio archive; styling from Hatch */
-.portfolio.archive .hentry {
-	float: left;
-	width: 31.25%;
-	height: 192px;
-	margin: 0 3.125% 24px 0;
-	position: relative;
-	overflow: hidden;
-}
-.portfolio.archive .hentry.last {
-	margin-right: 0;
-}
-.portfolio.archive header h1.entry-title {
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	overflow: hidden;
-	/* The following SHOULD work but it doesn't; hack it with padding instead
-	overflow-x: hidden;
-	overflow-y: visible; */
-	padding-bottom: 4px;
-}
-.portfolio.archive header.entry-header {
-	margin: 0;
-}
-.portfolio.archive footer.entry-meta {
-	margin: 0;
 }
 
 
@@ -218,7 +193,7 @@ article.format-quote .entry-content blockquote {
 
 
 
-/* === IMAGE ATTACHMENT PAGES === */
+/* === IMAGE ATTACHMENTS === */
 
 .image-info {
 	border-top: 1px solid #ededed;
@@ -289,6 +264,40 @@ article.format-quote .entry-content blockquote {
 
 
 
+/* === PORTFOLIO ITEMS === */
+
+/* Based on styling from Hatch */
+.portfolio.archive header h1.entry-title,
+.portfolio.archive footer .entry-meta {
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	/* The following SHOULD work but it doesn't; hack it with padding instead
+	overflow-x: hidden;
+	overflow-y: visible; */
+}
+.portfolio.archive header h1.entry-title {
+	font-size: 18px;
+	padding-bottom: 2px;
+}
+.portfolio.archive header.entry-header {
+	margin: 0;
+}
+.portfolio.archive footer.entry-meta {
+	margin: 0;
+}
+/* Modified by media queries (below) */
+.portfolio.archive .hentry {
+	max-height: 192px;
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+	margin: 0 0 24px 0;
+	padding-bottom: 2.5%;
+}
+
+
+
 /* === BUTTONS === */
 
 .button a {
@@ -338,6 +347,7 @@ article.format-quote .entry-content blockquote {
 
 
 /* === ADDITIONAL RESETS AND HACKS === */
+
 mark {
 	text-decoration: underline;
 	background: none;
@@ -357,9 +367,11 @@ mark {
 	padding: 0.5%;
 	margin: -0.5% -0.25% -0.5% -0.25%;
 }
+
 strike {
 	text-decoration: line-through;
 }
+
 /* Nice hyphens */
 .entry-content,
 .entry-summary {
@@ -369,6 +381,7 @@ strike {
 	-o-hyphens: auto;
 	hyphens: auto;
 }
+
 /* Add "no-shadow" to any img; good for design work on a white background */
 img.no-shadow {
 	box-shadow: none;
@@ -387,7 +400,43 @@ img.no-shadow {
 
 /* === MEDIA QUERIES === */
 
+@media screen and (min-width: 350px) {
+	.portfolio.archive .hentry {
+		float: left;
+		width: 47.6190476%;
+		margin: 0 4.7619048% 24px 0;
+	}
+	.portfolio.archive .hentry.divisible-by-2,
+	.portfolio.archive .hentry.divisible-by-2.divisible-by-3 {
+		margin-right: 0;
+	}
+	.portfolio.archive .hentry.divisible-by-3 {
+		margin-right: 4.7619048%;
+	}
+}
+
+@media screen and (min-width: 680px) {
+	.portfolio.archive .hentry {
+		float: left;
+		width: 31.25%;
+		margin: 0 3.125% 24px 0;
+	}
+	.portfolio.archive .hentry.divisible-by-2 {
+		margin-right: 3.125%;
+	}
+	.portfolio.archive .hentry.divisible-by-3,
+	.portfolio.archive .hentry.divisible-by-3.divisble-by-2 {
+		margin-right: 0;
+	}
+	.portfolio.archive header h1.entry-title {
+		font-size: 22px;
+		padding-bottom: 4px;
+	}
+}
+
 @media screen and (min-width: 600px) {
+
+	/* Header */
 	.with-header-image {
 		position: absolute;
 		bottom: 0px;
@@ -402,7 +451,9 @@ img.no-shadow {
 	.with-header-image img.avatar {
 		display: block;
 	}
-	.gallery-return {
+
+	/* Image attachments */
+	.return-gallery {
 		display: block;
 	}
 	.author-avatar {
@@ -414,13 +465,17 @@ img.no-shadow {
 		float: left;
 		width: 80%;
 	}
+
 }
 
 @media screen and (min-width: 960px) {
+
 	body .site {
 		margin-top: 0;
 		margin-bottom: 0;
 	}
+
+	/* Image Attachment Navigation */
 	.previous-image img,
 	.next-image img {
 		display: block;
@@ -433,7 +488,10 @@ img.no-shadow {
 		margin-right: 12px;
 		margin-right: 0.857142857rem;
 	}
+
 }
+
+
 
 /* === DEVELOPMENT AREA === */
 

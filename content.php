@@ -12,12 +12,12 @@ if ( pendrell_is_portfolio() && is_archive() ) { // Portfolio archive items
 
 	global $counter; $counter++; // Initialize counter and then bump it to 1 on the first pass
 	
-	if ( ( $counter % 3 ) == 0 ) { ?>
+	$post_class = '';
+	if ( ( $counter % 3 ) == 0 ) { $post_class .= 'divisible-by-3 '; }
+	if ( ( $counter % 2 ) == 0 ) { $post_class .= 'divisible-by-2 '; }
+	$post_class = trim( $post_class ); ?>
 	
-	<article id="post-<?php the_ID(); ?>" <?php post_class( 'last' ); ?>>
-	<?php } else { ?>
-	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<?php } ?>
+	<article id="post-<?php the_ID(); ?>" <?php post_class( $post_class ); ?>>
 		<div class="entry-content">
 			<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" ><?php the_post_thumbnail( 'portfolio' ); ?></a>
 		</div>

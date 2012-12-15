@@ -1,43 +1,65 @@
 # PENDRELL 0.2
 
-Pendrell is a simple child theme for the default Twenty Twelve WordPress theme. I designed it for my own use, not for distribution, but you may find it to be a good starting point for your own projects.
+Pendrell is a child theme for Twenty Twelve designed to allow two types of content to co-exist in harmony:
 
-**THIS THEME IS STILL UNDER DEVELOPMENT; DO NOT DEPLOY!**
+* Blog entries set with beautiful, legible type
+* Portfolio items featuring big, bold full-width images
+
+Many WordPress themes provide for one or the other but few handle both types of content with elegance and simplicity. Portfolio items in Pendrell are not custom post types or anything fancy like that; simply post under the "Portfolio" category and format your portfolio items however you like. 
+
+**THIS THEME IS STILL UNDER DEVELOPMENT!**
+
+See Pendrell in action on my blog: http://synapticism.com
 
 ## INSTALLATION
 
 You must have Twenty Twelve installed before using Pendrell. Drop the 'pendrell' directory into /wp-content/themes/ and activate it via the WordPress admin interface.
 
-Be sure to run "Regenerate Thumbnails" if you plan to keep using this theme.
+This theme has no options page; you will have to get your feet wet and modify the `functions-config-sample.php` file, renaming it to `functions-config.php`, if you wish to change any of the defaults. Most of these should be self-explanatory; read the comments for more direction.
 
-There are several options at the top of the functions-config-sample.php file. Most of these should be self-explanatory. No theme options page is included.
+## RECOMMENDED PLUGINS
+
+Not quite dependencies but you will probably want to install these plugins to get the most out of Pendrell:
+
+* Crowd Favorite's WP-Post-Formats plugin: https://github.com/crowdfavorite/wp-post-formats
+* Regenerate Thumbnails: http://wordpress.org/extend/plugins/regenerate-thumbnails/
 
 ## FEATURES
 
-Above and beyond what Twenty Twelve provides, of course...
+### GENERAL ENHANCEMENTS
 
-* Slightly different look and feel; still clean and responsive
+* Custom site header on top of navigation instead of below
 * Entry content type set at 16px for easier reading
-* Custom header on top of navigation instead of below
-* Better, more informative and SEO-friendly page titles
-* Human-readable dates on recent entries (e.g. posted 21 hours ago)
 * Standardized entry meta data display across post formats
 * Comment and edit post actions are now clickable buttons
-* Comment button is now below content and only visible in post archives
-* Full post format support with Crowd Favorite's WP-Post-Formats plugin: https://github.com/crowdfavorite/wp-post-formats
-* Redesigned for full-width creative portfolios
+* Comment button is now below content and invisible on single posts
+* Improved post format styling and support
+* More descriptive archive headers for different content types
+* Removed page margin at top and bottom to make more efficient use of vertical space
+* Disqus compatibility; simply activate and it'll look sharp
+
+### PORTFOLIO ITEMS & IMAGES
+
+* Redesigned for full-width multimedia portfolios and image galleries with big, bold images
+* Portfolio items are standard posts formatted any way you like and assigned to a portfolio category e.g. "Portfolio"
+* This allows portfolio items to flow alongside other content on your blog
+* Use the more tag `<!--more-->` after the first or second image in a portfolio item to keep things tidy
+* Portfolio category archives are responsive, shifting between 3, 2, or 1 column display using media queries
+* Thumbnail-based navigation on image attachments
+* EXIF data and other information for image attachments
+* Full-width images are dynamically displayed on pages using the full-width template
+
+### HACKS, TWEAKS, & SNIPPETS
+
+* Better, more informative and SEO-friendly page titles
+* Human-readable dates on recent entries (e.g. posted 21 hours ago)
 * Thumbnail fallback: if a featured image isn't set the appropriately-sized thumbnail of the first image will be displayed
-* EXIF data and other information for images on attachment pages
-* Thumbnail-based navigation within image galleries
 * Clean search rewrites (e.g. website.com/search/query/ instead of website.com?s=query)
 * Singleton search results redirect to matching post in one step
-* More descriptive archive headers
-* Context-dependent posts per page
-* Reset admin-side HTML editor to a nicer font stack
-* Full-width images are dynamically displayed on pages using the full-width template
-* Disqus compatibility; simply activate and it'll look sharp
-* jQuery-based pullquotes; `<span class="pullquote">Text</span>` will be transformed into `<aside class="pulledquote">Text</aside>` and prepended
 * jQuery-based search query markup; surrounds search terms with `<mark>`
+* jQuery-based HTML5 pullquotes; `<span class="pullquote">Text</span>` will be transformed into `<aside class="pulledquote">Text</aside>` and prepended
+* Context-dependent posts per page (12 items per screen on portfolios, 25 on search, user default elsewhere)
+* Reset admin-side HTML editor to a nicer font stack
 
 ## TO DO
 
@@ -46,6 +68,7 @@ In no particular order...
 * Internationalization (i18n)
 * Serif, sans-serif, and monospace font stack switching
 * Smart 404 page
+* Better gallery styling
 * AJAXify image attachment pages
 * Related posts
 * Easily disable comments altogether
@@ -53,7 +76,6 @@ In no particular order...
 * Favicon/Apple touch icons
 * Post format icons?
 * Infinite scrolling option
-* Image slider e.g. Orbit: http://www.zurb.com/playground/orbit-jquery-image-slider
 * Front-end posting: http://scribu.net/wordpress/front-end-editor http://wordpress.org/extend/plugins/posthaste/
 * Bookmarks template with support for link categories, link descriptions, and private links (see bookmarks.php)
 * CSS minification
@@ -64,15 +86,11 @@ In no particular order...
 
 ## ADDITIONAL RESOURCES
 
-### RECOMMENDED PLUGINS
-
-These are some plugins I tend to use on my sites.
+### SUGGESTED PLUGINS
 
 * Akismet: http://wordpress.org/extend/plugins/akismet
 * AudioPlayer: http://wordpress.org/extend/plugins/audio-player/
 * Contact Form 7: http://wordpress.org/extend/plugins/contact-form-7/
-* Regenerate Thumbnails: http://wordpress.org/extend/plugins/regenerate-thumbnails/
-* Sociable: http://wordpress.org/extend/plugins/sociable/
 * Subscribe2: http://wordpress.org/extend/plugins/subscribe2/
 * SyntaxHighlighter Evolved: http://wordpress.org/extend/plugins/syntaxhighlighter/
 * WP-PageNavi: http://wordpress.org/extend/plugins/wp-pagenavi/
