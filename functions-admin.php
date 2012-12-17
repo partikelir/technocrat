@@ -7,4 +7,16 @@ function pendrell_html_editor_fontstack() {
 <?php }
 add_action( 'admin_head-post.php', 'pendrell_html_editor_fontstack' );
 add_action( 'admin_head-post-new.php', 'pendrell_html_editor_fontstack' );
+
+// Add custom images sizes to the media uploader dropdown
+function pendrell_image_sizes( $sizes ) {
+	// Cheap hack to keep "full size" at the bottom of the dropdown: unset and reset it after adding our custom sizes
+	unset ( $sizes['full'] );
+	$sizes['half-width'] = __( 'Half Width', 'pendrell');
+	$sizes['full-width'] = __( 'Full Width', 'pendrell');
+	$sizes['full'] = __( 'Full Size', 'pendrell');
+	return $sizes;
+}
+add_filter( 'image_size_names_choose', 'pendrell_image_sizes' );
+
 ?>

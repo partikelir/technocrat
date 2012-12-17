@@ -23,25 +23,21 @@ function pendrell_setup() {
 	add_image_size( 'thumbnail-150', 150, 150 );
 	add_image_size( 'image-navigation', 150, 80, true );
 	add_image_size( 'portfolio', 300, 150, true );
+	add_image_size( 'half-width', 465, 9999 );
 	add_image_size( 'full-width', 960, 9999 );
 
-	// Set the medium and large size image sizes under media settings
+	// Set the medium and large size image sizes under media settings; default to our new full width image size in media uploader
 	update_option( 'medium_size_w', 624 );
 	update_option( 'medium_size_h', 624 );
 	update_option( 'large_size_w', 960 );
 	update_option( 'large_size_h', 960 );
+	update_option( 'image_default_size', 'full-width' );
 
 	// $content_width limits the size of the largest image size available via the media uploader
 	global $content_width;
 	$content_width = 960;
 }
 add_action( 'after_setup_theme', 'pendrell_setup', 11 );
-
-function pendrell_image_sizes( $sizes ) {
-	$sizes['full-width'] = __( 'Full Width', 'pendrell');
-	return $sizes;
-}
-add_filter( 'image_size_names_choose', 'pendrell_image_sizes' );
 
 // Head cleaner: removes useless fluff, Windows Live Writer support, version info, pointless relational links
 function pendrell_init() {

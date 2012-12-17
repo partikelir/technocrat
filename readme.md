@@ -44,6 +44,7 @@ Not quite dependencies but you will probably want to install these plugins to ge
 * Portfolio items are standard posts formatted any way you like and assigned to a portfolio category e.g. "Portfolio"
 * This allows portfolio items to flow alongside other content on your blog
 * Use the more tag `<!--more-->` after the first or second image in a portfolio item to keep things tidy
+* Use half-width images side by side with `alignleft` as needed; these are also responsive
 * Portfolio category archives are responsive, shifting between 3, 2, or 1 column display using media queries
 * Thumbnail-based navigation on image attachments
 * EXIF data and other information for image attachments

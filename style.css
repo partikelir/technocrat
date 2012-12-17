@@ -191,6 +191,9 @@ article.format-quote .entry-content blockquote {
 .gallery dl, .gallery dt { margin: 0; }
 .gallery br+br { display: none; }
 
+/* Chats */
+/* Do we really want to implement this? If so: http://justintadlock.com/archives/2012/08/21/post-formats-chat */
+
 
 
 /* === IMAGE ATTACHMENTS === */
@@ -294,6 +297,16 @@ article.format-quote .entry-content blockquote {
 	width: 100%;
 	margin: 0 0 24px 0;
 	padding-bottom: 2.5%;
+}
+/* Responsive half-width images, mainly for use in portfolios */
+.size-half-width {
+	width: 48.4375%;
+}
+.size-half-width.alignleft {
+	margin: 0 3.125% 24px 0;
+}
+.size-half-width.alignright {
+	margin: 0 0 24px 3.125%;
 }
 
 
