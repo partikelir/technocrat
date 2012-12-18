@@ -299,14 +299,25 @@ article.format-quote .entry-content blockquote {
 	padding-bottom: 2.5%;
 }
 /* Responsive half-width images, mainly for use in portfolios */
-.size-half-width {
+.size-half-width,
+.size-half-width-cropped {
 	width: 48.4375%;
 }
-.size-half-width.alignleft {
+.size-half-width.alignleft,
+.size-half-width-cropped.alignleft,
+.size-third-width.alignleft,
+.size-third-width-cropped.alignleft {
 	margin: 0 3.125% 24px 0;
 }
-.size-half-width.alignright {
+.size-half-width.alignright,
+.size-half-width-cropped.alignright,
+.size-third-width.alignright,
+.size-third-width-cropped.alignright {
 	margin: 0 0 24px 3.125%;
+}
+.size-third-width,
+.size-third-width-cropped {
+	width: 31.25%;
 }
 
 
