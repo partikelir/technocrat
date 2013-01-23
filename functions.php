@@ -32,9 +32,9 @@ function pendrell_setup() {
 
 	// Set the medium and large size image sizes under media settings; default to our new full width image size in media uploader
 	update_option( 'medium_size_w', 624 );
-	update_option( 'medium_size_h', 624 );
+	update_option( 'medium_size_h', 9999 );
 	update_option( 'large_size_w', 960 );
-	update_option( 'large_size_h', 960 );
+	update_option( 'large_size_h', 9999 );
 	update_option( 'image_default_size', 'full-width' );
 
 	// $content_width limits the size of the largest image size available via the media uploader
