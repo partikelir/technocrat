@@ -194,12 +194,19 @@ function twentytwelve_entry_meta() {
 	);
 	
 	$post_format = get_post_format();
-	if ( false === $post_format ) {
+	if ( $post_format === false ) {
 		if ( is_attachment() && wp_attachment_is_image() ) {
 			$format = __( 'image', 'pendrell' );
 		} else {
 			$format = __( 'entry', 'pendrell' );
 		}
+	} elseif ( $post_format === 'quote' ) {
+		// Formality, please!
+		$format = sprintf( '<a href="%1$s" title="%2$s">%3$s</a>',
+			esc_url( get_post_format_link( $post_format ) ),
+			__( 'Quotation archive', 'pendrell' ),
+			__( 'quotation', 'pendrell' )
+		);
 	} else {
 		$format = sprintf( '<a href="%1$s" title="%2$s">%3$s</a>',
 			esc_url( get_post_format_link( $post_format ) ),
@@ -225,16 +232,22 @@ function twentytwelve_entry_meta() {
 
 	// Translators: 1 is category, 2 is tag, 3 is the date, 4 is the author's name, 5 is post format, and 6 is post parent.
 	if ( $tag_list && ( $post_format === false ) ) {
+		// Posts with tags and categories
 		$utility_text = __( 'This %5$s was posted %3$s in %1$s and tagged %2$s<span class="by-author"> by %4$s</span>.', 'pendrell' );
 	} elseif ( $categories_list && ( $post_format === false ) ) {
+		// Posts with no tags
 		$utility_text = __( 'This %5$s was posted %3$s in %1$s<span class="by-author"> by %4$s</span>.', 'pendrell' );
 	} elseif ( is_attachment() && wp_attachment_is_image() && $post->post_parent ) {
+		// Images with a parent post
 		$utility_text = __( 'This %5$s was posted %3$s in %6$s.', 'pendrell' );
 	} elseif ( is_page() && $post->post_parent ) {
+		// Pages with a parent (sub-pages)
 		$utility_text = __( 'This page was posted under %6$s<span class="by-author"> by %4$s</span>.', 'pendrell' );
 	} elseif ( is_page() ) {
+		// Pages
 		$utility_text = __( 'This page was posted<span class="by-author"> by %4$s</span>.', 'pendrell' );
 	} else {
+		// Post formats
 		$utility_text = __( 'This %5$s was posted %3$s<span class="by-author"> by %4$s</span>.', 'pendrell' );
 	}
 
@@ -397,17 +410,20 @@ function pendrell_post_thumbnail( $html, $post_id, $post_thumbnail_id, $size, $a
 }
 add_filter( 'post_thumbnail_html', 'pendrell_post_thumbnail', 11, 5 );
 
-// Modify how many posts per page are displayed in different contexts (e.g. more portfolio items on category archives)
-function pendrell_posts_per_page( $query ) {
+function pendrell_pre_get_posts( $query ) {
+	// Modify how many posts per page are displayed in different contexts (e.g. more portfolio items on category archives)
 	// Source: http://wordpress.stackexchange.com/questions/21/show-a-different-number-of-posts-per-page-depending-on-context-e-g-homepage
     if ( pendrell_is_portfolio() ) {
-    	$query->set( 'posts_per_page', 12 );
+    	$query->set( 'posts_per_page', 24 );
     }
     if ( is_search() ) {
         $query->set( 'posts_per_page', 20 );
     }
+    if ( is_front_page() ) {
+    	$query->set( 'cat', $pendrell_shadow_cats );
+	}
 }
-add_action( 'pre_get_posts', 'pendrell_posts_per_page' );
+add_action( 'pre_get_posts', 'pendrell_pre_get_posts' );
 
 // Allow HTML in author descriptions on single user blogs
 if ( !is_multi_author() ) {

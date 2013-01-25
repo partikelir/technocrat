@@ -123,13 +123,16 @@ article.format-quote .entry-content blockquote {
 	background: #f8f8f8;
 	border-radius: 3px;
 }
-.format-quote p:first-child::before {
+.format-quote blockquote p:first-child::before {
 	content: "\201C";
 }
-.format-quote p:last-child::after {
+.format-quote blockquote p:last-child::after {
 	content: "\201D";
 }
-.format-quote .entry-content footer {
+article.format-quote footer.entry-meta .attribution {
+	font-size: 16px;
+	font-size: 1.142857143rem;
+	line-height: 1.846153846;
 	text-align: right;
 	margin-bottom: 24px;
 	margin-bottom: 1.714285714rem;
