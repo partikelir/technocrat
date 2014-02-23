@@ -1,19 +1,19 @@
-# PENDRELL 0.22
+# PENDRELL 0.3
 
-Pendrell is a child theme for Twenty Twelve designed to allow two types of content to co-exist in harmony:
+Pendrell is a fork of Twenty Twelve (formerly a child theme of the same) designed to allow two types of content to co-exist in harmony:
 
 * Blog entries set with beautiful, legible type
 * Portfolio items featuring big, bold full-width images
 
 Many WordPress themes provide for one or the other but few handle both types of content with elegance, flexibility, and simplicity.
 
-This theme is suitable for small-scale deployments; it hasn't been optimized for high traffic sites.
+This theme is suitable for small-scale deployments; it has not been (and likely won't be) optimized for high traffic sites.
 
 You can Pendrell in action on my blog: http://synapticism.com
 
 ## INSTALLATION & CONFIGURATION
 
-You must have Twenty Twelve installed before using Pendrell. Drop the 'pendrell' directory into /wp-content/themes/ and activate it via the WordPress admin interface.
+Drop the 'pendrell' directory into /wp-content/themes/ and activate it via the WordPress admin interface.
 
 This theme has no options page; you will have to get your feet wet and modify the `functions-config-sample.php` file, renaming it to `functions-config.php`, if you wish to change any of the defaults. Most of these should be self-explanatory; read the comments for more direction.
 
@@ -78,7 +78,6 @@ Portfolio items are not segregated from other content; your creative projects wi
 In no particular order...
 
 * Internationalization (i18n)
-* Serif, sans-serif, and monospace font stack switching
 * Nicer ampersands: http://css-tricks.com/using-the-best-ampersand-available/
 * Smart 404 page
 * Better gallery styling
@@ -87,8 +86,6 @@ In no particular order...
 * Easily disable comments altogether
 * Test for IE compatibility
 * Favicon/Apple touch icons
-* Post format icons?
-* Infinite scrolling option
 * Front-end posting: http://scribu.net/wordpress/front-end-editor http://wordpress.org/extend/plugins/posthaste/
 * Bookmarks template with support for link categories, link descriptions, and private links (see bookmarks.php)
 * CSS minification

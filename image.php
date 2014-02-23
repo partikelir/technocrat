@@ -73,7 +73,7 @@ endif;
 
 					<nav class="image-navigation navigation" role="navigation">
 						<div class="previous-image"><?php previous_image_link( 'image-navigation' ); ?><span class="nav-text"><?php previous_image_link( false, __( '&larr; Previous', 'twentytwelve' ) ); ?></span>&nbsp;</div>
-						<div class="return-gallery"><?php printf( __( '<a href="%1$s" title="Return to %2$s" rel="gallery">&uarr; Return to %3$s</a>', 'pendrell' ),
+						<div class="return-gallery"><?php printf( __( '<a href="%1$s" title="Return to %2$s" rel="gallery">&uarr; Return to &lsquo;%3$s&rsquo;</a>', 'pendrell' ),
 									esc_url( get_permalink( $post->post_parent ) ),
 									esc_attr( strip_tags( get_the_title( $post->post_parent ) ) ),
 									get_the_title( $post->post_parent )

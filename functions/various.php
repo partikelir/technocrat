@@ -14,13 +14,53 @@ add_action( 'twentytwelve_credits', 'pendrell_credits' );
 
 // Body class filter
 function pendrell_body_class( $classes ) {
-	$classes[] = PENDRELL_FONTSTACK;
 	if ( pendrell_is_portfolio() ) {
 		$classes[] = 'full-width portfolio';
 	}
+
+  if ( ! is_active_sidebar( 'sidebar-1' ) || is_page_template( 'page-templates/full-width.php' ) )
+    $classes[] = 'full-width';
+
+  if ( is_page_template( 'page-templates/front-page.php' ) ) {
+    $classes[] = 'template-front-page';
+    if ( has_post_thumbnail() )
+      $classes[] = 'has-post-thumbnail';
+    if ( is_active_sidebar( 'sidebar-2' ) && is_active_sidebar( 'sidebar-3' ) )
+      $classes[] = 'two-sidebars';
+  }
+
+  // Enable custom font class only if the font CSS is queued to load.
+  if ( wp_style_is( 'twentytwelve-fonts', 'queue' ) )
+    $classes[] = 'custom-font-enabled';
+
+  if ( ! is_multi_author() )
+    $classes[] = 'single-author';
+
 	return $classes;
 }
 add_filter( 'body_class', 'pendrell_body_class' );
+
+
+
+/**
+ * Adjust content width in certain contexts.
+ *
+ * Adjusts content_width value for full-width and single image attachment
+ * templates, and when there are no active widgets in the sidebar.
+ *
+ * @since Twenty Twelve 1.0
+ *
+ * @return void
+ */
+function twentytwelve_content_width() {
+  if ( is_page_template( 'page-templates/full-width.php' ) || is_attachment() || ! is_active_sidebar( 'sidebar-1' ) | pendrell_is_portfolio() ) {
+    global $content_width;
+    $content_width = 960;
+  }
+}
+add_action( 'template_redirect', 'twentytwelve_content_width' );
+
+
 
 // Test to see whether we are viewing a portfolio post or category archive
 function pendrell_is_portfolio() {
@@ -31,6 +71,8 @@ function pendrell_is_portfolio() {
 		return false;
 	}
 }
+
+
 
 // Google Analytics code
 function pendrell_analytics() {

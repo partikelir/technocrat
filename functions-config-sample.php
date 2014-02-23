@@ -1,5 +1,5 @@
 <?php // === PENDRELL CONFIGURATION === //
-define( 'PENDRELL_VERSION', 0.22 );
+define( 'PENDRELL_VERSION', 0.3 );
 define( 'PENDRELL_NAME', get_bloginfo( 'name' ) );
 define( 'PENDRELL_DESC', get_bloginfo( 'description' ) );
 define( 'PENDRELL_HOME', get_bloginfo( 'url' ) );
@@ -12,14 +12,11 @@ define( 'PENDRELL_AUTHOR_ID', 1 );
 // Turn author box display on or off
 define( 'PENDRELL_AUTHOR_BOX', true );
 
-// Choose a pre-defined font stack: sans, serif, or false (defaults back to Twenty Twelve)
-define( 'PENDRELL_FONTSTACK', false );
-
 // Google Analytics code e.g. 'UA-XXXXXX-XX'; false when not in use
 define( 'PENDRELL_GOOGLE_ANALYTICS_CODE', false );
 
 // Google web fonts to load; false will load Open Sans
-define( 'PENDRELL_GOOGLE_FONTS', 'Lora:400italic,400,700|Bree+Serif:400'); // |Open+Sans:400italic,700italic,400,700');
+define( 'PENDRELL_GOOGLE_FONTS', 'Varela+Round:400|Lato:100,400italic,400,700'); // |Open+Sans:400italic,700italic,400,700');
 
 // Shadow categories: add category numbers to this string in the format '-1,-2' to hide them from the front page
 define( 'PENDRELL_SHADOW_CATS', false );
@@ -28,7 +25,7 @@ define( 'PENDRELL_SHADOW_CATS', false );
 define( 'PENDRELL_SERIES', true );
 
 // Post formats; choose from array( 'aside', 'gallery', 'link', 'image', 'quote', 'status', 'audio', 'chat', 'video' );
-$pendrell_post_formats = array( 'aside', 'gallery', 'link', 'image', 'quote', 'status', 'audio', 'chat', 'video' );
+$pendrell_post_formats = array( 'aside', 'link', 'quote', 'status' );
 
 // Portfolio categories; add or remove any slug to this array to enable matching categories with portfolio functionality
 $pendrell_portfolio_cats = array( 'creative', 'design', 'photography', 'portfolio' );
@@ -60,9 +57,20 @@ include( get_stylesheet_directory() . '/functions/dev.php' );
 
 // Theme setup; includes some image size definitions and other things that belong here in the config file
 function pendrell_setup() {
+
+	// Languages
+	load_theme_textdomain( 'twentytwelve', get_template_directory() . '/languages' );
+
 	// Add full post format support
 	global $pendrell_post_formats;
 	add_theme_support( 'post-formats', $pendrell_post_formats );
+
+  // Adds RSS feed links to <head> for posts and comments.
+  add_theme_support( 'automatic-feed-links' );
+
+  // This theme uses a custom image size for featured images, displayed on "standard" posts.
+  add_theme_support( 'post-thumbnails' );
+  set_post_thumbnail_size( 624, 9999 ); // Unlimited height, soft crop
 
 	// Add a few additional image sizes for various purposes
 	add_image_size( 'thumbnail-150', 150, 150 );
@@ -84,6 +92,17 @@ function pendrell_setup() {
 
 	// $content_width limits the size of the largest image size available via the media uploader
 	global $content_width;
-	$content_width = 960;
+	$content_width = 624;
+
+  // This theme styles the visual editor with editor-style.css to match the theme style.
+  add_editor_style();
+
+  // This theme uses wp_nav_menu() in one location.
+  register_nav_menu( 'primary', __( 'Primary Menu', 'twentytwelve' ) );
 }
 add_action( 'after_setup_theme', 'pendrell_setup', 11 );
+
+/**
+ * Add support for a custom header image.
+ */
+require( get_template_directory() . '/inc/custom-header.php' );

@@ -13,6 +13,8 @@ function pendrell_init() {
 }
 add_action( 'init', 'pendrell_init' );
 
+
+
 // Dynamic page titles; hooks into wp_title to improve search engine ranking without making a mess
 function pendrell_wp_title( $title, $sep = '-', $seplocation = 'right' ) {
 
@@ -91,10 +93,10 @@ function pendrell_wp_title( $title, $sep = '-', $seplocation = 'right' ) {
 
 	return esc_html( strip_tags( stripslashes( $title . $page_num ) ) );
 }
-// Ditch Twenty Twelve's default title filter; there's no need for it
-remove_filter( 'wp_title', 'twentytwelve_wp_title', 10, 2 );
-// Lower priority than the parent theme function; this way it runs later and titles aren't doubled up
+// Lower priority so titles aren't doubled up
 add_filter( 'wp_title', 'pendrell_wp_title', 11, 3 );
+
+
 
 // Enqueue scripts
 function pendrell_enqueue_scripts() {
@@ -112,8 +114,30 @@ function pendrell_enqueue_scripts() {
 	if ( !is_admin() ) { // http://www.ericmmartin.com/5-tips-for-using-jquery-with-wordpress/
 		wp_enqueue_script( 'pendrell-functions', get_stylesheet_directory_uri() . '/js/pendrell.js', array( 'jquery' ), '0.1', true );
 	}
+
+	// Twenty Twelve cruft
+	global $wp_styles;
+
+  /*
+   * Adds JavaScript to pages with the comment form to support
+   * sites with threaded comments (when in use).
+   */
+  if ( is_singular() && comments_open() && get_option( 'thread_comments' ) )
+    wp_enqueue_script( 'comment-reply' );
+
+  // Adds JavaScript for handling the navigation menu hide-and-show behavior.
+  wp_enqueue_script( 'twentytwelve-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '1.0', true );
+
+  // Loads our main stylesheet.
+  wp_enqueue_style( 'twentytwelve-style', get_stylesheet_uri() );
+
+  // Loads the Internet Explorer specific stylesheet.
+  wp_enqueue_style( 'twentytwelve-ie', get_template_directory_uri() . '/css/ie.css', array( 'twentytwelve-style' ), '20121010' );
+  $wp_styles->add_data( 'twentytwelve-ie', 'conditional', 'lt IE 9' );
 }
 add_action( 'wp_enqueue_scripts', 'pendrell_enqueue_scripts' );
+
+
 
 // Hack: simplify and customize Google font loading; reference Twenty Twelve for more advanced options
 function pendrell_get_font_url() {
@@ -123,6 +147,8 @@ function pendrell_get_font_url() {
   $font_url = "$protocol://fonts.googleapis.com/css?family=" . $fonts;
   return $font_url;
 }
+
+
 
 // Output a human readable date wrapped in an HTML5 time tag
 function pendrell_date( $date ) {
