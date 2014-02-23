@@ -27,10 +27,10 @@
 			<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php echo esc_url( $header_image ); ?>" class="header-image" width="<?php echo get_custom_header()->width; ?>" height="<?php echo get_custom_header()->height; ?>" alt="" /></a>
 		<?php endif; ?>
 			<hgroup<?php if ( ! empty( $header_image ) ) : ?> class="with-header-image"<?php endif; ?>>
-				<?php if ( !is_multi_author() && 1==0 ) : 
+				<?php if ( !is_multi_author() && 1==0 ) :
 				$avatar_url = get_the_author_meta( 'user_url', PENDRELL_AUTHOR_ID );
 				if ( empty( $avatar_url ) )
-					$avatar_url = esc_url( home_url( '/' ) ); 
+					$avatar_url = esc_url( home_url( '/' ) );
 				$avatar_title = get_the_author_meta( 'display_name', PENDRELL_AUTHOR_ID ); ?>
 					<a href="<?php echo $avatar_url; ?>" title="<?php echo $avatar_title; ?>" alt="<?php echo $avatar_title; ?>"><?php echo get_avatar( get_the_author_meta( 'user_email', PENDRELL_AUTHOR_ID ), 80 ); ?></a>
 				<?php endif; ?>

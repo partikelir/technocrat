@@ -1,10 +1,10 @@
-/*   
+/*
 Theme Name: Pendrell
 Theme URI: http://synapticism.com
 Author: Alexander Synaptic
 Author URI: http://www.alexandersynaptic.com
 Description: A child theme for personal usage.
-Version: 0.1
+Version: 0.22
 License: GNU General Public Licence 2.0
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: light, gray, white, one-column, two-columns, right-sidebar, flexible-width, custom-background, custom-header, custom-menu, editor-style, featured-images, flexible-header, full-width-template, microformats, post-formats, rtl-language-support, sticky-post, theme-options, translation-ready
@@ -87,6 +87,18 @@ body.full-width .widget-area {
 	display: inline;
 }
 
+/* Post series */
+.entry-meta-series {
+	font-size: 16px;
+	font-size: 1.142857143rem;
+	line-height: 1.846153846;
+	margin-bottom: 24px;
+	margin-bottom: 1.714285714rem;
+}
+.entry-meta-series ol {
+	list-style: decimal inside;
+}
+
 
 
 /* === POST FORMATS === */
@@ -109,10 +121,9 @@ article.format-link .entry-content {
 	float: none;
 }
 article.format-link .entry-content a {
-	font-size: 22px;
-	font-size: 1.571428571rem;
-	line-height: 1.090909091;
-	text-decoration: none;
+	font-size: 16px;
+	font-size: 1.142857143rem;
+	line-height: 1.846153846;
 }
 
 /* Quote */
@@ -120,22 +131,35 @@ article.format-quote .entry-content blockquote {
 	font-style: italic;
 	font-size: 18px;
 	font-size: 1.285714286rem;
+	line-height: 1.6;
 	background: #f8f8f8;
 	border-radius: 3px;
 }
+/* Add opening and closing quotation marks to the blockquote element */
 .format-quote blockquote p:first-child::before {
 	content: "\201C";
 }
 .format-quote blockquote p:last-child::after {
 	content: "\201D";
 }
-article.format-quote footer.entry-meta .attribution {
+/* Insert a horizontal bar or quotation dash prior to the attribution */
+article.format-quote article footer:before {
+	content: "\2015";
+}
+/* Styling the attribution line */
+article.format-quote article footer {
 	font-size: 16px;
 	font-size: 1.142857143rem;
 	line-height: 1.846153846;
 	text-align: right;
 	margin-bottom: 24px;
 	margin-bottom: 1.714285714rem;
+}
+/* Reset the Twenty Twelve styling on nested article elements */
+article.format-quote .entry-content article {
+	margin: 0;
+	padding: 0;
+	border: 0;
 }
 
 /* Status */
@@ -216,7 +240,7 @@ article.format-quote footer.entry-meta .attribution {
 }
 .image-navigation {
 	position: relative;
-	height: 96px;
+	height: 150px;
 	margin: 24px 0;
 	margin: 1.714285714rem 0;
 	padding-top: 24px;
@@ -228,14 +252,14 @@ article.format-quote footer.entry-meta .attribution {
 	float: left;
 	width: 30%;
 	text-align: left;
-	line-height: 80px;
+	line-height: 150px;
 }
 .return-gallery {
 	display: none;
 	float: left;
 	width: 40%;
 	text-align: center;
-	line-height: 80px;
+	line-height: 150px;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -244,7 +268,7 @@ article.format-quote footer.entry-meta .attribution {
 	float: right;
 	width: 30%;
 	text-align: right;
-	line-height: 80px;
+	line-height: 150px;
 }
 .previous-image img,
 .next-image img {

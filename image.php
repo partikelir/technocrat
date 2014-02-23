@@ -70,7 +70,7 @@ endif;
 						</div><!-- .entry-description -->
 
 					</div><!-- .entry-content -->
-					
+
 					<nav class="image-navigation navigation" role="navigation">
 						<div class="previous-image"><?php previous_image_link( 'image-navigation' ); ?><span class="nav-text"><?php previous_image_link( false, __( '&larr; Previous', 'twentytwelve' ) ); ?></span>&nbsp;</div>
 						<div class="return-gallery"><?php printf( __( '<a href="%1$s" title="Return to %2$s" rel="gallery">&uarr; Return to %3$s</a>', 'pendrell' ),
@@ -80,7 +80,7 @@ endif;
 								); ?></div>
 						<div class="next-image">&nbsp;<span class="nav-text"><?php next_image_link( false, __( 'Next &rarr;', 'twentytwelve' ) ); ?></span><?php next_image_link( 'image-navigation' ); ?></div>
 					</nav><!-- #image-navigation -->
-					
+
 					<footer class="entry-meta">
 						<?php pendrell_image_info( wp_get_attachment_metadata() ); ?>
 						<?php twentytwelve_entry_meta(); ?>
