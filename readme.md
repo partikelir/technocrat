@@ -5,9 +5,11 @@ Pendrell is a child theme for Twenty Twelve designed to allow two types of conte
 * Blog entries set with beautiful, legible type
 * Portfolio items featuring big, bold full-width images
 
-Many WordPress themes provide for one or the other but few handle both types of content with elegance, flexibility, and simplicity. 
+Many WordPress themes provide for one or the other but few handle both types of content with elegance, flexibility, and simplicity.
 
-See Pendrell in action on my blog: http://synapticism.com
+This theme is suitable for small-scale deployments; it hasn't been optimized for high traffic sites.
+
+You can Pendrell in action on my blog: http://synapticism.com
 
 ## INSTALLATION & CONFIGURATION
 
@@ -27,7 +29,7 @@ Portfolio items in Pendrell are not custom post types or anything fancy like tha
 
 I happen to like using a mixture of `full-width`, `half-width`, and `third-width` image sizes and regularly feature several different images with each portfolio entry (e.g. a series of photographs, alternate cuts from the same design project, etc.). Layout is a snap: use the media uploader and insert images as "Full Width" (960px wide), "Half Width" (465px wide), or "Third Width" (300px wide). All three sizes come in two versions, either hard cropped or not. Generally speaking, you will want to double or triple up half- and third-width images and apply the `alignleft` style to all but the last in a couplet or triplet, which should be styled with `alignnone`. Managing this is a breeze in the media uploader. The idea here is to let full-width images sprawl and contain half- and third-width images within set boundaries for a nicer layout. If the images you are posting are approximately square you may wish to use the hard cropped versions, otherwise try to ensure that the heights of the images you are laying side by side are approximately the same.
 
-I recommend linking to attachment pages when posting images to your portfolio. The attachment pages in Pendrell are functional, offering EXIF data where available, a link to full-size source material, and thumbnail-based image navigation at the bottom. 
+I recommend linking to attachment pages when posting images to your portfolio. The attachment pages in Pendrell are functional, offering EXIF data where available, a link to full-size source material, and thumbnail-based image navigation at the bottom.
 
 Portfolio items are not segregated from other content; your creative projects will appear alongside the rest of your blog entries and still look sharp with a sidebar and widgets. I highly recommend making judicious use of the `<--more-->` tag when posting portfolio items with many images (unless, of course, you'd like to have image-heavy posts co-exist with your regular blog entries).
 
@@ -43,7 +45,7 @@ Portfolio items are not segregated from other content; your creative projects wi
 * Improved post format styling and support
 * More descriptive archive headers for different content types
 * Removed page margin at top and bottom to make more efficient use of vertical space
-* Disqus compatibility; simply activate and it'll look sharp
+* Custom fonts
 
 ### PORTFOLIO ITEMS & IMAGES
 

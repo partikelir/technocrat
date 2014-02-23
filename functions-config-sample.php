@@ -18,6 +18,9 @@ define( 'PENDRELL_FONTSTACK', false );
 // Google Analytics code e.g. 'UA-XXXXXX-XX'; false when not in use
 define( 'PENDRELL_GOOGLE_ANALYTICS_CODE', false );
 
+// Google web fonts to load; false will load Open Sans
+define( 'PENDRELL_GOOGLE_FONTS', 'Lora:400italic,400,700|Bree+Serif:400'); // |Open+Sans:400italic,700italic,400,700');
+
 // Shadow categories: add category numbers to this string in the format '-1,-2' to hide them from the front page
 define( 'PENDRELL_SHADOW_CATS', false );
 

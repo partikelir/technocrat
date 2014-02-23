@@ -98,11 +98,31 @@ add_filter( 'wp_title', 'pendrell_wp_title', 11, 3 );
 
 // Enqueue scripts
 function pendrell_enqueue_scripts() {
+  // Hack: no need to load Open Sans more than once!
+  wp_deregister_style( 'open-sans' );
+  wp_register_style( 'open-sans', false );
+
+  // Override Twenty Twelve font styles
+  $font_url = pendrell_get_font_url();
+  if ( ! empty( $font_url ) ) {
+    wp_deregister_style( 'twentytwelve-fonts' );
+    wp_enqueue_style( 'twentytwelve-fonts', esc_url_raw( $font_url ), array(), null );
+  }
+
 	if ( !is_admin() ) { // http://www.ericmmartin.com/5-tips-for-using-jquery-with-wordpress/
 		wp_enqueue_script( 'pendrell-functions', get_stylesheet_directory_uri() . '/js/pendrell.js', array( 'jquery' ), '0.1', true );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'pendrell_enqueue_scripts' );
+
+// Hack: simplify and customize Google font loading; reference Twenty Twelve for more advanced options
+function pendrell_get_font_url() {
+  $font_url = '';
+  $protocol = is_ssl() ? 'https' : 'http';
+  $fonts = PENDRELL_GOOGLE_FONTS ? PENDRELL_GOOGLE_FONTS : "Open+Sans:400italic,700italic,400,700"; // Default back to Open Sans
+  $font_url = "$protocol://fonts.googleapis.com/css?family=" . $fonts;
+  return $font_url;
+}
 
 // Output a human readable date wrapped in an HTML5 time tag
 function pendrell_date( $date ) {
@@ -227,21 +247,6 @@ function twentytwelve_entry_meta() {
 
 }
 
-function pendrell_pre_get_posts( $query ) {
-	// Modify how many posts per page are displayed in different contexts (e.g. more portfolio items on category archives)
-	// Source: http://wordpress.stackexchange.com/questions/21/show-a-different-number-of-posts-per-page-depending-on-context-e-g-homepage
-    if ( pendrell_is_portfolio() && $query->is_main_query() ) {
-    	$query->set( 'posts_per_page', 24 );
-    }
-    if ( is_search() && $query->is_main_query() ) {
-        $query->set( 'posts_per_page', 20 );
-    }
-    if ( is_front_page() && PENDRELL_SHADOW_CATS ) {
-    	$query->set( 'cat', PENDRELL_SHADOW_CATS );
-	}
-}
-add_action( 'pre_get_posts', 'pendrell_pre_get_posts' );
-
 // Hack: switch navigation links depending on the order of posts, mainly for use with series
 function twentytwelve_content_nav( $html_id ) {
 	global $wp_query;
@@ -258,3 +263,18 @@ function twentytwelve_content_nav( $html_id ) {
 		</nav><!-- #<?php echo $html_id; ?> .navigation -->
 	<?php endif;
 }
+
+function pendrell_pre_get_posts( $query ) {
+	// Modify how many posts per page are displayed in different contexts (e.g. more portfolio items on category archives)
+	// Source: http://wordpress.stackexchange.com/questions/21/show-a-different-number-of-posts-per-page-depending-on-context-e-g-homepage
+    if ( pendrell_is_portfolio() && $query->is_main_query() ) {
+    	$query->set( 'posts_per_page', 24 );
+    }
+    if ( is_search() && $query->is_main_query() ) {
+        $query->set( 'posts_per_page', 20 );
+    }
+    if ( is_front_page() && PENDRELL_SHADOW_CATS ) {
+    	$query->set( 'cat', PENDRELL_SHADOW_CATS );
+	}
+}
+add_action( 'pre_get_posts', 'pendrell_pre_get_posts' );

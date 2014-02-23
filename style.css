@@ -50,11 +50,78 @@ img.header-image {
 - Font Squirrel @font-face generator: http://www.fontsquirrel.com/fontface/generator
 - 10 Web Font Stacks: http://georgebutler.com/blog/typography/10-definitive-web-font-stacks-for-designers/ */
 
-.entry-content {
+/* Sans body stack: Tahoma, "DejaVu Sans", "Lucida Sans", "Lucida Grande", "Bitstream Vera Sans", "Liberation Sans", Verdana, sans-serif; */
+/* Sans header stack: Calibri, "DejaVu Sans Condensed", Tahoma, "Lucida Sans", "Lucida Grande", "Bitstream Vera Sans", "Liberation Sans", Verdana, sans-serif; */
+/* Serif body stack: Georgia, "Palatino Linotype", Palatino, "URW Palladio L", "Book Antiqua", "Times New Roman", serif; */
+/* Serif header stack: Cambria, Constantia, "URW Palladio L", "Palatino Linotype", Palatino, Georgia, "Book Antiqua", "Times New Roman", serif; */
+body.custom-font-enabled {
+	font-family: "Lora", Georgia, "Palatino Linotype", Palatino, "URW Palladio L", "Book Antiqua", "Times New Roman", serif;
+	text-rendering: optimizeLegibility;
+}
+h1,h2,h3,h4,h5,h6 {
+	font-family: "Bree Serif", Cambria, Constantia, "URW Palladio L", "Palatino Linotype", Palatino, Georgia, "Book Antiqua", "Times New Roman", serif;
+	text-rendering: optimizeLegibility;
+}
+pre,code {
+	font-family: Consolas, "Bitstream Vera Sans Mono", "Andale Mono", Monaco, "DejaVu Sans Mono", "Lucida Console", monospace;
+}
+
+/* Headers */
+.entry-header .entry-title {
+	font-size: 32px;
+	font-size: 2.285714285rem;
+	line-height: 1.5;
+}
+
+/* Content headers */
+.entry-content h1,
+.comment-content h1 {
+	font-size: 32px;
+	font-size: 2.285714285rem;
+	line-height: 1.5;
+}
+.entry-content h2,
+.comment-content h2 {
+	font-size: 24px;
+	font-size: 1.71428571rem;
+	line-height: 1;
+}
+.entry-content h3,
+.comment-content h3 {
+	font-size: 21px;
+	font-size: 1.5rem;
+	line-height: 1.5;
+}
+.entry-content h4,
+.comment-content h4 {
+	font-size: 18px;
+	font-size: 1.285714286rem;
+	line-height: 1.6;
+}
+.entry-content h5,
+.comment-content h5 {
 	font-size: 16px;
 	font-size: 1.142857143rem;
 	line-height: 1.846153846;
 }
+.entry-content h6,
+.comment-content h6 {
+	font-size: 14px;
+	font-size: 1rem;
+	line-height: 1.846153846;
+}
+
+/* Text */
+.entry-content,
+.entry-content p,
+.entry-summary p,
+.comment-content p {
+	font-size: 16px;
+	font-size: 1.142857143rem;
+	line-height: 1.846153846;
+}
+
+/* Meta */
 footer.entry-meta,
 article.format-quote footer.entry-meta,
 article.format-link footer.entry-meta,
@@ -62,6 +129,62 @@ article.format-status footer.entry-meta {
 	font-size: 12px;
 	font-size: 0.857142857rem;
 	line-height: 2;
+}
+/* Small headers */
+.archive-title,
+.page-title,
+.widget-title,
+.entry-content th,
+.comment-content th {
+	font-size: 12px;
+	font-size: 0.857142857rem;
+	line-height: 2;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #636363;
+}
+/* Navigation */
+.main-navigation li {
+	font-size: 14px;
+	font-size: 1rem;
+	line-height: 1.846153846;
+}
+
+
+
+/* === COLOUR === */
+a {
+	color: #21759b;
+}
+a:hover {
+	color: #0f3647;
+}
+.site-header h1 a,
+.site-header h2 a {
+	color: #515151;
+}
+.site-header h1 a:hover,
+.site-header h2 a:hover {
+	color: #21759b;
+}
+.main-navigation a {
+	color: #5e5e5e;
+}
+.main-navigation a:hover {
+	color: #21759b;
+}
+.entry-content a:visited,
+.comment-content a:visited {
+	color: #21759b;
+}
+.widget-area .widget a {
+	color: #21759b;
+}
+.widget-area .widget a:hover {
+	color: #21759b;
+}
+.widget-area .widget a:visited {
+	color: #21759b;
 }
 
 
@@ -133,7 +256,8 @@ article.format-quote .entry-content blockquote {
 	font-size: 1.285714286rem;
 	line-height: 1.6;
 	background: #f8f8f8;
-	border-radius: 3px;
+	border-radius: 12px;
+	box-shadow: inset 4px 4px 8px #eee;
 }
 /* Add opening and closing quotation marks to the blockquote element */
 .format-quote blockquote p:first-child::before {
@@ -216,9 +340,6 @@ article.format-quote .entry-content article {
 }
 .gallery dl, .gallery dt { margin: 0; }
 .gallery br+br { display: none; }
-
-/* Chats */
-/* Do we really want to implement this? If so: http://justintadlock.com/archives/2012/08/21/post-formats-chat */
 
 
 
@@ -404,20 +525,12 @@ mark {
 }
 .search-results mark {
 	color: #fff;
-	background: #fe57a1;
-	/*background-repeat: repeat-x;
-	background-image: -moz-linear-gradient(top, #f4f4f4, #e6e6e6);
-	background-image: -ms-linear-gradient(top, #f4f4f4, #e6e6e6);
-	background-image: -webkit-linear-gradient(top, #f4f4f4, #e6e6e6);
-	background-image: -o-linear-gradient(top, #f4f4f4, #e6e6e6);
-	background-image: linear-gradient(top, #f4f4f4, #e6e6e6);
-	border: 1px solid #d2d2d2;*/
+	background: #bbb;
 	border-radius: 3px;
 	box-shadow: 0 1px 2px rgba(64, 64, 64, 0.1);
 	padding: 0.5%;
 	margin: -0.5% -0.25% -0.5% -0.25%;
 }
-
 strike {
 	text-decoration: line-through;
 }
@@ -432,18 +545,20 @@ strike {
 	hyphens: auto;
 }
 
-/* Add "no-shadow" to any img; good for design work on a white background */
-img.no-shadow {
+/* Remove fancy borders to all WordPress-added images but not things like badges and icons and the like */
+.entry-content img,
+.comment-content img,
+.widget img,
+img.header-image,
+.author-avatar img,
+img.wp-post-image {
+	border-radius: 3px;
 	box-shadow: none;
 }
 
-
-
-/* === PLUGINS === */
-
-#disqus_thread {
-	margin-top: 24px;
-	margin-top: 1.714285714rem;
+/* Add "no-shadow" to any img; good for design work on a white background */
+img.no-shadow {
+	box-shadow: none;
 }
 
 
@@ -544,49 +659,6 @@ img.no-shadow {
 
 
 /* === DEVELOPMENT AREA === */
-
-body.serif,
-body.serif button,
-body.serif input,
-body.serif select,
-body.serif textarea {
-	font-family: Georgia, "Palatino Linotype", Palatino, "URW Palladio L", "Book Antiqua", "Times New Roman", serif;
-}
-body.serif h1,
-body.serif h2,
-body.serif h3,
-body.serif h4,
-body.serif h5,
-body.serif h6,
-body.serif .pulledquote,
-body.serif .format-quote blockquote {
-	font-family: "PT Serif", Cambria, Constantia, "URW Palladio L", "Palatino Linotype", Palatino, Georgia, "Book Antiqua", "Times New Roman", serif;
-}
-body.sans,
-body.sans button,
-body.sans input,
-body.sans select,
-body.sans textarea {
-	font-family: Tahoma, "DejaVu Sans", "Lucida Sans", "Lucida Grande", "Bitstream Vera Sans", "Liberation Sans", Verdana, sans-serif;
-} /* Arial/Helvetica version: Corbel, Arial, Helvetica, "Nimbus Sans L", "Liberation Sans", sans-serif; */
-body.sans h1,
-body.sans h2,
-body.sans h3,
-body.sans h4,
-body.sans h5,
-body.sans h6,
-body.sans .pulledquote,
-body.sans .format-quote blockquote {
-	font-family: Calibri, "DejaVu Sans Condensed", Tahoma, "Lucida Sans", "Lucida Grande", "Bitstream Vera Sans", "Liberation Sans", Verdana, sans-serif;
-}
-body.monospace,
-body.syntaxhighlighter,
-pre,
-code,
-kbd,
-samp {
-	font-family: Consolas, "Bitstream Vera Sans Mono", "Andale Mono", Monaco, "DejaVu Sans Mono", "Lucida Console", monospace;
-}
 
 /* Aside: still under development, hasn't really been touched yet */
 article.format-aside h1 {
