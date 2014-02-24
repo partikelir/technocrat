@@ -1,34 +1,37 @@
 /* === PORTFOLIO ITEMS === */
 
 /* Based on styling from Hatch */
-.portfolio.archive header h1.entry-title,
-.portfolio.archive footer .entry-meta {
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  /* The following SHOULD work but it doesn't; hack it with padding instead
-  overflow-x: hidden;
-  overflow-y: visible; */
+.portfolio.archive {
+  header h1.entry-title,
+  footer .entry-meta {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    /* The following SHOULD work but it doesn't; hack it with padding instead
+    overflow-x: hidden;
+    overflow-y: visible; */
+  }
+  header h1.entry-title {
+    font-size: 18px;
+    padding-bottom: 2px;
+  }
+  header.entry-header {
+    margin: 0;
+  }
+  footer.entry-meta {
+    margin: 0;
+  }
+  /* Modified by media queries (below) */
+  .portfolio.archive .hentry {
+    max-height: 192px;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    margin: 0 0 24px 0;
+    padding-bottom: 2.5%;
+  }
 }
-.portfolio.archive header h1.entry-title {
-  font-size: 18px;
-  padding-bottom: 2px;
-}
-.portfolio.archive header.entry-header {
-  margin: 0;
-}
-.portfolio.archive footer.entry-meta {
-  margin: 0;
-}
-/* Modified by media queries (below) */
-.portfolio.archive .hentry {
-  max-height: 192px;
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  margin: 0 0 24px 0;
-  padding-bottom: 2.5%;
-}
+
 /* Responsive half-width images, mainly for use in portfolios */
 .size-half-width,
 .size-half-width-cropped {
@@ -49,4 +52,40 @@
 .size-third-width,
 .size-third-width-cropped {
   width: 31.25%;
+}
+
+
+
+/* Portfolio media queries */
+@media screen and (min-width: 350px) {
+  .portfolio.archive .hentry {
+    float: left;
+    width: 47.6190476%;
+    margin: 0 4.7619048% 24px 0;
+  }
+  .portfolio.archive .hentry.divisible-by-2,
+  .portfolio.archive .hentry.divisible-by-2.divisible-by-3 {
+    margin-right: 0;
+  }
+  .portfolio.archive .hentry.divisible-by-3 {
+    margin-right: 4.7619048%;
+  }
+}
+@media screen and (min-width: 680px) {
+  .portfolio.archive .hentry {
+    float: left;
+    width: 31.25%;
+    margin: 0 3.125% 24px 0;
+  }
+  .portfolio.archive .hentry.divisible-by-2 {
+    margin-right: 3.125%;
+  }
+  .portfolio.archive .hentry.divisible-by-3,
+  .portfolio.archive .hentry.divisible-by-3.divisble-by-2 {
+    margin-right: 0;
+  }
+  .portfolio.archive header h1.entry-title {
+    font-size: 22px;
+    padding-bottom: 4px;
+  }
 }

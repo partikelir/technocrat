@@ -1,0 +1,46 @@
+// === AUTHORS === //
+
+.bypostauthor cite span {
+  color: #fff;
+  background-color: #429ab2;
+  background-image: none;
+  border: 1px solid #1f6f93;
+  border-radius: 2px;
+  box-shadow: none;
+  padding: 0;
+}
+
+.author .archive-header {
+  margin-bottom: 24px;
+  margin-bottom: 1.714285714rem;
+}
+.author-info {
+  border-top: $divider;
+  @include rem('margin', $vbase 0);
+  @include rem('padding-top', $vbase);
+  overflow: hidden;
+}
+.author-description p {
+  color: #757575;
+  @include font-sizer(13);
+}
+.author.archive .author-info {
+  border-top: 0;
+  margin: 0 0 48px;
+  margin: 0 0 3.428571429rem;
+}
+.author.archive .author-avatar {
+  margin-top: 0;
+}
+
+@media screen and (min-width: 600px) {
+  .author-avatar {
+    float: left;
+    margin-top: 8px;
+    margin-top: 0.571428571rem;
+  }
+  .author-description {
+    float: right;
+    width: 80%;
+  }
+}
