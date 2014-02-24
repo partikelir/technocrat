@@ -1,100 +1,52 @@
 // === NAVIGATION === //
+.site-content nav {
+  clear: both;
+  line-height: ($evbase/12);
+  overflow: hidden;
+}
+#nav-above {
+  @include rem('padding', $vbase 0);
+}
+#nav-above {
+  display: none;
+}
+.paged #nav-above {
+  display: block;
+}
+.nav-previous,
+.previous-image {
+  float: left;
+  width: 50%;
+}
+.nav-next,
+.next-image {
+  float: right;
+  text-align: right;
+  width: 50%;
+}
+.nav-single + .comments-area,
+#comment-nav-above {
+  @include rem('margin', $vbase2 0);
+}
 
-// Menus
 .main-navigation {
-	clear: both;
-	display: block;
-	float: left;
-	width: 100%;
-
-	// First level
-	ul {
-		list-style: none;
-		margin: 0;
-		padding-left: 0;
-		li {
-			float: left;
-			position: relative;
-			a {
-				display: block;
-				text-decoration: none;
-			}
-			&:hover {
-				> a {}
-				> ul { display: block; }
-			}
-		}
-
-		.current_page_item, .current-menu-item {
-			a {}
-		}
-
-		// Second level
-		ul {
-			box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
-			display: none;
-			float: left;
-			position: absolute;
-				top: c-spacing();
-				left: 0;
-			z-index: 99999;
-			&:hover {
-				> a {};
-			}
-			li {
-				a {
-					width: 200px;
-					&:hover {};
-				}
-			}
-
-			// Third level
-			ul {
-				left: 100%;
-				top: 0;
-			}
-		}
-	}
+  text-align: center;
+  li {
+    @include rem('margin-top', $vbase);
+    @include font-sizer(14);
+  }
 }
-
-
-
-// Small menu
+.main-navigation a {
+  color: #5e5e5e;
+}
+.main-navigation a:hover {
+  color: #757575;
+}
+.main-navigation ul.nav-menu,
+.main-navigation div.nav-menu > ul {
+  display: none;
+}
+.main-navigation ul.nav-menu.toggled-on,
 .menu-toggle {
-	display: none;
-	cursor: pointer;
-}
-
-@media screen and (max-width: 600px) {
-  .menu-toggle,
-  .main-navigation.toggled .nav-menu {
-    display: block;
-  }
-
-  .main-navigation ul {
-    display: none;
-  }
-}
-
-
-
-// Page navigation
-.site-main .comment-navigation,
-.site-main .paging-navigation,
-.site-main .post-navigation {
-	margin: 0 0 c-spacing();
-	overflow: hidden;
-}
-.comment-navigation .nav-previous,
-.paging-navigation .nav-previous,
-.post-navigation .nav-previous {
-		float: left;
-		width: 50%;
-}
-.comment-navigation .nav-next,
-.paging-navigation .nav-next,
-.post-navigation .nav-next {
-	float: right;
-	text-align: right;
-	width: 50%;
+  display: inline-block;
 }

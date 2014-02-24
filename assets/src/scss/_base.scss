@@ -1,78 +1,28 @@
-// === INITIALIZATION SEQUENCE === //
+// === BASE === //
 
-// Development mode: true or false
-$dev: false; //true;
+// Links
+$link-color:           #429ab2;
+$link-color-hover:     #ED7251;
 
-@import "compass/css3";
-@import "compass/typography";
-@import "compass/utilities";
-@import "base_mixins";
-@import "base_colours";
+// Fonts
+$font-color:    #444;
+//$font-stack:    'Open Sans', Helvetica, Arial, sans-serif;
 
+//Column widths
+$width-max:     960;
 
+//Queries
+$breakpoint:    600;
 
-// === TYPOGRAPHY === //
+//Baselines
+$fsize:         14px;
+$vbase:         24px;
+$vbase2:        48px;
+$evbase:        24;
+$evbase2:       48;
+$lheight:       (24/14);
+$lheight2:      (48/14);
+$baseline-px:   14px;
 
-// Vertical rhythm
-$base-font-size: 18px; // big it up
-$base-line-height-target: 32px; // actual line height
-$base-line-length: 35em; // an easy way to set line length
-// A fancier way to set line length: ceil($base-font-size * $base-line-height-target / 25px) * 25 + 25; // = 625px;
-$base-factor: 1; // set to 2 or 3 to divide the baseline
-$base-line-height: $base-line-height-target / $base-factor; // line height in pixels
-//$round-to-nearest-half-line: true;
-@function c-spacing($units: 1) { // For greater control of spacing
-  @return rhythm($units * $base-factor);
-}
-
-
-
-// === FONTS === //
-
-@import "base_fonts";
-
-// Font scaling
-$font-scale: // Set a scale here to obtain a spread of different font sizes; numbers shown are for the default 16px font size
-  2.6250, // 1: 42px
-  1.7500, // 2: 28px
-  1.3750, // 3: 22px
-  1.1250, // 4: 18px
-  1.0000, // 5: 16px
-  0.8750, // 6: 14px
-  0.8125, // 7: 13px
-  0.7500, // 8: 12px
-  0.6875, // 9: 11px
-  0.6250; // X: 10px
-
-// Font stacks; look in the _fonts.scss partial for more info
-$font-body: $arimo;
-$font-header: $oxygen;
-$font-monospace: $consolas;
-
-
-
-//$base-font: sans-serif;
-//$header-font: $base-font; // you can refer to other variables
-
-// base color scheme
-//$body-background: #fff;
-//$text-color: #404040;
-//$link-color: royalblue;
-//$link-visited: purple;
-
-// Supported Values for $layout:
-//  null | content-sidebar | sidebar-content
-//$layout: null !default;
-//$vspacing: 1.5em;
-
-// === EVERYTHING ELSE === //
-
-// CSS3
-$default-border-radius: 5px;
-$default-box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), inset 0 15px 17px rgba(255,255,255,0.5), inset 0 -5px 12px rgba(0,0,0,0.05);
-
-// Supported Values for $layout: content | content-sidebar | sidebar-content
-$layout: content;
-
-
-
+//Border
+$divider:       1px solid #ededed;

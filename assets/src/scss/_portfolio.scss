@@ -1,0 +1,52 @@
+/* === PORTFOLIO ITEMS === */
+
+/* Based on styling from Hatch */
+.portfolio.archive header h1.entry-title,
+.portfolio.archive footer .entry-meta {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  /* The following SHOULD work but it doesn't; hack it with padding instead
+  overflow-x: hidden;
+  overflow-y: visible; */
+}
+.portfolio.archive header h1.entry-title {
+  font-size: 18px;
+  padding-bottom: 2px;
+}
+.portfolio.archive header.entry-header {
+  margin: 0;
+}
+.portfolio.archive footer.entry-meta {
+  margin: 0;
+}
+/* Modified by media queries (below) */
+.portfolio.archive .hentry {
+  max-height: 192px;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  margin: 0 0 24px 0;
+  padding-bottom: 2.5%;
+}
+/* Responsive half-width images, mainly for use in portfolios */
+.size-half-width,
+.size-half-width-cropped {
+  width: 48.4375%;
+}
+.size-half-width.alignleft,
+.size-half-width-cropped.alignleft,
+.size-third-width.alignleft,
+.size-third-width-cropped.alignleft {
+  margin: 0 3.125% 24px 0;
+}
+.size-half-width.alignright,
+.size-half-width-cropped.alignright,
+.size-third-width.alignright,
+.size-third-width-cropped.alignright {
+  margin: 0 0 24px 3.125%;
+}
+.size-third-width,
+.size-third-width-cropped {
+  width: 31.25%;
+}

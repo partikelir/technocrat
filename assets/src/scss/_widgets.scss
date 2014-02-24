@@ -1,0 +1,104 @@
+// === WIDGETS === //
+.widget-area {
+  margin: 24px 0 0;
+  margin: 1.714285714rem 0 0;
+  .widget {
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    hyphens: auto;
+    margin-bottom: 48px;
+    margin-bottom: 3.428571429rem;
+    word-wrap: break-word;
+  }
+  .widget {
+    h3 {
+      margin-bottom: 24px;
+      margin-bottom: 1.714285714rem;
+    }
+    p,
+    li,
+    .textwidget {
+      @include font-sizer(13);
+    }
+    p {
+      margin-bottom: 24px;
+      margin-bottom: 1.714285714rem;
+    }
+    ul ul {
+      @include rem('margin-left', $vbase/2);
+    }
+    a {
+      color: #429ab2;
+      &:visited {
+        color: #52b1cc;
+      }
+      &:hover {
+        color: #ED7251;
+      }
+    }
+  }
+  .textwidget {
+    ul {
+      list-style: disc outside;
+      margin: 0 0 24px;
+      margin: 0 0 1.714285714rem;
+    }
+    li {
+      margin-left: 36px;
+      margin-left: 2.571428571rem;
+    }
+  }
+  #s {
+    width: 53.66666666666%; /* define a width to avoid dropping a wider submit button */
+  }
+}
+
+.widget_rss {
+  li {
+    @include rem('margin', $vbase/2 0);
+  }
+}
+.widget_recent_entries .post-date,
+.widget_rss .rss-date {
+  color: lighten($font-color, 40);
+  @include rem('font-size', 11px);
+  @include rem('margin-left', 12px);
+}
+#wp-calendar {
+  margin: 0;
+  width: 100%;
+  @include font-sizer(13);
+  color: lighten($font-color, 14);
+  th,
+  td,
+  caption {
+    text-align: left;
+  }
+  #next {
+    @include rem('padding-right', $vbase);
+    text-align: right;
+  }
+}
+.widget_search label {
+  display: block;
+  @include font-sizer(13);
+}
+.widget_twitter li {
+  list-style-type: none;
+}
+.widget_twitter .timesince {
+  display: block;
+  text-align: right;
+}
+
+/* Cheap trick to lose the sidebar on full-width view; surely there is a better way */
+body.full-width,
+body.single-format-aside,
+body.single-format-link,
+body.single-format-quote,
+body.single-format-status {
+  .widget-area,
+  .nav-single {
+    display: none;
+  }
+}

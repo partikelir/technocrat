@@ -1,0 +1,51 @@
+// === HEADER === //
+.site-header {
+  @include rem('padding', $vbase 0);
+  h1,
+  h2 {
+    text-align: center;
+    @media screen and (min-width: 600px) {
+      text-align: left;
+    }
+    a {
+      color: lighten($font-color, 5);
+      display: inline-block;
+      text-decoration: none;
+      &:hover {
+        color: $link-color;
+      }
+    }
+  }
+  h1 {
+    @include font-sizer(24);
+    @media screen and (min-width: 600px) {
+      @include font-sizer(26);
+    }
+    @include rem('margin-bottom', 14px); // TODO: why 14?
+  }
+  h2 {
+    font-weight: normal;
+    @include font-sizer(13);
+    color: lighten($font-color, 20);
+  }
+  img.avatar {
+    display: none;
+    float: left;
+    margin-right: 12px;
+    margin-right: 0.857142857rem;
+    margin-top: 12px;
+    margin-top: 0.857142857rem;
+    border-bottom-left-radius: 3px;
+  }
+}
+.header-image {
+  margin-top: 0;
+}
+img.header-image {
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  box-shadow: none;
+}
+.site-header .site-title, .site-header .site-description {
+  clear: none;
+}

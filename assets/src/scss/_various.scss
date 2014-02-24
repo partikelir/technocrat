@@ -1,86 +1,96 @@
-// === VARIOUS === //
-
-// Text meant only for screen readers
-.assistive-text,
-.screen-reader-text {
-  clip: rect(1px, 1px, 1px, 1px);
-  position: absolute !important;
-}
-.screen-reader-text:hover,
-.screen-reader-text:active,
-.screen-reader-text:focus {
-  @include border-radius();
-  @include box-shadow(0 0 2px 2px rgba(0, 0, 0, 0.6));
-  background-color: $c-screen-reader-bg;
-  clip: auto !important;
-  color: #21759b;
-  display: block;
-  font-size: 14px;
-  font-weight: bold;
-  height: auto;
-  left: 5px;
-  line-height: normal;
-  padding: 15px 23px 14px;
-  text-decoration: none;
-  top: 5px;
-  width: auto;
-  z-index: 100000; // Above WP toolbar
-}
-
-
+// === HELPERS === //
 
 // Alignment
 .alignleft {
-  display: inline;
   float: left;
-  margin-right: c-spacing();
 }
 .alignright {
-  display: inline;
   float: right;
-  margin-left: c-spacing();
 }
 .aligncenter {
-  clear: both;
   display: block;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 
 
-// Clearing
-.clear,
-.entry-content,
-.comment-content,
-.site-header,
-.site-content,
-.site-footer {
-  @extend %clearfix;
+// Required: from Twenty Twelve, maybe used in comments
+.required {
+  color: red;
 }
 
 
 
-// Widgets
-.widget {
-  margin: 0 0 c-spacing();
-  select { // Make sure select elements fit in widgets
-    max-width: 100%;
+/* Enclose any text with <span class="pullquote"></span> and this style will be applied! */
+.pulledquote {
+  color: #999;
+  font-style: italic;
+  font-size: 18px;
+  font-size: 1.285714286rem;
+  line-height: 1.6;
+  float: right;
+  max-width: 30%;
+  /* still need this to play nice with existing vertical rhythm */
+  margin: 0 0 12px 12px;
+  padding: 20px 0 20px 0;
+}
+
+
+
+// Post series
+.entry-meta-series {
+  @include font-sizer(16);
+  margin-bottom: 24px;
+  margin-bottom: 1.714285714rem;
+  ol {
+    list-style: decimal inside;
   }
-  .widget-search .search-submit { // Search widget
-    display: none;
-  }
 }
 
 
 
-// === INFINITE SCROLL === //
-
-// Globally hidden elements when Infinite Scroll is supported and in use.
-.infinite-scroll .paging-navigation, /* Older / Newer Posts Navigation (always hidden) */
-.infinite-scroll.neverending .site-footer { /* Theme Footer (when set to scrolling) */
-  display: none;
+// Buttons
+.button a {
+  padding: 6px 10px;
+  padding: 0.428571429rem 0.714285714rem;
+  font-size: 12px;
+  font-size: 0.857142857rem;
+  line-height: 2;
+  font-weight: normal;
+  color: #7c7c7c;
+  background-color: #e6e6e6;
+  background-repeat: repeat-x;
+  background-image: -moz-linear-gradient(top, #f4f4f4, #e6e6e6);
+  background-image: -ms-linear-gradient(top, #f4f4f4, #e6e6e6);
+  background-image: -webkit-linear-gradient(top, #f4f4f4, #e6e6e6);
+  background-image: -o-linear-gradient(top, #f4f4f4, #e6e6e6);
+  background-image: linear-gradient(top, #f4f4f4, #e6e6e6);
+  border: 1px solid #d2d2d2;
+  border-radius: 3px;
+  box-shadow: 0 1px 2px rgba(64, 64, 64, 0.1);
+  cursor: pointer;
+  text-decoration: none;
 }
-// When Infinite Scroll has reached its end we need to re-display elements that were hidden (via .neverending) before
-.infinity-end.neverending .site-footer {
-  display: block;
+.button a:hover {
+  color: #5e5e5e;
+  background-color: #ebebeb;
+  background-repeat: repeat-x;
+  background-image: -moz-linear-gradient(top, #f9f9f9, #ebebeb);
+  background-image: -ms-linear-gradient(top, #f9f9f9, #ebebeb);
+  background-image: -webkit-linear-gradient(top, #f9f9f9, #ebebeb);
+  background-image: -o-linear-gradient(top, #f9f9f9, #ebebeb);
+  background-image: linear-gradient(top, #f9f9f9, #ebebeb);
+}
+.button a:active {
+  color: #777;
+  background-color: #e1e1e1;
+  background-repeat: repeat-x;
+  background-image: -moz-linear-gradient(top, #ebebeb, #e1e1e1);
+  background-image: -ms-linear-gradient(top, #ebebeb, #e1e1e1);
+  background-image: -webkit-linear-gradient(top, #ebebeb, #e1e1e1);
+  background-image: -o-linear-gradient(top, #ebebeb, #e1e1e1);
+  background-image: linear-gradient(top, #ebebeb, #e1e1e1);
+  box-shadow: inset 0 0 8px 2px #c6c6c6, 0 1px 0 0 #f4f4f4;
+  border: none;
 }

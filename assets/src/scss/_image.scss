@@ -1,0 +1,86 @@
+/* === IMAGE ATTACHMENTS === */
+
+.article.attachment {
+  overflow: hidden;
+}
+.image-attachment div.attachment {
+  text-align: center;
+}
+.image-attachment div.attachment p {
+  text-align: center;
+}
+.image-attachment div.attachment img {
+  display: block;
+  height: auto;
+  margin: 0 auto;
+  max-width: 100%;
+}
+.image-attachment .entry-caption {
+  @include rem('margin-top', $vbase/3);
+}
+.image-info {
+  border-top: 1px solid #ededed;
+  margin: 24px 0;
+  margin: 1.714285714rem 0;
+  padding-top: 24px;
+  padding-top: 1.714285714rem;
+  overflow: hidden;
+}
+.image-description {
+  color: #777;
+  @include font-sizer(13);
+}
+.image-navigation {
+  position: relative;
+  height: 150px;
+  margin: 24px 0;
+  margin: 1.714285714rem 0;
+  padding-top: 24px;
+  padding-top: 1.714285714rem;
+  overflow: visible;
+  width: 100%;
+}
+.previous-image {
+  float: left;
+  width: 30%;
+  text-align: left;
+  line-height: 150px;
+}
+.return-gallery {
+  display: none;
+  float: left;
+  width: 40%;
+  text-align: center;
+  line-height: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.next-image {
+  float: right;
+  width: 30%;
+  text-align: right;
+  line-height: 150px;
+}
+.previous-image img,
+.next-image img {
+  display: none;
+}
+.previous-image img {
+  float: left;
+}
+.next-image img {
+  float: right;
+}
+.return-gallery,
+.nav-text {
+  font-size: 100%;
+  font-weight: bold;
+}
+.attachment-image-navigation {
+  border-radius: 3px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+.image-navigation a {
+  text-decoration: none;
+}

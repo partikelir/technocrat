@@ -166,3 +166,5 @@ functions-config.php
 .sass-cache
 assets/staging
 node_modules
+assets/src/scss/twenty-twelve
+assets/src/scss/xenocide
