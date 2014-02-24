@@ -1,0 +1,91 @@
+// === POST FORMATS === //
+
+// Asides
+article.format-aside .entry-title {
+  display: none;
+}
+article.format-aside .aside {
+  background: $c-format-aside-bg;
+  border-left: 22px solid $c-format-aside-border;
+  padding: c-spacing() c-spacing() 0;
+}
+article.format-aside p {
+  @include c-font-size(6);
+}
+article.format-aside blockquote:last-child,
+article.format-aside p:last-child {
+  margin-bottom: 0;
+}
+
+
+
+// Chats
+// Do we really want to implement this? If so: http://justintadlock.com/archives/2012/08/21/post-formats-chat
+
+
+
+// Links
+article.format-link header {
+  @include c-font-size(7);
+  background-color: $c-format-link-bg;
+  border-radius: 3px;
+  color: $c-format-link;
+  float: none;
+  padding: 0;
+}
+article.format-link .entry-content a {
+  @include c-font-size(4);
+  text-decoration: none;
+}
+
+
+
+// Quotation (not "quote", heathen scum)
+article.format-quote .entry-content blockquote {
+  @include c-font-size(4);
+  background: $c-format-quotation-bg;
+  border-radius: 3px;
+  color: $c-format-quotation;
+  display: block;
+  font-style: italic;
+  padding: c-spacing() c-spacing() 0;
+}
+// Add opening and closing quotation marks to the blockquote element
+.format-quote blockquote p:first-child::before {
+  content: "\201C";
+}
+.format-quote blockquote p:last-child::after {
+  content: "\201D";
+}
+// Insert a horizontal bar or quotation dash prior to the attribution
+article.format-quote article footer:before {
+  content: "\2015";
+}
+// Styling the attribution line
+article.format-quote article footer {
+  @include c-font-size(5);
+  margin-bottom: c-spacing();
+  text-align: right;
+}
+
+
+
+// Status
+.format-status .entry-header {
+  float: left;
+  margin-bottom: c-spacing();
+}
+.format-status .entry-header header {
+  display: inline-block;
+}
+.format-status .entry-header img {
+  border-radius: 3px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  float: left;
+  margin: 0;
+}
+.format-status .entry-content {
+  @include c-font-size(4);
+  font-weight: normal;
+  margin: 0 0 0 48px;
+}

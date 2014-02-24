@@ -1,0 +1,46 @@
+// === FONTS === //
+
+// Tip: the last font in each stack describes its type (sans, sans-serif, or monospace)
+
+// - Google Web Fonts: http://www.google.com/webfonts
+// - Build Better Font Stacks: http://www.codestyle.org/css/font-family/BuildBetterCSSFontStacks.shtml
+// - Paul Irish's Bulletproof @font-face syntax: http://mky.be/font-face/bulletproof/
+// - Font Squirrel @font-face generator: http://www.fontsquirrel.com/fontface/generator
+// - 10 Web Font Stacks: http://georgebutler.com/blog/typography/10-definitive-web-font-stacks-for-designers/
+
+// === WEB SAFE === //
+
+// Body font stacks
+$tahoma: Tahoma, "DejaVu Sans", "Lucida Sans", "Lucida Grande", "Bitstream Vera Sans", "Liberation Sans", Verdana, sans-serif;
+$corbel: Corbel, Arial, Helvetica, "Nimbus Sans L", "Liberation Sans", sans-serif;
+$georgia: Georgia, "Palatino Linotype", Palatino, "URW Palladio L", "Book Antiqua", "Times New Roman", serif;
+
+// Header font stacks
+$calibri: Calibri, "DejaVu Sans Condensed", Tahoma, "Lucida Sans", "Lucida Grande", "Bitstream Vera Sans", "Liberation Sans", Verdana, sans-serif;
+$cambria: Cambria, Constantia, "URW Palladio L", "Palatino Linotype", Palatino, Georgia, "Book Antiqua", "Times New Roman", serif;
+
+// Monospace stacks
+$consolas: Consolas, "Bitstream Vera Sans Mono", "Andale Mono", Monaco, "DejaVu Sans Mono", "Lucida Console", monospace;
+$courier: "Courier 10 Pitch", Courier, monospace;
+
+
+
+// === GOOGLE WEB FONTS === //
+
+// To define your own Google Web Font stack use the join() function and specify one of the web safe stacks as the second parameter.
+// Be sure to use brackets around multiple fonts if you define more than one.
+// Make sure you also import the relevant fonts in config.php!
+
+// Body font stacks
+$arimo:             join((Arimo, "Open Sans"), $corbel);
+$open:              join("Open Sans", $corbel);
+$pt-serif-body:     join("PT Serif", $georgia);
+$quattro:           join("Quattrocento Sans", $tahoma);     // Quattrocento+Sans:400,700,400italic,700italic
+
+// Header font stacks
+$cabin:             join(Cabin, $calibri);
+$oxygen:            join(Oxygen, $calibri);
+$pt-serif-header:   join("PT Serif", $cambria);             // PT+Serif:400,700
+$quando:            join(Quando, $corbel);                  // Quando:400
+$russo:             join("Russo One", $tahoma);
+$signika:           join(Signika, $calibri);

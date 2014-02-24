@@ -1,0 +1,86 @@
+// === VARIOUS === //
+
+// Text meant only for screen readers
+.assistive-text,
+.screen-reader-text {
+  clip: rect(1px, 1px, 1px, 1px);
+  position: absolute !important;
+}
+.screen-reader-text:hover,
+.screen-reader-text:active,
+.screen-reader-text:focus {
+  @include border-radius();
+  @include box-shadow(0 0 2px 2px rgba(0, 0, 0, 0.6));
+  background-color: $c-screen-reader-bg;
+  clip: auto !important;
+  color: #21759b;
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  height: auto;
+  left: 5px;
+  line-height: normal;
+  padding: 15px 23px 14px;
+  text-decoration: none;
+  top: 5px;
+  width: auto;
+  z-index: 100000; // Above WP toolbar
+}
+
+
+
+// Alignment
+.alignleft {
+  display: inline;
+  float: left;
+  margin-right: c-spacing();
+}
+.alignright {
+  display: inline;
+  float: right;
+  margin-left: c-spacing();
+}
+.aligncenter {
+  clear: both;
+  display: block;
+  margin: 0 auto;
+}
+
+
+
+// Clearing
+.clear,
+.entry-content,
+.comment-content,
+.site-header,
+.site-content,
+.site-footer {
+  @extend %clearfix;
+}
+
+
+
+// Widgets
+.widget {
+  margin: 0 0 c-spacing();
+  select { // Make sure select elements fit in widgets
+    max-width: 100%;
+  }
+  .widget-search .search-submit { // Search widget
+    display: none;
+  }
+}
+
+
+
+// === INFINITE SCROLL === //
+
+// Globally hidden elements when Infinite Scroll is supported and in use.
+.infinite-scroll .paging-navigation, /* Older / Newer Posts Navigation (always hidden) */
+.infinite-scroll.neverending .site-footer { /* Theme Footer (when set to scrolling) */
+  display: none;
+}
+// When Infinite Scroll has reached its end we need to re-display elements that were hidden (via .neverending) before
+.infinity-end.neverending .site-footer {
+  display: block;
+}

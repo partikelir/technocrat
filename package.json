@@ -1,0 +1,27 @@
+{
+  "name": "pendrell",
+  "version": "0.4.0",
+  "description": "A personal WordPress theme",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alexander Synaptic",
+  "license": "GNU General Public Licence 2.0",
+  "devDependencies": {
+    "gulp": "~3.5.2",
+    "gulp-util": "~2.2.14",
+    "gulp-load-plugins": "~0.3.0",
+    "gulp-ruby-sass": "~0.3.1",
+    "gulp-autoprefixer": "0.0.6",
+    "gulp-minify-css": "~0.3.0",
+    "gulp-livereload": "~1.1.1",
+    "gulp-concat": "~2.1.7",
+    "gulp-uglify": "~0.2.1",
+    "gulp-rename": "~1.1.0",
+    "gulp-jshint": "~1.4.2",
+    "gulp-imagemin": "~0.1.5",
+    "gulp-cache": "~0.1.2",
+    "tiny-lr": "0.0.5"
+  }
+}

@@ -163,5 +163,6 @@ pip-log.txt
 .DS_Store
 
 functions-config.php
-style-twenty*
-twentytwelve/
+.sass-cache
+assets/staging
+node_modules

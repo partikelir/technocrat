@@ -19,7 +19,7 @@ function pendrell_print_scripts() {
 	$query = get_search_query();
 	if ( strlen($query) > 0 ) { ?>
 		<script type="text/javascript">
-			var pendrell_search_query  = "<?php echo $query; ?>";
+			var pendrellSearchQuery  = "<?php echo $query; ?>";
 		</script>
 <?php }
 }

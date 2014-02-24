@@ -1,17 +1,5 @@
 <?php
 
-// Footer credits
-function pendrell_credits() {
-	printf( __( '<a href="%1$s" title="%2$s" rel="generator">Powered by WordPress</a> and themed with <a href="%3$s" title="%4$s">Pendrell %5$s</a>.', 'pendrell' ),
-		esc_url( __( 'http://wordpress.org/', 'twentytwelve' ) ),
-		esc_attr( __( 'Semantic Personal Publishing Platform', 'twentytwelve' ) ),
-		esc_url( __( 'http://github.com/Synapticism/pendrell', 'pendrell' ) ),
-		esc_attr( __( 'Pendrell: Twenty Twelve Child Theme by Alexander Synaptic', 'pendrell' ) ),
-		PENDRELL_VERSION
-	);
-}
-add_action( 'twentytwelve_credits', 'pendrell_credits' );
-
 // Body class filter
 function pendrell_body_class( $classes ) {
 	if ( pendrell_is_portfolio() ) {
@@ -42,23 +30,14 @@ add_filter( 'body_class', 'pendrell_body_class' );
 
 
 
-/**
- * Adjust content width in certain contexts.
- *
- * Adjusts content_width value for full-width and single image attachment
- * templates, and when there are no active widgets in the sidebar.
- *
- * @since Twenty Twelve 1.0
- *
- * @return void
- */
-function twentytwelve_content_width() {
+// Adjusts content_width value for full-width and single image attachment templates, and when there are no active widgets in the sidebar.
+function pendrell_content_width() {
   if ( is_page_template( 'page-templates/full-width.php' ) || is_attachment() || ! is_active_sidebar( 'sidebar-1' ) | pendrell_is_portfolio() ) {
     global $content_width;
     $content_width = 960;
   }
 }
-add_action( 'template_redirect', 'twentytwelve_content_width' );
+add_action( 'template_redirect', 'pendrell_content_width' );
 
 
 
@@ -93,6 +72,8 @@ function pendrell_analytics() {
 	}
 }
 add_action( 'wp_footer', 'pendrell_analytics' );
+
+
 
 // Allow HTML in author descriptions on single user blogs
 remove_filter( 'pre_user_description', 'wp_filter_kses' );

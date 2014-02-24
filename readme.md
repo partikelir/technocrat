@@ -1,4 +1,4 @@
-# PENDRELL 0.3
+# PENDRELL 0.4
 
 Pendrell is a fork of Twenty Twelve (formerly a child theme of the same) designed to allow two types of content to co-exist in harmony:
 
@@ -13,7 +13,7 @@ You can Pendrell in action on my blog: http://synapticism.com
 
 ## INSTALLATION & CONFIGURATION
 
-Drop the 'pendrell' directory into /wp-content/themes/ and activate it via the WordPress admin interface.
+Drop the 'pendrell/pendrell' directory into /wp-content/themes/ and activate it via the WordPress admin interface.
 
 This theme has no options page; you will have to get your feet wet and modify the `functions-config-sample.php` file, renaming it to `functions-config.php`, if you wish to change any of the defaults. Most of these should be self-explanatory; read the comments for more direction.
 
@@ -22,6 +22,13 @@ The following plugins are not quite dependencies but you will probably want to i
 * Crowd Favorite's WP-Post-Formats plugin: https://github.com/crowdfavorite/wp-post-formats OR...
 * My fork of the same: https://github.com/synapticism/wp-post-formats
 * Regenerate Thumbnails: http://wordpress.org/extend/plugins/regenerate-thumbnails/
+
+## DEVELOPMENT
+
+Two commands to get started hacking Pendrell:
+
+`npm install`
+`gem install sass`
 
 ## USING THE PORTFOLIO FEATURES
 

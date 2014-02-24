@@ -15,6 +15,54 @@ add_action( 'init', 'pendrell_init' );
 
 
 
+// Enqueue scripts
+function pendrell_enqueue_scripts() {
+  // Hack: no need to load Open Sans more than once!
+  wp_deregister_style( 'open-sans' );
+  wp_register_style( 'open-sans', false );
+
+  // Load theme-specific JavaScript
+	if ( !is_admin() ) { // http://www.ericmmartin.com/5-tips-for-using-jquery-with-wordpress/
+		wp_enqueue_script( 'pendrell-functions', get_stylesheet_directory_uri() . '/pendrell.min.js', array( 'jquery' ), '0.1', true );
+	}
+
+  // Adds JavaScript to pages with the comment form to support sites with threaded comments (when in use).
+  if ( is_singular() && comments_open() && get_option( 'thread_comments' ) )
+    wp_enqueue_script( 'comment-reply' );
+
+  // Adds JavaScript for handling the navigation menu hide-and-show behavior.
+  //wp_enqueue_script( 'twentytwelve-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '1.0', true );
+
+  // Loads the Internet Explorer specific stylesheet.
+  //wp_enqueue_style( 'twentytwelve-ie', get_template_directory_uri() . '/css/ie.css', array( 'twentytwelve-style' ), '20121010' );
+  //$wp_styles->add_data( 'twentytwelve-ie', 'conditional', 'lt IE 9' );
+  // Note: cruft removed since I don't really care about supporting old versions of IE. The CSS is archived in the assets folder.
+
+  // Override Twenty Twelve font styles
+  $font_url = pendrell_get_font_url();
+  if ( ! empty( $font_url ) ) {
+    wp_deregister_style( 'twentytwelve-fonts' ); // Should be unnecessary
+    wp_enqueue_style( 'pendrell-fonts', esc_url_raw( $font_url ), array(), null );
+  }
+
+  // Loads our main stylesheet.
+  wp_enqueue_style( 'pendrell-style', get_stylesheet_uri() );
+}
+add_action( 'wp_enqueue_scripts', 'pendrell_enqueue_scripts' );
+
+
+
+// Hack: simplify and customize Google font loading; reference Twenty Twelve for more advanced options
+function pendrell_get_font_url() {
+  $font_url = '';
+  $protocol = is_ssl() ? 'https' : 'http';
+  $fonts = PENDRELL_GOOGLE_FONTS ? PENDRELL_GOOGLE_FONTS : "Open+Sans:400italic,700italic,400,700"; // Default back to Open Sans
+  $font_url = "$protocol://fonts.googleapis.com/css?family=" . $fonts;
+  return $font_url;
+}
+
+
+
 // Dynamic page titles; hooks into wp_title to improve search engine ranking without making a mess
 function pendrell_wp_title( $title, $sep = '-', $seplocation = 'right' ) {
 
@@ -98,58 +146,6 @@ add_filter( 'wp_title', 'pendrell_wp_title', 11, 3 );
 
 
 
-// Enqueue scripts
-function pendrell_enqueue_scripts() {
-  // Hack: no need to load Open Sans more than once!
-  wp_deregister_style( 'open-sans' );
-  wp_register_style( 'open-sans', false );
-
-  // Override Twenty Twelve font styles
-  $font_url = pendrell_get_font_url();
-  if ( ! empty( $font_url ) ) {
-    wp_deregister_style( 'twentytwelve-fonts' );
-    wp_enqueue_style( 'twentytwelve-fonts', esc_url_raw( $font_url ), array(), null );
-  }
-
-	if ( !is_admin() ) { // http://www.ericmmartin.com/5-tips-for-using-jquery-with-wordpress/
-		wp_enqueue_script( 'pendrell-functions', get_stylesheet_directory_uri() . '/js/pendrell.js', array( 'jquery' ), '0.1', true );
-	}
-
-	// Twenty Twelve cruft
-	global $wp_styles;
-
-  /*
-   * Adds JavaScript to pages with the comment form to support
-   * sites with threaded comments (when in use).
-   */
-  if ( is_singular() && comments_open() && get_option( 'thread_comments' ) )
-    wp_enqueue_script( 'comment-reply' );
-
-  // Adds JavaScript for handling the navigation menu hide-and-show behavior.
-  wp_enqueue_script( 'twentytwelve-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '1.0', true );
-
-  // Loads our main stylesheet.
-  wp_enqueue_style( 'twentytwelve-style', get_stylesheet_uri() );
-
-  // Loads the Internet Explorer specific stylesheet.
-  wp_enqueue_style( 'twentytwelve-ie', get_template_directory_uri() . '/css/ie.css', array( 'twentytwelve-style' ), '20121010' );
-  $wp_styles->add_data( 'twentytwelve-ie', 'conditional', 'lt IE 9' );
-}
-add_action( 'wp_enqueue_scripts', 'pendrell_enqueue_scripts' );
-
-
-
-// Hack: simplify and customize Google font loading; reference Twenty Twelve for more advanced options
-function pendrell_get_font_url() {
-  $font_url = '';
-  $protocol = is_ssl() ? 'https' : 'http';
-  $fonts = PENDRELL_GOOGLE_FONTS ? PENDRELL_GOOGLE_FONTS : "Open+Sans:400italic,700italic,400,700"; // Default back to Open Sans
-  $font_url = "$protocol://fonts.googleapis.com/css?family=" . $fonts;
-  return $font_url;
-}
-
-
-
 // Output a human readable date wrapped in an HTML5 time tag
 function pendrell_date( $date ) {
 	if ( is_archive() && !pendrell_is_portfolio() ) {
@@ -164,8 +160,9 @@ function pendrell_date( $date ) {
 }
 add_filter( 'get_the_date', 'pendrell_date' );
 
-function twentytwelve_entry_meta() {
 
+
+function twentytwelve_entry_meta() {
 	global $post;
 
 	do_action( 'pre_entry_meta' );
@@ -273,6 +270,8 @@ function twentytwelve_entry_meta() {
 
 }
 
+
+
 // Hack: switch navigation links depending on the order of posts, mainly for use with series
 function twentytwelve_content_nav( $html_id ) {
 	global $wp_query;
@@ -289,6 +288,8 @@ function twentytwelve_content_nav( $html_id ) {
 		</nav><!-- #<?php echo $html_id; ?> .navigation -->
 	<?php endif;
 }
+
+
 
 function pendrell_pre_get_posts( $query ) {
 	// Modify how many posts per page are displayed in different contexts (e.g. more portfolio items on category archives)

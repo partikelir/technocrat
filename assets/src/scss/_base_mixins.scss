@@ -1,0 +1,42 @@
+// === CUSTOM MIXINS === //
+
+// This mixin wraps the Compass default adjust-font-size-to with a standard font scale
+// Example: @include c-font-size(5);
+@mixin c-font-size($size) {
+  $to-size: $base-font-size * nth($font-scale, $size);
+  @include adjust-font-size-to($to-size, lines-for-font-size($to-size) );
+}
+
+// From: http://thesassway.com/intermediate/responsive-web-design-in-sass-using-media-queries-in-sass-32
+$break-small: 600px;
+$break-medium: 600px;
+$break-large: 960px;
+@mixin respond-to($media) {
+  @if $media == s {
+    @media only screen and (max-width: $break-small) { @content; }
+  }
+  @else if $media == m {
+    @media only screen and (min-width: $break-medium) { @content; }
+  }
+  @else if $media == l {
+    @media only screen and (min-width: $break-large) { @content; }
+  }
+}
+
+// From sassy_s
+%clearfix {
+    &:before, &:after {
+        content: "";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+// From sassy_s
+@mixin hoverActiveFocus($property, $value) {
+    &:hover, &:active, &:focus {
+        #{$property}: $value;
+    }
+}

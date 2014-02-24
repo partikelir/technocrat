@@ -1,0 +1,50 @@
+// === COLOURS === //
+
+// Palette
+$c-white: #FFFFFF;
+$c-shadow: #222222;
+$c-link: #146DE0;
+$c-highlight: #FFF9C0;
+$c-highlight-alt: #F1F1F1;
+
+// Fundamentals
+$c-html-bg: darken($c-white, 20%);
+$c-site: lighten($c-shadow, 20%);
+$c-site-bg: $c-white;
+$c-site-border: darken($c-site-bg, 20%);
+
+// Navigation
+$c-nav-bg: darken($c-white, 20%);
+
+// Links
+$c-link-hover: lighten($c-link, 10%);
+$c-link-active: lighten($c-link, 20%);
+$c-link-focus: darken($c-link, 10%);
+$c-link-visited: darken($c-link, 10%);
+
+// Headers
+$c-header: $c-shadow;
+$c-header-small: lighten($c-header, 40%);
+
+// Additional element styling
+$c-blockquote: darken($c-white, 10%);
+$c-hr: darken($c-white, 20%);
+$c-abbr: darken($c-white, 40%);
+$c-ins-bg: $c-highlight;
+
+// Form element colors
+$c-button: darken($c-white, 10%);
+$c-button-accent: darken($c-white, 5%);
+$c-button-border: darken($c-button, 10%);
+
+// Formats
+$c-format-aside-bg: darken($c-white, 20%);
+$c-format-aside-border: darken($c-white, 40%);
+$c-format-link: $c-link;
+$c-format-link-bg: darken($c-white, 10%);
+$c-format-quotation: lighten($c-shadow, 20%);
+$c-format-quotation-bg: darken($c-white, 20%);
+
+// Misc
+$c-caption-border: $c-site-border;
+$c-screen-reader-bg: $c-highlight-alt;
