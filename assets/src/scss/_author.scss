@@ -32,15 +32,3 @@
 .author.archive .author-avatar {
   margin-top: 0;
 }
-
-@media screen and (min-width: 600px) {
-  .author-avatar {
-    float: left;
-    margin-top: 8px;
-    margin-top: 0.571428571rem;
-  }
-  .author-description {
-    float: right;
-    width: 80%;
-  }
-}

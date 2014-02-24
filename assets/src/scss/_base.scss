@@ -6,7 +6,6 @@ $link-color-hover:     #ED7251;
 
 // Fonts
 $font-color:    #444;
-//$font-stack:    'Open Sans', Helvetica, Arial, sans-serif;
 
 //Column widths
 $width-max:     960;
@@ -15,14 +14,14 @@ $width-max:     960;
 $breakpoint:    600;
 
 //Baselines
-$fsize:         14px;
+$fsize:         16px;
 $vbase:         24px;
 $vbase2:        48px;
 $evbase:        24;
 $evbase2:       48;
-$lheight:       (24/14);
-$lheight2:      (48/14);
-$baseline-px:   14px;
+$lheight:       (24/16);
+$lheight2:      (48/16);
+$baseline-px:   16px;
 
 //Border
 $divider:       1px solid #ededed;
@@ -32,3 +31,7 @@ $divider:       1px solid #ededed;
 #ED7251
 #52b1cc
 */
+
+@import "base_fonts";
+@import "base_mixins";
+@import "base_reset";

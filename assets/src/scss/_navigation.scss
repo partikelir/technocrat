@@ -1,4 +1,56 @@
 // === NAVIGATION === //
+
+// Buttons from Twenty Twelve
+.menu-toggle,
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
+article.post-password-required input[type=submit],
+.bypostauthor cite span {
+  @include rem('padding', 6px 10px);
+  @include font-sizer(11);
+  font-weight: normal;
+  color: lighten($font-color, 22);
+  @include vertical-gradient($startColor: #f4f4f4, $endColor: #e6e6e6);
+  border: 1px solid #d2d2d2;
+  @include border-radius;
+  @include box-shadow($shadow: 0 1px 2px rgba(64, 64, 64, .10));
+}
+.menu-toggle,
+button,
+input[type="submit"],
+input[type="button"],
+input[type="reset"] {
+  cursor: pointer;
+}
+button[disabled],
+input[disabled] {
+  cursor: default;
+}
+.menu-toggle:hover,
+button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover,
+input[type="reset"]:hover,
+article.post-password-required input[type=submit]:hover {
+  color: lighten($font-color, 10);
+  @include vertical-gradient($startColor: #f9f9f9, $endColor: #ebebeb);
+}
+.menu-toggle:active,
+.menu-toggle.toggled-on,
+button:active,
+input[type="submit"]:active,
+input[type="button"]:active,
+input[type="reset"]:active {
+  color: lighten($font-color, 20);
+  @include vertical-gradient( $startColor: #ebebeb, $endColor: #e1e1e1 );
+  @include box-shadow-layered( inset 0 0 8px 2px #c6c6c6, 0 1px 0 0 #f4f4f4);
+  border-color: transparent;
+}
+
+
+
+// General navigation
 .site-content nav {
   clear: both;
   line-height: ($evbase/12);
@@ -29,24 +81,29 @@
   @include rem('margin', $vbase2 0);
 }
 
+
+
+// Main navigation
 .main-navigation {
   text-align: center;
   li {
     @include rem('margin-top', $vbase);
     @include font-sizer(14);
   }
+  a {
+    color: #5e5e5e;
+    &:hover {
+      color: #757575;
+    }
+  }
+  ul.nav-menu,
+  div.nav-menu > ul {
+    display: none;
+  }
+  ul.nav-menu.toggled-on {
+    display: inline-block;
+  }
 }
-.main-navigation a {
-  color: #5e5e5e;
-}
-.main-navigation a:hover {
-  color: #757575;
-}
-.main-navigation ul.nav-menu,
-.main-navigation div.nav-menu > ul {
-  display: none;
-}
-.main-navigation ul.nav-menu.toggled-on,
 .menu-toggle {
   display: inline-block;
 }

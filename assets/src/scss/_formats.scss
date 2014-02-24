@@ -1,5 +1,15 @@
 // === POST FORMATS === //
 
+// Common
+
+article.format-quote footer.entry-meta,
+article.format-link footer.entry-meta,
+article.format-status footer.entry-meta {
+  @include font-sizer(12);
+}
+
+
+
 // Aside
 article.format-aside {
   h1 {

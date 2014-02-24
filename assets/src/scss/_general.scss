@@ -1,0 +1,105 @@
+// === GENERAL === //
+
+// Small headers
+.archive-title,
+.page-title,
+.widget-title,
+.entry-content th,
+.comment-content th {
+  @include font-sizer(12);
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #636363;
+}
+
+
+/* Body, links, basics */
+html {
+  font-size: 100%;
+}
+body {
+  @include font-sizer(16);
+  font-family: $font-body;
+  text-rendering: optimizeLegibility;
+  color: $font-color;
+}
+h1,h2,h3,h4,h5,h6,.main-navigation {
+  font-family: $font-head;
+}
+pre,code {
+  font-family: $font-mono;
+}
+/* Text transform to uppercase for use with Varela Round */
+h1.site-title,
+.image-info h2,
+.author-description h2,
+.comment-reply-title {
+  text-transform: uppercase;
+}
+
+/* Links */
+a {
+  outline: none;
+  color: $link-color;
+  &:hover {
+    color: $link-color-hover;
+  }
+}
+
+
+
+/* Form fields, general styles first */
+button,
+input,
+textarea {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-family: inherit;
+  padding: 6px;
+  padding: 0.428571429rem;
+}
+button,
+input {
+  line-height: normal;
+}
+textarea {
+  font-size: 100%;
+  overflow: auto;
+  vertical-align: top;
+}
+
+/* Reset non-text input types */
+input[type="checkbox"],
+input[type="radio"],
+input[type="file"],
+input[type="hidden"],
+input[type="image"],
+input[type="color"] {
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+}
+del {
+  color: #333;
+}
+ins {
+  background: #fff9c0;
+  text-decoration: none;
+}
+hr {
+  background-color: #ccc;
+  border: 0;
+  height: 1px;
+  margin: 24px;
+  margin-bottom: 1.714285714rem;
+}
+
+/* Nice hyphens */
+.entry-content,
+.entry-summary {
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  -o-hyphens: auto;
+  hyphens: auto;
+}
