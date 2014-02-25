@@ -1,33 +1,31 @@
 // === BASE === //
 
-// Column widths
-$v-max-width:   960px;
-
-// Vertical rhythm
-$font-size:     18;
-$vbase:         30px;
-$evbase:        30;
-
-
-// === TWENTY TWELVE LEGACY === //
-
-
-
-$lheight:       (24/16);
-$baseline-px:   16px;
-
-// Border
-$divider:       1px solid #ededed;
-
-@import "base_mixins";
 @import "base_colours";
-
-// Fonts
 @import "base_fonts";
+@import "base_mixins";
 
+// Font stacks
 $font-body: $lato;
 $font-head: $varela;
 $font-mono: $consolas;
 
-// Reset
+// Default font size and baseline (integer)
+$font-size: 18;
+$base: 30;
+
+// Typically used with the rem mixin
+$spacer: $base+0px;
+
+// HTML font size property (percentage)
+$font-html: 100%;
+
+// Conversion factor for the rem mixin
+$base-default: 16px * $font-html / 100%;
+
+// Column widths
+$site-max-width: 960px;
+
+// Design patterns
+$divider: 1px solid $c-divider;
+
 @import "base_reset";

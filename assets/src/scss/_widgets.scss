@@ -6,12 +6,12 @@
     -webkit-hyphens: auto;
     -moz-hyphens: auto;
     hyphens: auto;
-    @include rem('margin-bottom', $vbase*2);
+    @include rem('margin-bottom', $spacer*2);
     word-wrap: break-word;
   }
   .widget {
     h3 {
-      @include rem('margin-bottom', $vbase);
+      @include rem('margin-bottom', $spacer);
     }
     p,
     li,
@@ -19,10 +19,10 @@
       @include font-sizer(13);
     }
     p {
-      @include rem('margin-bottom', $vbase);
+      @include rem('margin-bottom', $spacer);
     }
     ul ul {
-      @include rem('margin-left', $vbase/2);
+      @include rem('margin-left', $spacer/2);
     }
     a {
       color: #429ab2;
@@ -37,7 +37,7 @@
   .textwidget {
     ul {
       list-style: disc outside;
-      @include rem('margin', 0 0 $vbase);
+      @include rem('margin', 0 0 $spacer);
     }
     li {
       margin-left: 36px;
@@ -51,12 +51,12 @@
 
 .widget_rss {
   li {
-    @include rem('margin', $vbase/2 0);
+    @include rem('margin', $spacer/2 0);
   }
 }
 .widget_recent_entries .post-date,
 .widget_rss .rss-date {
-  color: lighten($c-font-body, 40);
+  color: lighten($c-body, 40);
   @include rem('font-size', 11px);
   @include rem('margin-left', 12px);
 }
@@ -64,14 +64,14 @@
   margin: 0;
   width: 100%;
   @include font-sizer(13);
-  color: lighten($c-font-body, 14);
+  color: lighten($c-body, 14);
   th,
   td,
   caption {
     text-align: left;
   }
   #next {
-    @include rem('padding-right', $vbase);
+    @include rem('padding-right', $spacer);
     text-align: right;
   }
 }

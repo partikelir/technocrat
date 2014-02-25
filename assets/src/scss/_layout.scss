@@ -2,16 +2,16 @@
 
 // Site
 .site {
-  @include rem('padding', 0 $vbase);
+  @include rem('padding', 0 $spacer);
   background-color: $c-site-bg;
 }
 .site-content {
-  @include rem('margin', $vbase 0 0);
+  @include rem('margin', $spacer 0 0);
 }
 
 // Banner from Twenty Twelve
 section[role="banner"] {
-  @include rem('margin-bottom', $vbase*2);
+  @include rem('margin-bottom', $spacer*2);
 }
 
 // Footer
@@ -20,12 +20,12 @@ footer[role="contentinfo"] {
   clear: both;
   @include font-sizer(12);
   @include rem('max-width', 960px);
-  @include rem('margin-top', $vbase);
-  @include rem('padding', $vbase 0);
+  @include rem('margin-top', $spacer);
+  @include rem('padding', $spacer 0);
   margin-left: auto;
   margin-right: auto;
   a {
-    color: lighten($c-font-body, 14);
+    color: lighten($c-body, 14);
     &:hover {
       color: $c-link-h;
     }
@@ -35,7 +35,7 @@ footer[role="contentinfo"] {
 // Archives
 .archive-header,
 .page-header {
-  @include rem('margin-bottom', $vbase*2);
+  @include rem('margin-bottom', $spacer*2);
   @include rem('padding-bottom', 22px);
   border-bottom: $divider;
 }

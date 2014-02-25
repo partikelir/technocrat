@@ -18,12 +18,12 @@
   }
 }
 .image-attachment .entry-caption {
-  @include rem('margin-top', $vbase/3);
+  @include rem('margin-top', $spacer/3);
 }
 .image-info {
   border-top: $divider;
-  @include rem('margin', $vbase 0);
-  @include rem('padding-top', $vbase);
+  @include rem('margin', $spacer 0);
+  @include rem('padding-top', $spacer);
   overflow: hidden;
 }
 .image-description {
@@ -33,8 +33,8 @@
 .image-navigation {
   position: relative;
   height: 150px;
-  @include rem('margin', $vbase 0);
-  @include rem('padding-top', $vbase);
+  @include rem('margin', $spacer 0);
+  @include rem('padding-top', $spacer);
   overflow: visible;
   width: 100%;
 }
@@ -96,9 +96,9 @@
     display: block;
   }
   .previous-image .nav-text {
-    @include rem('margin-left', $vbase/2);
+    @include rem('margin-left', $spacer/2);
   }
   .next-image .nav-text {
-    @include rem('margin-right', $vbase/2);
+    @include rem('margin-right', $spacer/2);
   }
 }

@@ -68,7 +68,7 @@
 // Post series
 .entry-meta-series {
   @include font-sizer(16);
-  @include rem('margin-bottom', $vbase);
+  @include rem('margin-bottom', $spacer);
   ol {
     list-style: decimal inside;
   }

@@ -2,7 +2,7 @@
 
 @mixin font-sizer($size) {
   @include rem('font-size', $size+0px);
-  line-height: ($evbase/$size);
+  line-height: ($base/$size);
 }
 
 
@@ -111,7 +111,7 @@ http://blog.typekit.com/2011/11/09/type-study-sizing-the-legible-letter/
 
 @mixin rem($property, $px-values) {
   // Convert the baseline into rems
-  $baseline-rem: $baseline-px / 1rem;
+  $baseline-rem: $base-default / 1rem;
   // Print the first line in pixel values
   #{$property}: $px-values;
   // If there is only one (numeric) value, return the property/value line for it.

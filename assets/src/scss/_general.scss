@@ -2,11 +2,11 @@
 
 // Core
 html {
-  font-size: 100%;
+  font-size: $font-html;
 }
 body {
-  @include font-sizer(18);
-  color: $c-font-body;
+  @include font-sizer($font-size);
+  color: $c-body;
   font-family: $font-body;
   text-rendering: optimizeLegibility;
 }
@@ -79,7 +79,7 @@ hr {
   background-color: $c-hr;
   border: 0;
   height: 1px;
-  @include rem('margin-bottom', $vbase);
+  @include rem('margin-bottom', $spacer);
 }
 
 /* Nice hyphens */

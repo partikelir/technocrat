@@ -1,21 +1,20 @@
 // === AUTHORS === //
 
 .author .archive-header {
-  @include rem('margin-bottom', $vbase);
+  @include rem('margin-bottom', $spacer);
 }
 .author-info {
   border-top: $divider;
-  @include rem('margin', $vbase 0);
-  @include rem('padding-top', $vbase);
+  @include rem('margin', $spacer 0);
+  @include rem('padding-top', $spacer);
   overflow: hidden;
 }
 .author-description p {
-  color: lighten($c-font-body, 20);
-  @include font-sizer(13);
+  @include font-sizer(14);
 }
 .author.archive .author-info {
   border-top: 0;
-  @include rem('margin', 0 0 $vbase*2);
+  @include rem('margin', 0 0 $spacer*2);
 }
 .author.archive .author-avatar {
   margin-top: 0;

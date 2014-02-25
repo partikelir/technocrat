@@ -3,20 +3,20 @@
 -------------------------------------------------------------- */
 
 .comments-title {
-  @include rem('margin-bottom', $vbase*2);
+  @include rem('margin-bottom', $spacer*2);
   @include font-sizer(16);
   font-weight: normal;
 }
 .comments-area {
   article {
-    @include rem('margin', $vbase 0);
+    @include rem('margin', $spacer 0);
     header {
-      @include rem('margin', 0 0 $vbase*2 0);
+      @include rem('margin', 0 0 $spacer*2 0);
       overflow: hidden;
       position: relative;
       a {
         text-decoration: none;
-        color: lighten($c-font-body, 10);
+        color: lighten($c-body, 10);
         &:hover {
           color: $c-link;
         }
@@ -29,13 +29,13 @@
       cite,
       time {
         display: block;
-        @include rem('margin-left', $vbase*3);
+        @include rem('margin-left', $spacer*3);
       }
       cite {
         font-style: normal;
         @include font-sizer(15);
         a {
-          color: $c-font-body;
+          color: $c-body;
           &:hover {
             text-decoration: underline;
           }
@@ -43,7 +43,7 @@
       }
       time {
         @include font-sizer(12);
-        color: lighten($c-font-body, 10);
+        color: lighten($c-body, 10);
         text-decoration: none;
       }
       h4 {
@@ -89,18 +89,18 @@
 a.comment-reply-link,
 a.comment-edit-link {
   @include font-sizer(13);
-  color: lighten($c-font-body, 14);
+  color: lighten($c-body, 14);
   &:hover {
     color: $c-link;
   }
 }
 .commentlist .pingback {
-  @include rem('margin-bottom', $vbase);
+  @include rem('margin-bottom', $spacer);
 }
 
 // Response form
 #respond {
-  @include rem('margin-top', $vbase*2);
+  @include rem('margin-top', $spacer*2);
   h3#reply-title {
     @include font-sizer(16);
     #cancel-comment-reply-link {
@@ -110,17 +110,16 @@ a.comment-edit-link {
     }
   }
   form {
-    @include rem('margin', $vbase 0);
+    @include rem('margin', $spacer 0);
     p {
 
       @include rem('margin', 11px 0);
     }
     p.logged-in-as {
-      @include rem('margin-bottom', $vbase);
+      @include rem('margin-bottom', $spacer);
     }
     label {
       display: block;
-      line-height: $lheight;
     }
     input[type="text"],
     textarea {
@@ -133,7 +132,7 @@ a.comment-edit-link {
     p.form-allowed-tags {
       margin: 0;
       @include font-sizer(12);
-      color: lighten($c-font-body, 10);
+      color: lighten($c-body, 10);
     }
   }
 }

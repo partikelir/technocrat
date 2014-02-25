@@ -10,7 +10,7 @@ article.post-password-required input[type=submit],
   @include rem('padding', 4px 8px);
   @include font-sizer(13);
   font-weight: normal;
-  color: lighten($c-font-body, 22);
+  color: lighten($c-body, 22);
   @include vertical-gradient($startColor: #f4f4f4, $endColor: #e6e6e6);
   border: 1px solid #d2d2d2;
   @include border-radius;
@@ -33,7 +33,7 @@ input[type="submit"]:hover,
 input[type="button"]:hover,
 input[type="reset"]:hover,
 article.post-password-required input[type=submit]:hover {
-  color: lighten($c-font-body, 10);
+  color: lighten($c-body, 10);
   @include vertical-gradient($startColor: #f9f9f9, $endColor: #ebebeb);
 }
 .menu-toggle:active,
@@ -42,7 +42,7 @@ button:active,
 input[type="submit"]:active,
 input[type="button"]:active,
 input[type="reset"]:active {
-  color: lighten($c-font-body, 20);
+  color: lighten($c-body, 20);
   @include vertical-gradient($startColor: #ebebeb, $endColor: #e1e1e1);
   @include box-shadow-layered(inset 0 0 8px 2px #c6c6c6, 0 1px 0 0 #f4f4f4);
   border-color: transparent;
@@ -55,7 +55,7 @@ input[type="reset"]:active {
   @include rem('padding', 4px 8px);
   @include font-sizer(13);
   font-weight: normal;
-  color: lighten($c-font-body, 22);
+  color: lighten($c-body, 22);
   @include vertical-gradient($startColor: #f4f4f4, $endColor: #e6e6e6);
   border: 1px solid #d2d2d2;
   @include border-radius;
@@ -64,11 +64,11 @@ input[type="reset"]:active {
   text-decoration: none;
 }
 .button a:hover {
-  color: lighten($c-font-body, 10);
+  color: lighten($c-body, 10);
   @include vertical-gradient($startColor: #f9f9f9, $endColor: #ebebeb);
 }
 .button a:active {
-  color: lighten($c-font-body, 20);
+  color: lighten($c-body, 20);
   @include vertical-gradient($startColor: #ebebeb, $endColor: #e1e1e1);
   @include box-shadow-layered(inset 0 0 8px 2px #c6c6c6, 0 1px 0 0 #f4f4f4);
   border: none;
@@ -83,7 +83,7 @@ input[type="reset"]:active {
   overflow: hidden;
 }
 #nav-above {
-  @include rem('padding', $vbase 0);
+  @include rem('padding', $spacer 0);
 }
 #nav-above {
   display: none;
@@ -104,7 +104,7 @@ input[type="reset"]:active {
 }
 .nav-single + .comments-area,
 #comment-nav-above {
-  @include rem('margin', $vbase*2 0);
+  @include rem('margin', $spacer*2 0);
 }
 
 
@@ -113,7 +113,7 @@ input[type="reset"]:active {
 .main-navigation {
   text-align: center;
   li {
-    @include rem('margin-top', $vbase);
+    @include rem('margin-top', $spacer);
     @include font-sizer(14);
   }
   a {

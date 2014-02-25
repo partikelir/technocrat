@@ -36,12 +36,12 @@ Template: pendrell
 @media screen and (min-width: 600px) {
   .site {
     margin: 0 auto;
-    max-width: $v-max-width;
+    max-width: $site-max-width;
     overflow: hidden;
   }
   .site-content {
     float: left;
-    width: 65.104166667%;
+    width: percentage(625/960);
   }
   body.template-front-page .site-content,
   body.attachment .site-content,
@@ -52,16 +52,8 @@ Template: pendrell
     float: right;
     width: 26.041666667%;
   }
-  .site-header h1,
-  .site-header h2 {
-    text-align: left;
-  }
-  .site-header h1 { // Not active
-    font-size: 26px;
-    font-size: 1.857142857rem;
-    line-height: 1.846153846;
-    margin-bottom: 0;
-  }
+
+
   .main-navigation ul.nav-menu,
   .main-navigation div.nav-menu > ul {
     border-bottom: $divider;
@@ -81,7 +73,7 @@ Template: pendrell
   .main-navigation li a {
     border-bottom: 0;
     color: #6a6a6a;
-    line-height: $vbase*1.5;
+    line-height: $spacer*1.5;
     text-transform: uppercase;
     white-space: nowrap;
   }
@@ -132,22 +124,25 @@ Template: pendrell
   .menu-toggle {
     display: none;
   }
+
   .entry-header .entry-title {
     @include font-sizer(24);
   }
+
   #respond form input[type="text"] {
-    width: 46.333333333%;
+    width: 40%;
   }
   #respond form textarea.blog-textarea {
-    width: 79.666666667%;
+    width: 80%;
   }
+  .commentlist .children {
+    @include rem('margin-left', $spacer*2);
+  }
+
   .entry-page-image {
     float: right;
     margin-bottom: 0;
-    width: 47.916666667%;
-  }
-  .commentlist .children {
-    @include rem('margin-left', $vbase*2);
+    width: percentage(460/960);
   }
 }
 
@@ -158,8 +153,7 @@ Template: pendrell
     background-color: $c-body-bg;
   }
   .site {
-    padding: 0 40px;
-    padding: 0 2.857142857rem;
+    @include rem('padding', 0 $spacer*1.5);
     margin-top: 0;
     margin-bottom: 0;
     box-shadow: 0 2px 6px rgba(100, 100, 100, 0.3);

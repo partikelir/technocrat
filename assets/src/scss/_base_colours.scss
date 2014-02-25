@@ -5,7 +5,7 @@ $c-site-bg:     #fff;
 $c-body-bg:     #e6e6e6;
 
 // Text
-$c-font-body:   #555;
+$c-body:   #555;
 $c-font-head:   #333;
 
 // Links
@@ -15,13 +15,9 @@ $c-link-h:      #ED7251;
 $c-link-a:      $c-link-h;
 $c-link-f:      $c-link-h;
 
-
-
 // Main menu
 $c-menu-link:   #5e5e5e;
 $c-menu-link-h: #757575;
-
-
 
 // Elements
 $c-del:         #333;
@@ -30,15 +26,12 @@ $c-ins-bg:      #fff9c0;
 $c-mark:        #fff;
 $c-mark-bg:     #bbb;
 
-
 // Various
+$c-divider:     #ededed;
 $c-pullquote:   #888;
 $c-required:    crimson;
-
-
-
 
 // Twenty Twelve legacy variables
 $link-color:           $c-link;
 $link-color-hover:     $c-link-h;
-$font-color: $c-font-body
+$font-color: $c-body

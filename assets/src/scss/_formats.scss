@@ -13,7 +13,7 @@ article.format-status footer.entry-meta {
 // Aside
 article.format-aside {
   h1 {
-    @include rem('margin-bottom', $vbase);
+    @include rem('margin-bottom', $spacer);
     a {
       text-decoration: none;
     }
@@ -59,14 +59,14 @@ article.format-quote {
   .entry-content {
     p {
       margin: 0;
-      @include rem('padding-bottom', $vbase);
+      @include rem('padding-bottom', $spacer);
     }
     blockquote {
       display: block;
-      @include rem('padding', $vbase $vbase 0);
+      @include rem('padding', $spacer $spacer 0);
       @include font-sizer(18);
       font-style: italic;
-      color: lighten($c-font-body, 15);
+      color: lighten($c-body, 15);
       background: #f8f8f8;
       @include border-radius(12px);
       box-shadow: inset 4px 4px 8px #eee;
@@ -79,7 +79,7 @@ article.format-quote {
     footer {
       @include font-sizer(16);
       text-align: right;
-      @include rem('margin-bottom', $vbase);
+      @include rem('margin-bottom', $spacer);
       /* Insert a horizontal bar or quotation dash prior to the attribution */
       &:before {
         content: "\2015";
@@ -101,7 +101,7 @@ article.format-quote {
 .format-status {
   .entry-header {
     float: left;
-    @include rem('margin-bottom', $vbase);
+    @include rem('margin-bottom', $spacer);
     header {
       display: inline-block;
     }

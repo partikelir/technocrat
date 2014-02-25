@@ -1,6 +1,6 @@
 // === HEADER === //
 .site-header {
-  @include rem('padding', $vbase 0);
+  @include rem('padding', $spacer 0);
   h1,
   h2 {
     text-align: center;
@@ -8,7 +8,7 @@
       text-align: left;
     }
     a {
-      color: lighten($c-font-body, 5);
+      color: $c-link;
       display: inline-block;
       text-decoration: none;
       &:hover {
@@ -19,14 +19,18 @@
   h1 {
     @include font-sizer(24);
     @media screen and (min-width: 600px) {
-      @include font-sizer(26);
+      @include font-sizer(32);
     }
-    @include rem('margin-bottom', 14px); // TODO: why 14?
+    @include rem('margin-bottom', $spacer/2);
   }
   h2 {
+    color: lighten($c-body, 40);
+    display: none;
     font-weight: normal;
-    @include font-sizer(13);
-    color: lighten($c-font-body, 20);
+    @include font-sizer(16);
+    @media screen and (min-width: 600px) {
+      display: block;
+    }
   }
   img.avatar {
     display: none;
@@ -57,7 +61,7 @@ img.header-image {
     max-width: 66%;
     max-height: 96px;
     background: #fff;
-    @include rem('padding-right', $vbase);
+    @include rem('padding-right', $spacer);
     border-top-right-radius: 3px;
   }
 }
