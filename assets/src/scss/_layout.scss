@@ -11,7 +11,7 @@
 
 // Banner from Twenty Twelve
 section[role="banner"] {
-  @include rem('margin-bottom', $vbase2);
+  @include rem('margin-bottom', $vbase*2);
 }
 
 // Footer
@@ -35,7 +35,7 @@ footer[role="contentinfo"] {
 // Archives
 .archive-header,
 .page-header {
-  @include rem('margin-bottom', $vbase2);
+  @include rem('margin-bottom', $vbase*2);
   @include rem('padding-bottom', 22px);
   border-bottom: $divider;
 }

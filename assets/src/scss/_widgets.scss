@@ -6,7 +6,7 @@
     -webkit-hyphens: auto;
     -moz-hyphens: auto;
     hyphens: auto;
-    @include rem('margin-bottom', $vbase2);
+    @include rem('margin-bottom', $vbase*2);
     word-wrap: break-word;
   }
   .widget {

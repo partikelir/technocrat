@@ -81,7 +81,7 @@ Template: pendrell
   .main-navigation li a {
     border-bottom: 0;
     color: #6a6a6a;
-    line-height: $lheight*2;
+    line-height: $vbase*1.5;
     text-transform: uppercase;
     white-space: nowrap;
   }
@@ -133,8 +133,7 @@ Template: pendrell
     display: none;
   }
   .entry-header .entry-title {
-    font-size: 22px;
-    font-size: 1.571428571rem;
+    @include font-sizer(24);
   }
   #respond form input[type="text"] {
     width: 46.333333333%;
@@ -148,7 +147,7 @@ Template: pendrell
     width: 47.916666667%;
   }
   .commentlist .children {
-    @include rem('margin-left', $vbase2);
+    @include rem('margin-left', $vbase*2);
   }
 }
 

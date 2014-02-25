@@ -5,7 +5,7 @@ html {
   font-size: 100%;
 }
 body {
-  @include font-sizer(16);
+  @include font-sizer(18);
   color: $c-font-body;
   font-family: $font-body;
   text-rendering: optimizeLegibility;

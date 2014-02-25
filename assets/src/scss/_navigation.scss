@@ -79,7 +79,7 @@ input[type="reset"]:active {
 // General navigation
 .site-content nav {
   clear: both;
-  line-height: ($evbase/12);
+  // line-height: ($evbase/12); TODO: replace this
   overflow: hidden;
 }
 #nav-above {
@@ -104,7 +104,7 @@ input[type="reset"]:active {
 }
 .nav-single + .comments-area,
 #comment-nav-above {
-  @include rem('margin', $vbase2 0);
+  @include rem('margin', $vbase*2 0);
 }
 
 

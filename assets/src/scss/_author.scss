@@ -15,7 +15,7 @@
 }
 .author.archive .author-info {
   border-top: 0;
-  @include rem('margin', 0 0 $vbase2);
+  @include rem('margin', 0 0 $vbase*2);
 }
 .author.archive .author-avatar {
   margin-top: 0;

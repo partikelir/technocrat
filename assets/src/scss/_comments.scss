@@ -3,7 +3,7 @@
 -------------------------------------------------------------- */
 
 .comments-title {
-  @include rem('margin-bottom', $vbase2);
+  @include rem('margin-bottom', $vbase*2);
   @include font-sizer(16);
   font-weight: normal;
 }
@@ -11,7 +11,7 @@
   article {
     @include rem('margin', $vbase 0);
     header {
-      @include rem('margin', 0 0 $vbase2 0);
+      @include rem('margin', 0 0 $vbase*2 0);
       overflow: hidden;
       position: relative;
       a {
@@ -42,11 +42,9 @@
         }
       }
       time {
-        line-height: $lheight;
-        text-decoration: none;
-        font-size: 12px;
-        @include rem('font-size', 12px);
+        @include font-sizer(12);
         color: lighten($c-font-body, 10);
+        text-decoration: none;
       }
       h4 {
         position: absolute;
@@ -97,13 +95,12 @@ a.comment-edit-link {
   }
 }
 .commentlist .pingback {
-  line-height: ($evbase/$evbase);
   @include rem('margin-bottom', $vbase);
 }
 
 // Response form
 #respond {
-  @include rem('margin-top', $vbase2);
+  @include rem('margin-top', $vbase*2);
   h3#reply-title {
     @include font-sizer(16);
     #cancel-comment-reply-link {
@@ -130,8 +127,7 @@ a.comment-edit-link {
       -moz-box-sizing: border-box; // Redundant?
       box-sizing: border-box;
       font-family: inherit;
-      @include font-sizer(12);
-      @include rem('padding', 10px);
+      @include rem('padding', 5px);
       width: 100%;
     }
     p.form-allowed-tags {
