@@ -7,8 +7,8 @@
  * @link http://codex.wordpress.org/Template_Hierarchy
  *
  * @package WordPress
- * @subpackage Twenty_Twelve
- * @since Twenty Twelve 1.0
+ * @subpackage Pendrell
+ * @since Pendrell 0.4
  */
 
 get_header(); ?>
@@ -18,7 +18,7 @@ get_header(); ?>
 
 		<?php if ( have_posts() ) : ?>
 			<header class="archive-header">
-				<h1 class="archive-title"><?php printf( __( 'Tag Archives: %s', 'twentytwelve' ), '<span>' . single_tag_title( '', false ) . '</span>' ); ?></h1>
+				<h1 class="archive-title"><?php printf( __( 'Tag Archives: %s', 'pendrell' ), '<span>' . single_tag_title( '', false ) . '</span>' ); ?></h1>
 
 			<?php if ( tag_description() ) : // Show an optional tag description ?>
 				<div class="archive-meta"><?php echo tag_description(); ?></div>
@@ -38,7 +38,7 @@ get_header(); ?>
 
 			endwhile;
 
-			twentytwelve_content_nav( 'nav-below' );
+			pendrell_content_nav( 'nav-below' );
 			?>
 
 		<?php else : ?>

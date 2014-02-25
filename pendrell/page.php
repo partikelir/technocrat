@@ -8,8 +8,8 @@
  * different template.
  *
  * @package WordPress
- * @subpackage Twenty_Twelve
- * @since Twenty Twelve 1.0
+ * @subpackage Pendrell
+ * @since Pendrell 0.4
  */
 
 get_header(); ?>

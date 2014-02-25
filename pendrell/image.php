@@ -5,8 +5,8 @@
  * Learn more: http://codex.wordpress.org/Template_Hierarchy
  *
  * @package WordPress
- * @subpackage Twenty_Twelve
- * @since Twenty Twelve 1.0
+ * @subpackage Pendrell
+ * @since Pendrell 0.4
  */
 
 get_header(); ?>
@@ -51,7 +51,7 @@ else :
 endif;
 ?>
 								<a href="<?php echo esc_url( $next_attachment_url ); ?>" title="<?php the_title_attribute(); ?>" rel="attachment"><?php
-								$attachment_size = apply_filters( 'twentytwelve_attachment_size', array( 960, 960 ) );
+								$attachment_size = apply_filters( 'pendrell_attachment_size', array( 960, 960 ) );
 								echo wp_get_attachment_image( $post->ID, $attachment_size );
 								?></a>
 
@@ -66,24 +66,24 @@ endif;
 
 						<div class="entry-description">
 							<?php the_content(); ?>
-							<?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'twentytwelve' ), 'after' => '</div>' ) ); ?>
+							<?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'pendrell' ), 'after' => '</div>' ) ); ?>
 						</div><!-- .entry-description -->
 
 					</div><!-- .entry-content -->
 
 					<nav class="image-navigation navigation" role="navigation">
-						<div class="previous-image"><?php previous_image_link( 'image-navigation' ); ?><span class="nav-text"><?php previous_image_link( false, __( '&larr; Previous', 'twentytwelve' ) ); ?></span>&nbsp;</div>
+						<div class="previous-image"><?php previous_image_link( 'image-navigation' ); ?><span class="nav-text"><?php previous_image_link( false, __( '&larr; Previous', 'pendrell' ) ); ?></span>&nbsp;</div>
 						<div class="return-gallery"><?php printf( __( '<a href="%1$s" title="Return to %2$s" rel="gallery">&uarr; Return to &lsquo;%3$s&rsquo;</a>', 'pendrell' ),
 									esc_url( get_permalink( $post->post_parent ) ),
 									esc_attr( strip_tags( get_the_title( $post->post_parent ) ) ),
 									get_the_title( $post->post_parent )
 								); ?></div>
-						<div class="next-image">&nbsp;<span class="nav-text"><?php next_image_link( false, __( 'Next &rarr;', 'twentytwelve' ) ); ?></span><?php next_image_link( 'image-navigation' ); ?></div>
+						<div class="next-image">&nbsp;<span class="nav-text"><?php next_image_link( false, __( 'Next &rarr;', 'pendrell' ) ); ?></span><?php next_image_link( 'image-navigation' ); ?></div>
 					</nav><!-- #image-navigation -->
 
 					<footer class="entry-meta">
 						<?php pendrell_image_info( wp_get_attachment_metadata() ); ?>
-						<?php twentytwelve_entry_meta(); ?>
+						<?php pendrell_entry_meta(); ?>
 					</footer><!-- .entry-meta -->
 
 				</article><!-- #post -->

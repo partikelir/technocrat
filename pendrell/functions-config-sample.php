@@ -101,6 +101,6 @@ function pendrell_setup() {
   add_editor_style();
 
   // This theme uses wp_nav_menu() in one location.
-  register_nav_menu( 'primary', __( 'Primary Menu', 'twentytwelve' ) );
+  register_nav_menu( 'primary', __( 'Primary Menu', 'pendrell' ) );
 }
 add_action( 'after_setup_theme', 'pendrell_setup', 11 );

@@ -13,8 +13,8 @@
  * Learn more: http://codex.wordpress.org/Template_Hierarchy
  *
  * @package WordPress
- * @subpackage Twenty_Twelve
- * @since Twenty Twelve 1.0
+ * @subpackage Pendrell
+ * @since Pendrell 0.4
  */
 
 get_header();
@@ -41,7 +41,7 @@ $term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' 
 
 			endwhile;
 
-			twentytwelve_content_nav( 'nav-below' );
+			pendrell_content_nav( 'nav-below' );
 			?>
 
 		<?php else : ?>

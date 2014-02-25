@@ -17,10 +17,6 @@ function pendrell_body_class( $classes ) {
       $classes[] = 'two-sidebars';
   }
 
-  // Enable custom font class only if the font CSS is queued to load.
-  if ( wp_style_is( 'twentytwelve-fonts', 'queue' ) )
-    $classes[] = 'custom-font-enabled';
-
   if ( ! is_multi_author() )
     $classes[] = 'single-author';
 

@@ -3,8 +3,8 @@
  * The template for displaying posts in the Status post format
  *
  * @package WordPress
- * @subpackage Twenty_Twelve
- * @since Twenty Twelve 1.0
+ * @subpackage Pendrell
+ * @since Pendrell 0.4
  */
 ?>
 
@@ -14,10 +14,10 @@
 		</div><!-- .entry-header -->
 
 		<div class="entry-content">
-			<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'twentytwelve' ) ); ?>
+			<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'pendrell' ) ); ?>
 		</div><!-- .entry-content -->
 
 		<footer class="entry-meta">
-			<?php twentytwelve_entry_meta(); ?>
+			<?php pendrell_entry_meta(); ?>
 		</footer><!-- .entry-meta -->
 	</article><!-- #post -->

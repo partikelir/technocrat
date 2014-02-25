@@ -3,8 +3,8 @@
  * The template for displaying posts in the Quote post format
  *
  * @package WordPress
- * @subpackage Twenty_Twelve
- * @since Twenty Twelve 1.0
+ * @subpackage Pendrell
+ * @since Pendrell 0.4
  */
 
 // Get quotation metadata; assumes WP Post Formats or equivalent is in use
@@ -27,7 +27,7 @@ if ( $source_name || $source_title || $source_url ) {
 
 	if ( $source_title ) {
 		if ( $source_url ) {
-			$source_data[] = '<cite><a href="' . $source_url . '">' . $source_title . '</a></cite>'; 
+			$source_data[] = '<cite><a href="' . $source_url . '">' . $source_title . '</a></cite>';
 		} else {
 			$source_data[] = '<cite>' . $source_title . '</cite>';
 		}
@@ -52,7 +52,7 @@ if ( $source_name || $source_title || $source_url ) {
 		<div class="entry-content">
 			<article>
 				<blockquote<?php if ( !empty( $source_url ) ) { ?> cite="<?php echo $source_url; ?>"<?php } ?>>
-					<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'twentytwelve' ) ); ?>
+					<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'pendrell' ) ); ?>
 				</blockquote>
 				<?php if ( !empty( $source ) ) { ?><footer>
 					<?php echo $source; ?>
@@ -61,6 +61,6 @@ if ( $source_name || $source_title || $source_url ) {
 		</div><!-- .entry-content -->
 
 		<footer class="entry-meta">
-			<?php twentytwelve_entry_meta(); ?>
+			<?php pendrell_entry_meta(); ?>
 		</footer><!-- .entry-meta -->
 	</article><!-- #post -->

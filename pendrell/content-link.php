@@ -3,8 +3,8 @@
  * The template for displaying posts in the Link post format
  *
  * @package WordPress
- * @subpackage Twenty_Twelve
- * @since Twenty Twelve 1.0
+ * @subpackage Pendrell
+ * @since Pendrell 0.4
  */
 $link_url = get_post_meta( get_the_ID(), '_format_link_url', true );
 if ( empty( $link_url ) )
@@ -20,10 +20,10 @@ if ( empty( $link_url ) )
 		</header><!-- .entry-header -->
 
 		<div class="entry-content">
-			<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'twentytwelve' ) ); ?>
+			<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'pendrell' ) ); ?>
 		</div><!-- .entry-content -->
 
 		<footer class="entry-meta">
-			<?php twentytwelve_entry_meta(); ?>
+			<?php pendrell_entry_meta(); ?>
 		</footer><!-- .entry-meta -->
 	</article><!-- #post -->

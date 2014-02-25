@@ -5,8 +5,8 @@
  * See http://codex.wordpress.org/Custom_Headers
  *
  * @package WordPress
- * @subpackage Twenty_Twelve
- * @since Twenty Twelve 1.0
+ * @subpackage Pendrell
+ * @since Pendrell 0.4
  */
 
 /**
@@ -17,7 +17,7 @@
  * @uses twentytwelve_admin_header_style() to style wp-admin form.
  * @uses twentytwelve_admin_header_image() to add custom markup to wp-admin form.
  *
- * @since Twenty Twelve 1.0
+ * @since Pendrell 0.4
  */
 function twentytwelve_custom_header_setup() {
 	$args = array(
@@ -59,14 +59,14 @@ function twentytwelve_custom_header_fonts() {
 	if ( ! empty( $font_url ) )
 		wp_enqueue_style( 'twentytwelve-fonts', esc_url_raw( $font_url ), array(), null );
 }
-add_action( 'admin_print_styles-appearance_page_custom-header', 'twentytwelve_custom_header_fonts' );
+//add_action( 'admin_print_styles-appearance_page_custom-header', 'twentytwelve_custom_header_fonts' );
 
 /**
  * Style the header text displayed on the blog.
  *
  * get_header_textcolor() options: 515151 is default, hide text (returns 'blank'), or any hex value.
  *
- * @since Twenty Twelve 1.0
+ * @since Pendrell 0.4
  */
 function twentytwelve_header_style() {
 	$text_color = get_header_textcolor();
@@ -104,7 +104,7 @@ function twentytwelve_header_style() {
 /**
  * Style the header image displayed on the Appearance > Header admin panel.
  *
- * @since Twenty Twelve 1.0
+ * @since Pendrell 0.4
  */
 function twentytwelve_admin_header_style() {
 ?>
@@ -146,7 +146,7 @@ function twentytwelve_admin_header_style() {
  *
  * This callback overrides the default markup displayed there.
  *
- * @since Twenty Twelve 1.0
+ * @since Pendrell 0.4
  */
 function twentytwelve_admin_header_image() {
 	?>

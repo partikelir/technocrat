@@ -7,7 +7,7 @@ input[type="button"],
 input[type="reset"],
 article.post-password-required input[type=submit],
 .bypostauthor cite span {
-  @include rem('padding', 4px 8px);
+  @include rem('padding', 0 6px);
   @include font-sizer(13);
   font-weight: normal;
   color: lighten($c-body, 22);
@@ -52,7 +52,7 @@ input[type="reset"]:active {
 
 // Pendrell buttons
 .button a {
-  @include rem('padding', 4px 8px);
+  @include rem('padding', 5px 8px);
   @include font-sizer(13);
   font-weight: normal;
   color: lighten($c-body, 22);

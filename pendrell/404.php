@@ -3,8 +3,8 @@
  * The template for displaying 404 pages (Not Found).
  *
  * @package WordPress
- * @subpackage Twenty_Twelve
- * @since Twenty Twelve 1.0
+ * @subpackage Pendrell
+ * @since Pendrell 0.4
  */
 
 get_header(); ?>
@@ -18,7 +18,7 @@ get_header(); ?>
 				</header>
 
 				<div class="entry-content">
-					<p><?php _e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'twentytwelve' ); ?></p>
+					<p><?php _e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'pendrell' ); ?></p>
 					<?php $search_term = esc_url( $_SERVER['REQUEST_URI'] ); pendrell_search_form( $search_term ); //get_search_form(); ?>
 				</div><!-- .entry-content -->
 			</article><!-- #post-0 -->

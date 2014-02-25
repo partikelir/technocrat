@@ -30,18 +30,10 @@ function pendrell_enqueue_scripts() {
   if ( is_singular() && comments_open() && get_option( 'thread_comments' ) )
     wp_enqueue_script( 'comment-reply' );
 
-  // Adds JavaScript for handling the navigation menu hide-and-show behavior.
-  //wp_enqueue_script( 'twentytwelve-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '1.0', true );
-
-  // Loads the Internet Explorer specific stylesheet.
-  //wp_enqueue_style( 'twentytwelve-ie', get_template_directory_uri() . '/css/ie.css', array( 'twentytwelve-style' ), '20121010' );
-  //$wp_styles->add_data( 'twentytwelve-ie', 'conditional', 'lt IE 9' );
-  // Note: cruft removed since I don't really care about supporting old versions of IE. The CSS is archived in the assets folder.
-
   // Override Twenty Twelve font styles
   $font_url = pendrell_get_font_url();
   if ( ! empty( $font_url ) ) {
-    wp_deregister_style( 'twentytwelve-fonts' ); // Should be unnecessary
+    //wp_deregister_style( 'twentytwelve-fonts' ); // Should be unnecessary
     wp_enqueue_style( 'pendrell-fonts', esc_url_raw( $font_url ), array(), null );
   }
 
@@ -162,14 +154,14 @@ add_filter( 'get_the_date', 'pendrell_date' );
 
 
 
-function twentytwelve_entry_meta() {
+function pendrell_entry_meta() {
 	global $post;
 
 	do_action( 'pre_entry_meta' );
 
 	?><div class="entry-meta-buttons"><?php
 
-	edit_post_link( __( 'Edit', 'twentytwelve' ), ' <span class="edit-link button">', '</span>' );
+	edit_post_link( __( 'Edit', 'pendrell' ), ' <span class="edit-link button">', '</span>' );
 
 	if ( comments_open() && !is_singular() ) { ?>
 		<span class="leave-reply button"><?php comments_popup_link( __( 'Respond', 'pendrell' ), __( '1 Response', 'pendrell' ), __( '% Responses', 'pendrell' ) );
@@ -178,9 +170,9 @@ function twentytwelve_entry_meta() {
 
 	?></div><?php
 
-	$categories_list = get_the_category_list( __( ', ', 'twentytwelve' ) );
+	$categories_list = get_the_category_list( __( ', ', 'pendrell' ) );
 
-	$tag_list = get_the_tag_list( '', __( ', ', 'twentytwelve' ) );
+	$tag_list = get_the_tag_list( '', __( ', ', 'pendrell' ) );
 
 	$date = sprintf( '<a href="%1$s" title="%2$s" rel="bookmark">%3$s</a>',
 		esc_url( get_permalink() ),
@@ -190,7 +182,7 @@ function twentytwelve_entry_meta() {
 
 	$author = sprintf( '<span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s" rel="author">%3$s</a></span>',
 		esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
-		esc_attr( sprintf( __( 'View all posts by %s', 'twentytwelve' ), get_the_author() ) ),
+		esc_attr( sprintf( __( 'View all posts by %s', 'pendrell' ), get_the_author() ) ),
 		get_the_author()
 	);
 
@@ -273,18 +265,18 @@ function twentytwelve_entry_meta() {
 
 
 // Hack: switch navigation links depending on the order of posts, mainly for use with series
-function twentytwelve_content_nav( $html_id ) {
+function pendrell_content_nav( $html_id ) {
 	global $wp_query;
 
 	$html_id = esc_attr( $html_id );
 
 	if ( $wp_query->max_num_pages > 1 ) : ?>
 		<nav id="<?php echo $html_id; ?>" class="navigation" role="navigation">
-			<h3 class="assistive-text"><?php _e( 'Post navigation', 'twentytwelve' ); ?></h3>
-			<?php if ( $wp_query->query_vars['order'] == 'ASC' ) { ?><div class="nav-previous"><?php previous_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'twentytwelve' ) ); ?></div>
-			<div class="nav-next"><?php next_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'twentytwelve' ) ); ?></div>
-			<?php } else { ?><div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'twentytwelve' ) ); ?></div>
-			<div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'twentytwelve' ) ); ?></div><?php } ?>
+			<h3 class="assistive-text"><?php _e( 'Post navigation', 'pendrell' ); ?></h3>
+			<?php if ( $wp_query->query_vars['order'] == 'ASC' ) { ?><div class="nav-previous"><?php previous_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'pendrell' ) ); ?></div>
+			<div class="nav-next"><?php next_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'pendrell' ) ); ?></div>
+			<?php } else { ?><div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'pendrell' ) ); ?></div>
+			<div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'pendrell' ) ); ?></div><?php } ?>
 		</nav><!-- #<?php echo $html_id; ?> .navigation -->
 	<?php endif;
 }
