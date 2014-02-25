@@ -23,7 +23,6 @@ article.format-aside {
   }
   p {
     @include font-sizer(13);
-    color: #4a5466;
   }
 }
 
@@ -50,7 +49,6 @@ article.format-link {
   header {
     padding: 0;
     @include font-sizer(11);
-    color: #848484;
   }
 }
 
@@ -68,9 +66,9 @@ article.format-quote {
       @include rem('padding', $vbase $vbase 0);
       @include font-sizer(18);
       font-style: italic;
-      color: lighten($font-color, 15);
+      color: lighten($c-font-body, 15);
       background: #f8f8f8;
-      border-radius: 12px;
+      @include border-radius(12px);
       box-shadow: inset 4px 4px 8px #eee;
     }
   }
@@ -107,34 +105,33 @@ article.format-quote {
     header {
       display: inline-block;
     }
+    h1 {
+      @include font-sizer(15);
+      font-weight: normal;
+      margin: 0;
+    }
+    h2 {
+      @include font-sizer(12);
+      font-weight: normal;
+      margin: 0;
+    }
+    a {
+      color: #757575;
+      &:hover {
+        color: $c-link-h;
+      }
+    }
+    img {
+      float: left;
+      margin-left: -48px;
+      @include border-radius();
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+      display: none;
+    }
   }
-}
-.format-status .entry-header
-.format-status .entry-header h1 {
-  @include font-sizer(15);
-  font-weight: normal;
-  margin: 0;
-}
-.format-status .entry-header h2 {
-  @include font-sizer(12);
-  font-weight: normal;
-  margin: 0;
-}
-.format-status .entry-header header a {
-  color: #757575;
-}
-.format-status .entry-header header a:hover {
-  color: #ED7251;
-}
-.format-status .entry-header img {
-  float: left;
-  margin-left: -48px;
-  border-radius: 3px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-  display: none;
-}
-.format-status .entry-content {
-  @include font-sizer(18);
-  font-weight: normal;
-  margin: 0;
+  .entry-content {
+    @include font-sizer(18);
+    font-weight: normal;
+    margin: 0;
+  }
 }

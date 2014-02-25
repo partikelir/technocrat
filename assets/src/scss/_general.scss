@@ -21,7 +21,7 @@ body {
   @include font-sizer(16);
   font-family: $font-body;
   text-rendering: optimizeLegibility;
-  color: $font-color;
+  color: $c-font-body;
 }
 h1,h2,h3,h4,h5,h6,.main-navigation {
   font-family: $font-head;
@@ -40,9 +40,9 @@ h1.site-title,
 /* Links */
 a {
   outline: none;
-  color: $link-color;
+  color: $c-link;
   &:hover {
-    color: $link-color-hover;
+    color: $c-link-h;
   }
 }
 
@@ -80,10 +80,10 @@ input[type="color"] {
   padding: 0;
 }
 del {
-  color: #333;
+  color: $c-del;
 }
 ins {
-  background: #fff9c0;
+  background: $c-ins-bg;
   text-decoration: none;
 }
 hr {

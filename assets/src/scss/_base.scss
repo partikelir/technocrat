@@ -1,19 +1,12 @@
 // === BASE === //
 
-// Links
-$link-color:           #429ab2;
-$link-color-hover:     #ED7251;
-
-// Fonts
-$font-color:    #444;
-
-//Column widths
+// Column widths
 $width-max:     960;
 
-//Queries
+// Queries
 $breakpoint:    600;
 
-//Baselines
+// Vertical rhythm
 $fsize:         16px;
 $vbase:         24px;
 $vbase2:        48px;
@@ -23,15 +16,18 @@ $lheight:       (24/16);
 $lheight2:      (48/16);
 $baseline-px:   16px;
 
-//Border
+// Border
 $divider:       1px solid #ededed;
 
-/* Colours
-#429ab2
-#ED7251
-#52b1cc
-*/
-
-@import "base_fonts";
 @import "base_mixins";
+@import "base_colours";
+
+// Fonts
+@import "base_fonts";
+
+$font-body: $lato;
+$font-head: $varela;
+$font-mono: $consolas;
+
+// Reset
 @import "base_reset";

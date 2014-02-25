@@ -13,41 +13,6 @@ Domain Path: /languages/
 Template: pendrell
 */
 
-/* =Notes
---------------------------------------------------------------
-This stylesheet uses rem values with a pixel fallback. The rem
-values (and line heights) are calculated using two variables:
-
-$rembase:     14;
-$line-height: 24;
-
----------- Examples
-
-* Use a pixel value with a rem fallback for font-size, padding, margins, etc.
-  padding: 5px 0;
-  padding: 0.357142857rem 0; (5 / $rembase)
-
-* Set a font-size and then set a line-height based on the font-size
-  font-size: 16px
-  font-size: 1.142857143rem; (16 / $rembase)
-  line-height: 1.5; ($line-height / 16)
-
----------- Vertical spacing
-
-Vertical spacing between most elements should use 24px or 48px
-to maintain vertical rhythm:
-
-.my-new-div {
-  margin: 24px 0;
-  margin: 1.714285714rem 0; ( 24 / $rembase )
-}
-
----------- Further reading
-
-http://snook.ca/archives/html_and_css/font-size-with-rem
-http://blog.typekit.com/2011/11/09/type-study-sizing-the-legible-letter/
-*/
-
 @import "base";
 @import "general";
 @import "layout";
@@ -237,10 +202,6 @@ http://blog.typekit.com/2011/11/09/type-study-sizing-the-legible-letter/
     display: block;
   }
 
-  /* Image attachments */
-  .return-gallery {
-    display: block;
-  }
   .author-avatar {
     float: right;
     margin-top: 8px;
@@ -258,36 +219,12 @@ http://blog.typekit.com/2011/11/09/type-study-sizing-the-legible-letter/
   body {
     background-color: #e6e6e6;
   }
-  body .site {
+  .site {
     padding: 0 40px;
     padding: 0 2.857142857rem;
     margin-top: 0;
     margin-bottom: 0;
     box-shadow: 0 2px 6px rgba(100, 100, 100, 0.3);
-  }
-  body.custom-background-empty {
-    background-color: #fff;
-  }
-  body.custom-background-empty .site,
-  body.custom-background-white .site {
-    padding: 0;
-    margin-top: 0;
-    margin-bottom: 0;
-    box-shadow: none;
-  }
-
-  /* Image Attachment Navigation */
-  .previous-image img,
-  .next-image img {
-    display: block;
-  }
-  .previous-image .nav-text {
-    margin-left: 12px;
-    margin-left: 0.857142857rem;
-  }
-  .next-image .nav-text {
-    margin-right: 12px;
-    margin-right: 0.857142857rem;
   }
 }
 

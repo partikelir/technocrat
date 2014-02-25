@@ -6,14 +6,12 @@
     -webkit-hyphens: auto;
     -moz-hyphens: auto;
     hyphens: auto;
-    margin-bottom: 48px;
-    margin-bottom: 3.428571429rem;
+    @include rem('margin-bottom', $vbase2);
     word-wrap: break-word;
   }
   .widget {
     h3 {
-      margin-bottom: 24px;
-      margin-bottom: 1.714285714rem;
+      @include rem('margin-bottom', $vbase);
     }
     p,
     li,
@@ -21,8 +19,7 @@
       @include font-sizer(13);
     }
     p {
-      margin-bottom: 24px;
-      margin-bottom: 1.714285714rem;
+      @include rem('margin-bottom', $vbase);
     }
     ul ul {
       @include rem('margin-left', $vbase/2);
@@ -40,8 +37,7 @@
   .textwidget {
     ul {
       list-style: disc outside;
-      margin: 0 0 24px;
-      margin: 0 0 1.714285714rem;
+      @include rem('margin', 0 0 $vbase);
     }
     li {
       margin-left: 36px;
@@ -60,7 +56,7 @@
 }
 .widget_recent_entries .post-date,
 .widget_rss .rss-date {
-  color: lighten($font-color, 40);
+  color: lighten($c-font-body, 40);
   @include rem('font-size', 11px);
   @include rem('margin-left', 12px);
 }
@@ -68,7 +64,7 @@
   margin: 0;
   width: 100%;
   @include font-sizer(13);
-  color: lighten($font-color, 14);
+  color: lighten($c-font-body, 14);
   th,
   td,
   caption {

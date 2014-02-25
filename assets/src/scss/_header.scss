@@ -8,11 +8,11 @@
       text-align: left;
     }
     a {
-      color: lighten($font-color, 5);
+      color: lighten($c-font-body, 5);
       display: inline-block;
       text-decoration: none;
       &:hover {
-        color: $link-color;
+        color: $c-link-h;
       }
     }
   }
@@ -26,7 +26,7 @@
   h2 {
     font-weight: normal;
     @include font-sizer(13);
-    color: lighten($font-color, 20);
+    color: lighten($c-font-body, 20);
   }
   img.avatar {
     display: none;

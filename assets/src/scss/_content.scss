@@ -2,45 +2,35 @@
 
 // Entry header
 .entry-header {
-  margin-bottom: 24px;
-  margin-bottom: 1.714285714rem;
+  @include rem('margin-bottom', $vbase);
+  img.wp-post-image {
+    @include rem('margin-bottom', $vbase);
+  }
+  .entry-title {
+    @include font-sizer(32);
+    font-weight: normal;
+    a {
+      text-decoration: none;
+    }
+  }
+  .entry-format {
+    @include rem('margin-top', $vbase);
+    font-weight: normal;
+  }
+  .comments-link {
+    @include rem('margin-top', $vbase);
+    @include font-sizer(13);
+    color: #757575;
+  }
 }
-.entry-header img.wp-post-image {
-  margin-bottom: 24px;
-  margin-bottom: 1.714285714rem;
-}
-.entry-header .entry-title {
-  font-size: 32px;
-  font-size: 2.285714285rem;
-  line-height: 1.5;
-  font-weight: normal;
-}
-.entry-header .entry-title a {
-  text-decoration: none;
-}
-.entry-header .entry-format {
-  margin-top: 24px;
-  margin-top: 1.714285714rem;
-  font-weight: normal;
-}
-.entry-header .comments-link {
-  margin-top: 24px;
-  margin-top: 1.714285714rem;
-  font-size: 13px;
-  font-size: 0.928571429rem;
-  line-height: 1.846153846;
-  color: #757575;
-}
+
 
 
 // Featured Post
 article.sticky .featured-post {
   color: #757575;
-  font-size: 13px;
-  font-size: 0.928571429rem;
-  line-height: 3.692307692;
-  margin-bottom: 24px;
-  margin-bottom: 1.714285714rem;
+  @include font-sizer(16);
+  @include rem('margin-bottom', $vbase);
   text-align: center;
 }
 

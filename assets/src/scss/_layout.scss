@@ -2,13 +2,11 @@
 
 // Site
 .site {
-  padding: 0 24px;
-  padding: 0 1.714285714rem;
+  @include rem('padding', $vbase 0);
   background-color: #fff;
 }
 .site-content {
-  margin: 24px 0 0;
-  margin: 1.714285714rem 0 0;
+  @include rem('margin', $vbase 0 0);
 }
 
 // Banner from Twenty Twelve
@@ -27,9 +25,9 @@ footer[role="contentinfo"] {
   @include rem('padding', $vbase 0);
   border-top: $divider;
   a {
-    color: lighten($font-color, 14);
+    color: lighten($c-font-body, 14);
     &:hover {
-      color: $link-color;
+      color: $c-link-h;
     }
   }
 }

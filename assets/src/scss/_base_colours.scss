@@ -1,0 +1,38 @@
+// === COLOURS === //
+
+// Text
+$c-font-body:   #444;
+
+// Links
+$c-link:        #429ab2;
+$c-link-v:      #52b1cc;
+$c-link-h:      #ED7251;
+$c-link-a:      $c-link-h;
+$c-link-f:      $c-link-h;
+
+
+
+// Main menu
+$c-menu-link:   #5e5e5e;
+$c-menu-link-h: #757575;
+
+
+
+// Elements
+$c-del:         #333;
+$c-ins-bg:      #fff9c0;
+$c-mark:        #fff;
+$c-mark-bg:     #bbb;
+
+
+// Various
+$c-pullquote:   #888;
+$c-required:    red;
+
+
+
+
+// Twenty Twelve legacy variables
+$link-color:           $c-link;
+$link-color-hover:     $c-link-h;
+$font-color: $c-font-body

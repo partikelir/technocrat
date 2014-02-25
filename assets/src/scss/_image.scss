@@ -3,27 +3,27 @@
 .article.attachment {
   overflow: hidden;
 }
-.image-attachment div.attachment {
-  text-align: center;
-}
-.image-attachment div.attachment p {
-  text-align: center;
-}
-.image-attachment div.attachment img {
-  display: block;
-  height: auto;
-  margin: 0 auto;
-  max-width: 100%;
+.image-attachment {
+  div.attachment {
+    text-align: center;
+    p {
+      text-align: center;
+    }
+    img {
+      display: block;
+      height: auto;
+      margin: 0 auto;
+      max-width: 100%;
+    }
+  }
 }
 .image-attachment .entry-caption {
   @include rem('margin-top', $vbase/3);
 }
 .image-info {
-  border-top: 1px solid #ededed;
-  margin: 24px 0;
-  margin: 1.714285714rem 0;
-  padding-top: 24px;
-  padding-top: 1.714285714rem;
+  border-top: $divider;
+  @include rem('margin', $vbase 0);
+  @include rem('padding-top', $vbase);
   overflow: hidden;
 }
 .image-description {
@@ -33,10 +33,8 @@
 .image-navigation {
   position: relative;
   height: 150px;
-  margin: 24px 0;
-  margin: 1.714285714rem 0;
-  padding-top: 24px;
-  padding-top: 1.714285714rem;
+  @include rem('margin', $vbase 0);
+  @include rem('padding-top', $vbase);
   overflow: visible;
   width: 100%;
 }
@@ -78,9 +76,29 @@
   font-weight: bold;
 }
 .attachment-image-navigation {
-  border-radius: 3px;
+  @include border-radius();
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 }
 .image-navigation a {
   text-decoration: none;
+}
+
+@media screen and (min-width: 600px) {
+  .return-gallery {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  // Image navigation
+  .previous-image img,
+  .next-image img {
+    display: block;
+  }
+  .previous-image .nav-text {
+    @include rem('margin-left', $vbase/2);
+  }
+  .next-image .nav-text {
+    @include rem('margin-right', $vbase/2);
+  }
 }
