@@ -1,32 +1,21 @@
 // === GENERAL === //
 
-// Small headers
-.archive-title,
-.page-title,
-.widget-title,
-.entry-content th,
-.comment-content th {
-  @include font-sizer(12);
-  font-weight: bold;
-  text-transform: uppercase;
-  color: #636363;
-}
-
-
-/* Body, links, basics */
+// Core
 html {
   font-size: 100%;
 }
 body {
   @include font-sizer(16);
+  color: $c-font-body;
   font-family: $font-body;
   text-rendering: optimizeLegibility;
-  color: $c-font-body;
 }
 h1,h2,h3,h4,h5,h6,.main-navigation {
+  color: $c-font-head;
   font-family: $font-head;
 }
-pre,code {
+pre,
+code {
   font-family: $font-mono;
 }
 /* Text transform to uppercase for use with Varela Round */
@@ -37,7 +26,7 @@ h1.site-title,
   text-transform: uppercase;
 }
 
-/* Links */
+// Links
 a {
   outline: none;
   color: $c-link;
@@ -87,11 +76,10 @@ ins {
   text-decoration: none;
 }
 hr {
-  background-color: #ccc;
+  background-color: $c-hr;
   border: 0;
   height: 1px;
-  margin: 24px;
-  margin-bottom: 1.714285714rem;
+  @include rem('margin-bottom', $vbase);
 }
 
 /* Nice hyphens */
@@ -102,4 +90,16 @@ hr {
   -ms-hyphens: auto;
   -o-hyphens: auto;
   hyphens: auto;
+}
+
+// Small headers
+.archive-title,
+.page-title,
+.widget-title,
+.entry-content th,
+.comment-content th {
+  @include font-sizer(12);
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #636363;
 }

@@ -37,3 +37,36 @@
   margin: 8px 24px 8px 0;
   margin: 0.571428571rem 1.714285714rem 0.571428571rem 0;
 }
+
+@media screen and (min-width: 600px) {
+  .template-front-page .site-content,
+  .template-front-page article {
+    overflow: hidden;
+  }
+  .template-front-page.has-post-thumbnail article {
+    float: left;
+    width: 47.916666667%;
+  }
+  .template-front-page .widget-area .widget,
+  .template-front-page.two-sidebars .widget-area .front-widgets {
+    float: left;
+    width: 51.875%;
+    margin-bottom: 24px;
+    margin-bottom: 1.714285714rem;
+  }
+  .template-front-page .widget-area .widget:nth-child(odd) {
+    clear: right;
+  }
+  .template-front-page .widget-area .widget:nth-child(even),
+  .template-front-page.two-sidebars .widget-area .front-widgets + .front-widgets {
+    float: right;
+    width: 39.0625%;
+    margin: 0 0 24px;
+    margin: 0 0 1.714285714rem;
+  }
+  .template-front-page.two-sidebars .widget,
+  .template-front-page.two-sidebars .widget:nth-child(even) {
+    float: none;
+    width: auto;
+  }
+}

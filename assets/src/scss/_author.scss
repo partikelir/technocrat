@@ -1,18 +1,7 @@
 // === AUTHORS === //
 
-.bypostauthor cite span {
-  color: #fff;
-  background-color: #429ab2;
-  background-image: none;
-  border: 1px solid #1f6f93;
-  border-radius: 2px;
-  box-shadow: none;
-  padding: 0;
-}
-
 .author .archive-header {
-  margin-bottom: 24px;
-  margin-bottom: 1.714285714rem;
+  @include rem('margin-bottom', $vbase);
 }
 .author-info {
   border-top: $divider;
@@ -21,14 +10,25 @@
   overflow: hidden;
 }
 .author-description p {
-  color: #757575;
+  color: lighten($c-font-body, 20);
   @include font-sizer(13);
 }
 .author.archive .author-info {
   border-top: 0;
-  margin: 0 0 48px;
-  margin: 0 0 3.428571429rem;
+  @include rem('margin', 0 0 $vbase2);
 }
 .author.archive .author-avatar {
   margin-top: 0;
+}
+.author-avatar {
+  @media screen and (min-width: 600px) {
+    float: right;
+    @include rem('margin-top', 8px);
+  }
+}
+.author-description {
+  @media screen and (min-width: 600px) {
+    float: left;
+    width: percentage(500/625);
+  }
 }

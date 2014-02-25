@@ -2,8 +2,8 @@
 
 // Site
 .site {
-  @include rem('padding', $vbase 0);
-  background-color: #fff;
+  @include rem('padding', 0 $vbase);
+  background-color: $c-site-bg;
 }
 .site-content {
   @include rem('margin', $vbase 0 0);
@@ -16,14 +16,14 @@ section[role="banner"] {
 
 // Footer
 footer[role="contentinfo"] {
+  border-top: $divider;
   clear: both;
   @include font-sizer(12);
   @include rem('max-width', 960px);
   @include rem('margin-top', $vbase);
+  @include rem('padding', $vbase 0);
   margin-left: auto;
   margin-right: auto;
-  @include rem('padding', $vbase 0);
-  border-top: $divider;
   a {
     color: lighten($c-font-body, 14);
     &:hover {

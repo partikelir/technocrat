@@ -36,7 +36,7 @@ Template: pendrell
 @media screen and (min-width: 600px) {
   .site {
     margin: 0 auto;
-    max-width: 960px;
+    max-width: $v-max-width;
     overflow: hidden;
   }
   .site-content {
@@ -56,7 +56,7 @@ Template: pendrell
   .site-header h2 {
     text-align: left;
   }
-  .site-header h1 {
+  .site-header h1 { // Not active
     font-size: 26px;
     font-size: 1.857142857rem;
     line-height: 1.846153846;
@@ -64,7 +64,7 @@ Template: pendrell
   }
   .main-navigation ul.nav-menu,
   .main-navigation div.nav-menu > ul {
-    border-bottom: 1px solid #ededed;
+    border-bottom: $divider;
     display: inline-block !important;
     text-align: left;
     width: 100%;
@@ -81,7 +81,7 @@ Template: pendrell
   .main-navigation li a {
     border-bottom: 0;
     color: #6a6a6a;
-    line-height: 3.692307692;
+    line-height: $lheight*2;
     text-transform: uppercase;
     white-space: nowrap;
   }
@@ -111,15 +111,11 @@ Template: pendrell
   }
   .main-navigation li ul li a {
     background: #efefef;
-    border-bottom: 1px solid #ededed;
+    border-bottom: $divider;
     display: block;
-    font-size: 11px;
-    font-size: 0.785714286rem;
-    line-height: 2.181818182;
-    padding: 8px 10px;
-    padding: 0.571428571rem 0.714285714rem;
-    width: 180px;
-    width: 12.85714286rem;
+    @include font-sizer(12);
+    @include rem('padding', 8px 10px);
+    @include rem('width', 180px);
     white-space: normal;
   }
   .main-navigation li ul li a:hover {
@@ -146,70 +142,13 @@ Template: pendrell
   #respond form textarea.blog-textarea {
     width: 79.666666667%;
   }
-  .template-front-page .site-content,
-  .template-front-page article {
-    overflow: hidden;
-  }
-  .template-front-page.has-post-thumbnail article {
-    float: left;
-    width: 47.916666667%;
-  }
   .entry-page-image {
     float: right;
     margin-bottom: 0;
     width: 47.916666667%;
   }
-  .template-front-page .widget-area .widget,
-  .template-front-page.two-sidebars .widget-area .front-widgets {
-    float: left;
-    width: 51.875%;
-    margin-bottom: 24px;
-    margin-bottom: 1.714285714rem;
-  }
-  .template-front-page .widget-area .widget:nth-child(odd) {
-    clear: right;
-  }
-  .template-front-page .widget-area .widget:nth-child(even),
-  .template-front-page.two-sidebars .widget-area .front-widgets + .front-widgets {
-    float: right;
-    width: 39.0625%;
-    margin: 0 0 24px;
-    margin: 0 0 1.714285714rem;
-  }
-  .template-front-page.two-sidebars .widget,
-  .template-front-page.two-sidebars .widget:nth-child(even) {
-    float: none;
-    width: auto;
-  }
   .commentlist .children {
-    margin-left: 48px;
-    margin-left: 3.428571429rem;
-  }
-
-  /* Header */
-  .with-header-image {
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    max-width: 66%;
-    max-height: 96px;
-    background: #fff;
-    padding-right: 24px;
-    padding-right: 1.714285714rem;
-    border-top-right-radius: 3px;
-  }
-  .with-header-image img.avatar {
-    display: block;
-  }
-
-  .author-avatar {
-    float: right;
-    margin-top: 8px;
-    margin-top: 0.571428571rem;
-  }
-  .author-description {
-    float: left;
-    width: 80%;
+    @include rem('margin-left', $vbase2);
   }
 }
 
@@ -217,7 +156,7 @@ Template: pendrell
 
 @media screen and (min-width: 960px) {
   body {
-    background-color: #e6e6e6;
+    background-color: $c-body-bg;
   }
   .site {
     padding: 0 40px;

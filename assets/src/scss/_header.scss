@@ -49,3 +49,20 @@ img.header-image {
 .site-header .site-title, .site-header .site-description {
   clear: none;
 }
+.with-header-image {
+  @media screen and (min-width: 600px) {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    max-width: 66%;
+    max-height: 96px;
+    background: #fff;
+    @include rem('padding-right', $vbase);
+    border-top-right-radius: 3px;
+  }
+}
+.with-header-image img.avatar {
+  @media screen and (min-width: 600px) {
+    display: block;
+  }
+}

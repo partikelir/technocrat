@@ -29,7 +29,7 @@
       cite,
       time {
         display: block;
-        @include rem('margin-left', 85px);
+        @include rem('margin-left', $vbase*3);
       }
       cite {
         font-style: normal;
@@ -78,6 +78,15 @@
       }
     }
   }
+}
+.bypostauthor cite span { // TODO: merge this with the one above
+  color: #fff;
+  background-color: #429ab2;
+  background-image: none;
+  border: 1px solid #1f6f93;
+  border-radius: 2px;
+  box-shadow: none;
+  padding: 0;
 }
 a.comment-reply-link,
 a.comment-edit-link {

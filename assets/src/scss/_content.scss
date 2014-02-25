@@ -41,75 +41,27 @@ article.sticky .featured-post {
 .entry-summary {
   line-height: 1.714285714;
 }
-.entry-content h1,
-.comment-content h1,
-.entry-content h2,
-.comment-content h2,
-.entry-content h3,
-.comment-content h3,
-.entry-content h4,
-.comment-content h4,
-.entry-content h5,
-.comment-content h5,
-.entry-content h6,
-.comment-content h6 {
-  margin: 24px 0;
-  margin: 1.714285714rem 0;
-  line-height: 1.714285714;
-}
-.entry-content h1,
-.comment-content h1 {
-  font-size: 32px;
-  font-size: 2.285714285rem;
-  line-height: 1.5;
-}
-.entry-content h2,
-.comment-content h2 {
-  font-size: 24px;
-  font-size: 1.71428571rem;
-  line-height: 1;
-  text-transform: none;
-}
-.entry-content h3,
-.comment-content h3 {
-  font-size: 21px;
-  font-size: 1.5rem;
-  line-height: 1.5;
-}
-.entry-content h4,
-.comment-content h4 {
-  font-size: 18px;
-  font-size: 1.285714286rem;
-  line-height: 1.6;
-}
-.entry-content h5,
-.comment-content h5 {
-  font-size: 16px;
-  font-size: 1.142857143rem;
-  line-height: 1.846153846;
-}
-.entry-content h6,
-.comment-content h6 {
-  font-size: 14px;
-  font-size: 1rem;
-  line-height: 1.846153846;
+.entry-content,
+.comment-content {
+  h1,h2,h3,h4,h5,h6 {
+    @include rem('margin', $vbase 0);
+  }
+  h1 { @include font-sizer(32); }
+  h2 { @include font-sizer(24); }
+  h3 { @include font-sizer(21); }
+  h4 { @include font-sizer(18); }
+  h5 { @include font-sizer(16); }
+  h6 { @include font-sizer(14); }
 }
 .entry-content p,
 .entry-summary p,
 .comment-content p {
-  margin: 0 0 24px;
-  margin: 0 0 1.714285714rem;
-  line-height: 1.714285714;
+  @include rem('margin', 0 0 $vbase);
 }
-/*.entry-content a:visited,
-.comment-content a:visited {
-  color: #52b1cc;
-}*/
 .entry-content ol,
 .comment-content ol,
 .entry-content ul,
-.comment-content ul,
-.mu_register ul {
+.comment-content ul {
   margin: 0 0 24px;
   margin: 0 0 1.714285714rem;
   line-height: 1.714285714;
@@ -277,17 +229,17 @@ img.aligncenter,
 .entry-meta {
   clear: both;
 }
-.comments-link a,
-.entry-meta a {
-  color: #757575;
-}
-.comments-link a:hover,
-.entry-meta a:hover {
-  color: #ED7251;
+.comments-link,
+.entry-meta {
+  a {
+    color: #757575;
+    &:hover {
+      color: $c-link-h;
+    }
+  }
 }
 footer.entry-meta {
-  margin-top: 24px;
-  margin-top: 1.714285714rem;
+  @include rem('margin-top', $vbase);
   @include font-sizer(12);
   color: #757575;
 }
@@ -296,8 +248,7 @@ footer.entry-meta {
   float: right;
 }
 .edit-link, .leave-reply {
-  margin-left: 12px;
-  margin-left: 0.857142857rem;
+  @include rem('margin-top', $vbase/2);
 }
 .single-author .entry-meta .by-author {
   display: none;
