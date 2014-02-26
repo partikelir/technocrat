@@ -79,7 +79,6 @@ input[type="reset"]:active {
 // General navigation
 .site-content nav {
   clear: both;
-  // line-height: ($evbase/12); TODO: replace this
   overflow: hidden;
 }
 #nav-above {
@@ -111,9 +110,9 @@ input[type="reset"]:active {
 
 // Main navigation
 .main-navigation {
+  @include rem('margin-top', $spacer/2);
   text-align: center;
   li {
-    @include rem('margin-top', $spacer);
     @include font-sizer(14);
   }
   a {

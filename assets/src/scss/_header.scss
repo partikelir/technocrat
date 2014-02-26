@@ -8,7 +8,7 @@
       text-align: left;
     }
     a {
-      color: $c-link;
+      color: $c-site-header;
       display: inline-block;
       text-decoration: none;
       &:hover {
@@ -21,13 +21,12 @@
     @media screen and (min-width: 600px) {
       @include font-sizer(32);
     }
-    @include rem('margin-bottom', $spacer/2);
   }
   h2 {
-    color: lighten($c-body, 40);
+    color: lighten($c-site-header, 50);
     display: none;
     font-weight: normal;
-    @include font-sizer(16);
+    @include font-sizer(14);
     @media screen and (min-width: 600px) {
       display: block;
     }
@@ -35,10 +34,8 @@
   img.avatar {
     display: none;
     float: left;
-    margin-right: 12px;
-    margin-right: 0.857142857rem;
-    margin-top: 12px;
-    margin-top: 0.857142857rem;
+    @include rem('margin-right', $spacer/2);
+    @include rem('margin-top', $spacer/2);
     border-bottom-left-radius: 3px;
   }
 }

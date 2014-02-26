@@ -27,7 +27,6 @@ Template: pendrell
 @import "image";
 @import "portfolio";
 @import "various";
-// @import "front-page"; // From Twenty Twelve; unused
 
 
 
@@ -74,7 +73,6 @@ Template: pendrell
     border-bottom: 0;
     color: #6a6a6a;
     line-height: $spacer*1.5;
-    text-transform: uppercase;
     white-space: nowrap;
   }
   .main-navigation li a:hover {

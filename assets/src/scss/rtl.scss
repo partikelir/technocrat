@@ -132,15 +132,6 @@ label ~ span.required {
 }
 
 
-/* =Front page template styling
--------------------------------------------------------------- */
-
-.template-front-page .widget-area .widget_text img {
-	float: right;
-	margin: 8px 0 8px 24px;
-	margin: 0.571428571rem 0 0.571428571rem 1.714285714rem;
-}
-
 
 /* =Widget styling
 -------------------------------------------------------------- */
@@ -178,8 +169,7 @@ label ~ span.required {
 
 /* Minimum width of 600 pixels. */
 @media screen and (min-width: 600px) {
-	.site-content,
-	.template-front-page.has-post-thumbnail article {
+	.site-content {
 		float: right;
 	}
 	.widget-area,
@@ -189,23 +179,6 @@ label ~ span.required {
 	.site-header h1,
 	.site-header h2 {
 		text-align: right;
-	}
-	.template-front-page .widget-area .widget_text img {
-		float: right;
-		margin: 8px 0 8px 24px;
-	}
-	.template-front-page .widget-area .widget,
-	.template-front-page.two-sidebars .widget-area .front-widgets {
-		float: right;
-	}
-	.template-front-page .widget-area .widget:nth-child(odd) {
-		clear: left;
-	}
-	.template-front-page .widget-area .widget:nth-child(even),
-	.template-front-page.two-sidebars .widget-area .front-widgets + .front-widgets {
-		float: left;
-		margin: 0 24px 0;
-		margin: 0 1.714285714rem 0;
 	}
 	.main-navigation ul.nav-menu,
  	.main-navigation div.nav-menu > ul {

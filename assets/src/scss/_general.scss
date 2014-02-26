@@ -13,6 +13,7 @@ body {
 h1,h2,h3,h4,h5,h6,.main-navigation {
   color: $c-font-head;
   font-family: $font-head;
+  text-transform: uppercase;
 }
 pre,
 code {
@@ -23,7 +24,7 @@ h1.site-title,
 .image-info h2,
 .author-description h2,
 .comment-reply-title {
-  text-transform: uppercase;
+  //text-transform: uppercase;
 }
 
 // Links
@@ -100,6 +101,6 @@ hr {
 .comment-content th {
   @include font-sizer(12);
   font-weight: bold;
-  text-transform: uppercase;
+  //text-transform: uppercase;
   color: #636363;
 }

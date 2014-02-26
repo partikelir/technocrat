@@ -9,14 +9,6 @@ function pendrell_body_class( $classes ) {
   if ( ! is_active_sidebar( 'sidebar-1' ) || is_page_template( 'page-templates/full-width.php' ) )
     $classes[] = 'full-width';
 
-  if ( is_page_template( 'page-templates/front-page.php' ) ) {
-    $classes[] = 'template-front-page';
-    if ( has_post_thumbnail() )
-      $classes[] = 'has-post-thumbnail';
-    if ( is_active_sidebar( 'sidebar-2' ) && is_active_sidebar( 'sidebar-3' ) )
-      $classes[] = 'two-sidebars';
-  }
-
   if ( ! is_multi_author() )
     $classes[] = 'single-author';
 
