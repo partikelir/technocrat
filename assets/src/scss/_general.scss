@@ -6,12 +6,13 @@ html {
 }
 body {
   @include font-sizer($font-size);
+  background-color: $c-body-bg;
   color: $c-body;
   font-family: $font-body;
   text-rendering: optimizeLegibility;
 }
 h1,h2,h3,h4,h5,h6,.main-navigation {
-  color: $c-font-head;
+  color: $c-head;
   font-family: $font-head;
   text-transform: uppercase;
 }

@@ -20,15 +20,13 @@
   .comments-link {
     @include rem('margin-top', $spacer);
     @include font-sizer(13);
-    color: #757575;
   }
 }
 
 
 
-// Featured Post
+// Featured
 article.sticky .featured-post {
-  color: #757575;
   @include font-sizer(16);
   @include rem('margin-bottom', $spacer);
   text-align: center;
@@ -37,14 +35,12 @@ article.sticky .featured-post {
 
 
 // Entry content
-.entry-content,
-.entry-summary {
-  /*line-height: 1.714285714;*/
-}
+.entry-header,
 .entry-content,
 .comment-content {
   h1,h2,h3,h4,h5,h6 {
     @include rem('margin', $spacer 0);
+    text-transform: none;
   }
   h1 { @include font-sizer(32); }
   h2 { @include font-sizer(24); }
@@ -62,9 +58,7 @@ article.sticky .featured-post {
 .comment-content ol,
 .entry-content ul,
 .comment-content ul {
-  margin: 0 0 24px;
-  margin: 0 0 1.714285714rem;
-  line-height: 1.714285714;
+  @include rem('margin', 0 0 $spacer/2);
 }
 .entry-content ul ul,
 .comment-content ul ul,
@@ -226,22 +220,22 @@ img.aligncenter,
 
 
 // Entry meta
+footer.entry-meta {
+  @include rem('margin-top', $spacer);
+  @include font-sizer(14);
+  color: $c-meta;
+}
 .entry-meta {
   clear: both;
 }
 .comments-link,
 .entry-meta {
   a {
-    color: #757575;
+    color: lighten($c-meta, 17);
     &:hover {
-      color: $c-link-h;
+      color: lighten($c-meta, 23);
     }
   }
-}
-footer.entry-meta {
-  @include rem('margin-top', $spacer);
-  @include font-sizer(12);
-  color: #757575;
 }
 /* Needs some tweaking; long entry meta info will cause the buttons to slide to the next line */
 .entry-meta-buttons {

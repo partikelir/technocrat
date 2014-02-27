@@ -4,15 +4,28 @@
 .site {
   @include rem('padding', 0 $spacer);
   background-color: $c-site-bg;
+  @include box-shadow( 0 2px 6px rgba(100, 100, 100, 0.3) );
+  @media screen and (min-width: 600px) {
+    margin: 0 auto;
+    max-width: $site-max-width;
+    overflow: hidden;
+  }
 }
 .site-content {
-  //@include rem('margin', $spacer 0 0);
+  @media screen and (min-width: 600px) {
+    float: left;
+    width: percentage(625/960);
+  }
 }
+
+
 
 // Banner from Twenty Twelve
 section[role="banner"] {
   @include rem('margin-bottom', $spacer*2);
 }
+
+
 
 // Footer
 footer[role="contentinfo"] {

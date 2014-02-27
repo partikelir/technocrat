@@ -9,7 +9,6 @@
 if ( pendrell_is_portfolio() && is_archive() ) { // Portfolio archive items
 
 	// Sourced from Hatch, probably by way of Hybrid: http://wordpress.org/extend/themes/hatch
-
 	global $counter; $counter++; // Initialize counter and then bump it to 1 on the first pass
 
 	$post_class = '';

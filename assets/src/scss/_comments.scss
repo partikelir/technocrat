@@ -98,6 +98,8 @@ a.comment-edit-link {
   @include rem('margin-bottom', $spacer);
 }
 
+
+
 // Response form
 #respond {
   @include rem('margin-top', $spacer*2);
@@ -128,6 +130,16 @@ a.comment-edit-link {
       font-family: inherit;
       @include rem('padding', 5px);
       width: 100%;
+    }
+    input[type="text"] {
+      @media screen and (min-width: 600px) {
+        width: 40%;
+      }
+    }
+    textarea {
+      @media screen and (min-width: 600px) {
+        width: 80%;
+      }
     }
     p.form-allowed-tags {
       margin: 0;

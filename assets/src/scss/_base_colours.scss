@@ -1,36 +1,44 @@
 // === COLOURS === //
 
+// Fundamentals
+$c-b:             #fff; // Background
+$c-t:             #444; // Text
+$c-l:             #429ab2; // Links
+
 // Body
-$c-site-bg:     #fff;
-$c-body-bg:     #e6e6e6;
+$c-site-bg:       #fff;
+$c-body-bg:       darken($c-site-bg, 8);
 
 // Text
-$c-body:        #555;
-$c-font-head:   #333;
+$c-body:          #444;
+$c-head:          darken($c-body, 13);
+$c-meta:          lighten($c-body, 17);
 
 // Links
-$c-link:        #429ab2;
-$c-link-v:      #52b1cc;
-$c-link-h:      #ED7251;
-$c-link-a:      $c-link-h;
-$c-link-f:      $c-link-h;
+$c-link:          #429ab2;
+$c-link-v:        saturate(lighten($c-link, 8), 8);
+$c-link-h:        #ED7251;
+$c-link-a:        saturate(lighten($c-link, 13), 13);
+$c-link-f:        saturate(lighten($c-link, 8), 8);
 
 // Main menu
-$c-menu-link:   #5e5e5e;
-$c-menu-link-h: #757575;
+$c-menu-link:     #666;
+$c-menu-link-h:   lighten($c-menu-link, 23);
+$c-menu-current:  darken($c-menu-link, 7);
+$c-menu-bg:       darken($c-body, 7);
 
 // Elements
-$c-del:         #333;
-$c-hr:          #ccc;
-$c-ins-bg:      #fff9c0;
-$c-mark:        #fff;
-$c-mark-bg:     #bbb;
+$c-del:           #333;
+$c-hr:            #ccc;
+$c-ins-bg:        #fff9c0;
+$c-mark:          #fff;
+$c-mark-bg:       #bbb;
 
 // Various
-$c-site-header: #222;
-$c-divider:     #ededed;
-$c-pullquote:   #888;
-$c-required:    crimson;
+$c-site-header:   #222;
+$c-divider:       darken($c-b, 7);
+$c-pullquote:     #888;
+$c-required:      crimson;
 
 // Twenty Twelve legacy variables
 $link-color:           $c-link;

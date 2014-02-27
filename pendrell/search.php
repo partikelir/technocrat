@@ -20,12 +20,11 @@ get_header(); ?>
 
 			<?php pendrell_content_nav( 'nav-above' ); ?>
 
-			<?php /* Start the Loop */ ?>
-			<?php while ( have_posts() ) : the_post(); ?>
-				<?php get_template_part( 'content', get_post_format() ); ?>
-			<?php endwhile; ?>
-
-			<?php pendrell_content_nav( 'nav-below' ); ?>
+			<?php while ( have_posts() ) : the_post();
+				get_template_part( 'content', get_post_format() );
+			endwhile;
+			pendrell_content_nav( 'nav-below' );
+			?>
 
 		<?php else : ?>
 

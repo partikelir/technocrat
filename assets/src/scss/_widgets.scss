@@ -1,7 +1,10 @@
 // === WIDGETS === //
 .widget-area {
-  margin: 24px 0 0;
-  margin: 1.714285714rem 0 0;
+  @include rem('margin', $spacer 0 0);
+  @media screen and (min-width: 600px) {
+    float: right;
+    width: percentage(250/960);
+  }
   .widget {
     -webkit-hyphens: auto;
     -moz-hyphens: auto;
