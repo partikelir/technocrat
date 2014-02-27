@@ -122,9 +122,13 @@ http://blog.typekit.com/2011/11/09/type-study-sizing-the-legible-letter/
 // If the html element's font-size is set to 62.5% (of the browser's default font-size of 16px),
 // then the variable below would be 10px.
 
-@mixin rem($property, $px-values) {
+@mixin rem($property, $px-values, $offset: 0) {
   // Convert the baseline into rems
   $baseline-rem: $base-default / 1rem;
+  // Subtract the offset
+  @if type-of($px-values) == "number" {
+    $px-values: $px-values - $offset;
+  }
   // Print the first line in pixel values
   #{$property}: $px-values;
   // If there is only one (numeric) value, return the property/value line for it.

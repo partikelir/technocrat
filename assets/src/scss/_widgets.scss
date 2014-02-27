@@ -1,6 +1,5 @@
 // === WIDGETS === //
 .widget-area {
-  @include rem('margin', $spacer 0 0);
   @media screen and (min-width: 600px) {
     float: right;
     width: percentage(250/960);
@@ -16,7 +15,7 @@
     p,
     li,
     .textwidget {
-      @include font-sizer(13);
+      @include font-sizer(14);
     }
     p {
       @include rem('margin-bottom', $spacer);

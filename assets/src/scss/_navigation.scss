@@ -7,14 +7,14 @@ input[type="button"],
 input[type="reset"],
 article.post-password-required input[type=submit],
 .bypostauthor cite span {
-  @include rem('padding', 0 6px);
-  @include font-sizer(13);
-  font-weight: normal;
-  color: lighten($c-body, 22);
-  @include vertical-gradient($startColor: #f4f4f4, $endColor: #e6e6e6);
-  border: 1px solid #d2d2d2;
   @include border-radius;
   @include box-shadow($shadow: 0 1px 2px rgba(64, 64, 64, .10));
+  @include font-sizer(13);
+  @include rem('padding', 0 6px);
+  @include vertical-gradient($startColor: #f4f4f4, $endColor: #e6e6e6);
+  border: 1px solid #d2d2d2;
+  color: lighten($c-body, 22);
+  font-weight: normal;
 }
 .menu-toggle,
 button,
@@ -33,8 +33,8 @@ input[type="submit"]:hover,
 input[type="button"]:hover,
 input[type="reset"]:hover,
 article.post-password-required input[type=submit]:hover {
-  color: lighten($c-body, 10);
   @include vertical-gradient($startColor: #f9f9f9, $endColor: #ebebeb);
+  color: lighten($c-body, 10);
 }
 .menu-toggle:active,
 .menu-toggle.toggled-on,
@@ -42,36 +42,36 @@ button:active,
 input[type="submit"]:active,
 input[type="button"]:active,
 input[type="reset"]:active {
-  color: lighten($c-body, 20);
-  @include vertical-gradient($startColor: #ebebeb, $endColor: #e1e1e1);
   @include box-shadow-layered(inset 0 0 8px 2px #c6c6c6, 0 1px 0 0 #f4f4f4);
+  @include vertical-gradient($startColor: #ebebeb, $endColor: #e1e1e1);
   border-color: transparent;
+  color: lighten($c-body, 20);
 }
 
 
 
 // Pendrell buttons
 .button a {
-  @include rem('padding', 5px 8px);
-  @include font-sizer(13);
-  font-weight: normal;
-  color: lighten($c-body, 22);
-  @include vertical-gradient($startColor: #f4f4f4, $endColor: #e6e6e6);
-  border: 1px solid #d2d2d2;
   @include border-radius;
   @include box-shadow($shadow: 0 1px 2px rgba(64, 64, 64, .10));
+  @include font-sizer(13);
+  @include rem('padding', 5px 8px);
+  @include vertical-gradient($startColor: #f4f4f4, $endColor: #e6e6e6);
+  border: 1px solid #d2d2d2;
+  color: lighten($c-body, 22);
   cursor: pointer;
+  font-weight: normal;
   text-decoration: none;
 }
 .button a:hover {
-  color: lighten($c-body, 10);
   @include vertical-gradient($startColor: #f9f9f9, $endColor: #ebebeb);
+  color: lighten($c-body, 10);
 }
 .button a:active {
-  color: lighten($c-body, 20);
-  @include vertical-gradient($startColor: #ebebeb, $endColor: #e1e1e1);
   @include box-shadow-layered(inset 0 0 8px 2px #c6c6c6, 0 1px 0 0 #f4f4f4);
+  @include vertical-gradient($startColor: #ebebeb, $endColor: #e1e1e1);
   border: none;
+  color: lighten($c-body, 20);
 }
 
 

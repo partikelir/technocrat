@@ -21,7 +21,7 @@ img.wp-post-image {
 .gallery-caption,
 .entry-caption {
   font-style: italic;
-  @include font-sizer(12);
+  @include font-sizer(14);
   color: lighten($c-body, 20);
 }
 

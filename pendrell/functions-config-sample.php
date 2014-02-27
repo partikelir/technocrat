@@ -38,16 +38,16 @@ if ( is_admin() ) {
 
 
 
-// === PENDRELL MODULES === //
-
-// Easily disable any of this stuff by commenting it out.
+// === PENDRELL MODULES === do not edit below this line === //
+include( get_stylesheet_directory() . '/functions/content.php' );
+include( get_stylesheet_directory() . '/functions/comments.php' );
 include( get_stylesheet_directory() . '/functions/general.php' );
 include( get_stylesheet_directory() . '/functions/feed.php' );
 include( get_stylesheet_directory() . '/functions/images.php' );
 include( get_stylesheet_directory() . '/functions/search.php' );
 include( get_stylesheet_directory() . '/functions/taxonomies.php' );
 include( get_stylesheet_directory() . '/functions/various.php' );
-include( get_stylesheet_directory() . '/functions/custom-header.php' ); // From Twenty Twelve
+//include( get_stylesheet_directory() . '/functions/custom-header.php' ); // From Twenty Twelve
 
 if ( PENDRELL_SERIES )
   include( get_stylesheet_directory() . '/functions/series.php' );
@@ -62,7 +62,7 @@ include( get_stylesheet_directory() . '/functions/dev.php' );
 function pendrell_setup() {
 
   // Languages
-  load_theme_textdomain( 'twentytwelve', get_template_directory() . '/languages' );
+  load_theme_textdomain( 'pendrell', get_template_directory() . '/languages' );
 
   // Add full post format support
   global $pendrell_post_formats;

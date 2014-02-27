@@ -13,6 +13,12 @@ h1,h2,h3,h4,h5,h6,.main-navigation {
   font-family: $font-head;
   text-transform: uppercase;
 }
+h1 { @include font-sizer(32); }
+h2 { @include font-sizer(28); }
+h3 { @include font-sizer(24); }
+h4 { @include font-sizer(21); }
+h5 { @include font-sizer(18); }
+h6 { @include font-sizer(16); }
 code,
 kbd,
 pre,
@@ -154,7 +160,7 @@ button,
 input,
 textarea {
   @include border-radius();
+  @include rem('padding', 5px);
   border: 1px solid #ccc;
   font-family: inherit;
-  @include rem('padding', 5px);
 }

@@ -21,9 +21,9 @@
   @include rem('margin-top', $spacer/3);
 }
 .image-info {
-  border-top: $divider;
-  @include rem('margin', $spacer 0);
+  @include rem('margin-top', $spacer, 1);
   @include rem('padding-top', $spacer);
+  border-top: $divider;
   overflow: hidden;
 }
 .image-description {
@@ -31,34 +31,34 @@
   @include font-sizer(13);
 }
 .image-navigation {
-  position: relative;
-  height: 150px;
   @include rem('margin', $spacer 0);
   @include rem('padding-top', $spacer);
+  height: 150px;
+  position: relative;
   overflow: visible;
   width: 100%;
 }
 .previous-image {
   float: left;
-  width: 30%;
-  text-align: left;
   line-height: 150px;
+  text-align: left;
+  width: 30%;
 }
 .return-gallery {
   display: none;
   float: left;
-  width: 40%;
-  text-align: center;
   line-height: 150px;
-  white-space: nowrap;
   overflow: hidden;
+  text-align: center;
   text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 40%;
 }
 .next-image {
   float: right;
-  width: 30%;
-  text-align: right;
   line-height: 150px;
+  text-align: right;
+  width: 30%;
 }
 .previous-image img,
 .next-image img {

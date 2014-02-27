@@ -96,3 +96,8 @@
   left: 5px;
   z-index: 100000; /* Above WP toolbar */
 }
+
+
+
+// Hide that mysterious smiley face that appears when you use Jetpack
+img#wpstats {display: none;}

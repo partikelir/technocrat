@@ -4,25 +4,25 @@
   @include rem('margin-bottom', $spacer);
 }
 .author-info {
-  border-top: $divider;
-  @include rem('margin', $spacer 0);
+  @include rem('margin-top', $spacer, 1);
   @include rem('padding-top', $spacer);
+  border-top: $divider;
   overflow: hidden;
 }
 .author-description p {
   @include font-sizer(14);
 }
 .author.archive .author-info {
-  border-top: 0;
   @include rem('margin', 0 0 $spacer*2);
+  border-top: 0;
 }
 .author.archive .author-avatar {
   margin-top: 0;
 }
 .author-avatar {
   @media screen and (min-width: 600px) {
-    float: right;
     @include rem('margin-top', 8px);
+    float: right;
   }
 }
 .author-description {

@@ -2,9 +2,9 @@
 
 // Site
 .site {
-  @include rem('padding', 0 $spacer);
+  @include box-shadow-layered( 0 2px 6px rgba(100, 100, 100, 0.3), inset 0 -3px 12px #ddd );
+  @include rem('padding', 0 $spacer*1.5);
   background-color: $c-site-bg;
-  @include box-shadow( 0 2px 6px rgba(100, 100, 100, 0.3) );
   @media screen and (min-width: 600px) {
     margin: 0 auto;
     max-width: $site-max-width;
@@ -20,21 +20,14 @@
 
 
 
-// Banner from Twenty Twelve
-section[role="banner"] {
-  @include rem('margin-bottom', $spacer*2);
-}
-
-
-
 // Footer
 footer[role="contentinfo"] {
+  @include font-sizer(12);
+  @include rem('margin-top', $spacer, 1);
+  @include rem('max-width', 960px);
+  @include rem('padding', $spacer 0);
   border-top: $divider;
   clear: both;
-  @include font-sizer(12);
-  @include rem('max-width', 960px);
-  @include rem('margin-top', $spacer);
-  @include rem('padding', $spacer 0);
   margin-left: auto;
   margin-right: auto;
   a {
@@ -45,15 +38,17 @@ footer[role="contentinfo"] {
   }
 }
 
+
+
 // Archives
 .archive-header,
 .page-header {
-  @include rem('margin-bottom', $spacer*2);
-  @include rem('padding-bottom', 22px);
+  @include rem('margin-bottom', $spacer*2, 1);
+  @include rem('padding-bottom', $spacer);
   border-bottom: $divider;
 }
 .archive-meta {
-  color: #757575;
   @include font-sizer(12);
-  @include rem('margin-top', 22px);
+  @include rem('margin-top', $spacer);
+  color: #757575;
 }

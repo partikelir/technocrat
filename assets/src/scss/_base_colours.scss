@@ -12,7 +12,7 @@ $c-body-bg:       darken($c-site-bg, 8);
 // Text
 $c-body:          #444;
 $c-head:          darken($c-body, 13);
-$c-meta:          lighten($c-body, 17);
+$c-meta:          lighten($c-body, 47);
 
 // Links
 $c-link:          #429ab2;
@@ -28,15 +28,15 @@ $c-menu-current:  darken($c-menu-link, 7);
 $c-menu-bg:       darken($c-site-bg, 3);
 
 // Elements: mostly defined in _general.scss
-$c-abbr:          #999;
+$c-abbr:          lighten($c-body, 13);
 $c-blockquote:    lighten($c-body, 13);
 $c-blockquote-bg: #f8f8f8;
-$c-code:          #666;
-$c-del:           #333;
+$c-code:          lighten($c-body, 13);
+$c-del:           lighten($c-body, 13);
 $c-hr:            #ccc;
 $c-ins-bg:        #fff9c0;
-$c-mark:          #fff;
-$c-mark-bg:       #bbb;
+$c-mark:          $c-body;
+$c-mark-bg:       #fff9c0;
 $c-pre:           lighten($c-body, 19);
 $c-table:         lighten($c-body, 19);
 

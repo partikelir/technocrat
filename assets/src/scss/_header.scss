@@ -1,6 +1,7 @@
 // === HEADER === //
 .site-header {
-  @include rem('padding', $spacer 0);
+  @include rem('margin-bottom', $spacer*2, 1);
+  @include rem('margin-top', $spacer);
   h1,
   h2 {
     text-align: center;

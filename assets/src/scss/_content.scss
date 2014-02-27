@@ -22,6 +22,7 @@
   .entry-title {
     @include font-sizer(24);
     font-weight: normal;
+    margin: 0;
     text-transform: none;
     a {
       text-decoration: none;
@@ -43,12 +44,6 @@
     @include rem('margin', $spacer 0);
     text-transform: none;
   }
-  h1 { @include font-sizer(32); }
-  h2 { @include font-sizer(24); }
-  h3 { @include font-sizer(21); }
-  h4 { @include font-sizer(18); }
-  h5 { @include font-sizer(16); }
-  h6 { @include font-sizer(14); }
 }
 
 
@@ -57,6 +52,9 @@
 .entry-content,
 .comment-content {
   hyphens: auto; // Let autoprefix do the rest
+  a {
+    text-decoration: underline;
+  }
   ol,
   ul,
   dl {
@@ -159,15 +157,18 @@
 // Entry meta
 footer.entry-meta {
   @include rem('margin-top', $spacer);
-  @include font-sizer(14);
+  @include font-sizer(13);
   color: $c-meta;
 }
 .entry-meta {
   clear: both;
-  a {
-    color: lighten($c-meta, 17);
-    &:hover {
-      color: lighten($c-meta, 23);
+  .entry-meta-main {
+    a {
+      color: darken($c-meta, 33);
+      text-decoration: underline;
+      &:hover {
+        color: $c-link-h;
+      }
     }
   }
 }
