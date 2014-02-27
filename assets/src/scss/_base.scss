@@ -16,10 +16,8 @@ $base: 30;
 // Typically used with the rem mixin
 $spacer: $base+0px;
 
-// HTML font size property (percentage)
+// Conversion factor for the rem mixin; set $font-html to whatever the html tag font-size property is (percentage)
 $font-html: 100%;
-
-// Conversion factor for the rem mixin
 $base-default: 16px * $font-html / 100%;
 
 // Column widths

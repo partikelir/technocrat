@@ -6,33 +6,16 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
   font-size: 100%;
   vertical-align: baseline;
 }
+html {
+  overflow-y: scroll;
+  font-size: 100%;
+  overflow-y: scroll; // Keeps page centred in all browsers regardless of content height
+  -webkit-text-size-adjust: 100%; // Prevents iOS text size adjust after orientation change, without disabling user zoom
+  -ms-text-size-adjust: 100%; // www.456bereastreet.com/archive/201012/controlling_text_size_in_safari_for_ios_without_disabling_user_zoom/
+}
 body {
   line-height: 1;
-}
-ol,
-ul {
-  list-style: none;
-}
-blockquote,
-q {
-  quotes: none;
-}
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-  content: '';
-  content: none;
-}
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-caption,
-th,
-td {
-  font-weight: normal;
-  text-align: left;
+  word-wrap: break-word;
 }
 h1,
 h2,
@@ -41,12 +24,6 @@ h4,
 h5,
 h6 {
   clear: both;
-}
-html {
-  overflow-y: scroll;
-  font-size: 100%;
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
 }
 a:focus {
   outline: thin dotted;
@@ -63,33 +40,50 @@ nav,
 section {
   display: block;
 }
-audio,
-canvas,
-video {
-  display: inline-block;
+code,
+kbd,
+tt,
+var {
+  white-space: pre;
 }
-audio:not([controls]) {
-  display: none;
+
+
+
+// Typography
+b,
+strong {
+  font-weight: bold;
 }
-sub,
-sup {
+dfn,
+cite,
+em,
+i {
+  font-style: italic;
+}
+strike {
+  text-decoration: line-through;
+}
+sup,
+sub {
   font-size: 75%;
+  height: 0;
   line-height: 0;
   position: relative;
   vertical-align: baseline;
 }
 sup {
-  top: -0.5em;
+  bottom: 1ex;
 }
 sub {
-  bottom: -0.25em;
+  top: .5ex;
+}
+big {
+  font-size: 120%;
+  line-height: 0;
 }
 small {
-  font-size: smaller;
-}
-img {
-  border: 0;
-  -ms-interpolation-mode: bicubic;
+  font-size: 75%;
+  line-height: 0;
 }
 mark {
   text-decoration: underline;
@@ -97,4 +91,158 @@ mark {
 }
 strike {
   text-decoration: line-through;
+}
+
+
+
+// Pre and code blocks
+code {
+  //word-wrap: normal;
+}
+pre {
+  display: block;
+  max-width: 100%;
+  overflow: auto;
+  white-space: pre-wrap;
+}
+pre code {
+  white-space: -moz-pre-wrap;
+  white-space: pre-wrap;
+  word-wrap: normal;
+}
+
+
+
+// Blockquote and quotations
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+
+
+
+// Lists and definitions
+ol,
+ul {
+  list-style: none;
+}
+ul,
+ol,
+dl {
+  font-family: inherit;
+  font-size: 100%;
+  font-style: normal;
+  font-weight: normal;
+}
+dl {
+  list-style: none;
+  dt {
+    font-weight: bold;
+  }
+}
+
+
+
+// Tables and figures
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+caption,
+th,
+td {
+  font-weight: normal;
+  text-align: left;
+}
+th {
+  font-weight: bold;
+}
+figure {
+  margin: 0;
+}
+figcaption {
+  font-style: italic;
+}
+
+
+
+// Forms
+button,
+input {
+  line-height: normal;
+  *overflow: visible;  // Corrects inner spacing displayed oddly in IE6/7
+}
+button,
+input,
+select,
+textarea {
+  font-size: 100%; // Corrects font size not being inherited in all browsers
+  margin: 0; // Addresses margins set differently in IE6/7, F3/4, S5, Chrome
+  vertical-align: baseline; // Improves appearance and consistency in all browsers
+  *vertical-align: middle; // Improves appearance and consistency in all browsers
+}
+textarea {
+  font-size: 100%;
+  overflow: auto;
+  vertical-align: top;
+}
+input[type="checkbox"],
+input[type="radio"],
+input[type="file"],
+input[type="hidden"],
+input[type="image"],
+input[type="color"] {
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+}
+
+
+
+// Multimedia
+img {
+  border: 0; // From Twenty Twelve
+  height: auto; // Make sure images are scaled correctly
+  max-width: 100%; // Adhere to container width
+  -ms-interpolation-mode: bicubic; // From Twenty Twelve
+}
+audio,
+canvas,
+video {
+  display: inline-block;
+}
+audio:not([controls]) {
+  display: none; // From Twenty Twelve
+}
+embed,
+iframe,
+object,
+video {
+  max-width: 100%; // Make sure embeds and iframes fit their containers
+}
+
+
+
+// Hyphenation
+abbr,
+acronym,
+blockquote,
+code,
+dir,
+kbd,
+listing,
+plaintext,
+q,
+samp,
+tt,
+var,
+xmp {
+  hyphens: none;
 }

@@ -1,10 +1,21 @@
 // === MIXINS === //
 
-@mixin font-sizer($size) {
+@mixin font-sizer($size: $font-size) {
   @include rem('font-size', $size+0px);
-  line-height: ($base/$size);
+  @if $size < $base {
+    line-height: ($base/$size);
+  }
+  @if $size > $base {
+    line-height: (($base*1.5)/$size);
+  }
 }
 
+@mixin highlight($color: #eee) {
+  @include border-radius();
+  @include rem('padding', $spacer/10 $spacer/7);
+  background: $color;
+  border: 1px solid darken($color, 7);
+}
 
 
 // === TWENTY TWELVE === //
@@ -21,7 +32,6 @@
   background-image: -o-linear-gradient(left, $startColor, $endColor); // Opera 11.10
   background-image: linear-gradient(left, $startColor, $endColor); // Le standard
 }
-
 @mixin vertical-gradient ($startColor: #efe7d7, $endColor: #dcd2be) {
   background-color: $endColor;
   background-repeat: repeat-x;
@@ -40,6 +50,7 @@
      -moz-border-radius: $radius;
           border-radius: $radius;
 }
+
 // Box shadows
 @mixin box-shadow($shadow: 0 1px 4px rgba(0, 0, 0, .20)) {
   -webkit-box-shadow: $shadow;
@@ -51,13 +62,15 @@
      -moz-box-shadow: $shadow, $shadow-layered;
           box-shadow: $shadow, $shadow-layered;
 }
+
 // Transitions
 @mixin transition($transition) {
   -webkit-transition: $transition;
      -moz-transition: $transition;
           transition: $transition;
 }
-//Columns
+
+// Columns
 @mixin columns($count: 3, $gap: 0.714285714rem) {
   -webkit-column-count: $count;
   -webkit-column-gap: $gap;

@@ -6,15 +6,12 @@
     width: percentage(250/960);
   }
   .widget {
-    -webkit-hyphens: auto;
-    -moz-hyphens: auto;
-    hyphens: auto;
-    @include rem('margin-bottom', $spacer*2);
+    @include rem('margin-bottom', $spacer*1.5);
     word-wrap: break-word;
   }
   .widget {
     h3 {
-      @include rem('margin-bottom', $spacer);
+      @include rem('margin-bottom', $spacer/2);
     }
     p,
     li,
@@ -27,15 +24,6 @@
     ul ul {
       @include rem('margin-left', $spacer/2);
     }
-    a {
-      color: #429ab2;
-      &:visited {
-        color: #52b1cc;
-      }
-      &:hover {
-        color: #ED7251;
-      }
-    }
   }
   .textwidget {
     ul {
@@ -43,12 +31,13 @@
       @include rem('margin', 0 0 $spacer);
     }
     li {
-      margin-left: 36px;
-      margin-left: 2.571428571rem;
+      @include rem('margin-left', $spacer);
     }
   }
   #s {
-    width: 53.66666666666%; /* define a width to avoid dropping a wider submit button */
+    @include font-sizer(14);
+    line-height: 0;
+    width: percentage(150/250);
   }
 }
 
@@ -78,16 +67,11 @@
     text-align: right;
   }
 }
-.widget_search label {
-  display: block;
-  @include font-sizer(13);
-}
-.widget_twitter li {
-  list-style-type: none;
-}
-.widget_twitter .timesince {
-  display: block;
-  text-align: right;
+.widget_search {
+  label {
+    @include font-sizer(13);
+    display: block;
+  }
 }
 
 /* Cheap trick to lose the sidebar on full-width view; surely there is a better way */

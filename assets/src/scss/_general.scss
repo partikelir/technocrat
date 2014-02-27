@@ -1,13 +1,10 @@
 // === GENERAL === //
 
 // Core
-html {
-  font-size: $font-html;
-}
 body {
   @include font-sizer($font-size);
-  background-color: $c-body-bg;
   color: $c-body;
+  background-color: $c-body-bg;
   font-family: $font-body;
   text-rendering: optimizeLegibility;
 }
@@ -16,92 +13,148 @@ h1,h2,h3,h4,h5,h6,.main-navigation {
   font-family: $font-head;
   text-transform: uppercase;
 }
+code,
+kbd,
 pre,
-code {
+samp,
+tt,
+var {
   font-family: $font-mono;
 }
-/* Text transform to uppercase for use with Varela Round */
-h1.site-title,
-.image-info h2,
-.author-description h2,
-.comment-reply-title {
-  //text-transform: uppercase;
-}
+
+
 
 // Links
 a {
-  outline: none;
   color: $c-link;
+  text-decoration: none;
+  &:visited {
+    color: $c-link-v;
+  }
   &:hover {
     color: $c-link-h;
+    outline: 0; // Improves readability when focused and also mouse hovered in all browsers people.opera.com/patrickl/experiments/keyboard/test
+    text-decoration: underline;
+  }
+  &:active {
+    color: $c-link-a;
+    outline: 0;
+  }
+  &:focus {
+    color: $c-link-f;
   }
 }
 
 
 
-/* Form fields, general styles first */
-button,
-input,
-textarea {
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  font-family: inherit;
-  padding: 6px;
-  padding: 0.428571429rem;
+// Reset-like things with variables or WordPress-specific styling
+abbr,
+acronym {
+  border-bottom: $divider;
+  color: $c-abbr;
+  font-variant: small-caps;
+  line-height: 0;
+  text-transform: lowercase;
+  &:hover {
+    cursor: help;
+  }
 }
-button,
-input {
-  line-height: normal;
-}
-textarea {
-  font-size: 100%;
-  overflow: auto;
-  vertical-align: top;
-}
-
-/* Reset non-text input types */
-input[type="checkbox"],
-input[type="radio"],
-input[type="file"],
-input[type="hidden"],
-input[type="image"],
-input[type="color"] {
-  border: 0;
-  border-radius: 0;
-  padding: 0;
+address {
+  @include rem('margin', 0 0 $spacer);
+  display: block;
+  &:first-line {
+    font-weight: bold;
+  }
 }
 del {
   color: $c-del;
 }
 ins {
-  background: $c-ins-bg;
+  @include highlight($c-ins-bg);
   text-decoration: none;
 }
 hr {
+  @include rem('margin-bottom', $spacer);
   background-color: $c-hr;
   border: 0;
   height: 1px;
+}
+
+
+
+// Blockquote and quotations
+blockquote {
+  @include border-radius(12px);
+  @include box-shadow-layered(inset 4px 4px 8px #eee, 1px 1px 4px #eee);
+  @include rem('margin', 0 0 $spacer 0);
+  @include rem('padding', $spacer $spacer 0);
+  background: $c-blockquote-bg;
+  color: $c-blockquote;
+  display: block;
+  font-style: italic;
+  cite {
+    display: block;
+    text-align: right;
+    &:before {
+      content: "\2014\00a0";
+    }
+    &:after {
+      content: "";
+    }
+  }
+  p {
+    @include rem('padding-bottom', $spacer);
+    margin-bottom: 0;
+    // Add opening and closing quotation marks to the blockquote element
+    &:first-child::before {
+      content: "\201C";
+    }
+    &:last-child::after {
+      content: "\201D";
+    }
+  }
+}
+q {
+  quotes: none;
+  &:before {
+    content: "\201C";
+  }
+  &:after {
+    content: "\201D";
+  }
+}
+
+
+
+// Pre and code blocks
+code {
+  @include highlight($c-blockquote-bg);
+  color: $c-code;
+}
+a code {
+  color: $c-link;
+}
+.form-allowed-tags code {
+  background: none;
+  border: none;
+}
+pre {
+  @include font-sizer(16);
   @include rem('margin-bottom', $spacer);
+  color: $c-pre;
+}
+pre code {
+  display: block;
 }
 
-/* Nice hyphens */
-.entry-content,
-.entry-summary {
-  -webkit-hyphens: auto;
-  -moz-hyphens: auto;
-  -ms-hyphens: auto;
-  -o-hyphens: auto;
-  hyphens: auto;
-}
 
-// Small headers
-.archive-title,
-.page-title,
-.widget-title,
-.entry-content th,
-.comment-content th {
-  @include font-sizer(12);
-  font-weight: bold;
-  //text-transform: uppercase;
-  color: #636363;
+
+// Form elements
+button,
+input,
+textarea {
+  @include border-radius();
+  border: 1px solid #ccc;
+  font-family: inherit;
+  @include rem('padding', 5px);
 }

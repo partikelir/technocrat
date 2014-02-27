@@ -22,19 +22,26 @@ $c-link-a:        saturate(lighten($c-link, 13), 13);
 $c-link-f:        saturate(lighten($c-link, 8), 8);
 
 // Main menu
-$c-menu-link:     #666;
+$c-menu-link:     lighten($c-body, 17);
 $c-menu-link-h:   lighten($c-menu-link, 23);
 $c-menu-current:  darken($c-menu-link, 7);
-$c-menu-bg:       darken($c-body, 7);
+$c-menu-bg:       darken($c-site-bg, 3);
 
-// Elements
+// Elements: mostly defined in _general.scss
+$c-abbr:          #999;
+$c-blockquote:    lighten($c-body, 13);
+$c-blockquote-bg: #f8f8f8;
+$c-code:          #666;
 $c-del:           #333;
 $c-hr:            #ccc;
 $c-ins-bg:        #fff9c0;
 $c-mark:          #fff;
 $c-mark-bg:       #bbb;
+$c-pre:           lighten($c-body, 19);
+$c-table:         lighten($c-body, 19);
 
 // Various
+$c-small-header:  lighten($c-body, 13);
 $c-site-header:   #222;
 $c-divider:       darken($c-b, 7);
 $c-pullquote:     #888;
