@@ -17,7 +17,7 @@ function pendrell_places_init() {
   $args = array(
     'labels' => $labels,
     'hierarchical' => true,
-    'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'custom-fields', 'comments', 'revisions', 'page-attributes' ),
+    'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'custom-fields', 'comments', 'revisions', 'page-attributes', 'wpcom-markdown' ),
     'taxonomies' => array( 'place_type' ),
     'public' => true,
     'show_ui' => true,

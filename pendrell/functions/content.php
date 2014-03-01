@@ -185,7 +185,11 @@ function pendrell_entry_meta() {
       $utility_text = __( 'This page was posted under %6$s<span class="by-author"> by %4$s</span>.', 'pendrell' );
     // Pages
     } else {
-      $utility_text = __( 'This page was posted<span class="by-author"> by %4$s</span>.', 'pendrell' );
+      if ( is_multi_author() ) {
+        $utility_text = __( 'This page was posted<span class="by-author"> by %4$s</span>.', 'pendrell' );
+      } else {
+        $utility_text = '';
+      }
     }
   } elseif ( pendrell_is_place() ) {
     // Places with a parent
@@ -193,7 +197,11 @@ function pendrell_entry_meta() {
       $utility_text = __( 'This place was posted under %6$s<span class="by-author"> by %4$s</span>.', 'pendrell' );
     // Places
     } else {
-      $utility_text = __( 'This place was posted<span class="by-author"> by %4$s</span>.', 'pendrell' );
+      if ( is_multi_author() ) {
+        $utility_text = __( 'This place was posted<span class="by-author"> by %4$s</span>.', 'pendrell' );
+      } else {
+        $utility_text = '';
+      }
     }
   } else {
     // Post formats
