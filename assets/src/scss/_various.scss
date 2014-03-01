@@ -55,13 +55,13 @@
   float: right;
   max-width: 30%;
   /* still need this to play nice with existing vertical rhythm */
-  margin: 0 0 12px 12px;
-  padding: 20px 0 20px 0;
+  @include rem('margin', 0 0 $spacer/2 $spacer/2);
+  @include rem('padding', 20px 0 20px 0);
 }
 
 
 
-// Post series
+// Series
 .entry-meta-series {
   @include rem('margin-bottom', $spacer);
   h2 {
@@ -73,6 +73,29 @@
   }
 }
 
+
+
+// Places
+.entry-meta-place-list {
+  @include rem('margin-bottom', $spacer);
+  ul {
+    @include font-sizer(16);
+    li {
+      ul {
+        @include rem('margin-left', $spacer);
+        li {
+          list-style: disc outside;
+          ul {
+            @include rem('margin-left', $spacer);
+            li {
+              list-style: disc outside;
+            }
+          }
+        }
+      }
+    }
+  }
+}
 
 
 // Assistive text

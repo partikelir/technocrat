@@ -50,7 +50,7 @@ if ( pendrell_is_portfolio() && is_archive() ) { // Portfolio archive items
 
 		<footer class="entry-meta">
 			<?php pendrell_entry_meta(); ?>
-			<?php if ( is_singular() && get_the_author_meta( 'description' ) && PENDRELL_AUTHOR_BOX ) : // If a user has filled out their description show a bio on their entries. ?>
+			<?php if ( is_singular('post') && get_the_author_meta( 'description' ) && PENDRELL_AUTHOR_BOX ) : // If a user has filled out their description show a bio on their entries. ?>
 				<div class="author-info">
 					<div class="author-avatar">
 						<a href="<?php the_author_meta( 'user_url' ); ?>" title="<?php the_author_meta( 'display_name' ); ?>"><?php echo get_avatar( get_the_author_meta( 'user_email' ), 80 ); ?></a>

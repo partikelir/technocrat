@@ -41,6 +41,17 @@ function pendrell_is_portfolio() {
 
 
 
+// Test whether the current item is a place
+function pendrell_is_place() {
+  if ( get_post_type() === 'place' ) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+
+
 // Google Analytics code
 function pendrell_analytics() {
 	if ( PENDRELL_GOOGLE_ANALYTICS_CODE ) { ?>

@@ -18,7 +18,7 @@ define( 'PENDRELL_GOOGLE_ANALYTICS_CODE', false );
 // Google web fonts to load; false will load Open Sans
 define( 'PENDRELL_GOOGLE_FONTS', 'Varela+Round:400|Lato:400italic,400,700'); // |Open+Sans:400italic,700italic,400,700');
 
-// Locations functionality
+// Places functionality
 define( 'PENDRELL_PLACES', false );
 
 // Shadow categories: add category numbers to this string in the format '-1,-2' to hide them from the front page

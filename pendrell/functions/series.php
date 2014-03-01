@@ -21,10 +21,11 @@ function pendrell_series_init() {
 		),
 	));
 }
-add_action( 'init', 'pendrell_series_init', 0 );
+add_action( 'init', 'pendrell_series_init' );
+
+
 
 function pendrell_series_list() {
-
 	global $post;
 
 	// Only display the post series list on the single post view
@@ -72,6 +73,8 @@ function pendrell_series_list() {
 }
 add_action( 'pre_entry_meta', 'pendrell_series_list' );
 
+
+
 // Test to see whether the post is part of a series
 function pendrell_in_series() {
 	if ( taxonomy_exists( 'series' ) && has_term( '', 'series' ) ) {
@@ -80,6 +83,8 @@ function pendrell_in_series() {
 		return false;
 	}
 }
+
+
 
 // Display post series in forward chronological order
 function pendrell_series_get_posts( $query ) {

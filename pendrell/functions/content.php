@@ -155,7 +155,7 @@ function pendrell_entry_meta() {
   }
 
   $parent = '';
-  if ( ( is_attachment() && wp_attachment_is_image() && $post->post_parent ) || ( is_page() && $post->post_parent ) ) {
+  if ( ( is_attachment() && wp_attachment_is_image() && $post->post_parent ) || ( ( is_page() || pendrell_is_place() ) && $post->post_parent ) ) {
     if ( is_attachment() && wp_attachment_is_image() && $post->post_parent ) {
       $parent_rel = 'gallery';
     } elseif ( is_page() && $post->post_parent ) {
@@ -179,12 +179,22 @@ function pendrell_entry_meta() {
   } elseif ( is_attachment() && wp_attachment_is_image() && $post->post_parent ) {
     // Images with a parent post
     $utility_text = __( 'This %5$s was posted %3$s in %6$s.', 'pendrell' );
-  } elseif ( is_page() && $post->post_parent ) {
-    // Pages with a parent (sub-pages)
-    $utility_text = __( 'This page was posted under %6$s<span class="by-author"> by %4$s</span>.', 'pendrell' );
   } elseif ( is_page() ) {
+    // Pages with a parent
+    if ( $post->post_parent ) {
+      $utility_text = __( 'This page was posted under %6$s<span class="by-author"> by %4$s</span>.', 'pendrell' );
     // Pages
-    $utility_text = __( 'This page was posted<span class="by-author"> by %4$s</span>.', 'pendrell' );
+    } else {
+      $utility_text = __( 'This page was posted<span class="by-author"> by %4$s</span>.', 'pendrell' );
+    }
+  } elseif ( pendrell_is_place() ) {
+    // Places with a parent
+    if ( $post->post_parent ) {
+      $utility_text = __( 'This place was posted under %6$s<span class="by-author"> by %4$s</span>.', 'pendrell' );
+    // Places
+    } else {
+      $utility_text = __( 'This place was posted<span class="by-author"> by %4$s</span>.', 'pendrell' );
+    }
   } else {
     // Post formats
     $utility_text = __( 'This %5$s was posted %3$s<span class="by-author"> by %4$s</span>.', 'pendrell' );

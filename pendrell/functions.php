@@ -15,7 +15,7 @@ include( get_stylesheet_directory() . '/functions/images.php' );
 include( get_stylesheet_directory() . '/functions/search.php' );
 include( get_stylesheet_directory() . '/functions/various.php' );
 
-if ( PENDRELL_LOCATIONS )
+if ( PENDRELL_PLACES )
   include( get_stylesheet_directory() . '/functions/places.php' );
 
 if ( PENDRELL_SERIES )
