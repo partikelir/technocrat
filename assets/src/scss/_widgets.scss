@@ -5,17 +5,13 @@
     width: percentage(250/960);
   }
   .widget {
-    @include rem('margin-bottom', $spacer*1.5);
+    @include rem('margin-bottom', $spacer);
     word-wrap: break-word;
-  }
-  .widget {
-    h3 {
-      @include rem('margin-bottom', $spacer/2);
-    }
     p,
     li,
     .textwidget {
       @include font-sizer(14);
+      color: lighten($c-body, 27);
     }
     p {
       @include rem('margin-bottom', $spacer);
@@ -33,13 +29,18 @@
       @include rem('margin-left', $spacer);
     }
   }
-  #s {
-    @include font-sizer(14);
-    line-height: 0;
-    width: percentage(150/250);
+  .widget_search {
+    @include rem('margin-bottom', $spacer, 2); // Hack to deal with button alignment issues
+    #s {
+      width: percentage(150/250);
+    }
+    #searchsubmit {
+      vertical-align: middle;
+    }
   }
 }
 
+// Twenty Twelve cruft
 .widget_rss {
   li {
     @include rem('margin', $spacer/2 0);
@@ -48,14 +49,13 @@
 .widget_recent_entries .post-date,
 .widget_rss .rss-date {
   color: lighten($c-body, 40);
-  @include rem('font-size', 11px);
-  @include rem('margin-left', 12px);
+  @include rem('margin-left', $spacer/2);
 }
 #wp-calendar {
-  margin: 0;
-  width: 100%;
   @include font-sizer(13);
   color: lighten($c-body, 14);
+  margin: 0;
+  width: 100%;
   th,
   td,
   caption {
@@ -66,14 +66,8 @@
     text-align: right;
   }
 }
-.widget_search {
-  label {
-    @include font-sizer(13);
-    display: block;
-  }
-}
 
-/* Cheap trick to lose the sidebar on full-width view; surely there is a better way */
+// Cheap trick to lose the sidebar on full-width view; surely there is a better way
 body.full-width,
 body.single-format-aside,
 body.single-format-link,

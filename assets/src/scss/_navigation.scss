@@ -5,16 +5,18 @@
 input[type="submit"],
 input[type="button"],
 input[type="reset"],
-article.post-password-required input[type=submit],
-.bypostauthor cite span {
+article.post-password-required input[type=submit] {
   @include border-radius;
   @include box-shadow($shadow: 0 1px 2px rgba(64, 64, 64, .10));
-  @include font-sizer(13);
+  @include font-sizer(12, 2);
   @include rem('padding', 0 6px);
   @include vertical-gradient($startColor: #f4f4f4, $endColor: #e6e6e6);
   border: 1px solid #d2d2d2;
   color: lighten($c-body, 22);
+  display: inline-block;
+  font-family: $font-head;
   font-weight: normal;
+  text-transform: uppercase;
 }
 .menu-toggle,
 button,
@@ -60,7 +62,9 @@ input[type="reset"]:active {
   border: 1px solid #d2d2d2;
   color: lighten($c-body, 22);
   cursor: pointer;
+  font-family: $font-head;
   font-weight: normal;
+  text-transform: uppercase;
   text-decoration: none;
 }
 .button a:hover {
@@ -72,6 +76,35 @@ input[type="reset"]:active {
   @include vertical-gradient($startColor: #ebebeb, $endColor: #e1e1e1);
   border: none;
   color: lighten($c-body, 20);
+}
+
+
+
+// Main navigation
+.main-navigation {
+  @include rem('margin-top', $spacer/2);
+  font-family: $font-head;
+  text-align: center;
+  text-transform: uppercase;
+  li {
+    @include font-sizer(14);
+  }
+  a {
+    color: $c-menu-link;
+    &:hover {
+      color: $c-menu-link-h;
+    }
+  }
+  ul.nav-menu,
+  div.nav-menu > ul {
+    display: none;
+  }
+  ul.nav-menu.toggled-on {
+    display: inline-block;
+  }
+}
+.menu-toggle {
+  display: inline-block;
 }
 
 
@@ -104,31 +137,4 @@ input[type="reset"]:active {
 .nav-single + .comments-area,
 #comment-nav-above {
   @include rem('margin', $spacer*2 0);
-}
-
-
-
-// Main navigation
-.main-navigation {
-  @include rem('margin-top', $spacer/2);
-  text-align: center;
-  li {
-    @include font-sizer(14);
-  }
-  a {
-    color: $c-menu-link;
-    &:hover {
-      color: $c-menu-link-h;
-    }
-  }
-  ul.nav-menu,
-  div.nav-menu > ul {
-    display: none;
-  }
-  ul.nav-menu.toggled-on {
-    display: inline-block;
-  }
-}
-.menu-toggle {
-  display: inline-block;
 }

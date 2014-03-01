@@ -31,11 +31,6 @@ if ( pendrell_is_portfolio() && is_archive() ) { // Portfolio archive items
 <?php } else { ?>
 
 	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-		<?php if ( is_sticky() && is_home() && ! is_paged() ) : ?>
-		<div class="featured-post">
-			<?php _e( 'Featured post', 'pendrell' ); ?>
-		</div>
-		<?php endif; ?>
 		<header class="entry-header">
 			<h1 class="entry-title">
 				<a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'Permalink to %s', 'pendrell' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark"><?php the_title(); ?></a>

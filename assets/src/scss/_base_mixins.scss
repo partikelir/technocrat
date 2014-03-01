@@ -1,18 +1,23 @@
 // === MIXINS === //
 
-@mixin font-sizer($size: $font-size) {
+// $size (integer): pixel value of desired font size
+// $offset (integer); pixel value used in instances where there is a border mucking up the line-height
+@mixin font-sizer($size: $font-size, $offset: 0) {
   @include rem('font-size', $size+0px);
-  @if $size < $base {
-    line-height: ($base/$size);
+  $basefactor: 1;
+  // Buffer for font sizes over the line-height
+  @if $size >= $base * 2 {
+    $basefactor: 2;
+  } @elseif $size >= $base {
+    $basefactor: 1.5;
   }
-  @if $size > $base {
-    line-height: (($base*1.5)/$size);
-  }
+  line-height: ( ( ($base - $offset) * $basefactor) / $size );
 }
 
+// Highlights text; used with ins and mark tags
 @mixin highlight($color: #eee) {
   @include border-radius();
-  @include rem('padding', $spacer/10 $spacer/7);
+  @include rem('padding', $spacer/12 $spacer/8);
   background: $color;
   border: 1px solid darken($color, 7);
 }

@@ -1,18 +1,5 @@
 // === CONTENT === //
 
-// Small headers
-.archive-title,
-.page-title,
-.widget-title,
-.entry-content th,
-.comment-content th {
-  @include font-sizer(12);
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-
-
 // Entry header
 .entry-header {
   @include rem('margin-bottom', $spacer);
@@ -41,7 +28,7 @@
 .entry-content,
 .comment-content {
   h1,h2,h3,h4,h5,h6 {
-    @include rem('margin', $spacer 0);
+    @include rem('margin-top', $spacer);
     text-transform: none;
   }
 }
@@ -94,7 +81,6 @@
   table {
     border-bottom: $divider;
     color: $c-table;
-    @include font-sizer(14);
     @include rem('margin', 0 0 $spacer);
     width: 100%;
     caption {
@@ -103,8 +89,8 @@
     }
   }
   td {
+    @include font-sizer(14, 1);
     border-top: $divider;
-    padding: 6px 10px 6px 0;
   }
 
   // Images
@@ -158,11 +144,11 @@
 footer.entry-meta {
   @include rem('margin-top', $spacer);
   @include font-sizer(13);
-  color: $c-meta;
 }
 .entry-meta {
   clear: both;
   .entry-meta-main {
+    color: $c-meta;
     a {
       color: darken($c-meta, 33);
       text-decoration: underline;
@@ -174,6 +160,7 @@ footer.entry-meta {
 }
 // Needs some tweaking; long entry meta info will cause the buttons to slide to the next line
 .entry-meta-buttons {
+  @include rem('margin-left', $spacer/2);
   float: right;
 }
 .edit-link,

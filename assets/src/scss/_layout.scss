@@ -20,22 +20,57 @@
 
 
 
-// Footer
-footer[role="contentinfo"] {
-  @include font-sizer(12);
-  @include rem('margin-top', $spacer, 1);
-  @include rem('max-width', 960px);
-  @include rem('padding', $spacer 0);
-  border-top: $divider;
-  clear: both;
-  margin-left: auto;
-  margin-right: auto;
-  a {
-    color: lighten($c-body, 14);
-    &:hover {
-      color: $c-link-h;
+// Header
+.site-header {
+  @include rem('margin-bottom', $spacer*2, 1);
+  @include rem('margin-top', $spacer);
+  h1,
+  h2 {
+    text-align: center;
+    @media screen and (min-width: 600px) {
+      text-align: left;
+    }
+    a {
+      color: $c-site-header;
+      display: inline-block;
+      text-decoration: none;
+      &:hover {
+        color: $c-link-h;
+      }
     }
   }
+  h1 {
+    @include font-sizer(21);
+    @media screen and (min-width: 600px) {
+      @include font-sizer(28);
+    }
+  }
+  h2 {
+    color: lighten($c-site-header, 50);
+    display: none;
+    font-weight: normal;
+    @include font-sizer(14);
+    @media screen and (min-width: 600px) {
+      display: block;
+    }
+  }
+}
+.site-header .site-title,
+.site-header .site-description {
+  clear: none;
+}
+
+
+
+// Small headers
+.archive-title,
+.page-title,
+.widget-title,
+.entry-content th,
+.comment-content th {
+  @include font-sizer(12);
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 
@@ -51,4 +86,25 @@ footer[role="contentinfo"] {
   @include font-sizer(12);
   @include rem('margin-top', $spacer);
   color: #757575;
+}
+
+
+
+// Footer
+.site-footer {
+  @include font-sizer(12);
+  @include rem('margin-top', $spacer, 1);
+  @include rem('max-width', 960px);
+  @include rem('padding', $spacer/2 0);
+  border-top: $divider;
+  clear: both;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: right;
+  a {
+    color: lighten($c-body, 14);
+    &:hover {
+      color: $c-link-h;
+    }
+  }
 }

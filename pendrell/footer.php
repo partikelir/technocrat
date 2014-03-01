@@ -11,9 +11,9 @@
  */
 ?>
 	</div><!-- #main .wrapper -->
-	<footer id="colophon" role="contentinfo">
+	<footer id="colophon" class="site-footer" role="contentinfo">
 		<div class="site-info">
-			<?php printf( __( '<a href="%1$s" title="%2$s" rel="generator">Powered by WordPress</a> and themed with <a href="%3$s" title="%4$s">Pendrell %5$s</a>.', 'pendrell' ),
+			<?php printf( __( 'Powered by <a href="%1$s" title="%2$s" rel="generator">WordPress</a> and <a href="%3$s" title="%4$s">Pendrell %5$s</a>.', 'pendrell' ),
           esc_url( __( 'http://wordpress.org/', 'pendrell' ) ),
           esc_attr( __( 'Semantic Personal Publishing Platform', 'pendrell' ) ),
           esc_url( __( 'http://github.com/synapticism/pendrell', 'pendrell' ) ),

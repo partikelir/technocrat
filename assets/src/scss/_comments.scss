@@ -3,9 +3,8 @@
 -------------------------------------------------------------- */
 
 .comments-title {
-  @include rem('margin-bottom', $spacer*2);
-  @include font-sizer(16);
-  font-weight: normal;
+  @include font-sizer(18);
+  @include rem('margin-bottom', $spacer);
 }
 .comments-area {
   article {
@@ -28,12 +27,12 @@
       }
       cite,
       time {
-        display: block;
         @include rem('margin-left', $spacer*3);
+        display: block;
       }
       cite {
+        @include font-sizer(14);
         font-style: normal;
-        @include font-sizer(15);
         a {
           color: $c-body;
           &:hover {
@@ -47,16 +46,16 @@
         text-decoration: none;
       }
       h4 { // TODO: find out what this is
+        @include border-radius();
+        @include font-sizer(12, 2);
+        @include rem('padding', 6px 12px);
+        @include vertical-gradient($startColor: #009cee, $endColor: #0088d0);
+        border: 1px solid #007cbd;
+        color: #fff;
+        font-weight: normal;
         position: absolute;
         top: 0;
         right: 0;
-        @include rem('padding', 6px 12px);
-        @include rem('font-size', 12px);
-        font-weight: normal;
-        color: #fff;
-        @include vertical-gradient($startColor: #009cee, $endColor: #0088d0);
-        @include border-radius();
-        border: 1px solid #007cbd;
       }
     }
   }
@@ -66,25 +65,11 @@
   .bypostauthor {
     cite {
       span {
-        position: absolute;
-        @include rem('margin-left', 5px);
-        @include rem('padding', 2px 5px);
-        @include font-sizer(10);
-      }
-      b {
-        font-weight: bold;
+        @include font-sizer(12);
+        color: lighten($c-body, 37);
       }
     }
   }
-}
-.bypostauthor cite span { // TODO: merge this with the one above
-  color: #fff;
-  background-color: #429ab2;
-  background-image: none;
-  border: 1px solid #1f6f93;
-  border-radius: 2px;
-  box-shadow: none;
-  padding: 0;
 }
 a.comment-reply-link,
 a.comment-edit-link {
@@ -104,11 +89,10 @@ a.comment-edit-link {
 #respond {
   @include rem('margin-top', $spacer*2);
   h3#reply-title {
-    @include font-sizer(16);
     #cancel-comment-reply-link {
-      @include rem('margin-left', 10px);
+      @include font-sizer(12);
+      @include rem('margin-left', $spacer/2);
       font-weight: normal;
-      @include rem('font-size', 12px);
     }
   }
   form {
@@ -125,10 +109,7 @@ a.comment-edit-link {
     }
     input[type="text"],
     textarea {
-      -moz-box-sizing: border-box; // Redundant?
-      box-sizing: border-box;
       font-family: inherit;
-      @include rem('padding', 5px);
       width: 100%;
     }
     input[type="text"] {
@@ -142,9 +123,9 @@ a.comment-edit-link {
       }
     }
     p.form-allowed-tags {
-      margin: 0;
       @include font-sizer(12);
       color: lighten($c-body, 10);
+      margin: 0;
     }
   }
 }

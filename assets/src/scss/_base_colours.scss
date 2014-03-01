@@ -1,18 +1,13 @@
 // === COLOURS === //
 
-// Fundamentals
-$c-b:             #fff; // Background
-$c-t:             #444; // Text
-$c-l:             #429ab2; // Links
-
 // Body
 $c-site-bg:       #fff;
 $c-body-bg:       darken($c-site-bg, 8);
 
 // Text
-$c-body:          #444;
+$c-body:          #555;
 $c-head:          darken($c-body, 13);
-$c-meta:          lighten($c-body, 47);
+$c-meta:          lighten($c-body, 37);
 
 // Links
 $c-link:          #429ab2;
@@ -35,7 +30,7 @@ $c-code:          lighten($c-body, 13);
 $c-del:           lighten($c-body, 13);
 $c-hr:            #ccc;
 $c-ins-bg:        #fff9c0;
-$c-mark:          $c-body;
+$c-mark:          lighten($c-body, 19);
 $c-mark-bg:       #fff9c0;
 $c-pre:           lighten($c-body, 19);
 $c-table:         lighten($c-body, 19);
@@ -43,11 +38,6 @@ $c-table:         lighten($c-body, 19);
 // Various
 $c-small-header:  lighten($c-body, 13);
 $c-site-header:   #222;
-$c-divider:       darken($c-b, 7);
-$c-pullquote:     #888;
+$c-divider:       darken($c-body-bg, 7);
+$c-pullquote:     lighten($c-body, 37);
 $c-required:      crimson;
-
-// Twenty Twelve legacy variables
-$link-color:           $c-link;
-$link-color-hover:     $c-link-h;
-$font-color: $c-body

@@ -1,5 +1,5 @@
 <?php // === PENDRELL CONFIGURATION === //
-define( 'PENDRELL_VERSION', 0.3 );
+define( 'PENDRELL_VERSION', 0.4 );
 define( 'PENDRELL_NAME', get_bloginfo( 'name' ) );
 define( 'PENDRELL_DESC', get_bloginfo( 'description' ) );
 define( 'PENDRELL_HOME', get_bloginfo( 'url' ) );
@@ -18,11 +18,14 @@ define( 'PENDRELL_GOOGLE_ANALYTICS_CODE', false );
 // Google web fonts to load; false will load Open Sans
 define( 'PENDRELL_GOOGLE_FONTS', 'Varela+Round:400|Lato:400italic,400,700'); // |Open+Sans:400italic,700italic,400,700');
 
+// Locations functionality
+define( 'PENDRELL_PLACES', false );
+
 // Shadow categories: add category numbers to this string in the format '-1,-2' to hide them from the front page
 define( 'PENDRELL_SHADOW_CATS', false );
 
 // Post series functionality
-define( 'PENDRELL_SERIES', true );
+define( 'PENDRELL_SERIES', false );
 
 // Post formats; choose from array( 'aside', 'gallery', 'link', 'image', 'quote', 'status', 'audio', 'chat', 'video' );
 $pendrell_post_formats = array( 'aside', 'link', 'quote', 'status' );
@@ -35,72 +38,3 @@ if ( is_admin() ) {
 	define( 'PENDRELL_FONTSTACK_EDITOR', 'Georgia, "Palatino Linotype", Palatino, "URW Palladio L", "Book Antiqua", "Times New Roman", serif;' ); // Admin HTML editor font stack.
 	define( 'PENDRELL_FONTSIZE_EDITOR', '16px' ); // Admin HTML editor font size.
 }
-
-
-
-// === PENDRELL MODULES === do not edit below this line === //
-include( get_stylesheet_directory() . '/functions/content.php' );
-include( get_stylesheet_directory() . '/functions/comments.php' );
-include( get_stylesheet_directory() . '/functions/general.php' );
-include( get_stylesheet_directory() . '/functions/feed.php' );
-include( get_stylesheet_directory() . '/functions/images.php' );
-include( get_stylesheet_directory() . '/functions/search.php' );
-include( get_stylesheet_directory() . '/functions/taxonomies.php' );
-include( get_stylesheet_directory() . '/functions/various.php' );
-//include( get_stylesheet_directory() . '/functions/custom-header.php' ); // From Twenty Twelve
-
-if ( PENDRELL_SERIES )
-  include( get_stylesheet_directory() . '/functions/series.php' );
-
-if ( is_admin() )
-  include( get_stylesheet_directory() . '/functions/admin.php' );
-
-// If development mode is on...
-include( get_stylesheet_directory() . '/functions/dev.php' );
-
-// Theme setup; includes some image size definitions and other things that belong here in the config file
-function pendrell_setup() {
-
-  // Languages
-  load_theme_textdomain( 'pendrell', get_template_directory() . '/languages' );
-
-  // Add full post format support
-  global $pendrell_post_formats;
-  add_theme_support( 'post-formats', $pendrell_post_formats );
-
-  // Adds RSS feed links to <head> for posts and comments.
-  add_theme_support( 'automatic-feed-links' );
-
-  // This theme uses a custom image size for featured images, displayed on "standard" posts.
-  add_theme_support( 'post-thumbnails' );
-  set_post_thumbnail_size( 624, 9999 ); // Unlimited height, soft crop
-
-  // Add a few additional image sizes for various purposes
-  add_image_size( 'thumbnail-150', 150, 150 );
-  add_image_size( 'image-navigation', 150, 150, true );
-  add_image_size( 'portfolio', 300, 150, true );
-  add_image_size( 'third-width', 300, 9999 );
-  add_image_size( 'third-width-cropped', 300, 300, true );
-  add_image_size( 'half-width', 465, 9999 );
-  add_image_size( 'half-width-cropped', 465, 465, true );
-  add_image_size( 'full-width', 960, 9999 );
-  add_image_size( 'full-width-cropped', 960, 960, true );
-
-  // Set the medium and large size image sizes under media settings; default to our new full width image size in media uploader
-  update_option( 'medium_size_w', 624 );
-  update_option( 'medium_size_h', 9999 );
-  update_option( 'large_size_w', 960 );
-  update_option( 'large_size_h', 9999 );
-  update_option( 'image_default_size', 'full-width' );
-
-  // $content_width limits the size of the largest image size available via the media uploader
-  global $content_width;
-  $content_width = 624;
-
-  // This theme styles the visual editor with editor-style.css to match the theme style.
-  add_editor_style();
-
-  // This theme uses wp_nav_menu() in one location.
-  register_nav_menu( 'primary', __( 'Primary Menu', 'pendrell' ) );
-}
-add_action( 'after_setup_theme', 'pendrell_setup', 11 );
