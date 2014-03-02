@@ -21,6 +21,7 @@
 }
 
 
+
 // Search result highlighter
 .search-results mark {
   @include highlight($c-mark-bg);
@@ -49,14 +50,12 @@
 
 // jQuery pullquotes: enclose any text with <span class="pullquote"></span> and this style will be applied!
 .pulledquote {
+  @include font-sizer(24);
   color: $c-pullquote;
-  font-style: italic;
-  @include font-sizer(18);
   float: right;
-  max-width: 30%;
-  /* still need this to play nice with existing vertical rhythm */
-  @include rem('margin', 0 0 $spacer/2 $spacer/2);
-  @include rem('padding', 20px 0 20px 0);
+  font-style: italic;
+  max-width: 40%;
+  @include rem('margin', $spacer 0 $spacer $spacer/2);
 }
 
 
@@ -76,26 +75,21 @@
 
 
 // Places
-.entry-meta-place-list {
+.entry-meta-places-list,
+.entry-meta-places-posts {
+  @include font-sizer(16);
   @include rem('margin-bottom', $spacer);
+  h2 {
+    @include font-sizer(18);
+  }
   ul {
-    @include font-sizer(16);
+    list-style: disc outside;
     li {
-      ul {
-        @include rem('margin-left', $spacer);
-        li {
-          list-style: disc outside;
-          ul {
-            @include rem('margin-left', $spacer);
-            li {
-              list-style: disc outside;
-            }
-          }
-        }
-      }
+      @include rem('margin-left', $spacer);
     }
   }
 }
+
 
 
 // Assistive text

@@ -26,7 +26,18 @@ $term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' 
 
 		<?php if ( have_posts() ) : ?>
 			<header class="archive-header">
-				<h1 class="archive-title"><?php echo apply_filters( 'the_title', $term->name ); ?></h1>
+				<h1 class="archive-title"><?php
+					if ( is_tax ( 'place_tag' ) ) :
+						printf( __( 'Place tag archives: %s', 'pendrell' ), apply_filters( 'the_title', $term->name ) );
+					elseif ( is_tax( 'series' ) ) :
+						printf( __( 'Series archives: %s', 'pendrell' ), apply_filters( 'the_title', $term->name ) );
+					else :
+						_e( 'Archives', 'pendrell' );
+					endif; ?></h1>
+
+			<?php if ( term_description() ) : // Show an optional category description ?>
+				<div class="archive-meta"><?php echo term_description(); ?></div>
+			<?php endif; ?>
 			</header><!-- .archive-header -->
 
 			<?php while ( have_posts() ) : the_post();

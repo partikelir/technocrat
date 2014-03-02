@@ -6,8 +6,8 @@ jQuery(document).ready(function($) {
       var $parentParagraph = $(this).parent('p');
       $parentParagraph.css('position', 'relative');
       $(this).clone()
-      // Original: .addClass('pulledquote')
-      .replaceWith('<aside class="pulledquote">' + $(this).text() + '</aside>')
+      .addClass('pulledquote')
+      // Doesn't work: .replaceWith('<aside class="pulledquote">' + $(this).text() + '</aside>')
       .prependTo($parentParagraph);
     });
   $('span.pullquoteleft').each(function(index){

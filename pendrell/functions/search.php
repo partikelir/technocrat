@@ -13,6 +13,8 @@ function pendrell_search_redirect() {
 }
 add_action( 'template_redirect', 'pendrell_search_redirect' );
 
+
+
 // Output page-specific scripts
 function pendrell_print_scripts() {
 	// Capture search query for jQuery highlighter

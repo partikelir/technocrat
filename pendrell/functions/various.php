@@ -43,11 +43,12 @@ function pendrell_is_portfolio() {
 
 // Test whether the current item is a place
 function pendrell_is_place() {
-  if ( get_post_type() === 'place' ) {
-    return true;
-  } else {
-    return false;
+  if ( post_type_exists( 'place') ) {
+    if ( get_post_type() === 'place' ) {
+      return true;
+    }
   }
+  return false;
 }
 
 

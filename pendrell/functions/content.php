@@ -116,26 +116,39 @@ function pendrell_entry_meta() {
 
   ?></div><?php
 
+  // Categories
   $categories_list = get_the_category_list( __( ', ', 'pendrell' ) );
 
-  $tag_list = get_the_tag_list( '', __( ', ', 'pendrell' ) );
+  // Tags
+  if ( pendrell_is_place() ) {
+    $tag_list = get_the_term_list( $post->ID, 'place_tag', '', ', ', '' );
+  } else {
+    $tag_list = get_the_tag_list( '', __( ', ', 'pendrell' ) );
+  }
 
+  // Date
   $date = sprintf( '<a href="%1$s" title="%2$s" rel="bookmark">%3$s</a>',
     esc_url( get_permalink() ),
     esc_attr( get_the_time() ),
     get_the_date()
   );
 
+  // Author
   $author = sprintf( '<span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s" rel="author">%3$s</a></span>',
     esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
     esc_attr( sprintf( __( 'View all posts by %s', 'pendrell' ), get_the_author() ) ),
     get_the_author()
   );
 
+  // Post format
   $post_format = get_post_format();
   if ( $post_format === false ) {
     if ( is_attachment() && wp_attachment_is_image() ) {
       $format = __( 'image', 'pendrell' );
+    } elseif ( is_page() ) {
+      $format = __( 'page', 'pendrell' );
+    } elseif ( pendrell_is_place() ) {
+      $format = __( 'place', 'pendrell' );
     } else {
       $format = __( 'entry', 'pendrell' );
     }
@@ -154,6 +167,7 @@ function pendrell_entry_meta() {
     );
   }
 
+  // Parent link for pages, images, attachments, and places
   $parent = '';
   if ( ( is_attachment() && wp_attachment_is_image() && $post->post_parent ) || ( ( is_page() || pendrell_is_place() ) && $post->post_parent ) ) {
     if ( is_attachment() && wp_attachment_is_image() && $post->post_parent ) {
@@ -169,8 +183,8 @@ function pendrell_entry_meta() {
     );
   }
 
-  // Translators: 1 is category, 2 is tag, 3 is the date, 4 is the author's name, 5 is post format, and 6 is post parent.
-  if ( $tag_list && ( $post_format === false ) ) {
+  // Translators: 1 is category, 2 is tag, 3 is the date, 4 is the author's name, 5 is post format or type, and 6 is post parent.
+  if ( $tag_list && ( $post_format === false ) && !pendrell_is_place() ) {
     // Posts with tags and categories
     $utility_text = __( 'This %5$s was posted %3$s in %1$s and tagged %2$s<span class="by-author"> by %4$s</span>.', 'pendrell' );
   } elseif ( $categories_list && ( $post_format === false ) ) {
@@ -179,26 +193,22 @@ function pendrell_entry_meta() {
   } elseif ( is_attachment() && wp_attachment_is_image() && $post->post_parent ) {
     // Images with a parent post
     $utility_text = __( 'This %5$s was posted %3$s in %6$s.', 'pendrell' );
-  } elseif ( is_page() ) {
-    // Pages with a parent
-    if ( $post->post_parent ) {
-      $utility_text = __( 'This page was posted under %6$s<span class="by-author"> by %4$s</span>.', 'pendrell' );
-    // Pages
-    } else {
-      if ( is_multi_author() ) {
-        $utility_text = __( 'This page was posted<span class="by-author"> by %4$s</span>.', 'pendrell' );
+  } elseif ( is_page() || pendrell_is_place() ) {
+    // Places with tags
+    if ( $tag_list ) {
+      if ( $post->post_parent ) {
+        $utility_text = __( 'This %5$s was posted under %6$s and tagged %2$s<span class="by-author"> by %4$s</span>.', 'pendrell' );
       } else {
-        $utility_text = '';
+        $utility_text = __( 'This %5$s was tagged %2$s<span class="by-author"> by %4$s</span>.', 'pendrell' );
       }
-    }
-  } elseif ( pendrell_is_place() ) {
-    // Places with a parent
-    if ( $post->post_parent ) {
-      $utility_text = __( 'This place was posted under %6$s<span class="by-author"> by %4$s</span>.', 'pendrell' );
-    // Places
+    // Pages with a parent
+    } elseif ( $post->post_parent ) {
+      $utility_text = __( 'This %5$s was posted under %6$s<span class="by-author"> by %4$s</span>.', 'pendrell' );
+    // Pages without a parent
     } else {
       if ( is_multi_author() ) {
-        $utility_text = __( 'This place was posted<span class="by-author"> by %4$s</span>.', 'pendrell' );
+        $utility_text = __( 'This %5$s was posted<span class="by-author"> by %4$s</span>.', 'pendrell' );
+      // Nothing to display
       } else {
         $utility_text = '';
       }
@@ -236,10 +246,8 @@ function pendrell_content_nav( $html_id ) {
   if ( $wp_query->max_num_pages > 1 ) : ?>
     <nav id="<?php echo $html_id; ?>" class="navigation" role="navigation">
       <h3 class="assistive-text"><?php _e( 'Post navigation', 'pendrell' ); ?></h3>
-      <?php if ( $wp_query->query_vars['order'] == 'ASC' ) { ?><div class="nav-previous"><?php previous_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'pendrell' ) ); ?></div>
-      <div class="nav-next"><?php next_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'pendrell' ) ); ?></div>
-      <?php } else { ?><div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'pendrell' ) ); ?></div>
-      <div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'pendrell' ) ); ?></div><?php } ?>
+      <div class="nav-previous"><?php previous_posts_link( __( '<span class="meta-nav">&larr;</span> Previous', 'pendrell' ) ); ?></div>
+          <div class="nav-next"><?php next_posts_link( __( 'Next <span class="meta-nav">&rarr;</span>', 'pendrell' ) ); ?>
     </nav><!-- #<?php echo $html_id; ?> .navigation -->
   <?php endif;
 }
