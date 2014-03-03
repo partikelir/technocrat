@@ -2,7 +2,7 @@
 .widget-area {
   @media screen and (min-width: 600px) {
     float: right;
-    width: percentage(250/960);
+    width: percentage( $sidebar-width / $site-width );
   }
   .widget {
     @include rem('margin-bottom', $spacer);
@@ -32,7 +32,7 @@
   .widget_search {
     @include rem('margin-bottom', $spacer, 2); // Hack to deal with button alignment issues
     #s {
-      width: percentage(150/250);
+      width: percentage( 150px / $sidebar-width );
     }
     #searchsubmit {
       vertical-align: middle;
@@ -66,6 +66,8 @@
     text-align: right;
   }
 }
+
+
 
 // Cheap trick to lose the sidebar on full-width view; surely there is a better way
 body.full-width,

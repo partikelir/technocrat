@@ -21,7 +21,9 @@ $font-html: 100%;
 $base-default: 16px * $font-html / 100%;
 
 // Column widths
-$site-max-width: 960px;
+$site-width: 960px;
+$content-width: 625px;
+$sidebar-width: ($site-width - $content-width) - ( $spacer*2 );
 
 // Design patterns
 $divider: 1px solid $c-divider;

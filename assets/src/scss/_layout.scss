@@ -7,14 +7,14 @@
   background-color: $c-site-bg;
   @media screen and (min-width: 600px) {
     margin: 0 auto;
-    max-width: $site-max-width;
+    max-width: $site-width;
     overflow: hidden;
   }
 }
 .site-content {
   @media screen and (min-width: 600px) {
     float: left;
-    width: percentage(625/960);
+    width: percentage( $content-width / $site-width );
   }
 }
 
@@ -23,7 +23,7 @@
 // Header
 .site-header {
   @include rem('margin-bottom', $spacer*2, 1);
-  @include rem('margin-top', $spacer);
+  @include rem('padding-top', $spacer);
   h1,
   h2 {
     text-align: center;
@@ -40,13 +40,10 @@
     }
   }
   h1 {
-    @include font-sizer(21);
-    @media screen and (min-width: 600px) {
-      @include font-sizer(28);
-    }
+    @include font-sizer(28);
   }
   h2 {
-    color: lighten($c-site-header, 50);
+    color: lighten($c-site-header, 47);
     display: none;
     font-weight: normal;
     @include font-sizer(14);
@@ -93,7 +90,7 @@
 .site-footer {
   @include font-sizer(12);
   @include rem('margin-top', $spacer, 1);
-  @include rem('max-width', 960px);
+  @include rem('max-width', $site-width);
   @include rem('padding', $spacer/2 0);
   border-top: $divider;
   clear: both;
@@ -107,3 +104,14 @@
     }
   }
 }
+
+
+
+// Twenty Twelve legacy styles
+body.attachment .site-content,
+body.full-width .site-content {
+  @media screen and (min-width: 600px) {
+    width: 100%;
+  }
+}
+
