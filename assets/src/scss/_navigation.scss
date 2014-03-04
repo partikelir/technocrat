@@ -84,27 +84,82 @@ input[type="reset"]:active {
 .main-navigation {
   @include rem('margin-top', $spacer/2);
   font-family: $font-head;
-  text-align: center;
   text-transform: uppercase;
-  li {
-    @include font-sizer(14);
-  }
-  a {
-    color: $c-menu-link;
-    &:hover {
-      color: $c-menu-link-h;
-    }
-  }
-  ul.nav-menu,
-  div.nav-menu > ul {
+  ul.nav-menu {
     display: none;
+    margin: 0;
+    text-indent: 0;
+    @media screen and (min-width: 600px) {
+      border-bottom: $divider;
+      display: inline-block;
+      width: 100%;
+    }
   }
   ul.nav-menu.toggled-on {
     display: inline-block;
   }
+  a {
+    border-bottom: none;
+    color: $c-menu-link;
+    text-decoration: none;
+    &:hover {
+      color: $c-menu-link-h;
+    }
+    @media screen and (min-width: 600px) {
+      line-height: $spacer*1.5;
+      white-space: nowrap;
+    }
+  }
+  li {
+    @include font-sizer(14);
+    @include rem('margin', 0 $spacer 0 0);
+    @media screen and (min-width: 600px) {
+      display: inline-block;
+      position: relative;
+    }
+  }
+  @media screen and (min-width: 600px) {
+    li ul {
+      display: none;
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      top: 100%;
+      z-index: 1;
+    }
+    li ul ul {
+      top: 0;
+      left: 100%;
+    }
+    ul li:hover > ul {
+      border-left: 0;
+      display: block;
+    }
+    li ul li a {
+      @include font-sizer(12);
+      @include rem('padding', 8px 10px);
+      @include rem('width', 180px);
+      background: $c-menu-bg;
+      border-bottom: $divider;
+      display: block;
+      white-space: normal;
+    }
+    li ul li a:hover {
+      background: darken($c-menu-bg, 3);
+    }
+  }
+  .current-menu-item > a,
+  .current-menu-ancestor > a,
+  .current_page_item > a,
+  .current_page_ancestor > a {
+    color: $c-menu-current;
+  }
 }
 .menu-toggle {
   display: inline-block;
+  @media screen and (min-width: 600px) {
+    display: none;
+  }
 }
 
 

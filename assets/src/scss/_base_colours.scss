@@ -19,7 +19,7 @@ $c-link-f:        saturate(lighten($c-link, 8), 8);
 // Main menu
 $c-menu-link:     lighten($c-body, 17);
 $c-menu-link-h:   lighten($c-menu-link, 23);
-$c-menu-current:  darken($c-menu-link, 7);
+$c-menu-current:  darken($c-menu-link, 27);
 $c-menu-bg:       darken($c-site-bg, 3);
 
 // Elements: mostly defined in _general.scss

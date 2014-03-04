@@ -79,8 +79,17 @@ a.comment-edit-link {
     color: $c-link;
   }
 }
+
+
+
+// Twenty Twelve cruft
 .commentlist .pingback {
   @include rem('margin-bottom', $spacer);
+}
+.commentlist .children {
+  @media screen and (min-width: 600px) {
+    @include rem('margin-left', $spacer*2);
+  }
 }
 
 
