@@ -9,13 +9,17 @@ Many WordPress themes provide for one or the other but few handle both types of 
 
 This theme is suitable for small-scale deployments; it has not been (and likely won't be) optimized for high traffic sites.
 
-You can Pendrell in action on my blog: http://synapticism.com
+You can see Pendrell in action on my blog: http://synapticism.com
 
-## INSTALLATION & CONFIGURATION
+## INSTALLATION
 
 Drop the 'pendrell/pendrell' directory into /wp-content/themes/ and activate it via the WordPress admin interface.
 
+### CONFIGURATION
+
 This theme has no options page; you will have to get your feet wet and modify the `functions-config-sample.php` file, renaming it to `functions-config.php`, if you wish to change any of the defaults. Most of these should be self-explanatory; read the comments for more direction.
+
+### PLUGINS
 
 The following plugins are not quite dependencies but you will probably want to install them to get the most out of Pendrell:
 
@@ -23,22 +27,12 @@ The following plugins are not quite dependencies but you will probably want to i
 * My fork of the same: https://github.com/synapticism/wp-post-formats
 * Regenerate Thumbnails: http://wordpress.org/extend/plugins/regenerate-thumbnails/
 
-## DEVELOPMENT
+### DEVELOPMENT
 
 Two commands to get started hacking Pendrell:
 
 `npm install`
 `gem install sass`
-
-## USING THE PORTFOLIO FEATURES
-
-Portfolio items in Pendrell are not custom post types or anything fancy like that; simply make a standard entry under the "Portfolio" category and format your portfolio items however you like. Advanced users can customize what category or categories are treated as portfolio items; just edit `functions-config.php` and modify the `$pendrell_portfolio_cats` variable to include the slugs of any categories you wish to use this feature with. Personally, I have a "Portfolio" parent category with two children, "Design" and "Photography"; all of these plus the "Creative" category are included as defaults in Pendrell.
-
-I happen to like using a mixture of `full-width`, `half-width`, and `third-width` image sizes and regularly feature several different images with each portfolio entry (e.g. a series of photographs, alternate cuts from the same design project, etc.). Layout is a snap: use the media uploader and insert images as "Full Width" (960px wide), "Half Width" (465px wide), or "Third Width" (300px wide). All three sizes come in two versions, either hard cropped or not. Generally speaking, you will want to double or triple up half- and third-width images and apply the `alignleft` style to all but the last in a couplet or triplet, which should be styled with `alignnone`. Managing this is a breeze in the media uploader. The idea here is to let full-width images sprawl and contain half- and third-width images within set boundaries for a nicer layout. If the images you are posting are approximately square you may wish to use the hard cropped versions, otherwise try to ensure that the heights of the images you are laying side by side are approximately the same.
-
-I recommend linking to attachment pages when posting images to your portfolio. The attachment pages in Pendrell are functional, offering EXIF data where available, a link to full-size source material, and thumbnail-based image navigation at the bottom.
-
-Portfolio items are not segregated from other content; your creative projects will appear alongside the rest of your blog entries and still look sharp with a sidebar and widgets. I highly recommend making judicious use of the `<--more-->` tag when posting portfolio items with many images (unless, of course, you'd like to have image-heavy posts co-exist with your regular blog entries).
 
 ## FEATURES
 
@@ -52,21 +46,8 @@ Portfolio items are not segregated from other content; your creative projects wi
 * Improved post format styling and support
 * More descriptive archive headers for different content types
 * Removed page margin at top and bottom to make more efficient use of vertical space
-* Custom fonts
-
-### PORTFOLIO ITEMS & IMAGES
-
-* Redesigned for full-width multimedia portfolios and image galleries with big, bold images
-* Portfolio items are standard posts formatted any way you like and assigned to a portfolio category e.g. "Portfolio"
-* This allows portfolio items to flow alongside other content on your blog
-* Use the more tag `<!--more-->` after the first or second image in a portfolio item to keep things tidy
-* Use half-width images side by side with `alignleft` as needed; these are also responsive
-* Portfolio category archives are responsive, shifting between 3, 2, or 1 column display using media queries
-* Portfolio item thumbnails default to the first attached image; if you wish to use another just set the featured image
-* Thumbnail-based navigation on image attachments
-* EXIF data and other information for image attachments
-* Full-width images are dynamically displayed on pages using the full-width template
-* Get ride of shadows on images using the `no-shadow` class
+* Google Web Fonts
+* CSS minification
 
 ### HACKS, TWEAKS, & SNIPPETS
 
@@ -80,26 +61,60 @@ Portfolio items are not segregated from other content; your creative projects wi
 * Context-dependent posts per page (12 items per screen on portfolios, 25 on search, user default elsewhere)
 * Reset admin-side HTML editor to a nicer font stack
 
+### PORTFOLIO ITEMS
+
+* Redesigned for full-width multimedia portfolios and image galleries with big, bold images
+* Portfolio items are standard posts formatted any way you like and assigned to a portfolio category e.g. "Portfolio"
+* This allows portfolio items to flow alongside other content on your blog
+* Use the more tag `<!--more-->` after the first or second image in a portfolio item to keep things tidy
+* Use half-width images side by side with `alignleft` as needed; these are also responsive
+* Portfolio category archives are responsive, shifting between 3, 2, or 1 column display using media queries
+* Portfolio item thumbnails default to the first attached image; if you wish to use another just set the featured image
+* Thumbnail-based navigation on image attachments
+* EXIF data and other information for image attachments
+* Full-width images are dynamically displayed on pages using the full-width template
+
+Portfolio items in Pendrell are not custom post types or anything fancy like that (though they should be); simply make a standard entry under the "Portfolio" category and format your portfolio items however you like. Advanced users can customize what category or categories are treated as portfolio items; just edit `functions-config.php` and modify the `$pendrell_portfolio_cats` variable to include the slugs of any categories you wish to use this feature with. Personally, I have a "Portfolio" parent category with two children, "Design" and "Photography"; all of these plus the "Creative" category are included as defaults in Pendrell.
+
+I happen to like using a mixture of `full-width`, `half-width`, and `third-width` image sizes and regularly feature several different images with each portfolio entry (e.g. a series of photographs, alternate cuts from the same design project, etc.). Layout is a snap: use the media uploader and insert images as "Full Width" (960px wide), "Half Width" (465px wide), or "Third Width" (300px wide). All three sizes come in two versions, either hard cropped or not. Generally speaking, you will want to double or triple up half- and third-width images and apply the `alignleft` style to all but the last in a couplet or triplet, which should be styled with `alignnone`. Managing this is a breeze in the media uploader. The idea here is to let full-width images sprawl and contain half- and third-width images within set boundaries for a nicer layout. If the images you are posting are approximately square you may wish to use the hard cropped versions, otherwise try to ensure that the heights of the images you are laying side by side are approximately the same.
+
+I recommend linking to attachment pages when posting images to your portfolio. The attachment pages in Pendrell are functional, offering EXIF data where available, a link to full-size source material, and thumbnail-based image navigation at the bottom.
+
+Portfolio items are not segregated from other content; your creative projects will appear alongside the rest of your blog entries and still look sharp with a sidebar and widgets. I highly recommend making judicious use of the `<--more-->` tag when posting portfolio items with many images (unless, of course, you'd like to have image-heavy posts co-exist with your regular blog entries).
+
+### PLACES
+
+Places are a Custom Post Type for building a geographic database. This is still in development and very new. I am building it mainly for my own use and may transform it into a proper WordPress plugin at some point.
+
+### SERIES
+
+There is a lightweight series taxonomy for linking posts together. Usage is close to self-explanatory; simply activate in `functions-config.php` and add a series to any post. Everything else should be taken care of.
+
 ## TO DO
 
-In no particular order...
+### PRIORITIES
 
-* Internationalization (i18n)
+* AJAXify image attachment pages
+* Comments need lots of work
+* Easily disable comments altogether
+
+### WOULD BE NICE
+
 * Nicer ampersands: http://css-tricks.com/using-the-best-ampersand-available/
 * Smart 404 page
-* Better gallery styling
-* AJAXify image attachment pages
 * Related posts
-* Easily disable comments altogether
-* Test for IE compatibility
 * Favicon/Apple touch icons
-* Front-end posting: http://scribu.net/wordpress/front-end-editor http://wordpress.org/extend/plugins/posthaste/
 * Bookmarks template with support for link categories, link descriptions, and private links (see bookmarks.php)
-* CSS minification
 * Additional microformat support
     * rel-tag: http://microformats.org/wiki/rel-tag
     * hNews: http://microformats.org/wiki/hnews
     * hCard: http://microformats.org/wiki/hcard
+
+### PROBABLY NOT
+
+* Internationalization (i18n)
+* Better gallery styling
+* Test for IE compatibility
 
 ## ADDITIONAL RESOURCES
 

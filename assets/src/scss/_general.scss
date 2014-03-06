@@ -169,3 +169,14 @@ textarea {
     background-color: darken($c-site-bg, 3);
   }
 }
+.menu-toggle,
+button,
+input[type="submit"],
+input[type="button"],
+input[type="reset"] {
+  cursor: pointer;
+}
+button[disabled],
+input[disabled] {
+  cursor: default;
+}
