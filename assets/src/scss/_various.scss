@@ -30,24 +30,6 @@
 
 
 
-// Clearing
-.clear:after,
-.wrapper:after,
-.format-status .entry-header:after {
-  clear: both;
-}
-.clear:before,
-.clear:after,
-.wrapper:before,
-.wrapper:after,
-.format-status .entry-header:before,
-.format-status .entry-header:after {
-  display: table;
-  content: "";
-}
-
-
-
 // jQuery pullquotes: enclose any text with <span class="pullquote"></span> and this style will be applied!
 .pulledquote {
   @include font-sizer(24);
@@ -118,4 +100,24 @@
 // Hide that mysterious smiley face that appears when you use Jetpack
 img#wpstats {
   display: none;
+}
+
+
+
+// Twenty Twelve legacy clearing?
+// Clearing
+/*.clear:after,
+.wrapper:after {
+  clear: both;
+}
+.clear:before,
+.clear:after,
+.wrapper:before,
+.wrapper:after {
+  display: table;
+  content: "";
+}*/
+.clear,
+.wrapper {
+  @extend %clearfix;
 }

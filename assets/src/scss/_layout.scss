@@ -3,9 +3,10 @@
 // Site
 .site {
   @include box-shadow-layered( 0 2px 6px rgba(100, 100, 100, 0.3), inset 0 -3px 12px #ddd );
-  @include rem('padding', 0 $spacer*1.5);
+  @include rem('padding', 0 $spacer);
   background-color: $c-site-bg;
   @media screen and (min-width: 600px) {
+    @include rem('padding', 0 $spacer*1.5);
     margin: 0 auto;
     max-width: $site-width;
     overflow: hidden;
@@ -89,8 +90,8 @@
   @include rem('margin-top', $spacer, 1);
   @include rem('max-width', $site-width);
   @include rem('padding', $spacer/2 0);
+  @extend %clearfix;
   border-top: $divider;
-  clear: both;
   margin-left: auto;
   margin-right: auto;
   text-align: right;

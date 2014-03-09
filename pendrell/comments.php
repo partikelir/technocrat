@@ -19,13 +19,64 @@
  */
 if ( post_password_required() )
 	return;
-?>
+
+function pendrell_comments( $comment, $args, $depth ) {
+  $GLOBALS['comment'] = $comment;
+  switch ( $comment->comment_type ) :
+    case 'pingback' :
+    case 'trackback' :
+    // Display trackbacks differently than normal comments.
+  ?>
+  <li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
+    <article><?php _e( 'Pingback:', 'pendrell' ); ?> <?php comment_author_link(); ?> <?php edit_comment_link( __( 'Edit', 'pendrell' ), '<div class="comment-meta-buttons"><span class="edit-link button">', '</span></div>' ); ?></article>
+  <?php
+      break;
+    default :
+    // Proceed with normal comments.
+    global $post;
+  ?>
+  <li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
+    <article id="comment-<?php comment_ID(); ?>" class="comment">
+      <header class="comment-meta comment-author vcard">
+        <div class="comment-meta-avatar">
+        	<?php echo get_avatar( $comment, 60 ); ?>
+        </div><!-- .comment-meta-avatar -->
+        <div class="comment-meta-buttons">
+          <?php edit_comment_link( __( 'Edit', 'pendrell' ), ' <span class="edit-link button">', '</span>' ); ?>
+          <?php comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply', 'pendrell' ), 'before' => ' <span class="leave-reply button">', 'after' => '</span>', 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+        </div><!-- .comment-meta-buttons -->
+        <div class="comment-meta-main">
+        	<h3><?php comment_author_link(); ?></h3>
+        <?php
+          printf( 'This comment was posted <a href="%1$s" title="%2$s" rel="bookmark"><time datetime="%3$s">%4$s, %5$s</time></a>.',
+            esc_url( get_comment_link( $comment->comment_ID ) ),
+            'test',
+            get_comment_time('c'),
+            get_comment_date(),
+            get_comment_time()
+          );
+        ?>
+      	</div><!-- .comment-meta-main -->
+      </header><!-- .comment-meta -->
+
+      <?php if ( '0' == $comment->comment_approved ) : ?>
+        <p class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.', 'pendrell' ); ?></p>
+      <?php endif; ?>
+
+      <section class="comment-content comment">
+        <?php comment_text(); ?>
+      </section><!-- .comment-content -->
+
+    </article><!-- #comment-## -->
+  <?php
+    break;
+  endswitch; // end comment_type check
+} ?>
 
 <div id="comments" class="comments-area">
 
-	<?php // You can start editing here -- including this comment! ?>
-
 	<?php if ( have_comments() ) : ?>
+
 		<h2 class="comments-title">
 			<?php
 				printf( _n( 'One comment on &lsquo;%2$s&rsquo;', '%1$s comments on &lsquo;%2$s&rsquo;', get_comments_number(), 'pendrell' ),
@@ -34,7 +85,7 @@ if ( post_password_required() )
 		</h2>
 
 		<ol class="commentlist">
-			<?php wp_list_comments( array( 'callback' => 'pendrell_comment', 'style' => 'ol' ) ); ?>
+			<?php wp_list_comments( array( 'callback' => 'pendrell_comments', 'style' => 'ol' ) ); ?>
 		</ol><!-- .commentlist -->
 
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
@@ -45,10 +96,7 @@ if ( post_password_required() )
 		</nav>
 		<?php endif; // check for comment navigation ?>
 
-		<?php
-		/* If there are no comments and comments are closed, let's leave a note.
-		 * But we only want the note on posts and pages that had comments in the first place.
-		 */
+		<?php // If there are no comments and comments are closed, let's leave a note.
 		if ( ! comments_open() && get_comments_number() ) : ?>
 		<p class="nocomments"><?php _e( 'Comments are closed.' , 'pendrell' ); ?></p>
 		<?php endif; ?>

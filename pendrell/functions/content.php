@@ -219,17 +219,15 @@ function pendrell_entry_meta() {
   }
 
   ?><div class="entry-meta-main"><?php
-
-  printf(
-    $utility_text,
-    $categories_list,
-    $tag_list,
-    $date,
-    $author,
-    $format,
-    $parent
-  );
-
+    printf(
+      $utility_text,
+      $categories_list,
+      $tag_list,
+      $date,
+      $author,
+      $format,
+      $parent
+    );
   ?></div><?php
 
   do_action( 'post_entry_meta' );

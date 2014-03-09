@@ -8,7 +8,6 @@ if ( is_readable( get_stylesheet_directory() . '/functions-config.php' ) ) {
 
 // Pendrell is abstracted into the /functions directory
 include( get_stylesheet_directory() . '/functions/content.php' );
-include( get_stylesheet_directory() . '/functions/comments.php' );
 include( get_stylesheet_directory() . '/functions/general.php' );
 //include( get_stylesheet_directory() . '/functions/feed.php' );
 include( get_stylesheet_directory() . '/functions/images.php' );

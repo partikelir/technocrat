@@ -65,10 +65,11 @@ article.format-quote {
 
 
 // Status
-.format-status {
+article.format-status {
   .entry-header {
-    float: left;
     @include rem('margin-bottom', $spacer);
+    @extend %clearfix;
+    float: left;
     header {
       display: inline-block;
     }

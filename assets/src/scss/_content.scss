@@ -125,7 +125,7 @@
   .wp-caption.aligncenter {
     @include rem('margin-bottom', $spacer/2);
     @include rem('margin-top', $spacer/2);
-    clear: both;
+    @extend %clearfix;
   }
 
   // Various
@@ -154,26 +154,24 @@
   @include rem('padding-bottom', $spacer);
 }
 .page-links {
-  clear: both;
+  @extend %clearfix;
 }
 
 
 
 // Entry meta
-footer.entry-meta {
-  @include rem('margin-top', $spacer);
-  @include font-sizer(13);
-}
 .entry-meta {
-  clear: both;
-  .entry-meta-main {
-    color: $c-meta;
-    a {
-      color: darken($c-meta, 33);
-      text-decoration: underline;
-      &:hover {
-        color: $c-link-h;
-      }
+  @include rem('margin-top', $spacer);
+  @extend %clearfix;
+}
+.entry-meta-main {
+  @include font-sizer(13);
+  color: $c-meta;
+  a {
+    color: darken($c-meta, 33);
+    text-decoration: underline;
+    &:hover {
+      color: $c-link-h;
     }
   }
 }
