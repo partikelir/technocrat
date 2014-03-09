@@ -8,30 +8,26 @@
 }
 .comments-area {
   article {
-    @include rem('margin', $spacer 0);
+    @include rem('margin-bottom', $spacer 0);
     header {
-      @include rem('margin', 0 0 $spacer*2 0);
+      @include rem('margin-bottom', $spacer);
       overflow: hidden;
       position: relative;
       a {
         text-decoration: none;
-        color: lighten($c-body, 10);
-        &:hover {
-          color: $c-link;
-        }
       }
-      img {
+      img.avatar {
+        @include border-radius($spacer/4);
         float: left;
+        line-height: $spacer*2;
         padding: 0;
-        line-height: 0;
       }
       cite,
       time {
-        @include rem('margin-left', $spacer*3);
+        @include rem('margin-left', 75px);
         display: block;
       }
       cite {
-        @include font-sizer(14);
         font-style: normal;
         a {
           color: $c-body;
@@ -41,7 +37,7 @@
         }
       }
       time {
-        @include font-sizer(12);
+        @include font-sizer(14);
         color: lighten($c-body, 10);
         text-decoration: none;
       }
@@ -71,14 +67,6 @@
     }
   }
 }
-a.comment-reply-link,
-a.comment-edit-link {
-  @include font-sizer(13);
-  color: lighten($c-body, 14);
-  &:hover {
-    color: $c-link;
-  }
-}
 
 
 
@@ -96,7 +84,7 @@ a.comment-edit-link {
 
 // Response form
 #respond {
-  @include rem('margin-top', $spacer*2);
+  //@include rem('margin-top', $spacer*2);
   h3#reply-title {
     #cancel-comment-reply-link {
       @include font-sizer(12);
@@ -105,16 +93,11 @@ a.comment-edit-link {
     }
   }
   form {
-    @include rem('margin', $spacer 0);
-    p {
-
-      @include rem('margin', 11px 0);
-    }
-    p.logged-in-as {
-      @include rem('margin-bottom', $spacer);
-    }
+    @include font-sizer(14);
     label {
       display: block;
+      font-family: $font-head;
+      text-transform: uppercase;
     }
     input[type="text"],
     textarea {
@@ -131,10 +114,18 @@ a.comment-edit-link {
         width: 80%;
       }
     }
+    p.comment-notes,
+    p.logged-in-as,
+    p.comment-form-url {
+      @include rem('margin-bottom', $spacer);
+    }
     p.form-allowed-tags {
-      @include font-sizer(12);
+      @include font-sizer(14);
+      @include rem('margin-bottom', $spacer);
       color: lighten($c-body, 10);
-      margin: 0;
+      code {
+        display: block;
+      }
     }
   }
 }

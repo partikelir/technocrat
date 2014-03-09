@@ -30,8 +30,12 @@ function pendrell_comment( $comment, $args, $depth ) {
   <li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
     <article id="comment-<?php comment_ID(); ?>" class="comment">
       <header class="comment-meta comment-author vcard">
+        <div class="entry-meta-buttons">
+          <?php edit_comment_link( __( 'Edit', 'pendrell' ), ' <span class="edit-link button">', '</span>' ); ?>
+          <?php comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply', 'pendrell' ), 'before' => ' <span class="leave-reply button">', 'after' => '</span>', 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+        </div><!-- .reply -->
         <?php
-          echo get_avatar( $comment, 44 );
+          echo get_avatar( $comment, 60 ); // Will break the vertical rhythm if default is changed
           printf( '<cite><b class="fn">%1$s</b> %2$s</cite>',
             get_comment_author_link(),
             // If current post author is also comment author, make it known visually.
@@ -52,12 +56,8 @@ function pendrell_comment( $comment, $args, $depth ) {
 
       <section class="comment-content comment">
         <?php comment_text(); ?>
-        <?php edit_comment_link( __( 'Edit', 'pendrell' ), '<p class="edit-link">', '</p>' ); ?>
       </section><!-- .comment-content -->
 
-      <div class="reply">
-        <?php comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply', 'pendrell' ), 'after' => ' <span>&darr;</span>', 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
-      </div><!-- .reply -->
     </article><!-- #comment-## -->
   <?php
     break;

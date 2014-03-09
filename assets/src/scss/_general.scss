@@ -58,9 +58,7 @@ abbr,
 acronym {
   border-bottom: $divider;
   color: $c-abbr;
-  font-variant: small-caps;
   line-height: 0;
-  text-transform: lowercase;
   &:hover {
     cursor: help;
   }
@@ -128,29 +126,6 @@ q {
   &:after {
     content: "\201D";
   }
-}
-
-
-
-// Pre and code blocks
-code {
-  @include highlight($c-blockquote-bg);
-  color: $c-code;
-}
-a code {
-  color: $c-link;
-}
-.form-allowed-tags code {
-  background: none;
-  border: none;
-}
-pre {
-  @include font-sizer(16);
-  @include rem('margin-bottom', $spacer);
-  color: $c-pre;
-}
-pre code {
-  display: block;
 }
 
 

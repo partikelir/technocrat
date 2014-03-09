@@ -44,7 +44,7 @@ code,
 kbd,
 tt,
 var {
-  white-space: pre;
+  white-space: pre-wrap;
 }
 
 
@@ -97,7 +97,7 @@ strike {
 
 // Pre and code blocks
 code {
-  //word-wrap: normal;
+  word-wrap: normal;
 }
 pre {
   display: block;

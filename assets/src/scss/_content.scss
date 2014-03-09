@@ -39,9 +39,12 @@
 .entry-content,
 .comment-content {
   hyphens: auto; // Let autoprefix do the rest
+
   a {
     text-decoration: underline;
   }
+
+  // Lists and definitions
   ol,
   ul,
   dl {
@@ -69,12 +72,28 @@
   li {
     @include rem('margin', 0 0 0 $spacer*1.5);
   }
-
   dl {
     @include rem('margin', 0 $spacer);
   }
   dd {
     @include rem('margin', 0 $spacer $spacer);
+  }
+
+  // Pre and code blocks
+  code {
+    @include highlight($c-blockquote-bg);
+    color: $c-code;
+  }
+  a code {
+    color: $c-link;
+  }
+  pre {
+    @include font-sizer(16);
+    @include rem('margin-bottom', $spacer);
+    color: $c-pre;
+  }
+  pre code {
+    display: block;
   }
 
   // Tables and figures
@@ -104,9 +123,9 @@
   }
   img.aligncenter,
   .wp-caption.aligncenter {
-    clear: both;
-    @include rem('margin-top', $spacer/2);
     @include rem('margin-bottom', $spacer/2);
+    @include rem('margin-top', $spacer/2);
+    clear: both;
   }
 
   // Various
