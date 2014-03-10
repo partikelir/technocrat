@@ -155,3 +155,16 @@ button[disabled],
 input[disabled] {
   cursor: default;
 }
+
+
+
+// Helpers
+
+// Clearfix silent selector; activate with @extend %clearfix;
+%clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}

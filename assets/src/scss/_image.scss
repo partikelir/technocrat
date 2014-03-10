@@ -83,13 +83,13 @@
   text-decoration: none;
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: $break-medium) {
   .return-gallery {
     display: block;
   }
 }
 
-@media screen and (min-width: 960px) {
+@media screen and (min-width: $break-large) {
   // Image navigation
   .previous-image img,
   .next-image img {

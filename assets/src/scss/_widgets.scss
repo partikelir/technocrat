@@ -1,6 +1,6 @@
 // === WIDGETS === //
 .widget-area {
-  @media screen and (min-width: 600px) {
+  @media screen and (min-width: $break-single-column) {
     float: right;
     width: percentage( $sidebar-width / $site-width );
   }
@@ -32,7 +32,10 @@
   .widget_search {
     @include rem('margin-bottom', $spacer, 2); // Hack to deal with button alignment issues
     #s {
-      width: percentage( 150px / $sidebar-width );
+      width: 150px;
+      @media screen and (min-width: $break-single-column) {
+        width: percentage( 150px / $sidebar-width );
+      }
     }
     #searchsubmit {
       vertical-align: middle;

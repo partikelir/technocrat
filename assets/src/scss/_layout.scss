@@ -5,7 +5,7 @@
   @include box-shadow-layered( 0 2px 6px rgba(100, 100, 100, 0.3), inset 0 -3px 12px #ddd );
   @include rem('padding', 0 $spacer);
   background-color: $c-site-bg;
-  @media screen and (min-width: 600px) {
+  @media screen and (min-width: $break-medium) {
     @include rem('padding', 0 $spacer*1.5);
     margin: 0 auto;
     max-width: $site-width;
@@ -13,7 +13,8 @@
   }
 }
 .site-content {
-  @media screen and (min-width: 600px) {
+  max-width: $content-width;
+  @media screen and (min-width: $break-single-column) {
     float: left;
     width: percentage( $content-width / $site-width );
   }
@@ -45,7 +46,7 @@
     display: none;
     font-weight: normal;
     @include font-sizer(14);
-    @media screen and (min-width: 600px) {
+    @media screen and (min-width: $break-medium) {
       display: block;
     }
   }
@@ -92,14 +93,18 @@
   @include rem('padding', $spacer/2 0);
   @extend %clearfix;
   border-top: $divider;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: right;
   a {
     color: lighten($c-body, 14);
     &:hover {
       color: $c-link-h;
     }
+  }
+}
+.footer-buttons {
+  @include button-div();
+  display: block;
+  @media screen and (min-width: $break-medium) {
+    display: none;
   }
 }
 
@@ -108,7 +113,7 @@
 // Twenty Twelve legacy styles
 body.attachment .site-content,
 body.full-width .site-content {
-  @media screen and (min-width: 600px) {
+  @media screen and (min-width: $break-medium) {
     width: 100%;
   }
 }

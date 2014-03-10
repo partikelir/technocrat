@@ -175,10 +175,8 @@
     }
   }
 }
-// Needs some tweaking; long entry meta info will cause the buttons to slide to the next line
 .entry-meta-buttons {
-  @include rem('margin-left', $spacer/2);
-  float: right;
+  @include button-div();
 }
 .edit-link,
 .leave-reply {

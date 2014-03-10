@@ -3,6 +3,9 @@ Theme Name: Pendrell
 See: http://codex.wordpress.org/Right_to_Left_Language_Support
 */
 
+@import "base";
+// Twenty Twelve legacy styles
+
 
 body {
 	direction: rtl;
@@ -168,7 +171,7 @@ label ~ span.required {
 -------------------------------------------------------------- */
 
 /* Minimum width of 600 pixels. */
-@media screen and (min-width: 600px) {
+@media screen and (min-width: $break-medium) {
 	.site-content {
 		float: right;
 	}

@@ -65,10 +65,11 @@ function pendrell_setup() {
   global $content_width;
   $content_width = 624;
 
-  // This theme styles the visual editor with editor-style.css to match the theme style.
-  add_editor_style();
+  // This theme styles the visual editor with editor-style.css to match the theme style
+  //add_editor_style();
 
-  // This theme uses wp_nav_menu() in one location.
-  register_nav_menu( 'primary', __( 'Primary Menu', 'pendrell' ) );
+  // This theme uses wp_nav_menu() in two locations
+  register_nav_menu( 'primary', __( 'Primary menu', 'pendrell' ) );
+  register_nav_menu( 'footer', __( 'Footer menu', 'pendrell' ) );
 }
 add_action( 'after_setup_theme', 'pendrell_setup', 11 );

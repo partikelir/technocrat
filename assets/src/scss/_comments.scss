@@ -22,9 +22,6 @@
     @include border-radius($spacer/4);
   }
 }
-.comment-meta-buttons {
-  @extend .entry-meta-buttons;
-}
 .comment-meta-main {
   @extend .entry-meta-main;
   h3 {
@@ -40,7 +37,7 @@
   }
   // Threaded comments
   .children {
-    @media screen and (min-width: 600px) {
+    @media screen and (min-width: $break-medium) {
       @include rem('margin-left', $spacer);
     }
   }
@@ -71,12 +68,12 @@
       width: 100%;
     }
     input[type="text"] {
-      @media screen and (min-width: 600px) {
+      @media screen and (min-width: $break-medium) {
         width: 40%;
       }
     }
     textarea {
-      @media screen and (min-width: 600px) {
+      @media screen and (min-width: $break-medium) {
         width: 80%;
       }
     }
@@ -96,6 +93,10 @@
   }
 }
 
+
+
+// These classes contain right-aligned buttons
+.comment-meta-buttons,
 .comment-reply-title small {
-  @extend .entry-meta-buttons;
+  @include button-div();
 }

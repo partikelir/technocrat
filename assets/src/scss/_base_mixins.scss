@@ -1,4 +1,5 @@
 // === MIXINS === //
+// Only mixins should go in this file; variables are undefined when this file is loaded!
 
 // $size (integer): pixel value of desired font size
 // $offset (integer); pixel value used in instances where there is a border mucking up the line-height
@@ -22,13 +23,10 @@
   border: 1px solid darken($color, 7);
 }
 
-// Clearfix silent selector; activate with @extend %clearfix;
-%clearfix {
-  &:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
+// Right-aligned button container
+@mixin button-div() {
+  @include rem('margin-left', $spacer/2);
+  float: right;
 }
 
 

@@ -3,11 +3,14 @@ Theme Name: Pendrell
 Description: Used to style the TinyMCE editor.
 */
 
+@import "base";
+// Twenty Twelve legacy styles
+
 html {
 	font-size: 87.5%;
 }
 html .mceContentBody {
-	max-width: 625px;
+	max-width: $content-width;
 }
 body {
 	color: #444;

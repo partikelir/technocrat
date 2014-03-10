@@ -3,6 +3,8 @@ Theme Name: Pendrell
 Description: Used to style the TinyMCE editor for RTL languages.
 */
 
+// Twenty Twelve legacy styles
+
 html .mceContentBody {
 	direction: rtl;
 	unicode-bidi: embed;
