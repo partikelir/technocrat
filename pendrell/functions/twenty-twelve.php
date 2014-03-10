@@ -60,17 +60,3 @@ function twentytwelve_customize_register( $wp_customize ) {
   $wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
 }
 add_action( 'customize_register', 'twentytwelve_customize_register' );
-
-/**
- * Enqueue Javascript postMessage handlers for the Customizer.
- *
- * Binds JS handlers to make the Customizer preview reload changes asynchronously.
- *
- * @since Pendrell 0.4
- *
- * @return void
- */
-function twentytwelve_customize_preview_js() {
-  wp_enqueue_script( 'twentytwelve-customizer', get_template_directory_uri() . '/js/theme-customizer.js', array( 'customize-preview' ), '20130301', true );
-}
-add_action( 'customize_preview_init', 'twentytwelve_customize_preview_js' );

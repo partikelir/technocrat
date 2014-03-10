@@ -8,7 +8,7 @@
 }
 .comments-area {
   article {
-    @include rem('margin-bottom', $spacer*3);
+    @include rem('margin-bottom', $spacer*2);
     padding: 0;
   }
 }
@@ -50,7 +50,7 @@
 
 // Response form
 #respond {
-  //@include rem('margin-top', $spacer*2);
+  @include rem('margin-bottom', $spacer*2);
   h3#reply-title {
     #cancel-comment-reply-link {
       @include font-sizer(12);
@@ -94,4 +94,8 @@
       }
     }
   }
+}
+
+.comment-reply-title small {
+  @extend .entry-meta-buttons;
 }

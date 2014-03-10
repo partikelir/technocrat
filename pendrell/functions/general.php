@@ -27,13 +27,13 @@ function pendrell_enqueue_scripts() {
 	}
 
   // Adds JavaScript to pages with the comment form to support sites with threaded comments (when in use).
-  if ( is_singular() && comments_open() && get_option( 'thread_comments' ) )
-    wp_enqueue_script( 'comment-reply' );
+  // Commented out due to unnecessary bloat!
+  //if ( is_singular() && comments_open() && get_option( 'thread_comments' ) )
+    //wp_enqueue_script( 'comment-reply' );
 
   // Override Twenty Twelve font styles
   $font_url = pendrell_get_font_url();
   if ( ! empty( $font_url ) ) {
-    //wp_deregister_style( 'twentytwelve-fonts' ); // Should be unnecessary
     wp_enqueue_style( 'pendrell-fonts', esc_url_raw( $font_url ), array(), null );
   }
 

@@ -25,6 +25,7 @@ add_action( 'init', 'pendrell_series_init' );
 
 
 
+// Quick and dirty series list on single entries
 function pendrell_series_list() {
 	global $post;
 

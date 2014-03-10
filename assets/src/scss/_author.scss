@@ -22,14 +22,10 @@
   border-top: 0;
 }
 .author-avatar {
-  margin: 0;
+  display: none; // Only display author avatar on larger screens
   @media screen and (min-width: 600px) {
+    display: block;
     float: right;
-  }
-}
-.author-description {
-  @media screen and (min-width: 600px) {
-    float: left;
-    width: percentage(500/625);
+    line-height: 0; // Keeps the container snug around the avatar image
   }
 }

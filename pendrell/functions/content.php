@@ -235,6 +235,39 @@ function pendrell_entry_meta() {
 
 
 
+// Author box functionality
+function pendrell_author_box() {
+  global $post;
+
+  // Show a bio if a user has filled out their description...
+  if ( is_singular('post') && get_the_author_meta( 'description' ) && PENDRELL_AUTHOR_BOX ) { ?>
+    <div class="author-info">
+      <div class="author-avatar">
+        <?php $author_url = get_the_author_meta( 'user_url' );
+        if ( $author_url ) {
+          ?><a href="<?php get_the_author_meta( 'user_url' ); ?>" title="<?php the_author_meta( 'display_name' ); ?>"><?php echo get_avatar( get_the_author_meta( 'user_email' ), 90 ); ?></a><?php
+        } else {
+          echo get_avatar( get_the_author_meta( 'user_email' ), 90 );
+        } ?>
+      </div><!-- .author-avatar -->
+      <div class="author-description">
+        <h2><?php printf( __( 'About %s', 'pendrell' ), get_the_author() ); ?></h2>
+        <p><?php the_author_meta( 'description' ); ?></p>
+        <?php if ( is_multi_author() ) { ?>
+        <div class="author-link">
+          <a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>" rel="author">
+            <?php printf( __( 'View all posts by %s <span class="meta-nav">&rarr;</span>', 'pendrell' ), get_the_author() ); ?>
+          </a>
+        </div><!-- .author-link -->
+        <?php } ?>
+      </div><!-- .author-description -->
+    </div><!-- .author-info -->
+  <?php }
+}
+add_filter( 'post_entry_meta', 'pendrell_author_box' );
+
+
+
 // Hack: switch navigation links depending on the order of posts, mainly for use with series
 function pendrell_content_nav( $html_id ) {
   global $wp_query;
