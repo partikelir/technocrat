@@ -27,7 +27,11 @@
 .entry-header,
 .entry-content,
 .comment-content {
-  h1,h2,h3,h4,h5,h6 {
+  h1 {
+    @include rem('margin-top', $spacer*1.5);
+    text-transform: none;
+  }
+  h2,h3,h4,h5,h6 {
     @include rem('margin-top', $spacer);
     text-transform: none;
   }
@@ -81,26 +85,28 @@
 
   // Pre and code blocks
   code {
-    @include highlight($c-blockquote-bg);
+    @include font-sizer(16);
     color: $c-code;
+  }
+  p > code {
+    @include highlight($c-blockquote-bg);
+    line-height: 1;
   }
   a code {
     color: $c-link;
+    line-height: 0;
   }
   pre {
     @include font-sizer(16);
     @include rem('margin-bottom', $spacer);
     color: $c-pre;
   }
-  pre code {
-    display: block;
-  }
 
   // Tables and figures
   table {
     border-bottom: $divider;
     color: $c-table;
-    @include rem('margin', 0 0 $spacer);
+    @include rem('margin-bottom', $spacer, 1);
     width: 100%;
     caption {
       @include font-sizer(16);

@@ -17,7 +17,9 @@
 }
 .comment-meta-avatar {
   @include rem('margin-right', $spacer/2);
+  display: inline-block;
   float: left;
+  line-height: 0; // Keeps the container snug around the avatar image
   img.avatar {
     @include border-radius($spacer/4);
   }
@@ -86,9 +88,6 @@
       @include font-sizer(14);
       @include rem('margin-bottom', $spacer);
       color: lighten($c-body, 10);
-      code {
-        display: block;
-      }
     }
   }
 }

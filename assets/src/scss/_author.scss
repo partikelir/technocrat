@@ -24,7 +24,7 @@
 .author-avatar {
   display: none; // Only display author avatar on larger screens
   @media screen and (min-width: $break-medium) {
-    @include rem('margin', 0 0 $spacer/2 $spacer/2);
+    @include rem('margin', 0 0 0 $spacer/2);
     display: block;
     float: right;
     line-height: 0; // Keeps the container snug around the avatar image

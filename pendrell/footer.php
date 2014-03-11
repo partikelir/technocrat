@@ -15,8 +15,8 @@
     <div class="footer-buttons">
       <span class="back-to-top-link button"><a href="#top"><?php _e( 'Back to top', 'pendrell' ); ?></a></span>
     </div>
-    <nav class="footer-navigation" role="navigation">
-      <?php wp_nav_menu( array( 'theme_location' => 'footer', 'menu_class' => 'nav-footer' ) ); ?>
+    <nav class="footer-navigation inline-menu" role="navigation">
+      <?php wp_nav_menu( array( 'theme_location' => 'footer', 'menu_class' => 'menu-footer' ) ); ?>
     </nav>
 		<div class="site-info">
 			<?php printf( __( 'Powered by <a href="%1$s" title="%2$s" rel="generator">WordPress</a> and <a href="%3$s" title="%4$s">Pendrell %5$s</a>.', 'pendrell' ),

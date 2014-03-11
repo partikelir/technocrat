@@ -21,12 +21,14 @@
   @include rem('padding', $spacer/12 $spacer/8);
   background: $color;
   border: 1px solid darken($color, 7);
+  display: inline;
 }
 
 // Right-aligned button container
 @mixin button-div() {
   @include rem('margin-left', $spacer/2);
   float: right;
+  height: $spacer;
 }
 
 

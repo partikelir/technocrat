@@ -134,9 +134,32 @@ article.post-password-required input[type=submit],
 
 
 // Footer navigation
-.footer-navigation {
+.inline-menu {
   font-family: $font-head;
   text-transform: uppercase;
+  a {
+    border-bottom: none;
+    color: $c-menu-link;
+    text-decoration: none;
+    &:hover {
+      color: $c-menu-link-h;
+    }
+  }
+  .current-menu-item > a,
+  .current-menu-ancestor > a,
+  .current_page_item > a,
+  .current_page_ancestor > a {
+    color: $c-menu-current;
+  }
+  li {
+    @include font-sizer(14);
+    @include rem('margin', 0 $spacer 0 0);
+    display: inline-block;
+    // Don't bother displaying secondary and tertiary menu items on small screens
+    ul {
+      display: none;
+    }
+  }
 }
 
 

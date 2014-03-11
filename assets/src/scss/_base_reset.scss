@@ -32,12 +32,6 @@ nav,
 section {
   display: block;
 }
-code,
-kbd,
-tt,
-var {
-  white-space: pre-wrap;
-}
 
 
 
@@ -87,20 +81,21 @@ strike {
 
 
 
-// Pre and code blocks
-code {
-  word-wrap: normal;
-}
+// Pre, code, and monospaced
 pre {
   display: block;
   max-width: 100%;
   overflow: auto;
-  white-space: pre-wrap;
+  white-space: pre;
 }
 pre code {
-  white-space: -moz-pre-wrap;
+  display: block;
   white-space: pre-wrap;
-  word-wrap: normal;
+}
+kbd,
+tt,
+var {
+  white-space: pre-wrap;
 }
 
 
