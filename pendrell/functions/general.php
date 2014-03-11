@@ -23,7 +23,8 @@ function pendrell_enqueue_scripts() {
 
   // Load theme-specific JavaScript
 	if ( !is_admin() ) { // http://www.ericmmartin.com/5-tips-for-using-jquery-with-wordpress/
-		wp_enqueue_script( 'pendrell-functions', get_stylesheet_directory_uri() . '/pendrell.min.js', array( 'jquery' ), '0.1', true );
+		wp_enqueue_script( 'pendrell', get_stylesheet_directory_uri() . '/pendrell.min.js', array( 'jquery' ), '0.1', true );
+    wp_enqueue_script( 'pendrell-plugins', get_stylesheet_directory_uri() . '/pendrell-plugins.min.js', array( 'jquery' ), '0.1', true );
 	}
 
   // Adds JavaScript to pages with the comment form to support sites with threaded comments (when in use).

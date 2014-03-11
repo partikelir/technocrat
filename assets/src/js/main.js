@@ -1,3 +1,5 @@
+/* Pendrell */
+
 // Remap jQuery to $
 jQuery(document).ready(function($) {
 

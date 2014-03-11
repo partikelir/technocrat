@@ -69,7 +69,7 @@ function pendrell_setup() {
   //add_editor_style();
 
   // This theme uses wp_nav_menu() in two locations
-  register_nav_menu( 'primary', __( 'Primary menu', 'pendrell' ) );
+  register_nav_menu( 'header', __( 'Header menu', 'pendrell' ) );
   register_nav_menu( 'footer', __( 'Footer menu', 'pendrell' ) );
 }
 add_action( 'after_setup_theme', 'pendrell_setup', 11 );

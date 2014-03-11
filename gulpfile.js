@@ -19,7 +19,7 @@ gulp.task('styles', function() {
 });
 
 gulp.task('plugins', function() {
-  return gulp.src(['assets/src/js/plugins.js', 'assets/src/js/plugins/*.js'])
+  return gulp.src(['assets/src/js/plugins/*.js', 'assets/src/js/plugins.js'])
   .pipe(plugins.concat('pendrell-plugins.js'))
   .pipe(gulp.dest('assets/staging'))
   .pipe(plugins.rename({ suffix: '.min' }))

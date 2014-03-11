@@ -31,6 +31,10 @@ article.post-password-required input[type=submit],
     color: lighten($c-body, 37);
   }
 }
+
+
+
+// Menu toggle for mobile phones
 .menu-toggle {
   display: inline-block;
   position: absolute;
@@ -46,12 +50,41 @@ article.post-password-required input[type=submit],
 
 
 
-// Main navigation
-.main-navigation {
-  @include rem('margin-top', $spacer/2);
+// Menu (general)
+.inline-menu {
   font-family: $font-head;
   text-transform: uppercase;
-  ul.nav-menu {
+  a {
+    color: $c-menu-link;
+    text-decoration: none;
+    &:hover {
+      color: $c-menu-link-h;
+    }
+  }
+  .current-menu-item > a,
+  .current-menu-ancestor > a,
+  .current_page_item > a,
+  .current_page_ancestor > a {
+    color: $c-menu-current;
+  }
+  li {
+    @include font-sizer(14);
+    @include rem('margin', 0 $spacer 0 0);
+    display: inline-block;
+    position: relative;
+    // Don't bother displaying secondary and tertiary menu items on small screens
+    ul {
+      display: none;
+    }
+  }
+}
+
+
+
+// Header navigation
+#menu-header {
+  @include rem('margin-top', $spacer/2);
+  ul.menu-header {
     display: none;
     margin: 0;
     text-indent: 0;
@@ -61,31 +94,13 @@ article.post-password-required input[type=submit],
       width: 100%;
     }
   }
-  ul.nav-menu.toggled-on {
+  ul.menu-header.toggled-on {
     display: inline-block;
   }
   a {
-    border-bottom: none;
-    color: $c-menu-link;
-    text-decoration: none;
-    &:hover {
-      color: $c-menu-link-h;
-    }
     @media screen and (min-width: $break-medium) {
       line-height: $spacer*1.5;
       white-space: nowrap;
-    }
-  }
-  li {
-    @include font-sizer(14);
-    @include rem('margin', 0 $spacer 0 0);
-    display: inline-block;
-    @media screen and (min-width: $break-medium) {
-      position: relative;
-    }
-    // Don't bother displaying secondary and tertiary menu items on small screens
-    ul {
-      display: none;
     }
   }
   @media screen and (min-width: $break-medium) {
@@ -121,43 +136,6 @@ article.post-password-required input[type=submit],
     ul li:hover > ul {
       border-left: 0;
       display: block;
-    }
-  }
-  .current-menu-item > a,
-  .current-menu-ancestor > a,
-  .current_page_item > a,
-  .current_page_ancestor > a {
-    color: $c-menu-current;
-  }
-}
-
-
-
-// Footer navigation
-.inline-menu {
-  font-family: $font-head;
-  text-transform: uppercase;
-  a {
-    border-bottom: none;
-    color: $c-menu-link;
-    text-decoration: none;
-    &:hover {
-      color: $c-menu-link-h;
-    }
-  }
-  .current-menu-item > a,
-  .current-menu-ancestor > a,
-  .current_page_item > a,
-  .current_page_ancestor > a {
-    color: $c-menu-current;
-  }
-  li {
-    @include font-sizer(14);
-    @include rem('margin', 0 $spacer 0 0);
-    display: inline-block;
-    // Don't bother displaying secondary and tertiary menu items on small screens
-    ul {
-      display: none;
     }
   }
 }
