@@ -36,8 +36,9 @@ $c-pre:           lighten($c-body, 19);
 $c-table:         lighten($c-body, 19);
 
 // Various
-$c-small-header:  lighten($c-body, 13);
-$c-site-header:   #222;
+$c-caption:       lighten($c-body, 23);
 $c-divider:       darken($c-body-bg, 7);
 $c-pullquote:     lighten($c-body, 37);
 $c-required:      crimson;
+$c-site-header:   #222;
+$c-small-header:  lighten($c-body, 13);

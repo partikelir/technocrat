@@ -118,7 +118,10 @@
     border-top: $divider;
   }
 
-  // Images
+  // Media
+  img {
+    display: block;
+  }
   img.alignleft,
   .wp-caption.alignleft {
     @include rem('margin', $spacer/2 $spacer $spacer/2 0);
@@ -133,8 +136,6 @@
     @include rem('margin-top', $spacer/2);
     @extend %clearfix;
   }
-
-  // Various
   embed,
   iframe,
   object,
@@ -142,6 +143,8 @@
     @include rem('margin-bottom', $spacer);
   }
 }
+
+
 
 // Paragraphs
 .entry-content,
@@ -155,14 +158,6 @@
   }
 }
 
-.site-content article {
-  @include rem('margin-bottom', $spacer*2);
-  @include rem('padding-bottom', $spacer);
-}
-.page-links {
-  @extend %clearfix;
-}
-
 
 
 // Entry meta
@@ -171,7 +166,7 @@
   @extend %clearfix;
 }
 .entry-meta-main {
-  @include font-sizer(13);
+  @include font-sizer(14);
   color: $c-meta;
   a {
     color: darken($c-meta, 33);

@@ -4,7 +4,7 @@
  * Handles toggling the navigation menu for small screens.
  */
 ( function() {
-	var nav = document.getElementById( 'site-navigation' ), button, menu;
+	var nav = document.getElementById( 'menu-header' ), button, menu;
 	if ( ! nav ) {
 		return;
 	}
@@ -21,8 +21,8 @@
 	}
 
 	button.onclick = function() {
-		if ( -1 === menu.className.indexOf( 'nav-menu' ) ) {
-			menu.className = 'nav-menu';
+		if ( -1 === menu.className.indexOf( 'inline-menu' ) ) {
+			menu.className = 'inline-menu';
 		}
 
 		if ( -1 !== button.className.indexOf( 'toggled-on' ) ) {

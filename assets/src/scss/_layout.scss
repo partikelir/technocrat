@@ -26,6 +26,7 @@
 .site-header {
   @include rem('margin-bottom', $spacer*2, 1);
   @include rem('padding-top', $spacer);
+  border-bottom: $divider;
   h1,
   h2 {
     text-align: left;
@@ -54,6 +55,14 @@
 .site-header .site-title,
 .site-header .site-description {
   clear: none;
+}
+
+
+
+// Site content
+.site-content article {
+  @include rem('margin-bottom', $spacer*2);
+  @include rem('padding-bottom', $spacer);
 }
 
 
