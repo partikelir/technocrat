@@ -35,10 +35,14 @@ $c-mark-bg:       #fff9c0;
 $c-pre:           lighten($c-body, 19);
 $c-table:         lighten($c-body, 19);
 
+// Form states
+$c-alert:         crimson;
+$c-required:      crimson;
+$c-success:       #a2bf68;
+
 // Various
 $c-caption:       lighten($c-body, 23);
 $c-divider:       darken($c-body-bg, 7);
 $c-pullquote:     lighten($c-body, 37);
-$c-required:      crimson;
 $c-site-header:   #222;
 $c-small-header:  lighten($c-body, 13);

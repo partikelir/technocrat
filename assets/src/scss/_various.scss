@@ -15,9 +15,21 @@
 
 
 
-// Required: from Twenty Twelve, maybe used in comments
+// Form entry
+.alert {
+  color: $c-alert;
+  font-weight: bold;
+}
+.alert-field {
+  border: 1px solid $c-alert;
+  box-shadow: 0 0 6px $c-alert;
+  outline: none;
+}
 .required {
   color: $c-required;
+}
+.success {
+  color: $c-success;
 }
 
 

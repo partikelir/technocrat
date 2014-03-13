@@ -1,6 +1,6 @@
-# PENDRELL 0.4
+# PENDRELL 0.5
 
-Pendrell is a fork of Twenty Twelve (formerly a child theme of the same) designed to allow two types of content to co-exist in harmony:
+Pendrell is a fork of Twenty Twelve (formerly a child theme of the same) originally designed to allow two types of content to co-exist in harmony:
 
 * Blog entries set with beautiful, legible type
 * Portfolio items featuring big, bold full-width images
@@ -17,14 +17,13 @@ Drop the 'pendrell/pendrell' directory into /wp-content/themes/ and activate it 
 
 ### CONFIGURATION
 
-This theme has no options page; you will have to get your feet wet and modify the `functions-config-sample.php` file, renaming it to `functions-config.php`, if you wish to change any of the defaults. Most of these should be self-explanatory; read the comments for more direction.
+This theme has no options page; modify the `functions-config-sample.php` file, renaming it to `functions-config.php`, if you wish to change any of the defaults. Most of the settings should be self-explanatory; read the comments for more direction.
 
 ### PLUGINS
 
 The following plugins are not quite dependencies but you will probably want to install them to get the most out of Pendrell:
 
-* Crowd Favorite's WP-Post-Formats plugin: https://github.com/crowdfavorite/wp-post-formats OR...
-* My fork of the same: https://github.com/synapticism/wp-post-formats
+* My fork of Crowd Favorite's WP-Post-Formats plugin: https://github.com/synapticism/wp-post-formats
 * Regenerate Thumbnails: http://wordpress.org/extend/plugins/regenerate-thumbnails/
 
 ### DEVELOPMENT
@@ -34,20 +33,23 @@ Two commands to get started hacking Pendrell:
 `npm install`
 `gem install sass`
 
+To build Pendrell after modifications:
+
+`gulp`
+
 ## FEATURES
 
 ### GENERAL ENHANCEMENTS
 
-* Custom site header on top of navigation instead of below
-* Entry content type set at 16px for easier reading
-* Standardized entry meta data display across post formats
+* Entry content type set at 18px for easier reading
 * Comment and edit post actions are now clickable buttons
 * Comment button is now below content and invisible on single posts
 * Improved post format styling and support
+* Standardized entry meta data display across post formats
 * More descriptive archive headers for different content types
-* Removed page margin at top and bottom to make more efficient use of vertical space
-* Google Web Fonts
-* CSS minification
+* Google Web Font loading
+* Gulp build script CSS/JS minification via Gulp build script
+* Contact form page template
 
 ### HACKS, TWEAKS, & SNIPPETS
 
@@ -60,8 +62,11 @@ Two commands to get started hacking Pendrell:
 * jQuery-based HTML5 pullquotes; `<span class="pullquote">Text</span>` will be transformed into `<aside class="pulledquote">Text</aside>` and prepended
 * Context-dependent posts per page (12 items per screen on portfolios, 25 on search, user default elsewhere)
 * Reset admin-side HTML editor to a nicer font stack
+* Custom site header and other cruft removed
 
 ### PORTFOLIO ITEMS
+
+This section is the first part of Pendrell I worked on and correspondingly the least polished. I haven't come back to it in a while but plan to revisit it some day.
 
 * Redesigned for full-width multimedia portfolios and image galleries with big, bold images
 * Portfolio items are standard posts formatted any way you like and assigned to a portfolio category e.g. "Portfolio"
@@ -98,10 +103,9 @@ There is a lightweight series taxonomy for linking posts together. Usage is clos
 * Comments need lots of work
 * Easily disable comments altogether
 
-### WOULD BE NICE
+### MIGHT BE NICE
 
-* Nicer ampersands: http://css-tricks.com/using-the-best-ampersand-available/
-* Smart 404 page
+* Smarter 404 page
 * Related posts
 * Favicon/Apple touch icons
 * Bookmarks template with support for link categories, link descriptions, and private links (see bookmarks.php)
@@ -118,12 +122,12 @@ There is a lightweight series taxonomy for linking posts together. Usage is clos
 
 ## ADDITIONAL RESOURCES
 
+This is mainly a list of links I've maintained for my own reference.
+
 ### SUGGESTED PLUGINS
 
 * Akismet: http://wordpress.org/extend/plugins/akismet
 * AudioPlayer: http://wordpress.org/extend/plugins/audio-player/
-* Contact Form 7: http://wordpress.org/extend/plugins/contact-form-7/
-* Subscribe2: http://wordpress.org/extend/plugins/subscribe2/
 * SyntaxHighlighter Evolved: http://wordpress.org/extend/plugins/syntaxhighlighter/
 * WP-PageNavi: http://wordpress.org/extend/plugins/wp-pagenavi/
 * WP-PostRatings: http://wordpress.org/extend/plugins/wp-postratings/
@@ -166,6 +170,6 @@ There is a lightweight series taxonomy for linking posts together. Usage is clos
 * http://wpsnipp.com/
 * http://perishablepress.com/press/2009/12/01/stupid-wordpress-tricks/
 
-## LICENCE
+## LICENSE
 
-GNU General Public Licence: http://www.gnu.org/licenses/gpl.html
+GNU General Public License: http://www.gnu.org/licenses/gpl.html

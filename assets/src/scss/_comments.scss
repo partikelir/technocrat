@@ -33,6 +33,11 @@
 
 
 
+// These classes contain right-aligned buttons
+.comment-meta-buttons,
+.comment-reply-title small {
+  @include button-div();
+}
 .commentlist {
   .pingback {
     @include font-sizer(14);
@@ -47,55 +52,52 @@
 
 
 
-// Response form
-#respond {
+// General response form
+.comment-form {
   @include rem('margin-bottom', $spacer*2);
-  h3#reply-title {
-    #cancel-comment-reply-link {
-      @include font-sizer(12);
-      @include rem('margin-left', $spacer/2);
-      font-weight: normal;
+  @include font-sizer(14);
+  label {
+    display: block;
+    font-family: $font-head;
+    text-transform: uppercase;
+  }
+  input[type="text"],
+  textarea {
+    font-family: inherit;
+    width: 100%;
+  }
+  input[type="text"] {
+    @media screen and (min-width: $break-medium) {
+      width: 40%;
     }
   }
-  form {
+  textarea {
+    @media screen and (min-width: $break-medium) {
+      width: 80%;
+    }
+  }
+  .form-submit {
+    @include button-div();
+    @include rem('margin-bottom', $spacer);
+  }
+
+  // Spectific to comment form
+  p:first-child,
+  p.logged-in-as,
+  p.comment-form-url {
+    @include rem('margin-bottom', $spacer);
+  }
+  p.form-allowed-tags {
     @include font-sizer(14);
-    label {
-      display: block;
-      font-family: $font-head;
-      text-transform: uppercase;
-    }
-    input[type="text"],
-    textarea {
-      font-family: inherit;
-      width: 100%;
-    }
-    input[type="text"] {
-      @media screen and (min-width: $break-medium) {
-        width: 40%;
-      }
-    }
-    textarea {
-      @media screen and (min-width: $break-medium) {
-        width: 80%;
-      }
-    }
-    p.comment-notes,
-    p.logged-in-as,
-    p.comment-form-url {
-      @include rem('margin-bottom', $spacer);
-    }
-    p.form-allowed-tags {
-      @include font-sizer(14);
-      @include rem('margin-bottom', $spacer);
-      color: lighten($c-body, 10);
-    }
+    @include rem('margin-bottom', $spacer);
+    color: lighten($c-body, 10);
   }
-}
+  #cancel-comment-reply-link {
+    @include font-sizer(12);
+    @include rem('margin-left', $spacer/2);
+    font-weight: normal;
+  }
 
+  // Specific to contact form
 
-
-// These classes contain right-aligned buttons
-.comment-meta-buttons,
-.comment-reply-title small {
-  @include button-div();
 }

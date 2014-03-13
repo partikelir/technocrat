@@ -11,7 +11,7 @@
  */
 ?>
 	</div><!-- #main .wrapper -->
-	<footer id="colophon" class="site-footer" role="contentinfo">
+	<footer class="site-footer" role="contentinfo">
     <div class="footer-buttons">
       <span class="back-to-top-link button"><a href="#top"><?php _e( 'Back to top', 'pendrell' ); ?></a></span>
     </div>
@@ -31,7 +31,7 @@
           PENDRELL_VERSION
       ); ?>
 		</div><!-- .site-info -->
-	</footer><!-- #colophon -->
+	</footer><!-- .site-footer -->
 </div><!-- #page -->
 <?php wp_footer(); ?>
 </body>
