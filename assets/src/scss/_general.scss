@@ -66,7 +66,8 @@ acronym {
 address {
   @include rem('margin', 0 0 $spacer);
   display: block;
-  &:first-line {
+  font-style: normal; // Italic is sometimes a bit harder to read
+  &::first-line {
     font-weight: bold;
   }
 }
@@ -106,25 +107,26 @@ blockquote {
   color: $c-blockquote;
   display: block;
   font-style: italic;
-  cite {
-    display: block;
-    text-align: right;
-    &:before {
-      content: "\2014\00a0";
-    }
-    &:after {
-      content: "";
-    }
-  }
   p {
-    @include rem('padding-bottom', $spacer);
+    @include rem('padding-bottom', $spacer); // Padding is used instead of margins because of the blockquote background
     margin-bottom: 0;
     // Add opening and closing quotation marks to the blockquote element
     &:first-child::before {
       content: "\201C";
     }
-    &:last-child::after {
+    // Correctly adds quotation mark when footer or cite elements are present at the end of the blockquote
+    &:nth-last-of-type(1)::after {
       content: "\201D";
+    }
+  }
+  footer {
+    @include font-sizer(16);
+    @include rem('padding-bottom', $spacer);
+    display: block;
+    font-style: normal;
+    text-align: right;
+    &:before {
+      content: "\2014\00a0"; // "\2015" is a "horizontal bar" or "quotation dash" meant to introduce a quotation, not a citation
     }
   }
 }
@@ -164,15 +166,4 @@ input[type="reset"] {
 button[disabled],
 input[disabled] {
   cursor: default;
-}
-
-
-
-// Clearfix silent selector; activate with @extend %clearfix;
-%clearfix {
-  &:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
 }

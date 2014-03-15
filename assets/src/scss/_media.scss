@@ -4,10 +4,30 @@
 .entry-content img,
 .comment-content img,
 .widget img,
-img.header-image,
 .author-avatar img,
 img.wp-post-image {
   @include border-radius();
+}
+
+
+
+// Responsive images
+.entry-content img,
+.comment-content img,
+.widget img {
+  max-width: 100%; // Fluid images for posts, comments, and widgets
+}
+img[class*="align"],
+img[class*="wp-image-"],
+img[class*="attachment-"] {
+  height: auto; // Make sure images with WordPress-added height and width attributes are scaled correctly
+}
+img.size-full,
+img.size-large,
+img.header-image,
+img.wp-post-image {
+  max-width: 100%;
+  height: auto; // Make sure images with WordPress-added height and width attributes are scaled correctly
 }
 
 
@@ -19,7 +39,7 @@ img.wp-post-image {
 .wp-caption .wp-caption-text,
 .gallery-caption,
 .entry-caption {
-  @include font-sizer(16);
+  @include font-sizer(14);
   font-style: italic;
   color: $c-caption;
 }
@@ -101,24 +121,3 @@ img.wp-smiley,
 }
 .gallery dl, .gallery dt { margin: 0; }
 .gallery br+br { display: none; }
-
-
-
-// Responsive images
-.entry-content img,
-.comment-content img,
-.widget img {
-  max-width: 100%; /* Fluid images for posts, comments, and widgets */
-}
-img[class*="align"],
-img[class*="wp-image-"],
-img[class*="attachment-"] {
-  height: auto; /* Make sure images with WordPress-added height and width attributes are scaled correctly */
-}
-img.size-full,
-img.size-large,
-img.header-image,
-img.wp-post-image {
-  max-width: 100%;
-  height: auto; /* Make sure images with WordPress-added height and width attributes are scaled correctly */
-}

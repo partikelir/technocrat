@@ -2,7 +2,6 @@
 
 @import "base_colours";
 @import "base_fonts";
-@import "base_mixins";
 
 // Font stacks
 $font-body: $lato;
@@ -33,4 +32,5 @@ $break-large: $site-width;
 // Design patterns
 $divider: 1px solid $c-divider;
 
+@import "base_mixins";
 @import "base_reset";

@@ -69,17 +69,3 @@
     text-align: right;
   }
 }
-
-
-
-// Cheap trick to lose the sidebar on full-width view; surely there is a better way
-body.full-width,
-body.single-format-aside,
-body.single-format-link,
-body.single-format-quote,
-body.single-format-status {
-  .widget-area,
-  .nav-single {
-    display: none;
-  }
-}

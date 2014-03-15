@@ -15,6 +15,14 @@
 
 
 
+// Clearing helper classes
+.clear,
+.wrapper {
+  @extend %clearfix;
+}
+
+
+
 // Form entry
 .alert {
   color: $c-alert;
@@ -112,24 +120,4 @@
 // Hide that mysterious smiley face that appears when you use Jetpack
 img#wpstats {
   display: none;
-}
-
-
-
-// Twenty Twelve legacy clearing?
-// Clearing
-/*.clear:after,
-.wrapper:after {
-  clear: both;
-}
-.clear:before,
-.clear:after,
-.wrapper:before,
-.wrapper:after {
-  display: table;
-  content: "";
-}*/
-.clear,
-.wrapper {
-  @extend %clearfix;
 }

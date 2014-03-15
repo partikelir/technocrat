@@ -31,7 +31,7 @@ $c-del:           lighten($c-body, 13);
 $c-hr:            #ccc;
 $c-ins-bg:        #fff9c0;
 $c-mark:          lighten($c-body, 19);
-$c-mark-bg:       #fff9c0;
+$c-mark-bg:       $c-ins-bg;
 $c-pre:           lighten($c-body, 19);
 $c-table:         lighten($c-body, 19);
 

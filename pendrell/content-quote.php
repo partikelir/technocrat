@@ -50,14 +50,12 @@ if ( $source_name || $source_title || $source_url ) {
 
 	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 		<div class="entry-content">
-			<article>
-				<blockquote<?php if ( !empty( $source_url ) ) { ?> cite="<?php echo $source_url; ?>"<?php } ?>>
-					<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'pendrell' ) ); ?>
-				</blockquote>
+			<blockquote<?php if ( !empty( $source_url ) ) { ?> cite="<?php echo $source_url; ?>"<?php } ?>>
+				<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'pendrell' ) ); ?>
 				<?php if ( !empty( $source ) ) { ?><footer>
 					<?php echo $source; ?>
 				</footer><?php } ?>
-			</article>
+			</blockquote>
 		</div><!-- .entry-content -->
 
 		<footer class="entry-meta">

@@ -9,10 +9,6 @@
 ?>
 
 	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-		<div class="entry-header">
-			<?php echo get_avatar( get_the_author_meta( 'ID' ), apply_filters( 'pendrell_status_avatar', '36' ) ); ?>
-		</div><!-- .entry-header -->
-
 		<div class="entry-content">
 			<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'pendrell' ) ); ?>
 		</div><!-- .entry-content -->
