@@ -74,7 +74,7 @@
     }
   }
   li {
-    @include rem('margin', 0 0 0 $spacer*1.5);
+    @include rem('margin', 0 0 0 $spacer);
   }
   dl {
     @include rem('margin', 0 $spacer);
@@ -91,6 +91,10 @@
   p > code {
     @include highlight($c-blockquote-bg);
     line-height: 1;
+  }
+  blockquote p > code {
+    // Darken slightly to account for the blockquote background
+    @include highlight( darken($c-blockquote-bg, 7) );
   }
   a code {
     color: $c-link;
@@ -124,16 +128,15 @@
   }
   img.alignleft,
   .wp-caption.alignleft {
-    @include rem('margin', $spacer/2 $spacer $spacer/2 0);
+    @include rem('margin', 0 $spacer $spacer/2 0);
   }
   img.alignright,
   .wp-caption.alignright {
-    @include rem('margin', $spacer/2 0 $spacer/2 $spacer);
+    @include rem('margin', 0 0 $spacer/2 $spacer);
   }
   img.aligncenter,
   .wp-caption.aligncenter {
-    @include rem('margin-bottom', $spacer/2);
-    @include rem('margin-top', $spacer/2);
+    @include rem('margin', 0 0 $spacer/2 0);
     @extend %clearfix;
   }
   embed,

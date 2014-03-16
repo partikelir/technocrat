@@ -6,8 +6,12 @@ function pendrell_body_class( $classes ) {
 		$classes[] = 'full-width portfolio';
 	}
 
-  if ( ! is_active_sidebar( 'sidebar-1' ) || is_page_template( 'page-templates/full-width.php' ) )
+  if (
+    !is_active_sidebar( 'sidebar-1' )
+    || is_page_template( 'page-templates/full-width.php' )
+  ) {
     $classes[] = 'full-width';
+  }
 
   if ( ! is_multi_author() )
     $classes[] = 'single-author';
@@ -20,7 +24,12 @@ add_filter( 'body_class', 'pendrell_body_class' );
 
 // Adjusts content_width value for full-width and single image attachment templates, and when there are no active widgets in the sidebar.
 function pendrell_content_width() {
-  if ( is_page_template( 'page-templates/full-width.php' ) || is_attachment() || ! is_active_sidebar( 'sidebar-1' ) | pendrell_is_portfolio() ) {
+  if (
+    is_page_template( 'page-templates/full-width.php' )
+    || is_attachment()
+    || !is_active_sidebar( 'sidebar-1' )
+    || pendrell_is_portfolio()
+  ) {
     global $content_width;
     $content_width = 960;
   }
@@ -32,7 +41,10 @@ add_action( 'template_redirect', 'pendrell_content_width' );
 // Test to see whether we are viewing a portfolio post or category archive
 function pendrell_is_portfolio() {
 	global $pendrell_portfolio_cats;
-	if ( is_category( $pendrell_portfolio_cats ) || ( is_singular() && in_category( $pendrell_portfolio_cats ) ) ) {
+	if (
+    is_category( $pendrell_portfolio_cats )
+    || ( is_singular() && in_category( $pendrell_portfolio_cats ) )
+  ) {
 		return true;
 	} else {
 		return false;

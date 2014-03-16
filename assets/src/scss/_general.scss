@@ -92,6 +92,7 @@ code,
 kbd,
 tt,
 var {
+  display: inline;
   line-height: 0; // Fixes vertical rhythm for oversized monospaced fonts
 }
 

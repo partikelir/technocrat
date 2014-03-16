@@ -13,7 +13,7 @@
   }
 }
 .site-content {
-  max-width: $content-width;
+  max-width: $site-width;
   @media screen and (min-width: $break-single-column) {
     float: left;
     width: percentage( $content-width / $site-width );
@@ -119,10 +119,23 @@
 
 
 
-// Twenty Twelve legacy styles
-body.attachment .site-content,
-body.full-width .site-content {
-  @media screen and (min-width: $break-medium) {
+// Full-width layouts for image attachments, the full-width page template, and portfolio items
+body.attachment,
+body.full-width {
+  .site-content {
+    // Permits images to break out to the full width of the site
+    img {
+      max-width: $site-width;
+      width: auto;
+    }
+  }
+}
+
+
+
+// Cheap hack for the time being
+body.portfolio {
+  .site-content {
     width: 100%;
   }
 }
@@ -130,13 +143,9 @@ body.full-width .site-content {
 
 
 // Cheap trick to lose the sidebar on full-width view; surely there is a better way
-body.full-width,
-body.single-format-aside,
-body.single-format-link,
-body.single-format-quote,
-body.single-format-status {
+body.full-width {
   .widget-area,
   .nav-single {
-    display: none;
+    //display: none;
   }
 }

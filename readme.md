@@ -1,13 +1,11 @@
 # PENDRELL 0.5
 
-Pendrell is a fork of Twenty Twelve (formerly a child theme of the same) originally designed to allow two types of content to co-exist in harmony:
+Pendrell is minimalist WordPress theme for personal blogs. It began as a fork of Twenty Twelve (formerly a child theme of the same). My original intent was to tweak Twenty Twelve to allow for two types of content to co-exist in harmony:
 
 * Blog entries set with beautiful, legible type
 * Portfolio items featuring big, bold full-width images
 
 Many WordPress themes provide for one or the other but few handle both types of content with elegance, flexibility, and simplicity.
-
-This theme is suitable for small-scale deployments; it has not been (and likely won't be) optimized for high traffic sites.
 
 You can see Pendrell in action on my blog: http://synapticism.com
 
@@ -17,14 +15,7 @@ Drop the 'pendrell/pendrell' directory into /wp-content/themes/ and activate it 
 
 ### CONFIGURATION
 
-This theme has no options page; modify the `functions-config-sample.php` file, renaming it to `functions-config.php`, if you wish to change any of the defaults. Most of the settings should be self-explanatory; read the comments for more direction.
-
-### PLUGINS
-
-The following plugins are not quite dependencies but you will probably want to install them to get the most out of Pendrell:
-
-* My fork of Crowd Favorite's WP-Post-Formats plugin: https://github.com/synapticism/wp-post-formats
-* Regenerate Thumbnails: http://wordpress.org/extend/plugins/regenerate-thumbnails/
+This theme has no options page; modify the `functions-config-sample.php` file, renaming it to `functions-config.php`, if you wish to change any of the default settings. Pendrell's settings are meant to be self-explanatory; read the comments for more direction.
 
 ### DEVELOPMENT
 
@@ -37,11 +28,19 @@ To build Pendrell after modifications:
 
 `gulp`
 
+### PLUGINS
+
+The following plugins are not quite dependencies but you will probably want to install them to get the most out of Pendrell:
+
+* My fork of Crowd Favorite's WP-Post-Formats plugin: https://github.com/synapticism/wp-post-formats
+* Regenerate Thumbnails: http://wordpress.org/extend/plugins/regenerate-thumbnails/
+
 ## FEATURES
 
 ### GENERAL ENHANCEMENTS
 
-* Entry content type set at 18px for easier reading
+* Entry content type set at 18px by default for easier reading
+* Consistent vertical rhythm including jQuery-based image padding
 * Comment and edit post actions are now clickable buttons
 * Comment button is now below content and invisible on single posts
 * Improved post format styling and support
@@ -62,7 +61,7 @@ To build Pendrell after modifications:
 * jQuery-based HTML5 pullquotes; `<span class="pullquote">Text</span>` will be transformed into `<aside class="pulledquote">Text</aside>` and prepended
 * Context-dependent posts per page (12 items per screen on portfolios, 25 on search, user default elsewhere)
 * Reset admin-side HTML editor to a nicer font stack
-* Custom site header and other cruft removed
+* Custom site header and other cruft from Twenty Twelve removed
 
 ### PORTFOLIO ITEMS
 

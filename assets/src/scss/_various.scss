@@ -42,6 +42,25 @@
 
 
 
+// References list; for use with scholarly works
+.references {
+  @include font-sizer(14);
+  h3 {
+    @include font-sizer(18);
+    text-transform: uppercase;
+  }
+  ol,
+  ul {
+    list-style: none;
+  }
+  li {
+    @include rem('margin', 0 0 0 $spacer); // This is a duplicate of the default list item styling
+    text-indent: -$spacer; // In the future: "hanging" should suffice
+  }
+}
+
+
+
 // Search result highlighter
 .search-results mark {
   @include highlight($c-mark-bg);

@@ -239,8 +239,13 @@ function pendrell_entry_meta() {
 function pendrell_author_box() {
   global $post;
 
-  // Show a bio if a user has filled out their description...
-  if ( is_singular('post') && get_the_author_meta( 'description' ) && PENDRELL_AUTHOR_BOX ) { ?>
+  // Show a bio if a user has filled out their description... but not on quote or link posts; we probably haven't authored that content
+  if (
+    is_singular('post')
+    && get_the_author_meta( 'description' )
+    && !has_post_format('link')
+    && !has_post_format('quote')
+    && PENDRELL_AUTHOR_BOX ) { ?>
     <div class="author-info">
       <div class="author-avatar">
         <?php $author_url = get_the_author_meta( 'user_url' );

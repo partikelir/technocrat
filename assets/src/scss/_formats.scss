@@ -38,18 +38,18 @@ article.format-image {
 article.format-link {
   header {
     padding: 0;
-    @include font-sizer(11);
+    @include font-sizer(12);
   }
 }
 
 
 
-// Quote
+// Quote: covered by regular blockquote/cite/footer element styling in _content.scss
 /*article.format-quote {
 }*/
 
 
 
-// Status
+// Status: no special styling needed
 /*article.format-status {
 }*/

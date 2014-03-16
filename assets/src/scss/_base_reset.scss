@@ -40,8 +40,8 @@ b,
 strong {
   font-weight: bold;
 }
-dfn,
 cite,
+dfn,
 em,
 i {
   font-style: italic;
@@ -49,19 +49,19 @@ i {
 strike {
   text-decoration: line-through;
 }
-sup,
-sub {
+sub,
+sup {
   font-size: 75%;
   height: 0;
   line-height: 0;
   position: relative;
   vertical-align: baseline;
 }
-sup {
-  bottom: 1ex;
-}
 sub {
   top: .5ex;
+}
+sup {
+  bottom: 1ex;
 }
 big {
   font-size: 120%;

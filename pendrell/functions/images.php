@@ -6,7 +6,7 @@ function pendrell_image_info( $metadata = array() ) {
 		?><div class="image-info">
 			<h2><?php _e( 'Image Info', 'pendrell' ); ?></h2>
 			<div class="image-description">
-			<?php if ( $metadata['height'] && $metadata['width'] ) { 
+			<?php if ( $metadata['height'] && $metadata['width'] ) {
 					printf( __( 'Full Size: <a href="%1$s" title="Link to full size image">%2$s &times; %3$s</a></br>', 'pendrell' ),
 						esc_attr( wp_get_attachment_url() ),
 						$metadata['width'],
@@ -34,8 +34,8 @@ function pendrell_image_info( $metadata = array() ) {
 							$pshutter = $image_shutter_speed . ' ' . __( 'sec', 'pendrell' );
 						}
 					}
-			
-			
+
+
 			echo __( 'Shutter Speed: ', 'pendrell' ) . $pshutter . '<br/>';
 				}
 				if ( $metadata['image_meta']['iso'] ) { echo __( 'ISO/Film: ', 'pendrell') . $metadata['image_meta']['iso'] . '<br/>'; } ?>
