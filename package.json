@@ -1,6 +1,6 @@
 {
-  "name": "pendrell",
-  "version": "0.5.0",
+  "name": "wp-pendrell",
+  "version": "0.6.0",
   "description": "A personal WordPress theme",
   "main": "index.js",
   "scripts": {

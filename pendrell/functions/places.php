@@ -171,7 +171,7 @@ function pendrell_places_sidebar() {
 
 
 
-// Display post series in forward chronological order
+// Display place tags in forward chronological order
 function pendrell_place_tags_get_posts( $query ) {
   if ( is_tax ( 'place_tag' ) && $query->is_main_query() ) {
     $query->set( 'posts_per_page', 10 );

@@ -273,7 +273,7 @@ add_filter( 'post_entry_meta', 'pendrell_author_box' );
 
 
 
-// Hack: switch navigation links depending on the order of posts, mainly for use with series
+// Hack: switch navigation links from "newer" and "older" to "next" and "previous"; solves UI problems with custom post ordering
 function pendrell_content_nav( $html_id ) {
   global $wp_query;
 

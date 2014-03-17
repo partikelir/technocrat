@@ -1,10 +1,4 @@
 <?php // === PENDRELL CONFIGURATION === //
-define( 'PENDRELL_VERSION', 0.5 );
-define( 'PENDRELL_NAME', get_bloginfo( 'name' ) );
-define( 'PENDRELL_DESC', get_bloginfo( 'description' ) );
-define( 'PENDRELL_HOME', get_bloginfo( 'url' ) );
-
-// === CUSTOMIZE THESE VALUES TO SUIT YOUR NEEDS === //
 
 // The author ID of the blog owner (for use with more highly secured blogs)
 define( 'PENDRELL_AUTHOR_ID', 1 );
@@ -20,9 +14,6 @@ define( 'PENDRELL_PLACES', false );
 
 // Shadow categories: add category numbers to this string in the format '-1,-2' to hide them from the front page
 define( 'PENDRELL_SHADOW_CATS', false );
-
-// Post series functionality
-define( 'PENDRELL_SERIES', false );
 
 // Post formats; choose from array( 'aside', 'gallery', 'link', 'image', 'quote', 'status', 'audio', 'chat', 'video' );
 $pendrell_post_formats = array( 'aside', 'link', 'quote', 'status' );

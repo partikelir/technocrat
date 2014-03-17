@@ -1,8 +1,4 @@
-/**
- * navigation.js
- *
- * Handles toggling the navigation menu for small screens.
- */
+// Navigation.js from Twenty Twelve: handles toggling the navigation menu for small screens
 ( function() {
 	var nav = document.getElementById( 'menu-header' ), button, menu;
 	if ( ! nav ) {

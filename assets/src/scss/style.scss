@@ -4,7 +4,7 @@ Theme URI: https://github.com/synapticism/pendrell
 Author: Alexander Synaptic
 Author URI: http://www.alexandersynaptic.com
 Description: A fork of Twenty Twelve 1.3 for personal blogs.
-Version: 0.4
+Version: 0.6
 License: GNU General Public Licence 2.0
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: light, gray, white, one-column, two-columns, right-sidebar, flexible-width, custom-menu, editor-style, featured-images, flexible-header, full-width-template, microformats, post-formats, rtl-language-support, sticky-post, theme-options, translation-ready
@@ -24,6 +24,13 @@ Template: pendrell
 @import "comments";
 @import "widgets";
 @import "image";
-@import "portfolio";
 @import "various";
+
+// Ubik series styling
+@import "series";
+
+// Portfolio styling
+@import "portfolio";
+
+// Print styles from Twenty Twelve
 @import "print";

@@ -1,10 +1,18 @@
-<?php
+<?php // === PENDRELL FUNCTIONS === //
+// There should be no need to edit anything in this file; check out functions-config-sample.php instead!
+
 // Pendrell configuration files
 if ( is_readable( get_stylesheet_directory() . '/functions-config.php' ) ) {
 	require_once( get_stylesheet_directory() . '/functions-config.php' );
 } else {
 	require_once( get_stylesheet_directory() . '/functions-config-sample.php' );
 }
+
+// Definitions
+define( 'PENDRELL_VERSION', 0.6 );
+define( 'PENDRELL_NAME', get_bloginfo( 'name' ) );
+define( 'PENDRELL_DESC', get_bloginfo( 'description' ) );
+define( 'PENDRELL_HOME', get_bloginfo( 'url' ) );
 
 // Pendrell is abstracted into the /functions directory
 include( get_stylesheet_directory() . '/functions/content.php' );
@@ -16,13 +24,10 @@ include( get_stylesheet_directory() . '/functions/various.php' );
 if ( PENDRELL_PLACES )
   include( get_stylesheet_directory() . '/functions/places.php' );
 
-if ( PENDRELL_SERIES )
-  include( get_stylesheet_directory() . '/functions/series.php' );
-
 if ( is_admin() )
   include( get_stylesheet_directory() . '/functions/admin.php' );
 
-// If development mode is on...
+// Still in development
 include( get_stylesheet_directory() . '/functions/dev.php' );
 
 // Theme setup; includes some image size definitions and other things that belong here in the config file

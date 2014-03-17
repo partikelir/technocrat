@@ -1,9 +1,9 @@
-/* Pendrell */
+/* Pendrell custom functions */
 
 // Remap jQuery to $
 jQuery(document).ready(function($) {
 
-  /* Better Pull Quotes: http://css-tricks.com/better-pull-quotes/ */
+  // Better Pull Quotes: http://css-tricks.com/better-pull-quotes/
   $('span.pullquote').each(function(index){
       var $parentParagraph = $(this).parent('p');
       $parentParagraph.css('position', 'relative');
@@ -20,7 +20,7 @@ jQuery(document).ready(function($) {
       .prependTo($parentParagraph);
     });
 
-  /* Search Term Highlighter: http://weblogtoolscollection.com/archives/2009/04/10/how-to-highlight-search-terms-with-jquery/ */
+  // Search Term Highlighter: http://weblogtoolscollection.com/archives/2009/04/10/how-to-highlight-search-terms-with-jquery/
   $.fn.extend({
     highlight: function(search, insensitive, searchClass){
     var regex = new RegExp("(<[^>]*>)|(\\b"+ search.replace(/([-.*+?^${}()|[\]\/\\])/g,"\\$1") +")", insensitive ? "ig" : "g");

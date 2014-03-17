@@ -1,8 +1,4 @@
-/**
- * navigation.js
- *
- * Handles toggling the navigation menu for small screens.
- */
+// Navigation.js from _s: handles toggling the navigation menu for small screens
 ( function() {
 	var container, button, menu;
 
