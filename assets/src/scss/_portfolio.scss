@@ -1,6 +1,15 @@
-/* === PORTFOLIO ITEMS === */
+// === PORTFOLIO ITEMS === //
 
-/* Based on styling from Hatch */
+// Cheap hack for the time being
+body.portfolio {
+  .site-content {
+    width: 100%;
+  }
+}
+
+
+
+// Based on styling from Hatch
 .portfolio.archive {
   header h1.entry-title,
   footer .entry-meta {
@@ -32,31 +41,31 @@
   }
 }
 
-/* Responsive half-width images, mainly for use in portfolios */
+// Responsive half-width images, mainly for use in portfolios
 .size-half-width,
 .size-half-width-cropped {
-  width: 48.4375%;
+  width: percentage( ( ( $site-width - $spacer ) / 2 ) / $site-width );
 }
 .size-half-width.alignleft,
 .size-half-width-cropped.alignleft,
 .size-third-width.alignleft,
 .size-third-width-cropped.alignleft {
-  margin: 0 3.125% 24px 0;
+  @include rem('margin', 0 $spacer $spacer 0);
 }
 .size-half-width.alignright,
 .size-half-width-cropped.alignright,
 .size-third-width.alignright,
 .size-third-width-cropped.alignright {
-  margin: 0 0 24px 3.125%;
+  @include rem('margin', 0 0 $spacer $spacer);
 }
 .size-third-width,
 .size-third-width-cropped {
-  width: 31.25%;
+  width: percentage( ( ( $site-width - ( $spacer * 2 ) ) / 3 ) / $site-width );
 }
 
 
 
-/* Portfolio media queries */
+// Portfolio media queries
 @media screen and (min-width: 350px) {
   .portfolio.archive .hentry {
     float: left;
@@ -73,19 +82,19 @@
 }
 @media screen and (min-width: 680px) {
   .portfolio.archive .hentry {
+    @include rem('margin', 0 $spacer $spacer 0);
     float: left;
     width: 31.25%;
-    margin: 0 3.125% 24px 0;
   }
   .portfolio.archive .hentry.divisible-by-2 {
-    margin-right: 3.125%;
+    @include rem('margin-right', $spacer);
   }
   .portfolio.archive .hentry.divisible-by-3,
   .portfolio.archive .hentry.divisible-by-3.divisble-by-2 {
     margin-right: 0;
   }
   .portfolio.archive header h1.entry-title {
-    font-size: 22px;
+    @include font-sizer(21);
     padding-bottom: 4px;
   }
 }

@@ -9,6 +9,8 @@ Many WordPress themes provide for one or the other but few handle both types of 
 
 You can see Pendrell in action on my blog: http://synapticism.com
 
+
+
 ## INSTALLATION
 
 Drop the 'pendrell/pendrell' directory into /wp-content/themes/ and activate it via the WordPress admin interface.
@@ -32,8 +34,11 @@ To build Pendrell after modifications:
 
 The following plugins are not quite dependencies but you will probably want to install them to get the most out of Pendrell:
 
+* Ubik, my WordPress toolkit: https://github.com/synapticism/ubik
 * My fork of Crowd Favorite's WP-Post-Formats plugin: https://github.com/synapticism/wp-post-formats
 * Regenerate Thumbnails: http://wordpress.org/extend/plugins/regenerate-thumbnails/
+
+
 
 ## FEATURES
 
@@ -54,13 +59,10 @@ The following plugins are not quite dependencies but you will probably want to i
 
 * Better, more informative and SEO-friendly page titles
 * Human-readable dates on recent entries (e.g. posted 21 hours ago)
-* Thumbnail fallback: if a featured image isn't set the appropriately-sized thumbnail of the first image will be displayed
 * Clean search rewrites (e.g. website.com/search/query/ instead of website.com?s=query)
-* Singleton search results redirect to matching post in one step
 * jQuery-based search query markup; surrounds search terms with `<mark>`
 * jQuery-based HTML5 pullquotes; `<span class="pullquote">Text</span>` will be transformed into `<aside class="pulledquote">Text</aside>` and prepended
 * Context-dependent posts per page (12 items per screen on portfolios, 25 on search, user default elsewhere)
-* Reset admin-side HTML editor to a nicer font stack
 * Custom site header and other cruft from Twenty Twelve removed
 
 ### PORTFOLIO ITEMS
@@ -94,12 +96,39 @@ Places are a Custom Post Type for building a geographic database. This is still 
 
 There is a lightweight series taxonomy for linking posts together. Usage is close to self-explanatory; simply activate in `functions-config.php` and add a series to any post. Everything else should be taken care of.
 
+
+
+## MARKUP PATTERNS
+
+Several custom markup patterns can be used in posts.
+
+### REFERENCES
+
+```
+<footer class="references">
+  <h3>References</h3>
+  <ul>
+    <li>A reference. (2014). <cite>A title</cite>. A journal. 100(1), 1-10.</li>
+  </ul>
+</footer>
+```
+
+### QUOTATIONS
+
+```
+<blockquote cite="http://synapticism.com">
+<p>This is an example of a blockquote with a HTML5-compliant citation.</p>
+<footer>An Author, <cite><a href="http://synapticism.com">The Title Of A Work</a></cite>, 2014.</footer>
+</blockquote>
+```
+
+
+
 ## TO DO
 
 ### PRIORITIES
 
 * AJAXify image attachment pages
-* Comments need lots of work
 * Easily disable comments altogether
 
 ### MIGHT BE NICE

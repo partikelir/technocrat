@@ -1,4 +1,4 @@
-/* === IMAGE ATTACHMENTS === */
+// === IMAGE ATTACHMENTS === //
 
 .article.attachment {
   overflow: hidden;
@@ -27,8 +27,8 @@
   overflow: hidden;
 }
 .image-description {
-  color: #777;
   @include font-sizer(13);
+  color: #777;
 }
 .image-navigation {
   @include rem('margin', $spacer 0);

@@ -123,19 +123,6 @@
 body.attachment,
 body.full-width {
   .site-content {
-    // Permits images to break out to the full width of the site
-    img {
-      max-width: $site-width;
-      width: auto;
-    }
-  }
-}
-
-
-
-// Cheap hack for the time being
-body.portfolio {
-  .site-content {
     width: 100%;
   }
 }

@@ -26,8 +26,16 @@ img.size-full,
 img.size-large,
 img.header-image,
 img.wp-post-image {
-  max-width: 100%;
   height: auto; // Make sure images with WordPress-added height and width attributes are scaled correctly
+  max-width: 100%;
+}
+
+
+
+// Permits images to break out to the full width of the site; use with caution
+img.widescreen {
+  max-width: $site-width;
+  width: auto;
 }
 
 

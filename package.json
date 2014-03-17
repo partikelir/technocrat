@@ -9,7 +9,7 @@
   "author": "Alexander Synaptic",
   "license": "GNU General Public Licence 2.0",
   "devDependencies": {
-    "gulp": "~3.5.2",
+    "gulp": "^3.5.6",
     "gulp-util": "~2.2.14",
     "gulp-load-plugins": "~0.3.0",
     "gulp-ruby-sass": "~0.3.1",

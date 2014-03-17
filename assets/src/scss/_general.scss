@@ -168,3 +168,16 @@ button[disabled],
 input[disabled] {
   cursor: default;
 }
+
+
+
+// === HELPERS === //
+
+// Clearfix; activate with @extend %clearfix;
+%clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}

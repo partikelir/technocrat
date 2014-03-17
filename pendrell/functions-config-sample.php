@@ -12,9 +12,6 @@ define( 'PENDRELL_AUTHOR_ID', 1 );
 // Turn author box display on or off
 define( 'PENDRELL_AUTHOR_BOX', true );
 
-// Google Analytics code e.g. 'UA-XXXXXX-XX'; false when not in use
-define( 'PENDRELL_GOOGLE_ANALYTICS_CODE', false );
-
 // Google web fonts to load; false will load Open Sans
 define( 'PENDRELL_GOOGLE_FONTS', 'Varela+Round:400|Lato:400italic,400,700'); // |Open+Sans:400italic,700italic,400,700');
 
@@ -32,9 +29,3 @@ $pendrell_post_formats = array( 'aside', 'link', 'quote', 'status' );
 
 // Portfolio categories; add or remove any slug to this array to enable matching categories with portfolio functionality
 $pendrell_portfolio_cats = array( 'creative', 'design', 'photography', 'portfolio' );
-
-// === ADMIN INTERFACE CUSTOMIZATIONS === //
-if ( is_admin() ) {
-	define( 'PENDRELL_FONTSTACK_EDITOR', 'Georgia, "Palatino Linotype", Palatino, "URW Palladio L", "Book Antiqua", "Times New Roman", serif;' ); // Admin HTML editor font stack.
-	define( 'PENDRELL_FONTSIZE_EDITOR', '16px' ); // Admin HTML editor font size.
-}

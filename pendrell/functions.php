@@ -9,9 +9,8 @@ if ( is_readable( get_stylesheet_directory() . '/functions-config.php' ) ) {
 // Pendrell is abstracted into the /functions directory
 include( get_stylesheet_directory() . '/functions/content.php' );
 include( get_stylesheet_directory() . '/functions/general.php' );
-//include( get_stylesheet_directory() . '/functions/feed.php' );
+include( get_stylesheet_directory() . '/functions/formats.php' );
 include( get_stylesheet_directory() . '/functions/images.php' );
-include( get_stylesheet_directory() . '/functions/search.php' );
 include( get_stylesheet_directory() . '/functions/various.php' );
 
 if ( PENDRELL_PLACES )
@@ -39,14 +38,13 @@ function pendrell_setup() {
   // Adds RSS feed links to <head> for posts and comments.
   add_theme_support( 'automatic-feed-links' );
 
-  // This theme uses a custom image size for featured images, displayed on "standard" posts.
+  // This theme uses a custom image size for featured images, really just the "post thumbnail"
   add_theme_support( 'post-thumbnails' );
   set_post_thumbnail_size( 624, 9999 ); // Unlimited height, soft crop
 
-  // Add a few additional image sizes for various purposes
-  add_image_size( 'thumbnail-150', 150, 150 );
-  add_image_size( 'image-navigation', 150, 150, true );
-  add_image_size( 'portfolio', 300, 150, true );
+  // Add a few additional image sizes for various other purposes
+  add_image_size( 'image-navigation', 150, 150, true ); // Displayed on image attachment screen
+  add_image_size( 'portfolio-navigation', 300, 200, true ); // Displayed on portfolios
   add_image_size( 'third-width', 300, 9999 );
   add_image_size( 'third-width-cropped', 300, 300, true );
   add_image_size( 'half-width', 465, 9999 );
@@ -68,7 +66,7 @@ function pendrell_setup() {
   // This theme styles the visual editor with editor-style.css to match the theme style
   //add_editor_style();
 
-  // This theme uses wp_nav_menu() in two locations
+  // Register header and footer menus
   register_nav_menu( 'header', __( 'Header menu', 'pendrell' ) );
   register_nav_menu( 'footer', __( 'Footer menu', 'pendrell' ) );
 }

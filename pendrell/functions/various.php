@@ -1,4 +1,15 @@
-<?php
+<?php // === VARIOUS === //
+
+// Capture search query for jQuery highlighter
+function pendrell_search_highlighter() {
+  $query = get_search_query();
+  if ( strlen($query) > 0 ) {
+    ?><script type="text/javascript">var pendrellSearchQuery  = "<?php echo $query; ?>";</script><?php
+  }
+}
+add_action( 'wp_print_scripts', 'pendrell_search_highlighter' );
+
+
 
 // Body class filter
 function pendrell_body_class( $classes ) {
@@ -62,52 +73,3 @@ function pendrell_is_place() {
   }
   return false;
 }
-
-
-
-// Google Analytics code
-function pendrell_analytics() {
-	if ( PENDRELL_GOOGLE_ANALYTICS_CODE ) { ?>
-				<script type="text/javascript">
-
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', '<?php echo PENDRELL_GOOGLE_ANALYTICS_CODE; ?>']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script><?php
-	}
-}
-add_action( 'wp_footer', 'pendrell_analytics' );
-
-
-
-// Removes the ".recentcomments" style added to the header for no good reason
-// http://www.narga.net/how-to-remove-or-disable-comment-reply-js-and-recentcomments-from-wordpress-header
-function pendrell_remove_recent_comments_style() {
-  global $wp_widget_factory;
-  remove_action( 'wp_head', array( $wp_widget_factory->widgets['WP_Widget_Recent_Comments'], 'recent_comments_style' ) );
-}
-add_action( 'widgets_init', 'pendrell_remove_recent_comments_style' );
-
-
-
-// Allow HTML in author descriptions on single user blogs
-remove_filter( 'pre_user_description', 'wp_filter_kses' );
-
-
-
-// Allow HTML in author descriptions on single user blogs
-if ( !is_multi_author() ) {
-	remove_filter( 'pre_user_description', 'wp_filter_kses' );
-}
-
-
-
-// Ditch the default gallery styling, yuck
-add_filter( 'use_default_gallery_style', '__return_false' );

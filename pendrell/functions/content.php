@@ -1,4 +1,4 @@
-<?php
+<?php // === CONTENT === //
 
 // Dynamic page titles; hooks into wp_title to improve search engine ranking without making a mess
 function pendrell_wp_title( $title, $sep = '-', $seplocation = 'right' ) {

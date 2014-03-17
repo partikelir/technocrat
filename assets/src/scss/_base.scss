@@ -32,5 +32,5 @@ $break-large: $site-width;
 // Design patterns
 $divider: 1px solid $c-divider;
 
-@import "base_mixins";
 @import "base_reset";
+@import "base_mixins";

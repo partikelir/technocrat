@@ -22,8 +22,4 @@ get_header(); ?>
 		</div><!-- #content -->
 	</div><!-- #primary -->
 
-  <div id="secondary" class="widget-area" role="complementary">
-    <?php the_post_thumbnail(); ?>
-  </div><!-- #secondary -->
-
 <?php get_footer(); ?>

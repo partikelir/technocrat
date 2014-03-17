@@ -18,7 +18,7 @@ if ( pendrell_is_portfolio() && is_archive() ) { // Portfolio archive items
 
 	<article id="post-<?php the_ID(); ?>" <?php post_class( $post_class ); ?>>
 		<div class="entry-content">
-			<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" ><?php the_post_thumbnail( 'portfolio' ); ?></a>
+			<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" ><?php the_post_thumbnail( 'portfolio-navigation' ); ?></a>
 		</div>
 		<header class="entry-header">
 			<h1 class="entry-title">
@@ -37,7 +37,7 @@ if ( pendrell_is_portfolio() && is_archive() ) { // Portfolio archive items
 			</h1>
 		</header><!-- .entry-header -->
 
-		<?php if ( is_search() ) : // Only display Excerpts for Search ?>
+		<?php if ( is_search() ) : // Only display excerpts for search ?>
 		<div class="entry-summary">
 			<?php the_excerpt(); ?>
 		</div><!-- .entry-summary -->

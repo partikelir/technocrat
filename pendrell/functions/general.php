@@ -17,20 +17,12 @@ add_action( 'init', 'pendrell_init' );
 
 // Enqueue scripts
 function pendrell_enqueue_scripts() {
-  // Hack: no need to load Open Sans more than once!
-  wp_deregister_style( 'open-sans' );
-  wp_register_style( 'open-sans', false );
 
   // Load theme-specific JavaScript
 	if ( !is_admin() ) { // http://www.ericmmartin.com/5-tips-for-using-jquery-with-wordpress/
 		wp_enqueue_script( 'pendrell', get_stylesheet_directory_uri() . '/pendrell.min.js', array( 'jquery' ), '0.1', true );
     wp_enqueue_script( 'pendrell-plugins', get_stylesheet_directory_uri() . '/pendrell-plugins.min.js', array( 'jquery' ), '0.1', true );
 	}
-
-  // Adds JavaScript to pages with the comment form to support sites with threaded comments (when in use).
-  // Commented out due to unnecessary bloat!
-  //if ( is_singular() && comments_open() && get_option( 'thread_comments' ) )
-    //wp_enqueue_script( 'comment-reply' );
 
   // Override Twenty Twelve font styles
   $font_url = pendrell_get_font_url();

@@ -1,4 +1,6 @@
-<?php // Quick and dirty places type
+<?php // === PLACES === //
+
+// Quick and dirty places type
 function pendrell_places_init() {
   $labels = array(
     'name' => _x( 'Places', 'place' ),
@@ -166,6 +168,8 @@ function pendrell_places_sidebar() {
     </aside>
   </div><!-- #secondary --><?php
 }
+
+
 
 // Display post series in forward chronological order
 function pendrell_place_tags_get_posts( $query ) {

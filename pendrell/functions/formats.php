@@ -1,7 +1,7 @@
-<?php // === PENDRELL POST FORMAT FUNCTIONS === //
+<?php // === POST FORMATS === //
 
 // Get quotation metadata; assumes WP Post Formats or equivalent is in use
-function get_quotation_metadata() {
+function pendrell_quotation_metadata() {
 
 	global $post;
 
@@ -12,39 +12,46 @@ function get_quotation_metadata() {
 
 	if ( $source_name || $source_title || $source_url ) {
 
-		$source_data = array();
+		$citation = array();
 
 		if ( $source_name ) {
 			if ( !$source_title && $source_url ) {
-				$source_data[] = '<a href="' . $source_url . '">' . $source_name . '</a>';
+				$citation[] = '<a href="' . $source_url . '">' . $source_name . '</a>';
 			} else {
-				$source_data[] = $source_name;
+				$citation[] = $source_name;
 			}
 		}
 
 		if ( $source_title ) {
 			if ( $source_url ) {
-				$source_data[] = '<cite><a href="' . $source_url . '">' . $source_title . '</a></cite>'; 
+				$citation[] = '<cite><a href="' . $source_url . '">' . $source_title . '</a></cite>';
 			} else {
-				$source_data[] = '<cite>' . $source_title . '</cite>';
+				$citation[] = '<cite>' . $source_title . '</cite>';
 			}
 		}
 
 		// If we only have the URL at least make it look nice
 		if ( $source_url && !$source_name && !$source_title ) {
-			$source_data[] = '<a href="' . $source_url . '">' . parse_url( $source_url, PHP_URL_HOST ) . '</a>';
+			$citation[] = '<a href="' . $source_url . '">' . parse_url( $source_url, PHP_URL_HOST ) . '</a>';
 		}
 
 		if ( $source_date ) {
-			$source_data[] = $source_date;
+			$citation[] = $source_date;
 		}
 
 		// Concatenate with commas
-		$source = implode( ', ', $source_data );
+		$citation = implode( ', ', $citation );
 	} else {
-		$source = '';
+		$citation = '';
 	}
 
-	return $source;
+	$source = array(
+		'citation'	=> $citation,
+		'date'			=> $source_date,
+		'name'			=> $source_name,
+		'title'			=> $source_title,
+		'url'				=> $source_url
+	);
 
+	return $source;
 }

@@ -1,16 +1,15 @@
+// === COMMENTS === //
 
-/* =Comments
--------------------------------------------------------------- */
-
-.comments-title {
-  @include font-sizer(18);
-  @include rem('margin-bottom', $spacer);
-}
 .comments-area {
+  max-width: $content-width;
   article {
     @include rem('margin-bottom', $spacer*2);
     padding: 0;
   }
+}
+.comments-title {
+  @include font-sizer(18);
+  @include rem('margin-bottom', $spacer);
 }
 .comment-meta {
   @extend %clearfix;
@@ -77,7 +76,7 @@
     }
   }
   .form-submit {
-    @include button-div();
+    //@include button-div();
     @include rem('margin-bottom', $spacer);
   }
 
@@ -97,7 +96,4 @@
     @include rem('margin-left', $spacer/2);
     font-weight: normal;
   }
-
-  // Specific to contact form
-
 }
