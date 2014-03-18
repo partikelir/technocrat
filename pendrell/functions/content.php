@@ -83,22 +83,6 @@ add_filter( 'wp_title', 'pendrell_wp_title', 11, 3 );
 
 
 
-// Output a human readable date wrapped in an HTML5 time tag
-function pendrell_date( $date ) {
-  if ( is_archive() && !pendrell_is_portfolio() ) {
-    return $date;
-  } else {
-    if ( ( current_time( 'timestamp' ) - get_the_time('U') ) < 86400 )
-      $pendrell_time = human_time_diff( get_the_time('U'), current_time( 'timestamp' ) ) . ' ago';
-    else
-      $pendrell_time = get_the_time( 'M j, Y, g:i a', '', '' );
-    return '<time datetime="' . get_the_time('c') . '" pubdate>' . $pendrell_time . '</time>';
-  }
-}
-add_filter( 'get_the_date', 'pendrell_date' );
-
-
-
 // Entry metadata
 function pendrell_entry_meta() {
   global $post;

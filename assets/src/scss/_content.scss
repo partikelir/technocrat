@@ -42,6 +42,7 @@
 // Post contents
 .entry-content,
 .comment-content {
+  @extend %clearfix;
   hyphens: auto; // Let autoprefix do the rest
 
   a {

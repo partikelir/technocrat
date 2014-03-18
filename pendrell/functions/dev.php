@@ -40,7 +40,7 @@ function pendrell_search_form( $search_term = '' ) {
 
 // Excerpt functions from Twentyeleven, slightly modified
 function pendrell_continue_reading_link() {
-	return ' <a href="'. esc_url( get_permalink() ) . '">' . __( 'Continue reading&nbsp;&rarr;', 'plasticity' ) . '</a>';
+	return ' <a href="'. esc_url( get_permalink() ) . '">' . __( 'Continue reading&nbsp;&rarr;', 'pendrell' ) . '</a>';
 }
 add_filter( 'the_content_more_link', 'pendrell_continue_reading_link');
 function pendrell_auto_excerpt_more( $more ) {
@@ -54,11 +54,3 @@ function pendrell_custom_excerpt_more( $output ) {
 	return $output;
 }
 add_filter( 'get_the_excerpt', 'pendrell_custom_excerpt_more' );
-
-
-
-// Custom excerpt length; source: http://digwp.com/2010/03/wordpress-functions-php-template-custom-functions/
-function pendrell_excerpt_length( $length ) {
-	return 48;
-}
-add_filter( 'excerpt_length', 'pendrell_excerpt_length' );

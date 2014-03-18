@@ -18,8 +18,6 @@ get_header(); ?>
 				<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'pendrell' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
 			</header>
 
-			<?php pendrell_content_nav( 'nav-above' ); ?>
-
 			<?php while ( have_posts() ) : the_post();
 				get_template_part( 'content', get_post_format() );
 			endwhile;

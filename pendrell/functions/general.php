@@ -1,19 +1,4 @@
-<?php
-
-// Head cleaner: removes useless fluff, Windows Live Writer support, version info, pointless relational links
-function pendrell_init() {
-	if ( !is_admin() ) {
-		remove_action( 'wp_head', 'rsd_link' );
-		remove_action( 'wp_head', 'wlwmanifest_link' );
-		remove_action( 'wp_head', 'wp_generator' );
-		remove_action( 'wp_head', 'start_post_rel_link' );
-		remove_action( 'wp_head', 'index_rel_link' );
-		remove_action( 'wp_head', 'adjacent_posts_rel_link' );
-	}
-}
-add_action( 'init', 'pendrell_init' );
-
-
+<?php // === GENERAL === //
 
 // Enqueue scripts
 function pendrell_enqueue_scripts() {
@@ -48,12 +33,12 @@ function pendrell_get_font_url() {
 
 
 
-// Widgets from Twenty Twelve
+// Main sidebar
 function pendrell_widgets_init() {
   register_sidebar( array(
-    'name' => __( 'Main Sidebar', 'pendrell' ),
-    'id' => 'sidebar-1',
-    'description' => __( 'Appears on posts and pages except the optional Front Page template, which has its own widgets', 'pendrell' ),
+    'name' => __( 'Main sidebar', 'pendrell' ),
+    'id' => 'sidebar-main',
+    'description' => __( 'Appears on posts and most pages.', 'pendrell' ),
     'before_widget' => '<aside id="%1$s" class="widget %2$s">',
     'after_widget' => '</aside>',
     'before_title' => '<h3 class="widget-title">',
@@ -65,16 +50,8 @@ add_action( 'widgets_init', 'pendrell_widgets_init' );
 
 
 function pendrell_pre_get_posts( $query ) {
-	// Modify how many posts per page are displayed in different contexts (e.g. more portfolio items on category archives)
-	// Source: http://wordpress.stackexchange.com/questions/21/show-a-different-number-of-posts-per-page-depending-on-context-e-g-homepage
-    if ( pendrell_is_portfolio() && $query->is_main_query() ) {
-    	$query->set( 'posts_per_page', 24 );
-    }
-    if ( is_search() && $query->is_main_query() ) {
-        $query->set( 'posts_per_page', 20 );
-    }
-    if ( is_front_page() && PENDRELL_SHADOW_CATS ) {
-    	$query->set( 'cat', PENDRELL_SHADOW_CATS );
+  if ( is_front_page() && PENDRELL_SHADOW_CATS ) {
+  	$query->set( 'cat', PENDRELL_SHADOW_CATS );
 	}
 }
 add_action( 'pre_get_posts', 'pendrell_pre_get_posts' );

@@ -21,8 +21,8 @@ include( get_stylesheet_directory() . '/functions/formats.php' );
 include( get_stylesheet_directory() . '/functions/images.php' );
 include( get_stylesheet_directory() . '/functions/various.php' );
 
-if ( PENDRELL_PLACES )
-  include( get_stylesheet_directory() . '/functions/places.php' );
+// A simple adapter for the ubik toolkit
+include( get_stylesheet_directory() . '/functions/ubik.php' );
 
 if ( is_admin() )
   include( get_stylesheet_directory() . '/functions/admin.php' );

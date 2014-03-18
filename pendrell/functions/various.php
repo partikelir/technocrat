@@ -13,12 +13,10 @@ add_action( 'wp_print_scripts', 'pendrell_search_highlighter' );
 
 // Body class filter
 function pendrell_body_class( $classes ) {
-	if ( pendrell_is_portfolio() ) {
-		$classes[] = 'full-width portfolio';
-	}
 
+  // Full width page template
   if (
-    !is_active_sidebar( 'sidebar-1' )
+    !is_active_sidebar( 'sidebar-main' )
     || is_page_template( 'page-templates/full-width.php' )
   ) {
     $classes[] = 'full-width';
@@ -46,30 +44,3 @@ function pendrell_content_width() {
   }
 }
 add_action( 'template_redirect', 'pendrell_content_width' );
-
-
-
-// Test to see whether we are viewing a portfolio post or category archive
-function pendrell_is_portfolio() {
-	global $pendrell_portfolio_cats;
-	if (
-    is_category( $pendrell_portfolio_cats )
-    || ( is_singular() && in_category( $pendrell_portfolio_cats ) )
-  ) {
-		return true;
-	} else {
-		return false;
-	}
-}
-
-
-
-// Test whether the current item is a place
-function pendrell_is_place() {
-  if ( post_type_exists( 'place') ) {
-    if ( get_post_type() === 'place' ) {
-      return true;
-    }
-  }
-  return false;
-}
