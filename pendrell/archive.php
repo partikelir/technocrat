@@ -31,10 +31,16 @@ get_header(); ?>
 						printf( __( 'Monthly archives: %s', 'pendrell' ), get_the_date( _x( 'F Y', 'monthly archives date format', 'pendrell' ) ) );
 					elseif ( is_year() ) :
 						printf( __( 'Yearly archives: %s', 'pendrell' ), get_the_date( _x( 'Y', 'yearly archives date format', 'pendrell' ) ) );
-					elseif ( is_category() ) : printf( __( 'Archive for the &#8216;%s&#8217; category', 'pendrell' ), single_cat_title( '', false ) );
-					elseif ( is_tag() ) : printf( __( 'Entries tagged &#8216;%s&#8217;', 'pendrell' ), single_tag_title( '', false ) );
-					elseif ( is_tax() ) : printf( __( '%s archives', 'pendrell' ), single_term_title( '', false ) );
-					elseif ( is_author() ) : printf( __( 'Posts by %s', 'pendrell' ), get_the_author_meta( 'display_name', get_query_var( 'author' ) ) );
+					elseif ( is_author() ) :
+						printf( __( 'Posts by %s', 'pendrell' ), get_the_author_meta( 'display_name', get_query_var( 'author' ) ) );
+					elseif ( is_category() ) :
+						printf( __( 'Archive for the &#8216;%s&#8217; category', 'pendrell' ), single_cat_title( '', false ) );
+					elseif ( is_post_type_archive() ) :
+						printf( __( '%s archives', 'pendrell' ), post_type_archive_title( '', false ) );
+					elseif ( is_tag() ) :
+						printf( __( 'Entries tagged &#8216;%s&#8217;', 'pendrell' ), single_tag_title( '', false ) );
+					elseif ( is_tax() ) :
+						printf( __( '%s archives', 'pendrell' ), single_term_title( '', false ) );
 					else :
 						_e( 'Archives', 'pendrell' );
 					endif;

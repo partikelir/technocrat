@@ -1,5 +1,13 @@
 <?php // === CONTENT === //
 
+// Filters:
+// pendrell_wp_title_raw ("Title")
+// pendrell_wp_title_final ("Title - Blog Name - Page 2")
+
+// Actions:
+// pendrell_entry_meta_before
+// pendrell_entry_meta_after
+
 // Dynamic page titles; hooks into wp_title to improve search engine ranking without making a mess
 function pendrell_wp_title( $title, $sep = '-', $seplocation = 'right' ) {
 
@@ -21,22 +29,16 @@ function pendrell_wp_title( $title, $sep = '-', $seplocation = 'right' ) {
 
   if ( is_search() ) {
     if ( trim( get_search_query() ) == '' )
-      $title = __( 'No search query entered', 'pendrell' ) . $sep . PENDRELL_NAME;
+      $title = __( 'No search query entered', 'pendrell' );
     else
-      $title = sprintf( __( 'Search results for &#8216;%s&#8217;', 'pendrell' ), trim( get_search_query() ) ) . $sep . PENDRELL_NAME . $page_num;
+      $title = sprintf( __( 'Search results for &#8216;%s&#8217;', 'pendrell' ), trim( get_search_query() ) );
   }
 
   if ( is_404() )
-    $title = __( 'Page not found', 'pendrell' ) . $sep . PENDRELL_NAME;
+    $title = __( 'Page not found', 'pendrell' );
 
   if ( is_feed() )
-    $title = single_post_title( '', false ) . $sep . PENDRELL_NAME;
-
-  if ( is_front_page() || is_home() ) {
-    $title = PENDRELL_NAME;
-    if ( PENDRELL_DESC )
-      $title .= $sep . PENDRELL_DESC;
-  }
+    $title = single_post_title( '', false );
 
   // Archives; some guidance from Hybrid on times and dates
   if ( is_archive() ) {
@@ -63,8 +65,7 @@ function pendrell_wp_title( $title, $sep = '-', $seplocation = 'right' ) {
         $title = sprintf( __( '%s yearly archive', 'pendrell' ), get_the_date( _x( 'Y', 'yearly archives date format', 'pendrell' ) ) );
       else
         $title = get_the_date();
-      }
-    $title .= $sep . PENDRELL_NAME;
+    }
   }
 
   // Single posts, pages, and attachments
@@ -73,10 +74,20 @@ function pendrell_wp_title( $title, $sep = '-', $seplocation = 'right' ) {
       $title = single_post_title( '', false );
     elseif ( is_page() || is_single() )
       $title = single_post_title( '', false );
+  }
+
+  if ( is_front_page() || is_home() ) {
+    $title = PENDRELL_NAME;
+    if ( PENDRELL_DESC )
+      $title .= $sep . PENDRELL_DESC;
+  } else {
+    $title = apply_filters( 'pendrell_wp_title_raw', $title );
     $title .= $sep . PENDRELL_NAME;
   }
 
-  return esc_html( strip_tags( stripslashes( $title . $page_num ) ) );
+  $title = esc_html( strip_tags( stripslashes( $title . $page_num ) ) );
+
+  return apply_filters( 'pendrell_wp_title_final', $title );
 }
 // Lower priority so titles aren't doubled up
 add_filter( 'wp_title', 'pendrell_wp_title', 11, 3 );
@@ -87,7 +98,7 @@ add_filter( 'wp_title', 'pendrell_wp_title', 11, 3 );
 function pendrell_entry_meta() {
   global $post;
 
-  do_action( 'pre_entry_meta' );
+  do_action( 'pendrell_entry_meta_before' );
 
   ?><div class="entry-meta-buttons"><?php
 
@@ -99,16 +110,6 @@ function pendrell_entry_meta() {
   }
 
   ?></div><?php
-
-  // Categories
-  $categories_list = get_the_category_list( __( ', ', 'pendrell' ) );
-
-  // Tags
-  if ( pendrell_is_place() ) {
-    $tag_list = get_the_term_list( $post->ID, 'place_tag', '', ', ', '' );
-  } else {
-    $tag_list = get_the_tag_list( '', __( ', ', 'pendrell' ) );
-  }
 
   // Date
   $date = sprintf( '<a href="%1$s" title="%2$s" rel="bookmark">%3$s</a>',
@@ -124,25 +125,18 @@ function pendrell_entry_meta() {
     get_the_author()
   );
 
-  // Post format
+  // Post format or type
   $post_format = get_post_format();
   if ( $post_format === false ) {
     if ( is_attachment() && wp_attachment_is_image() ) {
       $format = __( 'image', 'pendrell' );
     } elseif ( is_page() ) {
       $format = __( 'page', 'pendrell' );
-    } elseif ( pendrell_is_place() ) {
+    } elseif ( get_post_type() === 'place' ) {
       $format = __( 'place', 'pendrell' );
     } else {
       $format = __( 'entry', 'pendrell' );
     }
-  } elseif ( $post_format === 'quote' ) {
-    // Formality, please!
-    $format = sprintf( '<a href="%1$s" title="%2$s">%3$s</a>',
-      esc_url( get_post_format_link( $post_format ) ),
-      __( 'Quotation archive', 'pendrell' ),
-      __( 'quotation', 'pendrell' )
-    );
   } else {
     $format = sprintf( '<a href="%1$s" title="%2$s">%3$s</a>',
       esc_url( get_post_format_link( $post_format ) ),
@@ -151,9 +145,19 @@ function pendrell_entry_meta() {
     );
   }
 
+  // Categories
+  $categories_list = get_the_category_list( __( ', ', 'pendrell' ) );
+
+  // Tags
+  if ( get_post_type() === 'place' ) {
+    $tag_list = get_the_term_list( $post->ID, 'place_tag', '', ', ', '' );
+  } else {
+    $tag_list = get_the_tag_list( '', __( ', ', 'pendrell' ) );
+  }
+
   // Parent link for pages, images, attachments, and places
   $parent = '';
-  if ( ( is_attachment() && wp_attachment_is_image() && $post->post_parent ) || ( ( is_page() || pendrell_is_place() ) && $post->post_parent ) ) {
+  if ( ( is_attachment() && wp_attachment_is_image() && $post->post_parent ) || ( ( is_page() || get_post_type() === 'place' ) && $post->post_parent ) ) {
     if ( is_attachment() && wp_attachment_is_image() && $post->post_parent ) {
       $parent_rel = 'gallery';
     } elseif ( is_page() && $post->post_parent ) {
@@ -168,7 +172,7 @@ function pendrell_entry_meta() {
   }
 
   // Translators: 1 is category, 2 is tag, 3 is the date, 4 is the author's name, 5 is post format or type, and 6 is post parent.
-  if ( $tag_list && ( $post_format === false ) && !pendrell_is_place() ) {
+  if ( $tag_list && ( $post_format === false ) && get_post_type() != 'place' ) {
     // Posts with tags and categories
     $utility_text = __( 'This %5$s was posted %3$s in %1$s and tagged %2$s<span class="by-author"> by %4$s</span>.', 'pendrell' );
   } elseif ( $categories_list && ( $post_format === false ) ) {
@@ -177,7 +181,7 @@ function pendrell_entry_meta() {
   } elseif ( is_attachment() && wp_attachment_is_image() && $post->post_parent ) {
     // Images with a parent post
     $utility_text = __( 'This %5$s was posted %3$s in %6$s.', 'pendrell' );
-  } elseif ( is_page() || pendrell_is_place() ) {
+  } elseif ( is_page() || get_post_type() === 'place' ) {
     // Places with tags
     if ( $tag_list ) {
       if ( $post->post_parent ) {
@@ -214,7 +218,7 @@ function pendrell_entry_meta() {
     );
   ?></div><?php
 
-  do_action( 'post_entry_meta' );
+  do_action( 'pendrell_entry_meta_after' );
 }
 
 
@@ -229,7 +233,8 @@ function pendrell_author_box() {
     && get_the_author_meta( 'description' )
     && !has_post_format('link')
     && !has_post_format('quote')
-    && PENDRELL_AUTHOR_BOX ) { ?>
+    && PENDRELL_AUTHOR_BOX
+  ) { ?>
     <div class="author-info">
       <div class="author-avatar">
         <?php $author_url = get_the_author_meta( 'user_url' );
@@ -253,7 +258,7 @@ function pendrell_author_box() {
     </div><!-- .author-info -->
   <?php }
 }
-add_filter( 'post_entry_meta', 'pendrell_author_box' );
+add_filter( 'pendrell_entry_meta_after', 'pendrell_author_box' );
 
 
 
