@@ -1,7 +1,5 @@
 <?php
 /**
- * The Template for displaying all single posts
- *
  * @package WordPress
  * @subpackage Pendrell
  * @since Pendrell 0.4
@@ -9,25 +7,15 @@
 
 get_header(); ?>
 
-	<div id="primary" class="site-content">
+	<section id="primary" class="site-content">
 		<div id="content" role="main">
-
 			<?php while ( have_posts() ) : the_post();
 				get_template_part( 'content', get_post_format() );
-			?>
-
-				<?php if ( !pendrell_is_place() ) { ?><nav class="nav-single">
-					<h3 class="assistive-text"><?php _e( 'Post navigation', 'pendrell' ); ?></h3>
-					<span class="nav-previous"><?php previous_post_link( '%link', '<span class="meta-nav">' . _x( '&larr;', 'Previous post link', 'pendrell' ) . '</span> %title' ); ?></span>
-					<span class="nav-next"><?php next_post_link( '%link', '%title <span class="meta-nav">' . _x( '&rarr;', 'Next post link', 'pendrell' ) . '</span>' ); ?></span>
-				</nav><!-- .nav-single --><?php } ?>
-
-				<?php comments_template( '', true ); ?>
-
-			<?php endwhile; // end of the loop. ?>
-
+			endwhile;
+			pendrell_content_nav( 'nav-below' );
+			comments_template( '', true ); ?>
 		</div><!-- #content -->
-	</div><!-- #primary -->
+	</section><!-- #primary -->
 
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

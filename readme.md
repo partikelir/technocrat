@@ -58,7 +58,6 @@ The following plugins are not quite dependencies but you will probably want to i
 ### HACKS, TWEAKS, & SNIPPETS
 
 * Better, more informative and SEO-friendly page titles
-* Human-readable dates on recent entries (e.g. posted 21 hours ago)
 * Clean search rewrites (e.g. website.com/search/query/ instead of website.com?s=query)
 * jQuery-based search query markup; surrounds search terms with `<mark>`
 * jQuery-based HTML5 pullquotes; `<span class="pullquote">Text</span>` will be transformed into `<aside class="pulledquote">Text</aside>` and prepended
@@ -87,14 +86,6 @@ I happen to like using a mixture of `full-width`, `half-width`, and `third-width
 I recommend linking to attachment pages when posting images to your portfolio. The attachment pages in Pendrell are functional, offering EXIF data where available, a link to full-size source material, and thumbnail-based image navigation at the bottom.
 
 Portfolio items are not segregated from other content; your creative projects will appear alongside the rest of your blog entries and still look sharp with a sidebar and widgets. I highly recommend making judicious use of the `<--more-->` tag when posting portfolio items with many images (unless, of course, you'd like to have image-heavy posts co-exist with your regular blog entries).
-
-### PLACES
-
-Places are a Custom Post Type for building a geographic database. This is still in development and very new. I am building it mainly for my own use and may transform it into a proper WordPress plugin at some point.
-
-### SERIES
-
-There is a lightweight series taxonomy for linking posts together. Usage is close to self-explanatory; simply activate in `functions-config.php` and add a series to any post. Everything else should be taken care of.
 
 
 

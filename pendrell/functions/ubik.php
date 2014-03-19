@@ -1,7 +1,7 @@
 <?php // === UBIK === //
 
 function pendrell_is_portfolio() {
-  if ( function_exists( 'ubik_is_place' ) ) {
+  if ( function_exists( 'ubik_is_portfolio' ) ) {
     return ubik_is_portfolio();
   }
   return false;

@@ -5,8 +5,9 @@ function pendrell_author_meta() {
   // Show a bio if a user has filled out their description... but not on quote or link posts; we probably haven't authored that content
   if (
     is_singular()
-    && get_the_author_meta( 'description' )
+    && !is_attachment()
     && !has_post_format( array( 'link', 'quote' ) )
+    && get_the_author_meta( 'description' )
   ) {
     pendrell_author_info();
   }

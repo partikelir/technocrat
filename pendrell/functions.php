@@ -21,6 +21,7 @@ include( get_stylesheet_directory() . '/functions/content.php' );
 include( get_stylesheet_directory() . '/functions/general.php' );
 include( get_stylesheet_directory() . '/functions/formats.php' );
 include( get_stylesheet_directory() . '/functions/images.php' );
+include( get_stylesheet_directory() . '/functions/navigation.php' );
 include( get_stylesheet_directory() . '/functions/various.php' );
 
 // A simple adapter for the Ubik toolkit

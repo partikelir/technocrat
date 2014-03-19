@@ -14,7 +14,7 @@ if (
   is_active_sidebar('sidebar-main')
 
   // Don't display the sidebar for certain post formats
-  && !has_post_format( array( 'aside', 'link', 'quote', 'status' ) )
+  && !is_tax( 'post_format', array( 'post-format-aside', 'post-format-link', 'post-format-quote', 'post-format-status' ) )
 
   // Don't display on portfolios
   && !pendrell_is_portfolio()

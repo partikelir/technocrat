@@ -1,24 +1,22 @@
 // === IMAGE ATTACHMENTS === //
 
+// Lots of this stuff has to go
 .article.attachment {
   overflow: hidden;
 }
 .image-attachment {
   div.attachment {
-    text-align: center;
+    //text-align: center;
     p {
-      text-align: center;
+      //text-align: center;
     }
     img {
       display: block;
       height: auto;
-      margin: 0 auto;
+      //margin: 0 auto;
       max-width: 100%;
     }
   }
-}
-.image-attachment .entry-caption {
-  @include rem('margin-top', $spacer/3);
 }
 .image-info {
   @include rem('margin-top', $spacer, 1);
@@ -97,8 +95,10 @@
   }
   .previous-image .nav-text {
     @include rem('margin-left', $spacer/2);
+    overflow: hidden;
   }
   .next-image .nav-text {
     @include rem('margin-right', $spacer/2);
+    overflow: hidden;
   }
 }

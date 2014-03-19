@@ -9,21 +9,10 @@
 
 get_header(); ?>
 
-	<div id="primary" class="site-content">
+	<section id="primary" class="site-content">
 		<div id="content" role="main">
-
-			<article id="post-0" class="post error404 no-results not-found">
-				<header class="entry-header">
-					<h1 class="entry-title"><?php _e( 'We have encountered an anomaly...', 'pendrell' ); ?></h1>
-				</header>
-
-				<div class="entry-content">
-					<p><?php _e( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'pendrell' ); ?></p>
-					<?php $search_term = esc_url( $_SERVER['REQUEST_URI'] ); pendrell_search_form( $search_term ); //get_search_form(); ?>
-				</div><!-- .entry-content -->
-			</article><!-- #post-0 -->
-
+			<?php get_template_part( 'content', 'none' ); ?>
 		</div><!-- #content -->
-	</div><!-- #primary -->
+	</section><!-- #primary -->
 
 <?php get_footer(); ?>
