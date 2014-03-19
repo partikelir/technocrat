@@ -1,0 +1,16 @@
+// === ARCHIVES === //
+
+.archive-header,
+.page-header {
+  @include rem('margin-bottom', $spacer*2, 1);
+  @include rem('padding-bottom', $spacer);
+  border-bottom: $divider;
+}
+.archive-title,
+.page-title {
+  @extend %small-headers;
+}
+.archive-meta {
+  @include font-sizer(14);
+  color: lighten($c-body, 14);
+}

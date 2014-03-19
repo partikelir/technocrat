@@ -181,3 +181,10 @@ input[disabled] {
     clear: both;
   }
 }
+
+// Small headers
+%small-headers {
+  @include font-sizer(12);
+  font-weight: bold;
+  text-transform: uppercase;
+}

@@ -118,6 +118,9 @@
       @include rem('margin', $spacer 0);
     }
   }
+  th {
+    @extend %small-headers;
+  }
   td {
     @include font-sizer(14, 1);
     border-top: $divider;

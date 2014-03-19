@@ -1,8 +1,5 @@
 // === AUTHORS === //
 
-.author .archive-header {
-  @include rem('margin-bottom', $spacer);
-}
 .author-info {
   @include rem('margin-top', $spacer, 1);
   @include rem('padding-top', $spacer);
@@ -16,10 +13,6 @@
   p {
     @include font-sizer(14);
   }
-}
-.author.archive .author-info {
-  @include rem('margin', 0 0 $spacer*2);
-  border-top: 0;
 }
 .author-avatar {
   display: none; // Only display author avatar on larger screens

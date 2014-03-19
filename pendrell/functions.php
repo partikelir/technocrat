@@ -15,13 +15,15 @@ define( 'PENDRELL_DESC', get_bloginfo( 'description' ) );
 define( 'PENDRELL_HOME', get_bloginfo( 'url' ) );
 
 // Pendrell is abstracted into the /functions directory
+include( get_stylesheet_directory() . '/functions/archive.php' );
+include( get_stylesheet_directory() . '/functions/author.php' );
 include( get_stylesheet_directory() . '/functions/content.php' );
 include( get_stylesheet_directory() . '/functions/general.php' );
 include( get_stylesheet_directory() . '/functions/formats.php' );
 include( get_stylesheet_directory() . '/functions/images.php' );
 include( get_stylesheet_directory() . '/functions/various.php' );
 
-// A simple adapter for the ubik toolkit
+// A simple adapter for the Ubik toolkit
 include( get_stylesheet_directory() . '/functions/ubik.php' );
 
 if ( is_admin() )

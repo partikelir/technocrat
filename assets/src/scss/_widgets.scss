@@ -1,4 +1,7 @@
 // === WIDGETS === //
+.widget-title {
+  @extend %small-headers;
+}
 .widget-area {
   @media screen and (min-width: $break-single-column) {
     float: right;
@@ -42,6 +45,8 @@
     }
   }
 }
+
+
 
 // Twenty Twelve cruft
 .widget_rss {

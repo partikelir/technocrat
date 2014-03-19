@@ -1,11 +1,5 @@
 <?php // === PENDRELL CONFIGURATION === //
 
-// The author ID of the blog owner (for use with more highly secured blogs)
-define( 'PENDRELL_AUTHOR_ID', 1 );
-
-// Turn author box display on or off
-define( 'PENDRELL_AUTHOR_BOX', true );
-
 // Google web fonts to load; false will load Open Sans
 define( 'PENDRELL_GOOGLE_FONTS', 'Varela+Round:400|Lato:400italic,400,700'); // |Open+Sans:400italic,700italic,400,700');
 

@@ -100,17 +100,6 @@ function pendrell_entry_meta() {
 
   do_action( 'pendrell_entry_meta_before' );
 
-  ?><div class="entry-meta-buttons"><?php
-
-  edit_post_link( __( 'Edit', 'pendrell' ), ' <span class="edit-link button">', '</span>' );
-
-  if ( comments_open() && !is_singular() ) { ?>
-    <span class="leave-reply button"><?php comments_popup_link( __( 'Respond', 'pendrell' ), __( '1 Response', 'pendrell' ), __( '% Responses', 'pendrell' ) );
-    ?></span><?php
-  }
-
-  ?></div><?php
-
   // Date
   $date = sprintf( '<a href="%1$s" title="%2$s" rel="bookmark">%3$s</a>',
     esc_url( get_permalink() ),
@@ -138,10 +127,15 @@ function pendrell_entry_meta() {
       $format = __( 'entry', 'pendrell' );
     }
   } else {
+    if ( $post_format === 'quote' || $post_format === 'quotation' ) {
+      $post_format_string = 'Quotation';
+    } else {
+      $post_format_string = get_post_format_string( $post_format );
+    }
     $format = sprintf( '<a href="%1$s" title="%2$s">%3$s</a>',
       esc_url( get_post_format_link( $post_format ) ),
-      esc_attr( sprintf( __( '%s archive', 'pendrell' ), get_post_format_string( $post_format ) ) ),
-      esc_attr( strtolower( get_post_format_string( $post_format ) ) )
+      esc_attr( sprintf( __( '%s archive', 'pendrell' ), $post_format_string ) ),
+      esc_attr( strtolower( $post_format_string ) )
     );
   }
 
@@ -185,17 +179,17 @@ function pendrell_entry_meta() {
     // Places with tags
     if ( $tag_list ) {
       if ( $post->post_parent ) {
-        $utility_text = __( 'This %5$s was posted under %6$s and tagged %2$s<span class="by-author"> by %4$s</span>.', 'pendrell' );
+        $utility_text = __( 'This %5$s was posted %3$s under %6$s and tagged %2$s<span class="by-author"> by %4$s</span>.', 'pendrell' );
       } else {
-        $utility_text = __( 'This %5$s was tagged %2$s<span class="by-author"> by %4$s</span>.', 'pendrell' );
+        $utility_text = __( 'This %5$s was posted %3$s and tagged %2$s<span class="by-author"> by %4$s</span>.', 'pendrell' );
       }
     // Pages with a parent
     } elseif ( $post->post_parent ) {
-      $utility_text = __( 'This %5$s was posted under %6$s<span class="by-author"> by %4$s</span>.', 'pendrell' );
+      $utility_text = __( 'This %5$s was posted %3$s under %6$s<span class="by-author"> by %4$s</span>.', 'pendrell' );
     // Pages without a parent
     } else {
       if ( is_multi_author() ) {
-        $utility_text = __( 'This %5$s was posted<span class="by-author"> by %4$s</span>.', 'pendrell' );
+        $utility_text = __( 'This %5$s was posted %3$s<span class="by-author"> by %4$s</span>.', 'pendrell' );
       // Nothing to display
       } else {
         $utility_text = '';
@@ -206,7 +200,15 @@ function pendrell_entry_meta() {
     $utility_text = __( 'This %5$s was posted %3$s<span class="by-author"> by %4$s</span>.', 'pendrell' );
   }
 
-  ?><div class="entry-meta-main"><?php
+  // Pull it all together
+  ?><div class="entry-meta-buttons"><?php
+    edit_post_link( __( 'Edit', 'pendrell' ), ' <span class="edit-link button">', '</span>' );
+    if ( comments_open() && !is_singular() ) { ?>
+      <span class="leave-reply button"><?php comments_popup_link( __( 'Respond', 'pendrell' ), __( '1 Response', 'pendrell' ), __( '% Responses', 'pendrell' ) );
+      ?></span><?php
+    } ?>
+  </div>
+  <div class="entry-meta-main"><?php
     printf(
       $utility_text,
       $categories_list,
@@ -220,45 +222,6 @@ function pendrell_entry_meta() {
 
   do_action( 'pendrell_entry_meta_after' );
 }
-
-
-
-// Author box functionality
-function pendrell_author_box() {
-  global $post;
-
-  // Show a bio if a user has filled out their description... but not on quote or link posts; we probably haven't authored that content
-  if (
-    is_singular('post')
-    && get_the_author_meta( 'description' )
-    && !has_post_format('link')
-    && !has_post_format('quote')
-    && PENDRELL_AUTHOR_BOX
-  ) { ?>
-    <div class="author-info">
-      <div class="author-avatar">
-        <?php $author_url = get_the_author_meta( 'user_url' );
-        if ( $author_url ) {
-          ?><a href="<?php get_the_author_meta( 'user_url' ); ?>" title="<?php the_author_meta( 'display_name' ); ?>"><?php echo get_avatar( get_the_author_meta( 'user_email' ), 90 ); ?></a><?php
-        } else {
-          echo get_avatar( get_the_author_meta( 'user_email' ), 90 );
-        } ?>
-      </div><!-- .author-avatar -->
-      <div class="author-description">
-        <h2><?php printf( __( 'About %s', 'pendrell' ), get_the_author() ); ?></h2>
-        <p><?php the_author_meta( 'description' ); ?></p>
-        <?php if ( is_multi_author() ) { ?>
-        <div class="author-link">
-          <a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>" rel="author">
-            <?php printf( __( 'View all posts by %s <span class="meta-nav">&rarr;</span>', 'pendrell' ), get_the_author() ); ?>
-          </a>
-        </div><!-- .author-link -->
-        <?php } ?>
-      </div><!-- .author-description -->
-    </div><!-- .author-info -->
-  <?php }
-}
-add_filter( 'pendrell_entry_meta_after', 'pendrell_author_box' );
 
 
 

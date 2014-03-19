@@ -67,33 +67,6 @@
 
 
 
-// Small headers
-.archive-title,
-.page-title,
-.widget-title,
-.entry-content th,
-.comment-content th {
-  @include font-sizer(12);
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-
-
-// Archives
-.archive-header,
-.page-header {
-  @include rem('margin-bottom', $spacer*2, 1);
-  @include rem('padding-bottom', $spacer);
-  border-bottom: $divider;
-}
-.archive-meta {
-  @include font-sizer(14);
-  color: lighten($c-body, 14);
-}
-
-
-
 // Footer
 .site-footer {
   @include font-sizer(12);
