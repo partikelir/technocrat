@@ -1,9 +1,10 @@
 // === BASE === //
 
+// Colour and font settings
 @import "base_colours";
 @import "base_fonts";
 
-// Font stacks
+// Font stacks (defined in base_fonts, above)
 $font-body: $lato;
 $font-head: $varela;
 $font-mono: $consolas;
@@ -32,5 +33,11 @@ $break-large: $site-width;
 // Design patterns
 $divider: 1px solid $c-divider;
 
+// Reset
 @import "base_reset";
+
+// Mixins; nothing declarative
 @import "base_mixins";
+
+// Helper classes; declarative
+@import "base_helpers";

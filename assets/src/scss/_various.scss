@@ -54,7 +54,7 @@
     list-style: none;
   }
   li {
-    @include rem('margin', 0 0 0 $spacer); // This is a duplicate of the default list item styling
+    @include rem('margin', 0 0 0 $spacer); // This is a duplicate of the default list item styling; it is placed here to make this CSS modular
     text-indent: -$spacer; // In the future: "hanging" should suffice
   }
 }
@@ -72,29 +72,11 @@
 // jQuery pullquotes: enclose any text with <span class="pullquote"></span> and this style will be applied!
 .pulledquote {
   @include font-sizer(24);
+  @include rem('margin', $spacer 0 $spacer $spacer/2);
   color: $c-pullquote;
   float: right;
   font-style: italic;
   max-width: 40%;
-  @include rem('margin', $spacer 0 $spacer $spacer/2);
-}
-
-
-
-// Places
-.entry-meta-places-list,
-.entry-meta-places-posts {
-  @include font-sizer(16);
-  @include rem('margin-bottom', $spacer);
-  h2 {
-    @include font-sizer(18);
-  }
-  ul {
-    list-style: disc outside;
-    li {
-      @include rem('margin-left', $spacer);
-    }
-  }
 }
 
 

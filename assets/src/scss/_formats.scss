@@ -3,7 +3,7 @@
 // Aside
 article.format-aside {
   h1 {
-    @include rem('margin-bottom', $spacer);
+    @extend %spacer-below;
     a {
       text-decoration: none;
     }
@@ -45,11 +45,11 @@ article.format-link {
 
 
 // Quote: covered by regular blockquote/cite/footer element styling in _content.scss
-/*article.format-quote {
-}*/
+//article.format-quote {
+//}
 
 
 
 // Status: no special styling needed
-/*article.format-status {
-}*/
+//article.format-status {
+//}

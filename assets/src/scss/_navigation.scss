@@ -38,8 +38,8 @@ article.post-password-required input[type=submit],
 .menu-toggle {
   display: inline-block;
   position: absolute;
-    @include rem('right', $spacer);
-    @include rem('top', $spacer);
+  @include rem('right', $spacer);
+  @include rem('top', $spacer);
   @media screen and (min-width: $break-medium) {
     display: none;
   }

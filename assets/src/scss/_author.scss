@@ -6,14 +6,6 @@
   border-top: $divider;
   overflow: hidden;
 }
-.author-description {
-  h2 {
-    @include font-sizer(18);
-  }
-  p {
-    @include font-sizer(14);
-  }
-}
 .author-avatar {
   display: none; // Only display author avatar on larger screens
   @media screen and (min-width: $break-medium) {
@@ -21,5 +13,13 @@
     display: block;
     float: right;
     line-height: 0; // Keeps the container snug around the avatar image
+  }
+}
+.author-description {
+  h2 {
+    @include font-sizer(18);
+  }
+  p {
+    @include font-sizer(14);
   }
 }

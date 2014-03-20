@@ -64,7 +64,7 @@ acronym {
   }
 }
 address {
-  @include rem('margin', 0 0 $spacer);
+  @extend %spacer-below;
   display: block;
   font-style: normal; // Italic is sometimes a bit harder to read
   &::first-line {
@@ -79,7 +79,7 @@ ins {
   text-decoration: none;
 }
 hr {
-  @include rem('margin-bottom', $spacer);
+  @extend %spacer-below;
   background-color: $c-hr;
   border: 0;
   height: 1px;
@@ -167,24 +167,4 @@ input[type="reset"] {
 button[disabled],
 input[disabled] {
   cursor: default;
-}
-
-
-
-// === HELPERS === //
-
-// Clearfix; activate with @extend %clearfix;
-%clearfix {
-  &:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-}
-
-// Small headers
-%small-headers {
-  @include font-sizer(12);
-  font-weight: bold;
-  text-transform: uppercase;
 }

@@ -40,7 +40,10 @@
     }
   }
   h1 {
-    @include font-sizer(28);
+    @include font-sizer(21);
+    @media screen and (min-width: $break-medium) {
+      @include font-sizer(36);
+    }
   }
   h2 {
     color: lighten($c-site-header, 47);
@@ -101,11 +104,3 @@ body.full-width {
 }
 
 
-
-// Cheap trick to lose the sidebar on full-width view; surely there is a better way
-body.full-width {
-  .widget-area,
-  .nav-single {
-    //display: none;
-  }
-}

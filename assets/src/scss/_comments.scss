@@ -9,7 +9,7 @@
 }
 .comments-title {
   @include font-sizer(18);
-  @include rem('margin-bottom', $spacer);
+  @extend %spacer-below;
 }
 .comment-meta {
   @extend %clearfix;
@@ -77,18 +77,18 @@
   }
   .form-submit {
     //@include button-div();
-    @include rem('margin-bottom', $spacer);
+    @extend %spacer-below;
   }
 
   // Spectific to comment form
   p:first-child,
   p.logged-in-as,
   p.comment-form-url {
-    @include rem('margin-bottom', $spacer);
+    @extend %spacer-below;
   }
   p.form-allowed-tags {
     @include font-sizer(14);
-    @include rem('margin-bottom', $spacer);
+    @extend %spacer-below;
     color: lighten($c-body, 10);
   }
   #cancel-comment-reply-link {

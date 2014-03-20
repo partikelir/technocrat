@@ -130,9 +130,11 @@ This is a disorganized mess.
 
 ### MIGHT BE NICE
 
+* Better code highlighting
+* Better image gallery
 * Smarter 404 page
 * Related posts
-* Favicon/Apple touch icons
+* Favicons
 * Bookmarks template with support for link categories, link descriptions, and private links (see bookmarks.php)
 * Additional microformat support
     * rel-tag: http://microformats.org/wiki/rel-tag
