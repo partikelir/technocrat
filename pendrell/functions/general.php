@@ -46,12 +46,3 @@ function pendrell_widgets_init() {
   ) );
 }
 add_action( 'widgets_init', 'pendrell_widgets_init' );
-
-
-
-function pendrell_pre_get_posts( $query ) {
-  if ( is_front_page() && PENDRELL_SHADOW_CATS ) {
-  	$query->set( 'cat', PENDRELL_SHADOW_CATS );
-	}
-}
-add_action( 'pre_get_posts', 'pendrell_pre_get_posts' );
