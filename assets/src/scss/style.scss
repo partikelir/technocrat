@@ -27,6 +27,8 @@ Template: pendrell
 @import "widgets";
 @import "various";
 
+@import "prism";      // Prism syntax highlighting
+
 @import "places";     // Ubik places
 @import "portfolio";  // Ubik portfolio
 @import "series";     // Ubik series

@@ -108,6 +108,7 @@ blockquote {
   color: $c-blockquote;
   display: block;
   font-style: italic;
+  text-shadow: 0px 1px $c-site-bg;
   p {
     @include rem('padding-bottom', $spacer); // Padding is used instead of margins because of the blockquote background
     margin-bottom: 0;

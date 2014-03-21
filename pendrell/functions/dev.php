@@ -38,25 +38,6 @@ function pendrell_search_form( $search_term = '' ) {
 
 
 
-// Excerpt functions from Twentyeleven, slightly modified
-function pendrell_continue_reading_link() {
-	return ' <a href="'. esc_url( get_permalink() ) . '">' . __( 'Continue reading&nbsp;&rarr;', 'pendrell' ) . '</a>';
-}
-add_filter( 'the_content_more_link', 'pendrell_continue_reading_link');
-function pendrell_auto_excerpt_more( $more ) {
-	return '&hellip;' . pendrell_continue_reading_link();
-}
-add_filter( 'excerpt_more', 'pendrell_auto_excerpt_more' );
-function pendrell_custom_excerpt_more( $output ) {
-	if ( has_excerpt() && ! is_attachment() ) {
-		$output .= pendrell_continue_reading_link();
-	}
-	return $output;
-}
-add_filter( 'get_the_excerpt', 'pendrell_custom_excerpt_more' );
-
-
-
 // Legacy code, should be fazed out
 function pendrell_pre_get_posts( $query ) {
   if ( is_front_page() && PENDRELL_SHADOW_CATS ) {
