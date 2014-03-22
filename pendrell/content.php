@@ -39,7 +39,7 @@ if ( pendrell_is_portfolio() && is_archive() ) { // Portfolio archive items
 
 		<?php // Only display excerpts for search
 		if ( is_search() ) : ?>
-		<div class="entry-summary">
+		<div class="entry-content entry-summary">
 			<?php the_excerpt(); ?>
 		</div><!-- .entry-summary -->
 		<?php else : ?>

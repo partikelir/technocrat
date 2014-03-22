@@ -1,81 +1,31 @@
-/**
- * prism.js Pendrell theme for JavaScript, CSS and HTML
- * Based on dabblet (http://dabblet.com)
- * @author Lea Verou
- */
+// === PRISM === //
 
-// This theme is adapted from the default Prism theme
+// Prism syntax highlighting by Lea Verou; based on http://dabblet.com
+
 $prism-text:            black;
-$prism-text-shadow:     $c-site-bg;
-$prism-bg-1:            #f3d4ff;
-$prism-bg-2:            $c-blockquote-bg;
 $prism-comment:         slategray;
 $prism-punctuation:     #999;
 $prism-tag:             #905;
 $prism-selector:        #690;
-
+$prism-variable:        #a67f59;
 $prism-keyword:         #07a;
 $prism-regex:           #e90;
 
 code[class*="language-"],
 pre[class*="language-"] {
-  color: $prism-text;
-  text-shadow: 0 1px $prism-text-shadow;
-  //font-family: Consolas, Monaco, 'Andale Mono', monospace;
   direction: ltr;
   text-align: left;
-  white-space: pre;
-  word-spacing: normal;
-  word-break: normal;
-  -moz-tab-size: 4;
-  -o-tab-size: 4;
-  tab-size: 4;
-  -webkit-hyphens: none;
-  -moz-hyphens: none;
-  -ms-hyphens: none;
-  hyphens: none;
+  //word-spacing: normal;
+  //word-break: normal;
+  -moz-tab-size: 2;
+  -o-tab-size: 2;
+  tab-size: 2;
 }
 
-pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
-code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
-  text-shadow: none;
-  background: $prism-bg-1;
-}
-
-pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
-code[class*="language-"]::selection, code[class*="language-"] ::selection {
-  text-shadow: none;
-  background: $prism-bg-1;
-}
-
-@media print {
-  code[class*="language-"],
-  pre[class*="language-"] {
-    text-shadow: none;
-  }
-}
-
-/* Code blocks */
-pre[class*="language-"] {
-  //padding: 1em;
-  //margin: .5em 0;
-  // Exteding the style of the blockquote element
-  @include border-radius(12px);
-  @include box-shadow-layered(inset 4px 4px 8px #eee, 1px 1px 4px #eee);
-  @include rem('margin', 0 0 $spacer 0);
-  @include rem('padding', $spacer $spacer $spacer);
-  overflow: auto;
-}
-
-:not(pre) > code[class*="language-"],
-pre[class*="language-"] {
-  background: $prism-bg-2;
-}
-
-/* Inline code */
+// Inline code
 :not(pre) > code[class*="language-"] {
-  padding: .1em;
-  border-radius: .3em;
+  //padding: .1em;
+  //border-radius: .3em;
 }
 
 .token.comment,
@@ -115,7 +65,7 @@ pre[class*="language-"] {
 .language-css .token.string,
 .style .token.string,
 .token.variable {
-  color: #a67f59;
+  color: $prism-variable;
   background: hsla(0,0%,100%,.5);
 }
 

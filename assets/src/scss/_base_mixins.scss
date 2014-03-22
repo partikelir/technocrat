@@ -15,7 +15,7 @@
 }
 
 // Highlights text; used with ins and mark tags
-@mixin highlight($color: #eee) {
+@mixin highlight($color: $c-highlight) {
   @include border-radius();
   @include rem('padding', $spacer/12 $spacer/8);
   background: $color;
@@ -28,6 +28,17 @@
   @include rem('margin-left', $spacer/2);
   float: right;
   height: $spacer;
+}
+
+// Breakout box
+@mixin text-box($color: $c-text-box, $background: $c-text-box-bg, $shadow: $c-text-box-sh) {
+  @include border-radius(12px);
+  @include box-shadow-layered(inset 4px 4px 8px $shadow, 1px 1px 4px $shadow);
+  @include rem('margin', 0 0 $spacer 0);
+  @include rem('padding', $spacer $spacer 0);
+  background: $background;
+  color: $color;
+  text-shadow: 0px 1px $c-site-bg;
 }
 
 

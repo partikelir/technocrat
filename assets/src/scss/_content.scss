@@ -38,6 +38,11 @@
     text-decoration: underline;
   }
 
+  // Paragraphs
+  p {
+    @extend %spacer-below;
+  }
+
   // Lists and definitions
   ol,
   ul,
@@ -73,27 +78,74 @@
     @include rem('margin', 0 $spacer $spacer);
   }
 
+  // Blockquote and quotations
+  blockquote {
+    @include text-box();
+    font-style: italic;
+    p {
+      @include rem('padding-bottom', $spacer); // Padding is used instead of margins because of the blockquote background
+      margin: 0;
+      // Add opening and closing quotation marks to the blockquote element
+      &:first-child::before {
+        content: "\201C";
+      }
+      // Correctly adds quotation mark when footer or cite elements are present at the end of the blockquote
+      &:nth-last-of-type(1)::after {
+        content: "\201D";
+      }
+    }
+    footer {
+      @include font-sizer(16);
+      @include rem('padding-bottom', $spacer);
+      display: block;
+      font-style: normal;
+      text-align: right;
+      &:before {
+        content: "\2014\00a0"; // "\2015" is a "horizontal bar" or "quotation dash" meant to introduce a quotation, not a citation
+      }
+    }
+    div > code,
+    em > code,
+    li > code,
+    p > code,
+    strong > code {
+      @include highlight( darken($c-code-bg, 7) );
+    }
+  }
+  q {
+    quotes: none;
+    &:before {
+      content: "\201C";
+    }
+    &:after {
+      content: "\201D";
+    }
+  }
+
   // Pre and code blocks
-  code {
+  pre {
     @include font-sizer(16);
+    @include text-box();
+    @include rem('padding-bottom', $spacer); // Needs to follow text-box
+    color: $c-pre;
+  }
+  pre code {
+    //word-break: normal;
+    //word-spacing: normal;
+  }
+  div > code,
+  em > code,
+  li > code,
+  p > code,
+  strong > code {
+    @include font-sizer(16);
+    @include highlight($c-code-bg);
     color: $c-code;
-  }
-  p > code {
-    @include highlight($c-blockquote-bg);
-    line-height: 1;
-  }
-  blockquote p > code {
-    // Darken slightly to account for the blockquote background
-    @include highlight( darken($c-blockquote-bg, 7) );
+    line-height: 0;
   }
   a code {
     color: $c-link;
     line-height: 0;
-  }
-  pre {
-    @include font-sizer(16);
-    @extend %spacer-below;
-    color: $c-pre;
   }
 
   // Tables and figures
@@ -142,17 +194,8 @@
 
 
 
-// Paragraphs
-.entry-content,
-.entry-summary,
-.comment-content {
-  p {
-    @extend %spacer-below;
-  }
-  blockquote p {
-    margin: 0;
-  }
-}
+// Excerpt-specific styles
+//.entry-summary {}
 
 
 

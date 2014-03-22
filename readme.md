@@ -35,11 +35,12 @@ To build Pendrell after modifications:
 
 ### PLUGINS
 
-The following plugins are not quite dependencies but you will probably want to install them to get the most out of Pendrell:
+The following plugins are not exactly dependencies but you will probably want to install them to get the most out of Pendrell:
 
-* Ubik, my WordPress toolkit: https://github.com/synapticism/ubik
-* My fork of Crowd Favorite's WP-Post-Formats plugin: https://github.com/synapticism/wp-post-formats
-* Regenerate Thumbnails: http://wordpress.org/extend/plugins/regenerate-thumbnails/
+* [Ubik](https://github.com/synapticism/ubik), my all-purpose WordPress toolkit, designed for use with this very theme
+* [My fork](https://github.com/synapticism/wp-post-formats) of Crowd Favorite's [WP-Post-Formats plugin](https://github.com/crowdfavorite/wp-post-formats)
+* [Regenerate Thumbnails](http://wordpress.org/extend/plugins/regenerate-thumbnails/) since this theme uses custom image sizes
+* [Jetpack](https://github.com/Automattic/jetpack), especially for its Markdown module
 
 
 
@@ -49,24 +50,22 @@ The following plugins are not quite dependencies but you will probably want to i
 
 * Entry content type set at 18px by default for easier reading
 * Consistent vertical rhythm including jQuery-based image padding
-* Comment and edit post actions are now clickable buttons
-* Comment button is now below content and invisible on single posts
+* Better, more informative and SEO-friendly page titles
 * Improved post format styling and support
-* Standardized entry meta data display across post formats
-* More descriptive archive headers for different content types
-* Google Web Font loading
+* Google Web Font loading via setting in `functions-config.php`
 * Gulp build script CSS/JS minification via Gulp build script
-* Contact form page template
+* Built-in contact form page template; no need for a plugin
+* jQuery-based search query markup; surrounds search terms with `<mark>`
+* jQuery-based HTML5 pullquotes; `<span class="pullquote">Text</span>` will be transformed into `<aside class="pulledquote">Text</aside>` and prepended
+* Syntax highlighting via [Prism](http://prismjs.com)
 
 
 ### HACKS, TWEAKS, & SNIPPETS
 
-* Better, more informative and SEO-friendly page titles
+Most of this stuff is being moved to Ubik.
+
 * Clean search rewrites (e.g. website.com/search/query/ instead of website.com?s=query)
-* jQuery-based search query markup; surrounds search terms with `<mark>`
-* jQuery-based HTML5 pullquotes; `<span class="pullquote">Text</span>` will be transformed into `<aside class="pulledquote">Text</aside>` and prepended
 * Context-dependent posts per page (12 items per screen on portfolios, 25 on search, user default elsewhere)
-* Custom site header and other cruft from Twenty Twelve removed
 
 
 
