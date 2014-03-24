@@ -79,7 +79,8 @@ ins {
   text-decoration: none;
 }
 hr {
-  @extend %spacer-below;
+  @include rem('margin-top', $spacer/2, 1);
+  @include rem('margin-bottom', $spacer/2);
   background-color: $c-hr;
   border: 0;
   height: 1px;

@@ -13,7 +13,7 @@ get_header(); ?>
 			<header class="page-header">
 				<h1 class="page-title"><?php printf( __( 'Search results for: %s', 'pendrell' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
 			</header>
-			<?php while ( have_posts() ) { the_post();
+			<?php while ( have_posts() ) : the_post();
 				get_template_part( 'content', get_post_format() );
 			endwhile;
 			pendrell_content_nav( 'nav-below' );

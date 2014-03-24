@@ -81,6 +81,7 @@
   // Blockquote and quotations
   blockquote {
     @include text-box();
+    @include font-sizer(24);
     font-style: italic;
     p {
       @include rem('padding-bottom', $spacer); // Padding is used instead of margins because of the blockquote background

@@ -1,95 +1,20 @@
 <?php // === CONTENT === //
 
-// Filters:
-// pendrell_wp_title_raw ("Title")
-// pendrell_wp_title_final ("Title - Blog Name - Page 2")
-
 // Actions:
 // pendrell_entry_meta_before
 // pendrell_entry_meta_after
 
-// Dynamic page titles; hooks into wp_title to improve search engine ranking without making a mess
-function pendrell_wp_title( $title, $sep = '-', $seplocation = 'right' ) {
-
-  // Flush out whatever came in; let's do it from scratch
-  $title = '';
-
-  // Default seperator and spacing
-  if ( trim( $sep ) == '' )
-    $sep = '-';
-  $sep = ' ' . $sep . ' ';
-
-  // Call up page number; show in page title if greater than 1
-  $page_num = '';
-  if ( is_paged() ) {
-    global $page, $paged;
-    if ( $paged >= 2 || $page >= 2 )
-      $page_num = $sep . sprintf( __( 'Page %d', 'pendrell' ), max( $paged, $page ) );
-  }
-
-  if ( is_search() ) {
-    if ( trim( get_search_query() ) == '' )
-      $title = __( 'No search query entered', 'pendrell' );
-    else
-      $title = sprintf( __( 'Search results for &#8216;%s&#8217;', 'pendrell' ), trim( get_search_query() ) );
-  }
-
-  if ( is_404() )
-    $title = __( 'Page not found', 'pendrell' );
-
-  if ( is_feed() )
-    $title = single_post_title( '', false );
-
-  // Archives; some guidance from Hybrid on times and dates
-  if ( is_archive() ) {
-    if ( is_author() )
-      $title = sprintf( __( 'Posts by %s', 'pendrell' ), get_the_author_meta( 'display_name', get_query_var( 'author' ) ) );
-    elseif ( is_category() )
-      $title = sprintf( __( '%s category archive', 'pendrell' ), single_term_title( '', false ) );
-    elseif ( is_tag() )
-      $title = sprintf( __( '%s tag archive', 'pendrell' ), single_term_title( '', false ) );
-    elseif ( is_post_type_archive() )
-      $title = sprintf( __( '%s archive', 'pendrell' ), post_type_archive_title( '', false ) );
-    elseif ( is_tax() )
-      $title = sprintf( __( '%s archive', 'pendrell' ), single_term_title( '', false ) );
-    elseif ( is_date() ) {
-      if ( get_query_var( 'second' ) || get_query_var( 'minute' ) || get_query_var( 'hour' ) )
-        $title = sprintf( __( 'Archive for %s', 'pendrell' ), get_the_time( __( 'g:i a', 'pendrell' ) ) );
-      elseif ( is_day() )
-        $title = sprintf( __( '%s daily archive', 'pendrell' ), get_the_date() );
-      elseif ( get_query_var( 'w' ) )
-        $title = sprintf( __( 'Archive for week %1$s of %2$s', 'pendrell' ), get_the_time( __( 'W', 'pendrell' ) ), get_the_time( __( 'Y', 'pendrell' ) ) );
-      elseif ( is_month() )
-        $title = sprintf( __( '%s monthly archive', 'pendrell' ), get_the_date( _x( 'F Y', 'monthly archives date format', 'pendrell' ) ) );
-      elseif ( is_year() )
-        $title = sprintf( __( '%s yearly archive', 'pendrell' ), get_the_date( _x( 'Y', 'yearly archives date format', 'pendrell' ) ) );
-      else
-        $title = get_the_date();
-    }
-  }
-
-  // Single posts, pages, and attachments
-  if ( is_singular() ) {
-    if ( is_attachment() )
-      $title = single_post_title( '', false );
-    elseif ( is_page() || is_single() )
-      $title = single_post_title( '', false );
-  }
-
+// Minimally functional wp_title filter; use Ubik (or your plugin of choice) for more SEO-friendly page titles
+function pendrell_wp_title( $title, $sep = '-' ) {
   if ( is_front_page() || is_home() ) {
-    $title = PENDRELL_NAME;
-    if ( PENDRELL_DESC )
-      $title .= $sep . PENDRELL_DESC;
+    $title = get_bloginfo( 'name' );
+    if ( get_bloginfo( 'description' ) )
+      $title .= ' ' . $sep . ' ' . get_bloginfo( 'description' );
   } else {
-    $title = apply_filters( 'pendrell_wp_title_raw', $title );
-    $title .= $sep . PENDRELL_NAME;
+    $title = $title . get_bloginfo( 'name' );
   }
-
-  $title = esc_html( strip_tags( stripslashes( $title . $page_num ) ) );
-
-  return apply_filters( 'pendrell_wp_title_final', $title );
+  return $title;
 }
-// Lower priority so titles aren't doubled up
 add_filter( 'wp_title', 'pendrell_wp_title', 11, 3 );
 
 

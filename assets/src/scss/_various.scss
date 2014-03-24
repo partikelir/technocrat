@@ -1,4 +1,4 @@
-// === HELPERS === //
+// === VARIOUS === //
 
 // Alignment
 .alignleft {
@@ -101,6 +101,26 @@
   left: 5px;
   z-index: 100000; // Above WP toolbar
 }
+
+
+
+// Something from Jetpack Markdown I want to take note of
+//.entry-content > .footnotes,
+//.entrytext > .footnotes,
+//.hentry .footnotes > ol {
+//  margin-top: 4em;
+//}
+
+//.entry-content > .footnotes > hr,
+//.entrytext > .footnotes > hr,
+//.hentry .footnotes > hr {
+//  margin-right: 50%;
+//}
+
+//.entry-content > .footnotes > ol,
+//.hentry .footnotes > ol {
+//  font-size: 87.5%;
+//}
 
 
 

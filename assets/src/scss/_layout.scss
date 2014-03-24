@@ -49,7 +49,7 @@
     color: lighten($c-site-header, 47);
     display: none;
     font-weight: normal;
-    @include font-sizer(14);
+    @include font-sizer(12);
     @media screen and (min-width: $break-medium) {
       display: block;
     }

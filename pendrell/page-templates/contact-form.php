@@ -9,7 +9,11 @@
  * @since Pendrell 0.4
  */
 
-// Based on https://github.com/bueltge/WP-Contact-Form-Template
+// Based on: https://github.com/bueltge/WP-Contact-Form-Template
+// Additional references:
+// * http://trevordavis.net/blog/wordpress-jquery-contact-form-without-a-plugin/
+// * http://code.tutsplus.com/articles/creating-a-simple-contact-form-for-simple-needs--wp-27893
+// * http://premium.wpmudev.org/blog/how-to-build-your-own-wordpress-contact-form-and-why/
 
 // Process form if input field has been set
 if ( isset( $_POST['submit'] ) && wp_verify_nonce( $_POST['contact_form_nonce'], 'form_submit' ) ) {
