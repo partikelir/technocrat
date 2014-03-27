@@ -1,9 +1,5 @@
 <?php // === CONTENT === //
 
-// Actions:
-// pendrell_entry_meta_before
-// pendrell_entry_meta_after
-
 // Minimally functional wp_title filter; use Ubik (or your plugin of choice) for more SEO-friendly page titles
 function pendrell_wp_title( $title, $sep = '-' ) {
   if ( is_front_page() || is_home() ) {
@@ -20,16 +16,23 @@ add_filter( 'wp_title', 'pendrell_wp_title', 11, 3 );
 
 
 // Entry metadata
+// Actions: pendrell_entry_meta_before, pendrell_entry_meta_after
 function pendrell_entry_meta() {
   global $post;
 
   do_action( 'pendrell_entry_meta_before' );
 
   // Date
+  $date = get_the_date();
+
+  // If Ubik is active retrieve the human-readable date
+  if ( function_exists( 'ubik_date') )
+    $date = ubik_date( $date );
+
   $date = sprintf( '<a href="%1$s" title="%2$s" rel="bookmark">%3$s</a>',
     esc_url( get_permalink() ),
     esc_attr( get_the_time() ),
-    get_the_date()
+    $date
   );
 
   // Author

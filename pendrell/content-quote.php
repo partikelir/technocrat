@@ -11,12 +11,17 @@ $source = pendrell_quotation_metadata(); ?>
 
 	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 		<div class="entry-content">
+			<?php // Check for a password; necessary since we are wrapping quotations in additional markup
+			if ( post_password_required() ) {
+				the_content();
+			} else { ?>
 			<blockquote<?php if ( !empty( $source['url'] ) ) { ?> cite="<?php echo $source['url']; ?>"<?php } ?>>
-				<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'pendrell' ) ); ?>
+				<?php the_content(); ?>
 				<?php if ( !empty( $source['citation'] ) ) { ?><footer>
 					<?php echo $source['citation']; ?>
 				</footer><?php } ?>
 			</blockquote>
+			<?php } ?>
 		</div><!-- .entry-content -->
 
 		<footer class="entry-meta">

@@ -15,7 +15,7 @@
 
 		<div class="entry-content">
 			<?php echo wp_get_attachment_image( $post->ID, array( 960, 960 ) );
-			if ( ! empty( $post->post_excerpt ) ) { ?>
+			if ( !empty( $post->post_excerpt ) ) { ?>
 				<div class="entry-caption"><?php the_excerpt(); ?></div>
 			<?php } ?>
 			<?php the_content(); ?>

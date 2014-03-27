@@ -14,7 +14,7 @@
 		</header>
 
 		<div class="entry-content">
-			<p><?php _e( 'No results were found. Try searching for what you seek:', 'pendrell' ); ?></p>
-			<?php $search_term = esc_url( $_SERVER['REQUEST_URI'] ); pendrell_search_form( $search_term ); //get_search_form(); ?>
+			<p><?php _e( 'No results were found. Try searching:', 'pendrell' ); ?></p>
+			<?php $search_term = esc_url( $_SERVER['REQUEST_URI'] ); pendrell_search_form( $search_term ); ?>
 		</div><!-- .entry-content -->
 	</article><!-- #post-0 -->

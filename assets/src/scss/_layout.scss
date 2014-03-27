@@ -27,9 +27,16 @@
   @include rem('margin-bottom', $spacer*2, 1);
   @include rem('padding-top', $spacer);
   border-bottom: $divider;
-  h1,
-  h2 {
+  .site-title,
+  .site-description {
+    @extend %clearfix;
     text-align: left;
+  }
+  .site-title {
+    @include font-sizer(21);
+    @media screen and (min-width: $break-medium) {
+      @include font-sizer(36);
+    }
     a {
       color: $c-site-header;
       display: inline-block;
@@ -39,25 +46,16 @@
       }
     }
   }
-  h1 {
-    @include font-sizer(21);
-    @media screen and (min-width: $break-medium) {
-      @include font-sizer(36);
-    }
-  }
-  h2 {
+  .site-description {
+    @include font-sizer(12);
     color: lighten($c-site-header, 47);
     display: none;
     font-weight: normal;
-    @include font-sizer(12);
-    @media screen and (min-width: $break-medium) {
-      display: block;
-    }
+    // Everything looks much nicer without the description but it should remain in the markup for SEO purposes
+    //@media screen and (min-width: $break-medium) {
+    //  display: block;
+    //}
   }
-}
-.site-header .site-title,
-.site-header .site-description {
-  clear: none;
 }
 
 
