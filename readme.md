@@ -50,7 +50,6 @@ The following plugins are not exactly dependencies but you will probably want to
 
 * Entry content type set at 18px by default for easier reading
 * Consistent vertical rhythm including jQuery-based image padding
-* Better, more informative and SEO-friendly page titles
 * Improved post format styling and support
 * Google Web Font loading via setting in `functions-config.php`
 * Gulp build script CSS/JS minification via Gulp build script
@@ -124,10 +123,6 @@ This is a disorganized mess :)
 * Related posts
 * Favicons?
 * Bookmarks template with support for link categories, link descriptions, and private links (see bookmarks.php)
-* Additional microformat support
-    * rel-tag: http://microformats.org/wiki/rel-tag
-    * hNews: http://microformats.org/wiki/hnews
-    * hCard: http://microformats.org/wiki/hcard
 
 
 

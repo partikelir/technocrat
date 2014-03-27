@@ -10,6 +10,11 @@
 $source = pendrell_quotation_metadata(); ?>
 
 	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+		<header class="entry-header">
+			<h1 class="entry-title">
+				<?php pendrell_title(); ?>
+			</h1>
+		</header><!-- .entry-header -->
 		<div class="entry-content">
 			<?php // Check for a password; necessary since we are wrapping quotations in additional markup
 			if ( post_password_required() ) {
@@ -23,7 +28,6 @@ $source = pendrell_quotation_metadata(); ?>
 			</blockquote>
 			<?php } ?>
 		</div><!-- .entry-content -->
-
 		<footer class="entry-meta">
 			<?php pendrell_entry_meta(); ?>
 		</footer><!-- .entry-meta -->

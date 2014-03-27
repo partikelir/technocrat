@@ -219,18 +219,32 @@
 }
 .entry-meta-buttons {
   @include button-div();
+  @extend %spacer-below;
 }
 .edit-link,
 .leave-reply {
   @include rem('margin-top', $spacer/2);
 }
-// Hide author on single author blogs
-.single-author .entry-meta .by-author {
-  display: none;
+
+// Hide last updated
+.entry-meta-main {
+  .last-updated {
+    //display: none;
+  }
 }
+
+// Hide author on single author blogs
+.single-author {
+  .by-author {
+    //display: none;
+  }
+}
+
 // Show the author in entry meta on pages
-.page .entry-meta .by-author {
-  display: inline;
+.page {
+  .by-author {
+    //display: inline;
+  }
 }
 
 

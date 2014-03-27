@@ -82,6 +82,6 @@ function pendrell_image_navigation() {
 									esc_attr( strip_tags( get_the_title( $post->post_parent ) ) ),
 									get_the_title( $post->post_parent )
 								); ?></div>
-						<div class="next-image">&nbsp;<span class="nav-text"><?php next_image_link( false, __( 'Next &rarr;', 'pendrell' ) ); ?></span><?php next_image_link( 'image-navigation' ); ?></div>
+						<div class="next-image">&nbsp;<span class="nav-text"><?php next_image_link( false, __( 'Next &rarr;', 'pendrell' ) ); // @TODO: markup arrows ?></span><?php next_image_link( 'image-navigation' ); ?></div>
 					</nav><!-- #image-navigation --><?php
 }

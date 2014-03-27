@@ -1,39 +1,5 @@
 // === POST FORMATS === //
 
-// Aside
-article.format-aside {
-  h1 {
-    @extend %spacer-below;
-    a {
-      text-decoration: none;
-    }
-  }
-  .aside {
-    padding: 0;
-  }
-  p {
-    @include font-sizer(13);
-  }
-}
-
-
-
-// Image
-article.format-image {
-  footer h1 {
-    @include font-sizer(13);
-    font-weight: normal;
-  }
-  footer h2 {
-    @include font-sizer(11);
-  }
-  footer a h2 {
-    font-weight: normal;
-  }
-}
-
-
-
 // Link
 article.format-link {
   header {
@@ -44,12 +10,11 @@ article.format-link {
 
 
 
-// Quote: covered by regular blockquote/cite/footer element styling in _content.scss
-//article.format-quote {
-//}
-
-
-
-// Status: no special styling needed
-//article.format-status {
-//}
+// Hiding aside, quotation, and status titles to preserve structured data and visual flow
+article.format-aside,
+article.format-quote,
+article.format-status {
+  header {
+    display: none;
+  }
+}

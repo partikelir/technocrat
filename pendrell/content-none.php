@@ -10,11 +10,12 @@
 
 	<article id="post-0" class="post no-results not-found">
 		<header class="entry-header">
-			<h1 class="entry-title"><?php _e( 'We have encountered an anomaly...', 'pendrell' ); ?></h1>
-		</header>
-
+			<h1 class="entry-title">
+        <?php _e( 'Error 404: content not found', 'pendrell' ); ?>
+      </h1>
+		</header><!-- .entry-header -->
 		<div class="entry-content">
-			<p><?php _e( 'No results were found. Try searching:', 'pendrell' ); ?></p>
+			<p><?php _e( 'Search for what you seek:', 'pendrell' ); ?></p>
 			<?php $search_term = esc_url( $_SERVER['REQUEST_URI'] ); pendrell_search_form( $search_term ); ?>
 		</div><!-- .entry-content -->
 	</article><!-- #post-0 -->

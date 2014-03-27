@@ -33,16 +33,15 @@ function pendrell_get_font_url() {
 
 
 
-// Main sidebar
-function pendrell_widgets_init() {
-  register_sidebar( array(
-    'name' => __( 'Main sidebar', 'pendrell' ),
-    'id' => 'sidebar-main',
-    'description' => __( 'Appears on posts and most pages.', 'pendrell' ),
-    'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-    'after_widget' => '</aside>',
-    'before_title' => '<h3 class="widget-title">',
-    'after_title' => '</h3>',
-  ) );
+// Minimally functional wp_title filter; use Ubik (or your plugin of choice) for more SEO-friendly page titles
+function pendrell_wp_title( $title, $sep = '-' ) {
+  if ( is_front_page() || is_home() ) {
+    $title = get_bloginfo( 'name' );
+    if ( get_bloginfo( 'description' ) )
+      $title .= ' ' . $sep . ' ' . get_bloginfo( 'description' );
+  } else {
+    $title = $title . get_bloginfo( 'name' );
+  }
+  return $title;
 }
-add_action( 'widgets_init', 'pendrell_widgets_init' );
+add_filter( 'wp_title', 'pendrell_wp_title', 11, 3 );

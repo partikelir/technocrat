@@ -65,7 +65,6 @@ acronym {
 }
 address {
   @extend %spacer-below;
-  display: block;
   font-style: normal; // Italic is sometimes a bit harder to read
   &::first-line {
     font-weight: bold;

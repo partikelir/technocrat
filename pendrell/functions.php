@@ -79,3 +79,19 @@ function pendrell_setup() {
   register_nav_menu( 'footer', __( 'Footer menu', 'pendrell' ) );
 }
 add_action( 'after_setup_theme', 'pendrell_setup', 11 );
+
+
+
+// Main sidebar
+function pendrell_widgets_init() {
+  register_sidebar( array(
+    'name' => __( 'Main sidebar', 'pendrell' ),
+    'id' => 'sidebar-main',
+    'description' => __( 'Appears on posts and most pages.', 'pendrell' ),
+    'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+    'after_widget' => '</aside>',
+    'before_title' => '<h3 class="widget-title">',
+    'after_title' => '</h3>',
+  ) );
+}
+add_action( 'widgets_init', 'pendrell_widgets_init' );
