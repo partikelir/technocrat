@@ -34,8 +34,20 @@
 
   // Links
   a {
-    //border-bottom: 1px solid lighten($c-link, 37);
-    text-decoration: underline;
+    border-bottom: 1px solid lighten($c-link, 37);
+    text-decoration: none;
+    &:visited {
+      border-bottom: 1px solid lighten($c-link-v, 33);
+    }
+    &:hover {
+      border-bottom: 1px solid lighten($c-link-h, 13);
+    }
+    &:active {
+      border-bottom: 1px solid lighten($c-link-a, 27);
+    }
+    &:focus {
+      border-bottom: 1px solid lighten($c-link-f, 17);
+    }
   }
 
   // Paragraphs
@@ -110,6 +122,7 @@
     li > code,
     p > code,
     strong > code {
+      @include font-sizer(20);
       @include highlight( darken($c-code-bg, 7) );
     }
   }
@@ -210,10 +223,11 @@
   @extend %clearfix;
   color: $c-meta;
   a {
+    border-bottom: 1px solid lighten($c-meta, 13);
     color: darken($c-meta, 33);
-    text-decoration: underline;
     &:hover {
       color: $c-link-h;
+      border-bottom: 1px solid lighten($c-link-h, 27);
     }
   }
 }

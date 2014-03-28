@@ -40,7 +40,7 @@ a {
   &:hover {
     color: $c-link-h;
     outline: 0; // Improves readability when focused and also mouse hovered in all browsers people.opera.com/patrickl/experiments/keyboard/test
-    //text-decoration: underline;
+    transition: all .4s ease-in-out;
   }
   &:active {
     color: $c-link-a;

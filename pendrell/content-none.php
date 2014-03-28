@@ -15,7 +15,7 @@
       </h1>
 		</header><!-- .entry-header -->
 		<div class="entry-content">
-			<p><?php _e( 'Search for what you seek:', 'pendrell' ); ?></p>
+			<p><?php _e( 'What are you looking for? Try searching for it:', 'pendrell' ); ?></p>
 			<?php $search_term = esc_url( $_SERVER['REQUEST_URI'] ); pendrell_search_form( $search_term ); ?>
 		</div><!-- .entry-content -->
 	</article><!-- #post-0 -->
