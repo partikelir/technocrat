@@ -45,3 +45,22 @@ function pendrell_wp_title( $title, $sep = '-' ) {
   return $title;
 }
 add_filter( 'wp_title', 'pendrell_wp_title', 11, 3 );
+
+
+
+// Sidebar handler; since WordPress hasn't really made things easy in this department
+function pendrell_sidebar( $sidebar = true ) {
+
+  // Filter the sidebar variable; this way we can set it to "false" in other locations
+  $sidebar = apply_filters( 'pendrell_sidebar', $sidebar );
+
+  // Don't display sidebar for certain post formats
+  if ( is_singular() && has_post_format( array( 'aside', 'link', 'quote', 'status' ) ) ) {
+    $sidebar = false;
+  }
+
+  // Include the regular sidebar template if $sidebar has not been set to "false"
+  if ( $sidebar ) {
+    get_sidebar();
+  }
+}

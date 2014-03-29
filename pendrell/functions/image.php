@@ -1,7 +1,24 @@
-<?php // === IMAGE NAVIGATION === //
+<?php // === IMAGES === //
+
+// Image info wrapper
+function pendrell_image_meta() {
+  if (
+    is_attachment()
+    && wp_attachment_is_image()
+  ) {
+    pendrell_image_info();
+  }
+}
+add_filter( 'pendrell_entry_meta_after', 'pendrell_image_meta', 11 );
+
+
 
 // Display EXIF data for photographs
-function pendrell_image_info( $metadata = array() ) {
+function pendrell_image_info() {
+
+	// Fetch metadata
+	$metadata = wp_get_attachment_metadata();
+
 	if ( $metadata['image_meta'] ) {
 		?><div class="image-info">
 			<h3><?php _e( 'Image Info', 'pendrell' ); ?></h3>

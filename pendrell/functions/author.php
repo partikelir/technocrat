@@ -5,14 +5,13 @@ function pendrell_author_meta() {
   // Show a bio if a user has filled out their description... but not on quote or link posts; we probably haven't authored that content
   if (
     is_singular()
-    && !is_attachment()
-    && !has_post_format( array( 'link', 'quote' ) )
+    && !has_post_format( array( 'aside', 'link', 'quote', 'status' ) )
     && get_the_author_meta( 'description' )
   ) {
     pendrell_author_info();
   }
 }
-add_filter( 'pendrell_entry_meta_after', 'pendrell_author_meta' );
+add_filter( 'pendrell_entry_meta_after', 'pendrell_author_meta', 12 );
 
 
 
@@ -30,7 +29,7 @@ function pendrell_author_info() {
         } ?>
       </div><!-- .author-avatar -->
       <div class="author-description">
-        <h2><?php printf( __( 'About %s', 'pendrell' ), $author ); ?></h2>
+        <h3><?php printf( __( 'About %s', 'pendrell' ), $author ); ?></h3>
         <p><?php the_author_meta( 'description' ); ?></p>
         <?php if ( is_multi_author() ) { ?>
         <div class="author-link">

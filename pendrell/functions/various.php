@@ -32,12 +32,12 @@ add_filter( 'body_class', 'pendrell_body_class' );
 
 
 // Adjusts content_width value for full-width and single image attachment templates, and when there are no active widgets in the sidebar
+// @TODO: find out if we even need this anymore
 function pendrell_content_width() {
   if (
     is_page_template( 'page-templates/full-width.php' )
     || is_attachment()
-    || !is_active_sidebar( 'sidebar-1' )
-    || pendrell_is_portfolio()
+    || !is_active_sidebar( 'sidebar-main' )
   ) {
     global $content_width;
     $content_width = 960;

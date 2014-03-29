@@ -13,6 +13,7 @@ Domain Path: /languages/
 Template: pendrell
 */
 
+// These stylesheets are authored without regard for vendor prefixes; be sure to run the output through an autoprefixer like https://github.com/ai/autoprefixer
 
 @import "base";       // Configuration, mixins, reset, and helper classes
 @import "general";

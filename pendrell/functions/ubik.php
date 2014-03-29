@@ -1,17 +1,10 @@
 <?php // === UBIK === //
 
-// Fallback functions allow for graceful decay in the event that Ubik is not enabled
+// Fallback functions allow for graceful decay in the event that Ubik is not enabled; eventually this should not even exist
 
 function pendrell_is_portfolio() {
   if ( function_exists( 'ubik_is_portfolio' ) ) {
     return ubik_is_portfolio();
-  }
-  return false;
-}
-
-function pendrell_is_place() {
-  if ( function_exists( 'ubik_is_place' ) ) {
-    return ubik_is_place();
   }
   return false;
 }

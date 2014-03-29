@@ -21,6 +21,5 @@
 		</div><!-- .entry-content -->
 		<footer class="entry-meta">
 			<?php pendrell_entry_meta(); ?>
-			<?php pendrell_image_info( wp_get_attachment_metadata() ); ?>
 		</footer><!-- .entry-meta -->
 	</article><!-- #post -->
