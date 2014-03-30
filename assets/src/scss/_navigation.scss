@@ -150,7 +150,8 @@ article.post-password-required input[type=submit],
 
 // General navigation
 .site-content nav,
-.page-links {
+.page-links,
+.page-navigation {
   @extend %clearfix;
 }
 #nav-below {

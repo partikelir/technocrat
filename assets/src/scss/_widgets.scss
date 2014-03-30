@@ -22,6 +22,10 @@
     ul ul {
       @include rem('margin-left', $spacer/2);
     }
+    img {
+      @include border-radius();
+      max-width: 100%; // Fluid images for widgets
+    }
   }
   .textwidget {
     ul {

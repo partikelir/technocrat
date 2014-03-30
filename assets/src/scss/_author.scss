@@ -8,6 +8,9 @@
 }
 .author-avatar {
   display: none; // Only display author avatar on larger screens
+  img {
+    @include border-radius();
+  }
   @media screen and (min-width: $break-medium) {
     @include rem('margin', 0 0 0 $spacer/2);
     display: block;

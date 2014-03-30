@@ -34,14 +34,14 @@ var {
 a {
   color: $c-link;
   text-decoration: none;
-  transition: border-bottom, color .6s ease-in-out;
+  transition: color .8s ease-out;
   &:visited {
     color: $c-link-v;
   }
   &:hover {
     color: $c-link-h;
     outline: 0; // Improves readability when focused and also mouse hovered in all browsers people.opera.com/patrickl/experiments/keyboard/test
-    transition: border-bottom, color .3s ease-in-out;
+    transition: color .4s ease;
   }
   &:active {
     color: $c-link-a;
@@ -54,7 +54,8 @@ a {
 // Links with borders in certain areas
 .entry-content,
 .comment-content,
-.widget-area {
+.widget-area,
+.page-navigation {
   a {
     border-bottom: 1px solid rgba($c-link, 0.25);
     &:visited {

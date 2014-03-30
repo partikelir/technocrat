@@ -124,6 +124,9 @@
     @include text-box();
     @include rem('padding-bottom', $spacer); // Needs to follow text-box
     color: $c-pre;
+    //-moz-tab-size: 2;
+    //-o-tab-size: 2;
+    tab-size: 2;
   }
   pre code {
     //word-break: normal;
@@ -165,6 +168,7 @@
 
   // Media
   img {
+    @include border-radius();
     display: block;
   }
   img.alignleft,

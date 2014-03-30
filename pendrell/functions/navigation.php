@@ -7,7 +7,7 @@ function pendrell_content_nav( $html_id ) {
   $html_id = esc_attr( $html_id );
 
   if ( $wp_query->max_num_pages > 1 ) : ?>
-    <nav id="<?php echo $html_id; ?>" class="navigation" role="navigation">
+    <nav id="<?php echo $html_id; ?>" class="page-navigation" role="navigation">
       <h3 class="assistive-text"><?php _e( 'Post navigation', 'pendrell' ); ?></h3>
       <div class="nav-previous"><?php previous_posts_link( __( '<span class="nav-arrow">&larr; </span>Previous', 'pendrell' ) ); ?></div>
       <div class="nav-next"><?php next_posts_link( __( 'Next<span class="nav-arrow"> &rarr;</span>', 'pendrell' ) ); ?></div>

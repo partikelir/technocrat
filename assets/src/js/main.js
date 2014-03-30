@@ -30,6 +30,6 @@ jQuery(document).ready(function($) {
     }
   });
   if (typeof(pendrellSearchQuery) !== 'undefined') {
-    $("#content").highlight(pendrellSearchQuery, 1, "search-term");
+    $('#content > article').highlight(pendrellSearchQuery, 1, 'search-term');
   }
 });

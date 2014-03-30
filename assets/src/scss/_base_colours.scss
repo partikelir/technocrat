@@ -1,5 +1,7 @@
 // === COLOURS === //
 
+// This is a skeletal outline of a proper colour scheme; @TODO: flesh this out and make it more sensible
+
 // Body
 $c-site-bg:       #fff;
 $c-site-sh-1:     #bbb;
@@ -7,7 +9,7 @@ $c-site-sh-2:     #eee;
 $c-body-bg:       darken($c-site-bg, 5);
 
 // Text
-$c-body:          #555;
+$c-body:          #484848;
 $c-head:          darken($c-body, 13);
 $c-meta:          lighten($c-body, 37);
 
@@ -53,3 +55,13 @@ $c-small-header:  lighten($c-body, 13);
 $c-text-box:      lighten($c-body, 7);
 $c-text-box-bg:   darken($c-site-bg, 5);
 $c-text-box-sh:   darken($c-text-box-bg, 5);
+
+// Prism
+$prism-text:            $c-body;
+$prism-comment:         lighten($prism-text, 43);
+$prism-punctuation:     lighten($prism-text, 27);
+$prism-tag:             adjust-hue($c-link, 270);//#905;
+$prism-selector:        adjust-hue($prism-tag, 90);//#690;
+$prism-variable:        adjust-hue($prism-tag, 270);//#a67f59;
+$prism-keyword:         adjust-hue($prism-tag, 180);//#07a;
+$prism-regex:           adjust-hue($prism-tag, 120);//#e90;

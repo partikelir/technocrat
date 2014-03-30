@@ -1,32 +1,7 @@
 // === PRISM === //
 
 // Prism syntax highlighting by Lea Verou; based on http://dabblet.com
-
-$prism-text:            black;
-$prism-comment:         slategray;
-$prism-punctuation:     #999;
-$prism-tag:             #905;
-$prism-selector:        #690;
-$prism-variable:        #a67f59;
-$prism-keyword:         #07a;
-$prism-regex:           #e90;
-
-code[class*="language-"],
-pre[class*="language-"] {
-  direction: ltr;
-  text-align: left;
-  //word-spacing: normal;
-  //word-break: normal;
-  -moz-tab-size: 2;
-  -o-tab-size: 2;
-  tab-size: 2;
-}
-
-// Inline code
-:not(pre) > code[class*="language-"] {
-  //padding: .1em;
-  //border-radius: .3em;
-}
+// This is a stripped down version of the default Prism theme
 
 .token.comment,
 .token.prolog,
