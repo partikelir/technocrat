@@ -84,7 +84,8 @@ article.post-password-required input[type=submit],
 // Header navigation
 #menu-header {
   @include rem('margin-top', $spacer/2);
-  .menu-header > ul {
+  ul.menu-header {
+    border-bottom: $divider;
     display: none;
     margin: 0;
     text-indent: 0;
@@ -93,7 +94,7 @@ article.post-password-required input[type=submit],
       width: 100%;
     }
   }
-  .menu-header > ul.toggled-on {
+  ul.menu-header.toggled-on {
     display: inline-block;
   }
   a {
@@ -141,38 +142,26 @@ article.post-password-required input[type=submit],
 
 
 
+#menu-footer {
+  @extend %spacer-below;
+}
+
+
+
 // General navigation
-.site-content nav {
+.site-content nav,
+.page-links {
   @extend %clearfix;
 }
-#nav-above {
-  @include rem('padding', $spacer 0);
+#nav-below {
+  @include rem('margin-bottom', $spacer*2);
 }
-#nav-above {
-  //display: none;
-}
-.paged #nav-above {
-  display: block;
-}
-.nav-previous,
-.previous-image {
+.nav-previous {
   float: left;
   width: 50%;
 }
-.nav-next,
-.next-image {
+.nav-next {
   float: right;
   text-align: right;
   width: 50%;
 }
-.nav-single + .comments-area,
-#comment-nav-above {
-  @include rem('margin', $spacer*2 0);
-}
-.page-links {
-  @extend %clearfix;
-}
-
-// Navigational arrows
-//.nav-arrow {
-//}

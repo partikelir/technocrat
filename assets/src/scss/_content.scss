@@ -32,24 +32,6 @@
     text-transform: none;
   }
 
-  // Links
-  a {
-    border-bottom: 1px solid lighten($c-link, 37);
-    text-decoration: none;
-    &:visited {
-      border-bottom: 1px solid lighten($c-link-v, 33);
-    }
-    &:hover {
-      border-bottom: 1px solid lighten($c-link-h, 13);
-    }
-    &:active {
-      border-bottom: 1px solid lighten($c-link-a, 27);
-    }
-    &:focus {
-      border-bottom: 1px solid lighten($c-link-f, 17);
-    }
-  }
-
   // Paragraphs
   p {
     @extend %spacer-below;

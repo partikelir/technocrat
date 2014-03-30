@@ -17,8 +17,8 @@
 	}
 
 	button.onclick = function() {
-		if ( -1 === menu.className.indexOf( 'inline-menu' ) ) {
-			menu.className = 'inline-menu';
+		if ( -1 === menu.className.indexOf( 'menu-header' ) ) {
+			menu.className = 'menu-header';
 		}
 
 		if ( -1 !== button.className.indexOf( 'toggled-on' ) ) {

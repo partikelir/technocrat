@@ -2,7 +2,7 @@
 
 // Author info on posts
 function pendrell_author_meta() {
-  // Show a bio if a user has filled out their description... but not on quote or link posts; we probably haven't authored that content
+  // Show a bio if a user has filled out their description... but not on certain post formats
   if (
     is_singular()
     && !has_post_format( array( 'aside', 'link', 'quote', 'status' ) )
@@ -18,15 +18,10 @@ add_filter( 'pendrell_entry_meta_after', 'pendrell_author_meta', 12 );
 // Author info box
 function pendrell_author_info() {
   if ( get_the_author_meta( 'description' ) ) {
-    $author = '<span class="fn n">' . get_the_author() . '</span>';
-    $author_url = get_the_author_meta( 'user_url' ); ?>
+    $author = '<span class="fn n">' . get_the_author() . '</span>'; ?>
     <div class="author-info author vcard">
       <div class="author-avatar">
-        <?php if ( $author_url ) {
-          ?><a href="<?php echo $author_url; ?>" title="<?php the_author_meta( 'display_name' ); ?>" rel="author"><?php echo get_avatar( get_the_author_meta( 'user_email' ), PENDRELL_BASELINE * 3 ); ?></a><?php
-        } else {
-          echo get_avatar( get_the_author_meta( 'user_email' ), PENDRELL_BASELINE * 3 );
-        } ?>
+        <?php pendrell_author_avatar( get_the_author_meta( 'user_url' ) ); ?>
       </div><!-- .author-avatar -->
       <div class="author-description">
         <h3><?php printf( __( 'About %s', 'pendrell' ), $author ); ?></h3>
@@ -41,4 +36,24 @@ function pendrell_author_info() {
       </div><!-- .author-description -->
     </div><!-- .author-info -->
   <?php }
+}
+
+
+
+// Return the avatar with a link to the specified URL
+function pendrell_author_avatar( $url ) {
+
+  // Size should be some multiple of the baseline
+  $size = PENDRELL_BASELINE * 3;
+  $default = '';
+  $alt = get_the_author();
+
+  // Optionally wrap avatar in a link
+  if ( !empty( $url ) ) {
+    ?><a href="<?php echo $url; ?>" title="<?php the_author_meta( 'display_name' ); ?>" rel="author"><?php
+    echo get_avatar( get_the_author_meta( 'user_email' ), $size, $default, $alt );
+    ?></a><?php
+  } else {
+    echo get_avatar( get_the_author_meta( 'user_email' ), $size, $default, $alt );
+  }
 }

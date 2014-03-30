@@ -51,7 +51,8 @@ add_filter( 'wp_title', 'pendrell_wp_title', 11, 3 );
 // Sidebar handler; since WordPress hasn't really made things easy in this department
 function pendrell_sidebar( $sidebar = true ) {
 
-  // Filter the sidebar variable; this way we can set it to "false" in other locations
+  // Filter the $sidebar variable; this way we can set it to "false" by hooking into this function elsewhere
+  // This way the regular sidebar can be disabled and you can output whatever you want
   $sidebar = apply_filters( 'pendrell_sidebar', $sidebar );
 
   // Don't display sidebar for certain post formats

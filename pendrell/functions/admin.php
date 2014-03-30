@@ -1,7 +1,8 @@
 <?php // === PENDRELL ADMIN FUNCTIONS === //
 
-// Add custom images sizes to the media uploader dropdown
+// Add custom images sizes to the media uploader dropdown; @TODO: revise these styles and move most of this to the portfolio module
 function pendrell_image_sizes( $sizes ) {
+
 	// Cheap hack to keep "full size" at the bottom of the dropdown: unset and reset it after adding our custom sizes
 	unset ( $sizes['medium'] );
 	unset ( $sizes['large'] );
@@ -16,7 +17,6 @@ function pendrell_image_sizes( $sizes ) {
 	$sizes['full-width-cropped'] = __( 'Full Width Cropped', 'pendrell');
 	$sizes['full'] = __( 'Full Size', 'pendrell');
 	return $sizes;
+
 }
 add_filter( 'image_size_names_choose', 'pendrell_image_sizes' );
-
-?>

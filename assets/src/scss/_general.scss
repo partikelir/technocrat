@@ -34,13 +34,14 @@ var {
 a {
   color: $c-link;
   text-decoration: none;
+  transition: border-bottom, color .6s ease-in-out;
   &:visited {
     color: $c-link-v;
   }
   &:hover {
     color: $c-link-h;
     outline: 0; // Improves readability when focused and also mouse hovered in all browsers people.opera.com/patrickl/experiments/keyboard/test
-    transition: all .4s ease-in-out;
+    transition: border-bottom, color .3s ease-in-out;
   }
   &:active {
     color: $c-link-a;
@@ -50,7 +51,26 @@ a {
     color: $c-link-f;
   }
 }
-
+// Links with borders in certain areas
+.entry-content,
+.comment-content,
+.widget-area {
+  a {
+    border-bottom: 1px solid rgba($c-link, 0.25);
+    &:visited {
+      border-bottom: 1px solid rgba($c-link-v, 0.25);
+    }
+    &:hover {
+      border-bottom: 1px solid rgba($c-link-h, 0.25);
+    }
+    &:active {
+      border-bottom: 1px solid rgba($c-link-a, 0.25);
+    }
+    &:focus {
+      border-bottom: 1px solid rgba($c-link-f, 0.25);
+    }
+  }
+}
 
 
 // Reset-like things with variables or WordPress-specific styling

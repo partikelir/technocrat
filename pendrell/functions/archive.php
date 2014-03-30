@@ -32,6 +32,8 @@ function pendrell_archive_title() {
 
 // Conditional archive descriptions
 function pendrell_archive_description() {
+
+  // Only output archive descriptions for categories, tags, taxonomies, and authors
   if ( is_category() || is_tag() || is_tax() ) {
 
     // Check to see if we have a description for this category, tag, or taxonomy
