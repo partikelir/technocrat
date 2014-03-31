@@ -20,7 +20,7 @@ include( get_stylesheet_directory() . '/functions/author.php' );
 include( get_stylesheet_directory() . '/functions/content.php' );
 include( get_stylesheet_directory() . '/functions/general.php' );
 include( get_stylesheet_directory() . '/functions/formats.php' );
-include( get_stylesheet_directory() . '/functions/image.php' );
+include( get_stylesheet_directory() . '/functions/media.php' );
 include( get_stylesheet_directory() . '/functions/navigation.php' );
 include( get_stylesheet_directory() . '/functions/various.php' );
 
@@ -46,13 +46,30 @@ function pendrell_setup() {
   // Adds RSS feed links to <head> for posts and comments.
   add_theme_support( 'automatic-feed-links' );
 
-  // This theme uses a custom image size for featured images, really just the "post thumbnail"
+  // $content_width limits the size of the largest image size available via the media uploader
+  global $content_width, $site_width;
+  $content_width = 624;
+  $site_width = 960;
+
+  // This theme uses a custom image size for featured images; it isn't really a "thumbnail"
   add_theme_support( 'post-thumbnails' );
-  set_post_thumbnail_size( 624, 9999 ); // Unlimited height, soft crop
+  set_post_thumbnail_size( $content_width, 9999 );
 
   // Add a few additional image sizes for various other purposes
-  add_image_size( 'image-navigation', 150, 150, true ); // Displayed on image attachment screen
-  add_image_size( 'portfolio-navigation', 300, 200, true ); // Displayed on portfolios
+  add_image_size( 'medium-300', 300, 9999 );
+  add_image_size( 'medium-300-cropped', 300, 300, true );
+  add_image_size( 'medium-465', $site_width/2, 9999 );
+  add_image_size( 'medium-465-cropped', $site_width/2, $site_width/2, true );
+  add_image_size( 'medium-624-cropped', $content_width, $content_width, true );
+  add_image_size( 'large-960-cropped', $site_width, $site_width, true );
+
+  // Forcing medium and large sizes to match $content_width and $site_width
+  update_option( 'medium_size_w', $content_width );
+  update_option( 'medium_size_h', 9999 );
+  update_option( 'large_size_w', $site_width );
+  update_option( 'large_size_h', 9999 );
+
+  // Old Pendrell sizes
   add_image_size( 'third-width', 300, 9999 );
   add_image_size( 'third-width-cropped', 300, 300, true );
   add_image_size( 'half-width', 465, 9999 );
@@ -61,15 +78,7 @@ function pendrell_setup() {
   add_image_size( 'full-width-cropped', 960, 960, true );
 
   // Set the medium and large size image sizes under media settings; default to our new full width image size in media uploader
-  update_option( 'medium_size_w', 624 );
-  update_option( 'medium_size_h', 9999 );
-  update_option( 'large_size_w', 960 );
-  update_option( 'large_size_h', 9999 );
-  update_option( 'image_default_size', 'full-width' );
-
-  // $content_width limits the size of the largest image size available via the media uploader
-  global $content_width;
-  $content_width = 624;
+  update_option( 'image_default_size', 'medium' );
 
   // This theme styles the visual editor with editor-style.css to match the theme style
   //add_editor_style();

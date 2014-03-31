@@ -13,10 +13,10 @@
 			</h1>
 		</header><!-- .entry-header -->
 		<div class="entry-content">
-			<?php echo wp_get_attachment_image( $post->ID, array( 960, 960 ) );
+			<figure id="<?php echo $id; ?>" <?php if ( !empty( $post->post_excerpt ) ) { ?>aria-describedby="figcaption-<?php echo $id; ?>" <?php } ?>class="wp-caption" itemscope itemtype="http://schema.org/ImageObject"><?php echo wp_get_attachment_image( $post->ID, 'large' );
 			if ( !empty( $post->post_excerpt ) ) { ?>
-				<div class="entry-caption"><?php the_excerpt(); ?></div>
-			<?php } ?>
+				<figcaption id="figcaption-<?php echo $post->ID; ?>" class="wp-caption-text"><?php the_excerpt(); ?></figcaption>
+			<?php } ?></figure>
 			<?php the_content(); ?>
 		</div><!-- .entry-content -->
 		<footer class="entry-meta">

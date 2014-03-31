@@ -15,14 +15,11 @@ add_action( 'wp_print_scripts', 'pendrell_search_highlighter' );
 function pendrell_body_class( $classes ) {
 
   // Full width page template
-  if (
-    !is_active_sidebar( 'sidebar-main' )
-    || is_page_template( 'page-templates/full-width.php' )
-  ) {
+  if ( pendrell_is_full_width() ) {
     $classes[] = 'full-width';
   }
 
-  if ( ! is_multi_author() )
+  if ( !is_multi_author() )
     $classes[] = 'single-author';
 
 	return $classes;
@@ -31,16 +28,31 @@ add_filter( 'body_class', 'pendrell_body_class' );
 
 
 
-// Adjusts content_width value for full-width and single image attachment templates, and when there are no active widgets in the sidebar
-// @TODO: find out if we even need this anymore
+// Adjusts content_width value for full-width content
 function pendrell_content_width() {
+  if ( pendrell_is_full_width() ) {
+    global $content_width, $site_width;
+    $content_width = $site_width;
+  }
+}
+add_action( 'template_redirect', 'pendrell_content_width' );
+
+
+
+// Abstracted function to test whether the current view is full-width
+function pendrell_is_full_width() {
+  // Allow other functions to pass the test
+  $full_width_test = apply_filters( 'pendrell_full_width', $full_width_test = false );
+
+  // If we're on a full-width page, attachment, or there is no sidebar active let's expand the viewing window
   if (
     is_page_template( 'page-templates/full-width.php' )
     || is_attachment()
     || !is_active_sidebar( 'sidebar-main' )
+    || $full_width_test === true
   ) {
-    global $content_width;
-    $content_width = 960;
+    return true;
+  } else {
+    return false;
   }
 }
-add_action( 'template_redirect', 'pendrell_content_width' );

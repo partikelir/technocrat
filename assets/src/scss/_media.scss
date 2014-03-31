@@ -5,7 +5,6 @@
   max-width: 100%; // Keep wide captions from overflowing their containers
 }
 .wp-caption .wp-caption-text,
-.gallery-caption,
 .entry-caption {
   @include font-sizer(14);
   color: $c-caption;
@@ -32,8 +31,6 @@ img.wp-smiley,
 // Galleries;
 // @TODO: revise this section and check for link borders
 // @TODO: account for vertical rhythm
-// @TODO: border-radius isn't working; bottom corners are squished
-// @TODO: quirky filter shifts a pixel around... something to do with image rendering
 $gallery-padding: 5px;
 
 .gallery {
@@ -51,38 +48,43 @@ $gallery-padding: 5px;
     position: relative;
     img {
       backface-visibility: hidden; // Prevents flicker
-      padding-bottom: $gallery-padding;
+      margin-bottom: $gallery-padding;
       width: 100%;
       transition: all .5s ease-out;
     }
     &:hover {
-      .gallery-caption {
+      .gallery-caption-text {
         opacity: 1;
         transition: opacity .5s ease;
       }
       img {
-        filter: brightness(75%) grayscale(100%);
+        filter: brightness(70%) grayscale(100%);
         transition: all .3s ease-in;
       }
     }
   }
-  .gallery-caption {
-    //display: none; // Can't transition the display property
+  .gallery-caption-text {
+    @include font-sizer(14);
     @include rem('padding', 0 $gallery-padding + 5px 0 $gallery-padding );
+    box-sizing: border-box;
     color: #fff;
     cursor: pointer;
-    //display: block;
-    font-family: $font-head;
-    font-style: normal;
-    max-width: 100%;
+    font-style: italic;
+    margin: 0 auto;
     opacity: 0;
     position: absolute;
-      bottom: 0;
       top: 0;
       z-index: 5;
     text-align: center;
-    text-transform: uppercase;
+    text-shadow: 0px 1px rgba(#000, 0.75);
     transition: opacity .3s ease;
+    width: 100%;
+  }
+  .gallery-caption-title {
+    @include font-sizer(18);
+    font-family: $font-head;
+    font-style: normal;
+    text-transform: uppercase;
   }
 }
 
