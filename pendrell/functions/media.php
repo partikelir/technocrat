@@ -131,6 +131,8 @@ function pendrell_gallery( $output, $attr ) {
     $size = 'medium-624-cropped';
   }
 
+  // @TODO: fallback image in case there isn't one of the desired size
+
   // Determine what size of images to call upon
   $size_class = sanitize_html_class( apply_filters( 'pendrell_media_gallery_size', $size ) );
 

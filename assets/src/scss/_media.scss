@@ -28,8 +28,8 @@ img.wp-smiley,
 
 
 
-// Galleries;
-// @TODO: revise this section and check for link borders
+// Gallery styling; makes a lot of assumptions about markup so you can't simply lift this and use it elsewhere
+// Presently attempting a free-flowing gallery based on unordered lists; could also try CSS3 columns
 // @TODO: account for vertical rhythm
 $gallery-padding: 5px;
 
@@ -45,6 +45,7 @@ $gallery-padding: 5px;
     box-sizing: border-box; // Make everyone's life easier
     display: inline-block;
     margin: 0;
+    overflow: hidden;
     position: relative;
     img {
       backface-visibility: hidden; // Prevents flicker
@@ -63,6 +64,7 @@ $gallery-padding: 5px;
       }
     }
   }
+  // @TODO: mask caption text that overflows the bounding box; not a problem with short titles/captions but looks ugly when it goes wrong
   .gallery-caption-text {
     @include font-sizer(14);
     @include rem('padding', 0 $gallery-padding + 5px 0 $gallery-padding );
@@ -88,8 +90,8 @@ $gallery-padding: 5px;
   }
 }
 
-// @TODO: media query to remove a column on smaller screens
-@for $i from 2 to 6 {
+// Generate columns
+@for $i from 1 to 11 {
   .gallery-columns-#{$i} .gallery-item {
     width: percentage(1/($i));
   }
