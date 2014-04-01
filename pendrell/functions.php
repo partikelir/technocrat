@@ -70,12 +70,12 @@ function pendrell_setup() {
   update_option( 'large_size_h', 9999 );
 
   // Old Pendrell sizes
-  add_image_size( 'third-width', 300, 9999 );
-  add_image_size( 'third-width-cropped', 300, 300, true );
-  add_image_size( 'half-width', 465, 9999 );
-  add_image_size( 'half-width-cropped', 465, 465, true );
-  add_image_size( 'full-width', 960, 9999 );
-  add_image_size( 'full-width-cropped', 960, 960, true );
+  //add_image_size( 'third-width', 300, 9999 );
+  //add_image_size( 'third-width-cropped', 300, 300, true );
+  //add_image_size( 'half-width', 465, 9999 );
+  //add_image_size( 'half-width-cropped', 465, 465, true );
+  //add_image_size( 'full-width', 960, 9999 );
+  //add_image_size( 'full-width-cropped', 960, 960, true );
 
   // Set the medium and large size image sizes under media settings; default to our new full width image size in media uploader
   update_option( 'image_default_size', 'medium' );

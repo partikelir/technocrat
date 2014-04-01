@@ -57,6 +57,7 @@ The following plugins are not exactly dependencies but you will probably want to
 * jQuery-based search query markup; surrounds search terms with `<mark>`
 * jQuery-based HTML5 pullquotes; `<span class="pullquote">Text</span>` will be transformed into `<aside class="pulledquote">Text</aside>` and prepended
 * Syntax highlighting via [Prism](http://prismjs.com)
+* Half-finished gallery shortcode hack and associated styling that looks vaguely promising
 
 
 ### HACKS, TWEAKS, & SNIPPETS
@@ -97,6 +98,7 @@ This pattern is used by the `content-quote.php` template part. No need to enter 
   <footer>An Author, <cite><a href="http://synapticism.com">The Title Of A Work</a></cite>, 2014.</footer>
 </blockquote>
 ```
+
 
 
 ### SYNTAX HIGHLIGHTING
