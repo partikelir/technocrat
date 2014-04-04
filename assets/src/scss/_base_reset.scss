@@ -82,10 +82,9 @@ strike {
 
 
 
-// Pre, code, and monospaced
+// Pre, code, and monospaced; @TODO: make pre blocks wrap
 pre {
   display: block;
-  max-width: 100%;
   overflow: auto;
   white-space: pre;
 }

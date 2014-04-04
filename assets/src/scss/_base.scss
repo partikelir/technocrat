@@ -1,17 +1,13 @@
-// === BASE === //
+// ==== BASE ==== //
 
-// Colour and font settings
-@import "base_colours";
+// Base font module
 @import "base_fonts";
 
-// Font stacks (defined in base_fonts, above)
-$font-body: $lato;
-$font-head: $varela;
-$font-mono: $consolas;
+// Mixins; nothing declarative
+@import "base_mixins";
 
-// Default font size and baseline (integer)
-$font-size: 18;
-$base: 30;
+// Color scheme
+@import "scheme_light";
 
 // Typically used with the rem mixin
 $spacer: $base+0px;
@@ -30,14 +26,8 @@ $break-single-column: $content-width + ($spacer * 6); // Causes sidebar to slide
 $break-medium: $content-width;
 $break-large: $site-width;
 
-// Design patterns
-$divider: 1px solid $c-divider;
-
 // Reset
 @import "base_reset";
 
-// Mixins; nothing declarative
-@import "base_mixins";
-
-// Helper classes; declarative
+// Helpers
 @import "base_helpers";
