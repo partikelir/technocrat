@@ -1,6 +1,6 @@
-// === LAYOUT === //
+// ==== LAYOUT ==== //
 
-// Site
+// == SITE == //
 .site {
   @include box-shadow-layered( 0 2px 6px $c-site-sh-1, inset 0 -3px 12px $c-site-sh-2 );
   @include rem('padding', 0 $spacer);
@@ -22,7 +22,7 @@
 
 
 
-// Header
+// == HEADER == //
 .site-header {
   @include rem('margin-bottom', $spacer*2, 1);
   @include rem('padding-top', $spacer);
@@ -58,7 +58,7 @@
 
 
 
-// Site content
+// == CONTENT == //
 .site-content article {
   @include rem('margin-bottom', $spacer*2);
   @include rem('padding-bottom', $spacer);
@@ -66,7 +66,7 @@
 
 
 
-// Footer
+// == FOOTER == //
 .site-footer {
   @include rem('margin-top', $spacer, 1);
   @include rem('max-width', $site-width);

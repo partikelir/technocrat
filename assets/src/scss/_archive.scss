@@ -1,9 +1,7 @@
 // ==== ARCHIVES ==== //
 
 .archive-header {
-  @include rem('margin-bottom', $spacer*2, 1);
-  @include rem('padding-bottom', $spacer);
-  border-bottom: $divider;
+  @extend %spacer-below;
 }
 .archive-title {
   @include font-sizer(21);
@@ -11,5 +9,8 @@
 }
 .archive-content {
   @include font-sizer(16);
+  @include rem('margin-bottom', $spacer, 1);
+  //@include rem('padding-bottom', $spacer);
+  border-bottom: $divider;
   color: lighten($c-body, 14);
 }

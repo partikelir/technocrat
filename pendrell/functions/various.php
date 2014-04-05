@@ -28,17 +28,6 @@ add_filter( 'body_class', 'pendrell_body_class' );
 
 
 
-// Adjusts content_width value for full-width content
-function pendrell_content_width() {
-  if ( pendrell_is_full_width() ) {
-    global $content_width, $site_width;
-    $content_width = $site_width;
-  }
-}
-add_action( 'template_redirect', 'pendrell_content_width' );
-
-
-
 // Abstracted function to test whether the current view is full-width
 function pendrell_is_full_width() {
   // Allow other functions to pass the test

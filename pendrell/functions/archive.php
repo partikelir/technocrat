@@ -46,11 +46,10 @@ function pendrell_archive_description() {
       // Got something?
       if ( !empty( $description ) ) {
         ?><div class="archive-content entry-content">
-          <?php echo $description; ?>
+          <?php echo $description;
+          do_action( 'pendrell_archive_description_after' ); ?>
         </div><?php
       }
-
-      do_action( 'pendrell_archive_description_after' );
 
     } elseif ( is_author() ) {
       if ( get_the_author_meta( 'description' ) ) {

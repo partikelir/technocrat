@@ -7,15 +7,17 @@ function pendrell_image_sizes( $sizes ) {
 	unset ( $sizes['medium'] );
 	unset ( $sizes['large'] );
 	unset ( $sizes['full'] );
-	$sizes['third-width'] = __( 'Third Width', 'pendrell');
-	$sizes['third-width-cropped'] = __( 'Third Width Cropped', 'pendrell');
-	$sizes['medium'] = __( 'Medium Size', 'pendrell');
-	$sizes['half-width'] = __( 'Half Width', 'pendrell');
-	$sizes['half-width-cropped'] = __( 'Half Width Cropped', 'pendrell');
-	$sizes['large'] = __( 'Large Size', 'pendrell');
-	$sizes['full-width'] = __( 'Full Width', 'pendrell');
-	$sizes['full-width-cropped'] = __( 'Full Width Cropped', 'pendrell');
-	$sizes['full'] = __( 'Full Size', 'pendrell');
+
+	// The full list
+  $sizes['medium-300'] = __( 'Medium 300', 'pendrell');
+  $sizes['medium-300-cropped'] = __( 'Medium 300 cropped', 'pendrell');
+  $sizes['medium-465'] = __( 'Medium 465', 'pendrell');
+  $sizes['medium-465-cropped'] = __( 'Medium 465 cropped', 'pendrell');
+	$sizes['medium'] = __( 'Medium', 'pendrell');
+  $sizes['medium-624-cropped'] = __( 'Medium cropped', 'pendrell');
+	$sizes['large'] = __( 'Large', 'pendrell');
+  $sizes['large-960-cropped'] = __( 'Large cropped', 'pendrell');
+	$sizes['full'] = __( 'Full', 'pendrell');
 	return $sizes;
 
 }
