@@ -6,20 +6,47 @@
 // - Font Squirrel @font-face generator: http://www.fontsquirrel.com/fontface/generator
 // - 10 Web Font Stacks: http://georgebutler.com/blog/typography/10-definitive-web-font-stacks-for-designers/
 
+
+
+// == BASE STACKS == //
+
+$sans-serif:  sans-serif;
+$serif:       serif;
+$monospace:   monospace;
+
+
+
+// == CHINESE CHARACTER SUPPORT == //
+
+// http://www.kendraschaefer.com/2012/06/chinese-standard-web-fonts-the-ultimate-guide-to-css-font-family-declarations-for-web-design-in-simplified-chinese/
+// http://www.pinyinjoe.com/faq/chinese-web-site-fonts-and-character-sets.htm
+
+$chinese: true; // Set to true/false to enable/disable this functionality
+
+@if $chinese == true {
+  $sans-serif:  join(("Heiti TC", "Heiti SC", "微軟正黑體", "Microsoft JhengHei", "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", "宋体", SimSun, STXihei, "华文细黑"), $sans-serif);
+  $serif:       join(("LiSong Pro", "新細明體", PMingLiU, STSong, STKaiti), $serif);
+  $monospace:   join($sans-serif, $monospace);
+}
+
+
+
 // == WEB SAFE FONT STACKS == //
 
 // Body font stacks
-$tahoma:      Tahoma, "DejaVu Sans", "Lucida Sans", "Lucida Grande", "Bitstream Vera Sans", "Liberation Sans", Verdana, sans-serif;
-$corbel:      Corbel, Arial, Helvetica, "Nimbus Sans L", "Liberation Sans", sans-serif;
-$georgia:      Georgia, "Palatino Linotype", Palatino, "URW Palladio L", "Book Antiqua", "Times New Roman", serif;
+$tahoma:      join((Tahoma, "DejaVu Sans", "Lucida Sans", "Lucida Grande", "Bitstream Vera Sans", "Liberation Sans", Verdana), $sans-serif);
+$corbel:      join((Corbel, Arial, Helvetica, "Nimbus Sans L", "Liberation Sans"), $sans-serif);
+$georgia:     join((Georgia, "Palatino Linotype", Palatino, "URW Palladio L", "Book Antiqua", "Times New Roman"), $serif);
 
 // Header font stacks
-$calibri: Calibri, "DejaVu Sans Condensed", Tahoma, "Lucida Sans", "Lucida Grande", "Bitstream Vera Sans", "Liberation Sans", Verdana, sans-serif;
-$cambria: Cambria, Constantia, "URW Palladio L", "Palatino Linotype", Palatino, Georgia, "Book Antiqua", "Times New Roman", serif;
+$calibri:     join((Calibri, "DejaVu Sans Condensed", Tahoma, "Lucida Sans", "Lucida Grande", "Bitstream Vera Sans", "Liberation Sans", Verdana), $sans-serif);
+$cambria:     join((Cambria, Constantia, "URW Palladio L", "Palatino Linotype", Palatino, Georgia, "Book Antiqua", "Times New Roman"), $serif);
 
 // Monospace stacks
-$consolas: Consolas, "Bitstream Vera Sans Mono", "Andale Mono", Monaco, "DejaVu Sans Mono", "Lucida Console", monospace;
-$courier: "Courier 10 Pitch", Courier, monospace;
+$consolas:    Consolas, "Bitstream Vera Sans Mono", "Andale Mono", Monaco, "DejaVu Sans Mono", "Lucida Console", monospace;
+$courier:     "Courier 10 Pitch", Courier, monospace;
+
+
 
 // == GOOGLE WEB FONTS == //
 
