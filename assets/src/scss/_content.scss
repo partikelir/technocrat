@@ -188,7 +188,6 @@
 // Entry meta
 .entry-meta {
   @extend %clearfix;
-  @extend %spacer-above;
 }
 .entry-meta-main {
   @include font-sizer(14);

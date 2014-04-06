@@ -17,7 +17,7 @@ $base: 30;
 $c-site-bg:       #fff;
 $c-site-sh-1:     #bbb;
 $c-site-sh-2:     #eee;
-$c-body-bg:       darken($c-site-bg, 5);
+$c-body-bg:       $c-site-bg; //darken($c-site-bg, 5);
 
 // Text
 $c-body:          #484848;

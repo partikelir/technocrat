@@ -166,3 +166,16 @@ article.post-password-required input[type=submit],
   text-align: right;
   width: 50%;
 }
+
+
+
+// Breadcrumb navigation; used in Ubik's places and kept here since it can be used elsewhere
+nav.breadcrumbs {
+  li {
+    display: inline-block;
+    margin-left: 0;
+    & + li:before {
+      content: "\00a0\2192\00a0"; // Or perhaps you'd like to use a "greater than" symbol: \003e
+    }
+  }
+}

@@ -2,7 +2,7 @@
 
 // == SITE == //
 .site {
-  @include box-shadow-layered( 0 2px 6px $c-site-sh-1, inset 0 -3px 12px $c-site-sh-2 );
+  //@include box-shadow-layered( 0 2px 6px $c-site-sh-1, inset 0 -3px 12px $c-site-sh-2 );
   @include rem('padding', 0 $spacer);
   background-color: $c-site-bg;
   @media screen and (min-width: $break-medium) {
