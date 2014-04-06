@@ -13,7 +13,7 @@ function pendrell_entry_meta() {
 
   ?><div class="entry-meta-buttons">
     <?php edit_post_link( __( 'Edit', 'pendrell' ), ' <span class="edit-link button">', '</span>' );
-    if ( comments_open() && !is_singular() ) {
+    if ( comments_open() && !is_singular() && !post_password_required( $post->ID ) ) {
       ?> <span class="leave-reply button"><?php comments_popup_link( __( 'Respond', 'pendrell' ), __( '1 Response', 'pendrell' ), __( '% Responses', 'pendrell' ) ); ?></span><?php
     } ?>
   </div>

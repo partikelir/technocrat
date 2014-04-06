@@ -1,10 +1,9 @@
 // ==== AUTHORS ==== //
 
-.author-info {
+.entry-meta .author-info {
   @include rem('margin-top', $spacer, 1);
   @include rem('padding-top', $spacer);
   border-top: $divider;
-  overflow: hidden;
 }
 .author-avatar {
   display: none; // Only display author avatar on larger screens
@@ -19,6 +18,7 @@
   }
 }
 .author-description {
+  @extend %spacer-below;
   p {
     @include font-sizer(14);
   }

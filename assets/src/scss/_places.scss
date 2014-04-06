@@ -1,24 +1,19 @@
 // ==== PLACES ==== //
 
 // Places taxonomy pages
-.tax-places {
-  .archive-title {
-    @include font-sizer(24);
+.tax-places .archive-places-list {
+  h2 {
+    @include font-sizer(18);
   }
-  .archive-places-list {
-    h2 {
-      @include font-sizer(18);
-    }
-    ul {
-      list-style: disc outside;
-      li {
-        @include rem('margin-left', $spacer);
-      }
+  ul {
+    list-style: disc outside;
+    li {
+      @include rem('margin-left', $spacer);
     }
   }
 }
 
-
+// Places list
 .archives-places-list,
 .entry-meta-places-posts {
   @include font-sizer(16);

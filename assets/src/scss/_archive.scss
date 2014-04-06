@@ -3,14 +3,16 @@
 .archive-header {
   @extend %spacer-below;
 }
-.archive-title {
-  @include font-sizer(21);
-  @extend %spacer-below;
+.archive-title mark {
+  // @TODO: highlight this?
 }
 .archive-content {
   @include font-sizer(16);
-  @include rem('margin-bottom', $spacer, 1);
-  //@include rem('padding-bottom', $spacer);
-  border-bottom: $divider;
+  @extend %spacer-below;
   color: lighten($c-body, 14);
+}
+
+// Drop the size of entry titles on archives; assumes a dominant archive title at top
+.archive .entry-title {
+  @include font-sizer(24);
 }

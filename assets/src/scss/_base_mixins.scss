@@ -7,9 +7,9 @@
   $basefactor: 1;
   // Buffer for font sizes over the line-height
   @if $size >= $base * 2 {
-    $basefactor: 2;
+    $basefactor: 3;
   } @elseif $size >= $base {
-    $basefactor: 1.5;
+    $basefactor: 2;
   }
   line-height: ( ( ($base - $offset) * $basefactor) / $size );
 }

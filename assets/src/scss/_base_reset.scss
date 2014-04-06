@@ -82,23 +82,6 @@ strike {
 
 
 
-// Pre, code, and monospaced; @TODO: make pre blocks wrap
-pre {
-  display: block;
-  overflow: auto;
-  white-space: pre;
-}
-pre code {
-  white-space: pre-wrap;
-}
-kbd,
-tt,
-var {
-  white-space: pre-wrap;
-}
-
-
-
 // Blockquote and quotations
 blockquote,
 q {

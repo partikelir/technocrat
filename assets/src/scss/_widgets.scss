@@ -49,32 +49,3 @@
     }
   }
 }
-
-
-
-// Twenty Twelve cruft
-.widget_rss {
-  li {
-    @extend %spacer-below;
-  }
-}
-.widget_recent_entries .post-date,
-.widget_rss .rss-date {
-  color: lighten($c-body, 40);
-  @include rem('margin-left', $spacer/2);
-}
-#wp-calendar {
-  @include font-sizer(13);
-  color: lighten($c-body, 14);
-  margin: 0;
-  width: 100%;
-  th,
-  td,
-  caption {
-    text-align: left;
-  }
-  #next {
-    @include rem('padding-right', $spacer);
-    text-align: right;
-  }
-}

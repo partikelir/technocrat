@@ -2,6 +2,7 @@
 
 // Captions
 .wp-caption {
+  @extend %spacer-below;
   max-width: 100%; // Keep wide captions from overflowing their containers
 }
 .wp-caption .wp-caption-text,
@@ -9,6 +10,17 @@
   @include font-sizer(14);
   color: $c-caption;
   font-style: italic;
+}
+
+
+
+// Image attachment metadata
+.image-info {
+  @include rem('padding-top', $spacer, 1);
+  border-top: $divider;
+}
+.image-description {
+  @include font-sizer(14);
 }
 
 
@@ -31,6 +43,7 @@ img.wp-smiley,
 // Gallery styling; makes a lot of assumptions about markup so you can't simply lift this and use it elsewhere
 // Presently attempting a free-flowing gallery based on unordered lists; could also try CSS3 columns
 // @TODO: account for vertical rhythm
+// @TODO: finish this component; currently it isn't production-ready at all
 $gallery-padding: 5px;
 
 .gallery {

@@ -7,13 +7,8 @@
     @extend %spacer-below;
   }
   .entry-title {
-    @include font-sizer(28);
     font-weight: normal;
     margin: 0;
-    //text-transform: none;
-    a {
-      text-decoration: none;
-    }
   }
 }
 
@@ -28,8 +23,6 @@
   // Headers
   h1,h2,h3,h4,h5,h6 {
     @extend %spacer-above;
-    font-family: $font-body;
-    text-transform: none;
   }
 
   // Paragraphs
@@ -124,11 +117,6 @@
     @include text-box();
     @include rem('padding-bottom', $spacer); // Needs to follow text-box
     color: $c-pre;
-    tab-size: 2;
-  }
-  pre code {
-    word-break: normal;
-    word-spacing: normal;
   }
   div > code,
   em > code,
@@ -243,17 +231,4 @@
   .by-author {
     //display: inline;
   }
-}
-
-
-
-// Image attachment metadata
-.image-info {
-  @include rem('margin-top', $spacer, 1);
-  @include rem('padding-top', $spacer);
-  border-top: $divider;
-  overflow: hidden;
-}
-.image-description {
-  @include font-sizer(14);
 }
