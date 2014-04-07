@@ -33,10 +33,12 @@ function pendrell_is_full_width() {
   // Allow other functions to pass the test
   $full_width_test = apply_filters( 'pendrell_full_width', $full_width_test = false );
 
-  // If we're on a full-width page, attachment, or there is no sidebar active let's expand the viewing window
+  // If we're on a full-width page, attachment, single image post format, or there is no sidebar active let's expand the viewing window
   if (
     is_page_template( 'page-templates/full-width.php' )
-    || is_attachment()
+    || ( is_attachment() && wp_attachment_is_image() )
+    || ( is_singular() && has_post_format( 'image' ) )
+    || ( is_tax( 'post_format' ) && has_post_format( 'image' ) )
     || !is_active_sidebar( 'sidebar-main' )
     || $full_width_test === true
   ) {

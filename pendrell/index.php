@@ -11,7 +11,7 @@ get_header(); ?>
 		<div id="content" role="main">
 		<?php if ( have_posts() ) {
 			while ( have_posts() ) : the_post();
-				get_template_part( 'content', get_post_format() );
+				get_template_part( 'content', pendrell_content_template() );
 			endwhile;
 			pendrell_content_nav( 'nav-below' );
 		} else {

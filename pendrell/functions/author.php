@@ -24,7 +24,7 @@ function pendrell_author_info() {
         <?php pendrell_author_avatar( get_the_author_meta( 'user_url' ) ); ?>
       </div><!-- .author-avatar -->
       <div class="author-description">
-        <h3><?php printf( __( 'About %s', 'pendrell' ), $author ); ?></h3>
+        <?php if ( !is_archive() ) { ?><h3><?php printf( __( 'About %s', 'pendrell' ), $author ); ?></h3><?php } ?>
         <p><?php the_author_meta( 'description' ); ?></p>
         <?php if ( is_multi_author() ) { ?>
         <div class="author-link">

@@ -17,7 +17,7 @@ function pendrell_archive_title() {
   } elseif ( is_tag() ) {
     $title = sprintf( __( '%s archives', 'pendrell' ), '<span>' . single_tag_title( '', false ) . '</span>' );
   } elseif ( is_tax() ) {
-    if ( is_tax( 'post_format') && get_post_format() === 'quote' ) {
+    if ( is_tax( 'post_format' ) && get_post_format() === 'quote' ) {
       $title = sprintf( __( '%s archives', 'pendrell' ), '<span>' . __( 'Quotation', 'pendrell' ) . '</span>' );
     } else {
       $title = sprintf( __( '%s archives', 'pendrell' ), '<span>' . single_term_title( '', false ) . '</span>' );

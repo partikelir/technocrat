@@ -1,27 +1,96 @@
 <?php // ==== MEDIA ==== //
 
-// Image info wrapper
-function pendrell_media_image_meta() {
-  if ( is_attachment() && wp_attachment_is_image() ) {
-    pendrell_media_image_info();
+// == IMAGES == //
+
+// Generates HTML5 markup for image attachments
+function pendrell_image_wrapper() {
+  global $post;
+
+  // Change size based on full-width test
+  if ( pendrell_is_full_width() ) {
+    $size = 'large'; // 960 px
+  } else {
+    $size = 'medium'; // 624 px
+  }
+
+  // Make sure this is an image post with a thumbnail
+  if ( has_post_format( 'image' ) && has_post_thumbnail() ) {
+    $thumb_id = get_post_thumbnail_id();
+    $attachment = get_post( $thumb_id );
+    $link = get_attachment_link( $thumb_id );
+    $title = $attachment->post_title;
+    $rel = 'attachment';
+    $image = get_the_post_thumbnail( $post->ID, $size );
+    $caption = $attachment->post_excerpt;
+    $description = $attachment->post_content;
+  } elseif ( is_attachment() && wp_attachment_is_image() ) {
+    $thumb_id = $post->ID;
+    $link = get_permalink( $post->post_parent );
+    $title = sprintf( __( 'Return to %s', 'ubik' ), get_the_title( $post->post_parent ) );
+    $rel = 'gallery';
+    $image = wp_get_attachment_image( $post->ID, $size );
+    $caption = get_the_excerpt();
+    $description = $post->post_content;
+  }
+
+  if ( !empty( $thumb_id ) ) {
+
+    $aria = '';
+    if ( !empty( $caption ) )
+      $aria = 'aria-describedby="figcaption-' . $thumb_id . '" ';
+
+    $content = '<figure id="' . $thumb_id . '" ' . $aria . 'class="wp-caption" itemscope itemtype="http://schema.org/ImageObject">' . "\n";
+    $content .= '<a href="' . $link . '" title="' . $title . '" rel="' . $rel . '">' . $image . '</a>' . "\n";
+
+    if ( !empty( $caption ) )
+      $content .= '<figcaption id="figcaption-' . $thumb_id . '" class="wp-caption-text">' . $caption . '</figcaption>' . "\n";
+
+    $content .= '</figure>' . "\n";
+
+    // Raw content; let's pass it through the filter?
+    if ( !empty( $description ) )
+      $content .= apply_filters( 'the_content', $description );
+  }
+
+  echo apply_filters( 'pendrell_image_wrapper', $content );
+}
+
+
+
+// Image info wrapper for image attachments and image format posts
+function pendrell_image_meta() {
+  if (
+    ( is_attachment() && wp_attachment_is_image() )
+    || ( is_singular() && has_post_format( 'image' ) )
+  ) {
+    pendrell_image_info();
   }
 }
-add_filter( 'pendrell_entry_meta_after', 'pendrell_media_image_meta', 11 );
+add_filter( 'pendrell_entry_meta_after', 'pendrell_image_meta', 11 );
 
 
 
 // Display EXIF data for photographs
-function pendrell_media_image_info() {
+function pendrell_image_info() {
+  global $post;
+
+  // Two scenarios to handle: regular attachments and image format posts with a featured image
+  if ( is_attachment() && wp_attachment_is_image() ) {
+    $attachment = $post->ID;
+  } else {
+    $attachment = get_post_thumbnail_id();
+  }
 
 	// Fetch metadata
-	$metadata = wp_get_attachment_metadata();
+  if ( $attachment )
+    $metadata = wp_get_attachment_metadata( $attachment );
 
-	if ( $metadata['image_meta'] ) {
+	if ( !empty( $metadata['image_meta'] ) ) {
 		?><div class="image-info">
 			<h3><?php _e( 'Image Info', 'pendrell' ); ?></h3>
 			<div class="image-description">
 			<?php if ( $metadata['height'] && $metadata['width'] ) {
-					printf( __( 'Full Size: <a href="%1$s" title="Link to full size image">%2$s &times; %3$s</a></br>', 'pendrell' ),
+					printf( __( 'Full Size: <a href="%1$s" title="Link to full size image" rel="enclosure">%2$s &times; %3$s</a></br>', 'pendrell' ),
 						esc_attr( wp_get_attachment_url() ),
 						$metadata['width'],
 						$metadata['height']
@@ -59,8 +128,11 @@ function pendrell_media_image_info() {
 
 
 
+// == GALLERY == //
+
 // Custom gallery shortcode function; some guidance from https://wordpress.stackexchange.com/questions/43558/how-to-manually-fix-the-wordpress-gallery-code-using-php-in-functions-php
-function pendrell_gallery( $output, $attr ) {
+// This chunk of code isn't really polished or tested but it's interesting enough to keep around
+function pendrell_media_gallery( $output, $attr ) {
   global $post;
 
   static $instance = 0;
@@ -164,7 +236,7 @@ function pendrell_gallery( $output, $attr ) {
 }
 // This will absolutely break the display on any theme but Pendrell; @TODO: consider removing this component from pendrell
 if ( PENDRELL_MEDIA_GALLERY ) {
-  add_filter( 'post_gallery', 'pendrell_gallery', 10, 2);
+  add_filter( 'post_gallery', 'pendrell_media_gallery', 10, 2);
   // This enables compatibility with Jetpack Carousel
   add_filter( 'jp_carousel_force_enable', '__return_true' );
 }

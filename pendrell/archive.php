@@ -18,7 +18,7 @@ get_header(); ?>
 				<?php pendrell_archive_description(); ?>
 			</header><!-- .archive-header -->
 			<?php while ( have_posts() ) : the_post();
-				get_template_part( 'content', get_post_format() );
+				get_template_part( 'content', pendrell_content_template() );
 			endwhile;
 			pendrell_content_nav( 'nav-below' );
 		} else {

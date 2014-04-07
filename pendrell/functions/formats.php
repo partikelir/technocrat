@@ -1,4 +1,6 @@
-<?php // === POST FORMATS === //
+<?php // ==== POST FORMATS ==== //
+
+// == QUOTATIONS == //
 
 // Get quotation metadata; assumes WP Post Formats or equivalent is in use
 function pendrell_quotation_metadata() {

@@ -9,7 +9,7 @@ if ( is_readable( get_stylesheet_directory() . '/functions-config.php' ) ) {
 }
 
 // Definitions
-define( 'PENDRELL_VERSION', 0.6 );
+define( 'PENDRELL_VERSION', "0.7" );
 define( 'PENDRELL_NAME', get_bloginfo( 'name' ) );
 define( 'PENDRELL_DESC', get_bloginfo( 'description' ) );
 define( 'PENDRELL_HOME', get_bloginfo( 'url' ) );
@@ -22,6 +22,7 @@ include( get_stylesheet_directory() . '/functions/general.php' );
 include( get_stylesheet_directory() . '/functions/formats.php' );
 include( get_stylesheet_directory() . '/functions/media.php' );
 include( get_stylesheet_directory() . '/functions/navigation.php' );
+include( get_stylesheet_directory() . '/functions/portfolio.php' );
 include( get_stylesheet_directory() . '/functions/various.php' );
 
 // A simple adapter for the Ubik toolkit
@@ -39,9 +40,8 @@ function pendrell_setup() {
   // Languages
   load_theme_textdomain( 'pendrell', get_template_directory() . '/languages' );
 
-  // Add full post format support
-  global $pendrell_post_formats;
-  add_theme_support( 'post-formats', $pendrell_post_formats );
+  // Add post format support
+  add_theme_support( 'post-formats', array( 'aside', 'image', 'link', 'quote', 'status' ) );
 
   // Adds RSS feed links to <head> for posts and comments.
   add_theme_support( 'automatic-feed-links' );

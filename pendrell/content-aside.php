@@ -1,7 +1,5 @@
 <?php
 /**
- * The template for displaying posts in the Aside post format
- *
  * @package WordPress
  * @subpackage Pendrell
  * @since Pendrell 0.4

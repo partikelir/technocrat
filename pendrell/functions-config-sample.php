@@ -11,6 +11,3 @@ define( 'PENDRELL_MEDIA_GALLERY', false );
 
 // Shadow categories: add category numbers to this string in the format '-1,-2' to hide them from the front page
 define( 'PENDRELL_SHADOW_CATS', false );
-
-// Post formats; choose from array( 'aside', 'gallery', 'link', 'image', 'quote', 'status', 'audio', 'chat', 'video' );
-$pendrell_post_formats = array( 'aside', 'link', 'quote', 'status' );

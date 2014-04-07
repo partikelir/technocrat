@@ -56,7 +56,10 @@ function pendrell_sidebar( $sidebar = true ) {
   $sidebar = apply_filters( 'pendrell_sidebar', $sidebar );
 
   // Don't display sidebar for certain post formats
-  if ( is_singular() && has_post_format( array( 'aside', 'link', 'quote', 'status' ) ) ) {
+  if (
+    ( is_singular() && has_post_format( array( 'aside', 'image', 'link', 'quote', 'status' ) ) )
+    || pendrell_is_full_width()
+  ) {
     $sidebar = false;
   }
 
@@ -64,4 +67,28 @@ function pendrell_sidebar( $sidebar = true ) {
   if ( $sidebar ) {
     get_sidebar();
   }
+}
+
+
+
+// Content template selector
+function pendrell_content_template() {
+  //global $post;
+
+  if ( is_404() )
+    $template = 'none';
+
+  if ( is_attachment() && wp_attachment_is_image() )
+    $template = 'image-attachment';
+
+  if ( is_page() )
+    $template = 'page';
+
+  //if ( is_category( 'photography') )
+  //  $template = 'portfolio';
+
+  if ( empty( $template ) )
+    $template = get_post_format();
+
+  return $template;
 }

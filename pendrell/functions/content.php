@@ -1,11 +1,13 @@
-<?php // === CONTENT === //
+<?php // ==== CONTENT ==== //
 
-// Content title
+// Generate content title
 function pendrell_title() {
   ?><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute( array( 'before' => __( 'Permalink to ', 'pendrell' ) ) ); ?>" rel="bookmark"><?php the_title(); ?></a><?php
 }
 
-// Entry metadata
+
+
+// Entry meta wrapper
 function pendrell_entry_meta() {
   global $post;
 
@@ -24,6 +26,9 @@ function pendrell_entry_meta() {
   do_action( 'pendrell_entry_meta_after' );
 }
 
+
+
+// Entry meta; bare bones version, mostly untested... refer to Ubik for the real deal
 function pendrell_entry_meta_generator() {
 
   // Is Ubik active?

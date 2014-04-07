@@ -1,7 +1,5 @@
 <?php
 /**
- * The template for displaying posts in the Image post format
- *
  * @package WordPress
  * @subpackage Pendrell
  * @since Pendrell 0.4
@@ -15,7 +13,7 @@
 			</h1>
 		</header><!-- .entry-header -->
 		<div class="entry-content">
-			<?php if ( has_post_thumbnail() ) { the_post_thumbnail(); } ?>
+			<?php pendrell_image_wrapper(); ?>
 			<?php the_content(); ?>
 		</div><!-- .entry-content -->
 		<footer class="entry-meta">

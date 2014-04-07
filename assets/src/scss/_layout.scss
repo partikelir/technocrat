@@ -60,7 +60,7 @@
 
 // == CONTENT == //
 .site-content article {
-  @include rem('margin-bottom', $spacer*2);
+  @include rem('margin-bottom', $spacer*3);
 }
 
 

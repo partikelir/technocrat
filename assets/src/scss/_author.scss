@@ -18,7 +18,6 @@
   }
 }
 .author-description {
-  @extend %spacer-below;
   p {
     @include font-sizer(14);
   }
