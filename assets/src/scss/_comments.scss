@@ -1,7 +1,7 @@
 // ==== COMMENTS ==== //
 
 .comments-area {
-  max-width: $content-width;
+  max-width: $main-width;
   article {
     @include rem('margin-bottom', $spacer*2);
     padding: 0;

@@ -71,10 +71,8 @@ function pendrell_sidebar( $sidebar = true ) {
 
 
 
-// Content template selector
+// Content template selector; abstracted here so that content templates can be filtered
 function pendrell_content_template() {
-  //global $post;
-
   if ( is_404() )
     $template = 'none';
 
@@ -84,11 +82,8 @@ function pendrell_content_template() {
   if ( is_page() )
     $template = 'page';
 
-  //if ( is_category( 'photography') )
-  //  $template = 'portfolio';
-
   if ( empty( $template ) )
     $template = get_post_format();
 
-  return $template;
+  return apply_filters( 'pendrell_content_template', $template );
 }

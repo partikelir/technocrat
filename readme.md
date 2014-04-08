@@ -4,7 +4,7 @@ Pendrell is minimalist yet full-featured WordPress theme for personal blogs. It 
 
 ![Pendrell example screenshot](/pendrell/screenshot.png "Pendrell example screenshot")
 
-You can see Pendrell in action on my blog, [Synapticism](http://synapticism.com)
+You can see Pendrell in action on my blog, [Synapticism](http://synapticism.com).
 
 
 
@@ -12,23 +12,20 @@ You can see Pendrell in action on my blog, [Synapticism](http://synapticism.com)
 
 Drop the 'pendrell/pendrell' directory into /wp-content/themes/ and activate it via the WordPress admin interface.
 
-
 ### CONFIGURATION
 
 This theme has no options page; modify the `functions-config-sample.php` file, renaming it to `functions-config.php`, if you wish to change any of the default settings. Pendrell's settings are meant to be self-explanatory; read the comments for more direction.
-
 
 ### DEVELOPMENT
 
 Two commands to get started hacking Pendrell:
 
-`npm install`
-`gem install sass`
+```
+npm install
+gem install sass
+```
 
-To build Pendrell after modifications:
-
-`gulp`
-
+To build Pendrell after modifications: `gulp`
 
 ### PLUGINS
 
@@ -50,17 +47,15 @@ The following plugins are not exactly dependencies but you will probably want to
 * CSS/JS minification via Gulp build script
 * Built-in contact form page template; no need for a plugin
 * jQuery-based search query markup; surrounds search terms with `<mark>`
-* jQuery-based HTML5 pullquotes; `<span class="pullquote">Text</span>` will be transformed into `<aside class="pulledquote">Text</aside>` and prepended
 * Syntax highlighting via [Prism](http://prismjs.com)
-* Half-finished gallery shortcode hack and associated styling that looks vaguely promising
-
-
-### HACKS, TWEAKS, & SNIPPETS
-
-Most of this stuff is being moved to Ubik.
-
 * Clean search rewrites (e.g. website.com/search/query/ instead of website.com?s=query)
 * Context-dependent posts per page (12 items per screen on portfolios, 25 on search, user default elsewhere)
+
+
+
+## USAGE
+
+* Make judicious use of the `<!--more-->` tag.
 
 
 

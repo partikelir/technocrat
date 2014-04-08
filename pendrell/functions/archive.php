@@ -39,7 +39,7 @@ function pendrell_archive_description() {
     // Only output archive descriptions for categories, tags, taxonomies, and authors
     if ( is_category() || is_tag() || is_tax() ) {
 
-      ?><div class="archive-content entry-content"><?php
+      ?><div class="archive-content"><?php
 
       do_action( 'pendrell_archive_term_before' );
 

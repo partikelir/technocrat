@@ -17,6 +17,7 @@
 // Image attachment metadata
 .image-info {
   @include rem('padding-top', $spacer, 1);
+  @extend %spacer-above;
   border-top: $divider;
 }
 .image-description {
@@ -36,6 +37,30 @@ img.wp-smiley,
   margin-top: 0;
   padding: 0;
   vertical-align: baseline;
+}
+
+
+
+// Responsive partial-width images rescued from _portfolio.scss
+.size-medium-465,
+.size-medium-465-cropped {
+  width: percentage( ( ( $content-width - $spacer ) / 2 ) / $content-width );
+}
+.size-medium-465.alignleft,
+.size-medium-465-cropped.alignleft,
+.size-medium-300.alignleft,
+.size-medium-300-cropped.alignleft {
+  @include rem('margin', 0 $spacer $spacer 0);
+}
+.size-medium-465.alignright,
+.size-medium-465-cropped.alignright,
+.size-medium-300.alignright,
+.size-medium-300-cropped.alignright {
+  @include rem('margin', 0 0 $spacer $spacer);
+}
+.size-medium-300,
+.size-medium-300-cropped {
+  width: percentage( ( ( $content-width - ( $spacer * 2 ) ) / 3 ) / $content-width );
 }
 
 

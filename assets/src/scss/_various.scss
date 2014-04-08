@@ -63,7 +63,7 @@
 
 // Permits images to break out to the full width of the site; use with caution; @TODO: check if these even works anymore
 img.widescreen {
-  max-width: $site-width;
+  max-width: $content-width;
   width: auto;
 }
 
@@ -73,18 +73,6 @@ img.widescreen {
 .search-results mark {
   @include highlight($c-mark-bg);
   color: $c-mark;
-}
-
-
-
-// jQuery pullquotes: enclose any text with <span class="pullquote"></span> and this style will be applied!
-.pulledquote {
-  @include font-sizer(24);
-  @include rem('margin', $spacer 0 $spacer $spacer/2);
-  color: $c-pullquote;
-  float: right;
-  font-style: italic;
-  max-width: 40%;
 }
 
 

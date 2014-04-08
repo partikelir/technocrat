@@ -47,3 +47,19 @@ function pendrell_is_full_width() {
     return false;
   }
 }
+
+
+
+// This lets Pendrell know to make portfolio items full-width
+function pendrell_portfolio_full_width() {
+  $pendrell_portfolio_cats = array( 'design', 'photography', 'creative' );
+  if (
+    is_category( $pendrell_portfolio_cats )
+    || ( is_singular() && in_category( $pendrell_portfolio_cats ) )
+  ) {
+    return true;
+  } else {
+    return false;
+  }
+}
+add_filter( 'pendrell_full_width', 'pendrell_portfolio_full_width' );

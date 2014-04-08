@@ -12,8 +12,7 @@ get_header(); ?>
       <?php while ( have_posts() ) : the_post();
         get_template_part( 'content', 'image-attachment' );
       endwhile;
-      pendrell_content_nav( 'nav-below' );
-      comments_template( '', true ); ?>
+      pendrell_content_nav( 'nav-below' ); ?>
     </div><!-- #content -->
   </section><!-- #primary -->
 

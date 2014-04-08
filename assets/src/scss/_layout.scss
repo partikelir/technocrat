@@ -2,21 +2,20 @@
 
 // == SITE == //
 .site {
-  //@include box-shadow-layered( 0 2px 6px $c-site-sh-1, inset 0 -3px 12px $c-site-sh-2 );
   @include rem('padding', 0 $spacer);
   background-color: $c-site-bg;
   @media screen and (min-width: $break-medium) {
     @include rem('padding', 0 $spacer*1.5);
     margin: 0 auto;
-    max-width: $site-width;
+    max-width: $content-width;
     overflow: hidden;
   }
 }
 .site-content {
-  max-width: $site-width;
+  max-width: $content-width;
   @media screen and (min-width: $break-single-column) {
     float: left;
-    width: percentage( $content-width / $site-width );
+    width: percentage( $main-width / $content-width );
   }
 }
 
@@ -58,17 +57,10 @@
 
 
 
-// == CONTENT == //
-.site-content article {
-  @include rem('margin-bottom', $spacer*3);
-}
-
-
-
 // == FOOTER == //
 .site-footer {
   @include rem('margin-top', $spacer, 1);
-  @include rem('max-width', $site-width);
+  @include rem('max-width', $content-width);
   @include rem('padding', $spacer/2 0);
   @extend %clearfix;
   border-top: $divider;

@@ -10,6 +10,9 @@
   @include font-sizer(16);
   @include rem('margin-bottom', $spacer*2);
   color: lighten($c-body, 14);
+  p {
+    @extend %spacer-below;
+  }
 }
 
 // Drop the size of entry titles on archives; assumes a dominant archive title at top
