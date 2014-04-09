@@ -1,9 +1,20 @@
-# MARKUP PATTERNS
+# Pendrell usage notes
+
+## POST FORMATS
+
+Pendrell is equipped with aside, image, link, quotation, and status post formats.
+
+### IMAGES
+
+Image posts should be used as a wrapper for attachments. Set a featured image and write about the photo in the body of the post itself. Give the attachment a title and caption but don't enter a description as this will be echoed into the image post itself.
+
+
+
+## MARKUP PATTERNS
 
 Several custom markup patterns for use in WordPress posts.
 
-
-## REFERENCES
+### REFERENCES
 
 This creates a tidy list of references with a hanging indent. Use it for scholarly references.
 
@@ -17,7 +28,7 @@ This creates a tidy list of references with a hanging indent. Use it for scholar
 ```
 
 
-## QUOTATIONS
+### QUOTATIONS
 
 This pattern is used by the `content-quote.php` template part. No need to enter the paragraph tags into the post editor but the `footer` tag needs to be on its own line. Links are optional.
 
@@ -30,7 +41,7 @@ This pattern is used by the `content-quote.php` template part. No need to enter 
 
 
 
-## SYNTAX HIGHLIGHTING
+### SYNTAX HIGHLIGHTING
 
 Pendrell ships with [Prism](http://prismjs.com/). Syntax highlighting is easy:
 

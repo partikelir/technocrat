@@ -38,13 +38,14 @@ function pendrell_search_form( $search_term = '' ) {
 
 
 
-// Legacy code, should be fazed out
-function pendrell_pre_get_posts( $query ) {
-  if ( is_front_page() && PENDRELL_SHADOW_CATS ) {
-  	$query->set( 'cat', PENDRELL_SHADOW_CATS );
-	}
+// Capture search query for jQuery highlighter; not working at present
+function pendrell_search_highlighter() {
+  $query = get_search_query();
+  if ( strlen($query) > 0 ) {
+    ?><script type="text/javascript">var pendrellSearchQuery  = "<?php echo $query; ?>";</script><?php
+  }
 }
-add_action( 'pre_get_posts', 'pendrell_pre_get_posts' );
+//add_action( 'wp_print_scripts', 'pendrell_search_highlighter' );
 
 
 

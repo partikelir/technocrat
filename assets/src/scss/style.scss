@@ -18,13 +18,14 @@ Template: pendrell
 @import "base";       // Configuration, mixins, reset, and helper classes
 @import "general";
 @import "layout";
-@import "navigation";
-@import "archive";
+@import "navigation"; // Common navigational elements (menus, page links, etc.)
+@import "archive";    // Archives (categories, tags, taxonomies and more)
 @import "content";    // Content (entry header, content, and meta)
 @import "formats";
 @import "media";
 @import "author";
 @import "comments";
+@import "search";
 @import "widgets";
 @import "various";
 

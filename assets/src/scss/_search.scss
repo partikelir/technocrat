@@ -1,0 +1,13 @@
+// ==== SEARCH ==== //
+
+.search-results {
+  // Search result highlighter
+  mark {
+    @include highlight($c-mark-bg);
+    color: $c-mark;
+  }
+  // Drop the size of entry titles on search results
+  .entry-title {
+    @include font-sizer(24);
+  }
+}

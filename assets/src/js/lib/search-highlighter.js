@@ -1,4 +1,4 @@
-/* Pendrell custom functions */
+// NOTE: this doesn't seem to work in its present state; it repeatedly overwrites search results with duplicate information
 
 // Remap jQuery to $
 jQuery(document).ready(function($) {
@@ -15,5 +15,4 @@ jQuery(document).ready(function($) {
   if (typeof(pendrellSearchQuery) !== 'undefined') {
     $('#content > article').highlight(pendrellSearchQuery, 1, 'search-term');
   }
-
 });

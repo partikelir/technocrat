@@ -14,29 +14,26 @@ define( 'PENDRELL_NAME', get_bloginfo( 'name' ) );
 define( 'PENDRELL_DESC', get_bloginfo( 'description' ) );
 define( 'PENDRELL_HOME', get_bloginfo( 'url' ) );
 
-// Pendrell is abstracted into the /functions directory
-include( get_stylesheet_directory() . '/functions/archive.php' );
-include( get_stylesheet_directory() . '/functions/author.php' );
-include( get_stylesheet_directory() . '/functions/content.php' );
-include( get_stylesheet_directory() . '/functions/general.php' );
-include( get_stylesheet_directory() . '/functions/formats.php' );
-include( get_stylesheet_directory() . '/functions/media.php' );
-include( get_stylesheet_directory() . '/functions/navigation.php' );
-include( get_stylesheet_directory() . '/functions/various.php' );
-
-// A simple adapter for the Ubik toolkit
-include( get_stylesheet_directory() . '/functions/ubik.php' );
+// Pendrell is abstracted into the `pendrell/lib` directory
+include( get_stylesheet_directory() . '/lib/archive.php' );
+include( get_stylesheet_directory() . '/lib/author.php' );
+include( get_stylesheet_directory() . '/lib/content.php' );
+include( get_stylesheet_directory() . '/lib/general.php' );
+include( get_stylesheet_directory() . '/lib/formats.php' );
+include( get_stylesheet_directory() . '/lib/media.php' );
+include( get_stylesheet_directory() . '/lib/navigation.php' );
+include( get_stylesheet_directory() . '/lib/various.php' );
 
 if ( is_admin() )
-  include( get_stylesheet_directory() . '/functions/admin.php' );
+  include( get_stylesheet_directory() . '/lib/admin.php' );
 
 // Still in development
-include( get_stylesheet_directory() . '/functions/dev.php' );
+include( get_stylesheet_directory() . '/lib/dev.php' );
 
 // Theme setup; includes some image size definitions and other things that belong here in the config file
 function pendrell_setup() {
 
-  // Languages
+  // Language loading
   load_theme_textdomain( 'pendrell', get_template_directory() . '/languages' );
 
   // Add post format support

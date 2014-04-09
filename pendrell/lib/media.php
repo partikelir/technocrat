@@ -16,18 +16,11 @@ function pendrell_image_wrapper() {
   // Make sure this is an image post with a thumbnail
   if ( has_post_format( 'image' ) && has_post_thumbnail() ) {
     $thumb_id = get_post_thumbnail_id();
-    $attachment = get_post( $thumb_id );
-    $link = get_attachment_link( $thumb_id );
-    $title = $attachment->post_title;
-    $rel = 'attachment';
     $image = get_the_post_thumbnail( $post->ID, $size );
-    $caption = $attachment->post_excerpt;
-    $description = $attachment->post_content;
+    $caption = get_post( $thumb_id )->post_excerpt;
+    $description = get_post( $thumb_id )->post_content;
   } elseif ( is_attachment() && wp_attachment_is_image() ) {
     $thumb_id = $post->ID;
-    $link = get_permalink( $post->post_parent );
-    $title = sprintf( __( 'Return to %s', 'ubik' ), get_the_title( $post->post_parent ) );
-    $rel = 'gallery';
     $image = wp_get_attachment_image( $post->ID, $size );
     $caption = get_the_excerpt();
     $description = $post->post_content;
@@ -40,19 +33,19 @@ function pendrell_image_wrapper() {
       $aria = 'aria-describedby="figcaption-' . $thumb_id . '" ';
 
     $content = '<figure id="' . $thumb_id . '" ' . $aria . 'class="wp-caption" itemscope itemtype="http://schema.org/ImageObject">' . "\n";
-    $content .= '<a href="' . $link . '" title="' . $title . '" rel="' . $rel . '">' . $image . '</a>' . "\n";
+    $content .= apply_filters( 'pendrell_image_wrapper_image', $image ) . "\n";
 
     if ( !empty( $caption ) )
       $content .= '<figcaption id="figcaption-' . $thumb_id . '" class="wp-caption-text">' . $caption . '</figcaption>' . "\n";
 
     $content .= '</figure>' . "\n";
 
-    // Raw content; let's pass it through the filter?
+    // Raw content; let's pass it through the content filter
     if ( !empty( $description ) )
       $content .= apply_filters( 'the_content', $description );
   }
 
-  echo apply_filters( 'pendrell_image_wrapper', $content );
+  echo apply_filters( 'pendrell_image_wrapper_filter', $content );
 }
 
 
@@ -90,36 +83,45 @@ function pendrell_image_info() {
 			<h3><?php _e( 'Image Info', 'pendrell' ); ?></h3>
 			<div class="image-description">
 			<?php if ( $metadata['height'] && $metadata['width'] ) {
-					printf( __( 'Full Size: <a href="%1$s" title="Link to full size image" rel="enclosure">%2$s &times; %3$s</a></br>', 'pendrell' ),
-						esc_attr( wp_get_attachment_url() ),
-						$metadata['width'],
-						$metadata['height']
-					);
-				}
-				if ( $metadata['image_meta']['created_timestamp'] ) { printf( __( 'Taken: %s<br/>', 'pendrell' ), date( get_option( 'date_format' ), $metadata['image_meta']['created_timestamp'] ) ); }
-				if ( $metadata['image_meta']['camera'] ) { printf( __( 'Camera: %s</br>', 'pendrell' ), $metadata['image_meta']['camera'] ); }
-				if ( $metadata['image_meta']['focal_length'] ) { printf( __( 'Focal Length: %s mm<br/>', 'pendrell' ), $metadata['image_meta']['focal_length'] ); }
-				if ( $metadata['image_meta']['aperture'] ) { printf( __( 'Aperture: f/%s<br/>', 'pendrell' ), $metadata['image_meta']['aperture'] ); }
-				if ( $metadata['image_meta']['shutter_speed'] ) {
-					// Based on http://technology.mattrude.com/2010/07/display-exif-data-on-wordpress-gallery-post-image-2/
-					$image_shutter_speed = $metadata['image_meta']['shutter_speed'];
-					if ( $image_shutter_speed > 0 ) {
-						if ( ( 1 / $image_shutter_speed ) > 1 ) {
-							if ( ( number_format( (1 / $image_shutter_speed ), 1 ) ) == 1.3
-							or number_format( ( 1 / $image_shutter_speed ), 1 ) == 1.5
-							or number_format( ( 1 / $image_shutter_speed ), 1 ) == 1.6
-							or number_format( ( 1 / $image_shutter_speed ), 1 ) == 2.5) {
-								$pshutter = '1/' . number_format( ( 1 / $image_shutter_speed ), 1, '.', '') . ' ' . __( 'sec', 'pendrell');
-							} else {
-								$pshutter = '1/' . number_format( ( 1 / $image_shutter_speed ), 0, '.', '') . ' ' . __( 'sec', 'pendrell' );
-							}
-						} else {
-							$pshutter = $image_shutter_speed . ' ' . __( 'sec', 'pendrell' );
-						}
-					}
-			echo __( 'Shutter Speed: ', 'pendrell' ) . $pshutter . '<br/>';
-				}
-				if ( $metadata['image_meta']['iso'] ) { echo __( 'ISO/Film: ', 'pendrell') . $metadata['image_meta']['iso'] . '<br/>'; } ?>
+				printf( __( 'Full Size: <a href="%1$s" title="Link to full size image" rel="enclosure">%2$s &times; %3$s px</a></br>', 'pendrell' ),
+					esc_attr( wp_get_attachment_url( $attachment ) ),
+					$metadata['width'],
+					$metadata['height']
+				);
+			}
+			if ( $metadata['image_meta']['created_timestamp'] )
+        printf( __( 'Taken: %s<br/>', 'pendrell' ), date( get_option( 'date_format' ), $metadata['image_meta']['created_timestamp'] ) );
+			if ( $metadata['image_meta']['camera'] )
+        printf( __( 'Camera: %s</br>', 'pendrell' ), $metadata['image_meta']['camera'] );
+			if ( $metadata['image_meta']['focal_length'] )
+        printf( __( 'Focal Length: %s mm<br/>', 'pendrell' ), $metadata['image_meta']['focal_length'] );
+			if ( $metadata['image_meta']['aperture'] )
+        printf( __( 'Aperture: f/%s<br/>', 'pendrell' ), $metadata['image_meta']['aperture'] );
+
+      // Based on http://technology.mattrude.com/2010/07/display-exif-data-on-wordpress-gallery-post-image-2/
+			if ( $metadata['image_meta']['shutter_speed'] ) {
+
+  			$image_shutter_speed = $metadata['image_meta']['shutter_speed'];
+
+  			if ( $image_shutter_speed > 0 ) {
+  				if ( ( 1 / $image_shutter_speed ) > 1 ) {
+  					if ( ( number_format( (1 / $image_shutter_speed ), 1 ) ) == 1.3
+  					or number_format( ( 1 / $image_shutter_speed ), 1 ) == 1.5
+  					or number_format( ( 1 / $image_shutter_speed ), 1 ) == 1.6
+  					or number_format( ( 1 / $image_shutter_speed ), 1 ) == 2.5) {
+  						$pshutter = '1/' . number_format( ( 1 / $image_shutter_speed ), 1, '.', '') . ' ' . __( 'sec', 'pendrell');
+  					} else {
+  						$pshutter = '1/' . number_format( ( 1 / $image_shutter_speed ), 0, '.', '') . ' ' . __( 'sec', 'pendrell' );
+  					}
+  				} else {
+  					$pshutter = $image_shutter_speed . ' ' . __( 'sec', 'pendrell' );
+  				}
+  			}
+        echo __( 'Shutter Speed: ', 'pendrell' ) . $pshutter . '<br/>';
+			}
+
+			if ( $metadata['image_meta']['iso'] )
+        echo __( 'ISO/Film: ', 'pendrell') . $metadata['image_meta']['iso'] . '<br/>'; ?>
 			</div>
 		</div>
 <?php

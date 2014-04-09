@@ -17,6 +17,10 @@
     float: left;
     width: percentage( $main-width / $content-width );
   }
+  // Full-width layouts as specified in `pendrell/lib/various.php`
+  body.full-width & {
+    width: 100%;
+  }
 }
 
 
@@ -81,15 +85,3 @@
 .site-footer-info {
   @include font-sizer(12);
 }
-
-
-
-// Full-width layouts for image attachments, the full-width page template, and portfolio items
-body.attachment,
-body.full-width {
-  .site-content {
-    width: 100%;
-  }
-}
-
-

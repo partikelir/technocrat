@@ -3,9 +3,6 @@
 .archive-header {
   @extend %spacer-below;
 }
-.archive-title mark {
-  // @TODO: highlight this?
-}
 .archive-content {
   @include font-sizer(16);
   @include rem('margin-bottom', $spacer*2);

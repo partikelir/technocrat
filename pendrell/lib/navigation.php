@@ -14,3 +14,13 @@ function pendrell_content_nav( $html_id ) {
     </nav><!-- #<?php echo $html_id; ?> .navigation -->
   <?php endif;
 }
+
+
+
+// Wrapper for wp_link_pages()
+function pendrell_link_pages() {
+  wp_link_pages( array(
+    'before' => '<div class="page-links">' . __( 'Pages:', 'pendrell' ),
+    'after' => '</div>'
+  ) );
+}

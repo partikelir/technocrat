@@ -1,12 +1,9 @@
 <?php
 /**
- * The template for displaying posts in the Quote post format
- *
  * @package WordPress
  * @subpackage Pendrell
  * @since Pendrell 0.4
  */
-
 $source = pendrell_quotation_metadata(); ?>
 
 	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>

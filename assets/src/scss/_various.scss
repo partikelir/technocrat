@@ -61,22 +61,6 @@
 
 
 
-// Permits images to break out to the full width of the site; use with caution; @TODO: check if these even works anymore
-img.widescreen {
-  max-width: $content-width;
-  width: auto;
-}
-
-
-
-// Search result highlighter
-.search-results mark {
-  @include highlight($c-mark-bg);
-  color: $c-mark;
-}
-
-
-
 // Assistive text
 .assistive-text,
 .site .screen-reader-text {

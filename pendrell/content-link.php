@@ -8,8 +8,7 @@
  */
 $link_url = get_post_meta( get_the_ID(), '_format_link_url', true );
 if ( empty( $link_url ) )
-	$link_url = get_permalink();
-?>
+	$link_url = get_permalink(); ?>
 
 	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 		<header class="entry-header">

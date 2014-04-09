@@ -10,8 +10,8 @@ get_header(); ?>
 	<section id="primary" class="site-content">
 		<div id="content" role="main">
 		<?php if ( have_posts() ) { ?>
-			<header class="page-header">
-				<h1 class="page-title"><?php printf( __( 'Search results for %s', 'pendrell' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
+			<header class="archive-header">
+				<h1 class="archive-title"><?php printf( __( 'Search results for &ldquo;%s&rdquo;', 'pendrell' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
 			</header>
 			<?php while ( have_posts() ) : the_post();
 				get_template_part( 'content', pendrell_content_template() );

@@ -1,20 +1,9 @@
-<?php // === VARIOUS === //
-
-// Capture search query for jQuery highlighter
-function pendrell_search_highlighter() {
-  $query = get_search_query();
-  if ( strlen($query) > 0 ) {
-    ?><script type="text/javascript">var pendrellSearchQuery  = "<?php echo $query; ?>";</script><?php
-  }
-}
-add_action( 'wp_print_scripts', 'pendrell_search_highlighter' );
-
-
+<?php // ==== VARIOUS ==== //
 
 // Body class filter
 function pendrell_body_class( $classes ) {
 
-  // Full width page template
+  // Full width page templates (as specified below)
   if ( pendrell_is_full_width() ) {
     $classes[] = 'full-width';
   }
@@ -62,4 +51,20 @@ function pendrell_portfolio_full_width() {
     return false;
   }
 }
-add_filter( 'pendrell_full_width', 'pendrell_portfolio_full_width' );
+//add_filter( 'pendrell_full_width', 'pendrell_portfolio_full_width' );
+
+
+
+// == UBIK == //
+
+// Shortcode fallback; in case Ubik or other plugins are disabled
+function pendrell_shortcode_fallback( $atts, $content = null ) {
+  return $content;
+}
+
+function pendrell_shortcode_init() {
+  // Conditional list of shortcodes to pass through
+  if ( !function_exists( 'ubik_places_init') )
+    add_shortcode( 'place', 'pendrell_shortcode_fallback' );
+}
+add_action( 'init', 'pendrell_shortcode_init' );
