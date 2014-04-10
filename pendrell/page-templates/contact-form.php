@@ -122,9 +122,9 @@ get_header(); ?>
 		<div id="content" role="main">
 
 			<?php while ( have_posts() ) : the_post(); ?>
-				<?php get_template_part( 'content', 'page' ); ?>
+				<?php get_template_part( 'content' ); ?>
         <div class="comment-respond">
-          <h3><?php _e( 'Contact form', 'pendrell' ); ?></h3>
+          <h3><a name="contact-form"></a><?php _e( 'Contact form', 'pendrell' ); ?></h3>
           <form action="<?php the_permalink(); ?>" method="post" id="contact" class="comment-form">
             <?php
             if ( isset( $email_sent ) ) {

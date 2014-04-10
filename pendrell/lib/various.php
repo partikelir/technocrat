@@ -51,7 +51,7 @@ function pendrell_portfolio_full_width() {
     return false;
   }
 }
-//add_filter( 'pendrell_full_width', 'pendrell_portfolio_full_width' );
+add_filter( 'pendrell_full_width', 'pendrell_portfolio_full_width' );
 
 
 

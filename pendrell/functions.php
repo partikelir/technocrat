@@ -37,7 +37,7 @@ function pendrell_setup() {
   load_theme_textdomain( 'pendrell', get_template_directory() . '/languages' );
 
   // Add post format support
-  add_theme_support( 'post-formats', array( 'aside', 'image', 'link', 'quote', 'status' ) );
+  add_theme_support( 'post-formats', array( 'aside', 'gallery', 'image', 'link', 'quote', 'status' ) );
 
   // Adds RSS feed links to <head> for posts and comments.
   add_theme_support( 'automatic-feed-links' );

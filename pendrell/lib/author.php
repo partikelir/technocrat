@@ -2,11 +2,13 @@
 
 // Author info on posts
 function pendrell_author_meta() {
-  // Show a bio if a user has filled out their description... but not on certain post formats
+  // Show a bio if a user has filled out their description... but not on certain post formats or the contact form page
   if (
     is_singular()
-    && !has_post_format( array( 'aside', 'link', 'quote', 'status' ) )
     && get_the_author_meta( 'description' )
+    && !has_post_format( array( 'aside', 'link', 'quote', 'status' ) )
+    && !is_page( array( 'about', 'about-me', 'bio', 'biography' ) )
+    && !is_page_template( 'page-templates/contact-form.php' )
   ) {
     pendrell_author_info();
   }
