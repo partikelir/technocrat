@@ -155,6 +155,7 @@ article.post-password-required input[type=submit],
   @extend %clearfix;
   @extend %spacer-below;
 }
+#nav-above,
 #nav-below {
   @include rem('margin-bottom', $spacer*2);
 }

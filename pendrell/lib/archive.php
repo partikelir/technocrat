@@ -3,24 +3,24 @@
 // Generates all-purpose archive titles
 function pendrell_archive_title() {
   if ( is_day() ) {
-    $title = sprintf( __( 'Daily archives: %s', 'pendrell' ), '<span>' . get_the_date() . '</span>' );
+    $title = sprintf( __( 'Daily archives: %s', 'pendrell' ), pendrell_microdata_name( get_the_date() ) );
   } elseif ( is_month() ) {
-    $title = sprintf( __( 'Monthly archives: %s', 'pendrell' ), '<span>' . get_the_date( _x( 'F Y', 'monthly archives date format', 'pendrell' ) ) . '</span>' );
+    $title = sprintf( __( 'Monthly archives: %s', 'pendrell' ), pendrell_microdata_name( get_the_date( _x( 'F Y', 'monthly archives date format', 'pendrell' ) ) ) );
   } elseif ( is_year() ) {
-    $title = sprintf( __( 'Yearly archives: %s', 'pendrell' ), '<span>' . get_the_date( _x( 'Y', 'yearly archives date format', 'pendrell' ) ) . '</span>' );
+    $title = sprintf( __( 'Yearly archives: %s', 'pendrell' ), pendrell_microdata_name( get_the_date( _x( 'Y', 'yearly archives date format', 'pendrell' ) ) ) );
   } elseif ( is_author() ) {
-    $title = sprintf( __( 'Posts by %s', 'pendrell' ), '<span>' . get_the_author() . '</span>' );
+    $title = sprintf( __( 'Posts by %s', 'pendrell' ), pendrell_microdata_name( get_the_author() ) );
   } elseif ( is_category() ) {
-    $title = sprintf( __( '%s archives', 'pendrell' ), '<span>' . single_cat_title( '', false ) . '</span>' );
+    $title = sprintf( __( '%s archives', 'pendrell' ), pendrell_microdata_name( single_cat_title( '', false ) ) );
   } elseif ( is_post_type_archive() ) {
-    $title = sprintf( __( '%s archives', 'pendrell' ), '<span>' . post_type_archive_title( '', false ) . '</span>' );
+    $title = sprintf( __( '%s archives', 'pendrell' ), pendrell_microdata_name( post_type_archive_title( '', false ) ) );
   } elseif ( is_tag() ) {
-    $title = sprintf( __( '%s archives', 'pendrell' ), '<span>' . single_tag_title( '', false ) . '</span>' );
+    $title = sprintf( __( '%s archives', 'pendrell' ), pendrell_microdata_name( single_tag_title( '', false ) ) );
   } elseif ( is_tax() ) {
     if ( is_tax( 'post_format' ) && get_post_format() === 'quote' ) {
-      $title = sprintf( __( '%s archives', 'pendrell' ), '<span>' . __( 'Quotation', 'pendrell' ) . '</span>' );
+      $title = sprintf( __( '%s archives', 'pendrell' ), pendrell_microdata_name( __( 'Quotation', 'pendrell' ) ) );
     } else {
-      $title = sprintf( __( '%s archives', 'pendrell' ), '<span>' . single_term_title( '', false ) . '</span>' );
+      $title = sprintf( __( '%s archives', 'pendrell' ), pendrell_microdata_name( single_term_title( '', false ) ) );
     }
   } else {
     $title = __( 'Archives', 'pendrell' );
@@ -48,7 +48,7 @@ function pendrell_archive_description() {
 
       // Got something?
       if ( !empty( $description ) )
-        echo $description;
+        echo pendrell_microdata_description( do_shortcode( $description ), 'div', 'archive-description' );
 
       do_action( 'pendrell_archive_term_after' );
 

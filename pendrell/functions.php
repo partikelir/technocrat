@@ -21,6 +21,7 @@ include( get_stylesheet_directory() . '/lib/content.php' );
 include( get_stylesheet_directory() . '/lib/general.php' );
 include( get_stylesheet_directory() . '/lib/formats.php' );
 include( get_stylesheet_directory() . '/lib/media.php' );
+include( get_stylesheet_directory() . '/lib/microdata.php' );
 include( get_stylesheet_directory() . '/lib/navigation.php' );
 include( get_stylesheet_directory() . '/lib/various.php' );
 

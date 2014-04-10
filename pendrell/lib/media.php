@@ -32,7 +32,7 @@ function pendrell_image_wrapper() {
     if ( !empty( $caption ) )
       $aria = 'aria-describedby="figcaption-' . $thumb_id . '" ';
 
-    $content = '<figure id="' . $thumb_id . '" ' . $aria . 'class="wp-caption" itemscope itemtype="http://schema.org/ImageObject">' . "\n";
+    $content = '<figure id="' . $thumb_id . '" ' . $aria . 'class="wp-caption" itemscope itemtype="http://schema.org/ImageObject" itemprop="associatedMedia">' . "\n";
     $content .= apply_filters( 'pendrell_image_wrapper_image', $image ) . "\n";
 
     if ( !empty( $caption ) )
@@ -90,7 +90,7 @@ function pendrell_image_info() {
 				);
 			}
 			if ( $metadata['image_meta']['created_timestamp'] )
-        printf( __( 'Taken: %s<br/>', 'pendrell' ), date( get_option( 'date_format' ), $metadata['image_meta']['created_timestamp'] ) );
+        printf( __( 'Taken: <span itemprop="dateCreated">%s</span><br/>', 'pendrell' ), date( get_option( 'date_format' ), $metadata['image_meta']['created_timestamp'] ) );
 			if ( $metadata['image_meta']['camera'] )
         printf( __( 'Camera: %s</br>', 'pendrell' ), $metadata['image_meta']['camera'] );
 			if ( $metadata['image_meta']['focal_length'] )

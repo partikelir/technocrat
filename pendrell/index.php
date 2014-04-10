@@ -10,6 +10,7 @@ get_header(); ?>
 	<section id="primary" class="site-content">
 		<div id="content" role="main">
 		<?php if ( have_posts() ) {
+			pendrell_content_nav( 'nav-above' );
 			while ( have_posts() ) : the_post();
 				get_template_part( 'content', pendrell_content_template() );
 			endwhile;
