@@ -10,7 +10,7 @@ get_header(); ?>
 	<section id="primary" class="site-content">
 		<div id="content" role="main">
 		<?php if ( have_posts() ) { ?>
-			<header class="archive-header"<?php pendrell_microdata_scope( 'archive-header' ); ?>>
+			<header class="archive-header">
 				<h1 class="archive-title"><?php pendrell_archive_title(); ?></h1>
 				<?php pendrell_archive_description(); ?>
 			</header><!-- .archive-header -->

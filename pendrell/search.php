@@ -11,7 +11,7 @@ get_header(); ?>
 		<div id="content" role="main">
 		<?php if ( have_posts() ) { ?>
 			<header class="archive-header">
-				<h1 class="archive-title"><?php printf( __( 'Search results for &ldquo;%s&rdquo;', 'pendrell' ), pendrell_microdata_name( get_search_query() ) ); ?></h1>
+				<h1 class="archive-title"><?php printf( __( 'Search results for &ldquo;%s&rdquo;', 'pendrell' ), pendrell_name_wrapper( get_search_query() ) ); ?></h1>
 			</header>
 			<?php pendrell_content_nav( 'nav-above' );
 			while ( have_posts() ) : the_post();

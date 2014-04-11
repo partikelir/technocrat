@@ -21,7 +21,6 @@ include( get_stylesheet_directory() . '/lib/content.php' );
 include( get_stylesheet_directory() . '/lib/general.php' );
 include( get_stylesheet_directory() . '/lib/formats.php' );
 include( get_stylesheet_directory() . '/lib/media.php' );
-include( get_stylesheet_directory() . '/lib/microdata.php' );
 include( get_stylesheet_directory() . '/lib/navigation.php' );
 include( get_stylesheet_directory() . '/lib/various.php' );
 
@@ -49,6 +48,7 @@ function pendrell_setup() {
   $content_width = 960;
 
   // Width of the main content column; should correspond to equivalent values in the stylesheet
+  // This variable is mainly used here in functions.php; it should match the variable defined in _base.scss
   $main_width = 624;
 
   // This theme uses a custom image size for featured images; it isn't really a "thumbnail"

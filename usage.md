@@ -22,7 +22,7 @@ This creates a tidy list of references with a hanging indent. Use it for scholar
 <footer class="references">
   <h3>References</h3>
   <ul>
-    <li>A reference. (2014). <cite>A title</cite>. A journal. 100(1), 1-10.</li>
+    <li itemprop="citation">A reference. (2014). <cite>A title</cite>. A journal. 100(1), 1-10.</li>
   </ul>
 </footer>
 ```

@@ -7,6 +7,13 @@ function pendrell_title() {
 
 
 
+// Name wrapper; a stand-in for future microdata use
+function pendrell_name_wrapper( $content ) {
+  return '<span>' . $content . '</span>';
+}
+
+
+
 // Entry meta wrapper
 function pendrell_entry_meta() {
   global $post;

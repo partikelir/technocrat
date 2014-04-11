@@ -72,15 +72,7 @@ function pendrell_sidebar( $sidebar = true ) {
 
 
 // Content template selector; abstracted here so that content templates can be filtered
-function pendrell_content_template() {
-  if ( is_404() )
-    $template = 'none';
-
-  if ( is_attachment() && wp_attachment_is_image() )
-    $template = 'image-attachment';
-
-  if ( is_page() )
-    $template = 'page';
+function pendrell_content_template( $template = null ) {
 
   if ( empty( $template ) )
     $template = get_post_format();

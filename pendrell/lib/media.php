@@ -32,11 +32,11 @@ function pendrell_image_wrapper() {
     if ( !empty( $caption ) )
       $aria = 'aria-describedby="figcaption-' . $thumb_id . '" ';
 
-    $content = '<figure id="' . $thumb_id . '" ' . $aria . 'class="wp-caption" itemscope itemtype="http://schema.org/ImageObject" itemprop="associatedMedia">' . "\n";
+    $content = '<figure id="' . $thumb_id . '" ' . $aria . 'class="wp-caption" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">' . "\n";
     $content .= apply_filters( 'pendrell_image_wrapper_image', $image ) . "\n";
 
     if ( !empty( $caption ) )
-      $content .= '<figcaption id="figcaption-' . $thumb_id . '" class="wp-caption-text">' . $caption . '</figcaption>' . "\n";
+      $content .= '<figcaption id="figcaption-' . $thumb_id . '" class="wp-caption-text" itemprop="about">' . $caption . '</figcaption>' . "\n";
 
     $content .= '</figure>' . "\n";
 
@@ -90,7 +90,7 @@ function pendrell_image_info() {
 				);
 			}
 			if ( $metadata['image_meta']['created_timestamp'] )
-        printf( __( 'Taken: <span itemprop="dateCreated">%s</span><br/>', 'pendrell' ), date( get_option( 'date_format' ), $metadata['image_meta']['created_timestamp'] ) );
+        printf( __( 'Taken: %s<br/>', 'pendrell' ), date( get_option( 'date_format' ), $metadata['image_meta']['created_timestamp'] ) );
 			if ( $metadata['image_meta']['camera'] )
         printf( __( 'Camera: %s</br>', 'pendrell' ), $metadata['image_meta']['camera'] );
 			if ( $metadata['image_meta']['focal_length'] )
@@ -147,7 +147,7 @@ function pendrell_media_gallery( $output, $attr ) {
       unset( $attr['orderby'] );
   }
 
-  extract(shortcode_atts(array(
+  extract( shortcode_atts( array(
     'order'      => 'ASC',
     'orderby'    => 'menu_order ID',
     'id'         => $post->ID,
@@ -158,7 +158,7 @@ function pendrell_media_gallery( $output, $attr ) {
     'size'       => 'thumbnail',
     'include'    => '',
     'exclude'    => ''
-  ), $attr));
+  ), $attr ) );
 
   $id = intval($id);
   if ( 'RAND' == $order )
