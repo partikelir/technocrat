@@ -2,8 +2,6 @@
 
 // Everything below here might or might not be working... when it has been developed and tested move it above this line
 
-
-
 // 404 (TO DO); some suggestions: http://www.alistapart.com/articles/perfect404/ http://justintadlock.com/archives/2009/05/13/customize-your-404-page-from-the-wordpress-admin
 function pendrell_404() {
 	?><h2><?php _e( 'Nothing found', 'pendrell' ); ?></h2>
