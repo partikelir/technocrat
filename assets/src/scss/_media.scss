@@ -41,30 +41,6 @@ img.wp-smiley,
 
 
 
-// Responsive partial-width images rescued from _portfolio.scss
-.size-medium-465,
-.size-medium-465-cropped {
-  width: percentage( ( ( $content-width - $spacer ) / 2 ) / $content-width );
-}
-.size-medium-465.alignleft,
-.size-medium-465-cropped.alignleft,
-.size-medium-300.alignleft,
-.size-medium-300-cropped.alignleft {
-  @include rem('margin', 0 $spacer $spacer 0);
-}
-.size-medium-465.alignright,
-.size-medium-465-cropped.alignright,
-.size-medium-300.alignright,
-.size-medium-300-cropped.alignright {
-  @include rem('margin', 0 0 $spacer $spacer);
-}
-.size-medium-300,
-.size-medium-300-cropped {
-  width: percentage( ( ( $content-width - ( $spacer * 2 ) ) / 3 ) / $content-width );
-}
-
-
-
 // Gallery styling; makes a lot of assumptions about markup so you can't simply lift this and use it elsewhere
 // Presently attempting a free-flowing gallery based on unordered lists; could also try CSS3 columns
 // @TODO: account for vertical rhythm

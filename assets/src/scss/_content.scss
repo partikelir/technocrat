@@ -160,20 +160,29 @@
   img {
     @include border-radius();
     display: block;
+
+    // Responsive partial-width images rescued from _portfolio.scss
+    &.size-third-width, // Compatibility with old Pendrell styling; may be removed on fresh installs
+    &.size-medium-300,
+    &.size-medium-300-cropped {
+      width: percentage((1-(($spacer/$content-width)*2))/3); // 31.25%
+    }
+    &.size-half-width, // Compatibility with old Pendrell styling; may be removed on fresh installs
+    &.size-medium-465,
+    &.size-medium-465-cropped {
+      width: percentage((1-(($spacer/$content-width)))/2); // 48.4375%
+    }
   }
-  img.alignleft,
-  .wp-caption.alignleft {
-    @include rem('margin', 0 $spacer $spacer/2 0);
+  img,
+  .wp-caption {
+    &.alignleft {
+      margin-right: percentage($spacer/$content-width);
+    }
+    &.alignright {
+      margin-left: percentage($spacer/$content-width);
+    }
   }
-  img.alignright,
-  .wp-caption.alignright {
-    @include rem('margin', 0 0 $spacer/2 $spacer);
-  }
-  img.aligncenter,
-  .wp-caption.aligncenter {
-    @include rem('margin', 0 0 $spacer/2 0);
-    @extend %clearfix;
-  }
+
   embed,
   iframe,
   object,

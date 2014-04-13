@@ -10,7 +10,7 @@ var build     = "./pendrell/";
 
 gulp.task('styles', function() {
   return gulp.src(['assets/src/scss/*.scss', '!assets/src/scss/_*.scss'])
-  .pipe(plugins.rubySass({ compass: true })) // don't forget to `gem install sass`
+  .pipe(plugins.rubySass({ precision: 5 })) // don't forget to `gem install sass`
   .pipe(plugins.autoprefixer('last 2 versions', 'ie 9', 'ios 6', 'android 4'))
   .pipe(gulp.dest('assets/staging'))
   .pipe(plugins.minifyCss({ keepSpecialComments: 1 }))

@@ -58,8 +58,8 @@ function pendrell_setup() {
   // Add a few additional image sizes for various other purposes
   add_image_size( 'medium-300', 300, 9999 );
   add_image_size( 'medium-300-cropped', 300, 300, true );
-  add_image_size( 'medium-465', $content_width/2, 9999 );
-  add_image_size( 'medium-465-cropped', $content_width/2, $content_width/2, true );
+  add_image_size( 'medium-465', 465, 9999 );
+  add_image_size( 'medium-465-cropped', 465, 465, true );
   add_image_size( 'medium-624-cropped', $main_width, $main_width, true );
   add_image_size( 'large-960-cropped', $content_width, $content_width, true );
 
