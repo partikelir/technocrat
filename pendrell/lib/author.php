@@ -52,7 +52,7 @@ function pendrell_author_avatar( $url ) {
 
   // Optionally wrap avatar in a link
   if ( !empty( $url ) ) {
-    ?><a href="<?php echo $url; ?>" title="<?php the_author_meta( 'display_name' ); ?>" rel="author"><?php
+    ?><a href="<?php echo $url; ?>" rel="author"><?php
     echo get_avatar( get_the_author_meta( 'user_email' ), $size, $default, $alt );
     ?></a><?php
   } else {

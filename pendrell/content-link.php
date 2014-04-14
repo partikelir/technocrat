@@ -13,7 +13,7 @@ if ( empty( $link_url ) )
 			<h1 class="entry-title">
 				<?php pendrell_title(); ?>
 			</h1>
-			<footer><a href="<?php echo $link_url; ?>" title="<?php the_title(); ?>" rel="bookmark"><?php echo $link_url; ?></a></footer>
+			<footer><a href="<?php echo $link_url; ?>" rel="bookmark"><?php echo $link_url; ?></a></footer>
 		</header><!-- .entry-header -->
 		<div class="entry-content">
 			<?php the_content(); ?>

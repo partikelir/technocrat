@@ -1,21 +1,6 @@
 <?php // ==== VARIOUS ==== //
 
-// Body class filter
-function pendrell_body_class( $classes ) {
-
-  // Full width page templates (as specified below)
-  if ( pendrell_is_full_width() ) {
-    $classes[] = 'full-width';
-  }
-
-  if ( !is_multi_author() )
-    $classes[] = 'single-author';
-
-	return $classes;
-}
-add_filter( 'body_class', 'pendrell_body_class' );
-
-
+// == FULL WIDTH == //
 
 // Abstracted function to test whether the current view is full-width
 function pendrell_is_full_width() {
@@ -39,8 +24,8 @@ function pendrell_is_full_width() {
 
 
 
-// This lets Pendrell know to make portfolio items full-width
-function pendrell_portfolio_full_width() {
+// Make some image-heavy categories full-width
+function pendrell_full_width_cats() {
   $pendrell_portfolio_cats = array( 'design', 'photography', 'creative' );
   if (
     is_category( $pendrell_portfolio_cats )
@@ -51,7 +36,34 @@ function pendrell_portfolio_full_width() {
     return false;
   }
 }
-add_filter( 'pendrell_full_width', 'pendrell_portfolio_full_width' );
+add_filter( 'pendrell_full_width', 'pendrell_full_width_cats' );
+
+
+
+// Full-width thumbnails filter; assumes 'large' size images fill the window, which they should
+function pendrell_thumbnail_size( $size ) {
+  if ( pendrell_is_full_width() )
+    $size = 'large';
+  return $size;
+}
+add_filter( 'post_thumbnail_size', 'pendrell_thumbnail_size' );
+
+
+
+// Body class filter
+function pendrell_body_class( $classes ) {
+
+  // Full width page templates (as specified below)
+  if ( pendrell_is_full_width() ) {
+    $classes[] = 'full-width';
+  }
+
+  if ( !is_multi_author() )
+    $classes[] = 'single-author';
+
+  return $classes;
+}
+add_filter( 'body_class', 'pendrell_body_class' );
 
 
 
@@ -64,7 +76,7 @@ function pendrell_shortcode_fallback( $atts, $content = null ) {
 
 function pendrell_shortcode_init() {
   // Conditional list of shortcodes to pass through
-  if ( !function_exists( 'ubik_places_init') )
+  if ( !function_exists( 'ubik_places_init' ) )
     add_shortcode( 'place', 'pendrell_shortcode_fallback' );
 }
 add_action( 'init', 'pendrell_shortcode_init' );

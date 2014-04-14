@@ -48,9 +48,8 @@ function pendrell_comments( $comment, $args, $depth ) {
         <div class="comment-meta-main">
         	<h3><?php comment_author_link(); ?></h3>
         <?php
-          printf( 'This comment was posted <a href="%1$s" title="%2$s" rel="bookmark"><time datetime="%3$s">%4$s, %5$s</time></a>.',
+          printf( 'This comment was posted <a href="%1$s" rel="bookmark"><time datetime="%2$s">%3$s, %4$s</time></a>.',
             esc_url( get_comment_link( $comment->comment_ID ) ),
-            'test',
             get_comment_time('c'),
             get_comment_date(),
             get_comment_time()

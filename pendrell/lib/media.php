@@ -2,53 +2,54 @@
 
 // == IMAGES == //
 
-// Generates HTML5 markup for image attachments
+// Generates HTML5 markup for image attachments and image format posts
 function pendrell_image_wrapper() {
   global $post;
 
-  // Change size based on full-width test
-  if ( pendrell_is_full_width() ) {
-    $size = 'large'; // 960 px
-  } else {
-    $size = 'medium'; // 624 px
-  }
-
   // Make sure this is an image post with a thumbnail
   if ( has_post_format( 'image' ) && has_post_thumbnail() ) {
-    $thumb_id = get_post_thumbnail_id();
-    $image = get_the_post_thumbnail( $post->ID, $size );
-    $caption = get_post( $thumb_id )->post_excerpt;
-    $description = get_post( $thumb_id )->post_content;
+    $id = get_post_thumbnail_id();
+    $html = get_the_post_thumbnail();
+    $caption = get_post( $id )->post_excerpt;
+    $description = get_post( $id )->post_content;
   } elseif ( is_attachment() && wp_attachment_is_image() ) {
-    $thumb_id = $post->ID;
-    $image = wp_get_attachment_image( $post->ID, $size );
+    $id = $post->ID;
+    $html = wp_get_attachment_image( $post->ID, 'large' );
     $caption = get_the_excerpt();
     $description = $post->post_content;
   }
 
-  if ( !empty( $thumb_id ) ) {
+  // If Ubik is installed...
+  if ( function_exists( 'ubik_image_markup' ) ) {
+    $content = ubik_image_markup( $html, $id, $caption, '', 'alignnone', '', '', '' );
+
+  // This is working, tested code but Ubik does things in a slightly more refined way
+  } else {
 
     $aria = '';
     if ( !empty( $caption ) )
-      $aria = 'aria-describedby="figcaption-' . $thumb_id . '" ';
+      $aria = 'aria-describedby="figcaption-' . $id . '" ';
 
-    $content = '<figure id="' . $thumb_id . '" ' . $aria . 'class="wp-caption" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">' . "\n";
-    $content .= apply_filters( 'pendrell_image_wrapper_image', $image ) . "\n";
+    $content = '<figure id="' . $id . '" ' . $aria . 'class="wp-caption" itemscope itemtype="http://schema.org/ImageObject">' . "\n";
+    $content .= $html . "\n";
 
     if ( !empty( $caption ) )
-      $content .= '<figcaption id="figcaption-' . $thumb_id . '" class="wp-caption-text" itemprop="about">' . $caption . '</figcaption>' . "\n";
+      $content .= '<figcaption id="figcaption-' . $id . '" class="wp-caption-text" itemprop="caption">' . $caption . '</figcaption>' . "\n";
 
     $content .= '</figure>' . "\n";
 
-    // Raw content; let's pass it through the content filter
-    if ( !empty( $description ) )
-      $content .= apply_filters( 'the_content', $description );
   }
 
-  echo apply_filters( 'pendrell_image_wrapper_filter', $content );
+  // Raw content; let's pass it through the content filter
+  if ( !empty( $description ) )
+    $content .= apply_filters( 'the_content', $description );
+
+  echo $content;
 }
 
 
+
+// == IMAGE METADATA == //
 
 // Image info wrapper for image attachments and image format posts
 function pendrell_image_meta() {
@@ -133,7 +134,7 @@ function pendrell_image_info() {
 // == GALLERY == //
 
 // Custom gallery shortcode function; some guidance from https://wordpress.stackexchange.com/questions/43558/how-to-manually-fix-the-wordpress-gallery-code-using-php-in-functions-php
-// This chunk of code isn't really polished or tested but it's interesting enough to keep around
+// This chunk of code isn't really polished or tested but it's interesting enough to keep around; @TODO: polish it!
 function pendrell_media_gallery( $output, $attr ) {
   global $post;
 
@@ -236,6 +237,7 @@ function pendrell_media_gallery( $output, $attr ) {
 
   return $output;
 }
+
 // This will absolutely break the display on any theme but Pendrell; @TODO: consider removing this component from pendrell
 if ( PENDRELL_MEDIA_GALLERY ) {
   add_filter( 'post_gallery', 'pendrell_media_gallery', 10, 2);
