@@ -160,7 +160,9 @@
   img {
     @include border-radius();
     display: block;
-
+  }
+  figure,
+  img {
     // Responsive partial-width images rescued from _portfolio.scss
     &.size-third-width, // Compatibility with old Pendrell styling; may be removed on fresh installs
     &.size-medium-300,
@@ -180,6 +182,10 @@
     }
     &.alignright {
       margin-left: percentage($spacer/$content-width);
+    }
+    &.alignnone {
+      margin-left: 0;
+      margin-right: 0;
     }
   }
 
