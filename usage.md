@@ -14,7 +14,9 @@ Captions are contained within the image shortcode and can include other shortcod
 [image id="1001" align="alignnone" url="http://yourwebsite.com/a-post/the-attachment" size="medium" alt="Alt text goes here."]This is a caption![/image]
 ```
 
-Image layout is a bit tricky at first but easy once you know what you are doing. Pendrell specifies two extra image sizes, `medium-300` and `mediu-465`, that correspond to a half and a third of the `$content-width` variable (which defaults to 960 px). These image sizes are designed to allow a harmonious layout of images in columns without mucking around with a lot of excess markup. All you have to do is set the align property to `alignleft` on all but the last image in a row. Captions work beautifully, though you'll want to keep them approximately the same length to preserve visual harmony.
+Image layout is a bit tricky at first but easy once you know what you are doing. Pendrell specifies two extra image sizes, `medium-half` and `medium-third`, that correspond to a half and a third of the `$content-width` variable (which defaults to 960 px).
+
+These image sizes are designed to allow a harmonious layout of images in columns without mucking around with a lot of excess markup. All you have to do is set the align property to `alignleft`. Captions work beautifully, though you'll probably want to keep them approximately the same length to preserve visual harmony.
 
 An example of a half-width layout:
 
@@ -32,6 +34,7 @@ An example of a third-width layout:
 [image id="1002" align="alignnone" url="http://yourwebsite.com/a-post/another-attachment" size="medium-half" alt="Alt text goes here."]This is a caption![/image]
 ```
 
+Clearing floats is done by selectig the next paragraph element after the last figure. You may need to clear floats manually if you follow a row of images with some other sort of content. To do this simply wrap your row of images in `<div class="clear">[images]</div>`.
 
 
 
