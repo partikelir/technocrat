@@ -24,6 +24,8 @@ function pendrell_image_wrapper() {
     $description = $post->post_content;
   }
 
+  echo $size;
+
   // If Ubik is installed...
   if ( function_exists( 'ubik_image_markup' ) ) {
     $content = ubik_image_markup( $html, $id, $caption, $title = '', $align = 'alignnone', $url = '', $size );
@@ -41,7 +43,7 @@ function pendrell_image_wrapper() {
     if ( !empty( $caption ) )
       $content .= '<figcaption id="figcaption-' . $id . '" class="wp-caption-text" itemprop="caption">' . $caption . '</figcaption>' . "\n";
 
-    $content .= '</figure>' . "\n";
+    $content .= '</figure>' . "\n\n";
 
   }
 

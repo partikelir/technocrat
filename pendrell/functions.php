@@ -56,12 +56,12 @@ function pendrell_setup() {
   set_post_thumbnail_size( $main_width, 9999 );
 
   // Add a few additional image sizes for various other purposes
-  add_image_size( 'medium-300', 300, 9999 );
-  add_image_size( 'medium-300-cropped', 300, 300, true );
-  add_image_size( 'medium-465', 465, 9999 );
-  add_image_size( 'medium-465-cropped', 465, 465, true );
-  add_image_size( 'medium-624-cropped', $main_width, $main_width, true );
-  add_image_size( 'large-960-cropped', $content_width, $content_width, true );
+  add_image_size( 'medium-third', $content_width/3, 9999 );
+  add_image_size( 'medium-third-cropped', $content_width/3, $content_width/3, true );
+  add_image_size( 'medium-half', $content_width/2, 9999 );
+  add_image_size( 'medium-half-cropped', $content_width/2, $content_width/2, true );
+  add_image_size( 'medium-cropped', $main_width, $main_width, true );
+  add_image_size( 'large-cropped', $content_width, $content_width, true );
 
   // Forcing medium and large sizes to match $content_width and $site_width
   update_option( 'medium_size_w', $main_width );

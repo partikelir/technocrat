@@ -165,18 +165,30 @@
   img {
     // Responsive partial-width images rescued from _portfolio.scss
     &.size-third-width, // Compatibility with old Pendrell styling; may be removed on fresh installs
-    &.size-medium-300,
-    &.size-medium-300-cropped {
+    &.size-medium-third,
+    &.size-medium-third-cropped {
       width: percentage((1-(($spacer/$content-width)*2))/3); // 31.25%
     }
     &.size-half-width, // Compatibility with old Pendrell styling; may be removed on fresh installs
-    &.size-medium-465,
-    &.size-medium-465-cropped {
+    &.size-medium-half,
+    &.size-medium-half-cropped {
       width: percentage((1-(($spacer/$content-width)))/2); // 48.4375%
     }
+    &.alignleft {
+      margin-right: percentage($spacer/$content-width);
+    }
+    &.alignright {
+      margin-left: percentage($spacer/$content-width);
+    }
+    &.alignnone {
+      float: left;
+      width: 100px;
+      //margin-left: 0;
+      //margin-right: 0;
+    }
   }
-  img,
-  .wp-caption {
+  .x img,
+  .x .wp-caption {
     &.alignleft {
       margin-right: percentage($spacer/$content-width);
     }
