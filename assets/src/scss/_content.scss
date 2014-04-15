@@ -181,21 +181,6 @@
       margin-left: percentage($spacer/$content-width);
     }
     &.alignnone {
-      float: left;
-      width: 100px;
-      //margin-left: 0;
-      //margin-right: 0;
-    }
-  }
-  .x img,
-  .x .wp-caption {
-    &.alignleft {
-      margin-right: percentage($spacer/$content-width);
-    }
-    &.alignright {
-      margin-left: percentage($spacer/$content-width);
-    }
-    &.alignnone {
       margin-left: 0;
       margin-right: 0;
     }
