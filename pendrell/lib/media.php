@@ -6,22 +6,27 @@
 function pendrell_image_wrapper() {
   global $post;
 
-  // Make sure this is an image post with a thumbnail
+  // Hooks into existing post_thumbnail_size filter; modified for full-width display in various.php
+  $size = apply_filters( 'post_thumbnail_size', 'medium' );
+
+  // Image post formats: load thumbnail and metadata from the attachment
   if ( has_post_format( 'image' ) && has_post_thumbnail() ) {
     $id = get_post_thumbnail_id();
-    $html = get_the_post_thumbnail();
+    $html = get_the_post_thumbnail( $post->ID, $size );
     $caption = get_post( $id )->post_excerpt;
     $description = get_post( $id )->post_content;
+
+  // Attachments: load post data from the attachment itself
   } elseif ( is_attachment() && wp_attachment_is_image() ) {
     $id = $post->ID;
-    $html = wp_get_attachment_image( $post->ID, 'large' );
+    $html = wp_get_attachment_image( $post->ID, $size );
     $caption = get_the_excerpt();
     $description = $post->post_content;
   }
 
   // If Ubik is installed...
   if ( function_exists( 'ubik_image_markup' ) ) {
-    $content = ubik_image_markup( $html, $id, $caption, '', 'alignnone', '', '', '' );
+    $content = ubik_image_markup( $html, $id, $caption, $title = '', $align = 'alignnone', $url = '', $size );
 
   // This is working, tested code but Ubik does things in a slightly more refined way
   } else {
@@ -40,7 +45,7 @@ function pendrell_image_wrapper() {
 
   }
 
-  // Raw content; let's pass it through the content filter
+  // Raw description; let's pass it through the content filter
   if ( !empty( $description ) )
     $content .= apply_filters( 'the_content', $description );
 
@@ -122,7 +127,10 @@ function pendrell_image_info() {
 			}
 
 			if ( $metadata['image_meta']['iso'] )
-        echo __( 'ISO/Film: ', 'pendrell') . $metadata['image_meta']['iso'] . '<br/>'; ?>
+        echo __( 'ISO/Film: ', 'pendrell') . $metadata['image_meta']['iso'] . '<br/>';
+
+      // $metadata['image_meta']['credit']
+      // $metadata['image_meta']['copyright'] ?>
 			</div>
 		</div>
 <?php
