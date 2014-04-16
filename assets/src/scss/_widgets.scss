@@ -1,6 +1,6 @@
 // ==== WIDGETS ==== //
 .widget-title {
-  @extend %small-headers;
+  @include small-headers();
 }
 .widget-area {
   @media screen and (min-width: $break-single-column) {

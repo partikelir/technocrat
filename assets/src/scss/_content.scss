@@ -149,7 +149,7 @@
     }
   }
   th {
-    @extend %small-headers;
+    @include small-headers();
   }
   td {
     @include font-sizer(14, 1);

@@ -1,6 +1,27 @@
 // ==== GENERAL ==== //
 
-// Core
+// These helper classes are meant to be used with @extend
+
+// Clearing
+%clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+// Spacer shortcuts
+%spacer-above {
+  @include rem('margin-top', $spacer);
+}
+%spacer-below {
+  @include rem('margin-bottom', $spacer);
+}
+
+
+
+// Body, headers, and monospaced font declarations
 body {
   @include font-sizer($font-size);
   color: $c-body;
@@ -28,8 +49,6 @@ var {
   font-family: $font-mono;
 }
 
-
-
 // Links
 a {
   color: $c-link;
@@ -51,7 +70,8 @@ a {
     color: $c-link-f;
   }
 }
-// Links with borders in certain areas
+
+// Links with borders; only in certain areas
 .entry-content,
 .comment-content,
 .widget-area,
@@ -72,6 +92,7 @@ a {
     }
   }
 }
+
 
 
 // Reset-like things with variables or WordPress-specific styling
@@ -129,7 +150,7 @@ var {
 
 
 
-// Form elements
+// == FORMS == //
 button,
 input,
 textarea {

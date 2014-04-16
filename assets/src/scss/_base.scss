@@ -7,7 +7,7 @@
 @import "base_mixins";
 
 // Color scheme
-@import "scheme_light";
+@import "base_scheme";
 
 // Typically used with the rem mixin
 $spacer: $base+0px;
@@ -28,6 +28,3 @@ $break-large: $content-width;
 
 // Reset
 @import "base_reset";
-
-// Helpers
-@import "base_helpers";
