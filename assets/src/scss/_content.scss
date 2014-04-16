@@ -165,7 +165,7 @@
     overflow: auto; // Without this the floats won't float
   }
   figure.wp-caption,
-  img {
+  p img {
     // Responsive margins
     &.alignleft {
       margin-right: percentage($spacer/$content-width);
@@ -182,7 +182,7 @@
     &.size-medium-third,
     &.size-medium-third-cropped {
       width: percentage((1-(($spacer/$content-width)*2))/3); // 31.25%
-      &.alignleft:nth-of-type(3),
+      &.alignleft:nth-of-type(3) {
         margin-right: 0;
       }
     }
@@ -190,12 +190,17 @@
     &.size-medium-half,
     &.size-medium-half-cropped {
       width: percentage((1-(($spacer/$content-width)))/2); // 48.4375%
-      &.alignleft:nth-of-type(2),
+      &.alignleft:nth-of-type(2) {
         margin-right: 0;
       }
     }
+    // Clearfix on the before pseudo-element
     & + p {
-      @extend %clearfix;
+      &:before {
+        content: "";
+        display: table;
+        clear: both;
+      }
     }
   }
 

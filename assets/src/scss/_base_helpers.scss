@@ -4,8 +4,7 @@
 
 // Clearing
 %clearfix {
-  &:after,
-  &:before {
+  &:after {
     content: "";
     display: table;
     clear: both;
