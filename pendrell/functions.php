@@ -1,23 +1,25 @@
-<?php // === PENDRELL FUNCTIONS === //
-// There should be no need to edit anything in this file; check out functions-config-sample.php instead!
+<?php // ==== FUNCTIONS.PHP ==== //
 
-// Pendrell configuration files
-if ( is_readable( get_stylesheet_directory() . '/functions-config.php' ) ) {
-	require_once( get_stylesheet_directory() . '/functions-config.php' );
-} else {
-	require_once( get_stylesheet_directory() . '/functions-config-sample.php' );
-}
-
-// Definitions
+// Definitions; there should be no need to modify these
 define( 'PENDRELL_VERSION', "0.7" );
 define( 'PENDRELL_NAME', get_bloginfo( 'name' ) );
 define( 'PENDRELL_DESC', get_bloginfo( 'description' ) );
 define( 'PENDRELL_HOME', get_bloginfo( 'url' ) );
 
+// Baseline for the vertical rhythm; should match whatever is set in _base.scss
+define( 'PENDRELL_BASELINE', 30 );
+
+// Google web fonts to load; false will load Open Sans
+define( 'PENDRELL_GOOGLE_FONTS', 'Varela+Round:400|Lato:400italic,400,700'); // |Open+Sans:400italic,700italic,400,700');
+
+// Experimental gallery shortcode override
+define( 'PENDRELL_MEDIA_GALLERY', false );
+
 // Pendrell is abstracted into the `pendrell/lib` directory
 include( get_stylesheet_directory() . '/lib/archive.php' );
 include( get_stylesheet_directory() . '/lib/author.php' );
 include( get_stylesheet_directory() . '/lib/content.php' );
+include( get_stylesheet_directory() . '/lib/dev.php' ); // Still in development; @TODO: finish these some day
 include( get_stylesheet_directory() . '/lib/general.php' );
 include( get_stylesheet_directory() . '/lib/formats.php' );
 include( get_stylesheet_directory() . '/lib/media.php' );
@@ -27,8 +29,7 @@ include( get_stylesheet_directory() . '/lib/various.php' );
 if ( is_admin() )
   include( get_stylesheet_directory() . '/lib/admin.php' );
 
-// Still in development
-include( get_stylesheet_directory() . '/lib/dev.php' );
+
 
 // Theme setup; includes some image size definitions and other things that belong here in the config file
 function pendrell_setup() {
