@@ -9,14 +9,14 @@ function pendrell_image_sizes( $sizes ) {
 	unset ( $sizes['full'] );
 
 	// The full list
-  $sizes['medium-300'] = __( 'Medium 300', 'pendrell');
-  $sizes['medium-300-cropped'] = __( 'Medium 300 cropped', 'pendrell');
-  $sizes['medium-465'] = __( 'Medium 465', 'pendrell');
-  $sizes['medium-465-cropped'] = __( 'Medium 465 cropped', 'pendrell');
+  $sizes['medium-third'] = __( 'Medium third', 'pendrell');
+  $sizes['medium-third-cropped'] = __( 'Medium third cropped', 'pendrell');
+  $sizes['medium-half'] = __( 'Medium half', 'pendrell');
+  $sizes['medium-half-cropped'] = __( 'Medium half cropped', 'pendrell');
 	$sizes['medium'] = __( 'Medium', 'pendrell');
-  $sizes['medium-624-cropped'] = __( 'Medium cropped', 'pendrell');
+  $sizes['medium-cropped'] = __( 'Medium cropped', 'pendrell');
 	$sizes['large'] = __( 'Large', 'pendrell');
-  $sizes['large-960-cropped'] = __( 'Large cropped', 'pendrell');
+  $sizes['large-cropped'] = __( 'Large cropped', 'pendrell');
 	$sizes['full'] = __( 'Full', 'pendrell');
 	return $sizes;
 

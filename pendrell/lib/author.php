@@ -9,6 +9,7 @@ function pendrell_author_meta() {
     && !has_post_format( array( 'aside', 'link', 'quote', 'status' ) )
     && !is_page( array( 'about', 'about-me', 'bio', 'biography' ) )
     && !is_page_template( 'page-templates/contact-form.php' )
+    && PENDRELL_AUTHOR_META === true
   ) {
     pendrell_author_info();
   }

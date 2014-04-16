@@ -6,6 +6,9 @@ define( 'PENDRELL_NAME', get_bloginfo( 'name' ) );
 define( 'PENDRELL_DESC', get_bloginfo( 'description' ) );
 define( 'PENDRELL_HOME', get_bloginfo( 'url' ) );
 
+// Switch for author info boxes
+define( 'PENDRELL_AUTHOR_META', true );
+
 // Baseline for the vertical rhythm; should match whatever is set in _base.scss
 define( 'PENDRELL_BASELINE', 30 );
 
@@ -39,6 +42,9 @@ function pendrell_setup() {
 
   // Add post format support
   add_theme_support( 'post-formats', array( 'aside', 'audio', 'gallery', 'image', 'link', 'quote', 'status' ) );
+
+  // HTML5 captions and gallery shortcodes; both still kind of ugly though
+  add_theme_support( 'html5', array( 'gallery', 'caption' ) );
 
   // Adds RSS feed links to <head> for posts and comments.
   add_theme_support( 'automatic-feed-links' );
