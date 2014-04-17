@@ -24,7 +24,8 @@ $monospace:   monospace;
 // http://graficareal.net/blog/wordpress-sinotype-websafe-chinese-plugin/
 // http://www.yale.edu/chinesemac/pages/fonts.html
 
-$chinese: true; // Set to true/false to enable/disable this functionality
+// Set to true/false to enable/disable this functionality; I've set it to false because I can't actually see any difference on my machine
+$chinese: false;
 
 @if $chinese == true {
   $sans-serif:  join(("Heiti TC", "Heiti SC", "微軟正黑體", "Microsoft JhengHei", "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", "宋体", SimSun, STXihei, "华文细黑"), $sans-serif);
@@ -67,9 +68,13 @@ $quattro:           join("Quattrocento Sans", $tahoma);     // Quattrocento+Sans
 // Header font stacks
 $cabin:             join(Cabin, $calibri);
 $comfortaa:         join(Comfortaa, $calibri);
+$montserrat:        join(Montserrat, $calibri);
 $oxygen:            join(Oxygen, $calibri);
 $pt-serif-header:   join("PT Serif", $cambria);             // PT+Serif:400,700
 $quando:            join(Quando, $corbel);                  // Quando:400
+$quicksand:         join(Quicksand, $corbel);               // Quicksand:300,400,700
+$raleway:           join(Raleway, $corbel);                 // Raleway:300,400,700
 $russo:             join("Russo One", $tahoma);
 $signika:           join(Signika, $calibri);
-$varela:            join("Varela Round", $calibri);         // Varela+Round:400
+$varela:            join(Varela, $calibri);
+$varela-round:      join("Varela Round", $calibri);         // Varela+Round:400

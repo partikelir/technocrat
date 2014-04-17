@@ -2,13 +2,19 @@
 
 // Entry header
 .entry-header {
-  @extend %spacer-below;
+  //@extend %spacer-below;
   img.wp-post-image {
     @extend %spacer-below;
   }
-  .entry-title {
-    font-weight: normal;
-    margin: 0;
+  h1,h2,h3 {
+    &.entry-title {
+      font-weight: 400;
+    }
+  }
+  h2,h3 {
+    &.entry-title {
+      @extend %spacer-below;
+    }
   }
 }
 

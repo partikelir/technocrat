@@ -14,6 +14,12 @@
   line-height: ( ( ($base - $offset) * $basefactor) / $size );
 }
 
+// Headline font mixin
+@mixin font-header() {
+  font-family: $font-head;
+  text-transform: uppercase;
+}
+
 // Highlights text; used with ins and mark tags
 @mixin highlight($color: $c-highlight) {
   @include border-radius();
@@ -38,13 +44,14 @@
   @include rem('padding', $spacer $spacer 0);
   background: $background;
   color: $color;
-  text-shadow: 0px 1px $c-site-bg;
+  text-shadow: 0px 1px $c-body-bg;
 }
 
 // Small headers pattern
-@mixin small-headers($font-size: 12) {
+@mixin small-headers($font-size: $h5) {
   @include font-sizer($font-size);
-  font-weight: bold;
+  @extend %font-header;
+  font-weight: 400;
   text-transform: uppercase;
 }
 

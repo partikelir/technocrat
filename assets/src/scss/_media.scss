@@ -7,7 +7,7 @@
 }
 .wp-caption .wp-caption-text,
 .entry-caption {
-  @include font-sizer(14);
+  @include font-sizer($h5);
   color: $c-caption;
   font-style: italic;
 }
@@ -21,7 +21,7 @@
   border-top: $divider;
 }
 .image-description {
-  @include font-sizer(14);
+  @include font-sizer($h5);
 }
 
 
@@ -80,7 +80,7 @@ $gallery-padding: 5px;
   }
   // @TODO: mask caption text that overflows the bounding box; not a problem with short titles/captions but looks ugly when it goes wrong
   .gallery-caption-text {
-    @include font-sizer(14);
+    @include font-sizer($h5);
     @include rem('padding', 0 $gallery-padding + 5px 0 $gallery-padding );
     box-sizing: border-box;
     color: #fff;
@@ -97,10 +97,7 @@ $gallery-padding: 5px;
     width: 100%;
   }
   .gallery-caption-title {
-    @include font-sizer(18);
-    font-family: $font-head;
-    font-style: normal;
-    text-transform: uppercase;
+    @include font-sizer($h3);
   }
 }
 

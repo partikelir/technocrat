@@ -45,10 +45,9 @@
 
 // References list; for use with scholarly works
 .references {
-  @include font-sizer(14);
+  @include font-sizer($h5);
   h3 {
-    @include font-sizer(18);
-    text-transform: uppercase;
+    @include font-sizer($h3);
   }
   ol,
   ul {

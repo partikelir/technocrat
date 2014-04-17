@@ -32,6 +32,12 @@
   @include rem('margin-bottom', $spacer);
 }
 
+// Font header style
+%font-header {
+  font-family: $font-head;
+  font-weight: 400;
+}
+
 
 
 // Body, headers, and monospaced font declarations
@@ -43,16 +49,15 @@ body {
   text-rendering: optimizeLegibility;
 }
 h1,h2,h3,h4,h5,h6 {
+  @extend %font-header;
   color: $c-head;
-  font-family: $font-head;
-  text-transform: uppercase;
 }
-h1 { @include font-sizer(28); }
-h2 { @include font-sizer(24); }
-h3 { @include font-sizer(21); }
-h4 { @include font-sizer(18); }
-h5 { @include font-sizer(15); }
-h6 { @include font-sizer(12); }
+h1 { @include font-sizer($h1); }
+h2 { @include font-sizer($h2); }
+h3 { @include font-sizer($h3); }
+h4 { @include font-sizer($h4); }
+h5 { @include font-sizer($h5); }
+h6 { @include font-sizer($h6); }
 code,
 kbd,
 pre,
@@ -168,13 +173,13 @@ button,
 input,
 textarea {
   @include border-radius();
-  @include font-sizer(14, 8);
+  @include font-sizer($h5, 8);
   @include rem('padding', 3px);
   border: $divider;
   color: lighten($c-body, 23);
   font-family: inherit;
   &:focus {
-    background-color: darken($c-site-bg, 3);
+    background-color: darken($c-body-bg, 3);
   }
 }
 .menu-toggle,

@@ -3,47 +3,54 @@
 // == FONTS == //
 
 $font-body: $lato;
-$font-head: $varela;
+$font-head: $raleway;
 $font-mono: $consolas;
 
 // Default font size and baseline (integer)
 $font-size: 18;
 $base: 30;
 
+// Font scale
+$h1: 36;
+$h2: 28;
+$h3: 22;
+$h4: 16;
+$h5: 14;
+$h6: 12;
+
 
 
 // == COLORS == //
 
 // Body
-$c-site-bg:       #fff;
-$c-site-sh-1:     #bbb;
-$c-site-sh-2:     #eee;
-$c-body-bg:       $c-site-bg; //darken($c-site-bg, 5);
-
-// Text
 $c-body:          #484848;
+$c-body-bg:       #fff;
+
+// Header
 $c-head:          darken($c-body, 13);
-$c-meta:          lighten($c-body, 37);
+
+// Meta
+$c-meta:          lighten($c-body, 33);
 
 // Links
-$c-link:          #429ab2;
-$c-link-v:        saturate(lighten($c-link, 8), 8);
-$c-link-h:        #ED7251;
+$c-link:          #5cb6cc;
+$c-link-v:        $c-link;
+$c-link-h:        saturate(lighten($c-link, 17), 7);
 $c-link-a:        saturate(lighten($c-link, 13), 13);
-$c-link-f:        saturate(lighten($c-link, 8), 8);
+$c-link-f:        saturate(lighten($c-link, 17), 7);
 
 // Main menu
-$c-menu-link:     lighten($c-body, 17);
-$c-menu-link-h:   lighten($c-menu-link, 23);
-$c-menu-current:  darken($c-menu-link, 27);
-$c-menu-bg:       darken($c-site-bg, 3);
+$c-menu-link:     desaturate( darken($c-link, 13), 13);//#cc4033;
+$c-menu-link-h:   #ED7251;
+$c-menu-current:  darken($c-body, 17);
+$c-menu-bg:       darken($c-body-bg, 3);
 
 // Elements: mostly defined in _general.scss
 $c-abbr:          lighten($c-body, 13);
 $c-blockquote:    lighten($c-body, 13);
 $c-blockquote-bg: #f8f8f8;
 $c-code:          lighten($c-body, 13);
-$c-code-bg:       darken($c-site-bg, 4);
+$c-code-bg:       darken($c-body-bg, 4);
 $c-del:           lighten($c-body, 13);
 $c-hr:            #ccc;
 $c-ins-bg:        #fff9c0;
@@ -59,12 +66,13 @@ $c-success:       #a2bf68;
 
 // Various
 $c-caption:       lighten($c-body, 23);
-$c-divider:       darken($c-body-bg, 7);
+$c-divider:       rgba($c-body, 0.10);
 $c-highlight:     #eee;
-$c-site-header:   #222;
+$c-site-desc:     $c-body;
+$c-site-title:    darken($c-body, 17);
 $c-small-header:  lighten($c-body, 13);
 $c-text-box:      lighten($c-body, 7);
-$c-text-box-bg:   darken($c-site-bg, 5);
+$c-text-box-bg:   darken($c-body-bg, 5);
 $c-text-box-sh:   darken($c-text-box-bg, 5);
 $c-widget-head:   darken($c-body, 7);
 $c-widget:        lighten($c-body, 23);

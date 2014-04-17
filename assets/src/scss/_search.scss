@@ -8,6 +8,7 @@
   }
   // Drop the size of entry titles on search results
   .entry-title {
-    @include font-sizer(24);
+    @include font-sizer($h2);
+    @extend %spacer-below;
   }
 }

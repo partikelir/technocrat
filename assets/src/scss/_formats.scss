@@ -4,7 +4,7 @@
 article.format-link {
   header {
     padding: 0;
-    @include font-sizer(12);
+    @include font-sizer($h5);
   }
 }
 

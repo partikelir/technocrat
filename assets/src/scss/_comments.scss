@@ -8,7 +8,7 @@
   }
 }
 .comments-title {
-  @include font-sizer(18);
+  @include font-sizer($h3);
   @extend %spacer-below;
 }
 .comment-meta {
@@ -26,7 +26,7 @@
 .comment-meta-main {
   @extend .entry-meta-main;
   h3 {
-    @include font-sizer(16);
+    @include font-sizer($h4);
   }
 }
 
@@ -39,7 +39,7 @@
 }
 .commentlist {
   .pingback {
-    @include font-sizer(14);
+    @include font-sizer($h5);
   }
   // Threaded comments
   .children {
@@ -54,10 +54,11 @@
 // General response form
 .comment-form {
   @include rem('margin-bottom', $spacer*2);
-  @include font-sizer(14);
+  @include font-sizer($h5);
   label {
+    @extend %font-header;
     display: block;
-    font-family: $font-head;
+    font-weight: bold;
     text-transform: uppercase;
   }
   input[type="text"],
@@ -86,12 +87,12 @@
     @extend %spacer-below;
   }
   p.form-allowed-tags {
-    @include font-sizer(14);
+    @include font-sizer($h5);
     @extend %spacer-below;
     color: lighten($c-body, 10);
   }
   #cancel-comment-reply-link {
-    @include font-sizer(12);
+    @include font-sizer($h5);
     @include rem('margin-left', $spacer/2);
     font-weight: normal;
   }
