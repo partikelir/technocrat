@@ -8,7 +8,7 @@
   float: right;
 }
 .aligncenter {
-  @extend %clearfix;
+  @extend %clearfix-below;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -19,7 +19,7 @@
 // Clearing helper classes
 .clear,
 .wrapper {
-  @extend %clearfix;
+  @extend %clearfix-below;
 }
 
 

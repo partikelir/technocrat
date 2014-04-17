@@ -21,12 +21,12 @@
 
 .entry-content,
 .comment-content {
-  @extend %clearfix;
+  @extend %clearfix-below;
   hyphens: auto; // Let autoprefix do the rest
 
   // Headers
   h1,h2,h3,h4,h5,h6 {
-    @extend %spacer-above;
+    @extend %spacer-below;
   }
 
   // Paragraphs
@@ -208,7 +208,7 @@
   iframe,
   object,
   video {
-    @extend %spacer-below;
+    //@extend %spacer-below;
   }
 }
 
@@ -220,7 +220,7 @@
 }
 .entry-meta-main {
   @include font-sizer(14);
-  @extend %clearfix;
+  @extend %clearfix-below;
   color: $c-meta;
   a {
     border-bottom: 1px solid lighten($c-meta, 13);

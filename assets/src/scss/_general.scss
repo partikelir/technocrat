@@ -3,12 +3,25 @@
 // These helper classes are meant to be used with @extend
 
 // Clearing
-%clearfix {
+%clearfix-above {
+  &:before {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+%clearfix-below {
   &:after {
     content: "";
     display: table;
     clear: both;
   }
+}
+
+%clearfix {
+  @extend %clearfix-above;
+  @extend %clearfix-below;
 }
 
 // Spacer shortcuts

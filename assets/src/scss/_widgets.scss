@@ -1,6 +1,7 @@
 // ==== WIDGETS ==== //
 .widget-title {
   @include small-headers();
+  color: $c-widget-head;
 }
 .widget-area {
   @media screen and (min-width: $break-single-column) {
@@ -14,7 +15,7 @@
     li,
     .textwidget {
       @include font-sizer(14);
-      color: lighten($c-body, 27);
+      color: $c-widget;
     }
     p {
       @extend %spacer-below;

@@ -12,7 +12,7 @@
   @extend %spacer-below;
 }
 .comment-meta {
-  @extend %clearfix;
+  @extend %clearfix-below;
 }
 .comment-meta-avatar {
   @include rem('margin-right', $spacer/2);

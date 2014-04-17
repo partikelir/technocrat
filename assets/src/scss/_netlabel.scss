@@ -1,0 +1,11 @@
+// ==== NETLABEL ==== //
+
+// Discographies
+
+ul.discography-thumbnails {
+  list-style: none;
+  li {
+    margin-left: 0;
+    @extend %spacer-below;
+  }
+}

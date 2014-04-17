@@ -44,7 +44,7 @@ function pendrell_archive_description() {
       $content = apply_filters( 'pendrell_archive_term_before', $content );
 
       // Check to see if we have a description for this category, tag, or taxonomy
-      $description = term_description();
+      $description = apply_filters( 'pendrell_archive_term_description', term_description() );
 
       // Got something?
       if ( !empty( $description ) ) {

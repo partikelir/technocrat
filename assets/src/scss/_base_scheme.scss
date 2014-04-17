@@ -66,6 +66,8 @@ $c-small-header:  lighten($c-body, 13);
 $c-text-box:      lighten($c-body, 7);
 $c-text-box-bg:   darken($c-site-bg, 5);
 $c-text-box-sh:   darken($c-text-box-bg, 5);
+$c-widget-head:   darken($c-body, 7);
+$c-widget:        lighten($c-body, 23);
 
 // == PRISM == //
 $prism-text:            $c-body;

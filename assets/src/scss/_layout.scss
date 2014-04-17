@@ -31,7 +31,7 @@
   @include rem('padding-top', $spacer);
   .site-title,
   .site-description {
-    @extend %clearfix;
+    @extend %clearfix-below;
     text-align: left;
   }
   .site-title {
@@ -62,11 +62,12 @@
 
 
 // == FOOTER == //
+
 .site-footer {
   @include rem('margin-top', $spacer, 1);
   @include rem('max-width', $content-width);
   @include rem('padding', $spacer/2 0);
-  @extend %clearfix;
+  @extend %clearfix-below;
   border-top: $divider;
   a {
     color: lighten($c-body, 14);
