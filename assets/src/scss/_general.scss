@@ -71,14 +71,14 @@ var {
 a {
   color: $c-link;
   text-decoration: none;
-  transition: color .8s ease-out;
+  transition: all .8s ease-out;
   &:visited {
     color: $c-link-v;
   }
   &:hover {
     color: $c-link-h;
     outline: 0; // Improves readability when focused and also mouse hovered in all browsers people.opera.com/patrickl/experiments/keyboard/test
-    transition: color .4s ease;
+    transition: all .4s ease;
   }
   &:active {
     color: $c-link-a;
@@ -95,18 +95,18 @@ a {
 .widget-area,
 .page-navigation {
   a {
-    border-bottom: 1px solid rgba($c-link, 0.25);
+    border-bottom: 1px dotted rgba($c-link, 0.25);
     &:visited {
-      border-bottom: 1px solid rgba($c-link-v, 0.25);
+      border-bottom: 1px dotted rgba($c-link-v, 0.20);
     }
     &:hover {
-      border-bottom: 1px solid rgba($c-link-h, 0.25);
+      border-bottom: 1px solid rgba($c-link-h, 0.30);
     }
     &:active {
       border-bottom: 1px solid rgba($c-link-a, 0.25);
     }
     &:focus {
-      border-bottom: 1px solid rgba($c-link-f, 0.25);
+      border-bottom: 1px dotted rgba($c-link-f, 0.25);
     }
   }
 }

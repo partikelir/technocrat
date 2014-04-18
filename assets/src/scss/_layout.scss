@@ -34,7 +34,7 @@
     text-align: left;
   }
   .site-title {
-    @include font-sizer($h3);
+    @include font-sizer($h2);
     font-weight: 200;
     text-transform: uppercase;
     @media screen and (min-width: $break-medium) {

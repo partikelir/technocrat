@@ -225,15 +225,15 @@
   @extend %clearfix;
 }
 .entry-meta-main {
-  @include font-sizer(14);
+  @include font-sizer($h5);
   @extend %clearfix-below;
   color: $c-meta;
   a {
-    border-bottom: 1px solid lighten($c-meta, 13);
+    border-bottom: 1px dotted rgba($c-meta, 0.25);
     color: darken($c-meta, 33);
     &:hover {
-      color: $c-link-h;
-      border-bottom: 1px solid lighten($c-link-h, 27);
+      border-bottom: 1px dotted rgba($c-meta-h, 0.20);
+      color: $c-meta-h;
     }
   }
 }

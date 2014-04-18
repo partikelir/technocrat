@@ -19,6 +19,6 @@
 }
 .author-description {
   p {
-    @include font-sizer($h5);
+    @include font-sizer($h4);
   }
 }
