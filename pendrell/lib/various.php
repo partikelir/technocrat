@@ -66,8 +66,11 @@ function pendrell_body_class( $classes ) {
     $classes[] = 'full-width';
   }
 
-  if ( !is_multi_author() )
+  if ( is_multi_author() ) {
+    $classes[] = 'group-blog';
+  } else {
     $classes[] = 'single-author';
+  }
 
   return $classes;
 }
@@ -88,3 +91,16 @@ function pendrell_shortcode_init() {
     add_shortcode( 'place', 'pendrell_shortcode_fallback' );
 }
 add_action( 'init', 'pendrell_shortcode_init' );
+
+
+
+// == JETPACK == //
+
+// Add theme support for Infinite Scroll: http://jetpack.me/support/infinite-scroll/
+function pendrell_jetpack_setup() {
+  add_theme_support( 'infinite-scroll', array(
+    'container' => 'main',
+    'footer'    => 'page',
+  ) );
+}
+//add_action( 'after_setup_theme', 'pendrell_jetpack_setup' );
