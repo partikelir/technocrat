@@ -43,7 +43,8 @@ add_filter( 'pendrell_full_width', 'pendrell_full_width_cats' );
 // Full-width thumbnails filter; assumes 'large' size images fill the window, which they should
 function pendrell_thumbnail_size( $size ) {
   if ( pendrell_is_full_width() ) {
-    $size = 'large';
+    if ( $size === 'medium' )
+      $size = 'large';
   } else {
     // Try to catch images that are exactly 960 px
     if ( $size === 'large' || $size === 'full' ) {

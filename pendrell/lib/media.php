@@ -207,11 +207,11 @@ function pendrell_media_gallery( $output, $attr ) {
   global $content_width;
   $itemwidth = $content_width / $columns;
   if ( $itemwidth <= 300 ) {
-    $size = 'medium-300-cropped';
+    $size = 'medium-third-cropped';
   } elseif ( $itemwidth <= 465 ) {
-    $size = 'medium-465-cropped';
+    $size = 'medium-half-cropped';
   } elseif ( $itemwidth <= 624 ) {
-    $size = 'medium-624-cropped';
+    $size = 'medium-cropped';
   }
 
   // @TODO: fallback image in case there isn't one of the desired size
