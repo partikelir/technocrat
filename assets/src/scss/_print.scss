@@ -1,27 +1,86 @@
 // ==== PRINT ==== //
 
-// Twenty Twelve legacy styling; haven't seen a need to update this as of yet
+// @TODO: test and finish this component; it's low-priority but should be taken care of at some point
 @media print {
+
+  // From H5BP: https://github.com/h5bp/html5-boilerplate/blob/master/css/main.css
+  * {
+    background: transparent !important;
+    color: #000 !important; /* Black prints faster: h5bp.com/s */
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
   body {
-    background: none !important;
-    color: #000;
     font-size: 10pt;
-    text-shadow: none;
   }
-  footer a[rel=bookmark]:link:after,
-  footer a[rel=bookmark]:visited:after {
-    content: " [" attr(href) "] "; /* Show URLs */
+
+  a,
+  a:visited {
+    border-bottom: none;
+    text-decoration: underline;
   }
-  a {
-    text-decoration: none;
+
+  a[href]:after {
+    content: " (" attr(href) ")";
   }
-  .entry-content img,
-  .comment-content img,
-  .author-avatar img,
-  img.wp-post-image {
+
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+
+  // Don't show links for images, or javascript/internal links
+  a[href^="javascript:"]:after,
+  a[href^="#"]:after {
+    content: "";
+  }
+
+  pre,
+  blockquote {
+      border: 1px solid #999;
+      page-break-inside: avoid;
+  }
+
+  thead {
+    display: table-header-group; /* h5bp.com/t */
+  }
+
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+
+  img {
     border-radius: 0;
-    box-shadow: none;
+    max-width: 100% !important;
   }
+
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+
+  // Interactive elements to hide
+  nav,
+  .page-link,
+  .button,
+  .entry-meta-buttons,
+  .comment-meta-buttons,
+  .widget-area
+  .author-avatar,
+  #colophon,
+  #respond {
+    display: none;
+  }
+
+  // Twenty Twelve cruft to sort through
   .site {
     clear: both !important;
     display: block !important;
@@ -47,23 +106,6 @@
   .site-header h1 a,
   .site-header h2 a {
     color: #000;
-  }
-  .author-avatar,
-  #colophon,
-  #respond,
-  .commentlist .comment-edit-link,
-  .commentlist .reply,
-  .entry-meta .edit-link a,
-  .page-link,
-  .site-content nav,
-  .widget-area,
-  img.header-image,
-  .main-navigation {
-    display: none;
-  }
-  .wrapper {
-    border-top: none;
-    box-shadow: none;
   }
   .site-content {
     margin: 0;
@@ -96,12 +138,12 @@
   }
 
   /* Comments */
-  .commentlist > li.comment {
+  .comment-list > li.comment {
     background: none;
     position: relative;
     width: auto;
   }
-  .commentlist .avatar {
+  .comment-list .avatar {
     height: 39px;
     left: 2.2em;
     top: 2.2em;
