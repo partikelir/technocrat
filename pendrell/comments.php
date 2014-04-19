@@ -83,21 +83,26 @@ function pendrell_comments( $comment, $args, $depth ) {
 			?>
 		</h2>
 
-		<ol class="commentlist">
-			<?php wp_list_comments( array( 'callback' => 'pendrell_comments', 'style' => 'ol' ) ); ?>
+		<ol class="comment-list">
+			<?php wp_list_comments( array(
+        'callback'    => 'pendrell_comments',
+        'style'       => 'ol',
+        'short_ping'  => true
+        ) );
+      ?>
 		</ol><!-- .commentlist -->
 
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
 		<nav id="comment-nav-below" class="navigation" role="navigation">
-			<h1 class="assistive-text section-heading"><?php _e( 'Comment navigation', 'pendrell' ); ?></h1>
+			<h1 class="screen-reader-text"><?php _e( 'Comment navigation', 'pendrell' ); ?></h1>
 			<div class="nav-previous"><?php previous_comments_link( __( '<span class="nav-arrow">&larr; </span>Older Comments', 'pendrell' ) ); ?></div>
 			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments<span class="nav-arrow"> &rarr;</span>', 'pendrell' ) ); ?></div>
 		</nav>
 		<?php endif; // check for comment navigation ?>
 
 		<?php // If there are no comments and comments are closed, let's leave a note.
-		if ( ! comments_open() && get_comments_number() ) : ?>
-		<p class="nocomments"><?php _e( 'Comments are closed.' , 'pendrell' ); ?></p>
+		if ( ! comments_open() && get_comments_number() != '0' && post_type_supports( get_post_type(), 'comments' ) ) : ?>
+		  <p class="no-comments"><?php _e( 'Comments are closed.' , 'pendrell' ); ?></p>
 		<?php endif; ?>
 
 	<?php endif; // have_comments() ?>

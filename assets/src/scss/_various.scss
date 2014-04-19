@@ -60,13 +60,13 @@
 
 
 
-// Assistive text
+// Assistive text; Twenty Twelve cruft
 .assistive-text,
-.site .screen-reader-text {
+.screen-reader-text {
   clip: rect(1px, 1px, 1px, 1px);
   position: absolute !important;
 }
-.main-navigation .assistive-text:focus {
+#menu-header .assistive-text:focus {
   @include border-radius;
   background: #fff;
   border: 2px solid #333;

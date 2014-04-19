@@ -37,7 +37,7 @@
 .comment-reply-title small {
   @include button-div();
 }
-.commentlist {
+.comment-list {
   .pingback {
     @include font-sizer($h5);
   }

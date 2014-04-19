@@ -27,7 +27,7 @@ function pendrell_content_nav( $html_id ) {
 // Wrapper for wp_link_pages(); @TODO: separate by comma or something; built-in separator functionality is coded by crazy people
 function pendrell_link_pages() {
   wp_link_pages( array(
-    'before' => '<div class="page-links">' . __( 'Pages:', 'pendrell' ),
-    'after' => '</div>'
+    'before' => '<nav class="page-links">' . __( 'Pages:', 'pendrell' ),
+    'after' => '</nav>'
   ) );
 }
