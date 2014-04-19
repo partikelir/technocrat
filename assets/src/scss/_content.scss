@@ -188,25 +188,21 @@
     &.size-medium-third,
     &.size-medium-third-cropped {
       width: percentage((1-(($spacer/$content-width)*2))/3); // 31.25%
-      &.alignleft:nth-of-type(3) {
-        margin-right: 0;
-      }
     }
     &.size-half-width, // Compatibility with old Pendrell styling; may be removed on fresh installs
     &.size-medium-half,
     &.size-medium-half-cropped {
       width: percentage((1-(($spacer/$content-width)))/2); // 48.4375%
-      &.alignleft:nth-of-type(2) {
-        margin-right: 0;
-      }
     }
     // Clearfix on the before pseudo-element
-    & + p {
-      &:before {
-        content: "";
-        display: table;
-        clear: both;
-      }
+    & + p,
+    & + h1,
+    & + h2,
+    & + h3,
+    & + blockquote,
+    & + div,
+    & + pre {
+      @extend %clearfix-above;
     }
   }
 
