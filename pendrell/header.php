@@ -6,10 +6,10 @@
 <html <?php language_attributes(); ?>>
 <!--<![endif]-->
 <head>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
-<meta name="viewport" content="width=device-width" />
-<title><?php wp_title('-', true, 'right'); ?></title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title><?php wp_title( '-', true, 'right' ); ?></title>
 <link rel="profile" href="http://gmpg.org/xfn/11" />
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 <!--[if lt IE 9]>
@@ -22,16 +22,16 @@
 <a name="top"></a>
 <div id="page" class="hfeed site">
 	<header id="masthead" class="site-header" role="banner">
-		<hgroup>
+		<div class="site-branding">
 			<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 			<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
-		</hgroup>
+		</div>
 
 		<nav id="menu-header" class="inline-menu" role="navigation">
 			<h3 class="menu-toggle"><?php _e( 'Menu', 'pendrell' ); ?></h3>
-			<div class="skip-link assistive-text"><a href="#content" title="<?php esc_attr_e( 'Skip to content', 'pendrell' ); ?>"><?php _e( 'Skip to content', 'pendrell' ); ?></a></div>
+			<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'pendrell' ); ?></a>
 			<?php wp_nav_menu( array( 'theme_location' => 'header', 'menu_class' => 'menu-header' ) ); ?>
 		</nav><!-- #site-navigation -->
 	</header><!-- #masthead -->
 
-	<div id="main" class="wrapper">
+	<div id="content" class="site-content">

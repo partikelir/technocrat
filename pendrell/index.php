@@ -7,8 +7,8 @@
 
 get_header(); ?>
 
-	<section id="primary" class="site-content">
-		<div id="content" role="main">
+	<section id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
 		<?php if ( have_posts() ) {
 			pendrell_content_nav( 'nav-above' );
 			while ( have_posts() ) : the_post();
@@ -18,7 +18,7 @@ get_header(); ?>
 		} else {
 			get_template_part( 'content', 'none' );
 		} ?>
-		</div><!-- #content -->
+		</main><!-- #content -->
 	</section><!-- #primary -->
 
 <?php pendrell_sidebar(); ?>

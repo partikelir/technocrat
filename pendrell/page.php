@@ -7,13 +7,14 @@
 
 get_header(); ?>
 
-	<section id="primary" class="site-content">
-		<div id="content" role="main">
+	<section id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
 			<?php while ( have_posts() ) : the_post();
-        get_template_part( 'content', pendrell_content_template( 'page' ) );
-      endwhile;
-      comments_template( '', true ); ?>
-		</div><!-- #content -->
+          get_template_part( 'content', pendrell_content_template( 'page' ) );
+        endwhile;
+        pendrell_comments_template();
+      ?>
+		</main><!-- #content -->
 	</section><!-- #primary -->
 
 <?php pendrell_sidebar(); ?>

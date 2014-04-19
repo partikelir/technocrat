@@ -17,8 +17,7 @@
 
 
 // Clearing helper classes
-.clear,
-.wrapper {
+.clear {
   @extend %clearfix-below;
 }
 

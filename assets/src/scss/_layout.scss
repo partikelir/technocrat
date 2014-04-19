@@ -11,6 +11,9 @@
   }
 }
 .site-content {
+  @extend %clearfix-below;
+}
+.content-area {
   max-width: $content-width;
   @media screen and (min-width: $break-single-column) {
     float: left;

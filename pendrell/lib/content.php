@@ -22,7 +22,7 @@ function pendrell_entry_meta() {
 
   ?><div class="entry-meta-buttons">
     <?php edit_post_link( __( 'Edit', 'pendrell' ), ' <span class="edit-link button">', '</span>' );
-    if ( comments_open() && !is_singular() && !post_password_required( $post->ID ) ) {
+    if ( !is_singular() && !post_password_required() && ( comments_open() || get_comments_number() != '0' ) ) {
       ?> <span class="leave-reply button"><?php comments_popup_link( __( 'Respond', 'pendrell' ), __( '1 Response', 'pendrell' ), __( '% Responses', 'pendrell' ) ); ?></span><?php
     } ?>
   </div>
@@ -80,5 +80,16 @@ function pendrell_entry_meta_generator() {
       $date,
       $author
     );
+  }
+}
+
+
+
+// Comments template wrapper
+function pendrell_comments_template() {
+
+  // If comments are open or we have at least one comment, load up the comment template; via _s
+  if ( comments_open() || get_comments_number() != '0' ) {
+    comments_template('', true);
   }
 }

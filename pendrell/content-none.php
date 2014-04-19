@@ -13,7 +13,12 @@
       </h1>
 		</header><!-- .entry-header -->
 		<div class="entry-content">
-			<p><?php _e( 'What are you looking for? Try searching for it:', 'pendrell' ); ?></p>
-			<?php $search_term = esc_url( $_SERVER['REQUEST_URI'] ); pendrell_search_form( $search_term ); ?>
+			<?php if ( is_search() ) { ?>
+				<p><?php _e( 'Sorry, but nothing matched your search terms. Please try again:', 'pendrell' ); ?></p>
+				<?php $search_term = esc_url( $_SERVER['REQUEST_URI'] ); pendrell_search_form( $search_term ); ?>
+			<?php } else { ?>
+				<p><?php _e( 'What are you looking for? Try searching for it:', 'pendrell' ); ?></p>
+				<?php pendrell_search_form(); ?>
+			<?php } ?>
 		</div><!-- .entry-content -->
 	</article><!-- #post-0 -->
