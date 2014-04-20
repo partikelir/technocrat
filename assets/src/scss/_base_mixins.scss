@@ -14,12 +14,6 @@
   line-height: ( ( ($base - $offset) * $basefactor) / $size );
 }
 
-// Headline font mixin
-@mixin font-header() {
-  font-family: $font-head;
-  text-transform: uppercase;
-}
-
 // Highlights text; used with ins and mark tags
 @mixin highlight($color: $c-highlight) {
   @include border-radius();
@@ -27,13 +21,6 @@
   background: $color;
   border: 1px solid darken($color, 7);
   display: inline;
-}
-
-// Right-aligned button container
-@mixin button-div() {
-  @include rem('margin-left', $spacer/2);
-  float: right;
-  height: $spacer;
 }
 
 // Breakout box

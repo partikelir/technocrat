@@ -38,6 +38,13 @@
   font-weight: 400;
 }
 
+// Right-aligned button container
+%button-container {
+  @include rem('margin-left', $spacer/2);
+  float: right;
+  height: $spacer;
+}
+
 
 
 // Body, headers, and monospaced font declarations

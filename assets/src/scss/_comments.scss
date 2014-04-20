@@ -35,7 +35,7 @@
 // These classes contain right-aligned buttons
 .comment-meta-buttons,
 .comment-reply-title small {
-  @include button-div();
+  @extend %button-container;
 }
 .comment-list {
   .pingback {

@@ -81,7 +81,7 @@
   }
 }
 .site-footer-buttons {
-  @include button-div();
+  @extend %button-container;
   display: block;
   @media screen and (min-width: $break-medium) {
     display: none;

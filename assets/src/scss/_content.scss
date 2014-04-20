@@ -234,7 +234,7 @@
   }
 }
 .entry-meta-buttons {
-  @include button-div();
+  @extend %button-container;
 }
 .edit-link,
 .leave-reply {
