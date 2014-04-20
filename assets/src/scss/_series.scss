@@ -5,7 +5,7 @@
     @include font-sizer($h3);
   }
   ol {
-    @include font-sizer($h5);
+    @include font-sizer($h4);
     list-style: decimal inside;
   }
 }
