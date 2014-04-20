@@ -7,7 +7,7 @@
 }
 .wp-caption .wp-caption-text,
 .entry-caption {
-  @include font-sizer($h5);
+  @include font-sizer($h4);
   color: $c-caption;
   font-style: italic;
 }
@@ -21,7 +21,7 @@
   border-top: $divider;
 }
 .image-description {
-  @include font-sizer($h5);
+  @include font-sizer($h4);
 }
 
 

@@ -32,10 +32,17 @@
   @include rem('margin-bottom', $spacer);
 }
 
-// Font header style
+// A shortcut to apply the header font and basic style
 %font-header {
   font-family: $font-head;
   font-weight: 400;
+}
+
+// Small headers
+%small-headers {
+  @include font-sizer($font-size);
+  @extend %font-header;
+  text-transform: uppercase;
 }
 
 // Right-aligned button container

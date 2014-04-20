@@ -34,14 +34,6 @@
   text-shadow: 0px 1px $c-body-bg;
 }
 
-// Small headers pattern
-@mixin small-headers($font-size: $h5) {
-  @include font-sizer($font-size);
-  @extend %font-header;
-  font-weight: 400;
-  text-transform: uppercase;
-}
-
 
 
 // === TWENTY TWELVE === //

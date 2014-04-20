@@ -2,7 +2,6 @@
 
 // Entry header
 .entry-header {
-  //@extend %spacer-below;
   img.wp-post-image {
     @extend %spacer-below;
   }
@@ -11,6 +10,7 @@
       font-weight: 400;
     }
   }
+  // No spacer for h1; assumes the font size is greater than the baseline
   h2,h3 {
     &.entry-title {
       @extend %spacer-below;
@@ -155,7 +155,7 @@
     }
   }
   th {
-    @include small-headers();
+    @extend %small-headers;
   }
   td {
     @include font-sizer(14, 1);
@@ -164,9 +164,13 @@
 
   // Media
   img {
-    @include border-radius();
+    @include border-radius;
     display: block;
   }
+}
+
+// Captioned images aren't used in comments; isolating these declarations reduces bloat
+.entry-content {
   figure.wp-caption {
     overflow: auto; // Without this the floats won't float
   }
@@ -205,13 +209,6 @@
       @extend %clearfix-above;
     }
   }
-
-  embed,
-  iframe,
-  object,
-  video {
-    //@extend %spacer-below;
-  }
 }
 
 
@@ -219,6 +216,9 @@
 // Entry meta
 .entry-meta {
   @extend %clearfix;
+}
+.entry-meta-buttons {
+  @extend %button-container;
 }
 .entry-meta-main {
   @include font-sizer($h5);
@@ -231,33 +231,5 @@
       border-bottom: 1px dotted rgba($c-meta-h, 0.20);
       color: $c-meta-h;
     }
-  }
-}
-.entry-meta-buttons {
-  @extend %button-container;
-}
-.edit-link,
-.leave-reply {
-  @include rem('margin-top', $spacer/2);
-}
-
-// Hide last updated
-.entry-meta-main {
-  .last-updated {
-    //display: none;
-  }
-}
-
-// Hide author on single author blogs
-.single-author {
-  .by-author {
-    //display: none;
-  }
-}
-
-// Show the author in entry meta on pages
-.page {
-  .by-author {
-    //display: inline;
   }
 }
