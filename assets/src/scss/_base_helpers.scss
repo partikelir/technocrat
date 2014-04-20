@@ -1,0 +1,54 @@
+// ==== HELPERS ==== //
+
+// These helper classes are meant to be used with @extend
+
+// Clearing
+%clearfix-above {
+  &:before {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+%clearfix-below {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+%clearfix {
+  @extend %clearfix-above;
+  @extend %clearfix-below;
+}
+
+// Spacer shortcuts
+%spacer-above {
+  @include rem('margin-top', $spacer);
+}
+%spacer-below {
+  @include rem('margin-bottom', $spacer);
+}
+
+// A shortcut to apply the header font and basic style
+%font-header {
+  font-family: $font-head;
+  font-weight: 400;
+}
+
+// Small headers
+%small-headers {
+  @include font-sizer($h5);
+  @extend %font-header;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+// Right-aligned button container
+%button-container {
+  @include rem('margin-left', $spacer/2);
+  float: right;
+  height: $spacer;
+}

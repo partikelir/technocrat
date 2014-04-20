@@ -63,6 +63,7 @@ article.post-password-required input[type=submit],
   .current_page_item > a,
   .current_page_ancestor > a {
     color: $c-menu-current;
+    font-weight: 200;
   }
   li {
     @include font-sizer($font-size);

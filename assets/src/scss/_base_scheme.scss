@@ -45,9 +45,9 @@ $c-link-a:        saturate(lighten($c-link, 13), 13);
 $c-link-f:        saturate(lighten($c-link, 17), 7);
 
 // Main menu
-$c-menu-link:     lighten($c-body, 37);
+$c-menu-link:     lighten($c-body, 33);
 $c-menu-link-h:   $c-highlight;
-$c-menu-current:  lighten($c-menu-link, 17);
+$c-menu-current:  lighten($c-menu-link, 23);
 $c-menu-bg:       darken($c-body-bg, 3);
 
 // Elements: mostly defined in _general.scss
