@@ -1,24 +1,28 @@
 <?php // === NAVIGATION === //
 
 // Hack: switch navigation links from "newer" and "older" to "next" and "previous"; solves UI problems with custom post ordering
-function pendrell_content_nav( $html_id ) {
-  global $wp_query;
+function pendrell_content_nav( $html_id = '' ) {
+
+  // Don't print empty markup if there's only one page
+  if ( $GLOBALS['wp_query']->max_num_pages < 2 )
+    return;
 
   $html_id = esc_attr( $html_id );
 
   // Don't display top navigation on page 1; it creates unnecessary visual clutter
-  if (
-    ( is_paged() && $html_id === 'nav-above' )
+  if ( ( $html_id === 'nav-above' && is_paged() )
     || $html_id !== 'nav-above'
   ) {
+    ?><nav class="<?php echo $html_id; ?> page-navigation" role="navigation">
+      <h1 class="screen-reader-text"><?php _e( 'Post navigation', 'pendrell' ); ?></h1>
+      <?php if ( get_previous_posts_link() ) { ?>
+        <div class="nav-previous"><?php previous_posts_link( __( '<span class="nav-arrow">&larr; </span>Previous', 'pendrell' ) ); ?></div>
+      <?php }
 
-    if ( $wp_query->max_num_pages > 1 ) {
-    ?><nav id="<?php echo $html_id; ?>" class="page-navigation" role="navigation">
-      <h3 class="assistive-text"><?php _e( 'Post navigation', 'pendrell' ); ?></h3>
-      <div class="nav-previous"><?php previous_posts_link( __( '<span class="nav-arrow">&larr; </span>Previous', 'pendrell' ) ); ?></div>
-      <div class="nav-next"><?php next_posts_link( __( 'Next<span class="nav-arrow"> &rarr;</span>', 'pendrell' ) ); ?></div>
-    </nav><!-- #<?php echo $html_id; ?> .navigation --><?php
-    }
+      if ( get_next_posts_link() ) { ?>
+        <div class="nav-next"><?php next_posts_link( __( 'Next<span class="nav-arrow"> &rarr;</span>', 'pendrell' ) ); ?></div>
+      <?php } ?>
+    </nav><!-- .page-navigation --><?php
   }
 }
 
