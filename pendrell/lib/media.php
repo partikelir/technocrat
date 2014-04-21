@@ -24,32 +24,36 @@ function pendrell_image_wrapper() {
     $description = $post->post_content;
   }
 
-  // If Ubik is installed...
-  if ( function_exists( 'ubik_image_markup' ) ) {
-    $content = ubik_image_markup( $html, $id, $caption, $title = '', $align = 'alignnone', $url = '', $size );
+  // Check to see if we have anything; image format posts without thumbnails will return nothing
+  if ( !empty( $id ) ) {
 
-  // This is working, tested code but Ubik does things in a slightly more refined way
-  } else {
+    // If Ubik is installed...
+    if ( function_exists( 'ubik_image_markup' ) ) {
+      $content = ubik_image_markup( $html, $id, $caption, $title = '', $align = 'alignnone', $url = '', $size );
 
-    $aria = '';
-    if ( !empty( $caption ) )
-      $aria = 'aria-describedby="figcaption-' . $id . '" ';
+    // This is working, tested code but Ubik does things in a slightly more refined way
+    } else {
 
-    $content = '<figure id="' . $id . '" ' . $aria . 'class="wp-caption" itemscope itemtype="http://schema.org/ImageObject">' . "\n";
-    $content .= $html . "\n";
+      $aria = '';
+      if ( !empty( $caption ) )
+        $aria = 'aria-describedby="figcaption-' . $id . '" ';
 
-    if ( !empty( $caption ) )
-      $content .= '<figcaption id="figcaption-' . $id . '" class="wp-caption-text" itemprop="caption">' . $caption . '</figcaption>' . "\n";
+      $content = '<figure id="' . $id . '" ' . $aria . 'class="wp-caption" itemscope itemtype="http://schema.org/ImageObject">' . "\n";
+      $content .= $html . "\n";
 
-    $content .= '</figure>' . "\n";
+      if ( !empty( $caption ) )
+        $content .= '<figcaption id="figcaption-' . $id . '" class="wp-caption-text" itemprop="caption">' . $caption . '</figcaption>' . "\n";
 
+      $content .= '</figure>' . "\n";
+
+    }
+
+    // Raw description; let's pass it through the content filter
+    if ( !empty( $description ) )
+      $content .= apply_filters( 'the_content', $description );
+
+    echo $content;
   }
-
-  // Raw description; let's pass it through the content filter
-  if ( !empty( $description ) )
-    $content .= apply_filters( 'the_content', $description );
-
-  echo $content;
 }
 
 
