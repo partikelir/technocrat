@@ -24,7 +24,7 @@ function pendrell_is_full_width() {
 
 
 
-// Make some image-heavy categories full-width
+// Force certain categories to be full-width; a good example of how to filter the pendrell_is_full_width conditional
 function pendrell_full_width_cats() {
   $pendrell_portfolio_cats = array( 'design', 'photography', 'creative' );
   if (

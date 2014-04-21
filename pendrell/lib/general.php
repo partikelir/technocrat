@@ -15,8 +15,9 @@ function pendrell_enqueue_scripts() {
     wp_enqueue_style( 'pendrell-fonts', esc_url_raw( $font_url ), array(), null );
   }
 
-  // Loads our main stylesheet.
-  wp_enqueue_style( 'pendrell-style', get_stylesheet_uri() );
+  // Register and enqueue our main stylesheet with versioning based on last modified time
+  wp_register_style( 'pendrell-style', get_stylesheet_uri(), array(), filemtime( get_template_directory() . '/style.css' ) );
+  wp_enqueue_style( 'pendrell-style' );
 }
 add_action( 'wp_enqueue_scripts', 'pendrell_enqueue_scripts' );
 
