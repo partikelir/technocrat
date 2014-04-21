@@ -164,5 +164,7 @@ pip-log.txt
 
 functions-config.php
 .sass-cache
-assets/staging
+bower_components
 node_modules
+assets/staging
+assets/bower_components

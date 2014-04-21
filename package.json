@@ -1,7 +1,7 @@
 {
   "name": "wp-pendrell",
-  "version": "0.7.0",
-  "description": "A minimalistic yet fully-featured WordPress theme for personal blogs",
+  "version": "0.8.0",
+  "description": "A minimal yet fully-featured WordPress theme.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

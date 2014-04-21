@@ -26,6 +26,9 @@ $break-single-column: $main-width + ($spacer * 6); // Causes sidebar to slide be
 $break-medium: $main-width;
 $break-large: $content-width;
 
+// Normalize
+@import "base_normalize";
+
 // Reset
 @import "base_reset";
 
