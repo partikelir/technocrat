@@ -3,10 +3,10 @@
 // Enqueue scripts
 function pendrell_enqueue_scripts() {
 
-  // Load theme-specific JavaScript
+  // Load theme-specific JavaScript with versioning based on last modified time
 	if ( !is_admin() ) { // http://www.ericmmartin.com/5-tips-for-using-jquery-with-wordpress/
-		wp_enqueue_script( 'pendrell', get_stylesheet_directory_uri() . '/pendrell.min.js', array( 'jquery' ), '0.1', true );
-    wp_enqueue_script( 'pendrell-plugins', get_stylesheet_directory_uri() . '/pendrell-plugins.min.js', array( 'jquery' ), '0.1', true );
+		wp_enqueue_script( 'pendrell', get_stylesheet_directory_uri() . '/pendrell.min.js', array( 'jquery' ), filemtime( get_template_directory() . '/pendrell.min.js' ), true );
+    wp_enqueue_script( 'pendrell-plugins', get_stylesheet_directory_uri() . '/pendrell-plugins.min.js', array( 'jquery' ), filemtime( get_template_directory() . '/pendrell-plugins.min.js' ), true );
 	}
 
   // Override Twenty Twelve font styles
