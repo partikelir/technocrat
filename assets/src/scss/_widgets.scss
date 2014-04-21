@@ -4,6 +4,7 @@
   color: $c-widget-head;
 }
 .widget-area {
+  @extend %bordered-links;
   @media screen and (min-width: $break-single-column) {
     float: right;
     width: percentage( $sidebar-width / $content-width );

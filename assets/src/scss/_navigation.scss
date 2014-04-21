@@ -35,6 +35,7 @@ article.post-password-required input[type=submit],
 
 // Menu toggle for mobile phones
 .menu-toggle {
+  cursor: pointer;
   display: inline-block;
   position: absolute;
   @include rem('right', $spacer);
@@ -154,6 +155,7 @@ article.post-password-required input[type=submit],
 // General navigation
 .page-links,
 .page-navigation {
+  @extend %bordered-links;
   @extend %clearfix-below;
   @extend %spacer-below;
 }

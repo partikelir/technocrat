@@ -1,5 +1,19 @@
 // ==== GENERAL ==== //
 
+// Reset type stuff carried over from Twenty Twelve
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, tt, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+}
+html {
+  font-size: 100%;
+  overflow-y: scroll; // Keeps page centered in all browsers regardless of content height
+  -webkit-text-size-adjust: 100%; // Prevents iOS text size adjust after orientation change, without disabling user zoom
+  -ms-text-size-adjust: 100%; // www.456bereastreet.com/archive/201012/controlling_text_size_in_safari_for_ios_without_disabling_user_zoom/
+}
+
 // Body, headers, and monospaced font declarations
 body {
   @include font-sizer($font-size);
@@ -7,6 +21,7 @@ body {
   background-color: $c-body-bg;
   font-family: $font-body;
   text-rendering: optimizeLegibility;
+  word-wrap: break-word;
 }
 h1,h2,h3,h4,h5,h6 {
   @extend %font-header;
@@ -37,7 +52,6 @@ a {
   }
   &:hover {
     color: $c-link-h;
-    outline: 0; // Improves readability when focused and also mouse hovered in all browsers people.opera.com/patrickl/experiments/keyboard/test
     transition: all .4s ease;
   }
   &:active {
@@ -46,36 +60,14 @@ a {
   }
   &:focus {
     color: $c-link-f;
-  }
-}
-
-// Links with borders; only in certain areas
-.entry-content,
-.comment-content,
-.widget-area,
-.page-navigation {
-  a {
-    border-bottom: 1px dotted rgba($c-link, 0.25);
-    &:visited {
-      border-bottom: 1px dotted rgba($c-link-v, 0.20);
-    }
-    &:hover {
-      border-bottom: 1px solid rgba($c-link-h, 0.30);
-    }
-    &:active {
-      border-bottom: 1px solid rgba($c-link-a, 0.25);
-    }
-    &:focus {
-      border-bottom: 1px dotted rgba($c-link-f, 0.25);
-    }
+    outline: thin dotted; // From Twenty Twelve
   }
 }
 
 
 
 // Reset-like things with variables or WordPress-specific styling
-abbr,
-acronym {
+abbr {
   border-bottom: $divider;
   color: $c-abbr;
   line-height: 0;
@@ -85,10 +77,15 @@ acronym {
 }
 address {
   @extend %spacer-below;
-  font-style: normal; // Italic is sometimes a bit harder to read
+  font-style: normal; // Italics is sometimes a bit harder to read
   &::first-line {
     font-weight: bold;
   }
+}
+cite,
+em,
+i {
+  font-style: italic;
 }
 del {
   color: $c-del;
@@ -106,20 +103,47 @@ hr {
   height: 1px;
 }
 mark {
+  background: $c-mark-bg;
+  color: $c-mark;
   text-decoration: none;
+}
+// Both of these are deprecated but I occasionally use them
+s,
+strike {
+  text-decoration: line-through;
+}
+sub,
+sup {
+  height: 0; // @TODO: still necessary?
+}
+small {
+  line-height: 0;
+}
+
+
+
+// Blockquote and quotations
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
 }
 
 
 
 // Pre, code, and monospaced; @TODO: fix horizontal scrollbars; currently code blocks do not scroll
 pre {
-  overflow: auto;
   tab-size: 2;
   white-space: pre;
 }
 code,
 kbd,
-tt,
 var {
   display: inline;
   line-height: 0; // Fixes vertical rhythm for oversized monospaced fonts
@@ -128,7 +152,79 @@ var {
 
 
 
+// Lists and definitions
+ol,
+ul {
+  list-style: none;
+}
+li {
+
+}
+ul,
+ol,
+dl {
+  font-family: inherit;
+  font-size: 100%;
+  font-style: normal;
+  font-weight: normal;
+}
+dl {
+  list-style: none;
+  dt {
+    font-weight: bold;
+  }
+}
+
+
+
+// Tables and figures
+caption,
+th,
+td {
+  font-weight: normal;
+  text-align: left;
+}
+th {
+  font-weight: bold;
+}
+figure {
+  margin: 0; // Resets normalize.css
+}
+figcaption {
+  font-style: italic;
+}
+
+
+
+// Multimedia
+img {
+  height: auto; // Make sure images are scaled correctly
+  max-width: 100%; // Adhere to container width
+  -ms-interpolation-mode: bicubic; // From Twenty Twelve
+}
+embed,
+iframe,
+object,
+video {
+  max-width: 100%; // Make sure embeds and iframes fit their containers
+}
+
+
+
 // == FORMS == //
+button,
+input,
+select,
+textarea {
+  font-size: 100%; // Corrects font size not being inherited in all browsers
+  margin: 0; // Addresses margins set differently in IE6/7, F3/4, S5, Chrome
+  vertical-align: baseline; // Improves appearance and consistency in all browsers
+  *vertical-align: middle; // Improves appearance and consistency in all browsers
+}
+textarea {
+  font-size: 100%;
+  vertical-align: top;
+}
 button,
 input,
 textarea {
@@ -142,14 +238,25 @@ textarea {
     background-color: darken($c-body-bg, 3);
   }
 }
-.menu-toggle,
-button,
-input[type="submit"],
-input[type="button"],
-input[type="reset"] {
-  cursor: pointer;
+input[type="checkbox"],
+input[type="radio"],
+input[type="file"],
+input[type="hidden"],
+input[type="image"],
+input[type="color"] {
+  border: 0;
+  border-radius: 0;
+  padding: 0;
 }
-button[disabled],
-input[disabled] {
-  cursor: default;
+
+
+
+// Hyphenation off
+abbr,
+code,
+kbd,
+q,
+samp,
+var {
+  hyphens: none;
 }

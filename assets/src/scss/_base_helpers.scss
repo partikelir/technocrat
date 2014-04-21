@@ -2,7 +2,7 @@
 
 // These helper classes are meant to be used with @extend
 
-// Clearing
+// Clearing; these selectors have been broken into before and after for greater utility
 %clearfix-above {
   &:before {
     content: "";
@@ -10,7 +10,6 @@
     clear: both;
   }
 }
-
 %clearfix-below {
   &:after {
     content: "";
@@ -18,13 +17,12 @@
     clear: both;
   }
 }
-
 %clearfix {
   @extend %clearfix-above;
   @extend %clearfix-below;
 }
 
-// Spacer shortcuts
+// Spacing shortcuts
 %spacer-above {
   @include rem('margin-top', $spacer);
 }
@@ -38,7 +36,7 @@
   font-weight: 400;
 }
 
-// Small headers
+// Small header style
 %small-headers {
   @include font-sizer($h5);
   @extend %font-header;
@@ -51,4 +49,23 @@
   @include rem('margin-left', $spacer/2);
   float: right;
   height: $spacer;
+}
+
+// Links with bottom borders
+%bordered-links {
+  a {
+    border-bottom: 1px dotted rgba($c-link, 0.25);
+    &:visited {
+      border-bottom: 1px dotted rgba($c-link-v, 0.20);
+    }
+    &:hover {
+      border-bottom: 1px solid rgba($c-link-h, 0.30);
+    }
+    &:active {
+      border-bottom: 1px solid rgba($c-link-a, 0.25);
+    }
+    &:focus {
+      border-bottom: 1px dotted rgba($c-link-f, 0.25);
+    }
+  }
 }

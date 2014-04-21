@@ -1,0 +1,16 @@
+// ==== DEPRECATED ==== //
+
+// This file is essentially a trash bin for styles that apply to deprecated elements in the HTML5 spec
+
+acronym {
+  @extend abbr;
+}
+
+big {
+  font-size: 120%;
+  line-height: 0;
+}
+
+tt {
+  @extend var;
+}

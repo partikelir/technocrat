@@ -21,12 +21,12 @@
 
 
 // Post contents
-.site-content article {
+.content-area article {
   @include rem('margin-bottom', $spacer*3);
 }
-
 .entry-content,
 .comment-content {
+  @extend %bordered-links;
   @extend %clearfix-below;
   hyphens: auto; // Let autoprefix do the rest
 
@@ -77,8 +77,8 @@
 
   // Blockquote and quotations
   blockquote {
-    @include text-box();
-    @include font-sizer(24);
+    @include text-box;
+    @include font-sizer($h3);
     font-style: italic;
     p {
       @include rem('padding-bottom', $spacer); // Padding is used instead of margins because of the blockquote background
@@ -93,7 +93,7 @@
       }
     }
     footer {
-      @include font-sizer(16);
+      @include font-sizer($h4);
       @include rem('padding-bottom', $spacer);
       display: block;
       font-style: normal;
@@ -107,7 +107,7 @@
     li > code,
     p > code,
     strong > code {
-      @include font-sizer(20);
+      @include font-sizer($font-size);
       @include highlight( darken($c-code-bg, 7) );
     }
   }
@@ -123,8 +123,8 @@
 
   // Pre and code blocks
   pre {
-    @include font-sizer(16);
-    @include text-box();
+    @include font-sizer($h4);
+    @include text-box;
     @include rem('padding-bottom', $spacer); // Needs to follow text-box
     color: $c-pre;
   }
@@ -133,7 +133,7 @@
   li > code,
   p > code,
   strong > code {
-    @include font-sizer(16);
+    @include font-sizer($h4);
     @include highlight($c-code-bg);
     color: $c-code;
     line-height: 0;
@@ -150,7 +150,7 @@
     @include rem('margin-bottom', $spacer, 1);
     width: 100%;
     caption {
-      @include font-sizer(16);
+      @include font-sizer($h4);
       @include rem('margin', $spacer 0);
     }
   }
@@ -158,7 +158,7 @@
     @extend %small-headers;
   }
   td {
-    @include font-sizer(14, 1);
+    @include font-sizer($h5, 1);
     border-top: $divider;
   }
 

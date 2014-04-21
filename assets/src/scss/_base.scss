@@ -29,8 +29,8 @@ $break-large: $content-width;
 // Normalize
 @import "base_normalize";
 
-// Reset
-@import "base_reset";
+// Scut
+@import "../../bower_components/scut/dist/scut";
 
 // Helpers
 @import "base_helpers";
