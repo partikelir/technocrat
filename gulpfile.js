@@ -8,12 +8,6 @@ var gulp      = require('gulp')
 
 var build     = "./pendrell/";
 
-gulp.task('components', function() {
-  return gulp.src(['assets/bower_components/normalize.css/normalize.css'])
-  .pipe(plugins.rename('_base_normalize.scss'))
-  .pipe(gulp.dest('assets/src/scss'));
-});
-
 gulp.task('styles', function() {
   return gulp.src(['assets/src/scss/*.scss', '!assets/src/scss/_*.scss'])
   .pipe(plugins.rubySass({ precision: 5 })) // don't forget to `gem install sass`
@@ -74,4 +68,10 @@ gulp.task('watch', function() {
 
 });
 
-gulp.task('default', ['components', 'styles', 'plugins', 'scripts', 'images', 'watch']);
+gulp.task('bower_components', function() {
+  return gulp.src(['assets/bower_components/normalize.css/normalize.css'])
+  .pipe(plugins.rename('_base_normalize.scss'))
+  .pipe(gulp.dest('assets/src/scss'));
+});
+
+gulp.task('default', ['styles', 'plugins', 'scripts', 'images', 'watch']);
