@@ -56,7 +56,7 @@ $c-blockquote:    lighten($c-body, 13);
 $c-blockquote-bg: darken($c-body-bg, 3);
 $c-code:          lighten($c-body, 13);
 $c-code-bg:       darken($c-body-bg, 3);
-$c-del:           lighten($c-body, 13);
+$c-del:           lighten($c-body, 27);
 $c-hr:            darken($c-body-bg, 17);
 $c-ins-bg:        $c-yellow;
 $c-mark:          lighten($c-body, 19);

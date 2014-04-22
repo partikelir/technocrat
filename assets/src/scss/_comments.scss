@@ -8,8 +8,8 @@
   }
 }
 .comments-title {
-  @include font-sizer($h3);
   @extend %spacer-below;
+  @include font-sizer($h3);
 }
 .comment-meta {
   @extend %clearfix-below;
@@ -87,8 +87,8 @@
     @extend %spacer-below;
   }
   p.form-allowed-tags {
-    @include font-sizer($h5);
     @extend %spacer-below;
+    @include font-sizer($h5);
     color: lighten($c-body, 10);
   }
   #cancel-comment-reply-link {

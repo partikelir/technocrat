@@ -9,9 +9,8 @@
 }
 .aligncenter {
   @extend %clearfix-below;
+  @include scut-center-block;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 
@@ -45,16 +44,13 @@
 // References list; for use with scholarly works
 .references {
   @include font-sizer($h5);
-  h3 {
-    @include font-sizer($h3);
-  }
   ol,
   ul {
     list-style: none;
   }
   li {
-    @include rem('margin', 0 0 0 $spacer); // This is a duplicate of the default list item styling; it is placed here to make this CSS modular
-    text-indent: -$spacer; // In the future: "hanging" should suffice
+    @include scut-hanging-indent($spacer);
+    margin: 0;
   }
 }
 
@@ -68,12 +64,11 @@
 }
 #menu-header .assistive-text:focus {
   @include border-radius;
-  background: #fff;
+  background: transparent;
   border: 2px solid #333;
   clip: auto !important;
   color: #000;
   display: block;
-  font-size: 12px;
   padding: 12px;
   position: absolute;
   top: 5px;
@@ -105,5 +100,5 @@
 
 // Hide that mysterious smiley face that appears when you use Jetpack
 img#wpstats {
-  display: none;
+  @include scut-hide-visually;
 }

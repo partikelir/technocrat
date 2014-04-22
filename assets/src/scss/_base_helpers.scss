@@ -56,16 +56,18 @@
   a {
     border-bottom: 1px dotted rgba($c-link, 0.25);
     &:visited {
-      border-bottom: 1px dotted rgba($c-link-v, 0.20);
+      border-bottom-color: rgba($c-link-v, 0.20);
     }
     &:hover {
-      border-bottom: 1px solid rgba($c-link-h, 0.30);
+      border-bottom-color: rgba($c-link-h, 0.30);
+      border-bottom-style: solid;
     }
     &:active {
-      border-bottom: 1px solid rgba($c-link-a, 0.25);
+      border-bottom-color: rgba($c-link-a, 0.25);
+      border-bottom-style: solid;
     }
     &:focus {
-      border-bottom: 1px dotted rgba($c-link-f, 0.25);
+      border-bottom-color: rgba($c-link-f, 0.25);
     }
   }
 }

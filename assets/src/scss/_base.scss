@@ -1,5 +1,8 @@
 // ==== BASE ==== //
 
+// Scut
+@import "../../bower_components/scut/dist/scut";
+
 // Base font module
 @import "base_fonts";
 
@@ -29,8 +32,8 @@ $break-large: $content-width;
 // Normalize
 @import "base_normalize";
 
-// Scut
-@import "../../bower_components/scut/dist/scut";
+// Reset
+@import "base_reset";
 
 // Helpers
 @import "base_helpers";

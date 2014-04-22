@@ -21,14 +21,12 @@
 
 
 // Post contents
-.content-area article {
-  @include rem('margin-bottom', $spacer*3);
-}
 .entry-content,
 .comment-content {
   @extend %bordered-links;
   @extend %clearfix-below;
-  hyphens: auto; // Let autoprefix do the rest
+  hyphens: auto;
+  word-wrap: break-word;
 
   // Headers
   h1,h2,h3,h4,h5,h6 {
@@ -44,7 +42,7 @@
   ol,
   ul,
   dl {
-    @include rem('margin', 0 0 $spacer);
+    @include rem('margin-bottom', $spacer);
   }
   ul ul,
   ol ol,
@@ -77,16 +75,18 @@
 
   // Blockquote and quotations
   blockquote {
-    @include text-box;
     @include font-sizer($h3);
-    font-style: italic;
+    @include scut-reverse-italics;
+    @include text-box;
     p {
       @include rem('padding-bottom', $spacer); // Padding is used instead of margins because of the blockquote background
       margin: 0;
+
       // Add opening and closing quotation marks to the blockquote element
       &:first-child::before {
         content: "\201C";
       }
+
       // Correctly adds quotation mark when footer or cite elements are present at the end of the blockquote
       &:nth-last-of-type(1)::after {
         content: "\201D";
@@ -151,7 +151,6 @@
     width: 100%;
     caption {
       @include font-sizer($h4);
-      @include rem('margin', $spacer 0);
     }
   }
   th {
@@ -221,8 +220,8 @@
   @extend %button-container;
 }
 .entry-meta-main {
-  @include font-sizer($h5);
   @extend %clearfix-below;
+  @include font-sizer($h5);
   color: $c-meta;
   a {
     border-bottom: 1px dotted rgba($c-meta, 0.25);

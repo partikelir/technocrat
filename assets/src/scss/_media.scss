@@ -8,16 +8,16 @@
 .wp-caption .wp-caption-text,
 .entry-caption {
   @include font-sizer($h4);
+  @include scut-reverse-italics;
   color: $c-caption;
-  font-style: italic;
 }
 
 
 
 // Image attachment metadata
 .image-info {
-  @include rem('padding-top', $spacer, 1);
   @extend %spacer-above;
+  @include rem('padding-top', $spacer, 1);
   border-top: $divider;
 }
 .image-description {
@@ -82,10 +82,10 @@ $gallery-padding: 5px;
   .gallery-caption-text {
     @include font-sizer($h5);
     @include rem('padding', 0 $gallery-padding + 5px 0 $gallery-padding );
+    @include scut-reverse-italics;
     box-sizing: border-box;
     color: #fff;
     cursor: pointer;
-    font-style: italic;
     margin: 0 auto;
     opacity: 0;
     position: absolute;

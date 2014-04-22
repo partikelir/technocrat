@@ -19,6 +19,12 @@
     float: left;
     width: percentage( $main-width / $content-width );
   }
+
+  // Individual articles
+  article {
+    @include rem('margin-bottom', $spacer*3);
+  }
+
   // Full-width layouts as specified in `pendrell/lib/various.php`
   body.full-width & {
     width: 100%;
@@ -54,12 +60,8 @@
   }
   .site-description {
     @include font-sizer($h6);
+    @include scut-hide-visually;
     color: $c-site-desc, 47;
-    display: none;
-    // Everything looks much nicer without the description but it should remain in the markup for SEO purposes
-    //@media screen and (min-width: $break-medium) {
-    //  display: block;
-    //}
   }
 }
 
@@ -68,10 +70,10 @@
 // == FOOTER == //
 
 .site-footer {
+  @extend %clearfix-below;
   @include rem('margin-top', $spacer, 1);
   @include rem('max-width', $content-width);
   @include rem('padding', $spacer/2 0);
-  @extend %clearfix-below;
   border-top: $divider;
   a {
     color: lighten($c-body, 14);

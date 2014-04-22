@@ -1,19 +1,5 @@
 // ==== GENERAL ==== //
 
-// Reset type stuff carried over from Twenty Twelve
-html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, tt, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, menu, nav, output, ruby, section, summary, time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  vertical-align: baseline;
-}
-html {
-  font-size: 100%;
-  overflow-y: scroll; // Keeps page centered in all browsers regardless of content height
-  -webkit-text-size-adjust: 100%; // Prevents iOS text size adjust after orientation change, without disabling user zoom
-  -ms-text-size-adjust: 100%; // www.456bereastreet.com/archive/201012/controlling_text_size_in_safari_for_ios_without_disabling_user_zoom/
-}
-
 // Body, headers, and monospaced font declarations
 body {
   @include font-sizer($font-size);
@@ -21,7 +7,6 @@ body {
   background-color: $c-body-bg;
   font-family: $font-body;
   text-rendering: optimizeLegibility;
-  word-wrap: break-word;
 }
 h1,h2,h3,h4,h5,h6 {
   @extend %font-header;
@@ -89,27 +74,27 @@ i {
 }
 del {
   color: $c-del;
+  text-decoration: line-through;
 }
 ins {
   @include highlight($c-ins-bg);
   text-decoration: none;
 }
 hr {
+  @extend %clearfix;
   @include rem('margin-bottom', $spacer/2);
   @include rem('margin-top', $spacer/2, 1);
-  @extend %clearfix;
   background-color: $c-hr;
   border: 0;
   height: 1px;
 }
+// This element is styled in _search.scss
 mark {
-  background: $c-mark-bg;
-  color: $c-mark;
+  background: transparent;
+  color: $c-body;
   text-decoration: none;
 }
-// Both of these are deprecated but I occasionally use them
-s,
-strike {
+s {
   text-decoration: line-through;
 }
 sub,
@@ -141,6 +126,7 @@ q:after {
 pre {
   tab-size: 2;
   white-space: pre;
+  //word-wrap: normal;
 }
 code,
 kbd,
@@ -149,6 +135,9 @@ var {
   line-height: 0; // Fixes vertical rhythm for oversized monospaced fonts
   white-space: pre-wrap;
 }
+pre code {
+  white-space: pre;
+}
 
 
 
@@ -156,9 +145,6 @@ var {
 ol,
 ul {
   list-style: none;
-}
-li {
-
 }
 ul,
 ol,
@@ -190,9 +176,6 @@ th {
 figure {
   margin: 0; // Resets normalize.css
 }
-figcaption {
-  font-style: italic;
-}
 
 
 
@@ -211,7 +194,7 @@ video {
 
 
 
-// == FORMS == //
+// Forms
 button,
 input,
 select,
@@ -251,7 +234,7 @@ input[type="color"] {
 
 
 
-// Hyphenation off
+// Hyphenation off for certain elements
 abbr,
 code,
 kbd,

@@ -15,6 +15,6 @@ article.format-aside,
 article.format-quote,
 article.format-status {
   header {
-    display: none;
+    @include scut-hide-visually;
   }
 }

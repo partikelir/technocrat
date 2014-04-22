@@ -8,12 +8,12 @@ input[type="button"],
 input[type="reset"],
 article.post-password-required input[type=submit],
 #cancel-comment-reply-link {
+  @extend %font-header;
   @include border-radius;
   @include box-shadow(0 1px 2px rgba(64, 64, 64, 0.1));
   @include font-sizer($h5, 2);
   @include rem('padding', 0 $spacer/4);
   @include vertical-gradient($startColor: #f4f4f4, $endColor: #e6e6e6);
-  @extend %font-header;
   border: 1px solid #d2d2d2;
   color: lighten($c-body, 22);
   display: inline-block;
@@ -67,17 +67,17 @@ article.post-password-required input[type=submit],
     font-weight: 200;
   }
   li {
+    @extend %font-header;
     @include font-sizer($font-size);
     @include rem('margin', 0 $spacer 0 0);
-    @extend %font-header;
     font-weight: 400;
     display: inline-block;
     position: relative;
-    //text-transform: uppercase;
     vertical-align: middle;
+
     // Don't bother displaying secondary and tertiary menu items on small screens
     ul {
-      display: none;
+      @include scut-hide-visually;
     }
   }
 }
@@ -161,8 +161,8 @@ article.post-password-required input[type=submit],
 }
 .nav-above,
 .nav-below {
-  @include rem('margin-bottom', $spacer*2);
   @extend %clearfix;
+  @include rem('margin-bottom', $spacer*2);
 }
 .nav-previous {
   float: left;
