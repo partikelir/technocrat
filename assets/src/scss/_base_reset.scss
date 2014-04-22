@@ -3,7 +3,7 @@
 // Normalize module attempts to eliminate browser differences; reset module is meant to get rid of common default styling
 
 // Get rid of borders, margins, and padding
-html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+/*html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, menu, nav, output, ruby, section, summary, time, mark, audio, video {
   border: 0;
   margin: 0;
   padding: 0;
@@ -15,4 +15,7 @@ html {
   overflow-y: scroll; // Keeps page centered in all browsers regardless of content height
   -webkit-text-size-adjust: 100%; // Prevents iOS text size adjust after orientation change, without disabling user zoom
   -ms-text-size-adjust: 100%; // www.456bereastreet.com/archive/201012/controlling_text_size_in_safari_for_ios_without_disabling_user_zoom/
-}
+}*/
+
+// Let the Eric Meyer reset handle this; Twenty Twelve uses too broad a brush
+@import "../../bower_components/meyer-reset/stylesheets/meyer-reset";

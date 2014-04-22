@@ -107,26 +107,11 @@ small {
 
 
 
-// Blockquote and quotations
-blockquote,
-q {
-  quotes: none;
-}
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-  content: '';
-  content: none;
-}
-
-
-
-// Pre, code, and monospaced; @TODO: fix horizontal scrollbars; currently code blocks do not scroll
+// Pre, code, and monospaced stuff
 pre {
   tab-size: 2;
   white-space: pre;
-  //word-wrap: normal;
+  word-wrap: normal; // Allows for horizontal scrollbars
 }
 code,
 kbd,
@@ -136,21 +121,15 @@ var {
   white-space: pre-wrap;
 }
 pre code {
-  white-space: pre;
+  white-space: pre; // Allows for horizontal scrollbars
 }
 
 
 
 // Lists and definitions
-ol,
-ul {
-  list-style: none;
-}
 ul,
 ol,
 dl {
-  font-family: inherit;
-  font-size: 100%;
   font-style: normal;
   font-weight: normal;
 }
@@ -173,9 +152,6 @@ td {
 th {
   font-weight: bold;
 }
-figure {
-  margin: 0; // Resets normalize.css
-}
 
 
 
@@ -197,21 +173,8 @@ video {
 // Forms
 button,
 input,
-select,
 textarea {
-  font-size: 100%; // Corrects font size not being inherited in all browsers
-  margin: 0; // Addresses margins set differently in IE6/7, F3/4, S5, Chrome
-  vertical-align: baseline; // Improves appearance and consistency in all browsers
-  *vertical-align: middle; // Improves appearance and consistency in all browsers
-}
-textarea {
-  font-size: 100%;
-  vertical-align: top;
-}
-button,
-input,
-textarea {
-  @include border-radius();
+  @include border-radius;
   @include font-sizer($h5, 8);
   @include rem('padding', 3px);
   border: $divider;
@@ -227,9 +190,13 @@ input[type="file"],
 input[type="hidden"],
 input[type="image"],
 input[type="color"] {
-  border: 0;
   border-radius: 0;
-  padding: 0;
+}
+// Textarea is not reset in the Eric Meyer reset
+textarea {
+  font-size: 100%;
+  margin: 0;
+  vertical-align: top;
 }
 
 
