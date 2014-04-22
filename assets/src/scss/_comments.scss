@@ -25,9 +25,6 @@
 }
 .comment-meta-main {
   @extend .entry-meta-main;
-  h3 {
-    @include font-sizer($h4);
-  }
 }
 
 
@@ -38,8 +35,10 @@
   @extend %button-container;
 }
 .comment-list {
-  .pingback {
+  .pingback,
+  .trackback {
     @include font-sizer($h5);
+    @include ghost;
   }
   // Threaded comments
   .children {
@@ -58,7 +57,7 @@
   label {
     @extend %font-header;
     display: block;
-    font-weight: bold;
+    font-weight: 600;
     text-transform: uppercase;
   }
   input[type="text"],

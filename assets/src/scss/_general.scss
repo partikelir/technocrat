@@ -64,7 +64,7 @@ address {
   @extend %spacer-below;
   font-style: normal; // Italics is sometimes a bit harder to read
   &::first-line {
-    font-weight: bold;
+    font-weight: 600;
   }
 }
 cite,
@@ -136,7 +136,7 @@ dl {
 dl {
   list-style: none;
   dt {
-    font-weight: bold;
+    font-weight: 600;
   }
 }
 
@@ -150,7 +150,7 @@ td {
   text-align: left;
 }
 th {
-  font-weight: bold;
+  font-weight: 600;
 }
 
 
@@ -171,18 +171,10 @@ video {
 
 
 // Forms
-button,
+//button,
 input,
 textarea {
-  @include border-radius;
-  @include font-sizer($h5, 8);
-  @include rem('padding', 3px);
-  border: $divider;
-  color: lighten($c-body, 23);
-  font-family: inherit;
-  &:focus {
-    background-color: darken($c-body-bg, 3);
-  }
+  @include text-input;
 }
 input[type="checkbox"],
 input[type="radio"],

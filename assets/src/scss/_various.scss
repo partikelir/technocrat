@@ -25,11 +25,11 @@
 // Form entry
 .alert {
   color: $c-alert;
-  font-weight: bold;
+  font-weight: 600;
 }
 .alert-field {
+  @include box-shadow(0 0 6px $c-alert);
   border: 1px solid $c-alert;
-  box-shadow: 0 0 6px $c-alert;
   outline: none;
 }
 .required {

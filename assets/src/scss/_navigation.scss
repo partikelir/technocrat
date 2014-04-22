@@ -63,7 +63,7 @@ article.post-password-required input[type=submit],
   .current-menu-ancestor > a,
   .current_page_item > a,
   .current_page_ancestor > a {
-    color: $c-menu-current;
+    @include ghost;
     font-weight: 200;
   }
   li {
