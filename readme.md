@@ -18,7 +18,7 @@ This theme has no options page; modify the `functions-config-sample.php` file, r
 
 ### DEVELOPMENT
 
-I develop Pendrell on a local OS X development environment provisioned with npm, gulp, gem, and bower. If you know your way around those tools here is how you get started:
+I develop Pendrell on a local OS X development environment provisioned with npm, gulp, gem, and bower. If you know your way around those tools here is how to get started:
 
 ```
 npm install
@@ -28,9 +28,9 @@ gem install sass
 
 To build Pendrell after modifications: `gulp`.
 
-Note: Compass is *not* included by default, nor is it required.
+Pendrell is written in Sass without Compass. [Normalize.css](https://necolas.github.io/normalize.css/) and [Eric Meyer's reset](http://meyerweb.com/eric/tools/css/reset/) are integrated by default. [Scut](https://davidtheclark.github.io/scut/), a lightweight Sass utility library, is also used.
 
-*Fork this repo and you'll be able to receive updates as development continues.*
+*Fork this repo to receive updates as development continues.*
 
 ### PLUGINS
 
