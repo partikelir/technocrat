@@ -43,11 +43,11 @@
     text-align: left;
   }
   .site-title {
-    @include font-sizer($h2);
+    @include font-size($h2);
     font-weight: 200;
     text-transform: uppercase;
     @media screen and (min-width: $break-medium) {
-      @include font-sizer(48);
+      @include font-size(48);
     }
     a {
       color: $c-site-title;
@@ -59,7 +59,7 @@
     }
   }
   .site-description {
-    @include font-sizer($h6);
+    @include font-size($h6);
     @include scut-hide-visually;
     color: $c-site-desc, 47;
   }
@@ -74,7 +74,7 @@
   @include rem('margin-top', $spacer, 1);
   @include rem('max-width', $content-width);
   @include rem('padding', $spacer/2 0);
-  border-top: $divider;
+  border-top: $d-divider;
   a {
     color: lighten($c-body, 14);
     &:hover {
@@ -90,5 +90,5 @@
   }
 }
 .site-footer-info {
-  @include font-sizer($h6);
+  @include font-size($h6);
 }

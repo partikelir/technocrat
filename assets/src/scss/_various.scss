@@ -41,9 +41,16 @@
 
 
 
+// Footnotes; for use with Markdown Extra
+.footnotes {
+  @include font-size($h4);
+}
+
+
+
 // References list; for use with scholarly works
 .references {
-  @include font-sizer($h5);
+  @include font-size($h5);
   ol,
   ul {
     list-style: none;
@@ -56,45 +63,24 @@
 
 
 
-// Assistive text; Twenty Twelve cruft
-.assistive-text,
+// Screen reader text adapted from Twenty Twelve
 .screen-reader-text {
   clip: rect(1px, 1px, 1px, 1px);
   position: absolute !important;
+  #menu-header &:focus {
+    @include border-radius;
+    background: transparent;
+    border: 2px solid #333;
+    clip: auto !important;
+    color: #000;
+    display: block;
+    padding: 12px;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    z-index: 100000; // Above WP toolbar
+  }
 }
-#menu-header .assistive-text:focus {
-  @include border-radius;
-  background: transparent;
-  border: 2px solid #333;
-  clip: auto !important;
-  color: #000;
-  display: block;
-  padding: 12px;
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  z-index: 100000; // Above WP toolbar
-}
-
-
-
-// Something from Jetpack Markdown I want to take note of
-//.entry-content > .footnotes,
-//.entrytext > .footnotes,
-//.hentry .footnotes > ol {
-//  margin-top: 4em;
-//}
-
-//.entry-content > .footnotes > hr,
-//.entrytext > .footnotes > hr,
-//.hentry .footnotes > hr {
-//  margin-right: 50%;
-//}
-
-//.entry-content > .footnotes > ol,
-//.hentry .footnotes > ol {
-//  font-size: 87.5%;
-//}
 
 
 

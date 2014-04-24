@@ -1,6 +1,6 @@
 // ==== NAVIGATION ==== //
 
-// Buttons from Twenty Twelve
+// Buttons from Twenty Twelve; @TODO: totally redo all this garbage
 .button a,
 .menu-toggle,
 input[type="submit"],
@@ -11,21 +11,21 @@ article.post-password-required input[type=submit],
   @extend %font-header;
   @include border-radius;
   @include box-shadow(0 1px 2px rgba(64, 64, 64, 0.1));
-  @include font-sizer($h5, 2);
+  @include font-size($h5, 2);
   @include rem('padding', 0 $spacer/4);
-  @include vertical-gradient($startColor: #f4f4f4, $endColor: #e6e6e6);
+  @include gradient-vertical($d-gradient-begin, $d-gradient-end);
   border: 1px solid #d2d2d2;
   color: lighten($c-body, 22);
   display: inline-block;
   font-weight: normal;
   text-decoration: none;
   &:hover {
-    @include vertical-gradient($startColor: #f9f9f9, $endColor: #ebebeb);
+    @include gradient-vertical(#f9f9f9, #ebebeb);
     color: lighten($c-body, 13);
   }
   &:active {
     @include box-shadow-layered(inset 0 2px 3px 0 #c6c6c6, 0 1px 2px rgba(64, 64, 64, 0.1));
-    @include vertical-gradient($startColor: #e1e1e1, $endColor: #ebebeb);
+    @include gradient-vertical(#e1e1e1, #ebebeb);
     border-color: 1px solid #ebebeb;
     color: lighten($c-body, 37);
   }
@@ -43,9 +43,9 @@ article.post-password-required input[type=submit],
   @media screen and (min-width: $break-medium) {
     display: none;
   }
-}
-.menu-toggle.toggled-on {
-  @extend .menu-toggle:active;
+  &.toggled-on {
+    @extend .menu-toggle:active;
+  }
 }
 
 
@@ -68,7 +68,7 @@ article.post-password-required input[type=submit],
   }
   li {
     @extend %font-header;
-    @include font-sizer($font-size);
+    @include font-size($font-size);
     @include rem('margin', 0 $spacer 0 0);
     font-weight: 400;
     display: inline-block;
@@ -88,7 +88,7 @@ article.post-password-required input[type=submit],
 #menu-header {
   @include rem('margin-top', $spacer/2);
   ul.menu-header {
-    border-bottom: $divider;
+    border-bottom: $d-divider;
     display: none;
     margin: 0;
     text-indent: 0;
@@ -124,10 +124,10 @@ article.post-password-required input[type=submit],
           margin: 0;
           white-space: normal;
           a {
-            @include font-sizer($h5, 1);
+            @include font-size($h5, 1);
             @include rem('padding', 0 $spacer/4);
             background: $c-menu-bg;
-            border-bottom: $divider;
+            border-bottom: $d-divider;
             display: block;
             &:hover {
               background: darken($c-menu-bg, 3);
@@ -155,9 +155,9 @@ article.post-password-required input[type=submit],
 // General navigation
 .page-links,
 .page-navigation {
-  @extend %bordered-links;
   @extend %clearfix-below;
   @extend %spacer-below;
+  @include bordered-links;
 }
 .nav-above,
 .nav-below {
@@ -180,7 +180,7 @@ article.post-password-required input[type=submit],
 .breadcrumbs {
   @extend %spacer-below;
   li {
-    @include font-sizer($h4);
+    @include font-size($h4);
     display: inline-block;
     margin-left: 0;
     & + li:before {

@@ -9,7 +9,7 @@
 }
 .comments-title {
   @extend %spacer-below;
-  @include font-sizer($h3);
+  @include font-size($h3);
 }
 .comment-meta {
   @extend %clearfix-below;
@@ -37,7 +37,7 @@
 .comment-list {
   .pingback,
   .trackback {
-    @include font-sizer($h5);
+    @include font-size($h5);
     @include ghost;
   }
   // Threaded comments
@@ -53,7 +53,7 @@
 // General response form
 .comment-form {
   @include rem('margin-bottom', $spacer*2);
-  @include font-sizer($h5);
+  @include font-size($h5);
   label {
     @extend %font-header;
     display: block;
@@ -87,11 +87,11 @@
   }
   p.form-allowed-tags {
     @extend %spacer-below;
-    @include font-sizer($h5);
+    @include font-size($h5);
     color: lighten($c-body, 10);
   }
   #cancel-comment-reply-link {
-    @include font-sizer($h5);
+    @include font-size($h5);
     @include rem('margin-left', $spacer/2);
     font-weight: normal;
   }

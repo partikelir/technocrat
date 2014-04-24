@@ -1,9 +1,11 @@
 // ==== AUTHORS ==== //
 
-.entry-meta .author-info {
+.author-info {
+  .entry-meta & {
   @include rem('margin-top', $spacer, 1);
   @include rem('padding-top', $spacer);
-  border-top: $divider;
+  border-top: $d-divider;
+  }
 }
 .author-avatar {
   display: none; // Only display author avatar on larger screens
@@ -19,6 +21,6 @@
 }
 .author-description {
   p {
-    @include font-sizer($h4);
+    @include font-size($h4);
   }
 }

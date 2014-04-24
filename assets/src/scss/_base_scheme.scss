@@ -20,37 +20,42 @@ $h6: 12;
 
 
 
-// == COLORS == //
+// == BASE == //
 
-// Base scheme
 $c-body:          #555555;
 $c-body-bg:       #FFFFFF;
+$c-head:          darken($c-body, 33);
 $c-highlight:     #ED7251;
 $c-link:          #5cb6cc;
 $c-green:         #a2bf68;
 $c-yellow:        #fff9c0;
 $c-red:           #a30000;
 
-// Header
-$c-head:          darken($c-body, 33);
+// == LINKS == //
 
-// Meta
-$c-meta:          lighten($c-body, 33);
-$c-meta-h:        $c-highlight;
-
-// Links
 $c-link-v:        $c-link;
 $c-link-h:        saturate(lighten($c-link, 17), 7);
 $c-link-a:        saturate(lighten($c-link, 13), 13);
 $c-link-f:        saturate(lighten($c-link, 17), 7);
 
-// Main menu
+// == MENUS == //
 $c-menu-link:     lighten($c-body, 33);
 $c-menu-link-h:   $c-highlight;
 $c-menu-current:  lighten($c-menu-link, 23);
 $c-menu-bg:       darken($c-body-bg, 3);
 
-// Elements: mostly defined in _general.scss
+// == META == //
+
+$c-meta:          lighten($c-body, 33);
+$c-meta-link:     darken($c-meta, 33);
+$c-meta-link-v:   $c-meta-link;
+$c-meta-link-h:   $c-highlight;
+$c-meta-link-a:   $c-meta-link;
+$c-meta-link-f:   $c-meta-link;
+
+// == ELEMENTS == //
+
+// Mostly defined in _general.scss
 $c-abbr:          lighten($c-body, 13);
 $c-blockquote:    lighten($c-body, 13);
 $c-blockquote-bg: darken($c-body-bg, 3);
@@ -64,7 +69,8 @@ $c-mark-bg:       $c-ins-bg;
 $c-pre:           darken($c-body, 23);
 $c-table:         lighten($c-body, 19);
 
-// Form states
+// == FORMS == //
+
 $c-alert:         $c-red;
 $c-required:      $c-red;
 $c-success:       $c-green;
@@ -82,14 +88,35 @@ $c-widget-head:   darken($c-body, 7);
 $c-widget:        lighten($c-body, 23);
 
 // == PRISM == //
-$prism-text:            $c-body;
-$prism-comment:         lighten($prism-text, 43);
-$prism-punctuation:     lighten($prism-text, 27);
-$prism-tag:             adjust-hue($c-link, 270);//#905;
-$prism-selector:        adjust-hue($prism-tag, 90);//#690;
-$prism-variable:        adjust-hue($prism-tag, 270);//#a67f59;
-$prism-keyword:         adjust-hue($prism-tag, 180);//#07a;
-$prism-regex:           adjust-hue($prism-tag, 120);//#e90;
 
-// Design patterns (Twenty Twelve legacy)
-$divider: 1px solid $c-divider;
+$p-text:            $c-body;
+$p-comment:         lighten($p-text, 43);
+$p-punctuation:     lighten($p-text, 27);
+$p-tag:             adjust-hue($c-link, 270);//#905;
+$p-selector:        adjust-hue($p-tag, 90);//#690;
+$p-variable:        adjust-hue($p-tag, 270);//#a67f59;
+$p-keyword:         adjust-hue($p-tag, 180);//#07a;
+$p-regex:           adjust-hue($p-tag, 120);//#e90;
+
+// == DEFAULT SETTINGS == //
+
+// Dividing line
+$d-divider: 1px solid $c-divider;
+
+// Gradients
+$d-gradient-begin: #f4f4f4;
+$d-gradient-end: #e6e6e6;
+
+// Border radius
+$d-radius: 3px;
+
+// Box shadow
+$d-shadow: 0 1px 4px rgba(0, 0, 0, .20);
+
+
+
+// == REFERENCE == //
+
+// $c: colours
+// $d: default design patterns
+// $p: Prism code highlighting

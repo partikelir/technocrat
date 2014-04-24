@@ -4,7 +4,7 @@
 .archive-places-list {
   @extend %spacer-below;
   h2 {
-    @include font-sizer($h3);
+    @include font-size($h3);
   }
   ul {
     list-style: disc outside;

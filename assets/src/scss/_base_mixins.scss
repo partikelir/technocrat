@@ -1,20 +1,90 @@
 // ==== MIXINS ==== //
 
-// $size (integer): pixel value of desired font size
-// $offset (integer); pixel value used in instances where there is a border mucking up the line-height
-@mixin font-sizer($size: $font-size, $offset: 0) {
-  @include rem('font-size', $size+0px);
-  $basefactor: 1;
-  // Buffer for font sizes over the line-height
-  @if $size >= $base * 2 {
-    $basefactor: 3;
-  } @elseif $size >= $base {
-    $basefactor: 2;
-  }
-  line-height: ( ( ($base - $offset) * $basefactor) / $size );
+// == GENERAL == //
+
+// Border radius; mainly used to allow for a default site-wide setting; via Twenty Twelver
+@mixin border-radius($radius: $d-radius) {
+  border-radius: $radius;
 }
 
-// Ghosting
+// Box shadows; via Twenty Twelver
+@mixin box-shadow($shadow: $d-shadow ) {
+  box-shadow: $shadow;
+}
+@mixin box-shadow-layered($shadow: $d-shadow, $shadow-layered: $d-shadow ) {
+  box-shadow: $shadow, $shadow-layered;
+}
+
+// Clearfix suite
+@mixin clearfix-above() {
+  &:before {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+@mixin clearfix-below() {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+// Gradients; via Twenty Twelve
+@mixin gradient-horizontal ($begin: $d-gradient-begin, $end: $d-gradient-end) {
+  background-color: $end;
+  background-image: linear-gradient(left, $begin, $end);
+  background-repeat: repeat-x;
+}
+@mixin gradient-vertical ($begin: $d-gradient-begin, $end: $d-gradient-end) {
+  background-color: $end;
+  background-image: linear-gradient(top, $begin, $end);
+  background-repeat: repeat-x;
+}
+
+
+
+// == INTERFACE == //
+
+// Bordered links; pass 'false' to disable styling for any of these
+@mixin bordered-links(
+  $link: $c-link,
+  $link-visited: $c-link-v,
+  $link-hover: $c-link-h,
+  $link-active: $c-link-a,
+  $link-focus: $c-link-f
+) {
+  a {
+    border-bottom: 1px dotted rgba($link, 0.30);
+    @if not $link-visited == false {
+      &:visited {
+        border-bottom-color: rgba($link-visited, 0.25);
+      }
+    }
+    @if not $link-hover == false {
+      &:hover {
+        border-bottom-color: rgba($link-hover, 0.35);
+        border-bottom-style: solid;
+      }
+    }
+    @if not $link-active == false {
+      &:active {
+        border-bottom-color: rgba($link-active, 0.40);
+        border-bottom-style: solid;
+      }
+    }
+    @if not $link-focus == false {
+      &:focus {
+        border-bottom-color: rgba($link-focus, 0.30);
+      }
+    }
+  }
+}
+
+
+
+// Ghosting; use on any element to obscure it from view except on hover
 @mixin ghost($value: 0.6) {
   opacity: $value;
   transition: opacity .5s ease;
@@ -26,14 +96,14 @@
 
 // Highlights text; used with ins and mark tags
 @mixin highlight($color: $c-highlight) {
-  @include border-radius();
+  @include border-radius;
   @include rem('padding', $spacer/12 $spacer/8);
   background: $color;
   border: 1px solid darken($color, 7);
   display: inline;
 }
 
-// Breakout box
+// Text box; for use with blockquote, pre, etc.
 @mixin text-box($color: $c-text-box, $background: $c-text-box-bg, $shadow: $c-text-box-sh) {
   @include border-radius(12px);
   @include box-shadow-layered(inset 4px 4px 8px $shadow, 1px 1px 4px $shadow);
@@ -48,10 +118,10 @@
 @mixin text-input($shadow: $c-text-box-sh) {
   @include border-radius;
   @include box-shadow(inset 2px 2px 4px $shadow);
-  @include font-sizer($h5, 8);
+  @include font-size($h5, 8);
   @include rem('padding', 3px);
   background: darken($c-body-bg, 3);
-  border: $divider;
+  border: $d-divider;
   color: lighten($c-body, 23);
   font-family: inherit;
   &:focus {
@@ -62,34 +132,9 @@
 
 
 
-// === TWENTY TWELVE === //
+// == UTILITIES == //
 
-// Gradients
-@mixin horizontal-gradient ($startColor: #555, $endColor: #333) {
-  background-color: $endColor;
-  background-repeat: repeat-x;
-  background-image: linear-gradient(left, $startColor, $endColor);
-}
-@mixin vertical-gradient ($startColor: #efe7d7, $endColor: #dcd2be) {
-  background-color: $endColor;
-  background-repeat: repeat-x;
-  background-image: linear-gradient(top, $startColor, $endColor);
-}
-
-// Border radius
-@mixin border-radius($radius: 3px) {
-  border-radius: $radius;
-}
-
-// Box shadows
-@mixin box-shadow($shadow: 0 1px 4px rgba(0, 0, 0, .20)) {
-  box-shadow: $shadow;
-}
-@mixin box-shadow-layered($shadow: 0 1px 3px rgba(0,0,0,.25), $shadow-layered: 0 1px 3px rgba(0,0,0,.25) ) {
-  box-shadow: $shadow, $shadow-layered;
-}
-
-// Rem generator
+// Rem generator; via Twenty Twelve
 //
 // Baseline, measured in pixels
 // The value should be the same as the font-size value for the html element
@@ -125,3 +170,18 @@
 
     // Return the property and its list of converted values
     #{$property}: $rem-values; } }
+
+// Font size mixin
+// $size (integer): pixel value of desired font size
+// $offset (integer); pixel value used in instances where there is a border mucking up the line-height
+@mixin font-size($size: $font-size, $offset: 0) {
+  @include rem('font-size', $size+0px);
+  $basefactor: 1;
+  // Buffer for font sizes over the line-height
+  @if $size >= $base * 2 {
+    $basefactor: 3;
+  } @elseif $size >= $base {
+    $basefactor: 2;
+  }
+  line-height: ( ( ($base - $offset) * $basefactor) / $size );
+}

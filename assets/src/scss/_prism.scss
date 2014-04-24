@@ -7,11 +7,11 @@
 .token.prolog,
 .token.doctype,
 .token.cdata {
-  color: $prism-comment;
+  color: $p-comment;
 }
 
 .token.punctuation {
-  color: $prism-punctuation;
+  color: $p-punctuation;
 }
 
 .namespace {
@@ -24,14 +24,14 @@
 .token.number,
 .token.constant,
 .token.symbol {
-  color: $prism-tag;
+  color: $p-tag;
 }
 
 .token.selector,
 .token.attr-name,
 .token.string,
 .token.builtin {
-  color: $prism-selector;
+  color: $p-selector;
 }
 
 .token.operator,
@@ -40,19 +40,19 @@
 .language-css .token.string,
 .style .token.string,
 .token.variable {
-  color: $prism-variable;
+  color: $p-variable;
   background: hsla(0,0%,100%,.5);
 }
 
 .token.atrule,
 .token.attr-value,
 .token.keyword {
-  color: $prism-keyword;
+  color: $p-keyword;
 }
 
 .token.regex,
 .token.important {
-  color: $prism-regex;
+  color: $p-regex;
 }
 
 .token.important {

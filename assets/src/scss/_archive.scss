@@ -4,16 +4,10 @@
   @extend %spacer-below;
 }
 .archive-content {
-  @include font-sizer($h4);
+  @include font-size($h4);
   @include rem('margin-bottom', $spacer*2);
   color: lighten($c-body, 17);
   p {
     @extend %spacer-below;
   }
-}
-
-// Drop the size of entry titles on archives; assumes a dominant archive title at top
-.archive .entry-title {
-  @extend %spacer-below;
-  @include font-sizer($h2);
 }

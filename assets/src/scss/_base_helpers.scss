@@ -1,28 +1,20 @@
 // ==== HELPERS ==== //
 
-// These helper classes are meant to be used with @extend
+// Helper classes should frequently used silent selectors; if the styling is unique to just a few components use a mixin instead
 
-// Clearing; these selectors have been broken into before and after for greater utility
+// Clearfix
 %clearfix-above {
-  &:before {
-    content: "";
-    display: table;
-    clear: both;
-  }
+  @include clearfix-above;
 }
 %clearfix-below {
-  &:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
+  @include clearfix-below;
 }
 %clearfix {
-  @extend %clearfix-above;
-  @extend %clearfix-below;
+  @include clearfix-above;
+  @include clearfix-below;
 }
 
-// Spacing shortcuts
+// Spacing, to preserve a modicum of vertical rhythm
 %spacer-above {
   @include rem('margin-top', $spacer);
 }
@@ -30,7 +22,7 @@
   @include rem('margin-bottom', $spacer);
 }
 
-// A shortcut to apply the header font and basic style
+// Header font style
 %font-header {
   font-family: $font-head;
   font-weight: 400;
@@ -38,8 +30,8 @@
 
 // Small header style
 %small-headers {
-  @include font-sizer($h5);
-  @extend %font-header;
+  @include font-size($h5);
+  font-family: $font-head;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -49,25 +41,4 @@
   @include rem('margin-left', $spacer/2);
   float: right;
   height: $spacer;
-}
-
-// Links with bottom borders
-%bordered-links {
-  a {
-    border-bottom: 1px dotted rgba($c-link, 0.25);
-    &:visited {
-      border-bottom-color: rgba($c-link-v, 0.20);
-    }
-    &:hover {
-      border-bottom-color: rgba($c-link-h, 0.30);
-      border-bottom-style: solid;
-    }
-    &:active {
-      border-bottom-color: rgba($c-link-a, 0.25);
-      border-bottom-style: solid;
-    }
-    &:focus {
-      border-bottom-color: rgba($c-link-f, 0.25);
-    }
-  }
 }

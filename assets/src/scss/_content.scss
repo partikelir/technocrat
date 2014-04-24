@@ -2,12 +2,16 @@
 
 // Entry header
 .entry-header {
-  img.wp-post-image {
-    @extend %spacer-below;
-  }
   h1,h2,h3 {
     &.entry-title {
       font-weight: 400;
+
+      // Drop the size of entry titles on archives and in search results
+      .archive &,
+      .search-results & {
+        @extend %spacer-below;
+        @include font-size($h2);
+      }
     }
   }
   // No spacer for h1; assumes the font size is greater than the baseline
@@ -23,18 +27,13 @@
 // Post contents
 .entry-content,
 .comment-content {
-  @extend %bordered-links;
   @extend %clearfix-below;
+  @include bordered-links;
   hyphens: auto;
   word-wrap: break-word;
 
-  // Headers
-  h1,h2,h3,h4,h5,h6 {
-    @extend %spacer-below;
-  }
-
-  // Paragraphs
-  p {
+  // Headers and paragraph spacing
+  h1,h2,h3,h4,h5,h6,p {
     @extend %spacer-below;
   }
 
@@ -75,7 +74,7 @@
 
   // Blockquote and quotations
   blockquote {
-    @include font-sizer($h3);
+    @include font-size($h3);
     @include scut-reverse-italics;
     @include text-box;
     p {
@@ -93,13 +92,13 @@
       }
     }
     footer {
-      @include font-sizer($h4);
+      @include font-size($h4);
       @include rem('padding-bottom', $spacer);
       display: block;
       font-style: normal;
       text-align: right;
       &:before {
-        content: "\2014\00a0"; // "\2015" is a "horizontal bar" or "quotation dash" meant to introduce a quotation, not a citation
+        content: "\2014\00a0";
       }
     }
     div > code,
@@ -107,8 +106,8 @@
     li > code,
     p > code,
     strong > code {
-      @include font-sizer($font-size);
-      @include highlight( darken($c-code-bg, 7) );
+      @include font-size($font-size);
+      @include highlight(darken($c-code-bg, 7));
     }
   }
   q {
@@ -123,7 +122,7 @@
 
   // Pre and code blocks
   pre {
-    @include font-sizer($h4);
+    @include font-size($h4);
     @include text-box;
     @include rem('padding-bottom', $spacer); // Needs to follow text-box
     color: $c-pre;
@@ -133,7 +132,6 @@
   li > code,
   p > code,
   strong > code {
-    @include font-sizer($h4);
     @include highlight($c-code-bg);
     color: $c-code;
     line-height: 0;
@@ -145,20 +143,20 @@
 
   // Tables and figures
   table {
-    border-bottom: $divider;
+    border-bottom: $d-divider;
     color: $c-table;
     @include rem('margin-bottom', $spacer, 1);
     width: 100%;
     caption {
-      @include font-sizer($h4);
+      @include font-size($h4);
     }
   }
   th {
     @extend %small-headers;
   }
   td {
-    @include font-sizer($h5, 1);
-    border-top: $divider;
+    @include font-size($h5, 1);
+    border-top: $d-divider;
   }
 
   // Media
@@ -168,45 +166,44 @@
   }
 }
 
-// Captioned images aren't used in comments; isolating these declarations reduces bloat
-.entry-content {
-  figure.wp-caption {
-    overflow: auto; // Without this the floats won't float
+// Isolating these declarations reduces bloat
+figure.wp-caption {
+  overflow: auto; // Without this the floats won't float
+}
+// We are only concerned with images in posts, not comments
+figure.wp-caption,
+.entry-content p img {
+  // Responsive margins
+  &.alignleft {
+    margin-right: percentage($spacer/$content-width);
   }
-  figure.wp-caption,
-  p img {
-    // Responsive margins
-    &.alignleft {
-      margin-right: percentage($spacer/$content-width);
-    }
-    &.alignright {
-      margin-left: percentage($spacer/$content-width);
-    }
-    &.alignnone {
-      margin-left: 0;
-      margin-right: 0;
-    }
-    // Responsive partial-width images rescued from _portfolio.scss
-    &.size-third-width, // Compatibility with old Pendrell styling; may be removed on fresh installs
-    &.size-medium-third,
-    &.size-medium-third-cropped {
-      width: percentage((1-(($spacer/$content-width)*2))/3); // 31.25%
-    }
-    &.size-half-width, // Compatibility with old Pendrell styling; may be removed on fresh installs
-    &.size-medium-half,
-    &.size-medium-half-cropped {
-      width: percentage((1-(($spacer/$content-width)))/2); // 48.4375%
-    }
-    // Clearfix on the before pseudo-element
-    & + p,
-    & + h1,
-    & + h2,
-    & + h3,
-    & + blockquote,
-    & + div,
-    & + pre {
-      @extend %clearfix-above;
-    }
+  &.alignright {
+    margin-left: percentage($spacer/$content-width);
+  }
+  &.alignnone {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  // Responsive partial-width images rescued from _portfolio.scss
+  &.size-third-width, // Compatibility with old Pendrell styling; may be removed on fresh installs
+  &.size-medium-third,
+  &.size-medium-third-cropped {
+    width: percentage((1-(($spacer/$content-width)*2))/3); // 31.25%
+  }
+  &.size-half-width, // Compatibility with old Pendrell styling; may be removed on fresh installs
+  &.size-medium-half,
+  &.size-medium-half-cropped {
+    width: percentage((1-(($spacer/$content-width)))/2); // 48.4375%
+  }
+  // Ugly hack: clear some of the elements likely to come after image layout in a post
+  & + p,
+  & + h1,
+  & + h2,
+  & + h3,
+  & + blockquote,
+  & + div,
+  & + pre {
+    @extend %clearfix-above;
   }
 }
 
@@ -221,14 +218,7 @@
 }
 .entry-meta-main {
   @extend %clearfix-below;
-  @include font-sizer($h5);
+  @include bordered-links($c-meta-link, $c-meta-link-v, $c-meta-link-h, $c-meta-link-a, $c-meta-link-f);
+  @include font-size($h5);
   color: $c-meta;
-  a {
-    border-bottom: 1px dotted rgba($c-meta, 0.25);
-    color: darken($c-meta, 33);
-    &:hover {
-      border-bottom: 1px dotted rgba($c-meta-h, 0.20);
-      color: $c-meta-h;
-    }
-  }
 }

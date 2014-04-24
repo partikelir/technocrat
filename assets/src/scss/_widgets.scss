@@ -4,51 +4,51 @@
   color: $c-widget-head;
 }
 .widget-area {
-  @extend %bordered-links;
+  @include bordered-links;
   @media screen and (min-width: $break-single-column) {
     float: right;
     width: percentage( $sidebar-width / $content-width );
   }
-  .widget {
-    @extend %spacer-below;
-    hyphens: auto;
-    word-wrap: break-word;
-    p,
-    li,
-    .textwidget {
-      @include font-sizer($h5);
-      color: $c-widget;
-    }
-    p {
-      @extend %spacer-below;
-    }
-    ul ul {
-      @include rem('margin-left', $spacer/2);
-    }
-    img {
-      @include border-radius();
-      max-width: 100%; // Fluid images for widgets
-    }
-  }
+}
+.widget {
+  @extend %spacer-below;
+  hyphens: auto;
+  word-wrap: break-word;
+  p,
+  li,
   .textwidget {
-    ul {
-      @extend %spacer-below;
-      list-style: disc outside;
-    }
-    li {
-      @include rem('margin-left', $spacer);
+    @include font-size($h5);
+    color: $c-widget;
+  }
+  p {
+    @extend %spacer-below;
+  }
+  ul ul {
+    @include rem('margin-left', $spacer/2);
+  }
+  img {
+    @include border-radius();
+    max-width: 100%; // Fluid images for widgets
+  }
+}
+.textwidget {
+  ul {
+    @extend %spacer-below;
+    list-style: disc outside;
+  }
+  li {
+    @include rem('margin-left', $spacer);
+  }
+}
+.widget_search {
+  @include rem('margin-bottom', $spacer, 2); // Hack to deal with button alignment issues
+  #s {
+    width: 150px;
+    @media screen and (min-width: $break-single-column) {
+      width: percentage( 150px / $sidebar-width );
     }
   }
-  .widget_search {
-    @include rem('margin-bottom', $spacer, 2); // Hack to deal with button alignment issues
-    #s {
-      width: 150px;
-      @media screen and (min-width: $break-single-column) {
-        width: percentage( 150px / $sidebar-width );
-      }
-    }
-    #searchsubmit {
-      vertical-align: middle;
-    }
+  #searchsubmit {
+    vertical-align: middle;
   }
 }
