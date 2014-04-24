@@ -63,7 +63,7 @@
 
 
 
-// Screen reader text adapted from Twenty Twelve
+// Screen reader text adapted from Twenty Twelve; @TODO: update and test this
 .screen-reader-text {
   clip: rect(1px, 1px, 1px, 1px);
   position: absolute !important;
@@ -80,6 +80,20 @@
     left: 5px;
     z-index: 100000; // Above WP toolbar
   }
+}
+
+
+
+// Emoticons; should be destroyed
+img.wp-smiley,
+.rsswidget img {
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  display: inline;
+  margin-bottom: 0;
+  margin-top: 0;
+  padding: 0;
 }
 
 

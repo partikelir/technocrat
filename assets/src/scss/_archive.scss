@@ -6,7 +6,7 @@
 .archive-content {
   @include font-size($h4);
   @include rem('margin-bottom', $spacer*2);
-  color: lighten($c-body, 17);
+  color: $c-archive;
   p {
     @extend %spacer-below;
   }

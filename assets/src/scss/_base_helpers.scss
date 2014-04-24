@@ -1,6 +1,6 @@
 // ==== HELPERS ==== //
 
-// Helper classes should frequently used silent selectors; if the styling is unique to just a few components use a mixin instead
+// These silent selectors should be used for common styling patterns
 
 // Clearfix
 %clearfix-above {
@@ -20,12 +20,6 @@
 }
 %spacer-below {
   @include rem('margin-bottom', $spacer);
-}
-
-// Header font style
-%font-header {
-  font-family: $font-head;
-  font-weight: 400;
 }
 
 // Small header style

@@ -1,11 +1,12 @@
 // ==== LAYOUT ==== //
 
 // == SITE == //
+
 .site {
   @include rem('padding', 0 $spacer);
   @media screen and (min-width: $break-medium) {
     @include rem('padding', 0 $spacer*1.5);
-    margin: 0 auto;
+    @include scut-center-block;
     max-width: $content-width;
     overflow: hidden;
   }
@@ -19,21 +20,20 @@
     float: left;
     width: percentage( $main-width / $content-width );
   }
-
+  // Full-width layouts as specified in `pendrell/lib/various.php`
+  .full-width & {
+    width: 100%;
+  }
   // Individual articles
   article {
     @include rem('margin-bottom', $spacer*3);
-  }
-
-  // Full-width layouts as specified in `pendrell/lib/various.php`
-  body.full-width & {
-    width: 100%;
   }
 }
 
 
 
 // == HEADER == //
+
 .site-header {
   @include rem('margin-bottom', $spacer, 1);
   @include rem('padding-top', $spacer);
@@ -61,7 +61,7 @@
   .site-description {
     @include font-size($h6);
     @include scut-hide-visually;
-    color: $c-site-desc, 47;
+    color: $c-site-desc;
   }
 }
 
@@ -71,16 +71,12 @@
 
 .site-footer {
   @extend %clearfix-below;
+  @include link-stylist($c-footer-link, $c-footer-link-v, $c-footer-link-h, $c-footer-link-a, $c-footer-link-f, $link-border: false);
   @include rem('margin-top', $spacer, 1);
-  @include rem('max-width', $content-width);
   @include rem('padding', $spacer/2 0);
   border-top: $d-divider;
-  a {
-    color: lighten($c-body, 14);
-    &:hover {
-      color: $c-link-h;
-    }
-  }
+  color: $c-footer;
+  max-width: $content-width;
 }
 .site-footer-buttons {
   @extend %button-container;

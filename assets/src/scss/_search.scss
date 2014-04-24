@@ -1,9 +1,0 @@
-// ==== SEARCH ==== //
-
-.search-results {
-  // Search result highlighter; currently switched off
-  mark {
-    @include highlight($c-mark-bg);
-    color: $c-mark;
-  }
-}

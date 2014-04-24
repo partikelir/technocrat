@@ -26,10 +26,13 @@ $c-body:          #555555;
 $c-body-bg:       #FFFFFF;
 $c-head:          darken($c-body, 33);
 $c-highlight:     #ED7251;
+$c-offset:        lighten($c-body, 13);
 $c-link:          #5cb6cc;
 $c-green:         #a2bf68;
 $c-yellow:        #fff9c0;
 $c-red:           #a30000;
+
+
 
 // == LINKS == //
 
@@ -38,11 +41,16 @@ $c-link-h:        saturate(lighten($c-link, 17), 7);
 $c-link-a:        saturate(lighten($c-link, 13), 13);
 $c-link-f:        saturate(lighten($c-link, 17), 7);
 
+
+
 // == MENUS == //
+
 $c-menu-link:     lighten($c-body, 33);
 $c-menu-link-h:   $c-highlight;
 $c-menu-current:  lighten($c-menu-link, 23);
 $c-menu-bg:       darken($c-body-bg, 3);
+
+
 
 // == META == //
 
@@ -53,13 +61,25 @@ $c-meta-link-h:   $c-highlight;
 $c-meta-link-a:   $c-meta-link;
 $c-meta-link-f:   $c-meta-link;
 
+
+
+// == FOOTER == //
+
+$c-footer:        $c-meta;
+$c-footer-link:   $c-meta-link;
+$c-footer-link-v: $c-meta-link-v;
+$c-footer-link-h: $c-meta-link-h;
+$c-footer-link-a: $c-meta-link-a;
+$c-footer-link-f: $c-meta-link-f;
+
+
+
 // == ELEMENTS == //
 
-// Mostly defined in _general.scss
-$c-abbr:          lighten($c-body, 13);
-$c-blockquote:    lighten($c-body, 13);
+$c-abbr:          $c-offset;
+$c-blockquote:    $c-offset;
 $c-blockquote-bg: darken($c-body-bg, 3);
-$c-code:          lighten($c-body, 13);
+$c-code:          $c-offset;
 $c-code-bg:       darken($c-body-bg, 3);
 $c-del:           lighten($c-body, 27);
 $c-hr:            darken($c-body-bg, 17);
@@ -69,23 +89,31 @@ $c-mark-bg:       $c-ins-bg;
 $c-pre:           darken($c-body, 23);
 $c-table:         lighten($c-body, 19);
 
+
+
 // == FORMS == //
 
 $c-alert:         $c-red;
 $c-required:      $c-red;
 $c-success:       $c-green;
 
-// Various
+
+
+// == VARIOUS == //
+
+$c-archive:       lighten($c-body, 17);
 $c-caption:       lighten($c-body, 23);
 $c-divider:       rgba($c-body, 0.10);
 $c-site-desc:     $c-body;
 $c-site-title:    $c-head;
-$c-small-header:  lighten($c-body, 13);
+$c-small-header:  $c-offset;
 $c-text-box:      lighten($c-body, 7);
 $c-text-box-bg:   darken($c-body-bg, 3);
 $c-text-box-sh:   darken($c-text-box-bg, 3);
 $c-widget-head:   darken($c-body, 7);
 $c-widget:        lighten($c-body, 23);
+
+
 
 // == PRISM == //
 
@@ -97,6 +125,8 @@ $p-selector:        adjust-hue($p-tag, 90);//#690;
 $p-variable:        adjust-hue($p-tag, 270);//#a67f59;
 $p-keyword:         adjust-hue($p-tag, 180);//#07a;
 $p-regex:           adjust-hue($p-tag, 120);//#e90;
+
+
 
 // == DEFAULT SETTINGS == //
 

@@ -55,14 +55,14 @@
   @include rem('margin-bottom', $spacer*2);
   @include font-size($h5);
   label {
-    @extend %font-header;
+    @include font-header;
     display: block;
     font-weight: 600;
     text-transform: uppercase;
   }
   input[type="text"],
   textarea {
-    font-family: inherit;
+    font-family: inherit; // Possibly redundant
     width: 100%;
   }
   input[type="text"] {
@@ -88,11 +88,10 @@
   p.form-allowed-tags {
     @extend %spacer-below;
     @include font-size($h5);
-    color: lighten($c-body, 10);
+    color: $c-offset;
   }
   #cancel-comment-reply-link {
     @include font-size($h5);
     @include rem('margin-left', $spacer/2);
-    font-weight: normal;
   }
 }

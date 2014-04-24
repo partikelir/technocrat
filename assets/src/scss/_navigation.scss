@@ -8,9 +8,9 @@ input[type="button"],
 input[type="reset"],
 article.post-password-required input[type=submit],
 #cancel-comment-reply-link {
-  @extend %font-header;
   @include border-radius;
   @include box-shadow(0 1px 2px rgba(64, 64, 64, 0.1));
+  @include font-header;
   @include font-size($h5, 2);
   @include rem('padding', 0 $spacer/4);
   @include gradient-vertical($d-gradient-begin, $d-gradient-end);
@@ -67,7 +67,7 @@ article.post-password-required input[type=submit],
     font-weight: 200;
   }
   li {
-    @extend %font-header;
+    @include font-header;
     @include font-size($font-size);
     @include rem('margin', 0 $spacer 0 0);
     font-weight: 400;
@@ -157,7 +157,7 @@ article.post-password-required input[type=submit],
 .page-navigation {
   @extend %clearfix-below;
   @extend %spacer-below;
-  @include bordered-links;
+  @include link-stylist($link-color: false);
 }
 .nav-above,
 .nav-below {

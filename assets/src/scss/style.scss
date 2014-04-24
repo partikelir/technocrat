@@ -23,10 +23,10 @@ Template: pendrell
 @import "archive";    // Archives (categories, tags, taxonomies and more)
 @import "content";    // Content (entry header, content, and meta)
 @import "formats";    // Post formats
-@import "media";      // Media (captions, galleries, etc.)
+@import "media";      // Media
+//@import "gallery";    // Gallery (experimental)
 @import "author";
 @import "comments";
-@import "search";
 @import "widgets";
 @import "various";
 

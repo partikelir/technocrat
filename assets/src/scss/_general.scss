@@ -9,7 +9,7 @@ body {
   text-rendering: optimizeLegibility;
 }
 h1,h2,h3,h4,h5,h6 {
-  @extend %font-header;
+  @include font-header;
   color: $c-head;
 }
 h1 { @include font-size($h1); }
@@ -73,6 +73,7 @@ i {
   font-style: italic;
 }
 del {
+  @include ghost;
   color: $c-del;
   text-decoration: line-through;
 }
@@ -88,11 +89,16 @@ hr {
   border: 0;
   height: 1px;
 }
-// This element is styled in _search.scss
 mark {
   background: transparent;
   color: $c-body;
   text-decoration: none;
+
+  // Search result highlighter; currently switched off
+  .search-results & {
+    @include highlight($c-mark-bg);
+    color: $c-mark;
+  }
 }
 s {
   text-decoration: line-through;
@@ -112,6 +118,9 @@ pre {
   tab-size: 2;
   white-space: pre;
   word-wrap: normal; // Allows for horizontal scrollbars
+  code {
+    white-space: pre; // Allows for horizontal scrollbars
+  }
 }
 code,
 kbd,
@@ -119,9 +128,6 @@ var {
   display: inline;
   line-height: 0; // Fixes vertical rhythm for oversized monospaced fonts
   white-space: pre-wrap;
-}
-pre code {
-  white-space: pre; // Allows for horizontal scrollbars
 }
 
 

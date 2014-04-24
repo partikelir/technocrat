@@ -47,42 +47,11 @@
 
 // == INTERFACE == //
 
-// Bordered links; pass 'false' to disable styling for any of these
-@mixin bordered-links(
-  $link: $c-link,
-  $link-visited: $c-link-v,
-  $link-hover: $c-link-h,
-  $link-active: $c-link-a,
-  $link-focus: $c-link-f
-) {
-  a {
-    border-bottom: 1px dotted rgba($link, 0.30);
-    @if not $link-visited == false {
-      &:visited {
-        border-bottom-color: rgba($link-visited, 0.25);
-      }
-    }
-    @if not $link-hover == false {
-      &:hover {
-        border-bottom-color: rgba($link-hover, 0.35);
-        border-bottom-style: solid;
-      }
-    }
-    @if not $link-active == false {
-      &:active {
-        border-bottom-color: rgba($link-active, 0.40);
-        border-bottom-style: solid;
-      }
-    }
-    @if not $link-focus == false {
-      &:focus {
-        border-bottom-color: rgba($link-focus, 0.30);
-      }
-    }
-  }
+// Header font style
+@mixin font-header() {
+  font-family: $font-head;
+  font-weight: 400;
 }
-
-
 
 // Ghosting; use on any element to obscure it from view except on hover
 @mixin ghost($value: 0.6) {
@@ -103,8 +72,8 @@
   display: inline;
 }
 
-// Text box; for use with blockquote, pre, etc.
-@mixin text-box($color: $c-text-box, $background: $c-text-box-bg, $shadow: $c-text-box-sh) {
+// Inset box; for use with blockquote, pre, etc.
+@mixin inset-box($color: $c-text-box, $background: $c-text-box-bg, $shadow: $c-text-box-sh) {
   @include border-radius(12px);
   @include box-shadow-layered(inset 4px 4px 8px $shadow, 1px 1px 4px $shadow);
   @include rem('margin', 0 0 $spacer 0);
@@ -114,7 +83,66 @@
   text-shadow: 0px 1px $c-body-bg;
 }
 
-// Text input
+// Bordered links; pass 'false' to disable styling for any of these
+@mixin link-stylist(
+  $link: $c-link,
+  $link-visited: $c-link-v,
+  $link-hover: $c-link-h,
+  $link-active: $c-link-a,
+  $link-focus: $c-link-f,
+  $link-border: true,
+  $link-color: true
+) {
+  a {
+    @if $link-border == true {
+      border-bottom: 1px dotted rgba($link, 0.30);
+    }
+    @if not $link-visited == false {
+      &:visited {
+        @if $link-border == true {
+          border-bottom-color: rgba($link-visited, 0.25);
+        }
+        @if $link-color == true {
+          color: $link-visited;
+        }
+      }
+    }
+    @if not $link-hover == false {
+      &:hover {
+        @if $link-border == true {
+          border-bottom-color: rgba($link-hover, 0.35);
+          border-bottom-style: solid;
+        }
+        @if $link-color == true {
+          color: $link-hover;
+        }
+      }
+    }
+    @if not $link-active == false {
+      &:active {
+        @if $link-border == true {
+          border-bottom-color: rgba($link-active, 0.40);
+          border-bottom-style: solid;
+        }
+        @if $link-color == true {
+          color: $link-active;
+        }
+      }
+    }
+    @if not $link-focus == false {
+      &:focus {
+        @if $link-border == true {
+          border-bottom-color: rgba($link-focus, 0.30);
+        }
+        @if $link-color == true {
+          color: $link-focus;
+        }
+      }
+    }
+  }
+}
+
+// Text input; for use with forms, textarea, etc.
 @mixin text-input($shadow: $c-text-box-sh) {
   @include border-radius;
   @include box-shadow(inset 2px 2px 4px $shadow);
@@ -134,7 +162,9 @@
 
 // == UTILITIES == //
 
-// Rem generator; via Twenty Twelve
+// @TODO: breakpoints
+
+// Rem generator; via Twenty Twelve; @TODO: clean this up
 //
 // Baseline, measured in pixels
 // The value should be the same as the font-size value for the html element

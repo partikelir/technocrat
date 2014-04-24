@@ -28,7 +28,7 @@
 .entry-content,
 .comment-content {
   @extend %clearfix-below;
-  @include bordered-links;
+  @include link-stylist($link-color: false);
   hyphens: auto;
   word-wrap: break-word;
 
@@ -76,7 +76,7 @@
   blockquote {
     @include font-size($h3);
     @include scut-reverse-italics;
-    @include text-box;
+    @include inset-box;
     p {
       @include rem('padding-bottom', $spacer); // Padding is used instead of margins because of the blockquote background
       margin: 0;
@@ -123,7 +123,7 @@
   // Pre and code blocks
   pre {
     @include font-size($h4);
-    @include text-box;
+    @include inset-box;
     @include rem('padding-bottom', $spacer); // Needs to follow text-box
     color: $c-pre;
   }
@@ -218,7 +218,7 @@ figure.wp-caption,
 }
 .entry-meta-main {
   @extend %clearfix-below;
-  @include bordered-links($c-meta-link, $c-meta-link-v, $c-meta-link-h, $c-meta-link-a, $c-meta-link-f);
   @include font-size($h5);
+  @include link-stylist($c-meta-link, $c-meta-link-v, $c-meta-link-h, $c-meta-link-a, $c-meta-link-f);
   color: $c-meta;
 }

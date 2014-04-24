@@ -1,7 +1,7 @@
 <?php // ==== FUNCTIONS.PHP ==== //
 
 // Definitions; there should be no need to modify these
-define( 'PENDRELL_VERSION', "0.7" );
+define( 'PENDRELL_VERSION', "0.8" );
 define( 'PENDRELL_NAME', get_bloginfo( 'name' ) );
 define( 'PENDRELL_DESC', get_bloginfo( 'description' ) );
 define( 'PENDRELL_HOME', get_bloginfo( 'url' ) );
@@ -50,11 +50,11 @@ function pendrell_setup() {
   add_theme_support( 'automatic-feed-links' );
 
   // $content_width limits the size of the largest image size available via the media uploader
-  // It should be set once and left alone apart from that; don't do anything fancy with it
+  // It should be set once and left alone apart from that; don't do anything fancy with it; it is part of WordPress core
   global $content_width;
   $content_width = 960;
 
-  // Width of the main content column; should correspond to equivalent values in the stylesheet
+  // Width of the main content column; should correspond to equivalent values in the stylesheet; NOT a WordPress core thing
   // This variable is mainly used here in functions.php; it should match the variable defined in _base.scss
   $main_width = 624;
 

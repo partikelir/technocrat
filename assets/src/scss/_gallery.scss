@@ -1,44 +1,4 @@
-// ==== MEDIA ==== //
-
-// Captions
-.wp-caption {
-  @extend %spacer-below;
-  max-width: 100%; // Keep wide captions from overflowing their containers
-}
-.wp-caption .wp-caption-text,
-.entry-caption {
-  @include font-size($h4);
-  @include scut-reverse-italics;
-  color: $c-caption;
-}
-
-
-
-// Image attachment metadata
-.image-info {
-  @extend %spacer-above;
-  @include rem('padding-top', $spacer, 1);
-  border-top: $d-divider;
-}
-.image-description {
-  @include font-size($h4);
-}
-
-
-
-// Emoticons; should be destroyed
-img.wp-smiley,
-.rsswidget img {
-  border: 0;
-  border-radius: 0;
-  box-shadow: none;
-  display: inline;
-  margin-bottom: 0;
-  margin-top: 0;
-  padding: 0;
-}
-
-
+// ==== GALLERY ==== //
 
 // Gallery styling; makes a lot of assumptions about markup so you can't simply lift this and use it elsewhere
 // Presently attempting a free-flowing gallery based on unordered lists; could also try CSS3 columns

@@ -3,35 +3,45 @@
 // Prism syntax highlighting by Lea Verou; based on http://dabblet.com
 // This is a stripped down version of the default Prism theme
 
-.token.comment,
-.token.prolog,
-.token.doctype,
-.token.cdata {
-  color: $p-comment;
-}
-
-.token.punctuation {
-  color: $p-punctuation;
-}
-
-.namespace {
-  opacity: .7;
-}
-
-.token.property,
-.token.tag,
-.token.boolean,
-.token.number,
-.token.constant,
-.token.symbol {
-  color: $p-tag;
-}
-
-.token.selector,
-.token.attr-name,
-.token.string,
-.token.builtin {
-  color: $p-selector;
+.token {
+  &.comment,
+  &.prolog,
+  &.doctype,
+  &.cdata {
+    color: $p-comment;
+  }
+  &.punctuation {
+    color: $p-punctuation;
+  }
+  &.property,
+  &.tag,
+  &.boolean,
+  &.number,
+  &.constant,
+  &.symbol {
+    color: $p-tag;
+  }
+  &.selector,
+  &.attr-name,
+  &.string,
+  &.builtin {
+    color: $p-selector;
+  }
+  &.atrule,
+  &.attr-value,
+  &.keyword {
+    color: $p-keyword;
+  }
+  &.regex,
+  &.important {
+    color: $p-regex;
+  }
+  &.important {
+    font-weight: 600;
+  }
+  &.entity {
+    cursor: help;
+  }
 }
 
 .token.operator,
@@ -44,21 +54,6 @@
   background: hsla(0,0%,100%,.5);
 }
 
-.token.atrule,
-.token.attr-value,
-.token.keyword {
-  color: $p-keyword;
-}
-
-.token.regex,
-.token.important {
-  color: $p-regex;
-}
-
-.token.important {
-  font-weight: 600;
-}
-
-.token.entity {
-  cursor: help;
+.namespace {
+  opacity: .7;
 }
