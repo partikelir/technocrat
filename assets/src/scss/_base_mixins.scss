@@ -97,6 +97,9 @@
     @if $link-border == true {
       border-bottom: 1px dotted rgba($link, 0.30);
     }
+    @if $link-color == true {
+      color: $link;
+    }
     @if not $link-visited == false {
       &:visited {
         @if $link-border == true {

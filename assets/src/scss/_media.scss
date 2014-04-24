@@ -1,0 +1,25 @@
+// ==== MEDIA ==== //
+
+// Captions
+.wp-caption {
+  @extend %spacer-below;
+  max-width: 100%; // Keep wide captions from overflowing their containers
+}
+.wp-caption .wp-caption-text,
+.entry-caption {
+  @include font-size($h4);
+  @include scut-reverse-italics;
+  color: $c-caption;
+}
+
+
+
+// Image attachment metadata
+.image-info {
+  @extend %spacer-above;
+  @include rem('padding-top', $spacer, 1);
+  border-top: $d-divider;
+}
+.image-description {
+  @include font-size($h4);
+}
