@@ -11,8 +11,8 @@ function pendrell_is_full_width() {
   if (
     is_page_template( 'page-templates/full-width.php' )
     || ( is_attachment() && wp_attachment_is_image() )
-    || ( is_singular() && has_post_format( 'image' ) )
-    || ( is_tax( 'post_format' ) && has_post_format( 'image' ) )
+    || ( is_singular() && has_post_format( array( 'image', 'gallery' ) ) )
+    || ( is_tax( 'post_format' ) && has_post_format( array( 'image', 'gallery' ) ) )
     || !is_active_sidebar( 'sidebar-main' )
     || $full_width_test === true
   ) {
