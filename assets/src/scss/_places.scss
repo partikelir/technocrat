@@ -1,15 +1,5 @@
 // ==== PLACES ==== //
 
-// Places list
-.archive-places-list {
+.place-list {
   @extend %spacer-below;
-  h2 {
-    @include font-size($h3);
-  }
-  ul {
-    list-style: disc outside;
-    li {
-      @include rem('margin-left', $spacer);
-    }
-  }
 }
