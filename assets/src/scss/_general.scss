@@ -105,9 +105,11 @@ s {
 }
 sub,
 sup {
+  font-size: 75%;
   height: 0; // @TODO: still necessary?
 }
 small {
+  font-size: 80%; // Part of Normalize.css, wiped out be Eric Meyer's reset
   line-height: 0;
 }
 

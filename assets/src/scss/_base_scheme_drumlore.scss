@@ -20,43 +20,68 @@ $h6: 12;
 
 
 
-// == COLORS == //
+// == BASE == //
 
-// Body
 $c-body:          #404040;
 $c-body-bg:       #FFFFFF;
+$c-head:          darken($c-body, 13);
 $c-highlight:     #edd496;
+$c-offset:        lighten($c-body, 13);
 $c-link:          #6a782b;
 $c-green:         #6a782b;
 $c-yellow:        #fff9c0;
 $c-red:           #d04d1d;
 
-// Header
-$c-head:          darken($c-body, 13);
 
-// Meta
-$c-meta:          lighten($c-body, 23);
-$c-meta-h:        $c-highlight;
 
-// Links
+// == LINKS == //
+
 $c-link-v:        $c-link;
 $c-link-h:        lighten($c-link, 17);
 $c-link-a:        saturate(lighten($c-link, 13), 13);
 $c-link-f:        saturate(lighten($c-link, 8), 8);
 
-// Main menu
+
+
+// == MENUS == //
+
 $c-menu-link:     #d04d1d;
 $c-menu-link-h:   #770909;
 $c-menu-current:  #770909;
 $c-menu-bg:       lighten(#edd496, 13);
 
-// Elements: mostly defined in _general.scss
-$c-abbr:          lighten($c-body, 13);
-$c-blockquote:    lighten($c-body, 13);
+
+
+// == META == //
+
+$c-meta:          lighten($c-body, 23);
+$c-meta-link:     darken($c-meta, 33);
+$c-meta-link-v:   $c-meta-link;
+$c-meta-link-h:   $c-highlight;
+$c-meta-link-a:   $c-meta-link;
+$c-meta-link-f:   $c-meta-link;
+
+
+
+// == FOOTER == //
+
+$c-footer:        $c-meta;
+$c-footer-link:   $c-meta-link;
+$c-footer-link-v: $c-meta-link-v;
+$c-footer-link-h: $c-meta-link-h;
+$c-footer-link-a: $c-meta-link-a;
+$c-footer-link-f: $c-meta-link-f;
+
+
+
+// == ELEMENTS == //
+
+$c-abbr:          $c-offset;
+$c-blockquote:    $c-offset;
 $c-blockquote-bg: darken($c-body-bg, 3);
-$c-code:          lighten($c-body, 13);
+$c-code:          $c-offset;
 $c-code-bg:       darken($c-body-bg, 3);
-$c-del:           lighten($c-body, 13);
+$c-del:           lighten($c-body, 27);
 $c-hr:            rgba( #500000, 0.8 );
 $c-ins-bg:        $c-yellow;
 $c-mark:          lighten($c-body, 19);
@@ -64,23 +89,54 @@ $c-mark-bg:       $c-ins-bg;
 $c-pre:           darken($c-body, 23);
 $c-table:         lighten($c-body, 19);
 
-// Form states
+
+
+// == FORMS == //
+
 $c-alert:         $c-red;
 $c-required:      $c-red;
 $c-success:       $c-green;
 
-// Various
+
+
+// == VARIOUS == //
+
+$c-archive:       lighten($c-body, 17);
 $c-caption:       lighten($c-body, 23);
-$c-divider:       rgba( #6a782b, 0.1 );
+$c-divider:       rgba($c-link, 0.1);
 $c-site-desc:     $c-body;
 $c-site-title:    $c-head;
-$c-small-header:  lighten($c-body, 13);
+$c-small-header:  $c-offset;
 $c-text-box:      lighten($c-body, 7);
 $c-text-box-bg:   darken($c-body-bg, 3);
 $c-text-box-sh:   darken($c-text-box-bg, 3);
 $c-widget-head:   #2a4018;
 $c-widget:        lighten(#6a782b, 17);
 
-// Design patterns
+
+
+// == DEFAULT SETTINGS == //
+
+// Dividing line
 $d-divider: 1px solid $c-divider;
+
+// Gradients
+$d-gradient-begin: #f4f4f4;
+$d-gradient-end: #e6e6e6;
+
+// Border radius
+$d-radius: 3px;
+
+// Box shadow
+$d-shadow: 0 1px 4px rgba(0, 0, 0, .20);
+
+// Glow
 $glow: 0px 0px 5px $c-highlight;
+
+
+
+// == REFERENCE == //
+
+// $c: colours
+// $d: default design patterns
+// $p: Prism code highlighting
