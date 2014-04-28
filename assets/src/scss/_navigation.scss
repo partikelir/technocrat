@@ -154,7 +154,8 @@ article.post-password-required input[type=submit],
 
 // General navigation
 .page-links,
-.page-navigation {
+.page-navigation,
+.post-navigation {
   @extend %clearfix-below;
   @extend %spacer-below;
   @include link-stylist($link-color: false);
