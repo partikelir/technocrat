@@ -1,7 +1,7 @@
 <?php // === AUTHOR === //
 
 // Author info on posts
-function pendrell_author_meta() {
+if ( !function_exists( 'pendrell_author_meta' ) ) : function pendrell_author_meta() {
   // Show a bio if a user has filled out their description... but not on certain post formats or the contact form page
   if (
     is_singular()
@@ -13,13 +13,13 @@ function pendrell_author_meta() {
   ) {
     pendrell_author_info();
   }
-}
+} endif;
 add_filter( 'pendrell_entry_meta_after', 'pendrell_author_meta', 12 );
 
 
 
 // Author info box
-function pendrell_author_info() {
+if ( !function_exists( 'pendrell_author_info' ) ) : function pendrell_author_info() {
   if ( get_the_author_meta( 'description' ) ) {
     $author = '<span class="fn n">' . get_the_author() . '</span>'; ?>
     <div class="author-info author vcard">
@@ -39,12 +39,12 @@ function pendrell_author_info() {
       </div><!-- .author-description -->
     </div><!-- .author-info -->
   <?php }
-}
+} endif;
 
 
 
 // Return the avatar with a link to the specified URL
-function pendrell_author_avatar( $url ) {
+if ( !function_exists( 'pendrell_author_avatar' ) ) : function pendrell_author_avatar( $url ) {
 
   // Size should be some multiple of the baseline
   $size = PENDRELL_BASELINE * 3;
@@ -59,4 +59,4 @@ function pendrell_author_avatar( $url ) {
   } else {
     echo get_avatar( get_the_author_meta( 'user_email' ), $size, $default, $alt );
   }
-}
+} endif;

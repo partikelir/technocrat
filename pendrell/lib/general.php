@@ -1,7 +1,7 @@
 <?php // === GENERAL === //
 
 // Enqueue scripts
-function pendrell_enqueue_scripts() {
+if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueue_scripts() {
 
   // Load theme-specific JavaScript with versioning based on last modified time
 	if ( !is_admin() ) { // http://www.ericmmartin.com/5-tips-for-using-jquery-with-wordpress/
@@ -18,24 +18,24 @@ function pendrell_enqueue_scripts() {
   // Register and enqueue our main stylesheet with versioning based on last modified time
   wp_register_style( 'pendrell-style', get_stylesheet_uri(), array(), filemtime( get_template_directory() . '/style.css' ) );
   wp_enqueue_style( 'pendrell-style' );
-}
+} endif;
 add_action( 'wp_enqueue_scripts', 'pendrell_enqueue_scripts' );
 
 
 
 // Hack: simplify and customize Google font loading; reference Twenty Twelve for more advanced options
-function pendrell_get_font_url() {
+if ( !function_exists( 'pendrell_get_font_url' ) ) : function pendrell_get_font_url() {
   $font_url = '';
   $protocol = is_ssl() ? 'https' : 'http';
   $fonts = PENDRELL_GOOGLE_FONTS ? PENDRELL_GOOGLE_FONTS : "Open+Sans:400italic,700italic,400,700"; // Default back to Open Sans
   $font_url = "$protocol://fonts.googleapis.com/css?family=" . $fonts;
   return $font_url;
-}
+} endif;
 
 
 
 // Minimally functional wp_title filter; use Ubik (or your plugin of choice) for more SEO-friendly page titles
-function pendrell_wp_title( $title, $sep = '-' ) {
+if ( !function_exists( 'pendrell_wp_title' ) ) : function pendrell_wp_title( $title, $sep = '-' ) {
   if ( is_front_page() || is_home() ) {
     $title = get_bloginfo( 'name' );
     if ( get_bloginfo( 'description' ) )
@@ -44,13 +44,13 @@ function pendrell_wp_title( $title, $sep = '-' ) {
     $title = $title . get_bloginfo( 'name' );
   }
   return $title;
-}
+} endif;
 add_filter( 'wp_title', 'pendrell_wp_title', 11, 3 );
 
 
 
 // Sidebar handler; since WordPress hasn't really made things easy in this department
-function pendrell_sidebar( $sidebar = true ) {
+if ( !function_exists( 'pendrell_sidebar' ) ) : function pendrell_sidebar( $sidebar = true ) {
 
   // Filter the $sidebar variable; this way we can set it to "false" by hooking into this function elsewhere
   // This way the regular sidebar can be disabled and you can output whatever you want
@@ -68,15 +68,4 @@ function pendrell_sidebar( $sidebar = true ) {
   if ( $sidebar ) {
     get_sidebar();
   }
-}
-
-
-
-// Content template selector; abstracted here so that content templates can be filtered
-function pendrell_content_template( $template = null ) {
-
-  if ( empty( $template ) )
-    $template = get_post_format();
-
-  return apply_filters( 'pendrell_content_template', $template );
-}
+} endif;

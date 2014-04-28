@@ -3,7 +3,7 @@
 // == QUOTATIONS == //
 
 // Get quotation metadata; assumes WP Post Formats or equivalent is in use
-function pendrell_quotation_metadata() {
+if ( !function_exists( 'pendrell_quotation_metadata' ) ) : function pendrell_quotation_metadata() {
 
 	global $post;
 
@@ -56,4 +56,4 @@ function pendrell_quotation_metadata() {
 	);
 
 	return $source;
-}
+} endif;

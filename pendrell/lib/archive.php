@@ -1,7 +1,7 @@
 <?php // ==== ARCHIVES ==== //
 
 // Generates all-purpose archive titles
-function pendrell_archive_title() {
+if ( !function_exists( 'pendrell_archive_title' ) ) : function pendrell_archive_title() {
   if ( is_day() ) {
     $title = sprintf( __( 'Daily archives: %s', 'pendrell' ), pendrell_name_wrapper( get_the_date() ) );
   } elseif ( is_month() ) {
@@ -26,12 +26,12 @@ function pendrell_archive_title() {
     $title = __( 'Archives', 'pendrell' );
   }
   echo apply_filters( 'pendrell_archive_title', $title );
-}
+} endif;
 
 
 
 // Conditional archive descriptions
-function pendrell_archive_description() {
+if ( !function_exists( 'pendrell_archive_description' ) ) : function pendrell_archive_description() {
 
   // Only show descriptions on the first page of results
   if ( !is_paged() ) {
@@ -66,4 +66,4 @@ function pendrell_archive_description() {
       }
     }
   }
-}
+} endif;

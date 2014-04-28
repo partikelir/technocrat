@@ -1,21 +1,25 @@
 <?php // ==== CONTENT ==== //
 
 // Generate content title
-function pendrell_title() {
+if ( !function_exists( 'pendrell_content_title' ) ) : function pendrell_content_title() {
   ?><a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a><?php
-}
+} endif;
 
 
 
-// Name wrapper; a stand-in for future microdata use
-function pendrell_name_wrapper( $content ) {
-  return '<span>' . $content . '</span>';
-}
+// Content template selector; abstracted here so that content templates can be filtered
+if ( !function_exists( 'pendrell_content_template' ) ) : function pendrell_content_template( $template = null ) {
+
+  if ( empty( $template ) )
+    $template = get_post_format();
+
+  return apply_filters( 'pendrell_content_template', $template );
+} endif;
 
 
 
 // Entry meta wrapper
-function pendrell_entry_meta() {
+if ( !function_exists( 'pendrell_entry_meta' ) ) : function pendrell_entry_meta() {
   global $post;
 
   do_action( 'pendrell_entry_meta_before' );
@@ -31,12 +35,12 @@ function pendrell_entry_meta() {
   </div><?php
 
   do_action( 'pendrell_entry_meta_after' );
-}
+} endif;
 
 
 
 // Entry meta; bare bones version, mostly untested... refer to Ubik for the real deal
-function pendrell_entry_meta_generator() {
+if ( !function_exists( 'pendrell_entry_meta_generator' ) ) : function pendrell_entry_meta_generator() {
 
   // Is Ubik active?
   if ( function_exists( 'ubik_content_entry_meta' ) ) {
@@ -81,15 +85,15 @@ function pendrell_entry_meta_generator() {
       $author
     );
   }
-}
+} endif;
 
 
 
 // Comments template wrapper
-function pendrell_comments_template() {
+if ( !function_exists( 'pendrell_comments_template' ) ) : function pendrell_comments_template() {
 
   // If comments are open or we have at least one comment, load up the comment template; via _s
   if ( comments_open() || get_comments_number() != '0' ) {
     comments_template('', true);
   }
-}
+} endif;
