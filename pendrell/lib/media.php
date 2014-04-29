@@ -2,8 +2,9 @@
 
 // == IMAGES == //
 
-// Generates HTML5 markup for image attachments and image format posts
+// Generates HTML5 markup for image attachments and image format posts; called in Pendrell's templates
 if ( !function_exists( 'pendrell_image_wrapper' ) ) : function pendrell_image_wrapper() {
+
   global $post;
 
   // Hooks into existing post_thumbnail_size filter; modified for full-width display in various.php
@@ -27,31 +28,46 @@ if ( !function_exists( 'pendrell_image_wrapper' ) ) : function pendrell_image_wr
   // Check to see if we have anything; image format posts without thumbnails will return nothing
   if ( !empty( $id ) ) {
 
+    $content = pendrell_image_markup( $html, $id, $caption, $title = '', $align = 'alignnone', $url = '', $size );
+
+    // Raw description; let's pass it through the content filter
+    if ( !empty( $description ) )
+      $content .= apply_filters( 'the_content', $description );
+
+    return $content;
+  }
+} endif;
+
+
+
+// Thin wrapper for ubik_image_markup with graceful fallback
+if ( !function_exists( 'pendrell_image_markup' ) ) : function pendrell_image_markup( $html, $id, $caption, $title = '', $align = 'alignnone', $url = '', $size ) {
+
     // If Ubik is installed...
     if ( function_exists( 'ubik_image_markup' ) ) {
       $content = ubik_image_markup( $html, $id, $caption, $title = '', $align = 'alignnone', $url = '', $size );
 
     // This is working, tested code but Ubik does things in a slightly more refined way
     } else {
-
-      $aria = '';
+      $content = '<figure id="' . $id . '" class="wp-caption" itemscope itemtype="http://schema.org/ImageObject">' . $html;
       if ( !empty( $caption ) )
-        $aria = 'aria-describedby="figcaption-' . $id . '" ';
-
-      $content = '<figure id="' . $id . '" ' . $aria . 'class="wp-caption" itemscope itemtype="http://schema.org/ImageObject">' . "\n";
-      $content .= $html . "\n";
-
-      if ( !empty( $caption ) )
-        $content .= '<figcaption id="figcaption-' . $id . '" class="wp-caption-text" itemprop="caption">' . $caption . '</figcaption>' . "\n";
-
+        $content .= '<figcaption id="figcaption-' . $id . '" class="wp-caption-text" itemprop="caption">' . $caption . '</figcaption>';
       $content .= '</figure>' . "\n";
-
     }
 
-    // Raw description; let's pass it through the content filter
-    if ( !empty( $description ) )
-      $content .= apply_filters( 'the_content', $description );
+  return $content;
 
-    echo $content;
-  }
 } endif;
+
+
+
+// Add featured images to the feed
+function pendrell_image_feed( $content ) {
+
+  // We should only need this on image format posts
+  if ( has_post_format( 'image' ) && has_post_thumbnail() )
+    $content = pendrell_image_wrapper() . $content;
+
+  return $content;
+}
+add_filter( 'the_content_feed', 'pendrell_image_feed' );

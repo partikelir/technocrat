@@ -13,7 +13,7 @@
 			</h1>
 		</header><!-- .entry-header -->
 		<div class="entry-content">
-			<?php pendrell_image_wrapper(); ?>
+			<?php echo pendrell_image_wrapper(); ?>
 		</div><!-- .entry-content -->
 		<footer class="entry-meta">
 			<?php pendrell_entry_meta(); ?>
