@@ -1,5 +1,8 @@
 // ==== MIXINS ==== //
 
+// Load the theme-agnostic functions and mixins library
+@import "base_library";
+
 // == GENERAL == //
 
 // Border radius; mainly used to allow for a default site-wide setting; via Twenty Twelver
@@ -15,20 +18,10 @@
   box-shadow: $shadow, $shadow-layered;
 }
 
-// Clearfix suite
-@mixin clearfix-above() {
-  &:before {
-    content: "";
-    display: table;
-    clear: both;
-  }
-}
-@mixin clearfix-below() {
-  &:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
+// Header font style
+@mixin font-header() {
+  font-family: $font-head;
+  font-weight: 400;
 }
 
 // Gradients; via Twenty Twelve
@@ -41,26 +34,6 @@
   background-color: $end;
   background-image: linear-gradient(top, $begin, $end);
   background-repeat: repeat-x;
-}
-
-
-
-// == INTERFACE == //
-
-// Header font style
-@mixin font-header() {
-  font-family: $font-head;
-  font-weight: 400;
-}
-
-// Ghosting; use on any element to obscure it from view except on hover
-@mixin ghost($value: 0.6) {
-  opacity: $value;
-  transition: opacity .5s ease;
-  &:hover {
-    opacity: 1;
-    transition: opacity .2s ease-in;
-  }
 }
 
 // Highlights text; used with ins and mark tags
@@ -83,7 +56,7 @@
   text-shadow: 0px 1px $c-body-bg;
 }
 
-// Bordered links; pass 'false' to disable styling for any of these
+// Link stylist; pass 'false' to disable styling for any of these
 @mixin link-stylist(
   $link: $c-link,
   $link-visited: $c-link-v,
@@ -163,11 +136,13 @@
 
 
 
-// == UTILITIES == //
+// == DEVELOPMENT == //
+
+// These mixins need some work
 
 // @TODO: breakpoints
 
-// Rem generator; via Twenty Twelve; @TODO: clean this up
+// Rem generator; via Twenty Twelve
 //
 // Baseline, measured in pixels
 // The value should be the same as the font-size value for the html element

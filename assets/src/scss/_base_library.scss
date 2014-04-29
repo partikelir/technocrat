@@ -1,0 +1,62 @@
+// ==== LIBRARY ==== //
+
+// This file contains all the theme-agnostic functions and mixins that don't rely on anything else; feel free to drop it into other projects
+
+// Clearfix suite
+@mixin clearfix-above() {
+  &:before {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+@mixin clearfix-below() {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+// Ghosting; use on any element to obscure it from view except on hover
+@mixin ghost($value: 0.6) {
+  opacity: $value;
+  transition: opacity .5s ease;
+  &:hover {
+    opacity: 1;
+    transition: opacity .2s ease-in;
+  }
+}
+
+// Inline list; @TODO: complete this
+@mixin inline-list() {
+  li {
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+  }
+}
+
+// Truncate text; via http://web-design-weekly.com/2013/05/12/handy-sass-mixins/
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+
+// A few mixins and functions via Sacha Greif: http://sachagreif.com/useful-sass-mixins/
+@function black($opacity) {
+  @return rgba(0, 0, 0, $opacity);
+}
+@function white($opacity) {
+  @return rgba(255, 255, 255, $opacity);
+}
+
+@mixin box-emboss($opacity: 0.75, $opacity2: 0.75){
+  box-shadow: white($opacity) 0 1px 0, inset black($opacity2) 0 1px 0;
+}
+@mixin letterpress($opacity){
+  text-shadow:white($opacity) 0 1px 0;
+}
