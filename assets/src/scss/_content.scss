@@ -141,7 +141,7 @@
     line-height: 0;
   }
 
-  // Tables and figures
+  // Tables
   table {
     border-bottom: $d-divider;
     color: $c-table;
@@ -180,6 +180,7 @@ figure.wp-caption,
   &.alignright {
     margin-left: percentage($spacer/$content-width);
   }
+  // @TODO: fix known issue, aligncenter class not working on captioned images
   &.alignnone {
     margin-left: 0;
     margin-right: 0;

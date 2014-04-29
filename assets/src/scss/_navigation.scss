@@ -156,13 +156,12 @@ article.post-password-required input[type=submit],
 .page-links,
 .page-navigation,
 .post-navigation {
-  @extend %clearfix-below;
+  @extend %clearfix;
   @extend %spacer-below;
   @include link-stylist($link-color: false);
 }
 .nav-above,
 .nav-below {
-  @extend %clearfix;
   @include rem('margin-bottom', $spacer*2);
 }
 .nav-previous {
