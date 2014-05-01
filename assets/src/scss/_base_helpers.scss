@@ -10,8 +10,7 @@
   @include clearfix-below;
 }
 %clearfix {
-  @include clearfix-above;
-  @include clearfix-below;
+  @include clearfix;
 }
 
 // Spacing, to preserve a modicum of vertical rhythm

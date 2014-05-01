@@ -57,7 +57,7 @@
     list-style: none;
   }
   li {
-    @include scut-hanging-indent($spacer);
+    @include hanging-indent($spacer);
     margin: 0;
   }
 }

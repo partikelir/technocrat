@@ -52,13 +52,7 @@ article.post-password-required input[type=submit],
 
 // Menu (general)
 .inline-menu {
-  a {
-    color: $c-menu-link;
-    text-decoration: none;
-    &:hover {
-      color: $c-menu-link-h;
-    }
-  }
+  @include link-stylist($c-menu-link, $c-menu-link, $c-menu-link-h, $c-menu-link, $c-menu-link, false);
   .current-menu-item > a,
   .current-menu-ancestor > a,
   .current_page_item > a,
@@ -66,19 +60,22 @@ article.post-password-required input[type=submit],
     @include ghost;
     font-weight: 200;
   }
+  ul {
+    @include list-floated($spacer);
+    @include list-nested;
+
+    // Don't bother displaying submenus on small screens
+    @media screen and (max-width: $break-medium) {
+      & > li:hover > ul {
+        display: none;
+      }
+    }
+  }
   li {
     @include font-header;
     @include font-size($font-size);
-    @include rem('margin', 0 $spacer 0 0);
     font-weight: 400;
-    display: inline-block;
-    position: relative;
-    vertical-align: middle;
-
-    // Don't bother displaying secondary and tertiary menu items on small screens
-    ul {
-      @include scut-hide-visually;
-    }
+    white-space: nowrap;
   }
 }
 
@@ -90,55 +87,29 @@ article.post-password-required input[type=submit],
   ul.menu-header {
     border-bottom: $d-divider;
     display: none;
-    margin: 0;
-    text-indent: 0;
     @media screen and (min-width: $break-medium) {
       display: inline-block;
       width: 100%;
     }
-  }
-  ul.menu-header.toggled-on {
-    display: inline-block;
-  }
-  a {
-    @media screen and (min-width: $break-medium) {
-      line-height: $spacer*1.5;
-      white-space: nowrap;
+    &.toggled-on {
+      display: inline-block;
     }
   }
   @media screen and (min-width: $break-medium) {
     li {
+      line-height: $spacer*1.5;
       ul {
-        @include box-shadow(2px 2px 5px rgba(64, 64, 64, 0.05));
-        margin: 0;
-        padding: 0;
-        position: absolute;
-        top: 100%;
-        z-index: 1;
-        ul {
-          top: 0;
-          left: 100%;
-        }
-        li {
-          display: block;
-          margin: 0;
-          white-space: normal;
-          a {
-            @include font-size($h5, 1);
-            @include rem('padding', 0 $spacer/4);
-            background: $c-menu-bg;
-            border-bottom: $d-divider;
-            display: block;
-            &:hover {
-              background: darken($c-menu-bg, 3);
-            }
+        @include box-shadow(2px 2px 4px rgba(64, 64, 64, 0.05));
+        li a {
+          @include font-size($h5, 1);
+          @include rem('padding', 0 $spacer/4);
+          background: $c-menu-bg;
+          border-bottom: $d-divider;
+          &:hover {
+            background: darken($c-menu-bg, 3);
           }
         }
       }
-    }
-    ul li:hover > ul {
-      border-left: 0;
-      display: block;
     }
   }
 }
@@ -148,6 +119,10 @@ article.post-password-required input[type=submit],
 // Footer menu
 #menu-footer {
   @extend %spacer-below;
+  // Don't bother displaying submenus in the footer
+  ul > li:hover > ul {
+    display: none;
+  }
 }
 
 
