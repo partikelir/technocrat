@@ -36,7 +36,7 @@ if ( !function_exists( 'pendrell_archive_description' ) ) : function pendrell_ar
   // Only show descriptions on the first page of results
   if ( !is_paged() ) {
 
-    // Only output archive descriptions for categories, tags, taxonomies, and authors
+    // Only output archive descriptions for categories, tags, taxonomies
     if ( is_category() || is_tag() || is_tax() ) {
 
       $content = '';
@@ -48,7 +48,7 @@ if ( !function_exists( 'pendrell_archive_description' ) ) : function pendrell_ar
 
       // Got something?
       if ( !empty( $description ) ) {
-        $content .= '<div class="archive-description">' . do_shortcode( $description ) . '</div>';
+        $content .= '<div class="archive-description">' . $description . '</div>';
       }
 
       $content = apply_filters( 'pendrell_archive_term_after', $content );
@@ -58,6 +58,7 @@ if ( !function_exists( 'pendrell_archive_description' ) ) : function pendrell_ar
         ?><div class="archive-content"><?php echo $content; ?></div><?php
       }
 
+    // Also output descriptions for authors
     } elseif ( is_author() ) {
       if ( get_the_author_meta( 'description' ) ) {
         ?><div class="archive-content">
@@ -67,3 +68,7 @@ if ( !function_exists( 'pendrell_archive_description' ) ) : function pendrell_ar
     }
   }
 } endif;
+
+// Allow shortcodes in term descriptions
+add_filter( 'term_description', 'shortcode_unautop' );
+add_filter( 'term_description', 'do_shortcode' );
