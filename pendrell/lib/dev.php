@@ -1,4 +1,4 @@
-<?php // === PENDRELL DEVELOPMENT AREA === //
+<?php // === DEVELOPMENT AREA === //
 
 // Everything below here might or might not be working... when it has been developed and tested move it above this line
 

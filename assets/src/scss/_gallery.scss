@@ -41,7 +41,7 @@ $gallery-padding: 5px;
   .gallery-caption-text {
     @include font-size($h5);
     @include rem('padding', 0 $gallery-padding + 5px 0 $gallery-padding );
-    @include scut-reverse-italics;
+    @include reverse-italics;
     box-sizing: border-box;
     color: #fff;
     cursor: pointer;

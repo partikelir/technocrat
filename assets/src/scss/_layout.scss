@@ -6,7 +6,7 @@
   @include rem('padding', 0 $spacer);
   @media screen and (min-width: $break-medium) {
     @include rem('padding', 0 $spacer*1.5);
-    @include scut-center-block;
+    @include center-block;
     max-width: $content-width;
     overflow: hidden;
   }
@@ -60,7 +60,7 @@
   }
   .site-description {
     @include font-size($h6);
-    @include scut-hide-visually;
+    @include hide-visually;
     color: $c-site-desc;
   }
 }

@@ -101,5 +101,5 @@ img.wp-smiley,
 
 // Hide that mysterious smiley face that appears when you use Jetpack
 img#wpstats {
-  @include scut-hide-visually;
+  @include hide-visually;
 }

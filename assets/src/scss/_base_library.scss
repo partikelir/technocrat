@@ -4,6 +4,15 @@
 
 // == MIXINS == //
 
+// Center block; via Scut
+@mixin center-block ( $max-width: false ) {
+  margin-left: auto;
+  margin-right: auto;
+  @if $max-width {
+    max-width: $max-width;
+  }
+}
+
 // Clearfix suite
 @mixin clearfix-above() {
   &:before {
@@ -110,6 +119,18 @@
     ul ul ul li:hover ul {
       display: none;
     }
+  }
+}
+
+// Reverse italics; via Scut
+@mixin reverse-italics ( $elements: false ) {
+  $element-list: em, cite, i;
+  @each $el in $elements {
+    $element-list: append($element-list, unquote($el), comma)
+  }
+  font-style: italic;
+  #{$element-list} {
+    font-style: normal;
   }
 }
 

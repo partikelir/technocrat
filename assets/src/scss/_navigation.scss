@@ -73,9 +73,12 @@ article.post-password-required input[type=submit],
   }
   li {
     @include font-header;
-    @include font-size($font-size);
+    @include font-size($h5);
     font-weight: 400;
     white-space: nowrap;
+    @media screen and (min-width: $break-medium) {
+      @include font-size($font-size);
+    }
   }
 }
 
@@ -97,8 +100,10 @@ article.post-password-required input[type=submit],
   }
   @media screen and (min-width: $break-medium) {
     li {
+      // Space out the header menu
       line-height: $spacer*1.5;
       ul {
+        // Submenu styling
         @include box-shadow(2px 2px 4px rgba(64, 64, 64, 0.05));
         li a {
           @include font-size($h5, 1);

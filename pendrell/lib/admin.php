@@ -1,4 +1,4 @@
-<?php // === PENDRELL ADMIN FUNCTIONS === //
+<?php // === ADMIN FUNCTIONS === //
 
 // Add custom images sizes to the media uploader dropdown; @TODO: revise these styles and move most of this to the portfolio module
 if ( !function_exists( 'pendrell_image_sizes' ) ) : function pendrell_image_sizes( $sizes ) {

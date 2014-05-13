@@ -75,7 +75,7 @@
   // Blockquote and quotations
   blockquote {
     @include font-size($h3);
-    @include scut-reverse-italics;
+    @include reverse-italics;
     @include inset-box;
     p {
       @include rem('padding-bottom', $spacer); // Padding is used instead of margins because of the blockquote background

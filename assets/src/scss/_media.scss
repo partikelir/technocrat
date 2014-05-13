@@ -8,7 +8,7 @@
 .wp-caption .wp-caption-text,
 .entry-caption {
   @include font-size($h4);
-  @include scut-reverse-italics;
+  @include reverse-italics;
   color: $c-caption;
 }
 
