@@ -23,6 +23,7 @@ include( get_stylesheet_directory() . '/lib/archive.php' );
 include( get_stylesheet_directory() . '/lib/author.php' );
 include( get_stylesheet_directory() . '/lib/content.php' );
 include( get_stylesheet_directory() . '/lib/dev.php' ); // Still in development; @TODO: finish these some day
+include( get_stylesheet_directory() . '/lib/feed.php' );
 include( get_stylesheet_directory() . '/lib/general.php' );
 include( get_stylesheet_directory() . '/lib/formats.php' );
 include( get_stylesheet_directory() . '/lib/full-width.php' );
@@ -46,7 +47,7 @@ function pendrell_setup() {
   add_theme_support( 'post-formats', array( 'aside', 'audio', 'gallery', 'image', 'link', 'quote', 'status' ) );
 
   // HTML5 captions and gallery shortcodes; both still kind of ugly though
-  add_theme_support( 'html5', array( 'gallery', 'caption' ) );
+  add_theme_support( 'html5', array( 'gallery' ) ); // Disabled: 'caption'; the output causes feeds to invalidate
 
   // Adds RSS feed links to <head> for posts and comments.
   add_theme_support( 'automatic-feed-links' );
@@ -54,7 +55,8 @@ function pendrell_setup() {
   // $content_width limits the size of the largest image size available via the media uploader
   // It should be set once and left alone apart from that; don't do anything fancy with it; it is part of WordPress core
   global $content_width;
-  $content_width = 960;
+  if ( !isset( $content_width ) )
+    $content_width = 960;
 
   // Width of the main content column; should correspond to equivalent values in the stylesheet; NOT a WordPress core thing
   // This variable is mainly used here in functions.php; it should match the variable defined in _base.scss
