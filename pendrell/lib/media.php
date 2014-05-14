@@ -47,12 +47,22 @@ if ( !function_exists( 'pendrell_image_markup' ) ) : function pendrell_image_mar
     if ( function_exists( 'ubik_image_markup' ) ) {
       $content = ubik_image_markup( $html, $id, $caption, $title = '', $align = 'alignnone', $url = '', $size );
 
-    // This is working, tested code but Ubik does things in a slightly more refined way
+    // This stuff works but Ubik does things in a slightly more refined way
     } else {
-      $content = '<figure id="' . $id . '" class="wp-caption" itemscope itemtype="http://schema.org/ImageObject">' . $html;
-      if ( !empty( $caption ) )
-        $content .= '<figcaption id="figcaption-' . $id . '" class="wp-caption-text" itemprop="caption">' . $caption . '</figcaption>';
-      $content .= '</figure>' . "\n";
+
+      // Feeds won't validate with fancy HTML5 tags; let's keep things simply
+      if ( is_feed() ) {
+        $content = $html;
+        if ( !empty( $caption ) )
+          $content .= '<br/><small>' . $caption . '</small>';
+
+      // Produce some simple HTML5 markup for images and captions
+      } else {
+        $content = '<figure id="' . $id . '" class="wp-caption wp-caption-' . $id . ' ' . esc_attr( $align ) . '" itemscope itemtype="http://schema.org/ImageObject">' . $html;
+        if ( !empty( $caption ) )
+          $content .= '<figcaption id="figcaption-' . $id . '" class="wp-caption-text" itemprop="caption">' . $caption . '</figcaption>';
+        $content .= '</figure>' . "\n";
+      }
     }
 
   return $content;
@@ -71,3 +81,27 @@ function pendrell_image_feed( $content ) {
   return $content;
 }
 add_filter( 'the_content_feed', 'pendrell_image_feed' );
+
+
+
+// Image shortcode fallback (in case Ubik is not active)
+function pendrell_image_shortcode( $atts, $caption = null ) {
+  extract( shortcode_atts( array(
+    'id'            => '',
+    'title'         => '',
+    'align'         => 'none',
+    'url'           => '',
+    'size'          => 'medium',
+    'alt'           => ''
+  ), $atts ) );
+
+  // The get_image_tag function requires a simple alignment e.g. "none", "left", etc.
+  $align = str_replace( 'align', '', $align );
+
+  // Default img element generator
+  $html = get_image_tag( $id, $alt, $title, $align, $size );
+
+  return apply_filters( 'pendrell_image_shortcode', pendrell_image_markup( $html, $id, $caption, $title, $align, $url, $size, $alt ) );
+}
+if ( !function_exists( 'ubik_image_shortcode' ) )
+  add_shortcode( 'image', 'pendrell_image_shortcode' );
