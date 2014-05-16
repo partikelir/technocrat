@@ -22,7 +22,7 @@ define( 'PENDRELL_MEDIA_GALLERY', false );
 include( get_stylesheet_directory() . '/lib/archive.php' );
 include( get_stylesheet_directory() . '/lib/author.php' );
 include( get_stylesheet_directory() . '/lib/content.php' );
-include( get_stylesheet_directory() . '/lib/dev.php' ); // Still in development; @TODO: finish these some day
+include( get_stylesheet_directory() . '/lib/dev.php' );
 include( get_stylesheet_directory() . '/lib/feed.php' );
 include( get_stylesheet_directory() . '/lib/general.php' );
 include( get_stylesheet_directory() . '/lib/formats.php' );
@@ -30,6 +30,7 @@ include( get_stylesheet_directory() . '/lib/full-width.php' );
 include( get_stylesheet_directory() . '/lib/image-metadata.php' );
 include( get_stylesheet_directory() . '/lib/media.php' );
 include( get_stylesheet_directory() . '/lib/navigation.php' );
+include( get_stylesheet_directory() . '/lib/search.php' );
 include( get_stylesheet_directory() . '/lib/various.php' );
 
 if ( is_admin() )
@@ -47,7 +48,7 @@ function pendrell_setup() {
   add_theme_support( 'post-formats', array( 'aside', 'audio', 'gallery', 'image', 'link', 'quote', 'status' ) );
 
   // HTML5 captions and gallery shortcodes; both still kind of ugly though
-  add_theme_support( 'html5', array( 'gallery' ) ); // Disabled: 'caption'; the output causes feeds to invalidate
+  add_theme_support( 'html5', array( 'comment-form', 'comment-list', 'gallery', 'search-form' ) ); // Disabled: 'caption'; the output causes feeds to invalidate
 
   // Adds RSS feed links to <head> for posts and comments.
   add_theme_support( 'automatic-feed-links' );

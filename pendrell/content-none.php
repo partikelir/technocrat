@@ -15,7 +15,7 @@
 		<div class="entry-content">
 			<?php if ( is_search() ) { ?>
 				<p><?php _e( 'Sorry, but nothing matched your search terms. Please try again:', 'pendrell' ); ?></p>
-				<?php $search_term = esc_url( $_SERVER['REQUEST_URI'] ); pendrell_search_form( $search_term ); ?>
+				<?php pendrell_search_form(); ?>
 			<?php } elseif ( is_archive() ) { ?>
 				<p><?php _e( 'Sorry, there is no content here yet. Try searching for something else:', 'pendrell' ); ?></p>
 				<?php pendrell_search_form(); ?>
