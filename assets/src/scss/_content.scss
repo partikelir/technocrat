@@ -65,11 +65,11 @@
   li {
     @include rem('margin', 0 0 0 $spacer);
   }
-  dl {
-    @include rem('margin', 0 $spacer);
-  }
   dd {
     @include rem('margin', 0 $spacer $spacer);
+  }
+  dl {
+    @include rem('margin', 0 $spacer);
   }
 
   // Blockquote and quotations

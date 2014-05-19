@@ -104,7 +104,7 @@ mark {
     color: $c-mark;
   }
 }
-s {
+s { // Deprecated but still in use in some places
   text-decoration: line-through;
 }
 sub,
@@ -113,7 +113,8 @@ sup {
   height: 0; // @TODO: still necessary?
 }
 small {
-  font-size: 80%; // Part of Normalize.css, wiped out be Eric Meyer's reset
+  //font-size: 80%; // Part of Normalize.css, wiped out be Eric Meyer's reset
+  @include font-size($h4);
   line-height: 0;
 }
 

@@ -7,6 +7,10 @@
   }
   ol {
     @include font-size($h4);
-    list-style: decimal inside;
+    @include rem('margin-bottom', $spacer);
+    list-style: decimal outside;
+  }
+  li {
+    @include rem('margin', 0 0 0 $spacer);
   }
 }
