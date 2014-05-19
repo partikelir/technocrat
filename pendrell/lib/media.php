@@ -28,7 +28,7 @@ if ( !function_exists( 'pendrell_image_wrapper' ) ) : function pendrell_image_wr
   // Check to see if we have anything; image format posts without thumbnails will return nothing
   if ( !empty( $id ) ) {
 
-    $content = pendrell_image_markup( $html, $id, $caption, $title = '', $align = 'alignnone', $url = '', $size );
+    $content = pendrell_image_markup( $html, $id, $caption, $title = '', $align = 'none', $url = '', $size );
 
     // Raw description; let's pass it through the content filter
     if ( !empty( $description ) )
@@ -41,11 +41,11 @@ if ( !function_exists( 'pendrell_image_wrapper' ) ) : function pendrell_image_wr
 
 
 // Thin wrapper for ubik_image_markup with graceful fallback
-if ( !function_exists( 'pendrell_image_markup' ) ) : function pendrell_image_markup( $html, $id, $caption, $title = '', $align = 'alignnone', $url = '', $size ) {
+if ( !function_exists( 'pendrell_image_markup' ) ) : function pendrell_image_markup( $html, $id, $caption, $title = '', $align = 'none', $url = '', $size = 'medium' ) {
 
     // If Ubik is installed...
     if ( function_exists( 'ubik_image_markup' ) ) {
-      $content = ubik_image_markup( $html, $id, $caption, $title = '', $align = 'alignnone', $url = '', $size );
+      $content = ubik_image_markup( $html, $id, $caption, $title = '', $align = 'none', $url = '', $size );
 
     // This stuff works but Ubik does things in a slightly more refined way
     } else {
