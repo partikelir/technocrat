@@ -1,40 +1,59 @@
 # Pendrell usage notes
 
+## PLUGINS
+
+Apart from [Ubik](https://github.com/synapticism/ubik), which is almost mandatory, these plugins are recommended for use with Pendrell:
+
+* [Ubik](https://github.com/synapticism/ubik), my all-purpose WordPress toolkit, designed for use with this very theme. **Highly recommended!**
+* [My fork](https://github.com/synapticism/wp-post-formats) of Crowd Favorite's [WP-Post-Formats plugin](https://github.com/crowdfavorite/wp-post-formats).
+* [Jetpack](https://github.com/Automattic/jetpack), especially for its Markdown module.
+* [Google XML sitemaps](http://www.arnebrachhold.de/redir/sitemap-home/).
+* [Akismet](http://akismet.com/).
+* [WP-Super-Cache](http://ocaoimh.ie/wp-super-cache/).
+
+Utilities:
+
+* [Regenerate Thumbnails](http://wordpress.org/extend/plugins/regenerate-thumbnails/) since Pendrell uses custom image sizes.
+* [Un-attach and re-attach media attachments](http://wordpress.org/plugins/unattach-and-re-attach-attachments/) in case you get mixed up.
+* [Post type switcher](http://wordpress.org/extend/post-type-switcher/).
+
+
+
 ## IMAGES
 
-If Ubik is active Pendrell will handle images and image captions with an image shortcode. There is no need to write your own shortcode; simply insert an image from the media library and it should look something like this:
+### IMAGE SHORTCODE
+
+If [Ubik](https://github.com/synapticism/ubik) is active Pendrell will handle images and image captions with an image shortcode. There is no need to write your own shortcode; simply insert an image from the media library and it should look something like this:
 
 ```
-[image id="1001" align="alignnone" url="http://yourwebsite.com/a-post/the-attachment" size="medium" alt="Alt text goes here."/]
+[image id="1001" url="http://yourwebsite.com/a-post/the-attachment" size="medium" alt="Alt text goes here."/]
 ```
 
 Captions are contained within the image shortcode and can include other shortcodes and basic text formatting HTML (e.g. `<em>`, `<strong>`, etc.) and links:
 
 ```
-[image id="1001" align="alignnone" url="http://yourwebsite.com/a-post/the-attachment" size="medium" alt="Alt text goes here."]This is a caption![/image]
+[image id="1001" url="http://yourwebsite.com/a-post/the-attachment" size="medium" alt="Alt text goes here."]This is a caption![/image]
 ```
 
 Image layout is a bit tricky at first but easy once you know what you are doing. Pendrell specifies two extra image sizes, `medium-half` and `medium-third`, that correspond to a half and a third of the `$content-width` variable (which defaults to 960 px).
 
-These image sizes are designed to allow a harmonious layout of images in columns without mucking around with a lot of excess markup. All you have to do is set the align property to `alignleft`. Captions work beautifully, though you'll probably want to keep them approximately the same length to preserve visual harmony.
+These image sizes are designed to allow a harmonious layout of images in columns without mucking around with a lot of excess markup. All you have to do is set the align property to `left`. (The default, `none`, does not need to be explicitly specified.) Captions work beautifully, though you'll probably want to keep them approximately the same length to preserve visual harmony.
 
 An example of a half-width layout:
 
 ```
-[image id="1001" align="alignleft" url="http://yourwebsite.com/a-post/the-attachment" size="medium-half" alt="Alt text goes here."]This is a caption![/image]
+[image id="1001" align="left" url="http://yourwebsite.com/a-post/the-attachment" size="medium-half" alt="Alt text goes here."]This is a caption![/image]
 
-[image id="1002" align="alignnone" url="http://yourwebsite.com/a-post/another-attachment" size="medium-half" alt="Alt text goes here."]This is a caption![/image]
+[image id="1002" url="http://yourwebsite.com/a-post/another-attachment" size="medium-half" alt="Alt text goes here."]This is a caption![/image]
 ```
 
 An example of a third-width layout:
 
 ```
-[image id="1001" align="alignleft" url="http://yourwebsite.com/a-post/the-attachment" size="medium-half" alt="Alt text goes here."]This is a caption![/image]
+[image id="1001" align="left" url="http://yourwebsite.com/a-post/the-attachment" size="medium-half" alt="Alt text goes here."]This is a caption![/image]
 
-[image id="1002" align="alignnone" url="http://yourwebsite.com/a-post/another-attachment" size="medium-half" alt="Alt text goes here."]This is a caption![/image]
+[image id="1002" url="http://yourwebsite.com/a-post/another-attachment" size="medium-half" alt="Alt text goes here."]This is a caption![/image]
 ```
-
-Clearing floats is done by selectig the next paragraph element after the last figure. You may need to clear floats manually if you follow a row of images with some other sort of content. To do this simply wrap your row of images in `<div class="clear">[images]</div>`.
 
 
 
@@ -60,6 +79,7 @@ This creates a tidy list of references with a hanging indent. Use it for scholar
   </ul>
 </footer>
 ```
+
 
 
 ### QUOTATIONS

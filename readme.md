@@ -34,12 +34,7 @@ Pendrell is written in Sass without Compass. [Normalize.css](https://necolas.git
 
 ### PLUGINS
 
-The following plugins are not exactly dependencies but you will probably want to install them to get the most out of Pendrell:
-
-* [Ubik](https://github.com/synapticism/ubik), my all-purpose WordPress toolkit, designed for use with this very theme. **Highly recommended!**
-* [My fork](https://github.com/synapticism/wp-post-formats) of Crowd Favorite's [WP-Post-Formats plugin](https://github.com/crowdfavorite/wp-post-formats).
-* [Regenerate Thumbnails](http://wordpress.org/extend/plugins/regenerate-thumbnails/) since this theme uses custom image sizes.
-* [Jetpack](https://github.com/Automattic/jetpack), especially for its Markdown module.
+Pendrell is designed for use with [Ubik](https://github.com/synapticism/ubik), my all-purpose WordPress toolkit. You'll want to install and configure it to get the most out of this theme if you start playing around with it. Apart from that I have prepared a list of recommended plugins in [usage.md](/usage.md).
 
 
 
