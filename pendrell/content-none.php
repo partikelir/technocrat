@@ -9,7 +9,7 @@
 	<article id="post-0" class="post no-results not-found">
 		<header class="entry-header">
 			<h1 class="entry-title">
-        <?php _e( 'Error 404: content not found', 'pendrell' ); ?>
+        <?php _e( 'No results', 'pendrell' ); ?>
       </h1>
 		</header><!-- .entry-header -->
 		<div class="entry-content">
