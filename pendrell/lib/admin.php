@@ -1,6 +1,6 @@
 <?php // === ADMIN FUNCTIONS === //
 
-// Add custom images sizes to the media uploader dropdown; @TODO: revise these styles and move most of this to the portfolio module
+// Add custom images sizes to the media uploader dropdown
 if ( !function_exists( 'pendrell_image_sizes' ) ) : function pendrell_image_sizes( $sizes ) {
 
 	// Cheap hack to keep "full size" at the bottom of the dropdown: unset and reset it after adding our custom sizes
@@ -22,3 +22,21 @@ if ( !function_exists( 'pendrell_image_sizes' ) ) : function pendrell_image_size
 
 } endif;
 add_filter( 'image_size_names_choose', 'pendrell_image_sizes' );
+
+
+
+// Filter TinyMCE CSS path to include Google Fonts; adapted from Twenty Twelve; @TODO: test this with the visual editor
+if ( !function_exists( 'pendrell_mce_css' ) ) : function pendrell_mce_css( $mce_css ) {
+  $font_url = pendrell_get_font_url();
+
+  if ( empty( $font_url ) )
+    return $mce_css;
+
+  if ( !empty( $mce_css ) )
+    $mce_css .= ',';
+
+  $mce_css .= esc_url_raw( str_replace( ',', '%2C', $font_url ) );
+
+  return $mce_css;
+} endif;
+add_filter( 'mce_css', 'pendrell_mce_css' );
