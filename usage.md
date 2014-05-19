@@ -1,8 +1,8 @@
-# Pendrell usage notes
+# PENDRELL: USAGE
 
 ## PLUGINS
 
-Apart from [Ubik](https://github.com/synapticism/ubik), which is almost mandatory, these plugins are recommended for use with Pendrell:
+Apart from [Ubik](https://github.com/synapticism/ubik), which is pretty much mandatory, these plugins are recommended for use with Pendrell:
 
 * [Ubik](https://github.com/synapticism/ubik), my all-purpose WordPress toolkit, designed for use with this very theme. **Highly recommended!**
 * [My fork](https://github.com/synapticism/wp-post-formats) of Crowd Favorite's [WP-Post-Formats plugin](https://github.com/crowdfavorite/wp-post-formats).
@@ -19,7 +19,7 @@ Utilities:
 
 
 
-## IMAGES
+## PUBLISHING
 
 ### IMAGE SHORTCODE
 
@@ -59,7 +59,7 @@ An example of a third-width layout:
 
 ## IMAGE POST FORMAT
 
-Image posts should be used as a wrapper for attachments. Set a featured image and write about the photo in the body of the post itself. Give the attachment a title and caption. *Do not* enter a description as this will be echoed into the image post itself.
+Image posts should be used as a wrapper for attachments. Set a featured image and write about the photo in the body of the post itself. Give the attachment a title and caption. *Do not* enter a description unless you want it echoed into the image post itself.
 
 
 

@@ -1,4 +1,4 @@
-# LINKS
+# PENDRELL: LINKS
 
 A list of links maintained for my own reference.
 

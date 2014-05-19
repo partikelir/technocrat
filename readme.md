@@ -1,4 +1,4 @@
-# PENDRELL 0.8
+# PENDRELL
 
 Pendrell is minimal yet full-featured WordPress theme originally based on Twenty Twelve.
 
@@ -26,15 +26,17 @@ bower install
 gem install sass
 ```
 
-To build Pendrell after modifications: `gulp`.
+To build Pendrell after modification: `gulp`.
 
-Pendrell is written in Sass without Compass. [Normalize.css](https://necolas.github.io/normalize.css/) and [Eric Meyer's reset](http://meyerweb.com/eric/tools/css/reset/) are integrated by default. [Scut](https://davidtheclark.github.io/scut/), a lightweight Sass utility library, is also used.
+Pendrell is written in Sass without Compass. [Normalize.css](https://necolas.github.io/normalize.css/) and [Eric Meyer's reset](http://meyerweb.com/eric/tools/css/reset/) are integrated by default.
 
 *Fork this repo to receive updates as development continues.*
 
 ### PLUGINS
 
-Pendrell is designed for use with [Ubik](https://github.com/synapticism/ubik), my all-purpose WordPress toolkit. You'll want to install and configure it to get the most out of this theme if you start playing around with it. Apart from that I have prepared a list of recommended plugins in [usage.md](/usage.md).
+Pendrell is designed for use with [Ubik](https://github.com/synapticism/ubik), my all-purpose WordPress utility belt. You'll want to install and configure it to get the most out of Pendrell if you start playing around with it. Why offload what amounts to essential functionality? Simple: if a hack or snippet works just as well in any other theme it rightfully belongs in a plugin.
+
+Apart from that I have prepared a list of recommended plugins in [usage.md](/usage.md).
 
 
 
@@ -43,17 +45,10 @@ Pendrell is designed for use with [Ubik](https://github.com/synapticism/ubik), m
 * Entry content type set at 18px by default for easier reading.
 * Consistent vertical rhythm (excluding images; that's just too much trouble).
 * Improved post format styling and support for asides, images (really just a thin wrapper for attachments), links, quotations, and status updates.
-* Google Web Font loading via setting in `functions-config.php`.
+* Google Web Font loading; configure in `functions.php`.
 * Automated CSS/JS minification via Gulp build script.
-* Built-in contact form page template; no need for a plugin.
-* Syntax highlighting via [Prism](http://prismjs.com).
-
-
-
-## USAGE
-
-* Make judicious use of the `<!--more-->` tag.
-* See [usage.md](/usage.md) for additional tips.
+* Built-in contact form page template; no need for a wasteful plugin.
+* Code highlighting via [Prism](http://prismjs.com).
 
 
 
