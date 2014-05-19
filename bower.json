@@ -22,7 +22,6 @@
   ],
   "dependencies": {
     "normalize.css": "~3.0.1",
-    "scut": "~0.10.3",
     "meyer-reset": "*"
   }
 }
