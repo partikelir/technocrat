@@ -118,6 +118,12 @@
   }
 }
 
+// Small print
+@mixin small-print($font-size: $h4) {
+  @include font-size($font-size);
+  color: $c-small-print;
+}
+
 // Text input; for use with forms, textarea, etc.
 @mixin text-input($shadow: $c-text-box-sh) {
   @include border-radius;

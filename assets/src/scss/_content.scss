@@ -159,6 +159,13 @@
     border-top: $d-divider;
   }
 
+  // Asides; use this instead of <small> in post contents
+  aside {
+    @extend %spacer-below;
+    @include reverse-italics;
+    @include small-print;
+  }
+
   // Media
   img {
     @include border-radius;

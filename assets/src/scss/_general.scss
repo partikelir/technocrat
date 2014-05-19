@@ -113,9 +113,7 @@ sup {
   height: 0; // @TODO: still necessary?
 }
 small {
-  //font-size: 80%; // Part of Normalize.css, wiped out be Eric Meyer's reset
-  @include font-size($h4);
-  line-height: 0;
+  @include small-print; // Set to font-size: 80% in Normalize.css, wiped out be Eric Meyer's reset
 }
 
 

@@ -86,7 +86,7 @@ $c-hr:            darken($c-body-bg, 17);
 $c-ins-bg:        $c-yellow;
 $c-mark:          lighten($c-body, 19);
 $c-mark-bg:       $c-ins-bg;
-$c-pre:           darken($c-body, 23);
+$c-pre:           darken($c-body, 13);
 $c-table:         lighten($c-body, 19);
 
 
@@ -107,6 +107,7 @@ $c-divider:       rgba($c-body, 0.10);
 $c-site-desc:     $c-body;
 $c-site-title:    $c-head;
 $c-small-header:  $c-offset;
+$c-small-print:   lighten($c-body, 23);
 $c-text-box:      lighten($c-body, 7);
 $c-text-box-bg:   darken($c-body-bg, 3);
 $c-text-box-sh:   darken($c-text-box-bg, 3);
@@ -117,14 +118,14 @@ $c-widget:        lighten($c-body, 23);
 
 // == PRISM == //
 
-$p-text:            $c-body;
-$p-comment:         lighten($p-text, 43);
-$p-punctuation:     lighten($p-text, 27);
-$p-tag:             adjust-hue($c-link, 270);//#905;
-$p-selector:        adjust-hue($p-tag, 90);//#690;
-$p-variable:        adjust-hue($p-tag, 270);//#a67f59;
-$p-keyword:         adjust-hue($p-tag, 180);//#07a;
-$p-regex:           adjust-hue($p-tag, 120);//#e90;
+$p-text:            lighten($c-body, 17);
+$p-comment:         $c-pre;
+$p-punctuation:     lighten($p-text, 17);
+$p-tag:             adjust-hue($c-link, 270); //#905;
+$p-selector:        adjust-hue($p-tag, 90); //#690;
+$p-variable:        adjust-hue($p-tag, 270); //#a67f59;
+$p-keyword:         adjust-hue($p-tag, 180); //#07a;
+$p-regex:           adjust-hue($p-tag, 120); //#e90;
 
 
 
