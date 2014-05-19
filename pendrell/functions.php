@@ -22,7 +22,6 @@ define( 'PENDRELL_MEDIA_GALLERY', false );
 include( get_stylesheet_directory() . '/lib/archive.php' );
 include( get_stylesheet_directory() . '/lib/author.php' );
 include( get_stylesheet_directory() . '/lib/content.php' );
-include( get_stylesheet_directory() . '/lib/dev.php' );
 include( get_stylesheet_directory() . '/lib/feed.php' );
 include( get_stylesheet_directory() . '/lib/general.php' );
 include( get_stylesheet_directory() . '/lib/formats.php' );
