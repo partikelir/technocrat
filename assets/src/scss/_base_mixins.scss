@@ -20,7 +20,7 @@
 
 // Header font style
 @mixin font-header() {
-  font-family: $font-head;
+  font-family: $f-head;
   font-weight: 400;
 }
 
@@ -39,8 +39,8 @@
 // Highlights text; used with ins and mark tags
 @mixin highlight($color: $c-highlight) {
   @include border-radius;
-  @include rem('padding', $spacer/12 $spacer/8);
-  background: $color;
+  @include rem('padding', 0 $spacer/8);
+  background: rgba($color, .5);
   border: 1px solid darken($color, 7);
   display: inline;
 }
@@ -51,7 +51,7 @@
   @include box-shadow-layered(inset 4px 4px 8px $shadow, 1px 1px 4px $shadow);
   @include rem('margin', 0 0 $spacer 0);
   @include rem('padding', $spacer $spacer 0);
-  background: $background;
+  background: rgba($background, .5);
   color: $color;
   text-shadow: 0px 1px $c-body-bg;
 }
@@ -119,16 +119,16 @@
 }
 
 // Small print
-@mixin small-print($font-size: $h4) {
+@mixin small-print($font-size: 16) {
   @include font-size($font-size);
   color: $c-small-print;
 }
 
 // Text input; for use with forms, textarea, etc.
-@mixin text-input($shadow: $c-text-box-sh) {
+@mixin text-input($shadow: $c-text-box-sh, $font-size: 14) {
   @include border-radius;
   @include box-shadow(inset 2px 2px 4px $shadow);
-  @include font-size($h5, 8);
+  @include font-size($font-size, 8);
   @include rem('padding', 3px);
   background: darken($c-body-bg, 3);
   border: $d-divider;
@@ -157,7 +157,7 @@
 
 @mixin rem($property, $px-values, $offset: 0) {
   // Convert the baseline into rems
-  $baseline-rem: $base-default / 1rem;
+  $baseline-rem: $base+0px / 1rem;
 
   // Subtract the offset
   @if type-of($px-values) == "number" {
@@ -190,12 +190,15 @@
 // $offset (integer); pixel value used in instances where there is a border mucking up the line-height
 @mixin font-size($size: $font-size, $offset: 0) {
   @include rem('font-size', $size+0px);
+
+  // Base
   $basefactor: 1;
+
   // Buffer for font sizes over the line-height
-  @if $size >= $base * 2 {
+  @if $size >= $baseline * 2 {
     $basefactor: 3;
-  } @elseif $size >= $base {
+  } @elseif $size >= $baseline {
     $basefactor: 2;
   }
-  line-height: ( ( ($base - $offset) * $basefactor) / $size );
+  line-height: ( ( ($baseline - $offset) * $basefactor) / $size );
 }

@@ -37,9 +37,12 @@ $gallery-padding: 5px;
       }
     }
   }
+  .gallery-caption-title {
+    @include font-size($s-header-sub);
+  }
   // @TODO: mask caption text that overflows the bounding box; not a problem with short titles/captions but looks ugly when it goes wrong
   .gallery-caption-text {
-    @include font-size($h5);
+    @include font-size($s-text-smaller);
     @include rem('padding', 0 $gallery-padding + 5px 0 $gallery-padding );
     @include reverse-italics;
     box-sizing: border-box;
@@ -54,9 +57,6 @@ $gallery-padding: 5px;
     text-shadow: 0px 1px rgba(#000, 0.75);
     transition: opacity .3s ease;
     width: 100%;
-  }
-  .gallery-caption-title {
-    @include font-size($h3);
   }
 }
 

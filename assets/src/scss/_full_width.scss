@@ -1,0 +1,99 @@
+// ==== FULL-WIDTH ==== //
+
+// @TODO: set font-weight all around
+
+// Full-width layouts as specified in `pendrell/lib/various.php`
+.full-width {
+  .content-area {
+    float: none;
+    width: 100%;
+  }
+  @media screen and (min-width: $break-single-column) {
+    // Boost the size of full-width entry headers
+    .entry-header {
+      h1, h2, h3 {
+        &.entry-title {
+          @include font-size($s-header-title);
+        }
+      }
+    }
+    // Drop the size of entry titles on archives (search results are never full-width)
+    &.archive .entry-header {
+      h1, h2, h3 {
+        &.entry-title {
+          @include font-size($s-header-big);
+        }
+      }
+    }
+
+    // Manage the various font sizes of elements within entry content
+    .entry-content {
+      @include font-size($s-text-big);
+
+      h1 { @include font-size($s-header-title); }
+      h2 { @include font-size($s-header-big); }
+      h3 { @include font-size($s-header); }
+      h4 { @include font-size($s-header-sub); }
+      h5 { @include font-size($s-text-small); }
+      h6 { @include font-size($s-text-smaller); }
+
+      // Lighter weight
+      p,
+      dl,
+      ol,
+      ul {
+        font-weight: 300;
+      }
+      address,
+      b,
+      dt,
+      strong {
+        font-weight: 400;
+      }
+
+      // These are all usually $s-text-small; kick it up a notch
+      aside,
+      code,
+      pre,
+      small,
+      table caption,
+      .wp-caption .wp-caption-text,
+      .entry-caption,
+      .footnotes,
+      .references {
+        @include font-size($s-text);
+      }
+
+      // Restore the reset
+      sub,
+      sup {
+        font-size: 75%;
+      }
+
+      // Keep table contents one size smaller
+      td {
+        @include font-size($s-text-small, 1);
+      }
+    }
+
+    // Archives
+    .archive-header h1 {
+      @include font-size($s-header-title);
+    }
+    .archive-content {
+      @include font-size($s-text);
+    }
+
+    // Author box; @TODO
+    .author-description {
+      h3 {
+        //@include full-width-header($s-header-sub, $s-header);
+      }
+      p {
+        //@include font-size($s-text-small);
+        //@include full-width-text($s-text-small, $s-text);
+      }
+    }
+  }
+
+}

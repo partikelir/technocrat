@@ -57,9 +57,29 @@ An example of a third-width layout:
 
 
 
-## IMAGE POST FORMAT
+## POST FORMATS
 
-Image posts should be used as a wrapper for attachments. Set a featured image and write about the photo in the body of the post itself. Give the attachment a title and caption. *Do not* enter a description unless you want it echoed into the image post itself.
+Pendrell supports five post formats at present.
+
+### ASIDE
+
+Longer than a status but not as important as a regular blog posting. Use asides as the name would imply: as a side comment of no great importance that does not feature any imagery.
+
+### GALLERY
+
+Full-width display, otherwise no different than a regular post. Insert images in the usual way; attachments and featured images won't be shown by default.
+
+### IMAGE
+
+Full-width display. Image posts should be used as a wrapper for attachments. Set a featured image and write about the photo in the body of the post itself. Give the attachment a title and caption. *Do not* enter a description on the image unless you want it echoed into the image post itself.
+
+### QUOTATION
+
+Don't put quotation marks around your quotation!
+
+### STATUS
+
+Should be short (less than 140 characters).
 
 
 

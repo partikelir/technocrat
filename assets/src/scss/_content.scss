@@ -2,22 +2,24 @@
 
 // Entry header
 .entry-header {
-  h1,h2,h3 {
+  h1,
+  h2,
+  h3 {
     &.entry-title {
+      @extend %spacer-below;
+      @include font-size($s-header-big);
       font-weight: 400;
-
       // Drop the size of entry titles on archives and in search results
       .archive &,
       .search-results & {
         @extend %spacer-below;
-        @include font-size($h2);
+        @include font-size($s-header);
       }
     }
   }
-  // No spacer for h1; assumes the font size is greater than the baseline
-  h2,h3 {
+  h1, h2 {
     &.entry-title {
-      @extend %spacer-below;
+      margin: 0;
     }
   }
 }
@@ -33,7 +35,13 @@
   word-wrap: break-word;
 
   // Headers and paragraph spacing
-  h1,h2,h3,h4,h5,h6,p {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
     @extend %spacer-below;
   }
 
@@ -74,9 +82,10 @@
 
   // Blockquote and quotations
   blockquote {
-    @include font-size($h3);
+    @include font-size($s-text-big);
     @include reverse-italics;
     @include inset-box;
+    font-weight: 300;
     p {
       @include rem('padding-bottom', $spacer); // Padding is used instead of margins because of the blockquote background
       margin: 0;
@@ -92,7 +101,7 @@
       }
     }
     footer {
-      @include font-size($h4);
+      @include font-size($s-text-small);
       @include rem('padding-bottom', $spacer);
       display: block;
       font-style: normal;
@@ -106,7 +115,6 @@
     li > code,
     p > code,
     strong > code {
-      @include font-size($font-size);
       @include highlight(darken($c-code-bg, 7));
     }
   }
@@ -122,7 +130,7 @@
 
   // Pre and code blocks
   pre {
-    @include font-size($h4);
+    @include font-size($s-text-small);
     @include inset-box;
     @include rem('padding-bottom', $spacer); // Needs to follow text-box
     color: $c-pre;
@@ -143,19 +151,19 @@
 
   // Tables
   table {
+    @include rem('margin-bottom', $spacer, 1);
     border-bottom: $d-divider;
     color: $c-table;
-    @include rem('margin-bottom', $spacer, 1);
     width: 100%;
     caption {
-      @include font-size($h4);
+      @include font-size($s-text-small);
     }
   }
   th {
     @extend %small-headers;
   }
   td {
-    @include font-size($h5, 1);
+    @include font-size($s-text-smaller, 1);
     border-top: $d-divider;
   }
 
@@ -173,7 +181,9 @@
   }
 }
 
-// Isolating these declarations reduces bloat
+
+
+// Image styling; isolating these declarations reduces bloat
 figure.wp-caption {
   overflow: auto; // Without this the floats won't float
 }
@@ -226,7 +236,7 @@ figure.wp-caption,
 }
 .entry-meta-main {
   @extend %clearfix-below;
-  @include font-size($h5);
+  @include font-size($s-text-smaller);
   @include link-stylist($c-meta-link, $c-meta-link-v, $c-meta-link-h, $c-meta-link-a, $c-meta-link-f);
   color: $c-meta;
 }

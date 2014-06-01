@@ -44,14 +44,14 @@
 
 // Footnotes; for use with Markdown Extra
 .footnotes {
-  @include font-size($h4);
+  @include font-size($s-text-small);
 }
 
 
 
 // References list; for use with scholarly works
 .references {
-  @include font-size($h5);
+  @include font-size($s-text-smaller);
   ol,
   ul {
     list-style: none;
@@ -95,11 +95,4 @@ img.wp-smiley,
   margin-bottom: 0;
   margin-top: 0;
   padding: 0;
-}
-
-
-
-// Hide that mysterious smiley face that appears when you use Jetpack
-img#wpstats {
-  @include hide-visually;
 }

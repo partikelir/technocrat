@@ -17,7 +17,7 @@
   p,
   li,
   .textwidget {
-    @include font-size($h5);
+    @include font-size($s-text-smaller);
     color: $c-widget;
   }
   p {

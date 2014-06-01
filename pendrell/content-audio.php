@@ -13,7 +13,7 @@
 			</h1>
 		</header><!-- .entry-header -->
 		<div class="entry-content">
-			<?php echo get_post_meta( get_the_ID(), '_format_audio_embed', true );
+			<?php echo do_shortcode( get_post_meta( get_the_ID(), '_format_audio_embed', true ) );
 			the_content(); ?>
 		</div><!-- .entry-content -->
 		<footer class="entry-meta">

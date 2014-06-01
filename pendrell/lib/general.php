@@ -15,6 +15,10 @@ if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueu
     wp_enqueue_style( 'pendrell-fonts', esc_url_raw( $font_url ), array(), null );
   }
 
+  // Deregister bulky mediaelement.js stylesheets; via https://github.com/justintadlock/theme-mediaelement
+  //wp_deregister_style( 'mediaelement' );
+  //wp_deregister_style( 'wp-mediaelement' );
+
   // Register and enqueue our main stylesheet with versioning based on last modified time
   wp_register_style( 'pendrell-style', get_stylesheet_uri(), array(), filemtime( get_template_directory() . '/style.css' ) );
   wp_enqueue_style( 'pendrell-style' );

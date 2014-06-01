@@ -1,6 +1,7 @@
 ## General
-.svn
 .cvs
+.htaccess
+.svn
 *.bak
 *.log
 *.swp

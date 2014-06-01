@@ -3,6 +3,15 @@
 // Prism syntax highlighting by Lea Verou; based on http://dabblet.com
 // This is a stripped down version of the default Prism theme
 
+$p-text:            lighten($c-body, 17);
+$p-comment:         $c-pre;
+$p-punctuation:     lighten($p-text, 17);
+$p-tag:             adjust-hue($c-link, 270); //#905;
+$p-selector:        adjust-hue($p-tag, 90); //#690;
+$p-variable:        adjust-hue($p-tag, 270); //#a67f59;
+$p-keyword:         adjust-hue($p-tag, 180); //#07a;
+$p-regex:           adjust-hue($p-tag, 120); //#e90;
+
 .token {
   &.comment,
   &.prolog,

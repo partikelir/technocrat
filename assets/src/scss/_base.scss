@@ -9,23 +9,6 @@
 // Color scheme
 @import "base_scheme";
 
-// Typically used with the rem mixin
-$spacer: $base+0px;
-
-// Conversion factor for the rem mixin; set $font-html to whatever the html tag font-size property is (percentage)
-$font-html: 100%;
-$base-default: 16px * $font-html / 100%;
-
-// Column widths
-$content-width: 960px;
-$main-width: 624px;
-$sidebar-width: ($content-width - $main-width) - ($spacer * 2);
-
-// Breakpoints
-$break-single-column: $main-width + ($spacer * 6); // Causes sidebar to slide below content
-$break-medium: $main-width;
-$break-large: $content-width;
-
 // Normalize
 @import "base_normalize";
 

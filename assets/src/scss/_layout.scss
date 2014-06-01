@@ -20,10 +20,6 @@
     float: left;
     width: percentage( $main-width / $content-width );
   }
-  // Full-width layouts as specified in `pendrell/lib/various.php`
-  .full-width & {
-    width: 100%;
-  }
   // Individual articles
   article {
     @include rem('margin-bottom', $spacer*3);
@@ -43,11 +39,11 @@
     text-align: left;
   }
   .site-title {
-    @include font-size($h2);
+    @include font-size($s-header);
     font-weight: 200;
     text-transform: uppercase;
     @media screen and (min-width: $break-medium) {
-      @include font-size(48);
+      @include font-size($s-header-title);
     }
     a {
       color: $c-site-title;
@@ -59,7 +55,7 @@
     }
   }
   .site-description {
-    @include font-size($h6);
+    @include font-size($s-text-smallest);
     @include hide-visually;
     color: $c-site-desc;
   }
@@ -86,5 +82,5 @@
   }
 }
 .site-footer-info {
-  @include font-size($h6);
+  @include font-size($s-text-smallest);
 }

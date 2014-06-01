@@ -2,9 +2,9 @@
 
 .author-info {
   .entry-meta & {
-  @include rem('margin-top', $spacer, 1);
-  @include rem('padding-top', $spacer);
-  border-top: $d-divider;
+    @include rem('margin-top', $spacer, 1);
+    @include rem('padding-top', $spacer);
+    border-top: $d-divider;
   }
 }
 .author-avatar {
@@ -21,6 +21,6 @@
 }
 .author-description {
   p {
-    @include font-size($h4);
+    @include font-size($s-text-small);
   }
 }

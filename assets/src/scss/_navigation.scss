@@ -11,7 +11,7 @@ article.post-password-required input[type=submit],
   @include border-radius;
   @include box-shadow(0 1px 2px rgba(64, 64, 64, 0.1));
   @include font-header;
-  @include font-size($h5, 2);
+  @include font-size($s-text-smaller, 4);
   @include rem('padding', 0 $spacer/4);
   @include gradient-vertical($d-gradient-begin, $d-gradient-end);
   border: 1px solid #d2d2d2;
@@ -73,11 +73,11 @@ article.post-password-required input[type=submit],
   }
   li {
     @include font-header;
-    @include font-size($h5);
+    @include font-size($s-text-smaller);
     font-weight: 400;
     white-space: nowrap;
     @media screen and (min-width: $break-medium) {
-      @include font-size($font-size);
+      @include font-size($s-text);
     }
   }
 }
@@ -106,7 +106,7 @@ article.post-password-required input[type=submit],
         // Submenu styling
         @include box-shadow(2px 2px 4px rgba(64, 64, 64, 0.05));
         li a {
-          @include font-size($h5, 1);
+          @include font-size($s-text-smaller, 1);
           @include rem('padding', 0 $spacer/4);
           background: $c-menu-bg;
           border-bottom: $d-divider;
@@ -142,7 +142,10 @@ article.post-password-required input[type=submit],
 }
 .nav-above,
 .nav-below {
-  @include rem('margin-bottom', $spacer*2);
+  @include rem('margin-bottom', $spacer*3);
+  &:first-child {
+    @include rem('margin-bottom', $spacer);
+  }
 }
 .nav-previous {
   float: left;
@@ -160,7 +163,7 @@ article.post-password-required input[type=submit],
 .breadcrumbs {
   @extend %spacer-below;
   li {
-    @include font-size($h4);
+    @include font-size($s-text-small);
     display: inline-block;
     margin-left: 0;
     & + li:before {

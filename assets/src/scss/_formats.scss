@@ -1,20 +1,30 @@
 // ==== POST FORMATS ==== //
 
-// Link
-article.format-link {
-  header {
-    padding: 0;
-    @include font-size($h5);
-  }
-}
-
-
-
 // Hiding aside, quotation, and status titles to preserve structured data and visual flow
 article.format-aside,
 article.format-quote,
 article.format-status {
   header {
     @include hide-visually;
+  }
+}
+
+
+
+// Link
+article.format-link {
+  header {
+    @include font-size($s-text-small);
+    padding: 0;
+  }
+}
+
+
+
+// Status
+article.format-status {
+  .entry-content {
+    @include font-size($s-text-big);
+    font-weight: 300;
   }
 }

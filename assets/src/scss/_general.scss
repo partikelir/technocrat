@@ -1,43 +1,48 @@
 // ==== GENERAL ==== //
 
+// Root
+html {
+  font-size: $base+0px;
+}
+
 // Body, headers, and monospaced font declarations
 body {
-  @include font-size($font-size);
+  @include font-size($s-text);
   color: $c-body;
   background-color: $c-body-bg;
-  font-family: $font-body;
+  font-family: $f-body;
   text-rendering: optimizeLegibility;
 }
 h1,h2,h3,h4,h5,h6 {
   @include font-header;
   color: $c-head;
 }
-h1 { @include font-size($h1); }
-h2 { @include font-size($h2); }
-h3 { @include font-size($h3); }
-h4 { @include font-size($h4); }
-h5 { @include font-size($h5); }
-h6 { @include font-size($h6); }
+h1 { @include font-size($s-header-big); }
+h2 { @include font-size($s-header); }
+h3 { @include font-size($s-header-sub); }
+h4 { @include font-size($s-text-small); }
+h5 { @include font-size($s-text-smaller); }
+h6 { @include font-size($s-text-smallest); }
 code,
 kbd,
 pre,
 samp,
 tt,
 var {
-  font-family: $font-mono;
+  font-family: $f-mono;
 }
 
 // Links
 a {
   color: $c-link;
   text-decoration: none;
-  transition: all .8s ease-out;
+  transition: color .8s ease-out, text-decoration .8s ease-out;
   &:visited {
     color: $c-link-v;
   }
   &:hover {
     color: $c-link-h;
-    transition: all .4s ease;
+    transition: color .4s ease, text-decoration .4s ease;
   }
   &:active {
     color: $c-link-a;
@@ -76,10 +81,18 @@ em,
 i {
   font-style: italic;
 }
-del {
+del,
+// s and strike are both deprecated but still in use in some places
+s,
+strike {
   @include ghost;
   color: $c-del;
   text-decoration: line-through;
+  transition: text-decoration .2s ease;
+  -webkit-backface-visibility: hidden;
+  &:hover {
+    text-decoration: none;
+  }
 }
 ins {
   @include highlight($c-ins-bg);
@@ -104,16 +117,13 @@ mark {
     color: $c-mark;
   }
 }
-s { // Deprecated but still in use in some places
-  text-decoration: line-through;
+small {
+  @include small-print; // Set to font-size: 80% in Normalize.css, wiped out be Eric Meyer's reset, reset to 16px here
 }
 sub,
 sup {
   font-size: 75%;
   height: 0; // @TODO: still necessary?
-}
-small {
-  @include small-print; // Set to font-size: 80% in Normalize.css, wiped out be Eric Meyer's reset
 }
 
 

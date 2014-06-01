@@ -23,8 +23,8 @@
 
 // Small header style
 %small-headers {
-  @include font-size($h5);
-  font-family: $font-head;
+  @include font-size($s-header-small);
+  font-family: $f-head;
   font-weight: 600;
   text-transform: uppercase;
 }

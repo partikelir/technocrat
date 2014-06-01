@@ -1,27 +1,55 @@
-// ==== DEFAULT COLOUR SCHEME ==== //
+// ==== DEFAULT SCHEME ==== //
 
-// == FONTS == //
+// == FONT SIZING == //
 
-$font-body: $lato;
-$font-head: $raleway;
-$font-mono: $consolas;
+// Default font size and baseline (unitless integers); $base should be 16, set $s-text to alter body text font size
+$base:            16;
+$baseline:        32;
 
-// Default font size and baseline (integer)
-$font-size: 18;
-$base: 30;
+// Headers
+$s-header-title:  48;
+$s-header-big:    36;
+$s-header:        28;
+$s-header-sub:    22;
+$s-header-small:  14;
 
-// Font scale
-$h1: 36;
-$h2: 28;
-$h3: 22; // Should be more than $font-size
-$h4: 16; // Should be less than $font-size
-$h5: 14;
-$h6: 12;
+// Body text
+$s-text-big:      24;
+$s-text:          18; // Default body text font size
+$s-text-small:    16;
+$s-text-smaller:  14;
+$s-text-smallest: 12;
 
 
 
-// == BASE == //
+// == FONT STACKS == //
 
+$f-body: $lato;
+$f-head: $raleway;
+$f-mono: $consolas;
+
+
+
+// == LAYOUT == //
+
+$spacer: $baseline+0px; // Typically used in conjunction with the rem mixin
+$content-width: 960px;
+$main-width: 624px;
+$sidebar-width: ($content-width - $main-width) - ($spacer * 2);
+
+
+
+// == BREAKPOINTS == //
+
+$break-single-column: $main-width + ($spacer * 6); // Causes sidebar to slide below content
+$break-medium: $main-width;
+$break-large: $content-width;
+
+
+
+// == COLOURS == //
+
+// Base
 $c-body:          #555555;
 $c-body-bg:       #FFFFFF;
 $c-head:          darken($c-body, 33);
@@ -32,28 +60,19 @@ $c-green:         #a2bf68;
 $c-yellow:        #fff9c0;
 $c-red:           #a30000;
 
-
-
-// == LINKS == //
-
+// Links
 $c-link-v:        $c-link;
 $c-link-h:        saturate(lighten($c-link, 17), 7);
 $c-link-a:        saturate(lighten($c-link, 13), 13);
 $c-link-f:        saturate(lighten($c-link, 17), 7);
 
-
-
-// == MENUS == //
-
+// Menus
 $c-menu-link:     lighten($c-body, 33);
 $c-menu-link-h:   $c-highlight;
 $c-menu-current:  lighten($c-menu-link, 23);
 $c-menu-bg:       darken($c-body-bg, 3);
 
-
-
-// == META == //
-
+// Meta
 $c-meta:          lighten($c-body, 33);
 $c-meta-link:     darken($c-meta, 33);
 $c-meta-link-v:   $c-meta-link;
@@ -61,10 +80,7 @@ $c-meta-link-h:   $c-highlight;
 $c-meta-link-a:   $c-meta-link;
 $c-meta-link-f:   $c-meta-link;
 
-
-
-// == FOOTER == //
-
+// Footer
 $c-footer:        $c-meta;
 $c-footer-link:   $c-meta-link;
 $c-footer-link-v: $c-meta-link-v;
@@ -72,15 +88,12 @@ $c-footer-link-h: $c-meta-link-h;
 $c-footer-link-a: $c-meta-link-a;
 $c-footer-link-f: $c-meta-link-f;
 
-
-
-// == ELEMENTS == //
-
+// Elements
 $c-abbr:          $c-offset;
 $c-blockquote:    $c-offset;
 $c-blockquote-bg: darken($c-body-bg, 3);
 $c-code:          $c-offset;
-$c-code-bg:       darken($c-body-bg, 3);
+$c-code-bg:       darken($c-body-bg, 7);
 $c-del:           lighten($c-body, 27);
 $c-hr:            darken($c-body-bg, 17);
 $c-ins-bg:        $c-yellow;
@@ -89,18 +102,12 @@ $c-mark-bg:       $c-ins-bg;
 $c-pre:           darken($c-body, 13);
 $c-table:         lighten($c-body, 19);
 
-
-
-// == FORMS == //
-
+// Forms
 $c-alert:         $c-red;
 $c-required:      $c-red;
 $c-success:       $c-green;
 
-
-
-// == VARIOUS == //
-
+// Various
 $c-archive:       lighten($c-body, 17);
 $c-caption:       lighten($c-body, 23);
 $c-divider:       rgba($c-body, 0.10);
@@ -109,27 +116,14 @@ $c-site-title:    $c-head;
 $c-small-header:  $c-offset;
 $c-small-print:   lighten($c-body, 23);
 $c-text-box:      lighten($c-body, 7);
-$c-text-box-bg:   darken($c-body-bg, 3);
+$c-text-box-bg:   darken($c-body-bg, 7);
 $c-text-box-sh:   darken($c-text-box-bg, 3);
 $c-widget-head:   darken($c-body, 7);
 $c-widget:        lighten($c-body, 23);
 
 
 
-// == PRISM == //
-
-$p-text:            lighten($c-body, 17);
-$p-comment:         $c-pre;
-$p-punctuation:     lighten($p-text, 17);
-$p-tag:             adjust-hue($c-link, 270); //#905;
-$p-selector:        adjust-hue($p-tag, 90); //#690;
-$p-variable:        adjust-hue($p-tag, 270); //#a67f59;
-$p-keyword:         adjust-hue($p-tag, 180); //#07a;
-$p-regex:           adjust-hue($p-tag, 120); //#e90;
-
-
-
-// == DEFAULT SETTINGS == //
+// == DESIGN PATTERNS == //
 
 // Dividing line
 $d-divider: 1px solid $c-divider;
@@ -142,7 +136,7 @@ $d-gradient-end: #e6e6e6;
 $d-radius: 3px;
 
 // Box shadow
-$d-shadow: 0 1px 4px rgba(0, 0, 0, .20);
+$d-shadow: 0 1px 4px rgba(0, 0, 0, .2);
 
 // Glow
 $glow: 0px 0px 5px $c-highlight;
@@ -152,5 +146,6 @@ $glow: 0px 0px 5px $c-highlight;
 // == REFERENCE == //
 
 // $c: colours
-// $d: default design patterns
-// $p: Prism code highlighting
+// $d: design pattern
+// $f: font stack
+// $s: size

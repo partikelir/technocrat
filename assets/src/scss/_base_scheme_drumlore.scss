@@ -1,27 +1,55 @@
 // ==== DRUMLORE SCHEME ==== //
 
-// == FONTS == //
+// == FONT SIZING == //
 
-$font-body: $open;
-$font-head: $comfortaa;
-$font-mono: $consolas;
+// Default font size and baseline (unitless integers); $base should be 16, set $s-text to alter body text font size
+$base:            16;
+$baseline:        32;
 
-// Default font size and baseline (integer)
-$font-size: 18;
-$base: 30;
+// Headers
+$s-header-title:  48;
+$s-header-big:    36;
+$s-header:        28;
+$s-header-sub:    22;
+$s-header-small:  14;
 
-// Font scale
-$h1: 36;
-$h2: 28;
-$h3: 22; // Should be more than $font-size
-$h4: 16; // Should be less than $font-size
-$h5: 14;
-$h6: 12;
+// Body text
+$s-text-big:      24;
+$s-text:          18; // Default body text font size
+$s-text-small:    16;
+$s-text-smaller:  14;
+$s-text-smallest: 12;
 
 
 
-// == BASE == //
+// == FONT STACKS == //
 
+$f-body: $open;
+$f-head: $comfortaa;
+$f-mono: $consolas;
+
+
+
+// == LAYOUT == //
+
+$spacer: $baseline+0px; // Typically used in conjunction with the rem mixin
+$content-width: 960px;
+$main-width: 624px;
+$sidebar-width: ($content-width - $main-width) - ($spacer * 2);
+
+
+
+// == BREAKPOINTS == //
+
+$break-single-column: $main-width + ($spacer * 6); // Causes sidebar to slide below content
+$break-medium: $main-width;
+$break-large: $content-width;
+
+
+
+// == COLOURS == //
+
+// Base
 $c-body:          #404040;
 $c-body-bg:       #FFFFFF;
 $c-head:          darken($c-body, 13);
@@ -34,8 +62,7 @@ $c-red:           #d04d1d;
 
 
 
-// == LINKS == //
-
+// Links
 $c-link-v:        $c-link;
 $c-link-h:        lighten($c-link, 17);
 $c-link-a:        saturate(lighten($c-link, 13), 13);
@@ -43,8 +70,7 @@ $c-link-f:        saturate(lighten($c-link, 8), 8);
 
 
 
-// == MENUS == //
-
+// Menus
 $c-menu-link:     #d04d1d;
 $c-menu-link-h:   #770909;
 $c-menu-current:  #770909;
@@ -52,8 +78,7 @@ $c-menu-bg:       lighten(#edd496, 13);
 
 
 
-// == META == //
-
+// Meta
 $c-meta:          lighten($c-body, 23);
 $c-meta-link:     darken($c-meta, 33);
 $c-meta-link-v:   $c-meta-link;
@@ -63,8 +88,7 @@ $c-meta-link-f:   $c-meta-link;
 
 
 
-// == FOOTER == //
-
+// Footer
 $c-footer:        $c-meta;
 $c-footer-link:   $c-meta-link;
 $c-footer-link-v: $c-meta-link-v;
@@ -74,8 +98,7 @@ $c-footer-link-f: $c-meta-link-f;
 
 
 
-// == ELEMENTS == //
-
+// Elements
 $c-abbr:          $c-offset;
 $c-blockquote:    $c-offset;
 $c-blockquote-bg: darken($c-body-bg, 3);
@@ -91,16 +114,14 @@ $c-table:         lighten($c-body, 19);
 
 
 
-// == FORMS == //
-
+// Forms
 $c-alert:         $c-red;
 $c-required:      $c-red;
 $c-success:       $c-green;
 
 
 
-// == VARIOUS == //
-
+// Various
 $c-archive:       lighten($c-body, 17);
 $c-caption:       lighten($c-body, 23);
 $c-divider:       rgba($c-link, 0.1);
@@ -115,7 +136,7 @@ $c-widget:        lighten(#6a782b, 17);
 
 
 
-// == DEFAULT SETTINGS == //
+// == DESIGN PATTERNS == //
 
 // Dividing line
 $d-divider: 1px solid $c-divider;
@@ -128,7 +149,7 @@ $d-gradient-end: #e6e6e6;
 $d-radius: 3px;
 
 // Box shadow
-$d-shadow: 0 1px 4px rgba(0, 0, 0, .20);
+$d-shadow: 0 1px 4px rgba(0, 0, 0, .2);
 
 // Glow
 $glow: 0px 0px 5px $c-highlight;
@@ -138,5 +159,6 @@ $glow: 0px 0px 5px $c-highlight;
 // == REFERENCE == //
 
 // $c: colours
-// $d: default design patterns
-// $p: Prism code highlighting
+// $d: design pattern
+// $f: font stack
+// $s: size
