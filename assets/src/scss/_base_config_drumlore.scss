@@ -1,4 +1,4 @@
-// ==== DEFAULT SCHEME ==== //
+// ==== DRUMLORE CONFIGURATION ==== //
 
 // == FONT SIZING == //
 
@@ -24,8 +24,8 @@ $s-text-smallest: 12;
 
 // == FONT STACKS == //
 
-$f-body: $lato;
-$f-head: $raleway;
+$f-body: $open;
+$f-head: $comfortaa;
 $f-mono: $consolas;
 
 
@@ -50,35 +50,43 @@ $break-large: $content-width;
 // == COLOURS == //
 
 // Base
-$c-body:          #555555;
+$c-body:          #404040;
 $c-body-bg:       #FFFFFF;
-$c-head:          darken($c-body, 33);
-$c-highlight:     #ED7251;
+$c-head:          darken($c-body, 13);
+$c-highlight:     #edd496;
 $c-offset:        lighten($c-body, 13);
-$c-link:          #5cb6cc;
-$c-green:         #a2bf68;
+$c-link:          #6a782b;
+$c-green:         #6a782b;
 $c-yellow:        #fff9c0;
-$c-red:           #a30000;
+$c-red:           #d04d1d;
+
+
 
 // Links
 $c-link-v:        $c-link;
-$c-link-h:        saturate(lighten($c-link, 17), 7);
+$c-link-h:        lighten($c-link, 17);
 $c-link-a:        saturate(lighten($c-link, 13), 13);
-$c-link-f:        saturate(lighten($c-link, 17), 7);
+$c-link-f:        saturate(lighten($c-link, 8), 8);
+
+
 
 // Menus
-$c-menu-link:     lighten($c-body, 33);
-$c-menu-link-h:   $c-highlight;
-$c-menu-current:  lighten($c-menu-link, 23);
-$c-menu-bg:       darken($c-body-bg, 3);
+$c-menu-link:     #d04d1d;
+$c-menu-link-h:   #770909;
+$c-menu-current:  #770909;
+$c-menu-bg:       lighten(#edd496, 13);
+
+
 
 // Meta
-$c-meta:          lighten($c-body, 33);
+$c-meta:          lighten($c-body, 23);
 $c-meta-link:     darken($c-meta, 33);
 $c-meta-link-v:   $c-meta-link;
 $c-meta-link-h:   $c-highlight;
 $c-meta-link-a:   $c-meta-link;
 $c-meta-link-f:   $c-meta-link;
+
+
 
 // Footer
 $c-footer:        $c-meta;
@@ -88,38 +96,43 @@ $c-footer-link-h: $c-meta-link-h;
 $c-footer-link-a: $c-meta-link-a;
 $c-footer-link-f: $c-meta-link-f;
 
+
+
 // Elements
 $c-abbr:          $c-offset;
 $c-blockquote:    $c-offset;
 $c-blockquote-bg: darken($c-body-bg, 3);
 $c-code:          $c-offset;
-$c-code-bg:       darken($c-body-bg, 7);
+$c-code-bg:       darken($c-body-bg, 3);
 $c-del:           lighten($c-body, 27);
-$c-hr:            darken($c-body-bg, 17);
+$c-hr:            rgba( #500000, 0.8 );
 $c-ins-bg:        $c-yellow;
 $c-mark:          lighten($c-body, 19);
 $c-mark-bg:       $c-ins-bg;
-$c-pre:           darken($c-body, 13);
+$c-pre:           darken($c-body, 23);
 $c-table:         lighten($c-body, 19);
+
+
 
 // Forms
 $c-alert:         $c-red;
 $c-required:      $c-red;
 $c-success:       $c-green;
 
+
+
 // Various
 $c-archive:       lighten($c-body, 17);
 $c-caption:       lighten($c-body, 23);
-$c-divider:       rgba($c-body, 0.10);
+$c-divider:       rgba($c-link, 0.1);
 $c-site-desc:     $c-body;
 $c-site-title:    $c-head;
 $c-small-header:  $c-offset;
-$c-small-print:   lighten($c-body, 23);
 $c-text-box:      lighten($c-body, 7);
-$c-text-box-bg:   darken($c-body-bg, 7);
+$c-text-box-bg:   darken($c-body-bg, 3);
 $c-text-box-sh:   darken($c-text-box-bg, 3);
-$c-widget-head:   darken($c-body, 7);
-$c-widget:        lighten($c-body, 23);
+$c-widget-head:   #2a4018;
+$c-widget:        lighten(#6a782b, 17);
 
 
 

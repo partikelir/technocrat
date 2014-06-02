@@ -1,13 +1,13 @@
 // ==== BASE ==== //
 
-// Base font module
+// Fonts
 @import "base_fonts";
 
 // Mixins; nothing declarative
 @import "base_mixins";
 
-// Color scheme
-@import "base_scheme";
+// Configuration
+@import "base_config";
 
 // Normalize
 @import "base_normalize";

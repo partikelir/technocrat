@@ -9,11 +9,11 @@ define( 'PENDRELL_HOME', get_bloginfo( 'url' ) );
 // Switch for author info boxes
 define( 'PENDRELL_AUTHOR_META', false );
 
-// Baseline for the vertical rhythm; should match whatever is set in _base.scss
+// Baseline for the vertical rhythm; should match whatever is set in _base_config.scss
 define( 'PENDRELL_BASELINE', 32 );
 
 // Google web fonts to load; false will load Open Sans
-define( 'PENDRELL_GOOGLE_FONTS', 'Raleway:200,400,600|Lato:300italic,300,400italic,400,700');
+define( 'PENDRELL_GOOGLE_FONTS', 'Raleway:200,400,600|Open+Sans:300italic,300,400italic,400,700');
 
 // Experimental gallery shortcode override
 define( 'PENDRELL_MEDIA_GALLERY', false );
