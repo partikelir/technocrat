@@ -13,7 +13,10 @@ define( 'PENDRELL_AUTHOR_META', false );
 define( 'PENDRELL_BASELINE', 32 );
 
 // Google web fonts to load; false will load Open Sans
-define( 'PENDRELL_GOOGLE_FONTS', 'Raleway:200,400,600|Open+Sans:300italic,300,400italic,400,700');
+define( 'PENDRELL_GOOGLE_FONTS', 'Raleway:200,400,600|Ubuntu:300italic,300,400italic,400,700' );
+
+// Google web fonts custom subset support; false to disable
+define( 'PENDRELL_GOOGLE_FONTS_SUBSET', 'Ubuntu:300,400,700&amp;text=%C4%81%C3%A1%C7%8E%C3%A0%C5%8D%C3%B3%C7%92%C3%B2%C4%93%C3%A9%C4%9B%C3%A8%C4%AB%C3%AD%C7%90%C3%AC%C5%AB%C3%BA%C7%94%C3%B9%C7%96%C7%98%C7%9A%C7%9C%C3%BC%C4%80%C3%81%C7%8D%C3%80%C5%8C%C3%93%C7%91%C3%92%C4%92%C3%89%C4%9A%C3%88' );
 
 // Experimental gallery shortcode override
 define( 'PENDRELL_MEDIA_GALLERY', false );

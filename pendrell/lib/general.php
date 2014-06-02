@@ -9,10 +9,16 @@ if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueu
     wp_enqueue_script( 'pendrell-plugins', get_stylesheet_directory_uri() . '/pendrell-plugins.min.js', array( 'jquery' ), filemtime( get_template_directory() . '/pendrell-plugins.min.js' ), true );
 	}
 
-  // Override Twenty Twelve font styles
+  // Google web fonts
   $font_url = pendrell_get_font_url();
-  if ( ! empty( $font_url ) ) {
+  if ( !empty( $font_url ) ) {
     wp_enqueue_style( 'pendrell-fonts', esc_url_raw( $font_url ), array(), null );
+  }
+
+  // Google web fonts custom subset support
+  if ( PENDRELL_GOOGLE_FONTS_SUBSET ) {
+    $font_url_subset = pendrell_get_font_url( PENDRELL_GOOGLE_FONTS_SUBSET );
+    wp_enqueue_style( 'pendrell-fonts-subset', esc_url_raw( $font_url_subset ), array(), null );
   }
 
   // Deregister bulky mediaelement.js stylesheets; via https://github.com/justintadlock/theme-mediaelement
@@ -28,10 +34,12 @@ add_action( 'wp_enqueue_scripts', 'pendrell_enqueue_scripts' );
 
 
 // Hack: simplify and customize Google font loading; reference Twenty Twelve for more advanced options
-if ( !function_exists( 'pendrell_get_font_url' ) ) : function pendrell_get_font_url() {
+if ( !function_exists( 'pendrell_get_font_url' ) ) : function pendrell_get_font_url( $fonts = '' ) {
   $font_url = '';
+  if ( empty( $fonts ) )
+    $fonts = PENDRELL_GOOGLE_FONTS ? PENDRELL_GOOGLE_FONTS : 'Open+Sans:400italic,700italic,400,700'; // Default back to Open Sans
+  $fonts = str_replace( '|', '%7C', $fonts );
   $protocol = is_ssl() ? 'https' : 'http';
-  $fonts = PENDRELL_GOOGLE_FONTS ? PENDRELL_GOOGLE_FONTS : "Open+Sans:400italic,700italic,400,700"; // Default back to Open Sans
   $font_url = "$protocol://fonts.googleapis.com/css?family=" . $fonts;
   return $font_url;
 } endif;
