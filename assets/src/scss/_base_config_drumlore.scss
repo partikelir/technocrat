@@ -13,6 +13,11 @@ $s-header:        28;
 $s-header-sub:    22;
 $s-header-small:  14;
 
+// Menus
+$s-menu-header:   18;
+$s-menu-footer:   16;
+$s-menu-sub:      16;
+
 // Body text
 $s-text-big:      24;
 $s-text:          18; // Default body text font size
@@ -123,8 +128,8 @@ $c-success:       $c-green;
 
 // Various
 $c-archive:       lighten($c-body, 17);
-$c-caption:       lighten($c-body, 23);
-$c-divider:       rgba($c-link, 0.1);
+$c-caption:       lighten($c-body, 37);
+$c-divider:       rgba($c-link, .09);
 $c-site-desc:     $c-body;
 $c-site-title:    $c-head;
 $c-small-header:  $c-offset;

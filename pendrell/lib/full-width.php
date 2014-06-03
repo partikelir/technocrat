@@ -53,3 +53,16 @@ if ( !function_exists( 'pendrell_fill_width_thumbnail_size' ) ) : function pendr
 } endif;
 add_filter( 'post_thumbnail_size', 'pendrell_full_width_thumbnail_size' );
 add_filter( 'ubik_image_markup_size', 'pendrell_full_width_thumbnail_size' );
+
+
+
+// Full-width body class filter
+if ( !function_exists( 'pendrell_full_width_body_class' ) ) : function pendrell_full_width_body_class( $classes ) {
+
+  if ( pendrell_is_full_width() ) {
+    $classes[] = 'full-width';
+  }
+
+  return $classes;
+} endif;
+add_filter( 'body_class', 'pendrell_full_width_body_class' );

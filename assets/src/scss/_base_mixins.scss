@@ -39,7 +39,7 @@
 // Highlights text; used with ins and mark tags
 @mixin highlight($color: $c-highlight) {
   @include border-radius;
-  @include rem('padding', 0 $spacer/8);
+  @include rem('padding', $spacer/12 $spacer/8);
   background: rgba($color, .5);
   border: 1px solid darken($color, 7);
   display: inline;
@@ -119,13 +119,13 @@
 }
 
 // Small print
-@mixin small-print($font-size: 16) {
+@mixin small-print($font-size: $s-text-smaller) {
   @include font-size($font-size);
   color: $c-small-print;
 }
 
 // Text input; for use with forms, textarea, etc.
-@mixin text-input($shadow: $c-text-box-sh, $font-size: 14) {
+@mixin text-input($shadow: $c-text-box-sh, $font-size: $s-text-smaller) {
   @include border-radius;
   @include box-shadow(inset 2px 2px 4px $shadow);
   @include font-size($font-size, 8);

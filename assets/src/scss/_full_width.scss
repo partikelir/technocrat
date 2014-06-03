@@ -1,8 +1,5 @@
 // ==== FULL-WIDTH ==== //
 
-// @TODO: set font-weight all around
-
-// Full-width layouts as specified in `pendrell/lib/various.php`
 .full-width {
   .content-area {
     float: none;
@@ -29,6 +26,7 @@
     // Manage the various font sizes of elements within entry content
     .entry-content {
       @include font-size($s-text-big);
+      color: darken($c-body, 7); // Darken content as much of it will be a thinner weight
 
       h1 { @include font-size($s-header-title); }
       h2 { @include font-size($s-header-big); }
@@ -57,7 +55,6 @@
       pre,
       small,
       table caption,
-      .wp-caption .wp-caption-text,
       .entry-caption,
       .footnotes,
       .references {

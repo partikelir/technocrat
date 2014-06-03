@@ -26,6 +26,11 @@
 .comment-meta-main {
   @extend .entry-meta-main;
 }
+.comment-awaiting-moderation {
+  @include font-size($s-text-smaller);
+  color: $c-red;
+  font-style: italic;
+}
 
 
 
@@ -81,14 +86,17 @@
 
   // Spectific to comment form
   p:first-child,
-  p.logged-in-as,
-  p.comment-form-url {
+  .logged-in-as,
+  .comment-form-url {
     @extend %spacer-below;
   }
-  p.form-allowed-tags {
+  .form-allowed-tags {
     @extend %spacer-below;
     @include font-size($s-text-smaller);
     color: $c-offset;
+    code {
+      @include font-size($s-text-smallest);
+    }
   }
   #cancel-comment-reply-link {
     @include font-size($s-text-smaller);

@@ -73,6 +73,7 @@ if ( !function_exists( 'pendrell_image_info' ) ) : function pendrell_image_info(
       if ( $metadata['image_meta']['iso'] )
         echo __( 'ISO/Film: ', 'pendrell') . $metadata['image_meta']['iso'] . '<br/>';
 
+      // These don't work as expected and it's probably too much trouble to fix
       // $metadata['image_meta']['credit']
       // $metadata['image_meta']['copyright'] ?>
       </div>

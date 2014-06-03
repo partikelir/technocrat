@@ -13,18 +13,23 @@ $s-header:        28;
 $s-header-sub:    22;
 $s-header-small:  14;
 
+// Menus
+$s-menu-header:   18;
+$s-menu-footer:   16;
+$s-menu-sub:      16;
+
 // Body text
-$s-text-big:      24;
-$s-text:          18; // Default body text font size
-$s-text-small:    16;
-$s-text-smaller:  14;
-$s-text-smallest: 12;
+$s-text-big:      23;
+$s-text:          19; // Default body text font size
+$s-text-small:    17;
+$s-text-smaller:  15;
+$s-text-smallest: 13;
 
 
 
 // == FONT STACKS == //
 
-$f-body: $ubuntu;
+$f-body: $source-sans;
 $f-head: $raleway;
 $f-mono: $consolas;
 
@@ -41,7 +46,7 @@ $sidebar-width: ($content-width - $main-width) - ($spacer * 2);
 
 // == BREAKPOINTS == //
 
-$break-single-column: $main-width + ($spacer * 6); // Causes sidebar to slide below content
+$break-single-column: $main-width + ($spacer * 8); // Causes sidebar to slide below content
 $break-medium: $main-width;
 $break-large: $content-width;
 
@@ -50,7 +55,7 @@ $break-large: $content-width;
 // == COLOURS == //
 
 // Base
-$c-body:          #555555;
+$c-body:          #505050;
 $c-body-bg:       #FFFFFF;
 $c-head:          darken($c-body, 33);
 $c-highlight:     #ED7251;
@@ -95,7 +100,7 @@ $c-blockquote-bg: darken($c-body-bg, 3);
 $c-code:          $c-offset;
 $c-code-bg:       darken($c-body-bg, 7);
 $c-del:           lighten($c-body, 27);
-$c-hr:            darken($c-body-bg, 17);
+$c-hr:            rgba($c-body, .09);
 $c-ins-bg:        $c-yellow;
 $c-mark:          lighten($c-body, 19);
 $c-mark-bg:       $c-ins-bg;
@@ -109,8 +114,8 @@ $c-success:       $c-green;
 
 // Various
 $c-archive:       lighten($c-body, 17);
-$c-caption:       lighten($c-body, 23);
-$c-divider:       rgba($c-body, 0.10);
+$c-caption:       lighten($c-body, 37);
+$c-divider:       rgba($c-body, .09);
 $c-site-desc:     $c-body;
 $c-site-title:    $c-head;
 $c-small-header:  $c-offset;

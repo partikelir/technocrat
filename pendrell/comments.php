@@ -88,7 +88,7 @@ function pendrell_comments( $comment, $args, $depth ) {
         'callback'    => 'pendrell_comments',
         'style'       => 'ol',
         'short_ping'  => true
-        ) );
+      ) );
       ?>
 		</ol><!-- .commentlist -->
 

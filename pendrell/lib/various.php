@@ -5,11 +5,6 @@
 // Body class filter
 if ( !function_exists( 'pendrell_body_class' ) ) : function pendrell_body_class( $classes ) {
 
-  // Full width page templates (as specified below)
-  if ( pendrell_is_full_width() ) {
-    $classes[] = 'full-width';
-  }
-
   if ( is_multi_author() ) {
     $classes[] = 'group-blog';
   } else {
@@ -42,16 +37,3 @@ if ( !function_exists( 'pendrell_shortcode_init' ) ) : function pendrell_shortco
     add_shortcode( 'place', 'pendrell_shortcode_fallback' );
 } endif;
 add_action( 'init', 'pendrell_shortcode_init' );
-
-
-
-// == JETPACK == //
-
-// Add theme support for Infinite Scroll: http://jetpack.me/support/infinite-scroll/
-if ( !function_exists( 'pendrell_jetpack_setup' ) ) : function pendrell_jetpack_setup() {
-  add_theme_support( 'infinite-scroll', array(
-    'container' => 'main',
-    'footer'    => 'colophon'
-  ) );
-} endif;
-//add_action( 'after_setup_theme', 'pendrell_jetpack_setup' );

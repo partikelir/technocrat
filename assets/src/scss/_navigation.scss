@@ -52,6 +52,7 @@ article.post-password-required input[type=submit],
 
 // Menu (general)
 .inline-menu {
+  margin-bottom: 0;
   @include link-stylist($c-menu-link, $c-menu-link, $c-menu-link-h, $c-menu-link, $c-menu-link, false);
   .current-menu-item > a,
   .current-menu-ancestor > a,
@@ -63,22 +64,18 @@ article.post-password-required input[type=submit],
   ul {
     @include list-floated($spacer);
     @include list-nested;
-
-    // Don't bother displaying submenus on small screens
     @media screen and (max-width: $break-medium) {
+      // Don't bother displaying submenus on small screens
       & > li:hover > ul {
         display: none;
       }
     }
   }
   li {
+    // Styling specific to Pendrell
     @include font-header;
-    @include font-size($s-text-smaller);
     font-weight: 400;
     white-space: nowrap;
-    @media screen and (min-width: $break-medium) {
-      @include font-size($s-text);
-    }
   }
 }
 
@@ -91,22 +88,23 @@ article.post-password-required input[type=submit],
     border-bottom: $d-divider;
     display: none;
     @media screen and (min-width: $break-medium) {
-      display: inline-block;
+      display: block;
       width: 100%;
     }
     &.toggled-on {
-      display: inline-block;
+      display: block;
     }
   }
-  @media screen and (min-width: $break-medium) {
-    li {
-      // Space out the header menu
-      line-height: $spacer*1.5;
+  li {
+    @include font-size($s-menu-sub);
+    @media screen and (min-width: $break-medium) {
+      @include font-size($s-menu-header);
+      line-height: $spacer*1.5; // Space out the header menu
       ul {
         // Submenu styling
-        @include box-shadow(2px 2px 4px rgba(64, 64, 64, 0.05));
+        @include box-shadow(2px 2px 4px rgba(64, 64, 64, .05));
         li a {
-          @include font-size($s-text-smaller, 1);
+          @include font-size($s-menu-sub, 1);
           @include rem('padding', 0 $spacer/4);
           background: $c-menu-bg;
           border-bottom: $d-divider;
@@ -124,9 +122,12 @@ article.post-password-required input[type=submit],
 // Footer menu
 #menu-footer {
   @extend %spacer-below;
-  // Don't bother displaying submenus in the footer
+  // Don't bother displaying submenus in the footer; a bit of an anti-pattern but it's cleaner this way
   ul > li:hover > ul {
     display: none;
+  }
+  li {
+    @include font-size($s-menu-footer);
   }
 }
 
