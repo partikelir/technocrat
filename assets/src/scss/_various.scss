@@ -96,3 +96,12 @@ img.wp-smiley,
   margin-top: 0;
   padding: 0;
 }
+
+
+
+// WordPress theme guidelines requires these classes even though we don't use them
+.bypostauthor,
+.gallery-caption,
+.sticky {
+  margin: 0;
+}
