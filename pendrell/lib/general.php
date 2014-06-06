@@ -9,6 +9,9 @@ if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueu
     wp_enqueue_script( 'pendrell-plugins', get_stylesheet_directory_uri() . '/pendrell-plugins.min.js', array( 'jquery' ), filemtime( get_template_directory() . '/pendrell-plugins.min.js' ), true );
 	}
 
+  if ( is_singular() )
+    wp_enqueue_script( "comment-reply" );
+
   // Google web fonts
   $font_url = pendrell_get_font_url();
   if ( !empty( $font_url ) ) {
@@ -56,8 +59,8 @@ if ( !function_exists( 'pendrell_get_font_url' ) ) : function pendrell_get_font_
 // Minimally functional wp_title filter; use Ubik (or your plugin of choice) for more SEO-friendly page titles
 if ( !function_exists( 'pendrell_wp_title' ) ) : function pendrell_wp_title( $title, $sep = '-' ) {
   if ( is_front_page() || is_home() ) {
-    $title = get_bloginfo( 'name' );
-    if ( get_bloginfo( 'description' ) )
+    $title = PENDRELL_NAME;
+    if ( PENDRELL_DESCRIPTION )
       $title .= ' ' . $sep . ' ' . get_bloginfo( 'description' );
   } else {
     $title = $title . get_bloginfo( 'name' );
@@ -87,4 +90,37 @@ if ( !function_exists( 'pendrell_sidebar' ) ) : function pendrell_sidebar( $side
   if ( $sidebar ) {
     get_sidebar();
   }
+} endif;
+
+
+
+// Footer info
+if ( !function_exists( 'pendrell_footer_info' ) ) : function pendrell_footer_info() {
+
+  // Copyright statement
+  if ( PENDRELL_COPYRIGHT ) {
+    if ( PENDRELL_COPYRIGHT_STRING ) {
+      echo PENDRELL_COPYRIGHT_STRING;
+    } else {
+      if ( PENDRELL_COPYRIGHT_YEAR ) {
+	echo '&copy;' . PENDRELL_COPYRIGHT_YEAR . '&#8211;' . date( "Y" ) . ' ';
+      } else {
+	echo '&copy;' . date( "Y" ) . ' ';
+      }
+      if ( PENDRELL_COPYRIGHT_AUTHOR && PENDRELL_COPYRIGHT_AUTHOR_URL ) {
+	echo '<a href="' . PENDRELL_COPYRIGHT_AUTHOR_URL . '" rel="author">' . PENDRELL_COPYRIGHT_AUTHOR . '</a>';
+      } elseif ( PENDRELL_COPYRIGHT_AUTHOR ) {
+	echo PENDRELL_COPYRIGHT_AUTHOR;
+      }
+      echo '. ';
+    }
+  }
+
+  // Powered by statement
+  printf( __( '%1$s is powered by <a href="http://wordpress.org" rel="generator">WordPress</a> and <a href="%2$s">%3$s</a>.', 'pendrell' ),
+    PENDRELL_NAME,
+    PENDRELL_THEME_URL,
+    PENDRELL_THEME_NAME . ' ' . PENDRELL_THEME_VERSION
+  );
+
 } endif;

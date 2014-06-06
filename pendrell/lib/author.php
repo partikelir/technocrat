@@ -5,16 +5,16 @@ if ( !function_exists( 'pendrell_author_meta' ) ) : function pendrell_author_met
   // Show a bio if a user has filled out their description... but not on certain post formats or the contact form page
   if (
     is_singular()
-    && get_the_author_meta( 'description' )
-    && !has_post_format( array( 'aside', 'link', 'quote', 'status' ) )
-    && !is_page( array( 'about', 'about-me', 'bio', 'biography' ) )
-    && !is_page_template( 'page-templates/contact-form.php' )
-    && PENDRELL_AUTHOR_META === true
+    && get_the_author_meta( 'description' ) // Only if there is a description
+    && !has_post_format( array( 'aside', 'image', 'link', 'quote', 'status' ) ) // Not for small content
+    && !is_page( array( 'about', 'about-me', 'bio', 'biography' ) ) // No sense in duplicated info
+    && !is_page_template( 'page-templates/contact-form.php' ) // Not on the contact form either
   ) {
     pendrell_author_info();
   }
 } endif;
-add_filter( 'pendrell_entry_meta_after', 'pendrell_author_meta', 12 );
+if ( PENDRELL_AUTHOR_META )
+  add_filter( 'pendrell_entry_meta_after', 'pendrell_author_meta', 12 );
 
 
 

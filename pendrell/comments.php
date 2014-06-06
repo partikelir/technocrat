@@ -12,26 +12,24 @@
  * @since Pendrell 0.4
  */
 
-/*
- * If the current post is protected by a password and
- * the visitor has not yet entered the password we will
- * return early without loading the comments.
- */
+// Return if the post is password-protected and a password has not been entered
 if ( post_password_required() )
 	return;
 
 function pendrell_comments( $comment, $args, $depth ) {
   $GLOBALS['comment'] = $comment;
+
+  // Display trackbacks differently than normal comments.
   switch ( $comment->comment_type ) :
     case 'pingback' :
     case 'trackback' :
-    // Display trackbacks differently than normal comments.
   ?>
   <li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
     <article><?php _e( 'Pingback:', 'pendrell' ); ?> <?php comment_author_link(); ?> <?php edit_comment_link( __( 'Edit', 'pendrell' ), '<div class="comment-meta-buttons"><span class="edit-link button">', '</span></div>' ); ?></article>
   <?php
       break;
     default :
+
     // Proceed with normal comments.
     global $post;
   ?>
@@ -101,7 +99,7 @@ function pendrell_comments( $comment, $args, $depth ) {
 		<?php endif; // check for comment navigation ?>
 
 		<?php // If there are no comments and comments are closed, let's leave a note.
-		if ( ! comments_open() && get_comments_number() != '0' && post_type_supports( get_post_type(), 'comments' ) ) : ?>
+		if ( !comments_open() && get_comments_number() != '0' && post_type_supports( get_post_type(), 'comments' ) ) : ?>
 		  <p class="no-comments"><?php _e( 'Comments are closed.' , 'pendrell' ); ?></p>
 		<?php endif; ?>
 
