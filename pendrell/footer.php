@@ -18,10 +18,9 @@
     <div class="site-footer-buttons">
       <span class="back-to-top-link button"><a href="#top"><?php _e( 'Back to top', 'pendrell' ); ?></a></span>
     </div>
-		<div class="site-footer-info">
-			&copy;2011&#8211;<?php echo date( "Y" ); ?> <a href="http://alexandersynaptic.com" rel="author">Alexander Synaptic</a>.
-      Powered by <a href="http://wordpress.org" rel="generator">WordPress</a> and <a href="http://github.com/synapticism/pendrell">Pendrell <?php echo PENDRELL_VERSION; ?></a>.
-		</div><!-- .site-info -->
+    <div class="site-footer-info">
+      <?php pendrell_footer_info(); ?>
+    </div><!-- .site-footer-info -->
 	</footer><!-- .site-footer -->
 </div><!-- #page -->
 <?php wp_footer(); ?>
