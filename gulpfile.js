@@ -47,6 +47,11 @@ gulp.task('images', function() {
   .pipe(gulp.dest(build + 'img/'));
 });
 
+gulp.task('clean', function() {
+  return gulp.src(build + '**/.DS_Store', { read: false })
+  .pipe(plugins.clean());
+});
+
 gulp.task('watch', function() {
 
   // Listen on port 35729
@@ -68,10 +73,11 @@ gulp.task('watch', function() {
 
 });
 
+// Task fired when normalize is updated
 gulp.task('bower_components', function() {
   return gulp.src(['assets/bower_components/normalize.css/normalize.css'])
   .pipe(plugins.rename('_base_normalize.scss'))
   .pipe(gulp.dest('assets/src/scss'));
 });
 
-gulp.task('default', ['styles', 'plugins', 'scripts', 'images', 'watch']);
+gulp.task('default', ['styles', 'plugins', 'scripts', 'images', 'clean', 'watch']);
