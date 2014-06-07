@@ -1,6 +1,4 @@
-<?php // ==== MEDIA ==== //
-
-// == IMAGES == //
+<?php // ==== IMAGES ==== //
 
 // Generates HTML5 markup for image attachments and image format posts; called in Pendrell's templates
 if ( !function_exists( 'pendrell_image_wrapper' ) ) : function pendrell_image_wrapper() {
