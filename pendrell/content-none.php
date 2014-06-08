@@ -20,6 +20,6 @@
 			<?php } else { ?>
 				<p><?php _e( 'What are you looking for? Try searching for it:', 'pendrell' ); ?></p>
 			<?php } ?>
-			<?php pendrell_search_form(); ?>
+			<?php get_search_form(); ?>
 		</div><!-- .entry-content -->
 	</article><!-- #post-0 -->
