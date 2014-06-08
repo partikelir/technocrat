@@ -99,18 +99,22 @@ if ( !function_exists( 'pendrell_footer_info' ) ) : function pendrell_footer_inf
 
   // Copyright statement
   if ( PENDRELL_COPYRIGHT ) {
+
+    // Output the copyright year or range of years
+    if ( PENDRELL_COPYRIGHT_YEAR ) {
+      echo '&copy;' . PENDRELL_COPYRIGHT_YEAR . '&#8211;' . date( "Y" ) . ' ';
+    } else {
+      echo '&copy;' . date( "Y" ) . ' ';
+    }
+
+    // If a custom copyright string has been set let's display that
     if ( PENDRELL_COPYRIGHT_STRING ) {
       echo PENDRELL_COPYRIGHT_STRING;
     } else {
-      if ( PENDRELL_COPYRIGHT_YEAR ) {
-	echo '&copy;' . PENDRELL_COPYRIGHT_YEAR . '&#8211;' . date( "Y" ) . ' ';
-      } else {
-	echo '&copy;' . date( "Y" ) . ' ';
-      }
       if ( PENDRELL_COPYRIGHT_AUTHOR && PENDRELL_COPYRIGHT_AUTHOR_URL ) {
-	echo '<a href="' . PENDRELL_COPYRIGHT_AUTHOR_URL . '" rel="author">' . PENDRELL_COPYRIGHT_AUTHOR . '</a>';
+  echo '<a href="' . PENDRELL_COPYRIGHT_AUTHOR_URL . '" rel="author">' . PENDRELL_COPYRIGHT_AUTHOR . '</a>';
       } elseif ( PENDRELL_COPYRIGHT_AUTHOR ) {
-	echo PENDRELL_COPYRIGHT_AUTHOR;
+  echo PENDRELL_COPYRIGHT_AUTHOR;
       }
       echo '. ';
     }
