@@ -13,9 +13,12 @@ article.format-status {
 
 // Link
 article.format-link {
-  header {
+  .entry-header .entry-link {
     @include font-size($s-text-small);
-    padding: 0;
+    @include link-stylist($c-meta-link, $c-meta-link-v, $c-meta-link-h, $c-meta-link-a, $c-meta-link-f);
+    &:before {
+      content: "\00a0\27A5\00a0";
+    }
   }
 }
 

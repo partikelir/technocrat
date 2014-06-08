@@ -2,17 +2,16 @@
 
 // Entry header
 .entry-header {
+  @extend %spacer-below;
   h1,
   h2,
   h3 {
     &.entry-title {
-      @extend %spacer-below;
       @include font-size($s-header-big);
       font-weight: 400;
       // Drop the size of entry titles on archives and in search results
       .archive &,
       .search-results & {
-        @extend %spacer-below;
         @include font-size($s-header);
       }
     }
@@ -91,12 +90,12 @@
       margin: 0;
 
       // Add opening and closing quotation marks to the blockquote element
-      &:first-child::before {
+      &:first-child:before {
         content: "\201C";
       }
 
       // Correctly adds quotation mark when footer or cite elements are present at the end of the blockquote
-      &:nth-last-of-type(1)::after {
+      &:nth-last-of-type(1):after {
         content: "\201D";
       }
     }

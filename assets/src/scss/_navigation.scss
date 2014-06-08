@@ -167,7 +167,7 @@ article.post-password-required input[type=submit],
     @include font-size($s-text-smaller);
     display: inline-block;
     margin-left: 0;
-    & + li:before {
+    & + li::before {
       content: "\00a0\2192\00a0"; // Or perhaps you'd like to use a "greater than" symbol: \003e
     }
   }
