@@ -2,15 +2,8 @@
 
 .entry-meta-series {
   @extend %spacer-below;
-  h2 {
-    @include font-size($s-header-sub);
-  }
+  .series-description {}
   ol {
-    @include font-size($s-text-small);
-    @include rem('margin-bottom', $spacer);
     list-style: decimal outside;
-  }
-  li {
-    @include rem('margin', 0 0 0 $spacer);
   }
 }
