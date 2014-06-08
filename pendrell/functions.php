@@ -57,7 +57,6 @@ include( get_stylesheet_directory() . '/lib/general.php' );
 include( get_stylesheet_directory() . '/lib/image.php' );
 include( get_stylesheet_directory() . '/lib/image-metadata.php' );
 include( get_stylesheet_directory() . '/lib/navigation.php' );
-include( get_stylesheet_directory() . '/lib/search.php' );
 include( get_stylesheet_directory() . '/lib/various.php' );
 
 if ( is_admin() )
