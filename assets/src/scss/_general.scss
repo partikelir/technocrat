@@ -1,11 +1,11 @@
 // ==== GENERAL ==== //
 
-// Root
+// HTML
 html {
   font-size: $base+0px;
 }
 
-// Body, headers, and monospaced font declarations
+// Body
 body {
   @include font-size($s-text);
   color: $c-body;
@@ -13,6 +13,8 @@ body {
   font-family: $f-body;
   text-rendering: optimizeLegibility;
 }
+
+// Headers
 h1,h2,h3,h4,h5,h6 {
   @include font-header;
   color: $c-head;
@@ -23,6 +25,8 @@ h3 { @include font-size($s-header-sub); }
 h4 { @include font-size($s-text-small); }
 h5 { @include font-size($s-text-smaller); }
 h6 { @include font-size($s-text-smallest); }
+
+// Monospaced
 code,
 kbd,
 pre,
@@ -82,7 +86,7 @@ i {
   font-style: italic;
 }
 del,
-// s and strike are both deprecated but still in use in some places
+// s and strike are both deprecated but still in use in some places; let's style them the same way we style del
 s,
 strike {
   @include ghost;
@@ -108,14 +112,8 @@ hr {
 }
 mark {
   background: transparent;
-  color: $c-body;
+  color: $c-mark;
   text-decoration: none;
-
-  // Search result highlighter; currently switched off
-  .search-results & {
-    @include highlight($c-mark-bg);
-    color: $c-mark;
-  }
 }
 small {
   @include small-print; // Set to font-size: 80% in Normalize.css, wiped out be Eric Meyer's reset, reset to 16px here

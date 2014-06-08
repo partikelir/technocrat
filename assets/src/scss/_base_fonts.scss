@@ -18,19 +18,20 @@ $monospace:   monospace;
 
 // == CHINESE CHARACTER SUPPORT == //
 
-// @TODO: research this...
+// The idea here is to match up standard Chinese fonts with the fonts in the stacks below
 // http://www.kendraschaefer.com/2012/06/chinese-standard-web-fonts-the-ultimate-guide-to-css-font-family-declarations-for-web-design-in-simplified-chinese/
 // http://www.pinyinjoe.com/faq/chinese-web-site-fonts-and-character-sets.htm
 // http://graficareal.net/blog/wordpress-sinotype-websafe-chinese-plugin/
 // http://www.yale.edu/chinesemac/pages/fonts.html
+// @TODO: research this further...
 
-// Set to true/false to enable/disable this functionality; I've set it to false because I can't actually see any difference on my machine
+// Master switch for Chinese font stack functionality; true/false
 $chinese: false;
 
 @if $chinese == true {
-  $sans-serif:  join(("Heiti TC", "Heiti SC", "微軟正黑體", "Microsoft JhengHei", "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", "宋体", SimSun, STXihei, "华文细黑"), $sans-serif);
-  $serif:       join(("LiSong Pro", "新細明體", PMingLiU, STSong, STKaiti), $serif);
-  $monospace:   join($sans-serif, $monospace);
+  $sans-serif:  "Heiti TC", "Heiti SC", "微軟正黑體", "Microsoft JhengHei", "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", "宋体", SimSun, STXihei, "华文细黑", sans-serif !global;
+  $serif:       "LiSong Pro", "新細明體", PMingLiU, STSong, STKaiti, serif !global;
+  $monospace:   "Heiti TC", "Heiti SC", "微軟正黑體", "Microsoft JhengHei", "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", "宋体", SimSun, STXihei, "华文细黑", monospace !global;
 }
 
 
@@ -39,16 +40,19 @@ $chinese: false;
 
 // Body font stacks
 $tahoma:      join((Tahoma, "DejaVu Sans", "Lucida Sans", "Lucida Grande", "Bitstream Vera Sans", "Liberation Sans", Verdana), $sans-serif);
-$corbel:      join((Corbel, Arial, Helvetica, "Nimbus Sans L", "Liberation Sans"), $sans-serif);
+$corbel:      join((Corbel, "Helvetica Neue", Helvetica, Arial, "Nimbus Sans L", "Liberation Sans"), $sans-serif);
 $georgia:     join((Georgia, "Palatino Linotype", Palatino, "URW Palladio L", "Book Antiqua", "Times New Roman"), $serif);
+$helv-neue:   join(("Helvetica Neue", Helvetica, Arial, "Nimbus Sans L", "Liberation Sans"), $sans-serif);
+$helv-neue-l: join(("HelveticaNeue-Light", "Helvetica-Neue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Nimbus Sans L", "Liberation Sans"), $sans-serif);
 
 // Header font stacks
 $calibri:     join((Calibri, "DejaVu Sans Condensed", Tahoma, "Lucida Sans", "Lucida Grande", "Bitstream Vera Sans", "Liberation Sans", Verdana), $sans-serif);
 $cambria:     join((Cambria, Constantia, "URW Palladio L", "Palatino Linotype", Palatino, Georgia, "Book Antiqua", "Times New Roman"), $serif);
 
 // Monospace stacks
-$consolas:    Consolas, "Bitstream Vera Sans Mono", "Andale Mono", Monaco, "DejaVu Sans Mono", "Lucida Console", monospace;
-$courier:     "Courier 10 Pitch", Courier, monospace;
+$consolas:    join((Consolas, "Bitstream Vera Sans Mono", "Andale Mono", Monaco, "DejaVu Sans Mono", "Lucida Console"), $monospace);
+$courier:     join(("Courier 10 Pitch", "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter"), $monospace);
+$andale:      join(("Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier), $monospace);
 
 
 
@@ -56,7 +60,7 @@ $courier:     "Courier 10 Pitch", Courier, monospace;
 
 // To define your own Google Web Font stack use the join() function and specify one of the web safe stacks as the second parameter.
 // Be sure to use brackets around multiple fonts if you define more than one.
-// Make sure you also import the relevant fonts in config.php!
+// Make sure you also import the relevant fonts in functions.php!
 
 // Body font stacks
 $alegreya-sans:     join("Alegreya Sans", $corbel);

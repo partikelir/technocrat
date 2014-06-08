@@ -17,7 +17,7 @@ article.post-password-required input[type=submit],
   border: 1px solid #d2d2d2;
   color: lighten($c-body, 22);
   display: inline-block;
-  font-weight: normal;
+  font-weight: 400;
   text-decoration: none;
   &:hover {
     @include gradient-vertical(#f9f9f9, #ebebeb);
@@ -74,7 +74,7 @@ article.post-password-required input[type=submit],
   li {
     // Styling specific to Pendrell
     @include font-header;
-    font-weight: 400;
+    font-weight: 300;
     white-space: nowrap;
   }
 }
@@ -164,7 +164,7 @@ article.post-password-required input[type=submit],
 .breadcrumbs {
   @extend %spacer-below;
   li {
-    @include font-size($s-text-small);
+    @include font-size($s-text-smaller);
     display: inline-block;
     margin-left: 0;
     & + li:before {

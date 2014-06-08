@@ -4,7 +4,7 @@
 
 // Default font size and baseline (unitless integers); $base should be 16, set $s-text to alter body text font size
 $base:            16;
-$baseline:        32;
+$baseline:        30;
 
 // Headers
 $s-header-title:  48;
@@ -14,24 +14,24 @@ $s-header-sub:    22;
 $s-header-small:  14;
 
 // Menus
-$s-menu-header:   18;
+$s-menu-header:   20;
 $s-menu-footer:   16;
 $s-menu-sub:      16;
 
 // Body text
-$s-text-big:      23;
-$s-text:          19; // Default body text font size
-$s-text-small:    17;
-$s-text-smaller:  15;
-$s-text-smallest: 13;
+$s-text-big:      24;
+$s-text:          18; // Default body text font size
+$s-text-small:    16;
+$s-text-smaller:  14;
+$s-text-smallest: 12;
 
 
 
 // == FONT STACKS == //
 
-$f-body: $source-sans;
+$f-body: $helv-neue-l;
 $f-head: $raleway;
-$f-mono: $consolas;
+$f-mono: $courier;
 
 
 
