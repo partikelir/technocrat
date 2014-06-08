@@ -64,10 +64,11 @@
 
 
 
-// Screen reader text adapted from Twenty Twelve; @TODO: update and test this
+// Screen reader text adapted from Twenty Twelve
 .screen-reader-text {
   clip: rect(1px, 1px, 1px, 1px);
   position: absolute !important;
+  // @TODO: update and test this component
   #menu-header &:focus {
     @include border-radius;
     background: transparent;
