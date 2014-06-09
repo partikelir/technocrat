@@ -93,7 +93,7 @@
     }
   }
 
-  // Gallery items; full-width view alters the percentage-based widths and margins
+  // Gallery items; full-width view alters the percentage-based widths and margins; see _gallery.scss for more
   .gallery-item {
     margin: 0 percentage($d-gallery-padding / $content-width) percentage($d-gallery-padding / $content-width) 0;
   }

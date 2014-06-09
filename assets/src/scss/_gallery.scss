@@ -47,7 +47,7 @@
 .gallery-caption {
   @include font-size($s-text-smallest);
   @include rem('padding', $spacer/4 $spacer/4);
-  background-color: rgba(#000, .4);
+  background-color: rgba($c-black, .4);
   box-sizing: border-box;
   color: $c-white;
   line-height: 1.2; // No need for vertical rhythm here!
@@ -58,7 +58,7 @@
     bottom: 0;
     left: 0;
   text-align: left;
-  text-shadow: 0px 1px rgba(#000, .8);
+  text-shadow: 0px 1px rgba($c-black, .8);
   transition: opacity .8s ease-out;
   width: 100%;
   &:before {
@@ -72,7 +72,7 @@
   }
 }
 
-// Don't display captions on small thumbnails; @TODO: make this responsive
+// Don't display captions on small thumbnails and try to be halfway smart about it
 .gallery-columns-4,
 .gallery-columns-5,
 .gallery-columns-6 {
@@ -82,7 +82,6 @@
     }
   }
 }
-
 .gallery-columns-6,
 .gallery-columns-7,
 .gallery-columns-8,

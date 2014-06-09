@@ -62,7 +62,6 @@ $c-green:         #a2bf68;
 $c-yellow:        #fff9c0;
 $c-red:           #a30000;
 
-
 // Base
 $c-body:          $c-dark;
 $c-body-bg:       $c-white;
@@ -150,7 +149,7 @@ $d-gradient-end: #e6e6e6;
 $d-radius: 3px;
 
 // Box shadow
-$d-shadow: 0 1px 4px rgba(0, 0, 0, .2);
+$d-shadow: 0 1px 4px rgba($c-black, .2);
 
 // Glow
 $glow: 0px 0px 5px $c-highlight;

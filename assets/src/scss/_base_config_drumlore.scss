@@ -54,6 +54,14 @@ $break-large: $content-width;
 
 // == COLOURS == //
 
+// Palette
+$c-white:         #fff;
+$c-black:         #000;
+$c-dark:          #505050;
+$c-green:         #a2bf68;
+$c-yellow:        #fff9c0;
+$c-red:           #a30000;
+
 // Base
 $c-body:          #404040;
 $c-body-bg:       #FFFFFF;
@@ -144,7 +152,7 @@ $d-gradient-end: #e6e6e6;
 $d-radius: 3px;
 
 // Box shadow
-$d-shadow: 0 1px 4px rgba(0, 0, 0, .2);
+$d-shadow: 0 1px 4px rgba($c-black, .2);
 
 // Glow
 $glow: 0px 0px 5px $c-highlight;
