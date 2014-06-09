@@ -93,4 +93,13 @@
     }
   }
 
+  // Gallery items; full-width view alters the percentage-based widths and margins
+  .gallery-item {
+    margin: 0 percentage($d-gallery-padding / $content-width) percentage($d-gallery-padding / $content-width) 0;
+  }
+  @for $i from 1 to 10 {
+    .gallery-columns-#{$i} .gallery-item {
+      max-width: percentage(1/($i)) - percentage((($d-gallery-padding * ($i - 1)) / $content-width) / $i);
+    }
+  }
 }

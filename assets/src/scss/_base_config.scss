@@ -54,16 +54,22 @@ $break-large: $content-width;
 
 // == COLOURS == //
 
+// Palette
+$c-white:         #fff;
+$c-black:         #000;
+$c-dark:          #505050;
+$c-green:         #a2bf68;
+$c-yellow:        #fff9c0;
+$c-red:           #a30000;
+
+
 // Base
-$c-body:          #505050;
-$c-body-bg:       #FFFFFF;
+$c-body:          $c-dark;
+$c-body-bg:       $c-white;
 $c-head:          darken($c-body, 33);
 $c-highlight:     #ED7251;
 $c-offset:        lighten($c-body, 13);
 $c-link:          #5cb6cc;
-$c-green:         #a2bf68;
-$c-yellow:        #fff9c0;
-$c-red:           #a30000;
 
 // Links
 $c-link-v:        $c-link;
@@ -132,6 +138,9 @@ $c-widget:        lighten($c-body, 23);
 
 // Dividing line
 $d-divider: 1px solid $c-divider;
+
+// Gallery
+$d-gallery-padding: $spacer/4;
 
 // Gradients
 $d-gradient-begin: #f4f4f4;

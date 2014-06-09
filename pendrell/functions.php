@@ -75,8 +75,14 @@ function pendrell_setup() {
   // Add post format support
   add_theme_support( 'post-formats', array( 'aside', 'audio', 'gallery', 'image', 'link', 'quote', 'status' ) );
 
-  // HTML5 captions and gallery shortcodes; both still kind of ugly though
-  add_theme_support( 'html5', array( 'comment-form', 'comment-list', 'gallery', 'search-form' ) ); // Disabled: 'caption'; the output causes feeds to invalidate
+  // HTML5 theme options
+  add_theme_support( 'html5', array(
+    // 'caption', // Disabled; the output causes feeds to invalidate!
+    'comment-form',
+    'comment-list',
+    'gallery',
+    'search-form'
+  ) );
 
   // Adds RSS feed links to <head> for posts and comments.
   add_theme_support( 'automatic-feed-links' );
