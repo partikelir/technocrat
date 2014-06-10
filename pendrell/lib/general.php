@@ -9,8 +9,9 @@ if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueu
     wp_enqueue_script( 'pendrell-plugins', get_stylesheet_directory_uri() . '/pendrell-plugins.min.js', array( 'jquery' ), filemtime( get_template_directory() . '/pendrell-plugins.min.js' ), true );
 	}
 
-  if ( is_singular() )
-    wp_enqueue_script( "comment-reply" );
+  // Adds JavaScript to pages with the comment form to support sites with threaded comments
+  if ( is_singular() && comments_open() && get_option( 'thread_comments' ) )
+    wp_enqueue_script( 'comment-reply' );
 
   // Google web fonts
   $font_url = pendrell_get_font_url();
