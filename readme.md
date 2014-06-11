@@ -1,6 +1,6 @@
 # PENDRELL
 
-Pendrell is minimal yet full-featured WordPress theme originally based on Twenty Twelve.
+Pendrell is a minimal yet fully-featured WordPress theme for content-rich blogs.
 
 ![Pendrell example screenshot](/pendrell/screenshot.png "Pendrell example screenshot")
 
