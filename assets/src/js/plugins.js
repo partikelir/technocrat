@@ -1,1 +1,1 @@
-/* Pendrell plugins */
+// ==== PLUGINS ==== //

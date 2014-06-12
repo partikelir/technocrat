@@ -21,9 +21,9 @@ Domain Path: /languages/
 @import "navigation";   // Common navigational elements (menus, page links, etc.)
 @import "archive";      // Archives (categories, tags, taxonomies and more)
 @import "content";      // Content (entry header, content, and meta)
-@import "formats";      // Post formats
-@import "media";        // Media
-@import "gallery";      // Post formats
+@import "formats";      // Post formats: aside, link, status, etc.
+@import "media";        // Media: captions and such
+@import "gallery";      // Gallery shortcode styling
 @import "author";
 @import "comments";
 @import "widgets";
@@ -42,7 +42,6 @@ Domain Path: /languages/
 
 // == EXPERIMENTAL == //
 
-//@import "gallery";      // Gallery (experimental)
 //@import "mediaelement"; // Mediaelement.js styling
 
 
