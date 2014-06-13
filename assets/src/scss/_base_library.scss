@@ -4,6 +4,15 @@
 
 // == MIXINS == //
 
+// Background cover image; pass a URL or relative path wrapped in quotation marks: "http://yoursite.com/image.jpg"
+// Source: http://css-tricks.com/perfect-full-page-background-image/
+@mixin background-cover($path: false) {
+  @if $path {
+    background: url(#{$path}) no-repeat center center fixed;
+    background-size: cover;
+  }
+}
+
 // Center block; via Scut
 @mixin center-block ($max-width: false) {
   margin-left: auto;

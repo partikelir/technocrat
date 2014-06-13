@@ -1,12 +1,11 @@
 // ==== NAVIGATION ==== //
 
-// Buttons from Twenty Twelve; @TODO: totally redo all this garbage
+// Buttons from Twenty Twelve; @TODO: clean this up at some point, it's rather ugly
 .button a,
 .menu-toggle,
 input[type="submit"],
 input[type="button"],
 input[type="reset"],
-article.post-password-required input[type=submit],
 #cancel-comment-reply-link {
   @include border-radius;
   @include box-shadow(0 1px 2px rgba(64, 64, 64, 0.1));
@@ -36,21 +35,22 @@ article.post-password-required input[type=submit],
 // Menu toggle for mobile phones
 .menu-toggle {
   cursor: pointer;
-  display: inline-block;
+  display: block;
   position: absolute;
-  @include rem('right', $spacer);
-  @include rem('top', $spacer);
+    @include rem('right', $spacer);
+    @include rem('top', $spacer);
   @media screen and (min-width: $break-medium) {
     display: none;
   }
-  &.toggled-on {
-    @extend .menu-toggle:active;
+  &:focus {
+    outline: none; // Removes distracting blue blur
   }
 }
 
 
 
-// Menu (general)
+
+// Menu; used in header and footer navigation defined in _layout.scss
 .inline-menu {
   margin-bottom: 0;
   @include link-stylist($c-menu-link, $c-menu-link, $c-menu-link-h, $c-menu-link, $c-menu-link, false);
@@ -65,69 +65,15 @@ article.post-password-required input[type=submit],
     @include list-floated($spacer);
     @include list-nested;
     @media screen and (max-width: $break-medium) {
-      // Don't bother displaying submenus on small screens
       & > li:hover > ul {
-        display: none;
+        display: none; // Don't bother displaying submenus on small screens
       }
     }
   }
   li {
-    // Styling specific to Pendrell
     @include font-header;
     font-weight: 300;
     white-space: nowrap;
-  }
-}
-
-
-
-// Header navigation
-#menu-header {
-  @include rem('margin-top', $spacer/2);
-  ul.menu-header {
-    border-bottom: $d-divider;
-    display: none;
-    @media screen and (min-width: $break-medium) {
-      display: block;
-      width: 100%;
-    }
-    &.toggled-on {
-      display: block;
-    }
-  }
-  li {
-    @include font-size($s-menu-sub);
-    @media screen and (min-width: $break-medium) {
-      @include font-size($s-menu-header);
-      line-height: $spacer*1.5; // Space out the header menu
-      ul {
-        // Submenu styling
-        @include box-shadow(2px 2px 4px rgba(64, 64, 64, .05));
-        li a {
-          @include font-size($s-menu-sub, 1);
-          @include rem('padding', 0 $spacer/4);
-          background: $c-menu-bg;
-          border-bottom: $d-divider;
-          &:hover {
-            background: darken($c-menu-bg, 3);
-          }
-        }
-      }
-    }
-  }
-}
-
-
-
-// Footer menu
-#menu-footer {
-  @extend %spacer-below;
-  // Don't bother displaying submenus in the footer; a bit of an anti-pattern but it's cleaner this way
-  ul > li:hover > ul {
-    display: none;
-  }
-  li {
-    @include font-size($s-menu-footer);
   }
 }
 
@@ -160,7 +106,7 @@ article.post-password-required input[type=submit],
 
 
 
-// Breadcrumb navigation; used in Ubik's places and kept here since it can be used elsewhere
+// Breadcrumb navigation; used in Ubik's Places module and kept here since it might be useful as a general pattern
 .breadcrumbs {
   @extend %spacer-below;
   li {

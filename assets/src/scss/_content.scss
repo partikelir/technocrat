@@ -2,17 +2,16 @@
 
 // Entry header
 .entry-header {
-  @extend %spacer-below;
+  @extend %clearfix-below;
   h1,
   h2,
   h3 {
     &.entry-title {
       @include font-size($s-header-big);
       font-weight: 400;
-      // Drop the size of entry titles on archives and in search results
       .archive &,
       .search-results & {
-        @include font-size($s-header);
+        @include font-size($s-header); // Drop the size of entry titles on archives and in search results
       }
     }
   }

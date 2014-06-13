@@ -21,17 +21,20 @@
 <body <?php body_class(); ?>>
 <a name="top"></a>
 <div id="page" class="hfeed site">
-	<header id="masthead" class="site-header" role="banner">
-		<div class="site-branding">
-			<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-			<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
-		</div>
+	<div class="site-header-wrapper">
+		<header id="masthead" class="site-header" role="banner">
+			<div class="site-branding">
+				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+				<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
+			</div><!-- .site-branding -->
 
-		<nav id="menu-header" class="inline-menu" role="navigation">
-			<h3 class="menu-toggle"><?php _e( 'Menu', 'pendrell' ); ?></h3>
-			<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'pendrell' ); ?></a>
-			<?php wp_nav_menu( array( 'theme_location' => 'header', 'menu_class' => 'menu-header' ) ); ?>
-		</nav><!-- #site-navigation -->
-	</header><!-- #masthead -->
+			<nav id="site-navigation" class="inline-menu" role="navigation">
+				<button class="menu-toggle"><?php _e( 'Menu', 'pendrell' ); ?></button>
+				<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'pendrell' ); ?></a>
+				<?php wp_nav_menu( array( 'theme_location' => 'header', 'menu_class' => 'menu-header' ) ); ?>
+			</nav><!-- #site-navigation -->
+		</header><!-- #masthead -->
+	</div><!-- .site-header-wrapper -->
 
-	<div id="content" class="site-content">
+	<div class="site-content-wrapper">
+		<div id="content" class="site-content">

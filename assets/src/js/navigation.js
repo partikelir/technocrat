@@ -1,32 +1,30 @@
-// Navigation.js from Twenty Twelve: handles toggling the navigation menu for small screens
+// Navigation.js from _s: handles toggling the navigation menu for small screens
 ( function() {
-	var nav = document.getElementById( 'menu-header' ), button, menu;
-	if ( ! nav ) {
-		return;
-	}
-	button = nav.getElementsByTagName( 'h3' )[0];
-	menu   = nav.getElementsByTagName( 'ul' )[0];
-	if ( ! button ) {
-		return;
-	}
+	var container, button, menu;
 
-	// Hide button if menu is missing or empty.
-	if ( ! menu || ! menu.childNodes.length ) {
+	container = document.getElementById( 'site-navigation' );
+	if ( ! container )
+		return;
+
+	button = container.getElementsByTagName( 'button' )[0];
+	if ( 'undefined' === typeof button )
+		return;
+
+	menu = container.getElementsByTagName( 'ul' )[0];
+
+	// Hide menu toggle button if menu is empty and return early.
+	if ( 'undefined' === typeof menu ) {
 		button.style.display = 'none';
 		return;
 	}
 
-	button.onclick = function() {
-		if ( -1 === menu.className.indexOf( 'menu-header' ) ) {
-			menu.className = 'menu-header';
-		}
+	if ( -1 === menu.className.indexOf( 'nav-menu' ) )
+		menu.className += ' nav-menu';
 
-		if ( -1 !== button.className.indexOf( 'toggled-on' ) ) {
-			button.className = button.className.replace( ' toggled-on', '' );
-			menu.className = menu.className.replace( ' toggled-on', '' );
-		} else {
-			button.className += ' toggled-on';
-			menu.className += ' toggled-on';
-		}
+	button.onclick = function() {
+		if ( -1 !== container.className.indexOf( 'toggled' ) )
+			container.className = container.className.replace( ' toggled', '' );
+		else
+			container.className += ' toggled';
 	};
 } )();

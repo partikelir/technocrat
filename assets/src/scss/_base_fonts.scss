@@ -67,14 +67,16 @@ $alegreya-sans:     join("Alegreya Sans", $corbel);
 $arimo:             join((Arimo, "Open Sans"), $corbel);
 $lato:              join(Lato, $tahoma);                    // Lato:400italic,400,700
 $open:              join("Open Sans", $corbel);
-$pt-serif-body:     join("PT Serif", $georgia);
+$pt-serif-body:     join("PT Serif", $georgia);             // PT+Serif:300,400italic,400,700italic,700
 $quattro:           join("Quattrocento Sans", $tahoma);     // Quattrocento+Sans:400,700,400italic,700italic
+$roboto:            join(Roboto, $tahoma);                  // Roboto:400italic,400,700italic,700
 $source-sans:       join("Source Sans Pro", $corbel);       // Source+Sans+Pro:300italic,300,400italic,400,700
 $ubuntu:            join(Ubuntu, $corbel);
 
 // Header font stacks
 $cabin:             join(Cabin, $calibri);
 $comfortaa:         join(Comfortaa, $calibri);
+$merriweather:      join(Merriweather, $cambria);           // Merriweather:400,700
 $montserrat:        join(Montserrat, $calibri);
 $oxygen:            join(Oxygen, $calibri);
 $pt-serif-header:   join("PT Serif", $cambria);             // PT+Serif:400,700

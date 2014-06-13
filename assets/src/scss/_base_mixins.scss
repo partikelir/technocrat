@@ -1,7 +1,9 @@
 // ==== MIXINS ==== //
 
-// Load the theme-agnostic functions and mixins library
+// Load the theme-agnostic functions and mixins library; the rest of these mixins are specific to this theme
 @import "base_library";
+
+
 
 // == GENERAL == //
 
@@ -54,6 +56,17 @@
   background: rgba($background, .5);
   color: $color;
   text-shadow: 0px 1px $c-body-bg;
+}
+
+// Layout box; pads and centers the header, content area, and footer
+@mixin layout-box {
+  @include rem('padding-left', $spacer);
+  @include rem('padding-right', $spacer);
+  @media screen and (min-width: $break-medium) {
+    @include center-block($content-width);
+    @include rem('padding-left', $spacer*1.5);
+    @include rem('padding-right', $spacer*1.5);
+  }
 }
 
 // Link stylist; pass 'false' to disable styling for any of these

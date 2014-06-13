@@ -85,8 +85,8 @@ em,
 i {
   font-style: italic;
 }
-del,
 // s and strike are both deprecated but still in use in some places; let's style them the same way we style del
+del,
 s,
 strike {
   @include ghost;
@@ -116,12 +116,13 @@ mark {
   text-decoration: none;
 }
 small {
-  @include small-print; // Set to font-size: 80% in Normalize.css, wiped out be Eric Meyer's reset, reset to 16px here
+  @include font-size($s-text-small); // Set to font-size: 80% in Normalize.css, wiped out be Eric Meyer's reset, reset to 16px here
+  color: $c-small-print;
+  line-height: inherit;
 }
 sub,
 sup {
   font-size: 75%;
-  height: 0; // @TODO: still necessary?
 }
 
 
