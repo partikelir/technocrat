@@ -1,6 +1,6 @@
-// ==== DRUMLORE CONFIGURATION ==== //
+// ==== OMNITROPIC CONFIGURATION ==== //
 
-// A theme for Drumlore: http://drumlore.com
+// A theme for Omnitropic: http://omnitropic.com
 
 // == FONT SIZING == //
 
@@ -16,7 +16,7 @@ $s-header-sub:    22;
 $s-header-small:  14;
 
 // Menus
-$s-menu-header:   18;
+$s-menu-header:   20;
 $s-menu-footer:   16;
 $s-menu-sub:      16;
 
@@ -31,9 +31,9 @@ $s-text-smallest: 12;
 
 // == FONT STACKS == //
 
-$f-body: $open;
-$f-head: $comfortaa;
-$f-mono: $consolas;
+$f-body: $helv-neue-l;
+$f-head: $raleway;
+$f-mono: $courier;
 
 
 
@@ -48,7 +48,7 @@ $sidebar-width: ($content-width - $main-width) - ($spacer * 2);
 
 // == BREAKPOINTS == //
 
-$break-single-column: $main-width + ($spacer * 6); // Causes sidebar to slide below content
+$break-single-column: $main-width + ($spacer * 8); // Causes sidebar to slide below content
 $break-medium: $main-width;
 $break-large: $content-width;
 
@@ -59,36 +59,33 @@ $break-large: $content-width;
 // Palette
 $c-white:         #fff;
 $c-black:         #000;
-$c-dark:          #505050;
+$c-dark:          #1A202C;
 $c-green:         #a2bf68;
 $c-yellow:        #fff9c0;
 $c-red:           #a30000;
 
 // Base
-$c-body:          #404040;
-$c-body-bg:       #FFFFFF;
-$c-head:          darken($c-body, 13);
-$c-highlight:     #edd496;
+$c-body:          $c-dark;
+$c-body-bg:       $c-white;
+$c-head:          darken($c-body, 33);
+$c-highlight:     #ED7251;
 $c-offset:        lighten($c-body, 13);
-$c-link:          #6a782b;
-$c-green:         #6a782b;
-$c-yellow:        #fff9c0;
-$c-red:           #d04d1d;
+$c-link:          #72B095;
 
 // Links
 $c-link-v:        $c-link;
-$c-link-h:        lighten($c-link, 17);
+$c-link-h:        saturate(lighten($c-link, 17), 7);
 $c-link-a:        saturate(lighten($c-link, 13), 13);
-$c-link-f:        saturate(lighten($c-link, 8), 8);
+$c-link-f:        saturate(lighten($c-link, 17), 7);
 
 // Menus
-$c-menu-link:     #d04d1d;
-$c-menu-link-h:   #770909;
-$c-menu-current:  #770909;
-$c-menu-bg:       lighten(#edd496, 13);
+$c-menu-link:     lighten($c-body, 33);
+$c-menu-link-h:   $c-highlight;
+$c-menu-current:  lighten($c-menu-link, 23);
+$c-menu-bg:       darken($c-body-bg, 3);
 
 // Meta
-$c-meta:          lighten($c-body, 23);
+$c-meta:          lighten($c-body, 33);
 $c-meta-link:     darken($c-meta, 33);
 $c-meta-link-v:   $c-meta-link;
 $c-meta-link-h:   $c-highlight;
@@ -108,9 +105,9 @@ $c-abbr:          $c-offset;
 $c-blockquote:    $c-offset;
 $c-blockquote-bg: darken($c-body-bg, 3);
 $c-code:          $c-offset;
-$c-code-bg:       darken($c-body-bg, 3);
+$c-code-bg:       darken($c-body-bg, 7);
 $c-del:           lighten($c-body, 27);
-$c-hr:            rgba( #500000, .8 );
+$c-hr:            rgba($c-body, .09);
 $c-ins-bg:        $c-yellow;
 $c-mark:          lighten($c-body, 19);
 $c-mark-bg:       $c-ins-bg;
@@ -125,7 +122,7 @@ $c-success:       $c-green;
 // Various
 $c-archive:       lighten($c-body, 17);
 $c-caption:       lighten($c-body, 37);
-$c-divider:       rgba($c-link, .09);
+$c-divider:       rgba($c-body, .09);
 $c-site-desc:     $c-body;
 $c-site-title:    $c-head;
 $c-small-header:  $c-offset;
@@ -133,8 +130,8 @@ $c-small-print:   lighten($c-body, 23);
 $c-text-box:      lighten($c-body, 7);
 $c-text-box-bg:   darken($c-body-bg, 7);
 $c-text-box-sh:   darken($c-text-box-bg, 3);
-$c-widget-head:   #2a4018;
-$c-widget:        lighten(#6a782b, 17);
+$c-widget-head:   darken($c-body, 7);
+$c-widget:        lighten($c-body, 23);
 
 
 
