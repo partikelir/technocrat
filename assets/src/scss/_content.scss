@@ -181,54 +181,6 @@
 
 
 
-// Image styling; isolating these declarations reduces bloat
-figure.wp-caption {
-  overflow: auto; // Without this the floats won't float
-}
-// We are only concerned with images in posts, not comments
-figure.wp-caption,
-.entry-content p img {
-  // Responsive margins
-  &.alignleft {
-    margin-right: percentage($spacer/$content-width);
-  }
-  &.alignright {
-    margin-left: percentage($spacer/$content-width);
-  }
-  // @TODO: fix known issue, aligncenter class not working on captioned images
-  &.alignnone {
-    margin-left: 0;
-    margin-right: 0;
-  }
-  // Responsive partial-width images
-  &.size-third,
-  &.size-third-square,
-  &.size-third-width, // Compatibility with old Pendrell styling; may be removed on fresh installs
-  &.size-medium-third,
-  &.size-medium-third-cropped {
-    width: percentage((1-(($spacer/$content-width)*2))/3); // 31.25%
-  }
-  &.size-half,
-  &.size-half-square,
-  &.size-half-width, // Compatibility with old Pendrell styling; may be removed on fresh installs
-  &.size-medium-half,
-  &.size-medium-half-cropped {
-    width: percentage((1-(($spacer/$content-width)))/2); // 48.4375%
-  }
-  // Ugly hack: clear some of the elements likely to come after image layout in a post
-  & + p,
-  & + h1,
-  & + h2,
-  & + h3,
-  & + blockquote,
-  & + div,
-  & + pre {
-    @extend %clearfix-above;
-  }
-}
-
-
-
 // Entry meta
 .entry-meta {
   @extend %clearfix;
