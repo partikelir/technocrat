@@ -105,7 +105,8 @@
   }
 
   // Grouped images with responsive widths; see _media.scss
-  .group figure.wp-caption {
+  .image-group figure.wp-caption {
+    margin-right: percentage($d-image-spacer / $content-width);
     &.size-third,
     &.size-third-square {
       width: percentage(1/3) - percentage( ( ($d-image-spacer * 2) / $content-width) / 3);

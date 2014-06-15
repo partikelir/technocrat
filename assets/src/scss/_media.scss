@@ -49,12 +49,14 @@ figure.wp-caption,
 // Grouping responsive partial-width images; borrows technique seen in _gallery.scss
 .image-group {
   @extend %clearfix;
-  @extend %spacer-below;
+  margin-bottom: $d-image-spacer;
+  &:last-of-type {
+    @extend %spacer-below;
+  }
   figure.wp-caption {
     float: left;
-    margin: 0 percentage($d-image-spacer / $main-width) percentage($d-image-spacer / $main-width) 0;
+    margin: 0 percentage($d-image-spacer / $main-width) 0 0;
     overflow: hidden;
-    position: relative;
     &.size-third,
     &.size-third-square {
       width: percentage(1/3) - percentage( ( ($d-image-spacer * 2) / $main-width) / 3);
