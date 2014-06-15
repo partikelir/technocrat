@@ -5,8 +5,9 @@
   @extend %spacer-below;
   max-width: 100%; // Keep wide captions from overflowing their containers
 }
-.wp-caption .wp-caption-text,
+.wp-caption-text,
 .entry-caption {
+  @extend %clearfix-below;
   @include font-size($s-text-small);
   @include reverse-italics;
   color: $c-caption;
@@ -28,50 +29,51 @@
 
 // == IMAGE LAYOUT == //
 
-// Isolating these declarations from content.scss reduces bloat
-figure.wp-caption {
-  overflow: auto; // Without this the floats won't float
-}
-
-// We are only concerned with images in posts, not comments
+// Individual responsive images in posts, not comments; isolating these declarations from _content.scss reduces bloat
 figure.wp-caption,
 .entry-content p img {
-
-  // Responsive margins
+  overflow: auto; // Without this the floats won't float
   &.alignleft {
-    margin-right: percentage($spacer/$content-width);
+    margin-right: percentage($spacer / $main-width);
   }
   &.alignright {
-    margin-left: percentage($spacer/$content-width);
+    margin-left: percentage($spacer / $main-width);
   }
   &.alignnone { // @TODO: fix known issue, aligncenter class not working on captioned images
+    @extend %clearfix;
     margin-left: 0;
     margin-right: 0;
   }
+}
 
-  // Responsive partial-width images
-  &.size-third,
-  &.size-third-square,
-  &.size-third-width, // Below: compatibility with old Pendrell styling; may be removed on fresh installs
-  &.size-medium-third,
-  &.size-medium-third-cropped {
-    width: percentage((1-(($spacer/$content-width)*2))/3); // 31.25%
-  }
-  &.size-half,
-  &.size-half-square,
-  &.size-half-width, // Below: compatibility with old Pendrell styling; may be removed on fresh installs
-  &.size-medium-half,
-  &.size-medium-half-cropped {
-    width: percentage((1-(($spacer/$content-width)))/2); // 48.4375%
-  }
-  // Ugly hack: clear some of the elements likely to come after image layout in a post
-  & + p,
-  & + h1,
-  & + h2,
-  & + h3,
-  & + blockquote,
-  & + div,
-  & + pre {
-    @extend %clearfix-above;
+// Grouping responsive partial-width images; borrows technique seen in _gallery.scss
+.image-group {
+  @extend %clearfix;
+  @extend %spacer-below;
+  figure.wp-caption {
+    float: left;
+    margin: 0 percentage($d-image-spacer / $main-width) percentage($d-image-spacer / $main-width) 0;
+    overflow: hidden;
+    position: relative;
+    &.size-third,
+    &.size-third-square {
+      width: percentage(1/3) - percentage( ( ($d-image-spacer * 2) / $main-width) / 3);
+      &:nth-of-type(3) {
+        margin-right: 0;
+      }
+      &:nth-of-type(3+1) {
+        clear: left;
+      }
+    }
+    &.size-half,
+    &.size-half-square {
+      width: percentage(1/2) - percentage( ($d-image-spacer / $main-width) / 2);
+      &:nth-of-type(2) {
+        margin-right: 0;
+      }
+      &:nth-of-type(2+1) {
+        clear: left;
+      }
+    }
   }
 }

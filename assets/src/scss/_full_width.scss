@@ -93,13 +93,36 @@
     }
   }
 
+  // Aligned images with responsive margins; see _media.scss
+  figure.wp-caption,
+  .entry-content p img {
+    &.alignleft {
+      margin-right: percentage($spacer / $content-width);
+    }
+    &.alignright {
+      margin-left: percentage($spacer / $content-width);
+    }
+  }
+
+  // Grouped images with responsive widths; see _media.scss
+  .group figure.wp-caption {
+    &.size-third,
+    &.size-third-square {
+      width: percentage(1/3) - percentage( ( ($d-image-spacer * 2) / $content-width) / 3);
+    }
+    &.size-half,
+    &.size-half-square {
+      width: percentage(1/2) - percentage( ($d-image-spacer / $content-width) / 2);
+    }
+  }
+
   // Gallery items; full-width view alters the percentage-based widths and margins; see _gallery.scss for more
   .gallery-item {
-    margin: 0 percentage($d-gallery-padding / $content-width) percentage($d-gallery-padding / $content-width) 0;
+    margin: 0 percentage($d-image-spacer / $content-width) percentage($d-image-spacer / $content-width) 0;
   }
   @for $i from 1 to 10 {
     .gallery-columns-#{$i} .gallery-item {
-      max-width: percentage(1/($i)) - percentage((($d-gallery-padding * ($i - 1)) / $content-width) / $i);
+      max-width: percentage(1 / ($i) ) - percentage( ( ($d-image-spacer * ($i - 1) ) / $content-width) / $i);
     }
   }
 }
