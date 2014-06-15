@@ -49,9 +49,11 @@ figure.wp-caption,
 // Grouping responsive partial-width images; borrows technique seen in _gallery.scss
 .image-group {
   @extend %clearfix;
-  margin-bottom: $d-image-spacer;
-  &:last-of-type {
-    @extend %spacer-below;
+  @extend %spacer-below;
+  @if $spacer != $d-image-spacer {
+    & + .image-group { // Nicer layout for successive image groups
+      @include rem('margin-top', -($spacer - $d-image-spacer) ); // Assumes $spacer > $d-image-spacer
+    }
   }
   figure.wp-caption {
     float: left;
