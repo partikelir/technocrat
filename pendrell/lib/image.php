@@ -52,7 +52,7 @@ if ( !function_exists( 'pendrell_image_markup' ) ) : function pendrell_image_mar
       if ( is_feed() ) {
         $content = $html;
         if ( !empty( $caption ) )
-          $content .= '<br/><small>' . $caption . '</small>';
+          $content .= '<br/><small>' . $caption . '</small> ';
 
       // Produce some simple HTML5 markup for images and captions
       } else {
