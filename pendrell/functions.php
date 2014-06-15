@@ -29,9 +29,6 @@ define( 'PENDRELL_GOOGLE_FONTS', 'Raleway:200,300,600' );
 // Google web fonts custom subset support; string or false to disable
 define( 'PENDRELL_GOOGLE_FONTS_SUBSET', false );
 
-// Experimental gallery shortcode override; false to disable
-define( 'PENDRELL_MEDIA_GALLERY', false );
-
 // There should be no need to edit these
 define( 'PENDRELL_NAME', get_bloginfo( 'name' ) );
 define( 'PENDRELL_DESCRIPTION', get_bloginfo( 'description' ) );
