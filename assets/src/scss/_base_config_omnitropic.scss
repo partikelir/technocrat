@@ -16,9 +16,9 @@ $s-header-sub:    22;
 $s-header-small:  14;
 
 // Menus
-$s-menu-header:   20;
-$s-menu-footer:   16;
-$s-menu-sub:      16;
+$s-menu-header:   22;
+$s-menu-footer:   14;
+$s-menu-sub:      12;
 
 // Body text
 $s-text-big:      24;
@@ -32,7 +32,8 @@ $s-text-smallest: 12;
 // == FONT STACKS == //
 
 $f-body: $helv-neue-l;
-$f-head: $raleway;
+$f-head: $oxygen;
+$f-menu: $orbitron;
 $f-mono: $courier;
 
 
@@ -59,7 +60,7 @@ $break-large: $content-width;
 // Palette
 $c-white:         #fff;
 $c-black:         #000;
-$c-dark:          #1A202C;
+$c-dark:          #444547;
 $c-green:         #a2bf68;
 $c-yellow:        #fff9c0;
 $c-red:           #a30000;
@@ -68,9 +69,9 @@ $c-red:           #a30000;
 $c-body:          $c-dark;
 $c-body-bg:       $c-white;
 $c-head:          darken($c-body, 33);
-$c-highlight:     #ED7251;
+$c-highlight:     #D13F31;
 $c-offset:        lighten($c-body, 13);
-$c-link:          #72B095;
+$c-link:          #559dd1;
 
 // Links
 $c-link-v:        $c-link;
@@ -79,10 +80,10 @@ $c-link-a:        saturate(lighten($c-link, 13), 13);
 $c-link-f:        saturate(lighten($c-link, 17), 7);
 
 // Menus
-$c-menu-link:     lighten($c-body, 33);
-$c-menu-link-h:   $c-highlight;
-$c-menu-current:  lighten($c-menu-link, 23);
-$c-menu-bg:       darken($c-body-bg, 3);
+$c-menu-link:     $c-white;
+$c-menu-link-h:   darken($c-white, 13);
+$c-menu-current:  darken($c-white, 13);
+$c-menu-bg:       lighten($c-dark, 13);
 
 // Meta
 $c-meta:          lighten($c-body, 33);
@@ -93,12 +94,12 @@ $c-meta-link-a:   $c-meta-link;
 $c-meta-link-f:   $c-meta-link;
 
 // Footer
-$c-footer:        $c-meta;
-$c-footer-link:   $c-meta-link;
-$c-footer-link-v: $c-meta-link-v;
-$c-footer-link-h: $c-meta-link-h;
-$c-footer-link-a: $c-meta-link-a;
-$c-footer-link-f: $c-meta-link-f;
+$c-footer:        darken($c-body-bg, 37);
+$c-footer-link:   lighten($c-footer, 13);
+$c-footer-link-v: $c-footer-link;
+$c-footer-link-h: lighten($c-footer-link, 13);
+$c-footer-link-a: $c-footer-link-h;
+$c-footer-link-f: $c-footer-link-h;
 
 // Elements
 $c-abbr:          $c-offset;
@@ -141,7 +142,7 @@ $c-widget:        lighten($c-body, 23);
 $d-divider: 1px solid $c-divider;
 
 // Gallery
-$d-gallery-padding: $spacer/4;
+$d-image-spacer: $spacer/4;
 
 // Gradients
 $d-gradient-begin: #f4f4f4;
