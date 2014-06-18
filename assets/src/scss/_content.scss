@@ -114,6 +114,7 @@
     p > code,
     strong > code {
       @include highlight(darken($c-code-bg, 7));
+      font-size: 80%;
     }
   }
   q {

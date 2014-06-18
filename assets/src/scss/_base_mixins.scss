@@ -41,10 +41,10 @@
 // Highlights text; used with ins and mark tags
 @mixin highlight($color: $c-highlight) {
   @include border-radius;
-  @include rem('padding', $spacer/12 $spacer/8);
   background: rgba($color, .5);
   border: 1px solid darken($color, 7);
   display: inline;
+  padding: 0.08em 0.25em 0.08em 0.25em; // Padding should be proportionate, not rooted to rems
 }
 
 // Inset box; for use with blockquote, pre, etc.
@@ -132,7 +132,7 @@
 }
 
 // Small print
-@mixin small-print($font-size: $s-text-smaller) {
+@mixin small-print($font-size: $s-text-small) {
   @include font-size($font-size);
   color: $c-small-print;
 }

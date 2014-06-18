@@ -13,7 +13,8 @@ article.format-status {
 
 // Link
 article.format-link {
-  .entry-header .entry-link {
+  .entry-link {
+    @extend %spacer-below;
     @include font-size($s-text-small);
     @include link-stylist($c-meta-link, $c-meta-link-v, $c-meta-link-h, $c-meta-link-a, $c-meta-link-f);
     &:before {
