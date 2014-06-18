@@ -57,3 +57,17 @@ if ( !function_exists( 'pendrell_quotation_metadata' ) ) : function pendrell_quo
 
 	return $source;
 } endif;
+
+
+
+// Get quotation metadata; assumes WP Post Formats or equivalent is in use
+if ( !function_exists( 'pendrell_link_metadata' ) ) : function pendrell_link_metadata() {
+
+	global $post;
+
+	$link_url = get_post_meta( get_the_ID(), '_format_link_url', true );
+
+	if ( !empty( $link_url ) ) {
+		?><footer class="entry-link"><a href="<?php echo $link_url; ?>" rel="bookmark"><?php echo $link_url; ?></a></footer><?php
+	}
+} endif;
