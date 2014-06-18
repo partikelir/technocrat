@@ -2,7 +2,8 @@
 
 // Generate content title
 if ( !function_exists( 'pendrell_content_title' ) ) : function pendrell_content_title() {
-  ?><a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a><?php
+  $title = '<a href="' . get_permalink() . '" rel="bookmark">' . get_the_title() . '</a>';
+  echo apply_filters( 'pendrell_content_title', $title );
 } endif;
 
 
