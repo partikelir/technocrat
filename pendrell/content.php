@@ -16,6 +16,11 @@
 			<?php if ( is_search() ) {
 				the_excerpt();
 			} else {
+				if ( has_post_format( 'image' ) && has_post_thumbnail()
+					|| is_attachment() && wp_attachment_is_image()
+				) {
+					pendrell_image_wrapper();
+				}
 				the_content();
 			} ?>
 			<?php pendrell_link_pages(); ?>

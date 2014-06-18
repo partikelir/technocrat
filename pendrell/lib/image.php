@@ -20,7 +20,7 @@ if ( !function_exists( 'pendrell_image_wrapper' ) ) : function pendrell_image_wr
     $id = $post->ID;
     $html = wp_get_attachment_image( $post->ID, $size );
     $caption = get_the_excerpt();
-    $description = $post->post_content;
+    $description = '';
   }
 
   // Check to see if we have anything; image format posts without thumbnails will return nothing
@@ -32,7 +32,7 @@ if ( !function_exists( 'pendrell_image_wrapper' ) ) : function pendrell_image_wr
     if ( !empty( $description ) )
       $content .= apply_filters( 'the_content', $description );
 
-    return $content;
+    echo $content;
   }
 } endif;
 
