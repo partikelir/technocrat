@@ -2,7 +2,7 @@
 /**
  * Template Name: Full-width
  *
- * Description: Use this page template to remove the sidebar from any page. Post thumbnail will be displayed in the top right corner.
+ * Description: Use this page template to remove the sidebar from any page.
  *
  * @package WordPress
  * @subpackage Pendrell

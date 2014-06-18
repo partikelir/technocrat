@@ -56,13 +56,20 @@ add_filter( 'ubik_image_markup_size', 'pendrell_full_width_thumbnail_size' );
 
 
 
-// Full-width body class filter
+// Full-width body class filter; adds a full-width class for styling purposes
 if ( !function_exists( 'pendrell_full_width_body_class' ) ) : function pendrell_full_width_body_class( $classes ) {
-
-  if ( pendrell_is_full_width() ) {
+  if ( pendrell_is_full_width() )
     $classes[] = 'full-width';
-  }
-
   return $classes;
 } endif;
 add_filter( 'body_class', 'pendrell_full_width_body_class' );
+
+
+
+// Sidebar filter; removes sidebar on full-width view
+if ( !function_exists( 'pendrell_full_width_sidebar' ) ) : function pendrell_full_width_sidebar( $sidebar ) {
+  if ( pendrell_is_full_width() )
+    $sidebar = false;
+  return $sidebar;
+} endif;
+add_filter( 'pendrell_sidebar', 'pendrell_full_width_sidebar' );
