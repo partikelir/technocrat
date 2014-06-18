@@ -44,20 +44,20 @@ define( 'PENDRELL_THEME_VERSION', '0.9' );
 // == MODULE LOADING == //
 
 // Pendrell is abstracted into the `pendrell/lib` directory
-include( get_stylesheet_directory() . '/lib/archive.php' );
-include( get_stylesheet_directory() . '/lib/author.php' );
-include( get_stylesheet_directory() . '/lib/content.php' );
-include( get_stylesheet_directory() . '/lib/feed.php' );
-include( get_stylesheet_directory() . '/lib/formats.php' );
-include( get_stylesheet_directory() . '/lib/full-width.php' );
-include( get_stylesheet_directory() . '/lib/general.php' );
-include( get_stylesheet_directory() . '/lib/image.php' );
-include( get_stylesheet_directory() . '/lib/image-metadata.php' );
-include( get_stylesheet_directory() . '/lib/navigation.php' );
-include( get_stylesheet_directory() . '/lib/various.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/archive.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/author.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/content.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/feed.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/formats.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/full-width.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/general.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/image.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/image-metadata.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/navigation.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/various.php' );
 
 if ( is_admin() )
-  include( get_stylesheet_directory() . '/lib/admin.php' );
+  require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/admin.php' );
 
 
 
