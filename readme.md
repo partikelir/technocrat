@@ -1,6 +1,6 @@
 # PENDRELL
 
-Pendrell is a minimal yet fully-featured WordPress theme for content-rich blogs.
+Pendrell is a minimal yet fully-featured WordPress theme for content-focused blogs.
 
 ![Pendrell example screenshot](/pendrell/screenshot.png "Pendrell example screenshot")
 
@@ -17,7 +17,7 @@ You can see Pendrell in action on my blog, [Synapticism](http://synapticism.com)
 * Improved post format styling and support for asides, images (really just a thin wrapper for attachments), links, quotations, and status updates.
 * Google web font support; configure in `functions.php`.
 * Built-in contact form page template; no need for a wasteful plugin.
-* Automated CSS/JS minification via Gulp build script.
+* Automated CSS/JS minification via Gulp build system.
 * Code highlighting via [Prism](http://prismjs.com).
 * Smart context-dependent search form.
 * Optional author information box.

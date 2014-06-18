@@ -2,32 +2,12 @@
 
 // == CONFIGURATION == //
 
-// Switch for author info boxes on single posts; true/false
-define( 'PENDRELL_AUTHOR_META', false );
-
-// Baseline for the vertical rhythm; should match whatever is set in _base_config.scss; integer
-define( 'PENDRELL_BASELINE', 30 );
-
-// Display a copyright statement in the footer; true/false
-define( 'PENDRELL_COPYRIGHT', true );
-
-// Author to give credit to in copyright statement; false to disable
-define( 'PENDRELL_COPYRIGHT_AUTHOR', get_the_author_meta( 'display_name', 1 ) );
-
-// Author URL for the copyright statement; false to disable
-define( 'PENDRELL_COPYRIGHT_AUTHOR_URL', get_the_author_meta( 'user_url', 1 ) );
-
-// Copyright statement; fill this with a string to display in the footer instead of the default; false to disable
-define( 'PENDRELL_COPYRIGHT_STRING', false );
-
-// Display a copyright yearEarliest year for the copyright; easier than making a database call; integer or false to disable
-define( 'PENDRELL_COPYRIGHT_YEAR', 2011 );
-
-// Google web fonts to load; string false will load Open Sans as a fallback
-define( 'PENDRELL_GOOGLE_FONTS', 'Raleway:200,300,600' );
-
-// Google web fonts custom subset support; string or false to disable
-define( 'PENDRELL_GOOGLE_FONTS_SUBSET', false );
+// Load the configuration file for this theme; all options are set here
+if ( is_readable( trailingslashit( get_stylesheet_directory() ) . '/functions-config.php' ) ) {
+  require_once( trailingslashit( get_stylesheet_directory() ) . '/functions-config.php' );
+} else {
+  require_once( trailingslashit( get_stylesheet_directory() ) . '/functions-config-sample.php' );
+}
 
 // There should be no need to edit these
 define( 'PENDRELL_NAME', get_bloginfo( 'name' ) );
@@ -37,27 +17,28 @@ define( 'PENDRELL_HOME', home_url() );
 // Basic theme info; don't edit these either
 define( 'PENDRELL_THEME_NAME', 'Pendrell' );
 define( 'PENDRELL_THEME_URL', 'http://github.com/synapticism/pendrell' );
-define( 'PENDRELL_THEME_VERSION', '0.9' );
+define( 'PENDRELL_THEME_VERSION', '0.10' );
 
 
 
 // == MODULE LOADING == //
 
 // Pendrell is abstracted into the `pendrell/lib` directory
+if ( is_admin() )
+  require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/admin.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/archive.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/author.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/content.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/feed.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/formats.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/full-width.php' );
+if ( PENDRELL_MODULE_FULL_WIDTH )
+  require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/full-width.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/general.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/image.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/image-metadata.php' );
+if ( PENDRELL_MODULE_POST_FORMATS )
+  require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/post-formats.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/navigation.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/various.php' );
-
-if ( is_admin() )
-  require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/admin.php' );
 
 
 
@@ -69,8 +50,9 @@ function pendrell_setup() {
   // Language loading
   load_theme_textdomain( 'pendrell', get_template_directory() . '/languages' );
 
-  // Add post format support
-  add_theme_support( 'post-formats', array( 'aside', 'audio', 'gallery', 'image', 'link', 'quote', 'status' ) );
+  // Conditionally add post format support
+  if ( PENDRELL_MODULE_POST_FORMATS )
+    add_theme_support( 'post-formats', array( 'aside', 'gallery', 'image', 'link', 'quote', 'status' ) );
 
   // HTML5 theme options
   add_theme_support( 'html5', array(
