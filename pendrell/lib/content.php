@@ -1,9 +1,11 @@
 <?php // ==== CONTENT ==== //
 
 // Generate content title
-if ( !function_exists( 'pendrell_content_title' ) ) : function pendrell_content_title() {
-  $title = '<a href="' . get_permalink() . '" rel="bookmark">' . get_the_title() . '</a>';
-  echo apply_filters( 'pendrell_content_title', $title );
+if ( !function_exists( 'pendrell_entry_title' ) ) : function pendrell_entry_title( $content = '' ) {
+  if ( empty( $content ) )
+    $content = get_the_title();
+  $title = '<a href="' . get_permalink() . '" rel="bookmark">' . $content . '</a>';
+  echo apply_filters( 'pendrell_entry_title', $title );
 } endif;
 
 
