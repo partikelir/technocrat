@@ -201,17 +201,12 @@
 // Font size mixin
 // $size (integer): pixel value of desired font size
 // $offset (integer); pixel value used in instances where there is a border mucking up the line-height
-@mixin font-size($size: $font-size, $offset: 0) {
+@mixin font-size($size: $s-text, $offset: 0) {
   @include rem('font-size', $size+0px);
 
-  // Base
-  $basefactor: 1;
-
-  // Buffer for font sizes over the line-height
-  @if $size >= $baseline * 2 {
-    $basefactor: 3;
-  } @elseif $size >= $baseline {
-    $basefactor: 2;
-  }
-  line-height: ( ( ($baseline - $offset) * $basefactor) / $size );
+  // Buffer for font sizes larger than the baseline
+  $buffer: 1;
+  @if $size >= $baseline * 2 { $buffer: 3; }
+  @elseif $size >= $baseline { $buffer: 2; }
+  line-height: ( ( ($baseline - $offset) * $buffer) / $size );
 }

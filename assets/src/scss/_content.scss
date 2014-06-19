@@ -3,6 +3,7 @@
 // Entry header
 .entry-header {
   @extend %clearfix-below;
+  //@extend %spacer-below;
   h1,
   h2,
   h3 {
@@ -13,11 +14,6 @@
       .search-results & {
         @include font-size($s-header); // Drop the size of entry titles on archives and in search results
       }
-    }
-  }
-  h1, h2 {
-    &.entry-title {
-      margin: 0;
     }
   }
 }
@@ -177,6 +173,16 @@
   img {
     @include border-radius;
     display: block;
+  }
+
+  // First children of entry-content that require extra spacing for visual flow
+  > blockquote,
+  > figure,
+  > img,
+  > pre {
+    &:first-child {
+      @extend %spacer-above;
+    }
   }
 }
 

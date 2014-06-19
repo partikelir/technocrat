@@ -138,12 +138,12 @@ $c-widget:        lighten($c-body, 23);
 // Dividing line
 $d-divider: 1px solid $c-divider;
 
-// Gallery
-$d-image-spacer: $spacer/2;
-
 // Gradients
 $d-gradient-begin: #f4f4f4;
 $d-gradient-end: #e6e6e6;
+
+// Image spacer; defines the space between gallery items and grouped images
+$d-image-spacer: $spacer;
 
 // Border radius
 $d-radius: 3px;

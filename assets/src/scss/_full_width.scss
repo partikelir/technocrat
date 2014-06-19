@@ -8,7 +8,9 @@
   @media screen and (min-width: $break-single-column) {
     // Boost the size of full-width entry headers
     .entry-header {
-      h1, h2, h3 {
+      h1,
+      h2,
+      h3 {
         &.entry-title {
           @include font-size($s-header-title);
         }
@@ -16,7 +18,9 @@
     }
     // Drop the size of entry titles on archives (search results are never full-width)
     &.archive .entry-header {
-      h1, h2, h3 {
+      h1,
+      h2,
+      h3 {
         &.entry-title {
           @include font-size($s-header-big);
         }

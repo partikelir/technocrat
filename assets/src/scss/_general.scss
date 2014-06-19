@@ -189,12 +189,13 @@ video {
 
 
 
-// Forms
-//button,
+// Text input
 input,
 textarea {
   @include text-input;
 }
+
+// Reset input corners
 input[type="checkbox"],
 input[type="radio"],
 input[type="file"],
@@ -203,7 +204,24 @@ input[type="image"],
 input[type="color"] {
   border-radius: 0;
 }
-// Textarea is not reset in the Eric Meyer reset
+
+// Select dropdown
+select {
+  @include border-radius;
+  @include box-shadow(0 1px 2px rgba(64, 64, 64, 0.1));
+  @include font-size($s-text-smaller);
+  @include gradient-vertical($d-gradient-begin, $d-gradient-end);
+  @include rem('height', $spacer - $spacer/4);
+  @include rem('margin-bottom', $spacer/4);
+  border: 1px solid #d2d2d2;
+  color: lighten($c-body, 22);
+  cursor:pointer;
+  display: inline-block;
+  font-weight: 400;
+  outline: none;
+}
+
+// Textarea is not reset in the Eric Meyer reset; let's do that here
 textarea {
   font-size: 100%;
   margin: 0;
@@ -216,6 +234,7 @@ textarea {
 abbr,
 code,
 kbd,
+pre,
 q,
 samp,
 var {

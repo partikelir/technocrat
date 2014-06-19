@@ -18,6 +18,7 @@ input[type="reset"],
   display: inline-block;
   font-weight: 400;
   text-decoration: none;
+  vertical-align: middle;
   &:hover {
     @include gradient-vertical(#f9f9f9, #ebebeb);
     color: lighten($c-body, 13);
