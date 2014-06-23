@@ -28,7 +28,7 @@ if ( !function_exists( 'pendrell_image_wrapper' ) ) : function pendrell_image_wr
 
   // Check to see if we have anything; image format posts without thumbnails will return nothing
   if ( !empty( $id ) )
-    $content = pendrell_image_markup( $html, $id, $caption, $title = '', $align = 'none', $url = '', $size ) . $content;
+    $content = pendrell_image_markup( $html, $id, $caption, $title = '', $align = '', $url = '', $size ) . $content;
 
   return $content;
 
