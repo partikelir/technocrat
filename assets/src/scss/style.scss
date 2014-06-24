@@ -35,6 +35,7 @@ Domain Path: /languages/
 // == PLUGINS == //
 
 @import "full_width";   // Full-width styling (e.g. image and gallery post format posts)
+@import "views";        // Views module
 @import "prism";        // Prism syntax highlighting
 @import "places";       // Ubik places taxonomy
 @import "series";       // Ubik series taxonomy

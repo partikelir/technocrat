@@ -39,6 +39,7 @@ if ( PENDRELL_MODULE_POST_FORMATS )
   require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/post-formats.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/navigation.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/various.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/views.php' );
 
 
 

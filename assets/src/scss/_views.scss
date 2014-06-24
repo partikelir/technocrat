@@ -1,0 +1,10 @@
+// ==== VIEWS ==== //
+
+.thumb-view {
+  .site-main {
+    @extend .image-group;
+    article {
+      @extend figure.wp-caption;
+    }
+  }
+}

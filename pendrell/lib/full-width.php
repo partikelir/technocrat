@@ -23,7 +23,7 @@ if ( !function_exists( 'pendrell_is_full_width' ) ) : function pendrell_is_full_
 
 
 // Force certain categories to be full-width; a good example of how to filter the pendrell_is_full_width conditional
-if ( !function_exists( 'pendrell_full_width_cats' ) ) : function pendrell_full_width_cats() {
+if ( !function_exists( 'pendrell_full_width_categories' ) ) : function pendrell_full_width_categories() {
   $pendrell_portfolio_cats = array( 'design', 'photography', 'creative' );
   if (
     is_category( $pendrell_portfolio_cats )
@@ -34,20 +34,19 @@ if ( !function_exists( 'pendrell_full_width_cats' ) ) : function pendrell_full_w
     return false;
   }
 } endif;
-add_filter( 'pendrell_full_width', 'pendrell_full_width_cats' );
+add_filter( 'pendrell_full_width', 'pendrell_full_width_categories' );
 
 
 
 // Full-width thumbnails filter; assumes 'large' size images fill the window, which they should
-if ( !function_exists( 'pendrell_fill_width_thumbnail_size' ) ) : function pendrell_full_width_thumbnail_size( $size ) {
+if ( !function_exists( 'pendrell_full_width_thumbnail_size' ) ) : function pendrell_full_width_thumbnail_size( $size ) {
   if ( pendrell_is_full_width() ) {
     if ( $size === 'medium' )
       $size = 'large';
   } else {
     // Try to catch images that are exactly 960 px
-    if ( $size === 'large' || $size === 'full' ) {
+    if ( $size === 'large' || $size === 'full' )
       $size = 'medium';
-    }
   }
   return $size;
 } endif;
