@@ -2,9 +2,13 @@
 
 .thumb-view {
   .site-main {
-    @extend .image-group;
-    article {
-      @extend figure.wp-caption;
+    img {
+      @include border-radius;
+      display: block;
     }
+  }
+  .wp-caption {
+    @include image-overlay(".wp-caption-text");
+    max-width: percentage(1/3) - percentage( ( ($d-image-spacer * 2) / $content-width) / 3);
   }
 }

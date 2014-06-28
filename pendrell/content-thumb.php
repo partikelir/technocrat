@@ -6,4 +6,12 @@
  */
 ?>
 
-	<?php the_post_thumbnail( 'third-square' ); ?>
+	<?php echo pendrell_image_markup(
+    $html = '',
+    $id = pendrell_thumbnail_id(),
+    $caption = get_the_title(),
+    $title = '',
+    $align = '',
+    $url = get_permalink(),
+    $size = 'third-square'
+  ); ?>

@@ -3,29 +3,29 @@
 // Generates all-purpose archive titles
 if ( !function_exists( 'pendrell_archive_title' ) ) : function pendrell_archive_title() {
   if ( is_day() ) {
-    $title = sprintf( __( 'Daily archives: %s', 'pendrell' ), pendrell_name_wrapper( get_the_date() ) );
+    $title = sprintf( __( 'Daily archives: %s', 'pendrell' ), get_the_date() );
   } elseif ( is_month() ) {
-    $title = sprintf( __( 'Monthly archives: %s', 'pendrell' ), pendrell_name_wrapper( get_the_date( _x( 'F Y', 'monthly archives date format', 'pendrell' ) ) ) );
+    $title = sprintf( __( 'Monthly archives: %s', 'pendrell' ), get_the_date( _x( 'F Y', 'monthly archives date format', 'pendrell' ) ) );
   } elseif ( is_year() ) {
-    $title = sprintf( __( 'Yearly archives: %s', 'pendrell' ), pendrell_name_wrapper( get_the_date( _x( 'Y', 'yearly archives date format', 'pendrell' ) ) ) );
+    $title = sprintf( __( 'Yearly archives: %s', 'pendrell' ), get_the_date( _x( 'Y', 'yearly archives date format', 'pendrell' ) ) );
   } elseif ( is_author() ) {
-    $title = sprintf( __( 'Posts by %s', 'pendrell' ), pendrell_name_wrapper( get_the_author() ) );
+    $title = sprintf( __( 'Posts by %s', 'pendrell' ), get_the_author() );
   } elseif ( is_category() ) {
-    $title = sprintf( __( '%s', 'pendrell' ), pendrell_name_wrapper( single_cat_title( '', false ) ) );
+    $title = sprintf( __( '%s', 'pendrell' ), single_cat_title( '', false ) );
   } elseif ( is_post_type_archive() ) {
-    $title = sprintf( __( '%s', 'pendrell' ), pendrell_name_wrapper( post_type_archive_title( '', false ) ) );
+    $title = sprintf( __( '%s', 'pendrell' ), post_type_archive_title( '', false ) );
   } elseif ( is_tag() ) {
-    $title = sprintf( __( '%s', 'pendrell' ), pendrell_name_wrapper( single_tag_title( '', false ) ) );
+    $title = sprintf( __( '%s', 'pendrell' ), single_tag_title( '', false ) );
   } elseif ( is_tax() ) {
     if ( is_tax( 'post_format' ) && get_post_format() === 'quote' ) {
-      $title = sprintf( __( '%s archives', 'pendrell' ), pendrell_name_wrapper( __( 'Quotation', 'pendrell' ) ) );
+      $title = sprintf( __( '%s archives', 'pendrell' ), __( 'Quotation', 'pendrell' ) );
     } else {
-      $title = sprintf( __( '%s archives', 'pendrell' ), pendrell_name_wrapper( single_term_title( '', false ) ) );
+      $title = sprintf( __( '%s archives', 'pendrell' ), single_term_title( '', false ) );
     }
   } else {
     $title = __( 'Archives', 'pendrell' );
   }
-  echo apply_filters( 'pendrell_archive_title', $title );
+  echo '<h1 class="archive-title">' . apply_filters( 'pendrell_archive_title', $title ) . '</h1>';
 } endif;
 
 

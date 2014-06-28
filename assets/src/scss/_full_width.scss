@@ -109,15 +109,19 @@
   }
 
   // Grouped images with responsive widths; see _media.scss
-  .image-group figure.wp-caption {
-    margin-right: percentage($d-image-spacer / $content-width);
-    &.size-third,
-    &.size-third-square {
-      width: percentage(1/3) - percentage( ( ($d-image-spacer * 2) / $content-width) / 3);
-    }
-    &.size-half,
-    &.size-half-square {
-      width: percentage(1/2) - percentage( ($d-image-spacer / $content-width) / 2);
+  .image-group,
+  &.thumb-view .site-main {
+    figure.wp-caption {
+      margin-bottom: percentage($d-image-spacer / $content-width);
+      margin-right: percentage($d-image-spacer / $content-width);
+      &.size-third,
+      &.size-third-square {
+        max-width: percentage(1/3) - percentage( ( ($d-image-spacer * 2) / $content-width) / 3);
+      }
+      &.size-half,
+      &.size-half-square {
+        max-width: percentage(1/2) - percentage( ($d-image-spacer / $content-width) / 2);
+      }
     }
   }
 

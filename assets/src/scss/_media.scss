@@ -1,28 +1,17 @@
 // ==== MEDIA ==== //
 
 // == CAPTIONS == //
-.wp-caption {
+
+:not(figure).wp-caption {
   @extend %spacer-below;
   max-width: 100%; // Keep wide captions from overflowing their containers
 }
-.wp-caption-text,
-.entry-caption {
+.entry-caption,
+.wp-caption-text {
   @extend %clearfix-below;
-  @include font-size($s-text-small);
+  @include font-size($s-text-smaller);
   @include reverse-italics;
   color: $c-caption;
-}
-
-
-
-// == IMAGE METADATA == //
-.image-info {
-  @extend %spacer-above;
-  @include rem('padding-top', $spacer, 1);
-  border-top: $d-divider;
-}
-.image-description {
-  @include font-size($s-text-small);
 }
 
 
@@ -47,7 +36,8 @@ figure.wp-caption,
 }
 
 // Grouping responsive partial-width images; borrows technique seen in _gallery.scss
-.image-group {
+.image-group,
+.thumb-view .site-main {
   @extend %clearfix;
   @extend %spacer-below;
   @if $spacer != $d-image-spacer {
@@ -57,27 +47,40 @@ figure.wp-caption,
   }
   figure.wp-caption {
     float: left;
-    margin: 0 percentage($d-image-spacer / $main-width) 0 0;
-    overflow: hidden;
+    margin: 0 percentage($d-image-spacer / $main-width) percentage($d-image-spacer / $main-width) 0;
+    width: 100%;
     &.size-third,
     &.size-third-square {
-      width: percentage(1/3) - percentage( ( ($d-image-spacer * 2) / $main-width) / 3);
-      &:nth-of-type(3) {
+      max-width: percentage(1/3) - percentage( ( ($d-image-spacer * 2) / $main-width) / 3);
+      &:nth-of-type(3n) {
         margin-right: 0;
       }
-      &:nth-of-type(3+1) {
+      &:nth-of-type(3n+1) {
         clear: left;
       }
     }
     &.size-half,
     &.size-half-square {
-      width: percentage(1/2) - percentage( ($d-image-spacer / $main-width) / 2);
-      &:nth-of-type(2) {
+      max-width: percentage(1/2) - percentage( ($d-image-spacer / $main-width) / 2);
+      &:nth-of-type(2n) {
         margin-right: 0;
       }
-      &:nth-of-type(2+1) {
+      &:nth-of-type(2n+1) {
         clear: left;
       }
     }
   }
+}
+
+
+
+// == IMAGE METADATA == //
+
+.image-info {
+  @extend %spacer-above;
+  @include rem('padding-top', $spacer, 1);
+  border-top: $d-divider;
+}
+.image-description {
+  @include font-size($s-text-small);
 }

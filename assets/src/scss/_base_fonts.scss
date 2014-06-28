@@ -42,8 +42,8 @@ $chinese: false;
 $tahoma:      join((Tahoma, "DejaVu Sans", "Lucida Sans", "Lucida Grande", "Bitstream Vera Sans", "Liberation Sans", Verdana), $sans-serif);
 $corbel:      join((Corbel, "Helvetica Neue", Helvetica, Arial, "Nimbus Sans L", "Liberation Sans"), $sans-serif);
 $georgia:     join((Georgia, "Palatino Linotype", Palatino, "URW Palladio L", "Book Antiqua", "Times New Roman"), $serif);
-$helv-neue:   join(("Helvetica Neue", Helvetica, Arial, "Nimbus Sans L", "Liberation Sans"), $sans-serif);
-$helv-neue-l: join(("HelveticaNeue-Light", "Helvetica-Neue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Nimbus Sans L", "Liberation Sans"), $sans-serif);
+$helv-neue:   join(("Helvetica Neue", Helvetica, Arial, "Nimbus Sans L", "Liberation Sans", Corbel), $sans-serif);
+$helv-neue-l: join(("HelveticaNeue-Light", "Helvetica-Neue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Nimbus Sans L", "Liberation Sans", Corbel), $sans-serif);
 
 // Header font stacks
 $calibri:     join((Calibri, "DejaVu Sans Condensed", Tahoma, "Lucida Sans", "Lucida Grande", "Bitstream Vera Sans", "Liberation Sans", Verdana), $sans-serif);
@@ -82,7 +82,7 @@ $oxygen:            join(Oxygen, $calibri);
 $pt-serif-header:   join("PT Serif", $cambria);             // PT+Serif:400,700
 $quando:            join(Quando, $corbel);                  // Quando:400
 $quicksand:         join(Quicksand, $corbel);               // Quicksand:300,400,700
-$raleway:           join(Raleway, $corbel);                 // Raleway:300,400,700
+$raleway:           join(Raleway, $helv-neue);              // Raleway:300,400,700
 $russo:             join("Russo One", $tahoma);
 $signika:           join(Signika, $calibri);
 $varela:            join(Varela, $calibri);

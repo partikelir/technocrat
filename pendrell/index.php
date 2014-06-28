@@ -12,7 +12,7 @@ get_header(); ?>
 		<?php if ( have_posts() ) {
 			pendrell_content_nav( 'nav-above' );
 			while ( have_posts() ) : the_post();
-				get_template_part( 'content', pendrell_content_template() );
+				pendrell_content_template();
 			endwhile;
 			pendrell_content_nav( 'nav-below' );
 		} else {

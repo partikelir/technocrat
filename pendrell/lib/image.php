@@ -15,9 +15,13 @@ if ( !function_exists( 'pendrell_image_wrapper' ) ) : function pendrell_image_wr
   if ( has_post_format( 'image' ) && has_post_thumbnail() ) {
     $id = get_post_thumbnail_id();
     $caption = get_post( $id )->post_excerpt;
-    $html = get_the_post_thumbnail( $post->ID, $size );
-    if ( !is_singular() ) // Conditionally wrap the image in a link to the image post itself
-      $html = '<a href="' . get_permalink() . '" rel="bookmark">' . $html . '</a>';
+    if ( !function_exists( 'ubik_image_markup' ) ) {
+      $html = get_the_post_thumbnail( $post->ID, $size );
+      if ( !is_singular() ) // Conditionally wrap the image in a link to the image post itself
+        $html = '<a href="' . get_permalink() . '" rel="bookmark">' . $html . '</a>';
+    } else {
+      $html = ''; // Let Ubik generate everything from scratch
+    }
 
   // Attachments: load post data from the attachment itself
   } elseif ( is_attachment() && wp_attachment_is_image() ) {
@@ -64,7 +68,6 @@ if ( !function_exists( 'pendrell_image_markup' ) ) : function pendrell_image_mar
     }
 
   return $content;
-
 } endif;
 
 

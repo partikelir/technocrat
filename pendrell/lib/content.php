@@ -4,19 +4,16 @@
 if ( !function_exists( 'pendrell_entry_title' ) ) : function pendrell_entry_title( $content = '' ) {
   if ( empty( $content ) )
     $content = get_the_title();
-  $title = '<a href="' . get_permalink() . '" rel="bookmark">' . $content . '</a>';
+  $title = '<h1 class="entry-title"><a href="' . get_permalink() . '" rel="bookmark">' . $content . '</a></h1>';
   echo apply_filters( 'pendrell_entry_title', $title );
+  do_action( 'pendrell_entry_title_after' );
 } endif;
 
 
 
 // Content template selector; abstracted here so that content templates can be filtered
 if ( !function_exists( 'pendrell_content_template' ) ) : function pendrell_content_template( $template = null ) {
-
-  if ( empty( $template ) )
-    $template = get_post_format();
-
-  return apply_filters( 'pendrell_content_template', $template );
+  return get_template_part( 'content', apply_filters( 'pendrell_content_template', $template ) );
 } endif;
 
 
@@ -87,16 +84,5 @@ if ( !function_exists( 'pendrell_entry_meta_generator' ) ) : function pendrell_e
       $date,
       $author
     );
-  }
-} endif;
-
-
-
-// Comments template wrapper
-if ( !function_exists( 'pendrell_comments_template' ) ) : function pendrell_comments_template() {
-
-  // If comments are open or we have at least one comment, load up the comment template; via _s
-  if ( comments_open() || get_comments_number() != '0' ) {
-    comments_template( '', true );
   }
 } endif;

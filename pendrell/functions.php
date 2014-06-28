@@ -28,6 +28,7 @@ if ( is_admin() )
   require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/admin.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/archive.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/author.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/comments.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/content.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/feed.php' );
 if ( PENDRELL_MODULE_FULL_WIDTH )

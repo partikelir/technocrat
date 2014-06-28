@@ -89,14 +89,8 @@ i {
 del,
 s,
 strike {
-  @include ghost;
   color: $c-del;
   text-decoration: line-through;
-  transition: text-decoration .2s ease;
-  -webkit-backface-visibility: hidden;
-  &:hover {
-    text-decoration: none;
-  }
 }
 ins {
   @include highlight($c-ins-bg);

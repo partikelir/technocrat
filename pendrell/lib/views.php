@@ -15,14 +15,14 @@ if ( !function_exists( 'pendrell_is_view' ) ) : function pendrell_is_view( $type
   if ( !empty( $view ) ) {
     if ( !empty( $type ) ) {
       if ( $view === $type ) {
-        return true;
+        return true; // This is the specified type
       } else {
-        return false;
+        return false; // This is a view but it is not the specified type
       }
     }
-    return true;
+    return true; // This is a view
   }
-  return false;
+  return false; // This is not a view
 } endif;
 add_filter( 'query_vars', 'pendrell_views_query_var' );
 
@@ -30,8 +30,10 @@ add_filter( 'query_vars', 'pendrell_views_query_var' );
 
 // Swap templates as needed based on query var
 if ( !function_exists( 'pendrell_views_template' ) ) : function pendrell_views_template( $template ) {
-  if ( pendrell_is_view( 'list' ) || is_search() )
+  if ( pendrell_is_view( 'list' ) )
     $template = 'list';
+  if ( pendrell_is_view( 'summary' ) || is_search() )
+    $template = 'summary';
   if ( pendrell_is_view( 'thumb' ) )
     $template = 'thumb';
   return $template;
@@ -41,9 +43,17 @@ add_filter( 'pendrell_content_template', 'pendrell_views_template' );
 
 
 // Force certain views to be full-width
-if ( !function_exists( 'pendrell_views_full_width' ) ) : function pendrell_views_full_width() {
+if ( !function_exists( 'pendrell_views_full_width' ) ) : function pendrell_views_full_width( $full_width_test ) {
+
+  // Return immediately if the test has already been passed
+  if ( $full_width_test === true )
+    return true;
+
+  // Test the view
   if ( pendrell_is_view( 'thumb' ) )
     return true;
+
+  // Otherwise return false
   return false;
 } endif;
 add_filter( 'pendrell_full_width', 'pendrell_views_full_width' );
@@ -54,8 +64,19 @@ add_filter( 'pendrell_full_width', 'pendrell_views_full_width' );
 if ( !function_exists( 'pendrell_views_body_class' ) ) : function pendrell_views_body_class( $classes ) {
   if ( pendrell_is_view( 'list' ) )
     $classes[] = 'list-view';
+  if ( pendrell_is_view( 'summary' ) )
+    $classes[] = 'summary-view';
   if ( pendrell_is_view( 'thumb' ) )
     $classes[] = 'thumb-view';
   return $classes;
 } endif;
 add_filter( 'body_class', 'pendrell_views_body_class' );
+
+
+
+// Modify how many posts per page are displayed for different views; adapted from: http://wordpress.stackexchange.com/questions/21/show-a-different-number-of-posts-per-page-depending-on-context-e-g-homepage
+if ( !function_exists( 'pendrell_views_pre_get_posts' ) ) : function pendrell_views_pre_get_posts( $query ) {
+  if ( pendrell_is_view( 'thumb' ) )
+    $query->set( 'posts_per_page', 12 );
+} endif;
+add_action( 'pre_get_posts', 'pendrell_views_pre_get_posts' );

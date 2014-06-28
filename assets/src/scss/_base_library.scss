@@ -13,8 +13,10 @@
   }
 }
 
+
+
 // Center block; via Scut
-@mixin center-block ($max-width: false) {
+@mixin center-block($max-width: false) {
   margin-left: auto;
   margin-right: auto;
   @if $max-width {
@@ -22,25 +24,29 @@
   }
 }
 
+
+
 // Clearfix suite
-@mixin clearfix-above() {
+@mixin clearfix-above {
   &:before {
     content: "";
     display: table;
     clear: both;
   }
 }
-@mixin clearfix-below() {
+@mixin clearfix-below {
   &:after {
     content: "";
     display: table;
     clear: both;
   }
 }
-@mixin clearfix() {
+@mixin clearfix {
   @include clearfix-above;
   @include clearfix-below;
 }
+
+
 
 // Ghosting; use on any element to obscure it from view except on hover
 @mixin ghost($value: 0.6) {
@@ -52,11 +58,15 @@
   }
 }
 
+
+
 // Hanging indent; via Scut
-@mixin hanging-indent ($indent: 1em) {
+@mixin hanging-indent($indent: 1em) {
   padding-left: $indent;
   text-indent: -$indent;
 }
+
+
 
 // Hide visually; via Scut
 @mixin hide-visually {
@@ -70,7 +80,7 @@
   width: 1px;
 }
 
-// Floated list
+// Floated list; $space inserts a space between items, $dir specifies the direction of the float
 @mixin list-floated($space: false, $dir: left) {
   @include clearfix;
   list-style-type: none;
@@ -88,6 +98,8 @@
     }
   }
 }
+
+
 
 // Nested list in dropdown style; adapted from http://garethcooper.com/2013/05/sass-menu/
 @mixin list-nested() {
@@ -131,8 +143,10 @@
   }
 }
 
+
+
 // Reverse italics; via Scut
-@mixin reverse-italics ( $elements: false ) {
+@mixin reverse-italics($elements: false) {
   $element-list: em, cite, i;
   @each $el in $elements {
     $element-list: append($element-list, unquote($el), comma)
@@ -142,6 +156,8 @@
     font-style: normal;
   }
 }
+
+
 
 // Truncate text; via http://web-design-weekly.com/2013/05/12/handy-sass-mixins/
 @mixin text-truncate {
@@ -165,6 +181,9 @@
 }
 
 
+
+// == DEVELOPMENT == //
+
 // A few untested mixins and functions via Sacha Greif: http://sachagreif.com/useful-sass-mixins/
 @function black($opacity) {
   @return rgba(0, 0, 0, $opacity);
@@ -173,9 +192,12 @@
   @return rgba(255, 255, 255, $opacity);
 }
 
-@mixin box-emboss($opacity: 0.75, $opacity2: 0.75){
+// Box emboss
+@mixin box-emboss($opacity: 0.75, $opacity2: 0.75) {
   box-shadow: white($opacity) 0 1px 0, inset black($opacity2) 0 1px 0;
 }
-@mixin letterpress($opacity){
-  text-shadow:white($opacity) 0 1px 0;
+
+// Letterpress
+@mixin letterpress($opacity) {
+  text-shadow: white($opacity) 0 1px 0;
 }
