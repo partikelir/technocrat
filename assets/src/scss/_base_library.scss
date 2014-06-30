@@ -146,7 +146,7 @@
 
 
 // Reverse italics; via Scut
-@mixin reverse-italics($elements: false) {
+@mixin reverse-italics($elements: null) {
   $element-list: em, cite, i;
   @each $el in $elements {
     $element-list: append($element-list, unquote($el), comma)

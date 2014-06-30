@@ -3,10 +3,14 @@
 // Generates HTML5 markup for image attachments and image format posts; called in Pendrell's templates
 if ( !function_exists( 'pendrell_image_wrapper' ) ) : function pendrell_image_wrapper( $content ) {
 
-  if ( !has_post_format( 'image' ) && !is_attachment() )
+  // Fail early if needed
+  if ( ( has_post_format( 'image' ) && has_post_thumbnail() ) === false && !wp_attachment_is_image() )
     return $content;
 
   global $post;
+
+  // Initialize $html variable; this will remain empty if Ubik is active
+  $html = '';
 
   // Hooks into existing post_thumbnail_size filter; modified for full-width display
   $size = apply_filters( 'post_thumbnail_size', 'medium' );
@@ -19,25 +23,19 @@ if ( !function_exists( 'pendrell_image_wrapper' ) ) : function pendrell_image_wr
       $html = get_the_post_thumbnail( $post->ID, $size );
       if ( !is_singular() ) // Conditionally wrap the image in a link to the image post itself
         $html = '<a href="' . get_permalink() . '" rel="bookmark">' . $html . '</a>';
-    } else {
-      $html = ''; // Let Ubik generate everything from scratch
     }
 
   // Attachments: load post data from the attachment itself
-  } elseif ( is_attachment() && wp_attachment_is_image() ) {
+  } elseif ( wp_attachment_is_image() ) {
     $id = $post->ID;
     $caption = get_the_excerpt();
-    $html = wp_get_attachment_image( $post->ID, $size );
+    if ( !function_exists( 'ubik_image_markup' ) )
+      $html = wp_get_attachment_image( $post->ID, $size );
   }
 
-  // Check to see if we have anything; image format posts without thumbnails will return nothing
-  if ( !empty( $id ) )
-    $content = pendrell_image_markup( $html, $id, $caption, $title = '', $align = '', $url = '', $size ) . $content;
-
-  return $content;
-
+  return pendrell_image_markup( $html, $id, $caption, $title = '', $align = '', $url = '', $size ) . $content;
 } endif;
-remove_filter( 'the_content', 'prepend_attachment' ); // Removes default WordPress functionality for all attachments, not just images
+remove_filter( 'the_content', 'prepend_attachment' ); // Removes default WordPress functionality for *all* attachments, not just images
 add_filter( 'the_content', 'pendrell_image_wrapper' );
 
 
@@ -66,7 +64,6 @@ if ( !function_exists( 'pendrell_image_markup' ) ) : function pendrell_image_mar
         $content .= '</figure>' . "\n";
       }
     }
-
   return $content;
 } endif;
 

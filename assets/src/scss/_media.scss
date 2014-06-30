@@ -21,12 +21,19 @@
 // Individual responsive images in posts, not comments; isolating these declarations from _content.scss reduces bloat
 figure.wp-caption,
 .entry-content p img {
+  @extend %spacer-below;
   overflow: auto; // Without this the floats won't float
   &.alignleft {
     margin-right: percentage($spacer / $main-width);
+    @include full-width {
+      margin-right: percentage($spacer / $content-width);
+    }
   }
   &.alignright {
     margin-left: percentage($spacer / $main-width);
+    @include full-width {
+      margin-left: percentage($spacer / $content-width);
+    }
   }
   &.alignnone { // @TODO: fix known issue, aligncenter class not working on captioned images
     @extend %clearfix;
@@ -37,21 +44,21 @@ figure.wp-caption,
 
 // Grouping responsive partial-width images; borrows technique seen in _gallery.scss
 .image-group,
-.thumb-view .site-main {
+.gallery-view .site-main {
   @extend %clearfix;
-  @extend %spacer-below;
-  @if $spacer != $d-image-spacer {
-    & + .image-group { // Nicer layout for successive image groups
-      @include rem('margin-top', -($spacer - $d-image-spacer) ); // Assumes $spacer > $d-image-spacer
-    }
-  }
   figure.wp-caption {
     float: left;
     margin: 0 percentage($d-image-spacer / $main-width) percentage($d-image-spacer / $main-width) 0;
+    @include full-width {
+      margin: 0 percentage($d-image-spacer / $content-width) percentage($d-image-spacer / $content-width) 0;
+    }
     width: 100%;
     &.size-third,
     &.size-third-square {
       max-width: percentage(1/3) - percentage( ( ($d-image-spacer * 2) / $main-width) / 3);
+      @include full-width {
+        max-width: percentage(1/3) - percentage( ( ($d-image-spacer * 2) / $content-width) / 3);
+      }
       &:nth-of-type(3n) {
         margin-right: 0;
       }
@@ -62,6 +69,9 @@ figure.wp-caption,
     &.size-half,
     &.size-half-square {
       max-width: percentage(1/2) - percentage( ($d-image-spacer / $main-width) / 2);
+      @include full-width {
+        max-width: percentage(1/2) - percentage( ($d-image-spacer / $content-width) / 2);
+      }
       &:nth-of-type(2n) {
         margin-right: 0;
       }
@@ -69,6 +79,11 @@ figure.wp-caption,
         clear: left;
       }
     }
+  }
+}
+@if $spacer != $d-image-spacer {
+  .image-group + .image-group { // Nicer layout for successive image groups
+    @include rem('margin-top', -($spacer - $d-image-spacer) ); // Assumes $spacer > $d-image-spacer
   }
 }
 

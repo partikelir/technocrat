@@ -105,6 +105,11 @@
   article {
     @include rem('margin-bottom', $spacer*3);
   }
+  // Remove sidebar and float on full-width display
+  @include full-width {
+    float: none;
+    width: 100%;
+  }
 }
 
 

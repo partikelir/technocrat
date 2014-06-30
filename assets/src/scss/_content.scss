@@ -7,12 +7,14 @@
   h2,
   h3 {
     &.entry-title {
-      @include font-size($s-header-big);
+      @include font-size-fw($s-header-big, $s-header-title);
       font-weight: 400;
       .archive &,
       .search-results & {
-        @extend %spacer-below;
         @include font-size($s-header); // Drop the size of entry titles on archives and in search results
+      }
+      @include full-width($body-class: ".archive", $media-query: $break-single-column) {
+        @include font-size($s-header-big);
       }
     }
   }
@@ -20,21 +22,24 @@
 
 
 
-// Post contents
+// Shared post and comment contents; additional styling specific to just post contents can be found below
 .entry-content,
 .comment-content {
   @extend %clearfix-below;
   @include link-stylist($link-color: false);
-  hyphens: auto;
   word-wrap: break-word;
 
-  // Headers and paragraph spacing
+  // Header spacing
   h1,
   h2,
   h3,
   h4,
   h5,
-  h6,
+  h6 {
+    @extend %spacer-below;
+  }
+
+  // Paragraph spacing
   p {
     @extend %spacer-below;
   }
@@ -60,7 +65,7 @@
   }
   ol {
     list-style: decimal outside;
-      ol {
+    ol {
       list-style: lower-alpha;
     }
   }
@@ -144,6 +149,28 @@
     line-height: 0;
   }
 
+  // Asides; use this instead of <small> in post contents
+  aside {
+    @extend %spacer-below;
+    @include reverse-italics;
+    @include small-print;
+  }
+}
+
+// Exclusive to post contents
+.entry-content {
+
+  h1,
+  h2,
+  h3 {
+    @include rem('margin-top', $spacer*2); // Spaces out headers within body copy
+    & + h1,
+    & + h2,
+    & + h3 {
+      margin-top: 0; // Allows for subheadings
+    }
+  }
+
   // Tables
   table {
     @include rem('margin-bottom', $spacer, 1);
@@ -158,15 +185,8 @@
     @extend %small-headers;
   }
   td {
-    @include font-size($s-text-smaller, 1);
+    @include font-size-fw($s-text-smaller, $s-text, 1);
     border-top: $d-divider;
-  }
-
-  // Asides; use this instead of <small> in post contents
-  aside {
-    @extend %spacer-below;
-    @include reverse-italics;
-    @include small-print;
   }
 
   // Media
@@ -175,13 +195,65 @@
     display: block;
   }
 
-  // First children of entry-content that require extra spacing for visual flow
+  // First children of .entry-content that require extra spacing for visual flow
   > blockquote,
+  > div,
   > figure,
   > img,
   > pre {
     &:first-child {
       @extend %spacer-above;
+    }
+  }
+  .archive &,
+  .search-results & {
+    > p:first-child {
+      @extend %spacer-above;
+    }
+  }
+
+  // Full-width styling
+  @include full-width($media-query: $break-single-column) {
+    @include font-size($s-text-big);
+    color: darken($c-body, 7); // Darken content as much of it will be a thinner weight
+
+    h1 { @include font-size($s-header-title); }
+    h2 { @include font-size($s-header-big); }
+    h3 { @include font-size($s-header); }
+    h4 { @include font-size($s-header-sub); }
+    h5 { @include font-size($s-text-small); }
+    h6 { @include font-size($s-text-smaller); }
+
+    // Lighter weight
+    p,
+    dl,
+    ol,
+    ul {
+      font-weight: 300;
+    }
+    address,
+    b,
+    dt,
+    strong {
+      font-weight: 500;
+    }
+
+    // These are all usually $s-text-small; kick it up a notch
+    aside,
+    code,
+    pre,
+    small,
+    table caption,
+    .entry-caption,
+    .footnotes,
+    .references {
+      @include font-size($s-text);
+    }
+
+    // Restore the reset
+    sub,
+    sup {
+      font-size: 75%;
     }
   }
 }

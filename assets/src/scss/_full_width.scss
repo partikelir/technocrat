@@ -1,137 +1,109 @@
 // ==== FULL-WIDTH ==== //
 
-.full-width {
-  .content-area {
-    float: none;
-    width: 100%;
-  }
-  @media screen and (min-width: $break-single-column) {
-    // Boost the size of full-width entry headers
-    .entry-header {
-      h1,
-      h2,
-      h3 {
-        &.entry-title {
-          @include font-size($s-header-title);
+// A few styles are specified here for ease of use and understanding
+
+@if $full-width == true {
+  .full-width {
+    @media screen and (min-width: $break-medium) {
+
+      // Manage the various font sizes of elements within entry content
+      .entry-content {
+        @include font-size($s-text-big);
+        color: darken($c-body, 7); // Darken content as much of it will be a thinner weight
+
+        h1 { @include font-size($s-header-title); }
+        h2 { @include font-size($s-header-big); }
+        h3 { @include font-size($s-header); }
+        h4 { @include font-size($s-header-sub); }
+        h5 { @include font-size($s-text-small); }
+        h6 { @include font-size($s-text-smaller); }
+
+        // Lighter weight
+        p,
+        dl,
+        ol,
+        ul {
+          font-weight: 300;
+        }
+        address,
+        b,
+        dt,
+        strong {
+          font-weight: 500;
+        }
+
+        // These are all usually $s-text-small; kick it up a notch
+        aside,
+        code,
+        pre,
+        small,
+        table caption,
+        .entry-caption,
+        .footnotes,
+        .references {
+          @include font-size($s-text);
+        }
+
+        // Restore the reset
+        sub,
+        sup {
+          font-size: 75%;
+        }
+
+      }
+
+
+
+
+
+      // Boost the size of full-width entry headers
+      .entry-header {
+        h1,
+        h2,
+        h3 {
+          &.entry-title {
+            //@include font-size($s-header-title);
+          }
         }
       }
-    }
-    // Drop the size of entry titles on archives (search results are never full-width)
-    &.archive .entry-header {
-      h1,
-      h2,
-      h3 {
-        &.entry-title {
-          @include font-size($s-header-big);
+      // Drop the size of entry titles on archives (search results are never full-width)
+      &.archive .entry-header {
+        h1,
+        h2,
+        h3 {
+          &.entry-title {
+            //@include font-size($s-header-big);
+          }
         }
       }
-    }
 
-    // Manage the various font sizes of elements within entry content
-    .entry-content {
-      @include font-size($s-text-big);
-      color: darken($c-body, 7); // Darken content as much of it will be a thinner weight
+      // Manage the various font sizes of elements within entry content
+      .entry-content {
 
-      h1 { @include font-size($s-header-title); }
-      h2 { @include font-size($s-header-big); }
-      h3 { @include font-size($s-header); }
-      h4 { @include font-size($s-header-sub); }
-      h5 { @include font-size($s-text-small); }
-      h6 { @include font-size($s-text-smaller); }
-
-      // Lighter weight
-      p,
-      dl,
-      ol,
-      ul {
-        font-weight: 300;
-      }
-      address,
-      b,
-      dt,
-      strong {
-        font-weight: 500;
+        // Keep table contents one size smaller
+        td {
+          //@include font-size($s-text-small, 1);
+        }
       }
 
-      // These are all usually $s-text-small; kick it up a notch
-      aside,
-      code,
-      pre,
-      small,
-      table caption,
-      .entry-caption,
-      .footnotes,
-      .references {
-        @include font-size($s-text);
+      // Archives
+      .archive-header h1 {
+        //@include font-size($s-header-title);
+      }
+      .archive-content {
+        //@include font-size($s-text);
       }
 
-      // Restore the reset
-      sub,
-      sup {
-        font-size: 75%;
+      // Author box; @TODO
+      .author-description {
+        h3 {
+          //@include full-width-header($s-header-sub, $s-header);
+        }
+        p {
+          //@include font-size($s-text-small);
+          //@include full-width-text($s-text-small, $s-text);
+        }
       }
-
-      // Keep table contents one size smaller
-      td {
-        @include font-size($s-text-small, 1);
-      }
-    }
-
-    // Archives
-    .archive-header h1 {
-      @include font-size($s-header-title);
-    }
-    .archive-content {
-      @include font-size($s-text);
-    }
-
-    // Author box; @TODO
-    .author-description {
-      h3 {
-        //@include full-width-header($s-header-sub, $s-header);
-      }
-      p {
-        //@include font-size($s-text-small);
-        //@include full-width-text($s-text-small, $s-text);
-      }
-    }
-  }
-
-  // Aligned images with responsive margins; see _media.scss
-  figure.wp-caption,
-  .entry-content p img {
-    &.alignleft {
-      margin-right: percentage($spacer / $content-width);
-    }
-    &.alignright {
-      margin-left: percentage($spacer / $content-width);
-    }
-  }
-
-  // Grouped images with responsive widths; see _media.scss
-  .image-group,
-  &.thumb-view .site-main {
-    figure.wp-caption {
-      margin-bottom: percentage($d-image-spacer / $content-width);
-      margin-right: percentage($d-image-spacer / $content-width);
-      &.size-third,
-      &.size-third-square {
-        max-width: percentage(1/3) - percentage( ( ($d-image-spacer * 2) / $content-width) / 3);
-      }
-      &.size-half,
-      &.size-half-square {
-        max-width: percentage(1/2) - percentage( ($d-image-spacer / $content-width) / 2);
-      }
-    }
-  }
-
-  // Gallery items; full-width view alters the percentage-based widths and margins; see _gallery.scss for more
-  .gallery-item {
-    margin: 0 percentage($d-image-spacer / $content-width) percentage($d-image-spacer / $content-width) 0;
-  }
-  @for $i from 1 to 10 {
-    .gallery-columns-#{$i} .gallery-item {
-      max-width: percentage(1 / ($i) ) - percentage( ( ($d-image-spacer * ($i - 1) ) / $content-width) / $i);
     }
   }
 }

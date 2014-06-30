@@ -43,6 +43,33 @@
 
 
 
+// Font size mixin customed for full-width display; takes two parameters instead of one, otherwise the same
+@mixin font-size-fw($size: $s-text, $size-fw: $s-text-big, $offset: 0) {
+  @include font-size($size, $offset);
+  @include full-width($media-query: $break-single-column) {
+    @include font-size($size-fw, $offset);
+  }
+}
+
+
+
+// Full-width mixin; just a shortcut for wrapping content using the optional full-width functionality
+@mixin full-width($body-class: null, $media-query: null) {
+  @if $full-width == true {
+    .full-width#{$body-class} & {
+      @if $media-query != null {
+        @media screen and (min-width: $media-query) {
+          @content;
+        }
+      } @else {
+        @content;
+      }
+    }
+  }
+}
+
+
+
 // Gradients; via Twenty Twelve
 @mixin gradient-horizontal($begin: $d-gradient-begin, $end: $d-gradient-end) {
   background-color: $end;

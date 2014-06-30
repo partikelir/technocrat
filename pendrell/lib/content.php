@@ -1,12 +1,23 @@
 <?php // ==== CONTENT ==== //
 
-// Generate content title
+// Content title
 if ( !function_exists( 'pendrell_entry_title' ) ) : function pendrell_entry_title( $content = '' ) {
   if ( empty( $content ) )
     $content = get_the_title();
   $title = '<h1 class="entry-title"><a href="' . get_permalink() . '" rel="bookmark">' . $content . '</a></h1>';
   echo apply_filters( 'pendrell_entry_title', $title );
   do_action( 'pendrell_entry_title_after' );
+} endif;
+
+
+
+// Content class
+if ( !function_exists( 'pendrell_content_class' ) ) : function pendrell_content_class() {
+
+  $classes = apply_filters( 'pendrell_content_class', array() );
+
+  if ( !empty( $classes ) )
+    echo ' ' . join( ' ', $classes );
 } endif;
 
 

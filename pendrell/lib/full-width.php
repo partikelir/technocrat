@@ -28,7 +28,7 @@ if ( !function_exists( 'pendrell_full_width_content' ) ) : function pendrell_ful
 
   // Return immediately if the test has already been passed
   if ( $full_width_test === true )
-    return true;
+    return $full_width_test;
 
   // Test the categories and tags set in functions-config.php
   global $pendrell_full_width_cats, $pendrell_full_width_tags;
