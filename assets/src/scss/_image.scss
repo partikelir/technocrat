@@ -1,0 +1,172 @@
+// ==== IMAGE ==== //
+
+// - Metadata
+// - Captions
+// - Layout
+// - Gallery
+// - Organization
+
+
+
+// == METADATA == //
+
+.image-info {
+  @extend %spacer-above;
+  @include rem('padding-top', $spacer, 1);
+  border-top: $d-divider;
+}
+.image-description {
+  @include font-size($s-text-small);
+}
+
+
+
+// == CAPTIONS == //
+
+:not(figure).wp-caption {
+  @extend %spacer-below;
+  max-width: 100%; // Keep wide captions from overflowing their containers
+}
+.entry-caption,
+.wp-caption-text {
+  @extend %clearfix-below;
+  @include font-size($s-text-smaller);
+  @include reverse-italics;
+  color: $c-caption;
+}
+
+
+
+// == LAYOUT == //
+
+// Individual responsive images in posts, not comments; isolating these declarations from _content.scss reduces bloat
+figure.wp-caption,
+.entry-content p img {
+  @extend %spacer-below;
+  overflow: auto; // Without this the floats won't float
+  &.alignleft {
+    margin-right: percentage($spacer / $main-width);
+    @include full-width {
+      margin-right: percentage($spacer / $content-width);
+    }
+  }
+  &.alignright {
+    margin-left: percentage($spacer / $main-width);
+    @include full-width {
+      margin-left: percentage($spacer / $content-width);
+    }
+  }
+  &.alignnone { // @TODO: fix known issue, aligncenter class not working on captioned images
+    @extend %clearfix;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+
+
+// == GALLERY == //
+
+// Parts of this were adapted from Independent Publisher: https://github.com/raamdev/independent-publisher/
+.gallery {
+  @extend %clearfix;
+  @extend %spacer-below;
+}
+
+// Individual gallery items with percentage-based margins; see also _full_width.scss
+.gallery-item {
+  @include image-overlay(".gallery-caption");
+  float: left;
+  margin: 0 percentage($d-image-spacer / $main-width) percentage($d-image-spacer / $main-width) 0;
+  @include full-width {
+    margin: 0 percentage($d-image-spacer / $content-width) percentage($d-image-spacer / $content-width) 0;
+  }
+}
+
+// Generate column widths and flow control; see also _full_width.scss
+@for $i from 2 to 10 {
+  .gallery-columns-#{$i} .gallery-item {
+    max-width: percentage(1 / ($i) ) - percentage( ( ($d-image-spacer * ($i - 1) ) / $main-width) / $i);
+    &:nth-of-type(#{$i}n) {
+      margin-right: 0;
+    }
+    &:nth-of-type(#{$i}n+1) {
+      clear: left;
+    }
+  }
+}
+@if $full-width == true {
+  @for $i from 2 to 10 {
+    .full-width .gallery-columns-#{$i} .gallery-item {
+      max-width: percentage(1 / ($i) ) - percentage( ( ($d-image-spacer * ($i - 1) ) / $content-width) / $i);
+    }
+  }
+}
+
+// Don't display captions on small thumbnails and try to be halfway smart about it
+.gallery-columns-4,
+.gallery-columns-5,
+.gallery-columns-6 {
+  .gallery-caption {
+    @media screen and (max-width: $break-large) {
+      @include hide-visually;
+    }
+  }
+}
+.gallery-columns-6,
+.gallery-columns-7,
+.gallery-columns-8,
+.gallery-columns-9 {
+  .gallery-caption {
+    @include hide-visually;
+  }
+}
+
+
+
+// == ORGANIZATION == //
+
+// An extension of the gallery styling (above) adapted for piecemeal use with grouped images within posts
+.image-group {
+  @extend %clearfix;
+  figure.wp-caption {
+    float: left;
+    margin: 0 percentage($d-image-spacer / $main-width) percentage($d-image-spacer / $main-width) 0;
+    width: 100%; // Force images to fill the available space
+    @include full-width {
+      margin: 0 percentage($d-image-spacer / $content-width) percentage($d-image-spacer / $content-width) 0;
+    }
+    img {
+      width: 100%;
+    }
+  }
+}
+// Nicer layout for successive image groups
+@if $spacer != $d-image-spacer {
+  .image-group + .image-group {
+    @include rem('margin-top', -($spacer - $d-image-spacer) ); // Assumes $spacer > $d-image-spacer
+  }
+}
+
+// Generate column widths and flow control; see also _full_width.scss
+@for $i from 2 to 6 {
+  .image-group-columns-#{$i} figure.wp-caption {
+    max-width: percentage(1 / ($i) ) - percentage( ( ($d-image-spacer * ($i - 1) ) / $main-width) / $i);
+    &:nth-of-type(#{$i}n) {
+      margin-right: 0;
+    }
+    &:nth-of-type(#{$i}n+1) {
+      clear: left;
+    }
+  }
+}
+@if $full-width == true {
+  @for $i from 2 to 6 {
+    .full-width .image-group-columns-#{$i} figure.wp-caption {
+      max-width: percentage(1 / ($i) ) - percentage( ( ($d-image-spacer * ($i - 1) ) / $content-width) / $i);
+    }
+  }
+}
+
+
+

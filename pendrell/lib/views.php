@@ -63,7 +63,7 @@ add_filter( 'pendrell_full_width', 'pendrell_views_full_width' );
 // Full-width body class filter; adds a full-width class for styling purposes
 if ( !function_exists( 'pendrell_views_content_class' ) ) : function pendrell_views_content_class( $classes ) {
   if ( pendrell_is_view( 'gallery' ) )
-    $classes[] = 'gallery-view';
+    $classes[] = 'gallery-view image-group image-group-columns-3';
   if ( pendrell_is_view( 'list' ) )
     $classes[] = 'list-view';
   if ( pendrell_is_view( 'summary' ) )

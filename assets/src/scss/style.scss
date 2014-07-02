@@ -5,7 +5,7 @@ GitHub Theme URI: https://github.com/synapticism/pendrell
 Author: Alexander Synaptic
 Author URI: http://www.alexandersynaptic.com
 Description: A minimal yet fully-featured WordPress theme for content-rich blogs.
-Version: 0.9
+Version: 0.10
 License: GNU General Public Licence 2.0
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: light, gray, white, one-column, two-columns, right-sidebar, fixed-layout, responsive-layout, custom-menu, featured-images, full-width-template, microformats, post-formats, theme-options, translation-ready
@@ -13,41 +13,36 @@ Text Domain: pendrell
 Domain Path: /languages/
 */
 
-// These stylesheets are authored without regard for vendor prefixes; be sure to run the output through an autoprefixer like https://github.com/ai/autoprefixer
+// These stylesheet partials are authored without regard for vendor prefixes; be sure to run the output through an autoprefixer e.g. https://github.com/ai/autoprefixer
 // Imports marked with an * are required in the order that they appear
 
-@import "base";         // * Configuration, mixins, reset, and helper classes
-@import "general";      // * Basic elements for the most part
-@import "navigation";   // * Common navigational elements (menus, page links, etc.)
-@import "layout";       // * Layout of the main content areas
-@import "content";      // Content (entry header, content, and meta)
-@import "formats";      // Post formats: aside, link, status, etc.
-@import "media";        // Media: captions and such
-@import "gallery";      // Gallery shortcode styling
-@import "archive";      // Archives (categories, tags, taxonomies and more)
-@import "author";       // Author box
-@import "comments";     // Comments
-@import "widgets";      // Widgets
-@import "various";      // Various stuff that doesn't fit anywhere else
+@import "base";           // * Configuration, mixins, reset, and helper classes
+@import "general";        // * Basic elements for the most part
+@import "navigation";     // * Common navigational elements (menus, page links, etc.)
+@import "layout";         // * Layout of the main content areas
+@import "content";        // Content (entry header, content, and meta)
+@import "formats";        // Post formats: aside, link, status, etc.
+@import "image";          // Captions, layout, and organization of images
+//@import "gallery";        // Gallery shortcode styling
+@import "archive";        // Archives (categories, tags, taxonomies and more)
+@import "author";         // Author box
+@import "comments";       // Comments
+@import "widgets";        // Widgets
+@import "various";        // Various stuff that doesn't fit anywhere else
 
 
 
-// == PLUGINS == //
+// == OPTIONAL == //
 
-@import "full_width";   // Full-width styling (e.g. image and gallery post format posts)
-@import "views";        // Views module
-@import "prism";        // Prism syntax highlighting
-@import "places";       // Ubik places taxonomy
-@import "series";       // Ubik series taxonomy
+@import "full_width";     // Full-width styling (e.g. image and gallery post format posts)
+@import "views";          // Views module
+@import "prism";          // Prism syntax highlighting
+@import "places";         // Ubik places taxonomy
+@import "series";         // Ubik series taxonomy
 
 
 
 // == EXPERIMENTAL == //
 
 //@import "mediaelement"; // Mediaelement.js styling
-
-
-
-// == PRINT == //
-
 @import "print";      // Print styles from Twenty Twelve
