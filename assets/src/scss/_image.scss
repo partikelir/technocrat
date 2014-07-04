@@ -133,11 +133,14 @@ figure.wp-caption,
     float: left;
     margin: 0 percentage($d-image-spacer / $main-width) percentage($d-image-spacer / $main-width) 0;
     width: 100%; // Force images to fill the available space
+
     @include full-width {
       margin: 0 percentage($d-image-spacer / $content-width) percentage($d-image-spacer / $content-width) 0;
     }
     img {
-      width: 100%;
+      &.size-full {
+        // @TODO: crop non-square images
+      }
     }
   }
 }
