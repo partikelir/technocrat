@@ -3,10 +3,10 @@
 // == CONFIGURATION == //
 
 // Load the configuration file for this theme; all options are set here
-if ( is_readable( trailingslashit( get_stylesheet_directory() ) . '/functions-config.php' ) ) {
-  require_once( trailingslashit( get_stylesheet_directory() ) . '/functions-config.php' );
+if ( is_readable( trailingslashit( get_stylesheet_directory() ) . 'functions-config.php' ) ) {
+  require_once( trailingslashit( get_stylesheet_directory() ) . 'functions-config.php' );
 } else {
-  require_once( trailingslashit( get_stylesheet_directory() ) . '/functions-config-sample.php' );
+  require_once( trailingslashit( get_stylesheet_directory() ) . 'functions-config-sample.php' );
 }
 
 // There should be no need to edit these
@@ -25,22 +25,22 @@ define( 'PENDRELL_THEME_VERSION', '0.10' );
 
 // Pendrell is abstracted into the `pendrell/lib` directory
 if ( is_admin() )
-  require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/admin.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/archive.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/author.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/comments.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/content.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/feed.php' );
+  require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/admin.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/archive.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/author.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/comments.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/content.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/feed.php' );
 if ( PENDRELL_MODULE_FULL_WIDTH )
-  require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/full-width.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/general.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/image.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/image-metadata.php' );
+  require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/full-width.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/general.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/image.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/image-metadata.php' );
 if ( PENDRELL_MODULE_POST_FORMATS )
-  require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/post-formats.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/navigation.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/various.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/views.php' );
+  require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/post-formats.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/navigation.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/various.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/views.php' );
 
 
 
@@ -50,7 +50,7 @@ require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/views.php' )
 function pendrell_setup() {
 
   // Language loading
-  load_theme_textdomain( 'pendrell', get_template_directory() . '/languages' );
+  load_theme_textdomain( 'pendrell', trailingslashit( get_template_directory() ) . 'languages' );
 
   // Conditionally add post format support
   if ( PENDRELL_MODULE_POST_FORMATS )
