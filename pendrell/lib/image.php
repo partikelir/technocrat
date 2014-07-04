@@ -28,7 +28,7 @@ if ( !function_exists( 'pendrell_image_wrapper' ) ) : function pendrell_image_wr
   // Attachments: load post data from the attachment itself
   } elseif ( wp_attachment_is_image() ) {
     $id = $post->ID;
-    $caption = get_the_excerpt();
+    $caption = $post->post_excerpt;
     if ( !function_exists( 'ubik_image_markup' ) )
       $html = wp_get_attachment_image( $post->ID, $size );
   }
