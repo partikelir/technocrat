@@ -33,6 +33,10 @@ if ( !function_exists( 'pendrell_shortcode_init' ) ) : function pendrell_shortco
   if ( !function_exists( 'ubik_image_group_shortcode' ) )
     add_shortcode( 'group', 'pendrell_shortcode_fallback' );
 
+  // Discog shortcode from Ubik
+  if ( !function_exists( 'ubik_discography_shortcode' ) )
+    add_shortcode( 'discog', 'pendrell_shortcode_fallback' );
+
 } endif;
 add_action( 'init', 'pendrell_shortcode_init' );
 
