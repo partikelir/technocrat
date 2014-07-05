@@ -20,4 +20,5 @@ function pendrell_image_feed( $content ) {
 
   return $content;
 }
-add_filter( 'the_content_feed', 'pendrell_image_feed' );
+// This shouldn't be necessary; @TODO: verify that everything works as it should without this function
+//add_filter( 'the_content_feed', 'pendrell_image_feed' );

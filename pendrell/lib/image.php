@@ -1,7 +1,7 @@
 <?php // ==== IMAGES ==== //
 
 // Generates HTML5 markup for image attachments and image format posts; called in Pendrell's templates
-if ( !function_exists( 'pendrell_image_wrapper' ) ) : function pendrell_image_wrapper( $content ) {
+if ( !function_exists( 'pendrell_image_wrapper' ) ) : function pendrell_image_wrapper( $content = '' ) {
 
   // Fail early if needed
   if ( ( has_post_format( 'image' ) && has_post_thumbnail() ) === false && !wp_attachment_is_image() )
