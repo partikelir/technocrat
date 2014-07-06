@@ -13,6 +13,7 @@ get_header(); ?>
 				<?php pendrell_archive_title(); ?>
 				<?php pendrell_archive_description(); ?>
 			</header><!-- .archive-header -->
+			<?php pendrell_view_switch(); ?>
 			<?php if ( have_posts() ) { ?>
 				<?php pendrell_content_nav( 'nav-above' );
 				while ( have_posts() ) : the_post();

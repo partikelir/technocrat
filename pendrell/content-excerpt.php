@@ -8,9 +8,7 @@
 
 	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 		<header class="entry-header">
-			<h1 class="entry-title">
-				<?php pendrell_entry_title(); ?>
-			</h1>
+			<?php pendrell_entry_title(); ?>
 		</header><!-- .entry-header -->
 		<div class="entry-content">
 			<?php the_excerpt(); ?>

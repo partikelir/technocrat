@@ -30,7 +30,7 @@ if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueu
   //wp_deregister_style( 'wp-mediaelement' );
 
   // Register and enqueue our main stylesheet with versioning based on last modified time
-  wp_register_style( 'pendrell-style', get_stylesheet_uri(), array(), filemtime( get_template_directory() . '/style.css' ) );
+  wp_register_style( 'pendrell-style', get_stylesheet_uri(), array( 'dashicons' ), filemtime( get_template_directory() . '/style.css' ) );
   wp_enqueue_style( 'pendrell-style' );
 } endif;
 add_action( 'wp_enqueue_scripts', 'pendrell_enqueue_scripts' );

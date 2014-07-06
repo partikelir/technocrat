@@ -48,6 +48,16 @@
 
 
 
+// Dashicons mixin for use with WordPress dashicon font
+@mixin dashicon($content, $dir: before) {
+  &:#{$dir} {
+    font-family: "dashicons";
+    content: "#{$content}";
+  }
+}
+
+
+
 // Ghosting; use on any element to obscure it from view except on hover
 @mixin ghost($value: 0.6) {
   opacity: $value;

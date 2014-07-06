@@ -30,12 +30,12 @@ add_filter( 'query_vars', 'pendrell_views_query_var' );
 
 // Swap templates as needed based on query var
 if ( !function_exists( 'pendrell_views_template' ) ) : function pendrell_views_template( $template ) {
+  if ( pendrell_is_view( 'excerpt' ) || is_search() )
+    $template = 'excerpt';
   if ( pendrell_is_view( 'gallery' ) )
     $template = 'gallery';
   if ( pendrell_is_view( 'list' ) )
     $template = 'list';
-  if ( pendrell_is_view( 'summary' ) || is_search() )
-    $template = 'summary';
   return $template;
 } endif;
 add_filter( 'pendrell_content_template', 'pendrell_views_template' );
@@ -62,12 +62,12 @@ add_filter( 'pendrell_full_width', 'pendrell_views_full_width' );
 
 // Full-width body class filter; adds a full-width class for styling purposes
 if ( !function_exists( 'pendrell_views_content_class' ) ) : function pendrell_views_content_class( $classes ) {
+  if ( pendrell_is_view( 'excerpt' ) )
+    $classes[] = 'excerpt-view';
   if ( pendrell_is_view( 'gallery' ) )
     $classes[] = 'gallery-view image-group image-group-columns-3';
   if ( pendrell_is_view( 'list' ) )
     $classes[] = 'list-view';
-  if ( pendrell_is_view( 'summary' ) )
-    $classes[] = 'summary-view';
   return $classes;
 } endif;
 add_filter( 'pendrell_content_class', 'pendrell_views_content_class' );
@@ -82,3 +82,10 @@ if ( !function_exists( 'pendrell_views_pre_get_posts' ) ) : function pendrell_vi
   }
 } endif;
 add_action( 'pre_get_posts', 'pendrell_views_pre_get_posts' );
+
+
+
+// View switch prototype
+if ( !function_exists( 'pendrell_view_switch' ) ) : function pendrell_view_switch() {
+
+} endif;

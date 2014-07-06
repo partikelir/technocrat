@@ -7,15 +7,26 @@
 ?>
 
 	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-		<header class="entry-header">
-			<h1 class="entry-title">
+		<div class="entry-thumbnail">
+			<?php echo pendrell_image_markup(
+		    $html = '',
+		    $id = pendrell_thumbnail_id(),
+		    $caption = '',
+		    $title = '',
+		    $align = '',
+		    $url = get_permalink(),
+		    $size = 'thumbnail'
+		  ); ?>
+		</div>
+		<div class="entry-content-wrapper">
+			<header class="entry-header">
 				<?php pendrell_entry_title(); ?>
-			</h1>
-		</header><!-- .entry-header -->
-		<div class="entry-content">
-			<?php the_excerpt(); ?>
-		</div><!-- .entry-content -->
-		<footer class="entry-meta">
-			<?php pendrell_entry_meta(); ?>
-		</footer><!-- .entry-meta -->
+			</header><!-- .entry-header -->
+			<div class="entry-content">
+				<?php the_excerpt(); ?>
+			</div><!-- .entry-content -->
+			<footer class="entry-meta">
+				<?php pendrell_entry_meta(); ?>
+			</footer><!-- .entry-meta -->
+		</div><!-- .entry-content-wrapper -->
 	</article><!-- #post -->

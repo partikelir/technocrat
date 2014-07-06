@@ -11,3 +11,31 @@
     @include image-overlay(".wp-caption-text");
   }
 }
+
+.list-view {
+  article {
+    @include rem('margin-bottom', $spacer*2);
+  }
+  .entry-content-wrapper {
+    margin-left: 150px + $spacer;
+  }
+  h1.entry-title {
+    @include font-size-fw($s-header-sub, $s-text);
+  }
+}
+.entry-thumbnail {
+  position: absolute;
+  img {
+    @include border-radius;
+  }
+}
+
+.excerpt-view-option {
+  @include dashicon("\f164");
+}
+.gallery-view-option {
+  @include dashicon("\f161");
+}
+.list-view-option {
+  @include dashicon("\f163");
+}
