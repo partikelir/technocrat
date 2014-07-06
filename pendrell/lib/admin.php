@@ -9,15 +9,15 @@ if ( !function_exists( 'pendrell_image_sizes' ) ) : function pendrell_image_size
 	unset ( $sizes['full'] );
 
 	// The full list
-  $sizes['third'] = __( 'Third-width', 'pendrell');
-  $sizes['third-square'] = __( 'Third-width square', 'pendrell');
-  $sizes['half'] = __( 'Half-width', 'pendrell');
-  $sizes['half-square'] = __( 'Half-width square', 'pendrell');
-  $sizes['medium'] = __( 'Medium', 'pendrell');
-  $sizes['medium-square'] = __( 'Medium square', 'pendrell');
-  $sizes['large'] = __( 'Large', 'pendrell');
-  $sizes['large-square'] = __( 'Large square', 'pendrell');
-  $sizes['full'] = __( 'Full', 'pendrell');
+  $sizes['third'] = __( 'Third-width', 'pendrell' );
+  $sizes['third-square'] = __( 'Third-width square', 'pendrell' );
+  $sizes['half'] = __( 'Half-width', 'pendrell' );
+  $sizes['half-square'] = __( 'Half-width square', 'pendrell' );
+  $sizes['medium'] = __( 'Medium', 'pendrell' );
+  $sizes['medium-square'] = __( 'Medium square', 'pendrell' );
+  $sizes['large'] = __( 'Large', 'pendrell' );
+  $sizes['large-square'] = __( 'Large square', 'pendrell' );
+  $sizes['full'] = __( 'Full', 'pendrell' );
   return $sizes;
 
 } endif;

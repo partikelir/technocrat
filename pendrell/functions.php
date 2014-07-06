@@ -78,9 +78,9 @@ function pendrell_setup() {
   // This variable is mainly used here in functions.php; it should match the variable defined in _base.scss
   $main_width = 624;
 
-  // This theme uses a custom image size for featured images; it isn't really a "thumbnail"
+  // This theme uses a custom image size for featured images; it isn't really a "thumbnail" and it actually differs from the thumbnail image size
   add_theme_support( 'post-thumbnails' );
-  set_post_thumbnail_size( $main_width, 9999 );
+  set_post_thumbnail_size( $main_width, $main_width );
 
   // Add a few additional image sizes for various other purposes
   add_image_size( 'third', $content_width/3, 9999 );
@@ -90,7 +90,10 @@ function pendrell_setup() {
   add_image_size( 'medium-square', $main_width, $main_width, true );
   add_image_size( 'large-square', $content_width, $content_width, true );
 
-  // Forcing medium and large sizes to match $content_width and $site_width
+  // Forcing medium and large sizes to match $content_width and $site_width; explicitly setting thumbnail image size
+  update_option( 'thumbnail_size_w', 150 );
+  update_option( 'thumbnail_size_h', 150 );
+  update_option( 'thumbnail_crop', 1 );
   update_option( 'medium_size_w', $main_width );
   update_option( 'medium_size_h', 9999 );
   update_option( 'large_size_w', $content_width );

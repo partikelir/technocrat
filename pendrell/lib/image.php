@@ -19,6 +19,11 @@ if ( !function_exists( 'pendrell_image_wrapper' ) ) : function pendrell_image_wr
   if ( has_post_format( 'image' ) && has_post_thumbnail() ) {
     $id = get_post_thumbnail_id();
     $caption = get_post( $id )->post_excerpt;
+    if ( !is_singular() ) {
+      $url = get_permalink(); // Link to the post itself, not the attachment, in category archives and such
+    } else {
+      $url = ''; // Let Ubik figure it out
+    }
     if ( !function_exists( 'ubik_image_markup' ) ) {
       $html = get_the_post_thumbnail( $post->ID, $size );
       if ( !is_singular() ) // Conditionally wrap the image in a link to the image post itself
@@ -29,18 +34,19 @@ if ( !function_exists( 'pendrell_image_wrapper' ) ) : function pendrell_image_wr
   } elseif ( wp_attachment_is_image() ) {
     $id = $post->ID;
     $caption = $post->post_excerpt;
+    $url = get_permalink( $post->post_parent ); // Click on the attachment and return to the parent post
     if ( !function_exists( 'ubik_image_markup' ) )
       $html = wp_get_attachment_image( $post->ID, $size );
   }
 
-  return pendrell_image_markup( $html, $id, $caption, $title = '', $align = '', $url = '', $size ) . $content;
+  return pendrell_image_markup( $html, $id, $caption, $title = '', $align = '', $url, $size ) . $content;
 } endif;
 remove_filter( 'the_content', 'prepend_attachment' ); // Removes default WordPress functionality for *all* attachments, not just images
 add_filter( 'the_content', 'pendrell_image_wrapper' );
 
 
 
-// Thin wrapper for ubik_image_markup with graceful fallback
+// Wrapper for ubik_image_markup with basic fallback functionality
 if ( !function_exists( 'pendrell_image_markup' ) ) : function pendrell_image_markup( $html, $id, $caption, $title = '', $align = 'none', $url = '', $size = 'medium' ) {
 
   // If Ubik is installed...
@@ -69,7 +75,7 @@ if ( !function_exists( 'pendrell_image_markup' ) ) : function pendrell_image_mar
 
 
 
-// Image shortcode fallback (in case Ubik is not active)
+// Image shortcode fallback in case Ubik is not active
 if ( !function_exists( 'pendrell_image_shortcode' ) ) : function pendrell_image_shortcode( $atts, $caption = null ) {
   extract( shortcode_atts( array(
     'id'            => '',
