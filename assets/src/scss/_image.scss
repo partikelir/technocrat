@@ -84,7 +84,7 @@ figure.wp-caption,
 }
 
 // Generate column widths and flow control; see also _full_width.scss
-@for $i from 2 to 10 {
+@for $i from 1 to 10 {
   .gallery-columns-#{$i} .gallery-item {
     max-width: percentage(1 / ($i) ) - percentage( ( ($d-image-spacer * ($i - 1) ) / $main-width) / $i);
     &:nth-of-type(#{$i}n) {
@@ -96,7 +96,7 @@ figure.wp-caption,
   }
 }
 @if $full-width == true {
-  @for $i from 2 to 10 {
+  @for $i from 1 to 10 {
     .full-width .gallery-columns-#{$i} .gallery-item {
       max-width: percentage(1 / ($i) ) - percentage( ( ($d-image-spacer * ($i - 1) ) / $content-width) / $i);
     }

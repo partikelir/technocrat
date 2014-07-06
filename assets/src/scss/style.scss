@@ -22,8 +22,7 @@ Domain Path: /languages/
 @import "layout";         // * Layout of the main content areas
 @import "content";        // Content (entry header, content, and meta)
 @import "formats";        // Post formats: aside, link, status, etc.
-@import "image";          // Captions, layout, and organization of images
-//@import "gallery";        // Gallery shortcode styling
+@import "image";          // Captions, gallery, layout, and organization of images
 @import "archive";        // Archives (categories, tags, taxonomies and more)
 @import "author";         // Author box
 @import "comments";       // Comments
@@ -34,7 +33,6 @@ Domain Path: /languages/
 
 // == OPTIONAL == //
 
-@import "full_width";     // Full-width styling (e.g. image and gallery post format posts)
 @import "views";          // Views module
 @import "prism";          // Prism syntax highlighting
 @import "places";         // Ubik places taxonomy
