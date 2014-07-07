@@ -1,6 +1,17 @@
 // ==== VIEWS ==== //
 
-// In development!
+// View options
+.view-options {
+  //@extend %button-container;
+  display: none;
+  @media screen and (min-width: $break-medium) {
+    display: inline-block;
+  }
+}
+
+
+
+// == GALLERY VIEW == //
 
 .gallery-view {
   .site-main {
@@ -13,6 +24,10 @@
     @include image-overlay(".wp-caption-text");
   }
 }
+
+
+
+// == LIST VIEW == //
 
 .list-view {
   article {
@@ -32,12 +47,8 @@
   }
 }
 
-.excerpt-view-option {
-  @include dashicon("f164");
-}
-.gallery-view-option {
-  @include dashicon("f161");
-}
-.list-view-option {
-  @include dashicon("f163");
-}
+
+
+// == EXCERPT VIEW == //
+
+// ?

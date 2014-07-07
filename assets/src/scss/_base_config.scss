@@ -108,7 +108,7 @@ $c-code-bg:       darken($c-body-bg, 7);
 $c-del:           lighten($c-body, 27);
 $c-hr:            rgba($c-body, .09);
 $c-ins-bg:        $c-yellow;
-$c-mark:          lighten($c-body, 19);
+$c-mark:          $c-highlight;
 $c-mark-bg:       $c-ins-bg;
 $c-pre:           darken($c-body, 13);
 $c-table:         lighten($c-body, 19);

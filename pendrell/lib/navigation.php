@@ -6,12 +6,15 @@ if ( !function_exists( 'pendrell_content_nav' ) ) : function pendrell_content_na
   // No funny business
   $html_id = esc_attr( $html_id );
 
+  // Action hook fo
+  do_action( 'pendrell_content_nav_above', $html_id );
+
   // Post navigation; adapted from https://github.com/mattbanks/WordPress-Starter-Theme/
   if ( is_singular() ) {
 
     // Don't print empty markup if there's nowhere to navigate.
     $previous = ( is_attachment() ) ? get_post( get_post()->post_parent ) : get_adjacent_post( false, '', true );
-    $next     = get_adjacent_post( false, '', false );
+    $next = get_adjacent_post( false, '', false );
 
     if ( !$next && !$previous )
       return;
@@ -34,9 +37,7 @@ if ( !function_exists( 'pendrell_content_nav' ) ) : function pendrell_content_na
       return;
 
     // Don't display top navigation on page 1; it creates unnecessary visual clutter
-    if ( ( $html_id === 'nav-above' && is_paged() )
-      || $html_id !== 'nav-above'
-    ) {
+    if ( ( $html_id === 'nav-above' && is_paged() ) || $html_id !== 'nav-above' ) {
 
       // Hack: switch navigation links from "newer" and "older" to "next" and "previous"; solves UI problems with custom post ordering
       ?><nav class="<?php echo $html_id; ?> page-navigation" role="navigation">
@@ -49,10 +50,11 @@ if ( !function_exists( 'pendrell_content_nav' ) ) : function pendrell_content_na
         if ( get_next_posts_link() ) { ?>
           <div class="nav-next"><?php next_posts_link( __( 'Next<span class="nav-arrow"> &rarr;</span>', 'pendrell' ) ); ?></div>
         <?php } ?>
-        </div>
+        </div><!-- .nav-links -->
       </nav><!-- .page-navigation --><?php
     }
   }
+  do_action( 'pendrell_content_nav_below', $html_id );
 } endif;
 
 

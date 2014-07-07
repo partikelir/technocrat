@@ -19,6 +19,7 @@
 .site-header {
   @include layout-box;
   @include rem('padding-top', $spacer);
+  position: relative;
 }
 .site-title {
   @extend %clearfix-below;

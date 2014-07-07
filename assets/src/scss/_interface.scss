@@ -42,10 +42,9 @@ input[type="reset"],
 // Menu toggle for mobile phones
 .menu-toggle {
   cursor: pointer;
-  display: block;
-  position: absolute;
-    @include rem('right', $spacer);
-    @include rem('top', $spacer);
+  //position: absolute;
+  //  @include rem('right', $spacer);
+  //  @include rem('top', $spacer);
   @media screen and (min-width: $break-medium) {
     display: none;
   }
@@ -56,8 +55,12 @@ input[type="reset"],
 
 
 
-// Dashicons
-.view-switch-buttons {
-  @extend %button-container;
-  @include link-stylist($c-meta-link, $c-meta-link-v, $c-meta-link-h, $c-meta-link-a, $c-meta-link-f, $link-border: false);
+.site-interface {
+  display: block;
+  position: absolute;
+    @include rem('right', $spacer);
+    @include rem('top', $spacer);
+    @media screen and (min-width: $break-medium) {
+      @include rem('right', $spacer*1.5);
+    }
 }

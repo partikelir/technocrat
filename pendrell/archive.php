@@ -9,7 +9,6 @@ get_header(); ?>
 
 	<section id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
-			<?php pendrell_view_switch(); ?>
 			<header class="archive-header">
 				<?php pendrell_archive_title(); ?>
 				<?php pendrell_archive_description(); ?>
