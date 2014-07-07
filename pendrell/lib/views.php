@@ -88,4 +88,41 @@ add_action( 'pre_get_posts', 'pendrell_views_pre_get_posts' );
 // View switch prototype
 if ( !function_exists( 'pendrell_view_switch' ) ) : function pendrell_view_switch() {
 
+  global $wp;
+
+  $current = get_query_var( 'view' );
+
+  $views = array(
+    array(
+      'name' => 'gallery',
+      'text' => __( 'Gallery', 'pendrell' ),
+      'icon' => 'dashicons-format-gallery'
+    ),
+    array(
+      'name' => 'list',
+      'text' => __( 'List', 'pendrell' ),
+      'icon' => 'dashicons-list-view'
+    ),
+    array(
+      'name' => 'excerpt',
+      'text' => __( 'Excerpt', 'pendrell' ),
+      'icon' => 'dashicons-exerpt-view' // Sic
+    )
+  );
+
+  if ( empty( $current ) ) {
+    $output = '';
+  } else {
+    $output = '<a href="' . remove_query_arg( 'view' ) . '"><span class="dashicons dashicons-admin-site"></span></a>';
+  }
+
+  foreach ( $views as $view ) {
+    if ( $view['name'] == $current ) {
+      $output .= '<span class="dashicons ' . $view['icon'] . ' view-current"></span>';
+    } else {
+      $output .= '<a href="' . add_query_arg( 'view', $view['name'] ) . '"><span class="dashicons ' . $view['icon'] . '"></span></a>';
+    }
+  }
+
+  echo '<div class="view-switch-buttons">' . $output . '</div>' . "\n";
 } endif;

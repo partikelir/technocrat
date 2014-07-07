@@ -1,5 +1,7 @@
 // ==== VIEWS ==== //
 
+// In development!
+
 .gallery-view {
   .site-main {
     img {
@@ -31,11 +33,11 @@
 }
 
 .excerpt-view-option {
-  @include dashicon("\f164");
+  @include dashicon("f164");
 }
 .gallery-view-option {
-  @include dashicon("\f161");
+  @include dashicon("f161");
 }
 .list-view-option {
-  @include dashicon("\f163");
+  @include dashicon("f163");
 }

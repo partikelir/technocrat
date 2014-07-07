@@ -21,6 +21,9 @@ define( 'PENDRELL_COPYRIGHT_STRING', false );
 // Display a copyright yearEarliest year for the copyright; easier than making a database call; integer or false to disable
 define( 'PENDRELL_COPYRIGHT_YEAR', 2014 );
 
+// Include Dashicons on the front-end; true/false
+define( 'PENDRELL_DASHICONS', false );
+
 // Google web fonts to load; string false will load Open Sans as a fallback
 define( 'PENDRELL_GOOGLE_FONTS', 'Raleway:200,300,600' );
 

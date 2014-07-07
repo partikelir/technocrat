@@ -24,7 +24,10 @@
 
 
 
-// Header font style
+// Various font styles
+@mixin font-button {
+  @include font-header;
+}
 @mixin font-header {
   font-family: $f-head;
   font-weight: 300;

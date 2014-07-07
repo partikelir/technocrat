@@ -9,11 +9,11 @@ get_header(); ?>
 
 	<section id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
+			<?php pendrell_view_switch(); ?>
 			<header class="archive-header">
 				<?php pendrell_archive_title(); ?>
 				<?php pendrell_archive_description(); ?>
 			</header><!-- .archive-header -->
-			<?php pendrell_view_switch(); ?>
 			<?php if ( have_posts() ) { ?>
 				<?php pendrell_content_nav( 'nav-above' );
 				while ( have_posts() ) : the_post();

@@ -1,0 +1,63 @@
+// ==== INTERFACE ==== //
+
+// User interface elements go here
+
+// Buttons from Twenty Twelve; @TODO: clean this up at some point, it's rather ugly
+button,
+.button a,
+.menu-toggle,
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
+#cancel-comment-reply-link {
+  @include border-radius;
+  @include box-shadow(0 1px 2px rgba(64, 64, 64, 0.1));
+  @include font-button;
+  @include font-size($s-text-smaller, 4);
+  @include rem('padding', 0 $spacer/4);
+  @include gradient-vertical($d-gradient-begin, $d-gradient-end);
+  border: 1px solid #d2d2d2;
+  color: lighten($c-body, 22);
+  display: inline-block;
+  font-weight: 400;
+  text-decoration: none;
+  vertical-align: middle;
+  &:hover {
+    @include gradient-vertical(#f9f9f9, #ebebeb);
+    color: lighten($c-body, 13);
+  }
+  &:active {
+    @include box-shadow-layered(inset 0 2px 3px 0 #c6c6c6, 0 1px 2px rgba(64, 64, 64, 0.1));
+    @include gradient-vertical(#e1e1e1, #ebebeb);
+    border-color: 1px solid #ebebeb;
+    color: lighten($c-body, 37);
+  }
+  &:focus {
+    outline: none; // Blue border is rather distracting
+  }
+}
+
+
+
+// Menu toggle for mobile phones
+.menu-toggle {
+  cursor: pointer;
+  display: block;
+  position: absolute;
+    @include rem('right', $spacer);
+    @include rem('top', $spacer);
+  @media screen and (min-width: $break-medium) {
+    display: none;
+  }
+  &:focus {
+    outline: none; // Removes distracting blue blur
+  }
+}
+
+
+
+// Dashicons
+.view-switch-buttons {
+  @extend %button-container;
+  @include link-stylist($c-meta-link, $c-meta-link-v, $c-meta-link-h, $c-meta-link-a, $c-meta-link-f, $link-border: false);
+}

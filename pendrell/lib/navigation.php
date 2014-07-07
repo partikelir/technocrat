@@ -20,7 +20,7 @@ if ( !function_exists( 'pendrell_content_nav' ) ) : function pendrell_content_na
       <div class="nav-links">
         <?php
           previous_post_link( '<div class="nav-previous">%link</div>', _x( '<span class="nav-arrow">&larr;</span> %title', 'Previous post link', 'pendrell', true ) );
-          next_post_link(     '<div class="nav-next">%link</div>', _x( '%title <span class="nav-arrow">&rarr;</span>', 'Next post link', 'pendrell', true ) );
+          next_post_link( '<div class="nav-next">%link</div>', _x( '%title <span class="nav-arrow">&rarr;</span>', 'Next post link', 'pendrell', true ) );
         ?>
       </div><!-- .nav-links -->
     </nav><!-- .navigation -->
