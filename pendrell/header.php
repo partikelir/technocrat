@@ -29,8 +29,8 @@
 			</div><!-- .site-branding -->
 			<div class="site-interface">
 				<?php do_action( 'pendrell_site_navigation_above' ); ?>
-				<button class="menu-toggle"><?php _e( 'Menu', 'pendrell' ); ?></button>
-				<span class="button"><a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'pendrell' ); ?></a></span>
+				<button class="menu-toggle" role="button"><?php _e( 'Menu', 'pendrell' ); ?></button>
+				<span class="button"><a href="#content" class="skip-link screen-reader-text" role="button"><?php _e( 'Skip to content', 'pendrell' ); ?></a></span>
 				<?php do_action( 'pendrell_site_navigation_below' ); ?>
 			</div><!-- #site-interface -->
 			<nav id="site-navigation" class="inline-menu" role="navigation">

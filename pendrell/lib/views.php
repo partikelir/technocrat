@@ -197,7 +197,7 @@ if ( !function_exists( 'pendrell_view_switch' ) ) : function pendrell_view_switc
   // Iterate through views to create the options list
   foreach ( $views as $view ) {
     if ( $view['name'] != $current ) {
-      $output .= '<span class="' . $view['name'] . '-view-option button"><a href="' . $view['url'] . '" class="button"><span class="dashicons ' . $view['icon'] . '"></span> ' . $view['text'] . '</a></span> ';
+      $output .= '<span class="' . $view['name'] . '-view-option button"><a href="' . $view['url'] . '" class="button" role="button"><span class="dashicons ' . $view['icon'] . '"></span> ' . $view['text'] . '</a></span> ';
     }
   }
 

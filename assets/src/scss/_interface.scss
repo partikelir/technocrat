@@ -64,3 +64,22 @@ input[type="reset"],
       @include rem('right', $spacer*1.5);
     }
 }
+
+
+
+// Dashicons
+.dashicons,
+.dashicons-before:before {
+  display: inline-block;
+  font-family: dashicons;
+  height: auto;
+  line-height: 0;
+  margin: 0;
+  padding: 0;
+  //transition: color .1s ease-in 0; // @TODO: make transitions much smoother
+  vertical-align: -0.15em;
+  width: auto;
+  .button & {
+    font-size: $s-text-smaller+0px;
+  }
+}
