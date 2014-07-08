@@ -52,7 +52,7 @@ input[type="reset"],
 
 
 
-// Menu toggle for mobile phones
+// Menu toggle for mobile phones and small screens
 #responsive-menu-toggle {
   @media screen and (min-width: $break-medium) {
     display: none;
