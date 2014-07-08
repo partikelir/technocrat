@@ -6,7 +6,7 @@
  */
 ?>
 
-	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> role="article">
 		<header class="entry-header">
 			<?php pendrell_entry_title(); ?>
 		</header><!-- .entry-header -->

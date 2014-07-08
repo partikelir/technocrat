@@ -117,41 +117,45 @@
 @mixin list-nested() {
   & > li {
     position: relative;
+  }
 
-    ul,
-    ul ul {
-      display: none;
-      position: absolute;
-        left: 0;
-        top: 100%;
-        z-index: 999;
-    }
+  ul,
+  ul ul {
+    display: none;
+    position: absolute;
+    z-index: 999;
+  }
 
-    // Make submenus appear to the right
-    ul ul {
-      left: 100%;
-      top: 0;
-    }
+  // Make primary submenus drop down
+  ul {
+    left: 0;
+    top: 100%;
+  }
 
-    // Causes list items and links to fill the space
-    ul li {
+  // Make secondary submenus appear to the right
+  ul ul {
+    left: 100%;
+    top: 0;
+  }
+
+  // Causes list items and links to fill the space
+  ul li {
+    display: block;
+    margin: 0;
+    width: 100%;
+    a {
       display: block;
-      margin: 0;
-      width: 100%;
-      a {
-        display: block;
-      }
     }
+  }
 
-    // Displays submenus on hover
-    &:hover > ul {
-      display: block;
-    }
+  // Displays submenus on hover
+  li:hover > ul {
+    display: block;
+  }
 
-    // Don't display menu items nested more than three deep
-    ul ul ul li:hover ul {
-      display: none;
-    }
+  // Don't display menu items nested more than three deep
+  ul ul ul li:hover ul {
+    display: none;
   }
 }
 

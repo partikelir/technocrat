@@ -1,11 +1,10 @@
 // ==== INTERFACE ==== //
 
-// User interface elements go here
+// This partial is meant to contain all user interface elements: buttons, menus, and so on
 
-// Buttons from Twenty Twelve; @TODO: clean this up at some point, it's rather ugly
+// Button styling adapted from Twenty Twelve
 button,
 .button a,
-.menu-toggle,
 input[type="submit"],
 input[type="button"],
 input[type="reset"],
@@ -14,22 +13,23 @@ input[type="reset"],
   @include box-shadow(0 1px 2px rgba(64, 64, 64, 0.1));
   @include font-button;
   @include font-size($s-text-smaller, 4);
-  @include rem('padding', 0 $spacer/4);
   @include gradient-vertical($d-gradient-begin, $d-gradient-end);
-  border: 1px solid #d2d2d2;
-  color: lighten($c-body, 22);
+  @include rem('padding', 0 $spacer/4);
+  border: 1px solid darken($c-body-bg, 17);
+  color: lighten($c-body, 17);
+  cursor: pointer;
   display: inline-block;
   font-weight: 400;
   text-decoration: none;
   vertical-align: middle;
   &:hover {
-    @include gradient-vertical(#f9f9f9, #ebebeb);
+    @include gradient-vertical(lighten($d-gradient-begin, 3), lighten($d-gradient-end, 1));
     color: lighten($c-body, 13);
   }
   &:active {
     @include box-shadow-layered(inset 0 2px 3px 0 #c6c6c6, 0 1px 2px rgba(64, 64, 64, 0.1));
-    @include gradient-vertical(#e1e1e1, #ebebeb);
-    border-color: 1px solid #ebebeb;
+    @include gradient-vertical(darken($d-gradient-begin, 7), lighten($d-gradient-end, 1));
+    border-color: 1px solid darken($c-body-bg, 8);
     color: lighten($c-body, 37);
   }
   &:focus {
@@ -39,23 +39,8 @@ input[type="reset"],
 
 
 
-// Menu toggle for mobile phones
-.menu-toggle {
-  cursor: pointer;
-  //position: absolute;
-  //  @include rem('right', $spacer);
-  //  @include rem('top', $spacer);
-  @media screen and (min-width: $break-medium) {
-    display: none;
-  }
-  &:focus {
-    outline: none; // Removes distracting blue blur
-  }
-}
-
-
-
-.site-interface {
+// Site interface: the toolbar/menu at top right
+#site-interface {
   display: block;
   position: absolute;
     @include rem('right', $spacer);
@@ -63,6 +48,18 @@ input[type="reset"],
     @media screen and (min-width: $break-medium) {
       @include rem('right', $spacer*1.5);
     }
+}
+
+
+
+// Menu toggle for mobile phones
+#responsive-menu-toggle {
+  @media screen and (min-width: $break-medium) {
+    display: none;
+  }
+  &.toggled {
+    @extend button:active;
+  }
 }
 
 

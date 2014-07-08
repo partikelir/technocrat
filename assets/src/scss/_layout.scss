@@ -47,44 +47,6 @@
 .site-branding {
   @include rem('padding-bottom', $spacer/2);
 }
-#site-navigation {
-  .menu-header {
-    @include rem('padding-bottom', $spacer/2, 1);
-    border-bottom: $d-divider;
-    display: none;
-    @media screen and (min-width: $break-medium) {
-      display: block;
-      width: 100%;
-    }
-  }
-  li {
-    @include font-size($s-menu-sub);
-    @media screen and (min-width: $break-medium) {
-      @include font-size($s-menu-header);
-      ul { // Submenu styling
-        @include box-shadow(2px 2px 4px rgba(64, 64, 64, .05));
-        li a {
-          @include font-size($s-menu-sub, 1);
-          @include rem('padding', 0 $spacer/4);
-          background: $c-menu-bg;
-          border-bottom: $d-divider;
-          &:hover {
-            background: darken($c-menu-bg, 3);
-          }
-        }
-      }
-    }
-  }
-  // Toggle styling for use with navigation.js
-  &.toggled {
-    .menu-header {
-      display: block;
-    }
-    .menu-toggle {
-      @extend .menu-toggle:active;
-    }
-  }
-}
 
 
 
@@ -122,19 +84,6 @@
   @include layout-box;
   @include link-stylist($c-footer-link, $c-footer-link-v, $c-footer-link-h, $c-footer-link-a, $c-footer-link-f, $link-border: false);
   color: $c-footer;
-}
-#site-footer-navigation {
-  .menu-footer {
-    @include rem('padding-bottom', $spacer/2);
-    @include rem('padding-top', $spacer/2, 1);
-    border-top: $d-divider;
-  }
-  ul > li:hover > ul {
-    @include hide-visually; // No submenus in the footer
-  }
-  li {
-    @include font-size($s-menu-footer);
-  }
 }
 .site-footer-buttons {
   @extend %button-container;

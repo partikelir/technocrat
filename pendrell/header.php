@@ -27,14 +27,14 @@
 				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 				<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
 			</div><!-- .site-branding -->
-			<div class="site-interface">
+			<div id="site-interface">
 				<?php do_action( 'pendrell_site_navigation_above' ); ?>
-				<button class="menu-toggle" role="button"><?php _e( 'Menu', 'pendrell' ); ?></button>
+				<button id="responsive-menu-toggle" role="button"><?php _e( 'Menu', 'pendrell' ); ?></button>
 				<span class="button"><a href="#content" class="skip-link screen-reader-text" role="button"><?php _e( 'Skip to content', 'pendrell' ); ?></a></span>
 				<?php do_action( 'pendrell_site_navigation_below' ); ?>
 			</div><!-- #site-interface -->
-			<nav id="site-navigation" class="inline-menu" role="navigation">
-				<?php wp_nav_menu( array( 'theme_location' => 'header', 'menu_class' => 'menu-header' ) ); ?>
+			<nav id="site-navigation" role="navigation">
+				<?php wp_nav_menu( array( 'theme_location' => 'header', 'menu_class' => 'menu-header inline-menu' ) ); ?>
 			</nav><!-- #site-navigation -->
 		</header><!-- #masthead -->
 	</div><!-- .site-header-wrapper -->

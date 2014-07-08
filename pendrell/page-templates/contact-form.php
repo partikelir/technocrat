@@ -128,11 +128,11 @@ get_header(); ?>
           <form action="<?php the_permalink(); ?>" method="post" id="contact" class="comment-form">
             <?php
             if ( isset( $email_sent ) ) {
-              echo '<p class="success">' . __( 'Your message has been sent! Thank you for making contact.', 'pendrell' ) . '</p>';
+              echo '<p class="success" role="status">' . __( 'Your message has been sent! Thank you for making contact.', 'pendrell' ) . '</p>';
             } elseif ( isset( $spam_error ) ) {
-              echo '<p class="alert">' . __( 'The spam protection field needs to be empty.', 'pendrell' ) . '</p>';
+              echo '<p class="alert" role="alert">' . __( 'The spam protection field needs to be empty.', 'pendrell' ) . '</p>';
             } elseif ( isset( $has_error ) ) {
-              echo '<p class="alert">' . __( 'Something is wrong. Please fix it!', 'pendrell' ) . '</p>';
+              echo '<p class="alert" role="alert">' . __( 'Something is wrong. Please fix it!', 'pendrell' ) . '</p>';
             } else {
               echo '<p>' . __( 'Required fields are marked <span class="required">*</span>', 'pendrell' ) . '</p>';
             } ?>

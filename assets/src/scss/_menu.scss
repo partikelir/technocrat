@@ -1,9 +1,16 @@
 // ==== MENU ==== //
 
-// Inline menu; used in header and footer navigation defined in _layout.scss
+// Inline menu; used in header and footer navigation; should be applied to ol or ul elements
 .inline-menu {
-  margin-bottom: 0;
   @include link-stylist($c-menu-link, $c-menu-link, $c-menu-link-h, $c-menu-link, $c-menu-link, false);
+  @include list-floated($spacer);
+  @include list-nested;
+  margin-bottom: 0;
+  li {
+    @include font-header;
+    font-weight: 300;
+    white-space: nowrap;
+  }
   .current-menu-item > a,
   .current-menu-ancestor > a,
   .current_page_item > a,
@@ -11,18 +18,61 @@
     @include ghost;
     font-weight: 200;
   }
-  ul {
-    @include list-floated($spacer);
-    @include list-nested;
-    @media screen and (max-width: $break-medium) {
-      & > li:hover > ul {
-        display: none; // Don't bother displaying submenus on small screens
+  @media screen and (max-width: $break-medium) {
+    > li:hover > ul {
+      @include hide-visually; // Don't bother displaying submenus on small screens
+    }
+  }
+}
+
+
+
+// Header menu
+.menu-header {
+  border-bottom: $d-divider;
+  display: none;
+  @media screen and (min-width: $break-medium) {
+    display: block;
+    width: 100%;
+  }
+  &.toggled {
+    display: block;
+  }
+  > li {
+    @include rem('padding-bottom', $spacer/2, 1);
+  }
+  li {
+    @include font-size($s-menu-sub);
+    @media screen and (min-width: $break-medium) {
+      @include font-size($s-menu-header);
+      // Submenu-specific styling
+      ul {
+        @include box-shadow(2px 2px 4px rgba(64, 64, 64, .05));
+        li a {
+          @include font-size($s-menu-sub, 1);
+          @include rem('padding', 0 $spacer/4);
+          background: $c-menu-bg;
+          border-bottom: $d-divider;
+          &:hover {
+            background: darken($c-menu-bg, 3);
+          }
+        }
       }
     }
   }
+}
+
+
+
+// Footer menu
+.menu-footer {
+  @include rem('padding-bottom', $spacer/2);
+  @include rem('padding-top', $spacer/2, 1);
+  border-top: $d-divider;
   li {
-    @include font-header;
-    font-weight: 300;
-    white-space: nowrap;
+    @include font-size($s-menu-footer);
+  }
+  > li:hover > ul {
+    @include hide-visually; // No submenus in the footer
   }
 }

@@ -1,4 +1,4 @@
-// Navigation.js from _s: handles toggling the navigation menu for small screens
+// Navigation.js adapted from _s: handles toggling the responsive navigation menu
 ( function() {
 	var container, button, menu;
 
@@ -7,28 +7,29 @@
 		return;
 	}
 
-	button = container.getElementsByTagName( 'button' )[0];
+	button = document.getElementById( 'responsive-menu-toggle' );
 	if ( 'undefined' === typeof button ) {
 		return;
 	}
 
 	menu = container.getElementsByTagName( 'ul' )[0];
 
-	// Hide menu toggle button if menu is empty and return early.
+	// Hide menu toggle button if menu is empty and return early
 	if ( 'undefined' === typeof menu ) {
 		button.style.display = 'none';
 		return;
 	}
 
-	if ( -1 === menu.className.indexOf( 'nav-menu' ) ) {
-		menu.className += ' nav-menu';
-	}
-
 	button.onclick = function() {
-		if ( -1 !== container.className.indexOf( 'toggled' ) ) {
-			container.className = container.className.replace( ' toggled', '' );
+		if ( -1 !== button.className.indexOf( 'toggled' ) ) {
+			button.className = button.className.replace( ' toggled', '' );
 		} else {
-			container.className += ' toggled';
+			button.className += ' toggled';
+		}
+		if ( -1 !== menu.className.indexOf( 'toggled' ) ) {
+			menu.className = menu.className.replace( ' toggled', '' );
+		} else {
+			menu.className += ' toggled';
 		}
 	};
 } )();
