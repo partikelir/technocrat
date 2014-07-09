@@ -74,12 +74,12 @@
 
 
 // Gradients; via Twenty Twelve
-@mixin gradient-horizontal($begin: $d-gradient-begin, $end: $d-gradient-end) {
+@mixin gradient-horizontal($begin: $d-gradient-1, $end: $d-gradient-2) {
   background-color: $end;
   background-image: linear-gradient(left, $begin, $end);
   background-repeat: repeat-x;
 }
-@mixin gradient-vertical($begin: $d-gradient-begin, $end: $d-gradient-end) {
+@mixin gradient-vertical($begin: $d-gradient-1, $end: $d-gradient-2) {
   background-color: $end;
   background-image: linear-gradient(top, $begin, $end);
   background-repeat: repeat-x;

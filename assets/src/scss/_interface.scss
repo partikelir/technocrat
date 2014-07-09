@@ -13,9 +13,9 @@ input[type="reset"],
   @include box-shadow(0 1px 2px rgba(64, 64, 64, 0.1));
   @include font-button;
   @include font-size($s-text-smaller, 4);
-  @include gradient-vertical($d-gradient-begin, $d-gradient-end);
+  @include gradient-vertical($d-gradient-1, $d-gradient-2);
   @include rem('padding', 0 $spacer/4);
-  border: 1px solid darken($c-body-bg, 17);
+  border: $d-interface;
   color: lighten($c-body, 17);
   cursor: pointer;
   display: inline-block;
@@ -23,12 +23,12 @@ input[type="reset"],
   text-decoration: none;
   vertical-align: middle;
   &:hover {
-    @include gradient-vertical(lighten($d-gradient-begin, 3), lighten($d-gradient-end, 1));
+    @include gradient-vertical(lighten($d-gradient-1, 3), lighten($d-gradient-2, 1));
     color: lighten($c-body, 13);
   }
   &:active {
     @include box-shadow-layered(inset 0 2px 3px 0 #c6c6c6, 0 1px 2px rgba(64, 64, 64, 0.1));
-    @include gradient-vertical(darken($d-gradient-begin, 7), lighten($d-gradient-end, 1));
+    @include gradient-vertical(darken($d-gradient-1, 7), lighten($d-gradient-2, 1));
     border-color: 1px solid darken($c-body-bg, 8);
     color: lighten($c-body, 37);
   }

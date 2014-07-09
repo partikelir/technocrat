@@ -3,20 +3,23 @@
 // == FONT SIZING == //
 
 // Default font size and baseline (unitless integers); $base should be 16, set $s-text to alter body text font size
-$base:            16;
-$baseline:        30;
+$base:              16;
+$baseline:          30;
 
 // Headers
-$s-header-title:  48;
-$s-header-big:    36;
-$s-header:        28;
-$s-header-sub:    22;
-$s-header-small:  14;
+$s-header-title:    48;
+$s-header-big:      36;
+$s-header:          28;
+$s-header-sub:      22;
+$s-header-small:    14;
 
 // Menus
-$s-menu-header:   20;
-$s-menu-footer:   16;
-$s-menu-sub:      16;
+$s-menu-header:     18;
+$s-menu-header-sm:  14;
+$s-menu-footer:     14;
+
+// Submenus
+$s-sub:             14;
 
 // Body text
 $s-text-big:      24;
@@ -29,19 +32,19 @@ $s-text-smallest: 12;
 
 // == FONT STACKS == //
 
-$f-body: $helv-neue-l;
-$f-head: $raleway;
-$f-mono: $courier;
+$f-body:          $helv-neue-l;
+$f-head:          $raleway;
+$f-mono:          $courier;
 
 
 
 // == LAYOUT == //
 
-$content-width:     960px;
-$main-width:        624px;
-$spacer:            $baseline+0px; // Typically used in conjunction with the rem mixin
-$sidebar-width:     ($content-width - $main-width) - ($spacer * 2);
-$full-width:        true; // Toggle for full-width styles; set to true if the theme uses functionality contained in full-width.php
+$content-width:   960px;
+$main-width:      624px;
+$spacer:          $baseline+0px; // Typically used in conjunction with the rem mixin
+$sidebar-width:   ($content-width - $main-width) - ($spacer * 2);
+$full-width:      true; // Toggle for full-width styles; set to true if the theme uses functionality contained in full-width.php
 
 
 
@@ -81,7 +84,11 @@ $c-link-f:        saturate(lighten($c-link, 17), 7);
 $c-menu-link:     lighten($c-body, 33);
 $c-menu-link-h:   $c-highlight;
 $c-menu-current:  lighten($c-menu-link, 23);
-$c-menu-bg:       darken($c-body-bg, 3);
+
+// Submenus
+$c-sub:           lighten($c-body, 3);
+$c-sub-h:         $c-white;
+$c-sub-bg:        darken($c-body-bg, 11);
 
 // Meta
 $c-meta:          lighten($c-body, 33);
@@ -122,6 +129,7 @@ $c-success:       $c-green;
 $c-archive:       lighten($c-body, 17);
 $c-caption:       lighten($c-body, 37);
 $c-divider:       rgba($c-body, .09);
+$c-interface:     darken($c-body-bg, 17);
 $c-site-desc:     $c-body;
 $c-site-title:    $c-head;
 $c-small-header:  $c-offset;
@@ -137,23 +145,26 @@ $c-widget:        lighten($c-body, 23);
 // == DESIGN PATTERNS == //
 
 // Dividing line
-$d-divider: 1px solid $c-divider;
+$d-divider:       1px solid $c-divider;
 
 // Gradients
-$d-gradient-begin: darken($c-body-bg, 4);
-$d-gradient-end: darken($c-body-bg, 10);
+$d-gradient-1:    darken($c-body-bg, 4);
+$d-gradient-2:    darken($c-body-bg, 10);
 
 // Image spacer; defines the space between gallery items and grouped images
-$d-image-spacer: $spacer;
+$d-image-spacer:  $spacer;
 
-// Border radius
-$d-radius: 3px;
+// Interface border for buttons and submenus
+$d-interface:     1px solid $c-interface;
+
+// Border radius default
+$d-radius:        3px;
 
 // Box shadow
-$d-shadow: 0 1px 4px rgba($c-black, .2);
+$d-shadow:        0 1px 4px rgba($c-black, .2);
 
 // Glow
-$glow: 0px 0px 5px $c-highlight;
+$d-glow:          0px 0px 5px $c-highlight;
 
 
 

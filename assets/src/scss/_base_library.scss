@@ -48,7 +48,7 @@
 
 
 
-// Dashicons mixin for use with WordPress dashicon font
+// Dashicons mixin for use with WordPress dashicon font; defaults to :before
 @mixin dashicon($content, $dir: before) {
   &:#{$dir} {
     font-family: "dashicons";
@@ -114,7 +114,7 @@
 
 
 // Nested list in dropdown style; adapted from http://garethcooper.com/2013/05/sass-menu/
-@mixin list-nested() {
+@mixin list-nested {
   & > li {
     position: relative;
   }
@@ -184,16 +184,71 @@
 
 
 
+// Pseudo triangle; specify $size in pixels; adapted from https://github.com/catalinred/Animenu/
+@mixin triangle($size: 6px, $direction: top, $offset: $size, $offset-direction: left, $parent-width: 180px) {
+  &:after {
+    border: $size solid transparent;
+    border-bottom-color: inherit;
+    content: '';
+    position: absolute;
+      @if $offset == "center" {
+        #{$offset-direction}: 50% - percentage( $size / $parent-width );
+      } @else {
+        #{$offset-direction}: $offset;
+      }
+      #{$direction}: -$size * 2;
+  }
+}
+
+
+
 // == FUNCTIONS == //
 
-// Returns the opposite direction; right for left and left for right
-@function opposite($dir) {
-  @if $dir == right {
-    @return left;
-  } @else if $dir == left {
-    @return right;
+// Direction rotation: use opposite, clockwise, or counterclockwise (or shorthand functions below); adapted from http://www.sitepoint.com/sass-mixins-kickstart-project/
+@function rotate($direction, $dimension: "opposite") {
+  @if not index(top right bottom left, $direction) {
+    @warn "Direction must be one of `top`, `right`, `bottom` or `left`; currently `#{$direction}`.";
+  } @else {
+    @if not index(opposite clockwise counterclockwise, $dimension) {
+      @warn "Dimension must be one of `opposite`, `clockwise`, `counterclockwise`; currently `#{$dimension}`.";
+    }
+    $map: ();
+    @if $dimension == "opposite" {
+      $map: (
+        'top':    'bottom',
+        'right':  'left',
+        'bottom': 'top',
+        'left':   'right'
+      );
+    }
+    @if $dimension == "clockwise" {
+      $map: (
+        'top':    'right',
+        'right':  'bottom',
+        'bottom': 'left',
+        'left':   'top'
+      );
+    }
+    @if $dimension == "counterclockwise" {
+      $map: (
+        'top':    'left',
+        'right':  'top',
+        'bottom': 'right',
+        'left':   'bottom'
+      );
+    }
+    $direction: map-get($map, $direction);
   }
-  @return $dir;
+  @return $direction;
+}
+@function opposite($direction) {
+  @return rotate($direction, "opposite");
+}
+@function clockwise($direction) {
+  @return rotate($direction, "clockwise");
+}
+@function counterclockwise($direction) {
+  @return rotate($direction, "counterclockwise");
 }
 
 
