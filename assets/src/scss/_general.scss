@@ -40,13 +40,13 @@ var {
 a {
   color: $c-link;
   text-decoration: none;
-  transition: color .8s ease-out, text-decoration .8s ease-out;
+  transition: color .8s ease-out, text-decoration .6s ease-out;
   &:visited {
     color: $c-link-v;
   }
   &:hover {
     color: $c-link-h;
-    transition: color .4s ease, text-decoration .4s ease;
+    transition: color .4s ease, text-decoration .2s ease;
   }
   &:active {
     color: $c-link-a;

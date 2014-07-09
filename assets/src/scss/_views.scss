@@ -2,10 +2,45 @@
 
 // View options
 .view-options {
-  //@extend %button-container;
   display: none;
   @media screen and (min-width: $break-medium) {
     display: inline-block;
+    button {
+      position: relative;
+      ul {
+        @include menu-dropdown;
+        margin-right: -1px; // Border offset
+        opacity: 0;
+        position: absolute;
+          right: 0;
+          top: 100%;
+        transition: opacity .2s ease-out; // @BUG: not working
+        visibility: hidden;
+        z-index: 999;
+        li {
+          &:first-child a {
+            @include triangle($size: 6px, $direction: top, $offset: 6px, $offset-direction: right);
+            border-color: $c-interface;
+            &:hover {
+              border-color: darken($c-sub-bg, 13); // Must match value below
+            }
+          }
+          display: block;
+          margin: 0;
+          text-align: left;
+          white-space: nowrap;
+          width: 100%;
+          a {
+            display: block;
+          }
+        }
+      }
+      &:hover > ul {
+        opacity: 1;
+        transition: opacity .09s ease-in;
+        visibility: visible;
+      }
+    }
   }
 }
 
@@ -21,7 +56,7 @@
     }
   }
   figure.wp-caption {
-    @include image-overlay(".wp-caption-text");
+    @include image-overlay(".wp-caption-text", "title");
   }
 }
 

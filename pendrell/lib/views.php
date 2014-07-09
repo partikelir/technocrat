@@ -194,15 +194,15 @@ if ( !function_exists( 'pendrell_view_switch' ) ) : function pendrell_view_switc
 
   $output = '';
 
-  // Iterate through views to create the options list
+  // Iterate through view array to create a list of options for the current page
   foreach ( $views as $view ) {
     if ( $view['name'] != $current ) {
-      $output .= '<span class="' . $view['name'] . '-view-option button"><a href="' . $view['url'] . '" class="button" role="button"><span class="dashicons ' . $view['icon'] . '"></span> ' . $view['text'] . '</a></span> ';
+      $output .= '<li class="' . $view['name'] . '-view-option"><a href="' . $view['url'] . '"><span class="dashicons ' . $view['icon'] . '"></span> ' . $view['text'] . '</a></li>';
     }
   }
 
   // Scaffolding
-  $output = '<div class="view-options">' . $output . '</div>' . "\n";
+  $output = '<div class="view-options"><button>View<ul>' . $output . '</ul></button></div>' . "\n";
 
   echo $output;
 

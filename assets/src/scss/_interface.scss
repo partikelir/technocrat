@@ -10,7 +10,7 @@ input[type="button"],
 input[type="reset"],
 #cancel-comment-reply-link {
   @include border-radius;
-  @include box-shadow(0 1px 2px rgba(64, 64, 64, 0.1));
+  @include box-shadow(0 1px 2px rgba(64, 64, 64, .1));
   @include font-button;
   @include font-size($s-text-smaller, 4);
   @include gradient-vertical($d-gradient-1, $d-gradient-2);
@@ -27,7 +27,7 @@ input[type="reset"],
     color: lighten($c-body, 13);
   }
   &:active {
-    @include box-shadow-layered(inset 0 2px 3px 0 #c6c6c6, 0 1px 2px rgba(64, 64, 64, 0.1));
+    @include box-shadow-layered(inset 0 2px 3px 0 #c6c6c6, 0 1px 2px rgba(64, 64, 64, .1));
     @include gradient-vertical(darken($d-gradient-1, 7), lighten($d-gradient-2, 1));
     border-color: 1px solid darken($c-body-bg, 8);
     color: lighten($c-body, 37);
@@ -73,10 +73,13 @@ input[type="reset"],
   line-height: 0;
   margin: 0;
   padding: 0;
-  //transition: color .1s ease-in 0; // @TODO: make transitions much smoother
+  transition: color .8s ease-out;
   vertical-align: -0.15em;
   width: auto;
-  .button & {
-    font-size: $s-text-smaller+0px;
+  &:hover {
+    transition: color .4s ease;
+  }
+  button & {
+    font-size: $s-text-smaller+0px; // No line-height here
   }
 }

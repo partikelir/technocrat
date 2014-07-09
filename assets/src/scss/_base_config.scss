@@ -22,45 +22,46 @@ $s-menu-footer:     14;
 $s-sub:             14;
 
 // Body text
-$s-text-big:      24;
-$s-text:          18; // Default body text font size
-$s-text-small:    16;
-$s-text-smaller:  14;
-$s-text-smallest: 12;
+$s-text-big:        24;
+$s-text:            18; // Default body text font size
+$s-text-small:      16;
+$s-text-smaller:    14;
+$s-text-smallest:   12;
 
 
 
 // == FONT STACKS == //
 
-$f-body:          $helv-neue-l;
-$f-head:          $raleway;
-$f-mono:          $courier;
+$f-body:            $helv-neue-l;
+$f-head:            $raleway;
+$f-mono:            $courier;
 
 
 
 // == LAYOUT == //
 
-$content-width:   960px;
-$main-width:      624px;
-$spacer:          $baseline+0px; // Typically used in conjunction with the rem mixin
-$sidebar-width:   ($content-width - $main-width) - ($spacer * 2);
-$full-width:      true; // Toggle for full-width styles; set to true if the theme uses functionality contained in full-width.php
+$content-width:     960px;
+$main-width:        624px;
+$thumbnail-size:    150px;
+$spacer:            $baseline+0px; // Typically used in conjunction with the rem mixin
+$sidebar-width:     ($content-width - $main-width) - ($spacer * 2);
+$full-width:        true; // Toggle for full-width styles; set to true if the theme uses functionality contained in full-width.php
 
 
 
 // == BREAKPOINTS == //
 
-$break-single-column: $main-width + ($spacer * 8); // Causes sidebar to slide below content
-$break-medium: $main-width;
-$break-large: $content-width;
+$break-single-column:   $main-width + ($spacer * 8); // Causes sidebar to slide below content
+$break-medium:          $main-width;
+$break-large:           $content-width;
 
 
 
 // == COLOURS == //
 
 // Palette
-$c-white:         #fff;
-$c-black:         #000;
+$c-white:         white();
+$c-black:         black();
 $c-dark:          #505050;
 $c-green:         #a2bf68;
 $c-yellow:        #fff9c0;
@@ -86,7 +87,7 @@ $c-menu-link-h:   $c-highlight;
 $c-menu-current:  lighten($c-menu-link, 23);
 
 // Submenus
-$c-sub:           lighten($c-body, 3);
+$c-sub:           lighten($c-body, 17);
 $c-sub-h:         $c-white;
 $c-sub-bg:        darken($c-body-bg, 11);
 
@@ -161,7 +162,7 @@ $d-interface:     1px solid $c-interface;
 $d-radius:        3px;
 
 // Box shadow
-$d-shadow:        0 1px 4px rgba($c-black, .2);
+$d-shadow:        0 1px 4px black(.2);
 
 // Glow
 $d-glow:          0px 0px 5px $c-highlight;

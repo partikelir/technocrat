@@ -6,9 +6,6 @@ if ( !function_exists( 'pendrell_content_nav' ) ) : function pendrell_content_na
   // No funny business
   $html_id = esc_attr( $html_id );
 
-  // Action hook fo
-  do_action( 'pendrell_content_nav_above', $html_id );
-
   // Post navigation; adapted from https://github.com/mattbanks/WordPress-Starter-Theme/
   if ( is_singular() ) {
 

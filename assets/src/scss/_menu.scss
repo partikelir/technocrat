@@ -35,7 +35,7 @@
   }
   @media screen and (min-width: $break-medium) {
     @include font-size($s-menu-header);
-    border-bottom: $d-divider;
+    border-bottom: $d-divider; // Border for the whole menu
     display: block;
     width: 100%;
 
@@ -57,45 +57,7 @@
 
       // All submenus
       ul {
-        @include border-radius;
-        @include box-shadow-layered(2px 2px 4px rgba(64, 64, 64, .09), 0 -2px 2px rgba(64, 64, 64, .09) inset);
-        background-color: $c-sub-bg;
-        background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, .3)); // A light touch
-        background-repeat: repeat-x;
-        border: $d-interface;
-        li {
-          &:first-child > a {
-            @include border-radius(3px 3px 0 0);
-          }
-          &:last-child > a {
-            @include border-radius(0 0 3px 3px);
-          }
-          &:only-of-type > a {
-            @include border-radius;
-          }
-          a {
-            @include font-size($s-sub);
-            @include rem('padding', 0 $spacer/4);
-            color: $c-sub;
-            &:visited {
-              color: $c-sub;
-            }
-            &:hover {
-              @include box-shadow(0 -2px 4px rgba(64, 64, 64, .06) inset);
-              background: darken($c-sub-bg, 13);
-              color: $c-sub-h;
-            }
-            &:active {
-              color: $c-sub-h;
-            }
-            &:focus {
-              color: $c-sub-h;
-            }
-          }
-          ul {
-            margin-top: -1px; // Offset border
-          }
-        }
+        @include menu-dropdown;
       }
     }
   }
