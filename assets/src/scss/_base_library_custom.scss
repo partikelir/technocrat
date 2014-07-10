@@ -98,14 +98,25 @@
 
 
 
-// Image overlay; used in gallery and thumbnail overlays
-@mixin image-overlay($overlay: ".wp-caption", $style: "title") {
+// Image fallback; a stylized placeholder for images that don't load or are slow to load
+@mixin image-fallback() {
   @include border-radius;
   @include box-shadow(0 0 $spacer*2 black(.1) inset);
   background-color: $c-text-box-bg;
+  transition: background-color .8s ease-out;
+  &:hover {
+    background-color: lighten($c-text-box-bg, 3);
+    transition: background-color .5s ease-in-out;
+  }
+}
+
+
+
+// Image overlay; used in gallery and thumbnail overlays
+@mixin image-overlay($overlay: ".wp-caption", $style: "title") {
+  @include border-radius;
   overflow: hidden;
   position: relative;
-  transition: background-color .8s ease-out;
   img {
     backface-visibility: hidden; // Prevents flicker
     transition: all .5s ease-out; // Can't transition: filter for some reason
@@ -153,9 +164,7 @@
     }
   }
   &:hover {
-    background-color: lighten($c-text-box-bg, 3);
     cursor: pointer;
-    transition: background-color .5s ease-in-out;
     img {
       filter: brightness(70%) grayscale(100%);
       transition: all .3s ease-in;
