@@ -51,7 +51,6 @@ if ( !function_exists( 'pendrell_content_nav' ) ) : function pendrell_content_na
       </nav><!-- .page-navigation --><?php
     }
   }
-  do_action( 'pendrell_content_nav_below', $html_id );
 } endif;
 
 
