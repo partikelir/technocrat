@@ -62,6 +62,12 @@ figure.wp-caption,
     margin-right: 0;
   }
 }
+figure.wp-caption {
+  @include image-fallback;
+  img {
+    display: block;
+  }
+}
 
 
 
@@ -75,7 +81,7 @@ figure.wp-caption,
 
 // Individual gallery items with percentage-based margins; see also _full_width.scss
 .gallery-item {
-  @include image-overlay(".gallery-caption");
+  @include image-overlay(".gallery-caption", "caption");
   float: left;
   margin: 0 percentage($d-image-spacer / $main-width) percentage($d-image-spacer / $main-width) 0;
   @include full-width {
@@ -170,7 +176,7 @@ figure.wp-caption,
   }
 }
 
-// Image placeholder hack; @TODO: test cross-browser compatibility
+// Image placeholder hack; fills out the space when a requested image isn't found
 .no-image {
   padding-bottom: 100%;
 }
