@@ -28,10 +28,8 @@
 				<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
 			</div><!-- .site-branding -->
 			<div id="site-interface">
-				<?php do_action( 'pendrell_site_navigation_above' ); ?>
 				<button id="responsive-menu-toggle" role="button"><?php _e( 'Menu', 'pendrell' ); ?></button>
 				<span class="button"><a href="#content" class="skip-link screen-reader-text" role="button"><?php _e( 'Skip to content', 'pendrell' ); ?></a></span>
-				<?php do_action( 'pendrell_site_navigation_below' ); ?>
 			</div><!-- #site-interface -->
 			<nav id="site-navigation" role="navigation">
 				<?php wp_nav_menu( array( 'theme_location' => 'header', 'menu_class' => 'menu-header inline-menu' ) ); ?>
