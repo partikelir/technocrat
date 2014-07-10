@@ -43,6 +43,7 @@ input[type="reset"],
 #site-interface {
   display: block;
   position: absolute;
+    // Spacing needs to match the spacing in the layout-box mixin in the custom library
     @include rem('right', $spacer);
     @include rem('top', $spacer);
     @media screen and (min-width: $break-medium) {
@@ -59,27 +60,5 @@ input[type="reset"],
   }
   &.toggled {
     @extend button:active;
-  }
-}
-
-
-
-// Dashicons
-.dashicons,
-.dashicons-before:before {
-  display: inline-block;
-  font-family: dashicons;
-  height: auto;
-  line-height: 0;
-  margin: 0;
-  padding: 0;
-  transition: color .8s ease-out;
-  vertical-align: -0.15em;
-  width: auto;
-  &:hover {
-    transition: color .4s ease;
-  }
-  button & {
-    font-size: $s-text-smaller+0px; // No line-height here
   }
 }

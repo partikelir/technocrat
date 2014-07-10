@@ -147,7 +147,12 @@ add_filter( 'pendrell_full_width', 'pendrell_view_full_width' );
 if ( !function_exists( 'pendrell_view_switch' ) ) : function pendrell_view_switch() {
 
   // Do we want to display this function here?
-  if ( is_search() || is_singular() )
+  if (
+    is_front_page() ||
+    is_home() ||
+    is_search() ||
+    is_singular()
+  )
     return;
 
   // Check the current view
@@ -169,25 +174,25 @@ if ( !function_exists( 'pendrell_view_switch' ) ) : function pendrell_view_switc
     array(
       'name' => 'standard',
       'text' => __( 'Standard', 'pendrell' ),
-      'icon' => 'dashicons-format-gallery',
+      'icon' => 'standard',
       'url'  =>  $current_url
     ),
     array(
       'name' => 'gallery',
       'text' => __( 'Gallery', 'pendrell' ),
-      'icon' => 'dashicons-format-gallery',
+      'icon' => 'gallery-view',
       'url'  => add_query_arg( 'view', 'gallery' )
     ),
     array(
       'name' => 'list',
       'text' => __( 'List', 'pendrell' ),
-      'icon' => 'dashicons-list-view',
+      'icon' => 'list-view',
       'url'  => add_query_arg( 'view', 'list' )
     ),
     array(
       'name' => 'excerpt',
       'text' => __( 'Excerpt', 'pendrell' ),
-      'icon' => 'dashicons-exerpt-view', // Sic
+      'icon' => 'excerpt-view',
       'url'  => add_query_arg( 'view', 'excerpt' )
     )
   );
@@ -197,7 +202,7 @@ if ( !function_exists( 'pendrell_view_switch' ) ) : function pendrell_view_switc
   // Iterate through view array to create a list of options for the current page
   foreach ( $views as $view ) {
     if ( $view['name'] != $current ) {
-      $output .= '<li class="' . $view['name'] . '-view-option"><a href="' . $view['url'] . '"><span class="dashicons ' . $view['icon'] . '"></span> ' . $view['text'] . '</a></li>';
+      $output .= '<li class="' . $view['name'] . '-view-option"><a href="' . $view['url'] . '"><span class="' . $view['icon'] . '"></span> ' . $view['text'] . '</a></li>';
     }
   }
 
