@@ -47,6 +47,26 @@
   @include clearfix-above;
   @include clearfix-below;
 }
+@mixin clearfix-reset($target: both) {
+  @if $target == both {
+    &:before {
+      display: none;
+    }
+    &:after {
+      display: none;
+    }
+  }
+  @if $target == above {
+    &:before {
+      display: none;
+    }
+  }
+  @if $target == below {
+    &:after {
+      display: none;
+    }
+  }
+}
 
 
 
