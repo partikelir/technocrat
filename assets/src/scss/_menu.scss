@@ -74,7 +74,7 @@
   li {
     @include font-size($s-menu-footer);
   }
-  > li:hover > ul {
+  ul {
     @include hide-visually; // No submenus in the footer
   }
 }
