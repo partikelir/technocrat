@@ -107,14 +107,24 @@ add_filter( 'pendrell_content_template', 'pendrell_view_template' );
 
 
 
-// View content class filter; adds classes to the main content element rather than body class (for compatibility with the full-width module)
-if ( !function_exists( 'pendrell_view_content_class' ) ) : function pendrell_view_content_class( $classes ) {
+//
+if ( !function_exists( 'pendrell_view_body_class' ) ) : function pendrell_view_body_class( $classes ) {
   if ( pendrell_is_view( 'excerpt' ) )
     $classes[] = 'excerpt-view';
   if ( pendrell_is_view( 'gallery' ) )
-    $classes[] = 'gallery-view image-group image-group-columns-3';
+    $classes[] = 'gallery-view';
   if ( pendrell_is_view( 'list' ) )
     $classes[] = 'list-view';
+  return $classes;
+} endif;
+add_filter( 'body_class', 'pendrell_view_body_class' );
+
+
+
+// View content class filter; adds classes to the main content element rather than body class (for compatibility with the full-width module)
+if ( !function_exists( 'pendrell_view_content_class' ) ) : function pendrell_view_content_class( $classes ) {
+  if ( pendrell_is_view( 'gallery' ) )
+    $classes[] = 'image-group image-group-columns-3';
   return $classes;
 } endif;
 add_filter( 'pendrell_content_class', 'pendrell_view_content_class' );
@@ -146,12 +156,12 @@ add_filter( 'pendrell_full_width', 'pendrell_view_full_width' );
 // View switch prototype
 if ( !function_exists( 'pendrell_view_switch' ) ) : function pendrell_view_switch() {
 
+  global $pendrell_default_view_cats, $pendrell_default_view_tags;
+
   // Do we want to display this function here?
   if (
-    is_front_page() ||
-    is_home() ||
-    is_search() ||
-    is_singular()
+    !is_category( array_keys( $pendrell_default_view_cats ) ) &&
+    !is_tag( array_keys( $pendrell_default_view_tags ) )
   )
     return;
 
@@ -189,7 +199,11 @@ if ( !function_exists( 'pendrell_view_switch' ) ) : function pendrell_view_switc
       'icon' => 'list-view',
       'url'  => add_query_arg( 'view', 'list' )
     ),
-    array(
+  );
+
+  // Not used, kept for reference
+  $views_more = array(
+     array(
       'name' => 'excerpt',
       'text' => __( 'Excerpt', 'pendrell' ),
       'icon' => 'excerpt-view',
@@ -207,9 +221,9 @@ if ( !function_exists( 'pendrell_view_switch' ) ) : function pendrell_view_switc
   }
 
   // Scaffolding
-  $output = '<div class="view-options"><button>View<ul>' . $output . '</ul></button></div>' . "\n";
+  $output = '<div class="view-options"><button class="button-dropdown">View<ul>' . $output . '</ul></button></div>' . "\n";
 
   echo $output;
 
 } endif;
-add_action( 'pendrell_site_navigation_above', 'pendrell_view_switch' );
+add_action( 'pendrell_archive_header_before', 'pendrell_view_switch' );

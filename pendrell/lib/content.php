@@ -28,7 +28,7 @@ if ( !function_exists( 'pendrell_content_template' ) ) : function pendrell_conte
 
 
 // Entry meta wrapper
-if ( !function_exists( 'pendrell_entry_meta' ) ) : function pendrell_entry_meta() {
+if ( !function_exists( 'pendrell_entry_meta' ) ) : function pendrell_entry_meta( $mode = 'full' ) {
   global $post;
 
   do_action( 'pendrell_entry_meta_before' );
@@ -40,7 +40,7 @@ if ( !function_exists( 'pendrell_entry_meta' ) ) : function pendrell_entry_meta(
     } ?>
   </div>
   <div class="entry-meta-main">
-    <?php pendrell_entry_meta_contents(); ?>
+    <?php pendrell_entry_meta_contents( $mode ); ?>
   </div><?php
 
   do_action( 'pendrell_entry_meta_after' );
@@ -49,13 +49,13 @@ if ( !function_exists( 'pendrell_entry_meta' ) ) : function pendrell_entry_meta(
 
 
 // Entry meta; bare bones version, mostly untested... refer to Ubik for the real deal
-if ( !function_exists( 'pendrell_entry_meta_contents' ) ) : function pendrell_entry_meta_contents() {
+if ( !function_exists( 'pendrell_entry_meta_contents' ) ) : function pendrell_entry_meta_contents( $mode = 'full' ) {
 
   // Is Ubik active?
   if ( function_exists( 'ubik_entry_meta' ) ) {
 
     // Ubik entry meta magic
-    ubik_entry_meta();
+    ubik_entry_meta( $mode );
 
   // If Ubik isn't active let's just fallback to Twenty Twelve's entry meta implementation with small updates to conform to hAtom microformat standard
   } else {
