@@ -46,7 +46,7 @@
       // Styling specific to the first submenu
       > ul {
         margin-top: -$spacer/4; // Breaks vertical rhythm but gives a more natural look
-        > li:first-child a {
+        > li:first-child > a {
           @include triangle; // Pseudo triangle on first submenu only
           border-color: $c-interface;
           &:hover {
