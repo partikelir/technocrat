@@ -193,16 +193,16 @@ if ( !function_exists( 'pendrell_view_switch' ) ) : function pendrell_view_switc
       'icon' => 'gallery-view',
       'url'  => add_query_arg( 'view', 'gallery' )
     ),
+  );
+
+  // Not used, kept for reference
+  $views_more = array(
     array(
       'name' => 'list',
       'text' => __( 'List', 'pendrell' ),
       'icon' => 'list-view',
       'url'  => add_query_arg( 'view', 'list' )
     ),
-  );
-
-  // Not used, kept for reference
-  $views_more = array(
      array(
       'name' => 'excerpt',
       'text' => __( 'Excerpt', 'pendrell' ),
@@ -213,15 +213,37 @@ if ( !function_exists( 'pendrell_view_switch' ) ) : function pendrell_view_switc
 
   $output = '';
 
-  // Iterate through view array to create a list of options for the current page
+  // Determine how many options we need to display
+  $count = count( $views );
   foreach ( $views as $view ) {
-    if ( $view['name'] != $current ) {
-      $output .= '<li class="' . $view['name'] . '-view-option"><a href="' . $view['url'] . '"><span class="' . $view['icon'] . '"></span> ' . $view['text'] . '</a></li>';
-    }
+    if ( $view['name'] == $current )
+      $count--;
   }
 
-  // Scaffolding
-  $output = '<div class="view-options"><button class="button-dropdown">View<ul>' . $output . '</ul></button></div>' . "\n";
+  // Only one option? Make it a simple link button
+  if ( $count === 1 ) {
+
+    foreach ( $views as $view ) {
+      if ( $view['name'] != $current ) {
+        $output .= '<div class="button ' . $view['name'] . '-view-option"><a href="' . $view['url'] . '"><span class="' . $view['icon'] . '"></span> ' . $view['text'] . '</a></div>' . "\n";
+      }
+    }
+
+    // Scaffolding for the link button
+    $output = '<div class="view-options">' . $output . '</div>' . "\n";
+
+  // More than one option? Iterate through view array to create a list of options for the current page
+  } elseif ( $count > 1 ) {
+
+    foreach ( $views as $view ) {
+      if ( $view['name'] != $current ) {
+        $output .= '<li class="' . $view['name'] . '-view-option"><a href="' . $view['url'] . '"><span class="' . $view['icon'] . '"></span> ' . $view['text'] . '</a></li>' . "\n";
+      }
+    }
+
+    // Scaffolding for the dropdown button
+    $output = '<div class="view-options"><button class="button-dropdown">View<ul>' . $output . '</ul></button></div>' . "\n";
+  }
 
   echo $output;
 

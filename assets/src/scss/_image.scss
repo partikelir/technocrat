@@ -63,7 +63,6 @@ figure.wp-caption,
   }
 }
 figure.wp-caption {
-  @include image-fallback;
   img {
     display: block;
   }
@@ -178,5 +177,6 @@ figure.wp-caption {
 
 // Image placeholder hack; fills out the space when a requested image isn't found
 .no-image {
+  @include image-fallback;
   padding-bottom: 100%;
 }
