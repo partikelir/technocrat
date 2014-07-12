@@ -9,12 +9,13 @@
     font-weight: 300;
     white-space: nowrap;
   }
-  .current-menu-item > a,
-  .current-menu-ancestor > a,
-  .current_page_item > a,
-  .current_page_ancestor > a {
-    @include ghost;
-    font-weight: 200;
+  .current-menu-item,
+  .current-menu-ancestor,
+  .current_page_item,
+  .current_page_ancestor {
+    > a {
+      // Current item styles go here
+    }
   }
   @media screen and (max-width: $break-medium) {
     > li:hover > ul {
@@ -30,6 +31,17 @@
   @include font-size($s-menu-header-sm);
   @include list-nested;
   display: none;
+  > .current-menu-item,
+  > .current-menu-ancestor,
+  > .current_page_item,
+  > .current_page_ancestor {
+    > a {
+      color: lighten($c-link, 23);
+      &:hover {
+        color: lighten($c-link, 33);
+      }
+    }
+  }
   &.toggled {
     display: block;
   }
@@ -76,5 +88,21 @@
   }
   ul {
     @include hide-visually; // No submenus in the footer
+  }
+  .current-menu-item,
+  .current-menu-ancestor,
+  .current_page_item,
+  .current_page_ancestor {
+    > a {
+      color: lighten($c-menu-link, 17);
+      &:visited {
+        color: lighten($c-menu-link, 17);
+      }
+      &:hover,
+      &:active,
+      &:focus {
+        color: lighten($c-menu-link-h, 17);
+      }
+    }
   }
 }

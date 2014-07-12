@@ -15,7 +15,7 @@ $s-header-small:    14;
 
 // Menus
 $s-menu-header:     18;
-$s-menu-header-sm:  14;
+$s-menu-header-sm:  16; // Lower than 16 doesn't display well on mobile devices
 $s-menu-footer:     14;
 
 // Submenus
@@ -113,7 +113,7 @@ $c-blockquote:    $c-offset;
 $c-blockquote-bg: darken($c-body-bg, 3);
 $c-code:          $c-offset;
 $c-code-bg:       darken($c-body-bg, 7);
-$c-del:           lighten($c-body, 27);
+$c-del:           lighten($c-body, 33);
 $c-hr:            rgba($c-body, .09);
 $c-ins-bg:        $c-yellow;
 $c-mark:          $c-highlight;

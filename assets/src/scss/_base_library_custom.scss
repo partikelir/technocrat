@@ -99,7 +99,7 @@
 
 
 // Image fallback; a stylized placeholder for images that don't load or are slow to load
-@mixin image-fallback() {
+@mixin image-fallback {
   @include border-radius;
   @include box-shadow(0 0 $spacer*2 black(.1) inset);
   background-color: $c-text-box-bg;
@@ -268,12 +268,12 @@
 
 
 
-// Menu dropdown; should be applied to a ul element
-@mixin menu-dropdown {
+// Menu dropdown; should be applied to a ul element; can disable WordPress-specific styles by passing $wordpress: false
+@mixin menu-dropdown($wordpress: true) {
   @include border-radius($d-radius+1px); // An extra pixel for the 1px border
   @include box-shadow-layered(2px 2px 4px rgba(64, 64, 64, .09), 0 -2px 2px rgba(64, 64, 64, .09) inset);
   background-color: $c-sub-bg;
-  background-image: linear-gradient( white(.5), white(0)); // A light touch
+  background-image: linear-gradient( white(.5), white(0) ); // A light touch
   background-repeat: repeat-x;
   border: $d-interface; // Must be offset; box-sizing doesn't work here because heights are line-heights set by font-size()
   li {
@@ -298,9 +298,7 @@
         background: darken($c-sub-bg, 13);
         color: $c-sub-h;
       }
-      &:active {
-        color: $c-sub-h;
-      }
+      &:active,
       &:focus {
         color: $c-sub-h;
       }
@@ -309,10 +307,25 @@
       margin-top: -1px; // Offset border (see above)
     }
   }
-
-
+  @if $wordpress == true {
+    .current-menu-item,
+    .current-menu-ancestor,
+    .current_page_item,
+    .current_page_ancestor {
+      > a {
+        color: lighten($c-sub, 33);
+        &:visited {
+          color: lighten($c-sub, 33);
+        }
+        &:hover,
+        &:active,
+        &:focus {
+          color: lighten($c-sub-h, 13);
+        }
+      }
+    }
+  }
 }
-
 
 
 

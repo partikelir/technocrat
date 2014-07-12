@@ -81,7 +81,7 @@
 
 
 // Ghosting; use on any element to obscure it from view except on hover
-@mixin ghost($value: 0.6) {
+@mixin ghost($value: .666) {
   opacity: $value;
   transition: opacity .5s ease;
   &:hover {
