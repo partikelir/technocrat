@@ -33,7 +33,7 @@ if ( !function_exists( 'pendrell_archive_title' ) ) : function pendrell_archive_
 // Conditional archive descriptions
 if ( !function_exists( 'pendrell_archive_description' ) ) : function pendrell_archive_description() {
 
-  // Only show descriptions on the first page of results
+  // Only show full descriptions on the first page of results
   if ( !is_paged() ) {
 
     // Only output archive descriptions for categories, tags, taxonomies
@@ -47,9 +47,8 @@ if ( !function_exists( 'pendrell_archive_description' ) ) : function pendrell_ar
       $description = apply_filters( 'pendrell_archive_term_description', term_description() );
 
       // Got something?
-      if ( !empty( $description ) ) {
+      if ( !empty( $description ) )
         $content .= '<div class="archive-description">' . $description . '</div>';
-      }
 
       $content = apply_filters( 'pendrell_archive_term_after', $content );
 

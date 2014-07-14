@@ -31,6 +31,9 @@
   @include font-size($s-menu-header-sm);
   @include list-nested;
   display: none;
+  a:hover {
+    color: $c-highlight;
+  }
   > .current-menu-item,
   > .current-menu-ancestor,
   > .current_page_item,

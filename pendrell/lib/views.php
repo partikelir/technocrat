@@ -57,7 +57,7 @@ if ( !function_exists( 'pendrell_view_default' ) ) : function pendrell_view_defa
 
   // Set search results
   if ( is_search() && !pendrell_is_view() ) {
-    set_query_var( 'view', 'list' );
+    set_query_var( 'view', 'excerpt' );
   }
 
   // Test the categories and tags set in functions-config.php

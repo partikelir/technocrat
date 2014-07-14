@@ -8,12 +8,11 @@
   @extend %spacer-below;
   @include link-stylist($link-color: false);
 }
-.nav-above,
+.nav-above {
+  @include rem('margin-bottom', $spacer);
+}
 .nav-below {
   @include rem('margin-bottom', $spacer*3);
-  &:first-child {
-    @include rem('margin-bottom', $spacer);
-  }
 }
 .nav-previous {
   float: left;

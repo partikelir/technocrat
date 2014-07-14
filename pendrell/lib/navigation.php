@@ -16,7 +16,7 @@ if ( !function_exists( 'pendrell_content_nav' ) ) : function pendrell_content_na
     if ( !$next && !$previous )
       return;
     ?><nav class="<?php echo $html_id; ?> post-navigation" role="navigation">
-      <h1 class="screen-reader-text"><?php _e( 'Post navigation', 'pendrell' ); ?></h1>
+      <h2 class="screen-reader-text"><?php _e( 'Post navigation', 'pendrell' ); ?></h2>
       <div class="nav-links">
         <?php
           previous_post_link( '<div class="nav-previous">%link</div>', _x( '<span class="nav-arrow">&larr;</span> %title', 'Previous post link', 'pendrell', true ) );
@@ -38,7 +38,7 @@ if ( !function_exists( 'pendrell_content_nav' ) ) : function pendrell_content_na
 
       // Hack: switch navigation links from "newer" and "older" to "next" and "previous"; solves UI problems with custom post ordering
       ?><nav class="<?php echo $html_id; ?> page-navigation" role="navigation">
-        <h1 class="screen-reader-text"><?php _e( 'Post navigation', 'pendrell' ); ?></h1>
+        <h2 class="screen-reader-text"><?php _e( 'Post navigation', 'pendrell' ); ?></h2>
         <div class="nav-links">
         <?php if ( get_previous_posts_link() ) { ?>
           <div class="nav-previous"><?php previous_posts_link( __( '<span class="nav-arrow">&larr; </span>Previous', 'pendrell' ) ); ?></div>
