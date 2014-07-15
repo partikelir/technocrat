@@ -46,7 +46,7 @@ input[type="reset"],
     // Spacing needs to match the spacing in the layout-box mixin in the custom library
     @include rem('right', $spacer);
     @include rem('top', $spacer);
-    @media screen and (min-width: $break-medium) {
+    @include respond-to(medium) {
       @include rem('right', $spacer*1.5);
     }
 }
@@ -55,7 +55,7 @@ input[type="reset"],
 
 // Menu toggle for mobile phones and small screens
 #responsive-menu-toggle {
-  @media screen and (min-width: $break-medium) {
+  @include respond-to(medium) {
     display: none;
   }
   &.toggled {

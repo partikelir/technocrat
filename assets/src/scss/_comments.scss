@@ -47,7 +47,7 @@
   }
   // Threaded comments
   .children {
-    @media screen and (min-width: $break-medium) {
+    @include respond-to(medium) {
       @include rem('margin-left', $spacer);
     }
   }
@@ -70,13 +70,11 @@
     font-family: inherit; // Possibly redundant
     width: 100%;
   }
-  input[type="text"] {
-    @media screen and (min-width: $break-medium) {
+  @include respond-to(medium) {
+    input[type="text"] {
       width: 40%;
     }
-  }
-  textarea {
-    @media screen and (min-width: $break-medium) {
+    textarea {
       width: 80%;
     }
   }
@@ -84,7 +82,7 @@
     @extend %spacer-below;
   }
 
-  // Spectific to comment form
+  // Specific to comment form
   p:first-child,
   .logged-in-as,
   .comment-form-url {

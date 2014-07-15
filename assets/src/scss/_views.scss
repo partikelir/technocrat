@@ -3,7 +3,7 @@
 .view-options {
   @extend %button-container;
   display: none;
-  @media screen and (min-width: $break-medium) {
+  @include respond-to(medium) {
     display: inline-block;
   }
 }
@@ -20,6 +20,38 @@
   }
   figure.wp-caption {
     @include image-overlay(".wp-caption-text", "title");
+  }
+  // Responsive gallery views; not especially DRY but it has the advantage of being targetted and precise; no wasted CSS here
+  @include respond-to(small) {
+    .img-group figure.wp-caption {
+      margin: 0 0 $d-image-spacer 0;
+      max-width: 100%;
+    }
+  }
+  @include respond-to(small-medium) {
+    $this-width: ( $b-medium ) - ( $d-image-spacer * 2 );
+    .img-group figure.wp-caption {
+      margin: 0 percentage($d-image-spacer / $this-width) percentage($d-image-spacer / $this-width) 0;  // Won't produce neat 30px margins on Firefox because of weird scrollbar issues; not important enough to fix with JavaScript hackery
+      max-width: percentage( 1/2 ) - percentage( ( $d-image-spacer / $this-width ) / 2 );
+      &:nth-of-type(2n) {
+        margin-right: 0;
+      }
+      &:nth-of-type(2n+1) {
+        clear: left;
+      }
+    }
+  }
+  @include respond-to(medium) {
+    .img-group figure.wp-caption {
+      margin: 0 percentage($d-image-spacer / $content-width) percentage($d-image-spacer / $content-width) 0;
+      max-width: percentage( 1/3 ) - percentage( ( ($d-image-spacer * 2 ) / $content-width) / 3 ); // Gallery view is always full-screen, is it not?
+      &:nth-of-type(3n) {
+        margin-right: 0;
+      }
+      &:nth-of-type(3n+1) {
+        clear: left;
+      }
+    }
   }
 }
 

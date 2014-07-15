@@ -113,7 +113,7 @@ figure.wp-caption {
 .gallery-columns-5,
 .gallery-columns-6 {
   .gallery-caption {
-    @media screen and (max-width: $break-large) {
+    @media screen and (max-width: $b-large) { // @TODO: verify that this is working
       @include hide-visually;
     }
   }
@@ -132,7 +132,7 @@ figure.wp-caption {
 // == ORGANIZATION == //
 
 // An extension of the gallery styling (above) adapted for piecemeal use with grouped images within posts
-.image-group {
+.img-group {
   @extend %clearfix;
   figure.wp-caption {
     float: left;
@@ -150,14 +150,14 @@ figure.wp-caption {
 }
 // Nicer layout for successive image groups
 @if $spacer != $d-image-spacer {
-  .image-group + .image-group {
+  .img-group + .img-group {
     @include rem('margin-top', -($spacer - $d-image-spacer) ); // Assumes $spacer > $d-image-spacer
   }
 }
 
 // Generate column widths and flow control; see also _full_width.scss
 @for $i from 2 to 6 {
-  .image-group-columns-#{$i} figure.wp-caption {
+  .img-group-#{$i} figure.wp-caption {
     max-width: percentage(1 / ($i) ) - percentage( ( ($d-image-spacer * ($i - 1) ) / $main-width) / $i);
     &:nth-of-type(#{$i}n) {
       margin-right: 0;
@@ -169,7 +169,7 @@ figure.wp-caption {
 }
 @if $full-width == true {
   @for $i from 2 to 6 {
-    .full-width .image-group-columns-#{$i} figure.wp-caption {
+    .full-width .img-group-#{$i} figure.wp-caption {
       max-width: percentage(1 / ($i) ) - percentage( ( ($d-image-spacer * ($i - 1) ) / $content-width) / $i);
     }
   }

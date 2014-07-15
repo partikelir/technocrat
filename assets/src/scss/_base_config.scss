@@ -51,9 +51,10 @@ $full-width:        true; // Toggle for full-width styles; set to true if the th
 
 // == BREAKPOINTS == //
 
-$break-single-column:   $main-width + ($spacer * 8); // Causes sidebar to slide below content
-$break-medium:          $main-width;
-$break-large:           $content-width;
+$b-small:           $main-width/1.5;
+$b-medium:          $main-width;
+$b-large:           $main-width + ($spacer * 8); // Causes sidebar to slide below content
+$b-full:            $content-width;
 
 
 
@@ -112,7 +113,7 @@ $c-abbr:          $c-offset;
 $c-blockquote:    $c-offset;
 $c-blockquote-bg: darken($c-body-bg, 3);
 $c-code:          $c-offset;
-$c-code-bg:       darken($c-body-bg, 7);
+$c-code-bg:       darken($c-body-bg, 13);
 $c-del:           lighten($c-body, 33);
 $c-hr:            rgba($c-body, .09);
 $c-ins-bg:        $c-yellow;

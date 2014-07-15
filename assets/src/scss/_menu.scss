@@ -17,7 +17,7 @@
       // Current item styles go here
     }
   }
-  @media screen and (max-width: $break-medium) {
+  @media screen and (max-width: $b-medium) { // @TODO
     > li:hover > ul {
       @include hide-visually; // Don't bother displaying submenus on small screens
     }
@@ -34,6 +34,7 @@
   a:hover {
     color: $c-highlight;
   }
+  // Immediate children
   > .current-menu-item,
   > .current-menu-ancestor,
   > .current_page_item,
@@ -48,7 +49,7 @@
   &.toggled {
     display: block;
   }
-  @media screen and (min-width: $break-medium) {
+  @include respond-to(medium) {
     @include font-size($s-menu-header);
     border-bottom: $d-divider; // Border for the whole menu
     display: block;

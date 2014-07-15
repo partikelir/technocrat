@@ -12,7 +12,7 @@
   img {
     @include border-radius;
   }
-  @media screen and (min-width: $break-medium) {
+  @include respond-to(medium) {
     @include rem('margin', 0 0 0 $spacer/2);
     display: block;
     float: right;

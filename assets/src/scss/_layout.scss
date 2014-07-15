@@ -26,7 +26,7 @@
   @include font-size($s-header);
   font-weight: 200;
   text-transform: uppercase;
-  @media screen and (min-width: $break-medium) {
+  @include respond-to(medium) {
     @include font-size($s-header-title);
   }
   a {
@@ -60,7 +60,7 @@
 }
 .content-area {
   // Float for the sidebar
-  @media screen and (min-width: $break-single-column) {
+  @include respond-to(large) {
     float: left;
     width: percentage( $main-width / $content-width );
   }
@@ -88,7 +88,7 @@
 .site-footer-buttons {
   @extend %button-container;
   display: block;
-  @media screen and (min-width: $break-medium) {
+  @include respond-to(medium) {
     display: none;
   }
 }

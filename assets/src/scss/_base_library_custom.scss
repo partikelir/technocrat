@@ -47,9 +47,9 @@
 
 
 // Font size mixin customed for full-width display; takes two parameters instead of one, otherwise the same
-@mixin font-size-fw($size: $s-text, $size-fw: $s-text-big, $offset: 0) {
+@mixin font-size-fw($size: $s-text, $size-fw: $s-text-big, $offset: 0, $media-query: null) {
   @include font-size($size, $offset);
-  @include full-width($media-query: $break-single-column) {
+  @include full-width($media-query) {
     @include font-size($size-fw, $offset);
   }
 }
@@ -61,7 +61,7 @@
   @if $full-width == true {
     .full-width#{$body-class} & {
       @if $media-query != null {
-        @media screen and (min-width: $media-query) {
+        @include respond-to($media-query) {
           @content;
         }
       } @else {
@@ -90,7 +90,7 @@
 // Highlights text; used with ins and mark tags
 @mixin highlight($color: $c-highlight) {
   @include border-radius;
-  background: rgba($color, .5);
+  background: $color;
   border: 1px solid darken($color, 7);
   display: inline;
   padding: 0.08em 0.25em 0.08em 0.25em; // Padding should be proportionate, not rooted to rems
@@ -129,7 +129,7 @@
       text-shadow: 0px 1px 2px black(.8);
     }
     @if $style == "title" {
-      @media screen and (min-width: $break-single-column) {
+      @include respond-to(large) {
         @include font-header;
         @include font-size($s-text-big);
         text-shadow: 2px 2px 5px black(.6);
@@ -180,7 +180,7 @@
 
 // Inset box; for use with blockquote, pre, etc.
 @mixin inset-box($color: $c-text-box, $background: $c-text-box-bg, $shadow: $c-text-box-sh) {
-  @include border-radius(12px);
+  @include border-radius(9px);
   @include box-shadow-layered(inset 4px 4px 8px $shadow, 1px 1px 4px $shadow);
   @include rem('margin', 0 0 $spacer 0);
   @include rem('padding', $spacer $spacer 0);
@@ -195,7 +195,7 @@
 @mixin layout-box {
   @include rem('padding-left', $spacer);
   @include rem('padding-right', $spacer);
-  @media screen and (min-width: $break-medium) {
+  @include respond-to(medium) {
     @include center-block($content-width);
     @include rem('padding-left', $spacer*1.5);
     @include rem('padding-right', $spacer*1.5);
@@ -205,6 +205,7 @@
 
 
 // Link stylist; pass 'false' to disable styling for any of these
+// @TODO: group same values
 @mixin link-stylist(
   $link: $c-link,
   $link-visited: $c-link-v,
@@ -307,6 +308,7 @@
       margin-top: -1px; // Offset border (see above)
     }
   }
+  // This section can be wasteful if applied to a nested selector
   @if $wordpress == true {
     .current-menu-item,
     .current-menu-ancestor,
@@ -363,6 +365,33 @@
     // Return the property and its list of converted values
     #{$property}: $rem-values;
   }
+  // @TODO: investigate the extra space in the output e.g.:
+  //margin: 0 30px 30px;
+  //margin:  0 1.875rem 1.875rem;
+}
+
+
+
+// Media query breakpoints mixin; adapted from http://thesassway.com/intermediate/responsive-web-design-in-sass-using-media-queries-in-sass-32
+@mixin respond-to($media) {
+  @if $media == small {
+    @media screen and (max-width: $b-small) { @content; }
+  }
+  @else if $media == small-medium {
+    @media screen and (min-width: $b-small) and (max-width: $b-medium - 1) { @content; }
+  }
+  @else if $media == medium {
+    @media screen and (min-width: $b-medium) { @content; }
+  }
+  @else if $media == medium-large {
+    @media screen and (min-width: $b-medium) and (max-width: $b-large - 1) { @content; }
+  }
+  @else if $media == large { // or single-column
+    @media screen and (min-width: $b-large) { @content; }
+  }
+  @else if $media == full {
+    @media screen and (min-width: $b-full) { @content; }
+  }
 }
 
 
@@ -390,9 +419,3 @@
     background-color: darken($c-body-bg, 7);
   }
 }
-
-
-
-// == DEVELOPMENT == //
-
-// @TODO: breakpoints

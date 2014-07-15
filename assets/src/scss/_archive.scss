@@ -2,7 +2,7 @@
 
 .archive-header {
   @extend %spacer-below;
-  @include full-width($media-query: $break-single-column) {
+  @include full-width($media-query: medium) {
     h1 {
       @include font-size($s-header-title);
     }
