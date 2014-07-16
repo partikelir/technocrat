@@ -59,10 +59,11 @@
   @include rem('padding-top', $spacer);
 }
 .content-area {
+  max-width: $main-width; // Keeps content contained regardless of whether sidebar appears
   // Float for the sidebar
   @include respond-to(large) {
     float: left;
-    width: percentage( $main-width / $content-width );
+    max-width: percentage( $main-width / $content-width );
   }
   // Individual articles
   article {
@@ -71,7 +72,7 @@
   // Remove sidebar and float on full-width display
   @include full-width {
     float: none;
-    width: 100%;
+    max-width: 100%;
   }
 }
 

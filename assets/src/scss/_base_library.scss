@@ -185,6 +185,38 @@
 
 
 
+// Master media query mixin; only for use with screens, of course; should work with raw integers or pixel values
+@mixin media-query($min-query: null, $max-query: null) {
+  @if $min-query == null and $max-query == null {
+    @warn "Mixin media-query() received two null values; no output."
+  }
+  @else if $max-query == null {
+    @media screen and (min-width: $min-query+0px) { @content; }
+  }
+  @else if $min-query == null {
+    @media screen and (max-width: $max-query+0px) { @content; }
+  }
+  @else {
+    @media screen and (min-width: $min-query+0px) and (max-width: $max-query+0px) { @content; }
+  }
+}
+
+// Media query shortcuts
+@mixin media-above($query) {
+  @include media-query($query, null) { @content; }
+}
+@mixin media-below($query) {
+  @include media-query(null, $query) { @content; }
+}
+@mixin media-between($min-query: null, $max-query: null) {
+  @if $min-query == null or $max-query == null {
+    @warn "Mixin media-between() received a null value."
+  }
+  @include media-query($min-query, $max-query) { @content; }
+}
+
+
+
 // To reverse reverse italics :3
 @mixin regular-italics($elements: null) {
   $element-list: em, cite, i;

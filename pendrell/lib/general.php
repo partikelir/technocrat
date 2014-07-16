@@ -79,10 +79,6 @@ if ( !function_exists( 'pendrell_sidebar' ) ) : function pendrell_sidebar( $side
   // This way the regular sidebar can be disabled and you can output whatever you want
   $sidebar = apply_filters( 'pendrell_sidebar', $sidebar );
 
-  // Don't display sidebar for certain post formats
-  if ( ( is_singular() && has_post_format( array( 'aside', 'image', 'link', 'quote', 'status' ) ) ) )
-    $sidebar = false;
-
   // Include the regular sidebar template if $sidebar has not been set to "false"
   if ( $sidebar )
     get_sidebar();

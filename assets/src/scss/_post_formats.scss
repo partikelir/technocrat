@@ -12,8 +12,7 @@ article.format-status {
 
 
 // Link
-article.format-link {}
-.entry-link { // Unique class; no need to nest it
+.entry-link { // Unique class; no need to nest it within article.format-link {}
   @extend %spacer-below;
   @include font-size($s-text-small);
   @include link-stylist($c-meta-link, $c-meta-link-v, $c-meta-link-h, $c-meta-link-a, $c-meta-link-f);
@@ -29,5 +28,19 @@ article.format-status {
   .entry-content {
     @include font-size($s-text-big);
     font-weight: 300;
+  }
+}
+
+
+
+// Sidebar reset for post formats specified in the `pendrell_post_formats_sidebar` function in `pendrell/lib/post-formats.php`
+.single-format-aside,
+.single-format-image,
+.single-format-link,
+.single-format-quote,
+.single-format-status {
+  .content-area {
+    float: none;
+    max-width: $main-width;
   }
 }

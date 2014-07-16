@@ -66,33 +66,8 @@ input[type="reset"],
 
 
 // Button dropdown menu; to be applied to a button
-.button-dropdown {
+.button-dropdown-container {
   position: relative;
-  ul {
-    @include menu-dropdown;
-    @include border-radius(4px 0 4px 4px);
-    margin-right: -1px; // Border offset
-    opacity: 0;
-    position: absolute;
-      right: 0;
-      top: 100%;
-    transition: opacity .2s ease-out; // @TODO: fix this, it's not working
-    visibility: hidden;
-    z-index: 999;
-    li {
-      &:first-child a {
-        @include border-radius(3px 0 0 0);
-      }
-      display: block;
-      margin: 0;
-      text-align: left;
-      white-space: nowrap;
-      width: 100%;
-      a {
-        display: block;
-      }
-    }
-  }
   &:hover {
     // @TODO: change button styling
     @include border-radius(3px 3px 0 0);
@@ -100,6 +75,31 @@ input[type="reset"],
       opacity: 1;
       transition: opacity .09s ease-in;
       visibility: visible;
+    }
+  }
+}
+ul.button-dropdown {
+  @include menu-dropdown;
+  @include border-radius(4px 0 4px 4px);
+  margin-right: -1px; // Border offset
+  opacity: 0;
+  position: absolute;
+    right: 0;
+    top: 100%;
+  transition: opacity .2s ease-out; // @TODO: fix this, it's not working
+  visibility: hidden;
+  z-index: 999;
+  li {
+    &:first-child a {
+      @include border-radius(3px 0 0 0);
+    }
+    display: block;
+    margin: 0;
+    text-align: left;
+    white-space: nowrap;
+    width: 100%;
+    a {
+      display: block;
     }
   }
 }

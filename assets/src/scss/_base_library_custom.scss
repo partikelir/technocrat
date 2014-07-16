@@ -394,6 +394,28 @@
   }
 }
 
+// This custom function leverages the master media-query mixin with some shortcuts to predefined screen size ranges
+@mixin respond-to($media) {
+  @if $media == small {
+    @include media-below($b-small) { @content; }
+  }
+  @else if $media == small-medium {
+    @include media-query($b-small, $b-medium - 1) { @content; }
+  }
+  @else if $media == medium {
+    @include media-above($b-medium) { @content; }
+  }
+  @else if $media == medium-large {
+    @include media-query($b-medium, $b-large - 1) { @content; }
+  }
+  @else if $media == large or $media == single-column { // or single-column
+    @include media-above($b-large) { @content; }
+  }
+  @else if $media == full {
+    @include media-above($b-full) { @content; }
+  }
+}
+
 
 
 // Small print
