@@ -17,7 +17,7 @@
       // Current item styles go here
     }
   }
-  @media screen and (max-width: $b-medium) { // @TODO
+  @include media-below($b-medium) {
     > li:hover > ul {
       @include hide-visually; // Don't bother displaying submenus on small screens
     }

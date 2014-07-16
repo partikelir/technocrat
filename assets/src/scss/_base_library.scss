@@ -201,7 +201,7 @@
   }
 }
 
-// Media query shortcuts
+// Media query shortcut mixins; above and below are self-explanatory, between simply hedges pixels values inward by 1
 @mixin media-above($query) {
   @include media-query($query, null) { @content; }
 }
@@ -212,7 +212,7 @@
   @if $min-query == null or $max-query == null {
     @warn "Mixin media-between() received a null value."
   }
-  @include media-query($min-query, $max-query) { @content; }
+  @include media-query($min-query + 1, $max-query - 1) { @content; }
 }
 
 

@@ -60,7 +60,6 @@ $p-regex:           adjust-hue($p-tag, 120); //#e90;
 .style .token.string,
 .token.variable {
   color: $p-variable;
-  background: hsla(0,0%,100%,.5);
 }
 
 .namespace {

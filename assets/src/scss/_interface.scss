@@ -78,7 +78,7 @@ input[type="reset"],
     }
   }
 }
-ul.button-dropdown {
+ul.button-dropdown { // This is in its own class to reduce nested bloating
   @include menu-dropdown;
   @include border-radius(4px 0 4px 4px);
   margin-right: -1px; // Border offset
@@ -102,4 +102,10 @@ ul.button-dropdown {
       display: block;
     }
   }
+}
+
+
+
+span[data-tooltip] {
+  @include tooltip;
 }

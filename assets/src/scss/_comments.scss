@@ -11,6 +11,23 @@
   @extend %spacer-below;
   @include font-size($s-header-sub);
 }
+.comment-content {
+  @extend %clearfix-below;
+  word-wrap: break-word;
+
+  // Headers
+
+  // Paragraph spacing
+  p {
+    @extend %spacer-below;
+  }
+
+  // Lists
+
+  blockquote {
+
+  }
+}
 .comment-meta {
   @extend %clearfix-below;
 }
@@ -74,9 +91,6 @@
     input[type="text"] {
       width: 40%;
     }
-    textarea {
-      width: 80%;
-    }
   }
   .form-submit {
     @extend %spacer-below;
@@ -88,16 +102,18 @@
   .comment-form-url {
     @extend %spacer-below;
   }
-  .form-allowed-tags {
-    @extend %spacer-below;
-    @include font-size($s-text-smaller);
-    color: $c-offset;
-    code {
-      @include font-size($s-text-smallest);
-    }
-  }
   #cancel-comment-reply-link {
     @include font-size($s-text-smaller);
     @include rem('margin-left', $spacer/2);
+  }
+}
+.comment-notes-after { // Formerly .form-allowed-tags
+  @extend %spacer-below;
+  @include font-size($s-text-smaller);
+  color: $c-offset;
+  code {
+    @include font-size($s-text-smallest);
+    @include highlight-reset;
+    display: inline;
   }
 }

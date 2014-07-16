@@ -21,6 +21,6 @@
 }
 .author-description {
   p {
-    @include font-size($s-text-small);
+    @extend %small-text;
   }
 }

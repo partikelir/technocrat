@@ -2,7 +2,7 @@
 
 // Sidebar filter; removes sidebar for certain post formats
 if ( !function_exists( 'pendrell_post_formats_sidebar' ) ) : function pendrell_post_formats_sidebar( $sidebar ) {
-  if ( ( is_singular() && has_post_format( array( 'aside', 'image', 'link', 'quote', 'status' ) ) ) )
+  if ( ( is_singular() && has_post_format( array( 'aside', 'gallery', 'image', 'link', 'quote', 'status' ) ) ) )
     $sidebar = false;
   return $sidebar;
 } endif;

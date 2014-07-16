@@ -120,45 +120,6 @@ sup {
 
 
 
-// Blockquote
-// Blockquote and quotations
-blockquote {
-  @include font-size($s-text-big);
-  @include inset-box;
-  @include reverse-italics;
-  font-weight: 300;
-  p {
-    @include rem('padding-bottom', $spacer); // Padding is used instead of margins because of the blockquote background
-    margin: 0;
-    &:first-child:before { // Add opening and closing quotation marks to the blockquote element
-      content: "\201C";
-    }
-    &:nth-last-of-type(1):after { // Correctly adds quotation mark when footer or cite elements are present at the end of the blockquote
-      content: "\201D";
-    }
-  }
-  footer { // The footer element of a blockquote adds information about the source of the quotation
-    @include font-size($s-text-small);
-    @include rem('padding-bottom', $spacer);
-    display: block;
-    font-style: normal;
-    text-align: right;
-    &:before {
-      content: "\2014\00a0";
-    }
-  }
-  div > code,
-  em > code,
-  li > code,
-  p > code,
-  strong > code {
-    //@include highlight(darken($c-code-bg, 7));
-    //font-size: 80%;
-  }
-}
-
-
-
 // Inline quotations
 q {
   quotes: none;
@@ -176,7 +137,7 @@ q {
 pre {
   @include font-size($s-text-small);
   @include inset-box;
-  @include rem('padding-bottom', $spacer); // Needs to follow text-box
+  @include rem('padding-bottom', $spacer); // Important: needs to follow inset-box mixin
   color: $c-pre;
   tab-size: 2;
   white-space: pre;
@@ -201,12 +162,12 @@ code {
     @include highlight(rgba($c-code-bg, .33));
     color: $c-code;
     font-size: 80%; // Hack for fixing oversized monospace fonts
-    //line-height: 0; // @TODO: unnecessary?
+    //line-height: 0; // This might be unnecessary
   }
 }
 a code {
   color: $c-link;
-  //line-height: 0; // @TODO: unnecessary?
+  //line-height: 0; // This might be unnecessary
 }
 
 

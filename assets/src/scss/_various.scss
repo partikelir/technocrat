@@ -9,16 +9,15 @@
 }
 .aligncenter {
   @extend %clearfix-below;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+  @include center-block;
+  text-align: center; // Presumably we might be applying this to elements that contain text
 }
 
 
 
-// Clearing helper classes
+// Clearing helper classes; @TODO: verify whether this is used anywhere or just legacy junk
 .clear {
-  @extend %clearfix-below;
+  //@extend %clearfix-below;
 }
 
 
@@ -44,7 +43,7 @@
 
 // Footnotes; for use with Markdown Extra
 .footnotes {
-  @include font-size($s-text-small);
+  @extend %small-text;
 }
 
 
@@ -69,7 +68,7 @@
   clip: rect(1px, 1px, 1px, 1px);
   position: absolute !important;
   // @TODO: update and test this component
-  #menu-header &:focus {
+  .menu-header &:focus {
     @include border-radius;
     background: transparent;
     border: 2px solid #333;

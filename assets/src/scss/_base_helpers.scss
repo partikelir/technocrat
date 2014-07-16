@@ -29,6 +29,11 @@
   text-transform: uppercase;
 }
 
+// Small text
+%small-text {
+  @include font-size($s-text-small);
+}
+
 // Right-aligned button container
 %button-container {
   @include rem('margin-left', $spacer/2);

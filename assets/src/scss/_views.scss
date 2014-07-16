@@ -13,28 +13,32 @@
 // == GALLERY VIEW == //
 
 .gallery-view {
-  .site-main {
+  figure.wp-caption {
+    @include image-overlay(".wp-caption-text", "title");
+    // Assumes `float: left` is set elsewhere
     img {
       @include border-radius;
     }
   }
-  figure.wp-caption {
-    @include image-overlay(".wp-caption-text", "title");
-  }
 
-  // Responsive gallery views; not especially DRY but it has the advantage of being targetted and precise; no wasted CSS here
-  @include respond-to(small) {
+  // Responsive gallery view; not especially DRY but it has the advantage of being targetted and precise; no wasted CSS here
+  // Won't produce neat 30px margins between images on Firefox because of cross-browser scrollbar inconsistencies; not important enough to fix with JavaScript hackery
+
+  // Custom breakpoints specifically for gallery view
+  // Note there will be some minor quirks due to slight differences between these custom breakpoints and those of the rest of the site's interface
+  $b-gallery-small: 320 + $spacer*2; // The viewport has to get quite small to trigger this breakpoint but we don't want to lose quality by upscaling the 320px third-square image size
+  $b-gallery-medium: 640 + $d-image-spacer + $spacer*3; // Extra spacer at this width as per layout-box mixin
+  @include media-below($b-gallery-small) {
     .img-group figure.wp-caption {
       margin: 0 0 $d-image-spacer 0;
       max-width: 100%;
     }
   }
-  @include respond-to(small-medium) {
-    // Won't produce neat 30px margins on Firefox because of cross-browser scrollbar inconsistencies; not important enough to fix with JavaScript hackery
-    $this-width: ( $b-medium - ( $d-image-spacer * 2 ) );
+  @include media-between($b-gallery-small, $b-gallery-medium) {
+    $margin-width: $d-image-spacer / 640px;
     .img-group figure.wp-caption {
-      margin: 0 percentage($d-image-spacer / $this-width) percentage($d-image-spacer / $this-width) 0;
-      max-width: percentage( 1/2 ) - percentage( ( $d-image-spacer / $this-width ) / 2 );
+      margin: 0 percentage($margin-width) percentage($margin-width) 0;
+      max-width: percentage(1/2) - percentage($margin-width/2);
       &:nth-of-type(2n) {
         margin-right: 0;
       }
@@ -43,11 +47,11 @@
       }
     }
   }
-  @include respond-to(medium) {
+  @include media-above($b-gallery-medium) {
     .img-group figure.wp-caption {
       // Calculations based on $content-width presume that gallery view is always full-width
       margin: 0 percentage($d-image-spacer / $content-width) percentage($d-image-spacer / $content-width) 0;
-      max-width: percentage( 1/3 ) - percentage( ( ($d-image-spacer * 2 ) / $content-width) / 3 );
+      max-width: percentage(1/3) - percentage( ( ($d-image-spacer * 2 ) / $content-width) / 3 );
       &:nth-of-type(3n) {
         margin-right: 0;
       }
@@ -66,7 +70,7 @@
   .entry-header {
     @include clearfix-reset(below);
   }
-  h1.entry-title {
+  :not(.no-results) h1.entry-title { // @TODO: make sure only relevant article titles are shrunk
     @include font-size($s-text-small);
     margin-bottom: 0;
   }

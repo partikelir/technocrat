@@ -13,5 +13,8 @@
     $title = '',
     $align = '',
     $url = get_permalink(),
-    $size = 'third-square'
+    $size = 'third-square',
+    $alt = '',
+    $rel = '',
+    $classes = get_post_class()
   ); ?>

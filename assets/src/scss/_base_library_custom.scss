@@ -87,13 +87,21 @@
 
 
 
-// Highlights text; used with ins and mark tags
+// Highlights text; used with `ins` and `mark` tags
 @mixin highlight($color: $c-highlight) {
   @include border-radius;
   background: $color;
   border: 1px solid darken($color, 7);
   display: inline;
   padding: 0.08em 0.25em 0.08em 0.25em; // Padding should be proportionate, not rooted to rems
+}
+// For the odd occasion where you need to reset a highlight for some reason
+@mixin highlight-reset {
+  background: inherit;
+  border: inherit;
+  border-radius: inherit;
+  display: inherit;
+  padding: inherit;
 }
 
 
@@ -272,7 +280,7 @@
 // Menu dropdown; should be applied to a ul element; can disable WordPress-specific styles by passing $wordpress: false
 @mixin menu-dropdown($wordpress: true) {
   @include border-radius($d-radius+1px); // An extra pixel for the 1px border
-  @include box-shadow-layered(2px 2px 4px rgba(64, 64, 64, .09), 0 -2px 2px rgba(64, 64, 64, .09) inset);
+  @include box-shadow-layered(2px 2px 4px rgba(64, 64, 64, .09), 0 -2px 3px rgba(64, 64, 64, .08) inset);
   background-color: $c-sub-bg;
   background-image: linear-gradient( white(.5), white(0) ); // A light touch
   background-repeat: repeat-x;
@@ -439,5 +447,44 @@
   &:focus {
     color: $c-body;
     background-color: darken($c-body-bg, 7);
+  }
+}
+
+
+
+// Tooltips adapted from http://www.webdesignerdepot.com/2012/11/how-to-create-a-simple-css3-tooltip/ and http://aninnovativeweb.tumblr.com/post/820491172/semantic-tooltips-with-pure-css3-and-html5
+@mixin tooltip {
+  border-bottom: 1px dotted #999;
+  cursor: pointer;
+  position: relative;
+  &:hover {
+    &:after {
+      @include border-radius($d-radius); // An extra pixel for the 1px border
+      @include box-shadow-layered(2px 2px 4px rgba(64, 64, 64, .09), 0 2px 3px rgba(64, 64, 64, .08) inset);
+      @include font-size($s-text-smaller);
+      background-color: $c-tooltip-bg;
+      background-image: linear-gradient( white(0), white(.5) ); // A light touch
+      background-repeat: repeat-x;
+      border: $d-interface; // Must be offset; box-sizing doesn't work here because heights are line-heights set by font-size()
+      color: $c-tooltip;
+      content: attr(data-tooltip);
+      margin: 0;
+      padding: 0 6px;
+      position: absolute;
+        bottom: $spacer - 6px;
+        left: -9px;
+      white-space: nowrap;
+      //z-index: 999;
+    }
+    &:before {
+      border: solid;
+      border-color: $c-interface transparent;
+      border-width: 6px 6px 0 6px;
+      content: "";
+      position: absolute;
+        left: -3px;
+        bottom: $spacer - 12px;
+      z-index: 999;
+    }
   }
 }

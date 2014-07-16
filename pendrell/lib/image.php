@@ -47,11 +47,11 @@ add_filter( 'the_content', 'pendrell_image_wrapper' );
 
 
 // Wrapper for ubik_image_markup with basic fallback functionality
-if ( !function_exists( 'pendrell_image_markup' ) ) : function pendrell_image_markup( $html, $id, $caption, $title = '', $align = 'none', $url = '', $size = 'medium' ) {
+if ( !function_exists( 'pendrell_image_markup' ) ) : function pendrell_image_markup( $html, $id, $caption, $title = '', $align = 'none', $url = '', $size = 'medium', $alt = '', $rel = '', $class = '' ) {
 
   // If Ubik is installed...
   if ( function_exists( 'ubik_image_markup' ) ) {
-    $content = ubik_image_markup( $html, $id, $caption, $title, $align, $url, $size );
+    $content = ubik_image_markup( $html, $id, $caption, $title, $align, $url, $size, $alt, $rel, $class );
 
   // This stuff works but Ubik does things in a slightly more refined way
   } else {

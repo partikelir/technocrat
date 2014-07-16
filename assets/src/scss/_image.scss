@@ -16,7 +16,7 @@
   border-top: $d-divider;
 }
 .image-description {
-  @include font-size($s-text-small);
+  @extend %small-text;
 }
 
 
@@ -56,16 +56,19 @@ figure.wp-caption,
       margin-left: percentage($spacer / $content-width);
     }
   }
+  &.aligncenter {
+    img {
+      @include center-block;
+    }
+  }
   &.alignnone { // @TODO: fix known issue, aligncenter class not working on captioned images
     @extend %clearfix;
     margin-left: 0;
     margin-right: 0;
   }
 }
-figure.wp-caption {
-  img {
-    display: block;
-  }
+figure.wp-caption img {
+  display: block; // Gets rid of some pesky whitespace issues
 }
 
 

@@ -52,7 +52,7 @@ $full-width:        true; // Toggle for full-width styles; set to true if the th
 // == BREAKPOINTS == //
 
 $b-small:           $main-width/1.5;
-$b-medium:          $main-width;
+$b-medium:          $main-width + ($spacer * 2);
 $b-large:           $main-width + ($spacer * 8); // Causes sidebar to slide below content
 $b-full:            $content-width;
 
@@ -139,6 +139,8 @@ $c-small-print:   lighten($c-body, 23);
 $c-text-box:      lighten($c-body, 7);
 $c-text-box-bg:   darken($c-body-bg, 7);
 $c-text-box-sh:   darken($c-text-box-bg, 3);
+$c-tooltip:       lighten($c-body, 17);
+$c-tooltip-bg:    darken($c-body-bg, 11);
 $c-widget-head:   darken($c-body, 7);
 $c-widget:        lighten($c-body, 23);
 
@@ -148,6 +150,9 @@ $c-widget:        lighten($c-body, 23);
 
 // Dividing line
 $d-divider:       1px solid $c-divider;
+
+// Glow
+$d-glow:          0px 0px 5px $c-highlight;
 
 // Gradients
 $d-gradient-1:    darken($c-body-bg, 4);
@@ -164,9 +169,6 @@ $d-radius:        3px;
 
 // Box shadow
 $d-shadow:        0 1px 4px black(.2);
-
-// Glow
-$d-glow:          0px 0px 5px $c-highlight;
 
 
 

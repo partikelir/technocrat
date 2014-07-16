@@ -105,11 +105,6 @@ function pendrell_comments( $comment, $args, $depth ) {
 
 	<?php endif; // have_comments() ?>
 
-	<?php comment_form( array(
-      'cancel_reply_link' => __( 'Cancel', 'pendrell' ),
-      'title_reply'       => __( 'Respond', 'pendrell' ),
-      'title_reply_to'    => __( 'Respond to %s', 'pendrell' ),
-    )
-  ); ?>
+	<?php pendrell_comments_form(); ?>
 
 </div><!-- #comments .comments-area -->
