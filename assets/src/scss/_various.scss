@@ -9,8 +9,13 @@
 }
 .aligncenter {
   @extend %clearfix-below;
-  @include center-block;
+  @include center;
   text-align: center; // Presumably we might be applying this to elements that contain text
+}
+.alignnone {
+  @extend %clearfix;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 
@@ -56,7 +61,7 @@
     list-style: none;
   }
   li {
-    @include hanging-indent($spacer);
+    @include k-hanging-indent($spacer);
     margin: 0;
   }
 }

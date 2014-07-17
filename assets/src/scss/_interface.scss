@@ -46,9 +46,9 @@ input[type="reset"],
     // Spacing needs to match the spacing in the layout-box mixin in the custom library
     @include rem('right', $spacer);
     @include rem('top', $spacer);
-    @include respond-to(medium) {
+  @include respond-to(medium) {
       @include rem('right', $spacer*1.5);
-    }
+  }
 }
 
 
@@ -79,8 +79,8 @@ input[type="reset"],
   }
 }
 ul.button-dropdown { // This is in its own class to reduce nested bloating
-  @include menu-dropdown;
   @include border-radius(4px 0 4px 4px);
+  @include dropdown;
   margin-right: -1px; // Border offset
   opacity: 0;
   position: absolute;

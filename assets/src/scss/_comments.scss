@@ -12,20 +12,13 @@
   @include font-size($s-header-sub);
 }
 .comment-content {
-  @extend %clearfix-below;
-  word-wrap: break-word;
-
-  // Headers
-
-  // Paragraph spacing
-  p {
-    @extend %spacer-below;
-  }
-
-  // Lists
-
+  // Simple blockquote styling just for comments
   blockquote {
-
+    @include border-radius(9px); // Gives a slightly curved or parenthetical appearance to the bounding border
+    @include k-reverse-italics;
+    border-left: 3px solid $c-divider;
+    color: $c-blockquote-c;
+    padding-left: $spacer - 3px;
   }
 }
 .comment-meta {
@@ -113,7 +106,7 @@
   color: $c-offset;
   code {
     @include font-size($s-text-smallest);
-    @include highlight-reset;
+    @include k-highlight-reset;
     display: inline;
   }
 }

@@ -1,10 +1,10 @@
 // ==== BASE ==== //
 
-// Fonts
-@import "base_fonts";
+// Kipple
+@import "lib/kipple";
 
-// Mixin library; nothing declarative
-@import "base_library_custom";
+// Mixins; nothing declarative
+@import "base_mixins";
 
 // Configuration
 @import "base_config";

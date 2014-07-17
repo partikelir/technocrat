@@ -31,7 +31,7 @@
 .wp-caption-text {
   @extend %clearfix-below;
   @include font-size($s-text-smaller);
-  @include reverse-italics;
+  @include k-reverse-italics;
   color: $c-caption;
 }
 
@@ -57,18 +57,10 @@ figure.wp-caption,
     }
   }
   &.aligncenter {
-    img {
-      @include center-block;
+    img { // Applies centering to the image within the figure, not the figure element itself
+      @include center;
     }
   }
-  &.alignnone { // @TODO: fix known issue, aligncenter class not working on captioned images
-    @extend %clearfix;
-    margin-left: 0;
-    margin-right: 0;
-  }
-}
-figure.wp-caption img {
-  display: block; // Gets rid of some pesky whitespace issues
 }
 
 
@@ -117,7 +109,7 @@ figure.wp-caption img {
 .gallery-columns-6 {
   .gallery-caption {
     @media screen and (max-width: $b-large) { // @TODO: verify that this is working
-      @include hide-visually;
+      @include hide;
     }
   }
 }
@@ -126,7 +118,7 @@ figure.wp-caption img {
 .gallery-columns-8,
 .gallery-columns-9 {
   .gallery-caption {
-    @include hide-visually;
+    @include hide;
   }
 }
 

@@ -41,7 +41,7 @@
 .site-description {
   @extend %clearfix-below;
   @include font-size($s-text-smallest);
-  @include hide-visually;
+  @include hide;
   color: $c-site-desc;
 }
 .site-branding {

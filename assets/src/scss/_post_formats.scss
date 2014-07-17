@@ -5,7 +5,7 @@ article.format-aside,
 article.format-quote,
 article.format-status {
   header {
-    @include hide-visually;
+    @include hide;
   }
 }
 

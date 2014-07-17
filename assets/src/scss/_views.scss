@@ -18,6 +18,7 @@
     // Assumes `float: left` is set elsewhere
     img {
       @include border-radius;
+      display: block; // Gets rid of some pesky whitespace issues; only necessary here because gallery view doesn't wrap posts in .entry-content
     }
   }
 
@@ -28,13 +29,13 @@
   // Note there will be some minor quirks due to slight differences between these custom breakpoints and those of the rest of the site's interface
   $b-gallery-small: 320 + $spacer*2; // The viewport has to get quite small to trigger this breakpoint but we don't want to lose quality by upscaling the 320px third-square image size
   $b-gallery-medium: 640 + $d-image-spacer + $spacer*3; // Extra spacer at this width as per layout-box mixin
-  @include media-below($b-gallery-small) {
+  @include k-media-below($b-gallery-small) {
     .img-group figure.wp-caption {
       margin: 0 0 $d-image-spacer 0;
       max-width: 100%;
     }
   }
-  @include media-between($b-gallery-small, $b-gallery-medium) {
+  @include k-media-between($b-gallery-small, $b-gallery-medium) {
     $margin-width: $d-image-spacer / 640px;
     .img-group figure.wp-caption {
       margin: 0 percentage($margin-width) percentage($margin-width) 0;
@@ -47,7 +48,7 @@
       }
     }
   }
-  @include media-above($b-gallery-medium) {
+  @include k-media-above($b-gallery-medium) {
     .img-group figure.wp-caption {
       // Calculations based on $content-width presume that gallery view is always full-width
       margin: 0 percentage($d-image-spacer / $content-width) percentage($d-image-spacer / $content-width) 0;
@@ -66,9 +67,10 @@
 
 // == LIST VIEW == //
 
+// @TODO: needs a lot of work; this is merely a prototype
 .list-view {
   .entry-header {
-    @include clearfix-reset(below);
+    @include k-clearfix-reset(below);
   }
   :not(.no-results) h1.entry-title { // @TODO: make sure only relevant article titles are shrunk
     @include font-size($s-text-small);
@@ -81,10 +83,10 @@
     margin-left: 150px + $spacer;
   }
   .entry-meta {
-    @include clearfix-reset(above);
+    @include k-clearfix-reset(above);
   }
   .last-updated {
-    @include hide-visually;
+    @include hide;
   }
   &.full-width {
     h1.entry-title {

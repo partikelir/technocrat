@@ -29,6 +29,11 @@
   @include link-stylist($link-color: false);
   word-wrap: break-word;
 
+  // Paragraph spacing
+  p {
+    @extend %spacer-below;
+  }
+
   // Header spacing; not needed in .comment-content as we don't allow headers
   h1,
   h2,
@@ -90,51 +95,6 @@
   dl {
     @include rem('margin', 0 $spacer);
   }
-}
-
-
-
-// Exclusive to post contents
-.entry-content {
-
-  // Blockquote; isolated here as we display blockquotes differently in posts vs comments
-  blockquote {
-    @include font-size($s-text-big);
-    @include inset-box;
-    @include reverse-italics;
-    font-weight: 300;
-    p {
-      @include rem('padding-bottom', $spacer); // Padding is used instead of margins because of the blockquote background
-      margin: 0;
-      &:first-child:before { // Add opening and closing quotation marks to the blockquote element
-        content: "\201C";
-      }
-      &:nth-last-of-type(1):after { // Correctly adds quotation mark when footer or cite elements are present at the end of the blockquote
-        content: "\201D";
-      }
-    }
-    footer { // The footer element of a blockquote adds information about the source of the quotation
-      @include font-size($s-text-small);
-      @include rem('padding-bottom', $spacer);
-      display: block;
-      font-style: normal;
-      text-align: right;
-      cite {
-        font-style: italic; // Cancelled out by the reverse-italics mixin above
-      }
-      &:before {
-        content: "\2014\00a0";
-      }
-    }
-    div > code,
-    em > code,
-    li > code,
-    p > code,
-    strong > code {
-      //@include highlight(darken($c-code-bg, 7));
-      //font-size: 80%; // @TODO: check whether or not this is necessary any more
-    }
-  }
 
   // Tables
   table {
@@ -154,20 +114,13 @@
     border-top: $d-divider;
   }
 
-  // Asides; use this instead of <small> in post contents
-  aside {
-    @extend %spacer-below;
-    @include reverse-italics;
-    @include small-print;
-  }
-
   // Images
   img {
     @include border-radius;
     display: block;
   }
 
-  // First children of .entry-content that require extra spacing for visual flow
+  // First children of .entry-content and .comment-content that require extra spacing for visual flow
   > blockquote,
   > div,
   > figure,
@@ -177,6 +130,52 @@
       @extend %spacer-above;
     }
   }
+}
+
+
+
+// Exclusive to post contents
+.entry-content {
+
+  // Blockquote; isolated here as we display blockquotes differently in posts vs comments
+  blockquote {
+    @include font-size($s-text-big);
+    @include inset-box;
+    @include k-reverse-italics;
+    font-weight: 300;
+    p {
+      &:last-child {
+        margin: 0;
+      }
+      &:first-child:before { // Add opening and closing quotation marks to the blockquote element
+        content: "\201C";
+      }
+      &:nth-last-of-type(1):after { // Correctly adds quotation mark when footer or cite elements are present at the end of the blockquote
+        content: "\201D";
+      }
+    }
+    footer { // The footer element of a blockquote adds information about the source of the quotation
+      @include font-size($s-text-small);
+      display: block;
+      font-style: normal;
+      text-align: right;
+      cite {
+        font-style: italic; // Cancelled out by the k-reverse-italics mixin above
+      }
+      &:before {
+        content: "\2014\00a0";
+      }
+    }
+  }
+
+  // Asides; use this instead of <small> in post contents; does not appear in comments
+  aside {
+    @extend %spacer-below;
+    @include k-reverse-italics;
+    @include small-print;
+  }
+
+  // First children of .entry-content that require extra spacing for visual flow
   .archive &,
   .search-results & {
     > p:first-child {
@@ -222,7 +221,7 @@
       @include font-size($s-text);
     }
 
-    // Restore the reset
+    // Restore the sub/superscript reset
     sub,
     sup {
       font-size: 75%;

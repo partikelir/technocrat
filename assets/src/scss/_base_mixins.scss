@@ -1,24 +1,12 @@
 // ==== MIXINS ==== //
 
-// Load the theme-agnostic functions and mixins library; the rest of these mixins are specific to this theme
-@import "base_library";
-
-
-
 // == GENERAL == //
 
-// Border radius; mainly used to allow for a default site-wide setting; via Twenty Twelver
-@mixin border-radius($radius: $d-radius) {
-  border-radius: $radius;
-}
-
-
-
-// Box shadows; via Twenty Twelver
-@mixin box-shadow($shadow: $d-shadow ) {
+// Box shadows; via Twenty Twelve
+@mixin box-shadow($shadow: $d-shadow) {
   box-shadow: $shadow;
 }
-@mixin box-shadow-layered($shadow: $d-shadow, $shadow-layered: $d-shadow ) {
+@mixin box-shadow-layered($shadow: $d-shadow, $shadow-layered: $d-shadow) {
   box-shadow: $shadow, $shadow-layered;
 }
 
@@ -87,25 +75,6 @@
 
 
 
-// Highlights text; used with `ins` and `mark` tags
-@mixin highlight($color: $c-highlight) {
-  @include border-radius;
-  background: $color;
-  border: 1px solid darken($color, 7);
-  display: inline;
-  padding: 0.08em 0.25em 0.08em 0.25em; // Padding should be proportionate, not rooted to rems
-}
-// For the odd occasion where you need to reset a highlight for some reason
-@mixin highlight-reset {
-  background: inherit;
-  border: inherit;
-  border-radius: inherit;
-  display: inherit;
-  padding: inherit;
-}
-
-
-
 // Image fallback; a stylized placeholder for images that don't load or are slow to load
 @mixin image-fallback {
   @include border-radius;
@@ -146,7 +115,7 @@
       text-shadow: 0px 1px 2px black(.8);
     }
     @include border-radius(0 0 $d-radius $d-radius);
-    @include regular-italics;
+    @include k-regular-italics;
     @include rem('padding', $spacer/4 $spacer/4);
     background-image: linear-gradient(black(0), black(.8));
     background-repeat: repeat-x;
@@ -191,7 +160,7 @@
   @include border-radius(9px);
   @include box-shadow-layered(inset 4px 4px 8px $shadow, 1px 1px 4px $shadow);
   @include rem('margin', 0 0 $spacer 0);
-  @include rem('padding', $spacer $spacer 0);
+  @include rem('padding', $spacer/2 $spacer $spacer/2 $spacer);
   background: rgba($background, .5);
   color: $color;
   text-shadow: 0px 1px $c-body-bg;
@@ -204,7 +173,7 @@
   @include rem('padding-left', $spacer);
   @include rem('padding-right', $spacer);
   @include respond-to(medium) {
-    @include center-block($content-width);
+    @include k-center-block($content-width);
     @include rem('padding-left', $spacer*1.5);
     @include rem('padding-right', $spacer*1.5);
   }
@@ -277,8 +246,8 @@
 
 
 
-// Menu dropdown; should be applied to a ul element; can disable WordPress-specific styles by passing $wordpress: false
-@mixin menu-dropdown($wordpress: true) {
+// Dropdown menu; should be applied to a ul element; can disable WordPress-specific styles by passing $wordpress: false
+@mixin dropdown($wordpress: true) {
   @include border-radius($d-radius+1px); // An extra pixel for the 1px border
   @include box-shadow-layered(2px 2px 4px rgba(64, 64, 64, .09), 0 -2px 3px rgba(64, 64, 64, .08) inset);
   background-color: $c-sub-bg;
@@ -383,44 +352,22 @@
 // Media query breakpoints mixin; adapted from http://thesassway.com/intermediate/responsive-web-design-in-sass-using-media-queries-in-sass-32
 @mixin respond-to($media) {
   @if $media == small {
-    @media screen and (max-width: $b-small) { @content; }
+    @include k-media-below($b-small) { @content; }
   }
   @else if $media == small-medium {
-    @media screen and (min-width: $b-small) and (max-width: $b-medium - 1) { @content; }
+    @include k-media-between($b-small, $b-medium - 1) { @content; }
   }
   @else if $media == medium {
-    @media screen and (min-width: $b-medium) { @content; }
+    @include k-media-above($b-medium) { @content; }
   }
   @else if $media == medium-large {
-    @media screen and (min-width: $b-medium) and (max-width: $b-large - 1) { @content; }
+    @include k-media-between($b-medium, $b-large - 1) { @content; }
   }
-  @else if $media == large { // or single-column
-    @media screen and (min-width: $b-large) { @content; }
-  }
-  @else if $media == full {
-    @media screen and (min-width: $b-full) { @content; }
-  }
-}
-
-// This custom function leverages the master media-query mixin with some shortcuts to predefined screen size ranges
-@mixin respond-to($media) {
-  @if $media == small {
-    @include media-below($b-small) { @content; }
-  }
-  @else if $media == small-medium {
-    @include media-query($b-small, $b-medium - 1) { @content; }
-  }
-  @else if $media == medium {
-    @include media-above($b-medium) { @content; }
-  }
-  @else if $media == medium-large {
-    @include media-query($b-medium, $b-large - 1) { @content; }
-  }
-  @else if $media == large or $media == single-column { // or single-column
-    @include media-above($b-large) { @content; }
+  @else if $media == large or $media == single-column {
+    @include k-media-above($b-large) { @content; }
   }
   @else if $media == full {
-    @include media-above($b-full) { @content; }
+    @include k-media-above($b-full) { @content; }
   }
 }
 
@@ -474,7 +421,6 @@
         bottom: $spacer - 6px;
         left: -9px;
       white-space: nowrap;
-      //z-index: 999;
     }
     &:before {
       border: solid;
@@ -487,4 +433,74 @@
       z-index: 999;
     }
   }
+}
+
+
+
+// == DEVELOPMENT == //
+
+// Pseudo triangle; specify $size in pixels; adapted from https://github.com/catalinred/Animenu/
+@mixin triangle($size: 6px, $direction: top, $offset: $size, $offset-direction: left, $parent-width: 180px) {
+  &:after {
+    border: $size solid transparent;
+    border-bottom-color: inherit;
+    content: '';
+    position: absolute;
+      @if $offset == "center" {
+        #{$offset-direction}: 50% - percentage( $size / $parent-width );
+      } @else {
+        #{$offset-direction}: $offset;
+      }
+      #{$direction}: -$size * 2;
+  }
+}
+
+// A few untested mixins and functions via Sacha Greif: http://sachagreif.com/useful-sass-mixins/
+@function black($opacity: 1) {
+  @return rgba(0, 0, 0, $opacity);
+}
+@function white($opacity: 1) {
+  @return rgba(255, 255, 255, $opacity);
+}
+
+// Box emboss
+@mixin box-emboss($opacity: 0.75, $opacity2: 0.75) {
+  box-shadow: white($opacity) 0 1px 0, inset black($opacity2) 0 1px 0;
+}
+
+// Letterpress
+@mixin letterpress($opacity) {
+  text-shadow: white($opacity) 0 1px 0;
+}
+
+
+
+// ==== KIPPLE ==== //
+
+// Simple wrapper mixins for Kipple; no need to consider namespace collision in a single project
+
+// Border radius; mainly used to allow for a default site-wide setting
+@mixin border-radius($radius: $d-radius) {
+  @include k-border-radius($radius);
+}
+@mixin center {
+  @include k-center-block;
+}
+@mixin clearfix-above {
+  @include k-clearfix-above;
+}
+@mixin clearfix-below {
+  @include k-clearfix-below;
+}
+@mixin clearfix {
+  @include k-clearfix;
+}
+@mixin ghost {
+  @include k-ghost;
+}
+@mixin hide {
+  @include k-hide-visually;
+}
+@mixin highlight($color: $c-highlight, $radius: $d-radius) {
+  @include k-highlight($color, $radius);
 }

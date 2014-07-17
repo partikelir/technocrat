@@ -2,7 +2,7 @@
 
 // Inline menu; used in header and footer navigation; should be applied to ol or ul elements
 .inline-menu {
-  @include list-floated($spacer);
+  @include k-list-floated($spacer);
   margin-bottom: 0;
   li {
     @include font-header;
@@ -17,9 +17,9 @@
       // Current item styles go here
     }
   }
-  @include media-below($b-medium) {
+  @include k-media-below($b-medium) {
     > li:hover > ul {
-      @include hide-visually; // Don't bother displaying submenus on small screens
+      @include hide; // Don't bother displaying submenus on small screens
     }
   }
 }
@@ -29,7 +29,7 @@
 // Header menu; applied to a ul element
 .menu-header {
   @include font-size($s-menu-header-sm);
-  @include list-nested;
+  @include k-list-nested;
   display: none;
   a:hover {
     color: $c-highlight;
@@ -73,7 +73,7 @@
 
       // All submenus
       ul {
-        @include menu-dropdown;
+        @include dropdown;
       }
     }
   }
@@ -91,7 +91,7 @@
     @include font-size($s-menu-footer);
   }
   ul {
-    @include hide-visually; // No submenus in the footer
+    @include hide; // No submenus in the footer
   }
   .current-menu-item,
   .current-menu-ancestor,

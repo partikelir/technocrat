@@ -112,6 +112,7 @@ $c-footer-link-f: $c-meta-link-f;
 $c-abbr:          $c-offset;
 $c-blockquote:    $c-offset;
 $c-blockquote-bg: darken($c-body-bg, 3);
+$c-blockquote-c:  lighten($c-body, 37); // Comment blockquote
 $c-code:          $c-offset;
 $c-code-bg:       darken($c-body-bg, 13);
 $c-del:           lighten($c-body, 33);

@@ -137,7 +137,7 @@ q {
 pre {
   @include font-size($s-text-small);
   @include inset-box;
-  @include rem('padding-bottom', $spacer); // Important: needs to follow inset-box mixin
+  //@include rem('padding', $spacer/2 $spacer); // Important: needs to follow inset-box mixin
   color: $c-pre;
   tab-size: 2;
   white-space: pre;
