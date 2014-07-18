@@ -1,0 +1,34 @@
+// ==== DROPDOWN ==== //
+
+// Dropdown menu; should be applied to a ul element; can disable WordPress-specific styles by passing $wordpress: false
+@mixin k-dropdown(
+  $dropdown-background: white
+, $dropdown-border-color: grey
+, $dropdown-border-radius: 3px
+, $dropdown-border-size: 1px
+) {
+  @if $dropdown-border-radius != null {
+    @include k-border-radius($dropdown-border-radius + $dropdown-border-size); // An extra pixel for the 1px border
+  }
+  background: $dropdown-background;
+  border: $dropdown-border-size solid $dropdown-border-color;
+  li {
+    @if $dropdown-border-radius != null {
+      &:first-child > a {
+        @include k-border-radius($dropdown-border-radius $dropdown-border-radius 0 0);
+      }
+      &:last-child > a {
+        @include k-border-radius(0 0 $dropdown-border-radius $dropdown-border-radius);
+      }
+      &:only-of-type > a {
+        @include k-border-radius($dropdown-border-radius);
+      }
+    }
+    a {
+      padding: 0 7px;
+    }
+    ul {
+      margin-top: -$dropdown-border-size; // Offset border (see above); presumes 1px border
+    }
+  }
+}

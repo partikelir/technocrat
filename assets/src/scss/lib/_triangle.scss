@@ -1,7 +1,13 @@
 // ==== TRIANGLE ==== //
 
 // Pseudo triangle; specify $size in pixels; adapted from https://github.com/catalinred/Animenu/
-@mixin k-triangle($color: inherit, $direction: top, $size: 6px, $position: absolute, $offset: null) {
+@mixin k-triangle(
+  $color: inherit
+, $direction: top
+, $size: 6px
+, $position: absolute
+, $offset: null
+) {
   &:after {
     border: $size solid transparent;
     border-#{k-opposite($direction)}-color: $color;

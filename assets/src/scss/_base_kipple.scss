@@ -33,16 +33,22 @@
 }
 @mixin tooltip {
   @include k-tooltip(
-    $offset: $spacer - 6px,
-    $tooltip-background: $c-tooltip-bg,
-    $tooltip-border: $d-interface,
-    $tooltip-border-radius: $d-radius,
-    $tooltip-color: $c-tooltip,
-    $tooltip-font-size: $s-text-smaller,
-    $tooltip-triangle-color: $c-interface
+    $offset: $spacer - 6px
+  , $tooltip-background: $c-tooltip-bg
+  , $tooltip-border: $d-interface
+  , $tooltip-border-radius: $d-radius
+  , $tooltip-color: $c-tooltip
+  , $tooltip-font-size: $s-text-smaller
+  , $tooltip-triangle-color: $c-interface
   );
   border-bottom: $d-mouseover;
 }
-@mixin triangle($color: inherit, $direction: top, $size: 6px, $position: absolute, $offset: left 0) {
+@mixin triangle(
+  $color: inherit
+, $direction: top
+, $size: 6px
+, $position: absolute
+, $offset: left 0
+) {
   @include k-triangle($color, $direction, $size, $position, $offset);
 }

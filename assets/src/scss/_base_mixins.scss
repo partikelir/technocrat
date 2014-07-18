@@ -246,27 +246,17 @@
 
 
 
-// Dropdown menu; should be applied to a ul element; can disable WordPress-specific styles by passing $wordpress: false
-@mixin dropdown($wordpress: true) {
-  @include border-radius($d-radius+1px); // An extra pixel for the 1px border
+
+
+@mixin dropdown($wordpress-menu: true) {
+  @include k-dropdown(
+    $dropdown-background: $c-sub-bg linear-gradient( white(.5), white(0) ) repeat-x
+  , $dropdown-border-color: $c-interface
+  );
   @include box-shadow-layered(2px 2px 4px rgba(64, 64, 64, .09), 0 -2px 3px rgba(64, 64, 64, .08) inset);
-  background-color: $c-sub-bg;
-  background-image: linear-gradient( white(.5), white(0) ); // A light touch
-  background-repeat: repeat-x;
-  border: $d-interface; // Must be offset; box-sizing doesn't work here because heights are line-heights set by font-size()
+  @include font-size($s-sub);
   li {
-    &:first-child > a {
-      @include border-radius($d-radius $d-radius 0 0);
-    }
-    &:last-child > a {
-      @include border-radius(0 0 $d-radius $d-radius);
-    }
-    &:only-of-type > a {
-      @include border-radius;
-    }
     a {
-      @include font-size($s-sub);
-      @include rem('padding', 0 $spacer/4);
       color: $c-sub;
       &:visited {
         color: $c-sub;
@@ -281,12 +271,8 @@
         color: $c-sub-h;
       }
     }
-    ul {
-      margin-top: -1px; // Offset border (see above)
-    }
   }
-  // This section can be wasteful if applied to a nested selector
-  @if $wordpress == true {
+  @if $wordpress-menu == true {
     .current-menu-item,
     .current-menu-ancestor,
     .current_page_item,
