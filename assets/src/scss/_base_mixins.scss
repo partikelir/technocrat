@@ -351,22 +351,22 @@
 
 // Media query breakpoints mixin; adapted from http://thesassway.com/intermediate/responsive-web-design-in-sass-using-media-queries-in-sass-32
 @mixin respond-to($media) {
-  @if $media == small {
+  @if ($media == small) or ($media == mobile) {
     @include k-media-below($b-small) { @content; }
   }
-  @else if $media == small-medium {
+  @else if ($media == small-medium) {
     @include k-media-between($b-small, $b-medium - 1) { @content; }
   }
-  @else if $media == medium {
+  @else if ($media == medium) {
     @include k-media-above($b-medium) { @content; }
   }
-  @else if $media == medium-large {
+  @else if ($media == medium-large) {
     @include k-media-between($b-medium, $b-large - 1) { @content; }
   }
-  @else if $media == large or $media == single-column {
+  @else if ($media == large) or ($media == single-column) {
     @include k-media-above($b-large) { @content; }
   }
-  @else if $media == full {
+  @else if ($media == full) {
     @include k-media-above($b-full) { @content; }
   }
 }
@@ -399,69 +399,9 @@
 
 
 
-// Tooltips adapted from http://www.webdesignerdepot.com/2012/11/how-to-create-a-simple-css3-tooltip/ and http://aninnovativeweb.tumblr.com/post/820491172/semantic-tooltips-with-pure-css3-and-html5
-@mixin tooltip {
-  border-bottom: 1px dotted #999;
-  cursor: pointer;
-  position: relative;
-  &:hover {
-    &:after {
-      @include border-radius($d-radius); // An extra pixel for the 1px border
-      @include box-shadow-layered(2px 2px 4px rgba(64, 64, 64, .09), 0 2px 3px rgba(64, 64, 64, .08) inset);
-      @include font-size($s-text-smaller);
-      background-color: $c-tooltip-bg;
-      background-image: linear-gradient( white(0), white(.5) ); // A light touch
-      background-repeat: repeat-x;
-      border: $d-interface; // Must be offset; box-sizing doesn't work here because heights are line-heights set by font-size()
-      color: $c-tooltip;
-      content: attr(data-tooltip);
-      margin: 0;
-      padding: 0 6px;
-      position: absolute;
-        bottom: $spacer - 6px;
-        left: -9px;
-      white-space: nowrap;
-    }
-    &:before {
-      border: solid;
-      border-color: $c-interface transparent;
-      border-width: 6px 6px 0 6px;
-      content: "";
-      position: absolute;
-        left: -3px;
-        bottom: $spacer - 12px;
-      z-index: 999;
-    }
-  }
-}
-
-
-
 // == DEVELOPMENT == //
 
-// Pseudo triangle; specify $size in pixels; adapted from https://github.com/catalinred/Animenu/
-@mixin triangle($size: 6px, $direction: top, $offset: $size, $offset-direction: left, $parent-width: 180px) {
-  &:after {
-    border: $size solid transparent;
-    border-bottom-color: inherit;
-    content: '';
-    position: absolute;
-      @if $offset == "center" {
-        #{$offset-direction}: 50% - percentage( $size / $parent-width );
-      } @else {
-        #{$offset-direction}: $offset;
-      }
-      #{$direction}: -$size * 2;
-  }
-}
-
 // A few untested mixins and functions via Sacha Greif: http://sachagreif.com/useful-sass-mixins/
-@function black($opacity: 1) {
-  @return rgba(0, 0, 0, $opacity);
-}
-@function white($opacity: 1) {
-  @return rgba(255, 255, 255, $opacity);
-}
 
 // Box emboss
 @mixin box-emboss($opacity: 0.75, $opacity2: 0.75) {
@@ -471,36 +411,4 @@
 // Letterpress
 @mixin letterpress($opacity) {
   text-shadow: white($opacity) 0 1px 0;
-}
-
-
-
-// ==== KIPPLE ==== //
-
-// Simple wrapper mixins for Kipple; no need to consider namespace collision in a single project
-
-// Border radius; mainly used to allow for a default site-wide setting
-@mixin border-radius($radius: $d-radius) {
-  @include k-border-radius($radius);
-}
-@mixin center {
-  @include k-center-block;
-}
-@mixin clearfix-above {
-  @include k-clearfix-above;
-}
-@mixin clearfix-below {
-  @include k-clearfix-below;
-}
-@mixin clearfix {
-  @include k-clearfix;
-}
-@mixin ghost {
-  @include k-ghost;
-}
-@mixin hide {
-  @include k-hide-visually;
-}
-@mixin highlight($color: $c-highlight, $radius: $d-radius) {
-  @include k-highlight($color, $radius);
 }

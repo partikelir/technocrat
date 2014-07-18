@@ -13,8 +13,8 @@ if ( !function_exists( 'pendrell_comments_template' ) ) : function pendrell_comm
 if ( !function_exists( 'pendrell_comments_form' ) ) : function pendrell_comments_form() {
 
   if ( pendrell_comments_markdown_enabled() ) {
-    $notes = sprintf( __( '<a href=""><span data-tooltip="%1$s">Markdown</span></a> and <span data-tooltip="%2$s">HTML</span> enabled in comments', 'pendrell' ),
-      'Markdown is awesome!',
+    $notes = sprintf( __( '<a href="https://daringfireball.net/projects/markdown/syntax" target="_blank"><span data-tooltip="%1$s">Markdown</span></a> and <span data-tooltip="%2$s">HTML</span> enabled in comments', 'pendrell' ),
+      __( 'Markdown is a shorthand system of formatting text on the web. Click to find out more!', 'pendrell' ),
       sprintf( __( 'Valid tags and attributes: %s', 'pendrell' ), esc_attr( allowed_tags() ) )
     );
   } else {

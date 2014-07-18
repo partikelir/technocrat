@@ -22,3 +22,35 @@
   position: absolute;
   width: 1px;
 }
+
+
+
+// Positioning mixin; via http://hugogiraudel.com/2013/08/05/offsets-sass-mixin/
+// Usage: @include k-position([absolute|fixed|relative], [top|right|bottom|left] [number]);
+// Example: @include k-position(absolute, top 0 left 20px);
+@mixin k-position($position, $args) {
+  position: $position;
+  $offsets: top right bottom left;
+
+  @each $o in $offsets {
+
+    // If current offset is found in $args assign its index to $i
+    $i: index($args, $o);
+
+    // Is the offset listed in $args? Is the offset value within the list range? Is the offset value valid?
+    @if $i and $i + 1 <= length($args) and type-of( nth($args, $i + 1) ) == number {
+
+      // Assign the value to the current offset; prints "left 2em", "top 20%" etc.
+      #{$o}: nth($args, $i + 1);
+    }
+  }
+}
+@mixin k-absolute($args) {
+  @include k-position(absolute, $args);
+}
+@mixin k-fixed($args) {
+  @include k-position(fixed, $args);
+}
+@mixin k-relative($args) {
+  @include k-position(relative, $args);
+}

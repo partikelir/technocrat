@@ -2,19 +2,19 @@
 
 // Floated list; $space inserts a space between items, $dir specifies the direction of the float
 @mixin k-list-floated($space: false, $direction: left) {
-  @include clearfix;
+  @include k-clearfix;
   list-style-type: none;
   margin: 0;
   padding: 0;
   & > li {
     float: $direction;
     @if $space {
-      margin-#{opposite($direction)}: $space;
+      margin-#{k-opposite($direction)}: $space;
     }
   }
   @if $space {
     & > li:last-of-type {
-      margin-#{opposite($direction)}: 0;
+      margin-#{k-opposite($direction)}: 0;
     }
   }
 }

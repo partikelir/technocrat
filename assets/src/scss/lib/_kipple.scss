@@ -12,11 +12,15 @@
 @import "palette";
 @import "pixels";
 @import "text";
+@import "tooltip";
+@import "triangle";
 @import "wordpress";
 
 
 
 // == MIXINS == //
+
+// @TODO: break these off into their own modules
 
 // Background cover image; pass a URL or relative path wrapped in quotation marks: "http://yoursite.com/image.jpg"
 // Source: http://css-tricks.com/perfect-full-page-background-image/

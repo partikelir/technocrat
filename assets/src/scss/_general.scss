@@ -62,7 +62,7 @@ a {
 
 // Reset-like things with variables or WordPress-specific styling
 abbr {
-  border-bottom: $d-divider;
+  border-bottom: $d-mouseover;
   color: $c-abbr;
   line-height: 0;
   &:hover {
@@ -72,7 +72,7 @@ abbr {
 address {
   @extend %spacer-below;
   font-style: normal; // Italics is sometimes a bit harder to read
-  &::first-line {
+  &:first-line {
     font-weight: 600;
   }
 }
@@ -96,7 +96,7 @@ ins {
   @include highlight($c-ins-bg);
   text-decoration: none;
 }
-hr {
+hr { // @TODO: space out hrs; paragraph tags presently overlap margins
   @extend %clearfix;
   @include rem('margin-bottom', $spacer/2);
   @include rem('margin-top', $spacer/2, 1);
@@ -242,7 +242,7 @@ select {
   @include rem('margin-bottom', $spacer/4);
   border: 1px solid #d2d2d2;
   color: lighten($c-body, 22);
-  cursor:pointer;
+  cursor: pointer;
   display: inline-block;
   font-weight: 400;
   outline: none;

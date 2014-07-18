@@ -60,6 +60,8 @@ $b-full:            $content-width;
 
 // == COLOURS == //
 
+// @TODO: this is getting unusable... migrate this stuff to a better system
+
 // Palette
 $c-white:         white();
 $c-black:         black();
@@ -132,7 +134,7 @@ $c-success:       $c-green;
 $c-archive:       lighten($c-body, 17);
 $c-caption:       lighten($c-body, 37);
 $c-divider:       rgba($c-body, .09);
-$c-interface:     darken($c-body-bg, 17);
+$c-interface:     darken($c-body-bg, 27);
 $c-site-desc:     $c-body;
 $c-site-title:    $c-head;
 $c-small-header:  $c-offset;
@@ -140,8 +142,8 @@ $c-small-print:   lighten($c-body, 23);
 $c-text-box:      lighten($c-body, 7);
 $c-text-box-bg:   darken($c-body-bg, 7);
 $c-text-box-sh:   darken($c-text-box-bg, 3);
-$c-tooltip:       lighten($c-body, 17);
-$c-tooltip-bg:    darken($c-body-bg, 11);
+$c-tooltip:       lighten($c-body, 7);
+$c-tooltip-bg:    $c-yellow;//darken($c-body-bg, 4);
 $c-widget-head:   darken($c-body, 7);
 $c-widget:        lighten($c-body, 23);
 
@@ -149,7 +151,7 @@ $c-widget:        lighten($c-body, 23);
 
 // == DESIGN PATTERNS == //
 
-// Dividing line
+// Divider
 $d-divider:       1px solid $c-divider;
 
 // Glow
@@ -164,6 +166,9 @@ $d-image-spacer:  $spacer;
 
 // Interface border for buttons and submenus
 $d-interface:     1px solid $c-interface;
+
+// Mouseover border bottom
+$d-mouseover:     1px dotted rgba($c-body, .4);
 
 // Border radius default
 $d-radius:        3px;

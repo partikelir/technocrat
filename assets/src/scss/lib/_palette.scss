@@ -1,3 +1,30 @@
 // ==== PALETTE ==== //
 
-// Future home of a nice set of hand-selected colours
+// A few untested mixins and functions via Sacha Greif: http://sachagreif.com/useful-sass-mixins/
+@function black($opacity: 1) {
+  @return rgba(0, 0, 0, $opacity);
+}
+@function white($opacity: 1) {
+  @return rgba(255, 255, 255, $opacity);
+}
+
+// Palette adapted from: http://erskinedesign.com/blog/friendlier-colour-names-sass-maps/
+$palettes: (
+  purple: (
+    base:     rgb(42,40,80)
+  , light:    rgb(51,46,140)
+  , dark:     rgb(40,38,65)
+  ),
+  grey: (
+    base:     grey
+  , light:    lighten(grey, 10%)
+  , dark:     darken(grey, 10%)
+  ),
+  lemon: (
+    base:     #fff9c0
+  )
+);
+
+@function palette($palette, $tone: base) {
+  @return map-get(map-get($palettes, $palette), $tone);
+}
