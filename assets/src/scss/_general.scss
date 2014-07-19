@@ -232,15 +232,15 @@ input[type="color"] {
   border-radius: 0;
 }
 
-// Select dropdown
+// Select dropdown; @TODO: fine-tune this
 select {
   @include border-radius;
-  @include box-shadow(0 1px 2px rgba(64, 64, 64, 0.1));
   @include font-size($s-text-smaller);
   @include gradient-vertical($d-gradient-1, $d-gradient-2);
   @include rem('height', $spacer - $spacer/4);
   @include rem('margin-bottom', $spacer/4);
   border: 1px solid #d2d2d2;
+  box-shadow: 0 1px 2px rgba(64, 64, 64, .1);
   color: lighten($c-body, 22);
   cursor: pointer;
   display: inline-block;

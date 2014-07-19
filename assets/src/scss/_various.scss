@@ -33,7 +33,7 @@
   font-weight: 600;
 }
 .alert-field {
-  @include box-shadow(0 0 6px $c-alert);
+  box-shadow: 0 0 6px rgba($c-alert, .9);
   border: 1px solid $c-alert;
   outline: none;
 }

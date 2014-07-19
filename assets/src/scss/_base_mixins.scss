@@ -2,12 +2,134 @@
 
 // == GENERAL == //
 
-// Box shadows; via Twenty Twelve
-@mixin box-shadow($shadow: $d-shadow) {
-  box-shadow: $shadow;
+// Button styling
+@mixin button {
+  @include border-radius;
+  @include font-button;
+  @include font-size($s-text-smaller, 4);
+  @include gradient-vertical($d-gradient-1, $d-gradient-2);
+  @include rem('padding', 0 $spacer/4);
+  border: $d-interface;
+  box-shadow: 0 1px 2px rgba(64, 64, 64, .1);
+  color: lighten($c-body, 17);
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 400;
+  text-decoration: none;
+  vertical-align: middle;
+  &:hover {
+    @include gradient-vertical(lighten($d-gradient-1, 3), lighten($d-gradient-2, 1));
+    color: lighten($c-body, 13);
+  }
+  &:active {
+    @include gradient-vertical(darken($d-gradient-1, 7), lighten($d-gradient-2, 1));
+    border-color: 1px solid darken($c-body-bg, 8);
+    box-shadow: inset 0 2px 3px 0 #c6c6c6, 0 1px 2px rgba(64, 64, 64, .1);
+    color: lighten($c-body, 37);
+  }
+  &:focus {
+    outline: none; // Blue border is rather distracting
+  }
 }
-@mixin box-shadow-layered($shadow: $d-shadow, $shadow-layered: $d-shadow) {
-  box-shadow: $shadow, $shadow-layered;
+
+
+
+// Button dropdown menu; hover over a button element with an embedded list to select an option
+@mixin dropdown-button($alignment: null) {
+  // Setup variables that change based on alignment
+  $alignment-args: left -1px top 100%; // -1px offset accounts for the border
+  $border-radius: 0 4px 4px 4px;
+  $child-radius: 0 3px 0 0;
+  @if $alignment == right {
+    $alignment-args: right -1px top 100%;
+    $border-radius: 4px 0 4px 4px;
+    $child-radius: 3px 0 0 0;
+  }
+  @include k-dropdown(
+    $dropdown-background: $c-sub-bg linear-gradient(white(.5), white(0)) repeat-x
+  , $dropdown-border-color: $c-interface
+  , $dropdown-border-radius: $border-radius
+  , $dropdown-border-size: 1px
+  , $dropdown-shadow-inside: 0 -2px 3px rgba(64, 64, 64, .08) inset
+  , $dropdown-shadow-outside: 1px 1px 4px black(.08)
+  );
+  @include k-absolute($alignment-args);
+  li {
+    &:first-child > a {
+      border-radius: $child-radius;
+    }
+    display: block;
+    margin: 0;
+    text-align: left;
+    white-space: nowrap;
+    width: 100%;
+    a {
+      color: $c-sub;
+      display: block;
+      &:visited {
+        color: $c-sub;
+      }
+      &:hover {
+        background: darken($c-sub-bg, 13);
+        box-shadow: 0 -2px 4px black(.06) inset;
+        color: $c-sub-h;
+      }
+      &:active,
+      &:focus {
+        color: $c-sub-h;
+      }
+    }
+  }
+}
+
+
+
+// Dropdown menu; for use with the main site navigation menu
+@mixin dropdown-menu($wordpress-menu: true) {
+  @include k-dropdown(
+    $dropdown-background: $c-sub-bg linear-gradient(white(.5), white(0)) repeat-x
+  , $dropdown-border-color: $c-interface
+  , $dropdown-border-radius: $d-radius
+  , $dropdown-border-size: 1px
+  , $dropdown-shadow-inside: 0 -2px 3px rgba(64, 64, 64, .08) inset
+  , $dropdown-shadow-outside: 1px 1px 4px black(.08)
+  );
+  @include font-size($s-sub);
+  li {
+    a {
+      color: $c-sub;
+      &:visited {
+        color: $c-sub;
+      }
+      &:hover {
+        background: darken($c-sub-bg, 13);
+        box-shadow: 0 -2px 4px black(.06) inset;
+        color: $c-sub-h;
+      }
+      &:active,
+      &:focus {
+        color: $c-sub-h;
+      }
+    }
+  }
+  @if $wordpress-menu == true {
+    .current-menu-item,
+    .current-menu-ancestor,
+    .current_page_item,
+    .current_page_ancestor {
+      > a {
+        color: lighten($c-sub, 33);
+        &:visited {
+          color: lighten($c-sub, 33);
+        }
+        &:hover,
+        &:active,
+        &:focus {
+          color: lighten($c-sub-h, 13);
+        }
+      }
+    }
+  }
 }
 
 
@@ -78,8 +200,8 @@
 // Image fallback; a stylized placeholder for images that don't load or are slow to load
 @mixin image-fallback {
   @include border-radius;
-  @include box-shadow(0 0 $spacer*2 black(.1) inset);
   background-color: $c-text-box-bg;
+  box-shadow: 0 0 $spacer*2 black(.1) inset;
   transition: background-color .8s ease-out;
   &:hover {
     background-color: lighten($c-text-box-bg, 3);
@@ -158,10 +280,10 @@
 // Inset box; for use with blockquote, pre, etc.
 @mixin inset-box($color: $c-text-box, $background: $c-text-box-bg, $shadow: $c-text-box-sh) {
   @include border-radius(9px);
-  @include box-shadow-layered(inset 4px 4px 8px $shadow, 1px 1px 4px $shadow);
   @include rem('margin', 0 0 $spacer 0);
   @include rem('padding', $spacer/2 $spacer $spacer/2 $spacer);
   background: rgba($background, .5);
+  box-shadow: inset 4px 4px 8px $shadow, 1px 1px 4px $shadow;
   color: $color;
   text-shadow: 0px 1px $c-body-bg;
 }
@@ -194,7 +316,7 @@
 ) {
   a {
     @if $link-border == true {
-      border-bottom: 1px dotted rgba($link, 0.30);
+      border-bottom: 1px dotted rgba($link, .30);
     }
     @if $link-color == true {
       color: $link;
@@ -202,7 +324,7 @@
     @if not $link-visited == false {
       &:visited {
         @if $link-border == true {
-          border-bottom-color: rgba($link-visited, 0.25);
+          border-bottom-color: rgba($link-visited, .25);
         }
         @if $link-color == true {
           color: $link-visited;
@@ -212,7 +334,7 @@
     @if not $link-hover == false {
       &:hover {
         @if $link-border == true {
-          border-bottom-color: rgba($link-hover, 0.35);
+          border-bottom-color: rgba($link-hover, .35);
           border-bottom-style: solid;
         }
         @if $link-color == true {
@@ -223,7 +345,7 @@
     @if not $link-active == false {
       &:active {
         @if $link-border == true {
-          border-bottom-color: rgba($link-active, 0.40);
+          border-bottom-color: rgba($link-active, .40);
           border-bottom-style: solid;
         }
         @if $link-color == true {
@@ -234,58 +356,10 @@
     @if not $link-focus == false {
       &:focus {
         @if $link-border == true {
-          border-bottom-color: rgba($link-focus, 0.30);
+          border-bottom-color: rgba($link-focus, .30);
         }
         @if $link-color == true {
           color: $link-focus;
-        }
-      }
-    }
-  }
-}
-
-
-
-
-
-@mixin dropdown($wordpress-menu: true) {
-  @include k-dropdown(
-    $dropdown-background: $c-sub-bg linear-gradient( white(.5), white(0) ) repeat-x
-  , $dropdown-border-color: $c-interface
-  );
-  @include box-shadow-layered(2px 2px 4px rgba(64, 64, 64, .09), 0 -2px 3px rgba(64, 64, 64, .08) inset);
-  @include font-size($s-sub);
-  li {
-    a {
-      color: $c-sub;
-      &:visited {
-        color: $c-sub;
-      }
-      &:hover {
-        @include box-shadow(0 -2px 4px rgba(64, 64, 64, .06) inset);
-        background: darken($c-sub-bg, 13);
-        color: $c-sub-h;
-      }
-      &:active,
-      &:focus {
-        color: $c-sub-h;
-      }
-    }
-  }
-  @if $wordpress-menu == true {
-    .current-menu-item,
-    .current-menu-ancestor,
-    .current_page_item,
-    .current_page_ancestor {
-      > a {
-        color: lighten($c-sub, 33);
-        &:visited {
-          color: lighten($c-sub, 33);
-        }
-        &:hover,
-        &:active,
-        &:focus {
-          color: lighten($c-sub-h, 13);
         }
       }
     }
@@ -370,11 +444,11 @@
 // Text input; for use with forms, textarea, etc.
 @mixin text-input($shadow: $c-text-box-sh, $font-size: $s-text-smaller) {
   @include border-radius;
-  @include box-shadow(inset 2px 2px 4px $shadow);
   @include font-size($font-size, 8);
   @include rem('padding', 3px);
   background: darken($c-body-bg, 3);
   border: $d-divider;
+  box-shadow: inset 2px 2px 4px $shadow;
   color: lighten($c-body, 23);
   font-family: inherit;
   &:focus {

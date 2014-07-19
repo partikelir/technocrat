@@ -65,7 +65,7 @@ gulp.task('watch', function() {
     if (err) {
       return console.log(err)
     };
-    gulp.watch('assets/src/scss/*.scss', ['styles']);
+    gulp.watch('assets/src/scss/**/*.scss', ['styles']);
     gulp.watch('assets/src/js/**/*.js', ['plugins', 'scripts']);
     gulp.watch('assets/src/img/**/*', ['images']);
     gulp.watch(build+'**/*.php').on('change', function(file) { plugins.livereload(server).changed(file.path); });

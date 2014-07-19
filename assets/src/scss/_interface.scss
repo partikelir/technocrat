@@ -9,32 +9,7 @@ input[type="submit"],
 input[type="button"],
 input[type="reset"],
 #cancel-comment-reply-link {
-  @include border-radius;
-  @include box-shadow(0 1px 2px rgba(64, 64, 64, .1));
-  @include font-button;
-  @include font-size($s-text-smaller, 4);
-  @include gradient-vertical($d-gradient-1, $d-gradient-2);
-  @include rem('padding', 0 $spacer/4);
-  border: $d-interface;
-  color: lighten($c-body, 17);
-  cursor: pointer;
-  display: inline-block;
-  font-weight: 400;
-  text-decoration: none;
-  vertical-align: middle;
-  &:hover {
-    @include gradient-vertical(lighten($d-gradient-1, 3), lighten($d-gradient-2, 1));
-    color: lighten($c-body, 13);
-  }
-  &:active {
-    @include box-shadow-layered(inset 0 2px 3px 0 #c6c6c6, 0 1px 2px rgba(64, 64, 64, .1));
-    @include gradient-vertical(darken($d-gradient-1, 7), lighten($d-gradient-2, 1));
-    border-color: 1px solid darken($c-body-bg, 8);
-    color: lighten($c-body, 37);
-  }
-  &:focus {
-    outline: none; // Blue border is rather distracting
-  }
+  @include button;
 }
 
 
@@ -42,12 +17,10 @@ input[type="reset"],
 // Site interface: the toolbar/menu at top right
 #site-interface {
   display: block;
-  position: absolute;
-    // Spacing needs to match the spacing in the layout-box mixin in the custom library
-    @include rem('right', $spacer);
-    @include rem('top', $spacer);
+  // Spacing needs to match the spacing in the layout-box mixin in the custom library
+  @include k-absolute(right $spacer top $spacer);
   @include respond-to(medium) {
-      @include rem('right', $spacer*1.5);
+    @include rem('right', $spacer*1.5);
   }
 }
 
@@ -65,47 +38,23 @@ input[type="reset"],
 
 
 
-// Button dropdown menu; to be applied to a button
-.button-dropdown-container {
-  position: relative;
-  &:hover {
-    // @TODO: change button styling
-    @include border-radius(3px 3px 0 0);
-    > ul {
-      opacity: 1;
-      transition: opacity .09s ease-in;
-      visibility: visible;
-    }
-  }
-}
-ul.button-dropdown { // This is in its own class to reduce nested bloating
-  @include border-radius(4px 0 4px 4px);
-  @include dropdown;
-  margin-right: -1px; // Border offset
+// Button dropdown wrapper; apply to a list within a button element; borrows only the essentials from Kipple's k-list-nested mixin
+ul.button-dropdown {
+  @include dropdown-button(right);
   opacity: 0;
-  position: absolute;
-    right: 0;
-    top: 100%;
-  transition: opacity .2s ease-out; // @TODO: fix this, it's not working
+  transition: opacity .3s ease-out, visibility .3s ease-out;
   visibility: hidden;
-  z-index: 999;
-  li {
-    &:first-child a {
-      @include border-radius(3px 0 0 0);
-    }
-    display: block;
-    margin: 0;
-    text-align: left;
-    white-space: nowrap;
-    width: 100%;
-    a {
-      display: block;
-    }
+  button:hover > & {
+    opacity: 1;
+    transition: opacity .09s ease-in, visibility .09s ease-in;
+    visibility: visible;
   }
 }
 
 
 
+// Tooltips are based on the data-tooltip attribute; e.g. <span data-tooltip="This is a tooltip">Hover here!</span>
+.tooltip,
 span[data-tooltip] {
   @include tooltip;
 }

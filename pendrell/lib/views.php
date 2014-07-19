@@ -242,7 +242,7 @@ if ( !function_exists( 'pendrell_view_switch' ) ) : function pendrell_view_switc
     }
 
     // Scaffolding for the dropdown button
-    $output = '<div class="view-options"><button class="button-dropdown-container">View<ul class="button-dropdown">' . $output . '</ul></button></div>' . "\n";
+    $output = '<div class="view-options"><button>View<ul class="button-dropdown">' . $output . '</ul></button></div>' . "\n";
   }
 
   echo $output;

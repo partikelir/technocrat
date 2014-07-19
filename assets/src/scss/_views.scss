@@ -3,6 +3,12 @@
 .view-options {
   @extend %button-container;
   display: none;
+  button {
+    position: relative;
+    &:hover {
+      border-radius: 3px 3px 0 0;
+    }
+  }
   @include respond-to(medium) {
     display: inline-block;
   }

@@ -35,7 +35,7 @@
     position: absolute;
       left: 0;
       top: 100%;
-    transition: opacity .2s ease-out;
+    transition: opacity .3s ease-out, visibility .3s ease-out;
     visibility: hidden;
     z-index: 999;
 
@@ -59,7 +59,7 @@
   // Show submenus on hover
   li:hover > ul {
     opacity: 1;
-    transition: opacity .09s ease-in;
+    transition: opacity .09s ease-in, visibility .09s ease-in;
     visibility: visible;
   }
 

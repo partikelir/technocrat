@@ -73,7 +73,7 @@
 
       // All submenus
       ul {
-        @include dropdown;
+        @include dropdown-menu;
       }
     }
   }
