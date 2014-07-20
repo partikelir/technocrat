@@ -9,14 +9,14 @@
 }
 .author-avatar {
   display: none; // Only display author avatar on larger screens
-  img {
-    @include border-radius;
-  }
   @include respond-to(medium) {
     @include rem('margin', 0 0 0 $spacer/2);
     display: block;
     float: right;
     line-height: 0; // Keeps the container snug around the avatar image
+  }
+  img {
+    @include border-radius;
   }
 }
 .author-description {

@@ -9,14 +9,6 @@
     font-weight: 300;
     white-space: nowrap;
   }
-  .current-menu-item,
-  .current-menu-ancestor,
-  .current_page_item,
-  .current_page_ancestor {
-    > a {
-      // Current item styles go here
-    }
-  }
   @include k-media-below($b-medium) {
     > li:hover > ul {
       @include hide; // Don't bother displaying submenus on small screens
@@ -30,11 +22,19 @@
 .menu-header {
   @include font-size($s-menu-header-sm);
   @include k-list-nested;
+
+  // Toggle display with mobile-friendly menu button
   display: none;
+  &.toggled {
+    display: block;
+  }
+
+  // Link styling
   a:hover {
     color: $c-highlight;
   }
-  // Immediate children
+
+  // Immediate children link styling
   > .current-menu-item,
   > .current-menu-ancestor,
   > .current_page_item,
@@ -46,34 +46,39 @@
       }
     }
   }
-  &.toggled {
-    display: block;
+
+  // Submenu styling; placed here to avoid unnecessary nesting
+  > li {
+
+    // Styling specific to the first submenu
+    > ul {
+      display: none; // Only display submenus on larger screens
+      margin-top: -$spacer/4; // Breaks vertical rhythm but gives a more natural look
+      > li:first-child > a {
+        @include triangle; // Pseudo triangle on first submenu only
+        border-color: $c-interface;
+        &:hover {
+          border-color: darken($c-sub-bg, 13); // Must match value below
+        }
+      }
+    }
+
+    // Styling for all submenus
+    ul {
+      @include dropdown-menu;
+    }
   }
+
+  // Media query to enable all menu features on larger screens
   @include respond-to(medium) {
     @include font-size($s-menu-header);
     border-bottom: $d-divider; // Border for the whole menu
     display: block;
     width: 100%;
-
-    // Primary menu items
     > li {
       @include rem('padding-bottom', $spacer/2, 1); // Padding list items rather than the whole list so submenus display properly
-
-      // Styling specific to the first submenu
       > ul {
-        margin-top: -$spacer/4; // Breaks vertical rhythm but gives a more natural look
-        > li:first-child > a {
-          @include triangle; // Pseudo triangle on first submenu only
-          border-color: $c-interface;
-          &:hover {
-            border-color: darken($c-sub-bg, 13); // Must match value below
-          }
-        }
-      }
-
-      // All submenus
-      ul {
-        @include dropdown-menu;
+        display: block;
       }
     }
   }
@@ -83,16 +88,13 @@
 
 // Footer menu
 .menu-footer {
-  @include link-stylist($c-menu-link, $c-menu-link, $c-menu-link-h, $c-menu-link, $c-menu-link, false);
+  @include font-size($s-menu-footer);
+  @include link-stylist($c-menu-link, $c-menu-link, $c-menu-link-h, $c-menu-link, $c-menu-link, $link-border: false);
   @include rem('padding-bottom', $spacer/2);
   @include rem('padding-top', $spacer/2, 1);
   border-top: $d-divider;
-  li {
-    @include font-size($s-menu-footer);
-  }
-  ul {
-    @include hide; // No submenus in the footer
-  }
+
+  // Immediate child link styling
   .current-menu-item,
   .current-menu-ancestor,
   .current_page_item,
@@ -108,5 +110,10 @@
         color: lighten($c-menu-link-h, 17);
       }
     }
+  }
+
+  // No submenus in the footer
+  ul {
+    @include hide;
   }
 }

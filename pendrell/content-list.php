@@ -15,18 +15,21 @@
 		    $title = '',
 		    $align = '',
 		    $url = get_permalink(),
-		    $size = 'thumbnail'
+		    $size = 'thumbnail',
+		    $alt = '',
+		    $rel = '',
+		    $class = ''
 		  ); ?>
 		</div>
 		<div class="entry-content-wrapper">
 			<header class="entry-header">
 				<?php pendrell_entry_title(); ?>
 			</header><!-- .entry-header -->
-			<footer class="entry-meta">
-				<?php pendrell_entry_meta( 'concise' ); ?>
-			</footer><!-- .entry-meta -->
 			<div class="entry-content">
 				<?php the_excerpt(); ?>
 			</div><!-- .entry-content -->
+			<footer class="entry-meta">
+				<?php //pendrell_entry_meta( 'concise' ); ?>
+			</footer><!-- .entry-meta -->
 		</div><!-- .entry-content-wrapper -->
 	</article><!-- #post -->

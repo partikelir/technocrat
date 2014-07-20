@@ -76,20 +76,21 @@
 // @TODO: needs a lot of work; this is merely a prototype
 .list-view {
   .entry-header {
-    @include k-clearfix-reset(below);
+    //@include k-clearfix-reset(below);
   }
-  :not(.no-results) h1.entry-title { // @TODO: make sure only relevant article titles are shrunk
-    @include font-size($s-text-small);
+  .entry-title { // @TODO: make sure only relevant article titles are shrunk
+    @include font-size($s-header-sub);
     margin-bottom: 0;
   }
   article {
+    @include font-size($s-text-small);
     @include rem('margin-bottom', $spacer*2);
   }
   .entry-content-wrapper {
     margin-left: 150px + $spacer;
   }
   .entry-meta {
-    @include k-clearfix-reset(above);
+    //@include k-clearfix-reset(above);
   }
   .last-updated {
     @include hide;

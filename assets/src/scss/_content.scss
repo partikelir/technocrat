@@ -1,22 +1,31 @@
 // ==== CONTENT ==== //
 
-// Entry header
-.entry-header {
-  @extend %clearfix-below;
-  h1,
-  h2,
-  h3 {
-    &.entry-title {
-      @include font-size-fw($s-header-big, $s-header-title);
-      font-weight: 400;
-      .archive &,
-      .search-results & {
-        @include font-size($s-header); // Drop the size of entry titles on archives and in search results
-      }
-      @include full-width($body-class: ".archive", $media-query: large) {
-        @include font-size($s-header-big);
-      }
+// Entry title
+.entry-title {
+  @include font-size($s-header);
+  font-weight: 400;
+  @include respond-to(medium) {
+    @include font-size($s-header-big); // This is the normal title size seen on the homepage
+  }
+
+  // Drop the size of entry titles on archives and in search results
+  .archive &,
+  .search-results & {
+    @include font-size($s-header);
+  }
+
+  // Single post and page views
+  @include respond-to(large) {
+    .page &,
+    .single & {
+      @include font-size($s-header-title);
+      font-weight: 300;
     }
+  }
+
+  // Boost the font size for full-width archives
+  @include full-width($media: large, $body-class: ".archive") {
+    @include font-size($s-header-big);
   }
 }
 
@@ -110,7 +119,7 @@
     @extend %small-headers;
   }
   td {
-    @include font-size-fw($s-text-smaller, $s-text, 1);
+    @include font-size($s-text-smaller, 1);
     border-top: $d-divider;
   }
 
@@ -184,7 +193,7 @@
   }
 
   // Full-width styling
-  @include full-width($media-query: large) {
+  @include full-width($media: large) {
     @include font-size($s-text-big);
     color: darken($c-body, 7); // Darken content as much of it will be a thinner weight
 
@@ -219,6 +228,10 @@
     .footnotes,
     .references {
       @include font-size($s-text);
+    }
+
+    td {
+      @include font-size($s-text, 1);
     }
 
     // Restore the sub/superscript reset
