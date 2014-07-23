@@ -27,7 +27,7 @@ article.format-status {
 article.format-status {
   .entry-content {
     @include font-size($s-text-big);
-    font-weight: 300;
+    font-weight: $w-light;
   }
 }
 

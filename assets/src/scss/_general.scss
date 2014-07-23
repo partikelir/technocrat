@@ -11,6 +11,7 @@ body {
   color: $c-body;
   background-color: $c-body-bg;
   font-family: $f-body;
+  font-weight: $w-light;
   text-rendering: optimizeLegibility;
 }
 
@@ -73,19 +74,19 @@ address {
   @extend %spacer-below;
   font-style: normal; // Italics is sometimes a bit harder to read
   &:first-line {
-    font-weight: 600;
+    font-weight: $w-bold;
   }
 }
 b,
 strong {
-  font-weight: 600;
+  font-weight: $w-bold;
 }
 cite,
 em,
 i {
   font-style: italic;
 }
-// s and strike are both deprecated but still in use in some places; let's style them the same way we style del
+// Both s and strike are deprecated but still in use in some places; let's style them the same way we style del
 del,
 s,
 strike {
@@ -137,7 +138,7 @@ q {
 pre {
   @include font-size($s-text-small);
   @include inset-box;
-  //@include rem('padding', $spacer/2 $spacer); // Important: needs to follow inset-box mixin
+  //@include rem('padding', $spacer/2 $spacer); // Important: needs to follow inset-box mixin; @TODO: check if this is necessary any more
   color: $c-pre;
   tab-size: 2;
   white-space: pre;
@@ -162,12 +163,12 @@ code {
     @include highlight(rgba($c-code-bg, .33));
     color: $c-code;
     font-size: 80%; // Hack for fixing oversized monospace fonts
-    //line-height: 0; // This might be unnecessary
+    //line-height: 0; // @TODO: check if this is still necessary
   }
 }
 a code {
   color: $c-link;
-  //line-height: 0; // This might be unnecessary
+  //line-height: 0; // @TODO: check if this is still necessary
 }
 
 
@@ -182,7 +183,7 @@ dl {
 dl {
   list-style: none;
   dt {
-    font-weight: 600;
+    font-weight: $w-bold;
   }
 }
 
@@ -192,11 +193,11 @@ dl {
 caption,
 td,
 th {
-  font-weight: normal;
+  font-weight: $w-normal;
   text-align: left;
 }
 th {
-  font-weight: 600;
+  font-weight: $w-bold;
 }
 
 
@@ -244,7 +245,7 @@ select {
   color: lighten($c-body, 22);
   cursor: pointer;
   display: inline-block;
-  font-weight: 400;
+  font-weight: $w-normal;
   outline: none;
 }
 

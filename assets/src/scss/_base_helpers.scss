@@ -25,7 +25,7 @@
 %small-headers {
   @include font-size($s-header-small);
   font-family: $f-head;
-  font-weight: 600;
+  font-weight: $w-bold;
   text-transform: uppercase;
 }
 

@@ -16,7 +16,6 @@
 }
 .widget {
   @extend %spacer-below;
-  hyphens: auto;
   word-wrap: break-word;
   p,
   li,

@@ -3,7 +3,7 @@
 // Entry title
 .entry-title {
   @include font-size($s-header);
-  font-weight: 400;
+  font-weight: $w-normal;
   @include respond-to(medium) {
     @include font-size($s-header-big); // This is the normal title size seen on the homepage
   }
@@ -19,7 +19,7 @@
     .page &,
     .single & {
       @include font-size($s-header-title);
-      font-weight: 300;
+      font-weight: $w-light;
     }
   }
 
@@ -151,7 +151,7 @@
     @include font-size($s-text-big);
     @include inset-box;
     @include k-reverse-italics;
-    font-weight: 300;
+    font-weight: $w-light;
     p {
       &:last-child {
         margin: 0;
@@ -209,13 +209,13 @@
     dl,
     ol,
     ul {
-      font-weight: 300;
+      font-weight: $w-light;
     }
     address,
     b,
     dt,
     strong {
-      font-weight: 500;
+      font-weight: $w-bold;
     }
 
     // These are all usually $s-text-small; kick it up a notch

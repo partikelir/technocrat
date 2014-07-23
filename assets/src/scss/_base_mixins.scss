@@ -14,7 +14,7 @@
   color: lighten($c-body, 17);
   cursor: pointer;
   display: inline-block;
-  font-weight: 400;
+  font-weight: $w-normal;
   text-decoration: none;
   vertical-align: middle;
   &:hover {
@@ -140,7 +140,7 @@
 }
 @mixin font-header {
   font-family: $f-head;
-  font-weight: 300;
+  font-weight: $w-light;
 }
 
 

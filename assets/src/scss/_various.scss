@@ -30,7 +30,7 @@
 // Form entry
 .alert {
   color: $c-alert;
-  font-weight: 600;
+  font-weight: $w-bold;
 }
 .alert-field {
   box-shadow: 0 0 6px rgba($c-alert, .9);

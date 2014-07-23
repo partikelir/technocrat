@@ -75,9 +75,6 @@
 
 // @TODO: needs a lot of work; this is merely a prototype
 .list-view {
-  .entry-header {
-    //@include k-clearfix-reset(below);
-  }
   .entry-title { // @TODO: make sure only relevant article titles are shrunk
     @include font-size($s-header-sub);
     margin-bottom: 0;
@@ -88,9 +85,6 @@
   }
   .entry-content-wrapper {
     margin-left: 150px + $spacer;
-  }
-  .entry-meta {
-    //@include k-clearfix-reset(above);
   }
   .last-updated {
     @include hide;

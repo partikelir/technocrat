@@ -6,7 +6,7 @@
   margin-bottom: 0;
   li {
     @include font-header;
-    font-weight: 300;
+    font-weight: $w-light;
     white-space: nowrap;
   }
   @include k-media-below($b-medium) {
