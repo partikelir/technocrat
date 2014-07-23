@@ -84,7 +84,7 @@ add_action( 'parse_query', 'pendrell_view_default' );
 if ( !function_exists( 'pendrell_view_pre_get_posts' ) ) : function pendrell_view_pre_get_posts( $query ) {
   if ( pendrell_is_view( 'gallery' ) ) {
     $query->set( 'ignore_sticky_posts', true );
-    $query->set( 'posts_per_page', 15 );
+    $query->set( 'posts_per_page', 18 ); // Best if this is a number divisible by both 2 and 3
   }
 } endif;
 add_action( 'pre_get_posts', 'pendrell_view_pre_get_posts' );
