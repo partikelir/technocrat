@@ -2,8 +2,9 @@
 
 // Abstracted function to test whether the current view is full-width
 if ( !function_exists( 'pendrell_is_full_width' ) ) : function pendrell_is_full_width() {
+
   // Allow other functions to pass the test
-  $full_width_test = apply_filters( 'pendrell_full_width', $full_width_test = false );
+  $full_width_test = (bool) apply_filters( 'pendrell_full_width', $full_width_test = false );
 
   // If we're on a full-width page, attachment, single image post format, or there is no sidebar active let's expand the viewing window
   if (
@@ -22,37 +23,42 @@ if ( !function_exists( 'pendrell_is_full_width' ) ) : function pendrell_is_full_
 
 
 
-// Force certain categories to be full-width; a good example of how to filter the pendrell_is_full_width conditional
-if ( !function_exists( 'pendrell_full_width_cats' ) ) : function pendrell_full_width_cats() {
-  $pendrell_portfolio_cats = array( 'design', 'photography', 'creative' );
+// Force certain categories and tags to be full-width; a good example of how to filter the pendrell_is_full_width conditional
+if ( !function_exists( 'pendrell_full_width_content' ) ) : function pendrell_full_width_content( $full_width_test ) {
+
+  // Return immediately if the test has already been passed
+  if ( $full_width_test === true )
+    return $full_width_test;
+
+  // Test the categories and tags set in functions-config.php
+  global $pendrell_full_width_cats, $pendrell_full_width_tags;
   if (
-    is_category( $pendrell_portfolio_cats )
-    || ( is_singular() && in_category( $pendrell_portfolio_cats ) )
+    is_category( $pendrell_full_width_cats )
+    || ( is_singular() && in_category( $pendrell_full_width_cats ) )
+    || is_tag( $pendrell_full_width_tags )
+    || ( is_singular() && has_tag( $pendrell_full_width_tags ) )
   ) {
     return true;
   } else {
     return false;
   }
 } endif;
-add_filter( 'pendrell_full_width', 'pendrell_full_width_cats' );
+add_filter( 'pendrell_full_width', 'pendrell_full_width_content' );
 
 
 
-// Full-width thumbnails filter; assumes 'large' size images fill the window, which they should
-if ( !function_exists( 'pendrell_fill_width_thumbnail_size' ) ) : function pendrell_full_width_thumbnail_size( $size ) {
+// Full-width image size filter; assumes 'large' size images fill the window, which they should
+if ( !function_exists( 'pendrell_full_width_image_resize' ) ) : function pendrell_full_width_image_resize( $size ) {
   if ( pendrell_is_full_width() ) {
     if ( $size === 'medium' )
       $size = 'large';
   } else {
-    // Try to catch images that are exactly 960 px
-    if ( $size === 'large' || $size === 'full' ) {
+    if ( $size === 'large' || $size === 'full' ) // Try to catch images that are exactly 960 px
       $size = 'medium';
-    }
   }
   return $size;
 } endif;
-add_filter( 'post_thumbnail_size', 'pendrell_full_width_thumbnail_size' );
-add_filter( 'ubik_image_markup_size', 'pendrell_full_width_thumbnail_size' );
+add_filter( 'ubik_image_markup_size', 'pendrell_full_width_image_resize' );
 
 
 

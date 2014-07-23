@@ -1,0 +1,70 @@
+// ==== LISTS ==== //
+
+// Floated list; $space inserts a space between items, $dir specifies the direction of the float
+@mixin k-list-floated($space: false, $direction: left) {
+  @include k-clearfix;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  & > li {
+    float: $direction;
+    @if $space {
+      margin-#{k-opposite($direction)}: $space;
+    }
+  }
+  @if $space {
+    & > li:last-of-type {
+      margin-#{k-opposite($direction)}: 0;
+    }
+  }
+}
+
+
+
+// Nested list in dropdown style; adapted from http://garethcooper.com/2013/05/sass-menu/
+@mixin k-list-nested {
+
+  // Everything is relative
+  & > li {
+    position: relative;
+  }
+
+  // Make primary submenus drop down
+  ul {
+    opacity: 0;
+    position: absolute;
+      left: 0;
+      top: 100%;
+    transition: opacity .3s ease-out, visibility .3s ease-out;
+    visibility: hidden;
+    z-index: 999;
+
+    // Causes list items and links to fill the space
+    li {
+      display: block;
+      margin: 0;
+      width: 100%;
+      a {
+        display: block;
+      }
+    }
+  }
+
+  // Make secondary submenus appear to the right
+  ul ul {
+    left: 100%;
+    top: 0;
+  }
+
+  // Show submenus on hover
+  li:hover > ul {
+    opacity: 1;
+    transition: opacity .09s ease-in, visibility .09s ease-in;
+    visibility: visible;
+  }
+
+  // Don't display menu items nested more than three deep
+  ul ul ul li:hover ul {
+    display: none;
+  }
+}

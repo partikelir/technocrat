@@ -9,16 +9,20 @@
 }
 .aligncenter {
   @extend %clearfix-below;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+  @include center;
+  text-align: center; // Presumably we might be applying this to elements that contain text
+}
+.alignnone {
+  @extend %clearfix;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 
 
-// Clearing helper classes
+// Clearing helper classes; @TODO: verify whether this is used anywhere or just legacy junk
 .clear {
-  @extend %clearfix-below;
+  //@extend %clearfix-below;
 }
 
 
@@ -26,10 +30,10 @@
 // Form entry
 .alert {
   color: $c-alert;
-  font-weight: 600;
+  font-weight: $w-bold;
 }
 .alert-field {
-  @include box-shadow(0 0 6px $c-alert);
+  box-shadow: 0 0 6px rgba($c-alert, .9);
   border: 1px solid $c-alert;
   outline: none;
 }
@@ -44,7 +48,7 @@
 
 // Footnotes; for use with Markdown Extra
 .footnotes {
-  @include font-size($s-text-small);
+  @extend %small-text;
 }
 
 
@@ -57,7 +61,7 @@
     list-style: none;
   }
   li {
-    @include hanging-indent($spacer);
+    @include k-hanging-indent($spacer);
     margin: 0;
   }
 }
@@ -69,7 +73,7 @@
   clip: rect(1px, 1px, 1px, 1px);
   position: absolute !important;
   // @TODO: update and test this component
-  #menu-header &:focus {
+  .menu-header &:focus {
     @include border-radius;
     background: transparent;
     border: 2px solid #333;
@@ -82,20 +86,6 @@
     left: 5px;
     z-index: 100000; // Above WP toolbar
   }
-}
-
-
-
-// Emoticons; should be destroyed
-img.wp-smiley,
-.rsswidget img {
-  border: 0;
-  border-radius: 0;
-  box-shadow: none;
-  display: inline;
-  margin-bottom: 0;
-  margin-top: 0;
-  padding: 0;
 }
 
 

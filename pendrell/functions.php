@@ -3,10 +3,10 @@
 // == CONFIGURATION == //
 
 // Load the configuration file for this theme; all options are set here
-if ( is_readable( trailingslashit( get_stylesheet_directory() ) . '/functions-config.php' ) ) {
-  require_once( trailingslashit( get_stylesheet_directory() ) . '/functions-config.php' );
+if ( is_readable( trailingslashit( get_stylesheet_directory() ) . 'functions-config.php' ) ) {
+  require_once( trailingslashit( get_stylesheet_directory() ) . 'functions-config.php' );
 } else {
-  require_once( trailingslashit( get_stylesheet_directory() ) . '/functions-config-sample.php' );
+  require_once( trailingslashit( get_stylesheet_directory() ) . 'functions-config-sample.php' );
 }
 
 // There should be no need to edit these
@@ -25,20 +25,25 @@ define( 'PENDRELL_THEME_VERSION', '0.10' );
 
 // Pendrell is abstracted into the `pendrell/lib` directory
 if ( is_admin() )
-  require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/admin.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/archive.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/author.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/content.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/feed.php' );
+  require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/admin.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/archive.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/author.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/comments.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/content.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/feed.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/general.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/image.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/image-metadata.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/navigation.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/various.php' );
+
+// Optional modules set in `functions-config.php`
 if ( PENDRELL_MODULE_FULL_WIDTH )
-  require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/full-width.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/general.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/image.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/image-metadata.php' );
+  require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/full-width.php' );
 if ( PENDRELL_MODULE_POST_FORMATS )
-  require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/post-formats.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/navigation.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/various.php' );
+  require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/post-formats.php' );
+if ( PENDRELL_MODULE_VIEWS )
+  require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/views.php' );
 
 
 
@@ -48,7 +53,7 @@ require_once( trailingslashit( get_stylesheet_directory() ) . '/lib/various.php'
 function pendrell_setup() {
 
   // Language loading
-  load_theme_textdomain( 'pendrell', get_template_directory() . '/languages' );
+  load_theme_textdomain( 'pendrell', trailingslashit( get_template_directory() ) . 'languages' );
 
   // Conditionally add post format support
   if ( PENDRELL_MODULE_POST_FORMATS )
@@ -76,9 +81,9 @@ function pendrell_setup() {
   // This variable is mainly used here in functions.php; it should match the variable defined in _base.scss
   $main_width = 624;
 
-  // This theme uses a custom image size for featured images; it isn't really a "thumbnail"
+  // This theme uses a custom image size for featured images; it isn't really a "thumbnail" and it actually differs from the thumbnail image size
   add_theme_support( 'post-thumbnails' );
-  set_post_thumbnail_size( $main_width, 9999 );
+  set_post_thumbnail_size( $main_width, $main_width );
 
   // Add a few additional image sizes for various other purposes
   add_image_size( 'third', $content_width/3, 9999 );
@@ -88,7 +93,10 @@ function pendrell_setup() {
   add_image_size( 'medium-square', $main_width, $main_width, true );
   add_image_size( 'large-square', $content_width, $content_width, true );
 
-  // Forcing medium and large sizes to match $content_width and $site_width
+  // Forcing medium and large sizes to match $content_width and $site_width; explicitly setting thumbnail image size
+  update_option( 'thumbnail_size_w', 150 );
+  update_option( 'thumbnail_size_h', 150 );
+  update_option( 'thumbnail_crop', 1 );
   update_option( 'medium_size_w', $main_width );
   update_option( 'medium_size_h', 9999 );
   update_option( 'large_size_w', $content_width );

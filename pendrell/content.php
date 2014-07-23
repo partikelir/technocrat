@@ -6,18 +6,12 @@
  */
 ?>
 
-	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> role="article">
 		<header class="entry-header">
-			<h1 class="entry-title">
-				<?php pendrell_entry_title(); ?>
-			</h1>
+			<?php pendrell_entry_title(); ?>
 		</header><!-- .entry-header -->
 		<div class="entry-content">
-			<?php if ( is_search() ) {
-				the_excerpt();
-			} else {
-				the_content();
-			} ?>
+			<?php the_content(); ?>
 			<?php pendrell_link_pages(); ?>
 		</div><!-- .entry-content -->
 		<footer class="entry-meta">

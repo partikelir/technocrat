@@ -40,10 +40,11 @@ $f-mono: $courier;
 
 // == LAYOUT == //
 
-$spacer: $baseline+0px; // Typically used in conjunction with the rem mixin
-$content-width: 960px;
-$main-width: 624px;
-$sidebar-width: ($content-width - $main-width) - ($spacer * 2);
+$content-width:     960px;
+$main-width:        624px;
+$spacer:            $baseline+0px; // Typically used in conjunction with the rem mixin
+$sidebar-width:     ($content-width - $main-width) - ($spacer * 2);
+$full-width:        false; // Toggle for full-width styles; set to true if the theme uses functionality contained in full-width.php
 
 
 
@@ -145,8 +146,8 @@ $d-divider: 1px solid $c-divider;
 $d-image-spacer: $spacer/2;
 
 // Gradients
-$d-gradient-begin: #f4f4f4;
-$d-gradient-end: #e6e6e6;
+$d-gradient-1: #f4f4f4;
+$d-gradient-2: #e6e6e6;
 
 // Border radius
 $d-radius: 3px;
@@ -155,7 +156,7 @@ $d-radius: 3px;
 $d-shadow: 0 1px 4px rgba($c-black, .2);
 
 // Glow
-$glow: 0px 0px 5px $c-highlight;
+$d-glow: 0px 0px 5px $c-highlight;
 
 
 

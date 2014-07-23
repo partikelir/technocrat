@@ -1,75 +1,301 @@
 // ==== MIXINS ==== //
 
-// Load the theme-agnostic functions and mixins library; the rest of these mixins are specific to this theme
-@import "base_library";
-
-
-
 // == GENERAL == //
 
-// Border radius; mainly used to allow for a default site-wide setting; via Twenty Twelver
-@mixin border-radius($radius: $d-radius) {
-  border-radius: $radius;
+// Button styling
+@mixin button {
+  @include border-radius;
+  @include font-button;
+  @include font-size($s-text-smaller, 4);
+  @include gradient-vertical($d-gradient-1, $d-gradient-2);
+  @include rem('padding', 0 $spacer/4);
+  border: $d-interface;
+  box-shadow: 0 1px 2px rgba(64, 64, 64, .1);
+  color: lighten($c-body, 17);
+  cursor: pointer;
+  display: inline-block;
+  font-weight: $w-normal;
+  text-decoration: none;
+  vertical-align: middle;
+  &:hover {
+    @include gradient-vertical(lighten($d-gradient-1, 3), lighten($d-gradient-2, 1));
+    color: lighten($c-body, 13);
+  }
+  &:active {
+    @include gradient-vertical(darken($d-gradient-1, 7), lighten($d-gradient-2, 1));
+    border-color: 1px solid darken($c-body-bg, 8);
+    box-shadow: inset 0 2px 3px 0 #c6c6c6, 0 1px 2px rgba(64, 64, 64, .1);
+    color: lighten($c-body, 37);
+  }
+  &:focus {
+    outline: none; // Blue border is rather distracting
+  }
 }
 
-// Box shadows; via Twenty Twelver
-@mixin box-shadow($shadow: $d-shadow ) {
-  box-shadow: $shadow;
-}
-@mixin box-shadow-layered($shadow: $d-shadow, $shadow-layered: $d-shadow ) {
-  box-shadow: $shadow, $shadow-layered;
+
+
+// Button dropdown menu; hover over a button element with an embedded list to select an option
+@mixin dropdown-button($alignment: null) {
+  // Setup variables that change based on alignment
+  $alignment-args: left -1px top 100%; // -1px offset accounts for the border
+  $border-radius: 0 4px 4px 4px;
+  $child-radius: 0 3px 0 0;
+  @if $alignment == right {
+    $alignment-args: right -1px top 100%;
+    $border-radius: 4px 0 4px 4px;
+    $child-radius: 3px 0 0 0;
+  }
+  @include k-dropdown(
+    $dropdown-background: $c-sub-bg linear-gradient(white(.5), white(0)) repeat-x
+  , $dropdown-border-color: $c-interface
+  , $dropdown-border-radius: $border-radius
+  , $dropdown-border-size: 1px
+  , $dropdown-shadow-inside: 0 -2px 3px rgba(64, 64, 64, .08) inset
+  , $dropdown-shadow-outside: 1px 1px 4px black(.08)
+  );
+  @include k-absolute($alignment-args);
+  li {
+    &:first-child > a {
+      border-radius: $child-radius;
+    }
+    display: block;
+    margin: 0;
+    text-align: left;
+    white-space: nowrap;
+    width: 100%;
+    a {
+      color: $c-sub;
+      display: block;
+      &:visited {
+        color: $c-sub;
+      }
+      &:hover {
+        background: darken($c-sub-bg, 13);
+        box-shadow: 0 -2px 4px black(.06) inset;
+        color: $c-sub-h;
+      }
+      &:active,
+      &:focus {
+        color: $c-sub-h;
+      }
+    }
+  }
 }
 
-// Header font style
-@mixin font-header() {
+
+
+// Dropdown menu; for use with the main site navigation menu
+@mixin dropdown-menu($wordpress-menu: true) {
+  @include k-dropdown(
+    $dropdown-background: $c-sub-bg linear-gradient(white(.5), white(0)) repeat-x
+  , $dropdown-border-color: $c-interface
+  , $dropdown-border-radius: $d-radius
+  , $dropdown-border-size: 1px
+  , $dropdown-shadow-inside: 0 -2px 3px rgba(64, 64, 64, .08) inset
+  , $dropdown-shadow-outside: 1px 1px 4px black(.08)
+  );
+  @include font-size($s-sub);
+  li {
+    a {
+      color: $c-sub;
+      &:visited {
+        color: $c-sub;
+      }
+      &:hover {
+        background: darken($c-sub-bg, 13);
+        box-shadow: 0 -2px 4px black(.06) inset;
+        color: $c-sub-h;
+      }
+      &:active,
+      &:focus {
+        color: $c-sub-h;
+      }
+    }
+  }
+  @if $wordpress-menu == true {
+    .current-menu-item,
+    .current-menu-ancestor,
+    .current_page_item,
+    .current_page_ancestor {
+      > a {
+        color: lighten($c-sub, 33);
+        &:visited {
+          color: lighten($c-sub, 33);
+        }
+        &:hover,
+        &:active,
+        &:focus {
+          color: lighten($c-sub-h, 13);
+        }
+      }
+    }
+  }
+}
+
+
+
+// Various font styles
+@mixin font-button {
+  @include font-header;
+}
+@mixin font-header {
   font-family: $f-head;
-  font-weight: 300;
+  font-weight: $w-light;
 }
+
+
+
+// Font size mixin; $size (integer): pixel value of desired font size; $offset (integer); pixel value offset to account for borders and other things that disrupt line-height
+@mixin font-size($size: $s-text, $offset: 0) {
+  @include rem('font-size', $size+0px);
+  $buffer: 1; // Buffer for font sizes larger than the baseline; simply doubles or triples baseline size as needed
+  @if $size >= $baseline * 2 { $buffer: 3; }
+  @elseif $size >= $baseline { $buffer: 2; }
+  line-height: ( ( ($baseline - $offset) * $buffer) / $size );
+}
+
+
+
+// Full-width mixin; just a shortcut for wrapping content using the optional full-width functionality
+// Optionally wrap content in a media query by setting $media
+@mixin full-width($media: null, $body-class: null) {
+  @if $full-width == true {
+    .full-width#{$body-class} & {
+      @if $media != null {
+        @include respond-to($media) {
+          @content;
+        }
+      } @else {
+        @content;
+      }
+    }
+  }
+}
+
+
 
 // Gradients; via Twenty Twelve
-@mixin gradient-horizontal ($begin: $d-gradient-begin, $end: $d-gradient-end) {
+@mixin gradient-horizontal($begin: $d-gradient-1, $end: $d-gradient-2) {
   background-color: $end;
   background-image: linear-gradient(left, $begin, $end);
   background-repeat: repeat-x;
 }
-@mixin gradient-vertical ($begin: $d-gradient-begin, $end: $d-gradient-end) {
+@mixin gradient-vertical($begin: $d-gradient-1, $end: $d-gradient-2) {
   background-color: $end;
   background-image: linear-gradient(top, $begin, $end);
   background-repeat: repeat-x;
 }
 
-// Highlights text; used with ins and mark tags
-@mixin highlight($color: $c-highlight) {
+
+
+// Image fallback; a stylized placeholder for images that don't load or are slow to load
+@mixin image-fallback {
   @include border-radius;
-  background: rgba($color, .5);
-  border: 1px solid darken($color, 7);
-  display: inline;
-  padding: 0.08em 0.25em 0.08em 0.25em; // Padding should be proportionate, not rooted to rems
+  background-color: $c-text-box-bg;
+  box-shadow: 0 0 $spacer*2 black(.1) inset;
+  transition: background-color .8s ease-out;
+  &:hover {
+    background-color: lighten($c-text-box-bg, 3);
+    transition: background-color .5s ease-in-out;
+  }
 }
+
+
+
+// Image overlay; used in gallery and thumbnail overlays
+@mixin image-overlay($overlay: ".wp-caption", $style: "title") {
+  @include border-radius;
+  overflow: hidden;
+  position: relative;
+  img {
+    backface-visibility: hidden; // Prevents flicker
+    transition: all .5s ease-out; // Can't transition: filter for some reason
+    width: 100%;
+  }
+  #{$overlay} {
+    @include font-size($s-text-small);
+    @if $style == "caption" {
+      text-align: left;
+      text-shadow: 0px 1px 2px black(.8);
+    }
+    @if $style == "title" {
+      @include respond-to(large) {
+        @include font-header;
+        @include font-size($s-text-big);
+        text-shadow: 2px 2px 5px black(.6);
+      }
+      text-align: center;
+      text-shadow: 0px 1px 2px black(.8);
+    }
+    @include border-radius(0 0 $d-radius $d-radius);
+    @include k-regular-italics;
+    @include rem('padding', $spacer/4 $spacer/4);
+    background-image: linear-gradient(black(0), black(.8));
+    background-repeat: repeat-x;
+    box-sizing: border-box;
+    color: $c-white;
+    line-height: 1.25; // No need for vertical rhythm here!
+    margin: 0;
+    max-height: 100%;
+    opacity: 0;
+    position: absolute;
+      bottom: 0;
+      left: 0;
+    transition: opacity .8s ease-out;
+    width: 100%;
+    &:before {
+      content: "";
+      height: 100%;
+      min-height: $spacer;
+      position: absolute;
+        left: 0;
+        top: 0;
+      width: 100%;
+    }
+  }
+  &:hover {
+    cursor: pointer;
+    img {
+      filter: brightness(70%) grayscale(100%);
+      transition: all .3s ease-in;
+    }
+    #{$overlay} {
+      opacity: 1;
+      transition: opacity .5s ease;
+    }
+  }
+}
+
+
 
 // Inset box; for use with blockquote, pre, etc.
 @mixin inset-box($color: $c-text-box, $background: $c-text-box-bg, $shadow: $c-text-box-sh) {
-  @include border-radius(12px);
-  @include box-shadow-layered(inset 4px 4px 8px $shadow, 1px 1px 4px $shadow);
+  @include border-radius(9px);
   @include rem('margin', 0 0 $spacer 0);
-  @include rem('padding', $spacer $spacer 0);
+  @include rem('padding', $spacer/2 $spacer $spacer/2 $spacer);
   background: rgba($background, .5);
+  box-shadow: inset 4px 4px 8px $shadow, 1px 1px 4px $shadow;
   color: $color;
   text-shadow: 0px 1px $c-body-bg;
 }
+
+
 
 // Layout box; pads and centers the header, content area, and footer
 @mixin layout-box {
   @include rem('padding-left', $spacer);
   @include rem('padding-right', $spacer);
-  @media screen and (min-width: $break-medium) {
-    @include center-block($content-width);
+  @include respond-to(medium) {
+    @include k-center-block($content-width);
     @include rem('padding-left', $spacer*1.5);
     @include rem('padding-right', $spacer*1.5);
   }
 }
 
+
+
 // Link stylist; pass 'false' to disable styling for any of these
+// @TODO: group same values
 @mixin link-stylist(
   $link: $c-link,
   $link-visited: $c-link-v,
@@ -81,7 +307,7 @@
 ) {
   a {
     @if $link-border == true {
-      border-bottom: 1px dotted rgba($link, 0.30);
+      border-bottom: 1px dotted rgba($link, .30);
     }
     @if $link-color == true {
       color: $link;
@@ -89,7 +315,7 @@
     @if not $link-visited == false {
       &:visited {
         @if $link-border == true {
-          border-bottom-color: rgba($link-visited, 0.25);
+          border-bottom-color: rgba($link-visited, .25);
         }
         @if $link-color == true {
           color: $link-visited;
@@ -99,7 +325,7 @@
     @if not $link-hover == false {
       &:hover {
         @if $link-border == true {
-          border-bottom-color: rgba($link-hover, 0.35);
+          border-bottom-color: rgba($link-hover, .35);
           border-bottom-style: solid;
         }
         @if $link-color == true {
@@ -110,7 +336,7 @@
     @if not $link-active == false {
       &:active {
         @if $link-border == true {
-          border-bottom-color: rgba($link-active, 0.40);
+          border-bottom-color: rgba($link-active, .40);
           border-bottom-style: solid;
         }
         @if $link-color == true {
@@ -121,7 +347,7 @@
     @if not $link-focus == false {
       &:focus {
         @if $link-border == true {
-          border-bottom-color: rgba($link-focus, 0.30);
+          border-bottom-color: rgba($link-focus, .30);
         }
         @if $link-color == true {
           color: $link-focus;
@@ -131,44 +357,11 @@
   }
 }
 
-// Small print
-@mixin small-print($font-size: $s-text-small) {
-  @include font-size($font-size);
-  color: $c-small-print;
-}
-
-// Text input; for use with forms, textarea, etc.
-@mixin text-input($shadow: $c-text-box-sh, $font-size: $s-text-smaller) {
-  @include border-radius;
-  @include box-shadow(inset 2px 2px 4px $shadow);
-  @include font-size($font-size, 8);
-  @include rem('padding', 3px);
-  background: darken($c-body-bg, 3);
-  border: $d-divider;
-  color: lighten($c-body, 23);
-  font-family: inherit;
-  &:focus {
-    color: $c-body;
-    background-color: darken($c-body-bg, 7);
-  }
-}
 
 
-
-// == DEVELOPMENT == //
-
-// These mixins need some work
-
-// @TODO: breakpoints
-
-// Rem generator; via Twenty Twelve
-//
-// Baseline, measured in pixels
-// The value should be the same as the font-size value for the html element
-// If the html element's font-size is set to 62.5% (of the browser's default font-size of 16px),
-// then the variable below would be 10px.
-
+// Rem generator via Twenty Twelve; specify property, pixel values, and optional offset to account for borders and such
 @mixin rem($property, $px-values, $offset: 0) {
+
   // Convert the baseline into rems
   $baseline-rem: $base+0px / 1rem;
 
@@ -182,31 +375,91 @@
 
   // If there is only one (numeric) value, return the property/value line for it.
   @if type-of($px-values) == "number" {
-    #{$property}: $px-values / $baseline-rem; }
+    #{$property}: $px-values / $baseline-rem;
+  }
 
   // Create an empty list that we can dump values into
   @else {
     $rem-values: unquote("");
     @each $value in $px-values {
-
       // If the value is zero, return 0
       @if $value == 0 {
-        $rem-values: append($rem-values, $value); }
+        $rem-values: append($rem-values, $value);
+      }
       @else {
-        $rem-values: append($rem-values, $value / $baseline-rem); } }
-
+        $rem-values: append($rem-values, $value / $baseline-rem);
+      }
+    }
     // Return the property and its list of converted values
-    #{$property}: $rem-values; } }
+    #{$property}: $rem-values;
+  }
+  // @TODO: investigate the extra space in the output e.g.:
+  //margin: 0 30px 30px;
+  //margin:  0 1.875rem 1.875rem;
+}
 
-// Font size mixin
-// $size (integer): pixel value of desired font size
-// $offset (integer); pixel value used in instances where there is a border mucking up the line-height
-@mixin font-size($size: $s-text, $offset: 0) {
-  @include rem('font-size', $size+0px);
 
-  // Buffer for font sizes larger than the baseline
-  $buffer: 1;
-  @if $size >= $baseline * 2 { $buffer: 3; }
-  @elseif $size >= $baseline { $buffer: 2; }
-  line-height: ( ( ($baseline - $offset) * $buffer) / $size );
+
+// Media query breakpoints mixin; adapted from http://thesassway.com/intermediate/responsive-web-design-in-sass-using-media-queries-in-sass-32
+@mixin respond-to($media) {
+  @if ($media == small) or ($media == mobile) {
+    @include k-media-below($b-small) { @content; }
+  }
+  @else if ($media == small-medium) {
+    @include k-media-between($b-small, $b-medium - 1) { @content; }
+  }
+  @else if ($media == medium) {
+    @include k-media-above($b-medium) { @content; }
+  }
+  @else if ($media == medium-large) {
+    @include k-media-between($b-medium, $b-large - 1) { @content; }
+  }
+  @else if ($media == large) or ($media == single-column) {
+    @include k-media-above($b-large) { @content; }
+  }
+  @else if ($media == full) {
+    @include k-media-above($b-full) { @content; }
+  }
+}
+
+
+
+// Small print
+@mixin small-print($font-size: $s-text-small) {
+  @include font-size($font-size);
+  color: $c-small-print;
+}
+
+
+
+// Text input; for use with forms, textarea, etc.
+@mixin text-input($shadow: $c-text-box-sh, $font-size: $s-text-smaller) {
+  @include border-radius;
+  @include font-size($font-size, 8);
+  @include rem('padding', 3px);
+  background: darken($c-body-bg, 3);
+  border: $d-divider;
+  box-shadow: inset 2px 2px 4px $shadow;
+  color: lighten($c-body, 23);
+  font-family: inherit;
+  &:focus {
+    color: $c-body;
+    background-color: darken($c-body-bg, 7);
+  }
+}
+
+
+
+// == DEVELOPMENT == //
+
+// A few untested mixins and functions via Sacha Greif: http://sachagreif.com/useful-sass-mixins/
+
+// Box emboss
+@mixin box-emboss($opacity: 0.75, $opacity2: 0.75) {
+  box-shadow: white($opacity) 0 1px 0, inset black($opacity2) 0 1px 0;
+}
+
+// Letterpress
+@mixin letterpress($opacity) {
+  text-shadow: white($opacity) 0 1px 0;
 }

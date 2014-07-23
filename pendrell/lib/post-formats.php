@@ -1,24 +1,31 @@
 <?php // ==== POST FORMATS ==== //
 
+// Sidebar filter; removes sidebar for certain post formats
+if ( !function_exists( 'pendrell_post_formats_sidebar' ) ) : function pendrell_post_formats_sidebar( $sidebar ) {
+  if ( ( is_singular() && has_post_format( array( 'aside', 'gallery', 'image', 'link', 'quote', 'status' ) ) ) )
+    $sidebar = false;
+  return $sidebar;
+} endif;
+add_filter( 'pendrell_sidebar', 'pendrell_post_formats_sidebar' );
+
+
+
 // == LINKS == //
 
 // Get quotation metadata; assumes WP Post Formats or equivalent is in use
-if ( !function_exists( 'pendrell_link_metadata' ) ) : function pendrell_link_metadata( $content ) {
+if ( !function_exists( 'pendrell_link_metadata' ) ) : function pendrell_link_metadata() {
 
 	if ( !has_post_format( 'link' ) )
-		return $content;
+		return;
 
 	global $post;
 
 	$link_url = get_post_meta( get_the_ID(), '_format_link_url', true );
 
-	if ( !empty( $link_url ) ) {
-		$content = '<footer class="entry-link"><a href="' . $link_url . '" rel="bookmark">' . $link_url . '</a></footer>' . $content;
-	}
-	return $content;
-
+	if ( !empty( $link_url ) )
+		echo '<footer class="entry-link"><a href="' . $link_url . '" rel="bookmark">' . $link_url . '</a></footer>';
 } endif;
-add_filter( 'the_content', 'pendrell_link_metadata' );
+add_action( 'pendrell_entry_title_after', 'pendrell_link_metadata' );
 
 
 

@@ -11,6 +11,7 @@ body {
   color: $c-body;
   background-color: $c-body-bg;
   font-family: $f-body;
+  font-weight: $w-light;
   text-rendering: optimizeLegibility;
 }
 
@@ -40,13 +41,13 @@ var {
 a {
   color: $c-link;
   text-decoration: none;
-  transition: color .8s ease-out, text-decoration .8s ease-out;
+  transition: color .8s ease-out, text-decoration .6s ease-out;
   &:visited {
     color: $c-link-v;
   }
   &:hover {
     color: $c-link-h;
-    transition: color .4s ease, text-decoration .4s ease;
+    transition: color .4s ease, text-decoration .2s ease;
   }
   &:active {
     color: $c-link-a;
@@ -62,7 +63,7 @@ a {
 
 // Reset-like things with variables or WordPress-specific styling
 abbr {
-  border-bottom: $d-divider;
+  border-bottom: $d-mouseover;
   color: $c-abbr;
   line-height: 0;
   &:hover {
@@ -72,37 +73,31 @@ abbr {
 address {
   @extend %spacer-below;
   font-style: normal; // Italics is sometimes a bit harder to read
-  &::first-line {
-    font-weight: 600;
+  &:first-line {
+    font-weight: $w-bold;
   }
 }
 b,
 strong {
-  font-weight: 600;
+  font-weight: $w-bold;
 }
 cite,
 em,
 i {
   font-style: italic;
 }
-// s and strike are both deprecated but still in use in some places; let's style them the same way we style del
+// Both s and strike are deprecated but still in use in some places; let's style them the same way we style del
 del,
 s,
 strike {
-  @include ghost;
   color: $c-del;
   text-decoration: line-through;
-  transition: text-decoration .2s ease;
-  -webkit-backface-visibility: hidden;
-  &:hover {
-    text-decoration: none;
-  }
 }
 ins {
   @include highlight($c-ins-bg);
   text-decoration: none;
 }
-hr {
+hr { // @TODO: space out hrs; paragraph tags presently overlap margins
   @extend %clearfix;
   @include rem('margin-bottom', $spacer/2);
   @include rem('margin-top', $spacer/2, 1);
@@ -126,8 +121,25 @@ sup {
 
 
 
-// Pre, code, and monospaced stuff
+// Inline quotations
+q {
+  quotes: none;
+  &:before {
+    content: "\201C";
+  }
+  &:after {
+    content: "\201D";
+  }
+}
+
+
+
+// Pre and code blocks
 pre {
+  @include font-size($s-text-small);
+  @include inset-box;
+  //@include rem('padding', $spacer/2 $spacer); // Important: needs to follow inset-box mixin; @TODO: check if this is necessary any more
+  color: $c-pre;
   tab-size: 2;
   white-space: pre;
   word-wrap: normal; // Allows for horizontal scrollbars
@@ -142,6 +154,22 @@ var {
   line-height: 0; // Fixes vertical rhythm for oversized monospaced fonts
   white-space: pre-wrap;
 }
+code {
+  div > &,
+  em > &,
+  li > &,
+  p > &,
+  strong > & {
+    @include highlight(rgba($c-code-bg, .33));
+    color: $c-code;
+    font-size: 80%; // Hack for fixing oversized monospace fonts
+    //line-height: 0; // @TODO: check if this is still necessary
+  }
+}
+a code {
+  color: $c-link;
+  //line-height: 0; // @TODO: check if this is still necessary
+}
 
 
 
@@ -155,7 +183,7 @@ dl {
 dl {
   list-style: none;
   dt {
-    font-weight: 600;
+    font-weight: $w-bold;
   }
 }
 
@@ -165,11 +193,11 @@ dl {
 caption,
 td,
 th {
-  font-weight: normal;
+  font-weight: $w-normal;
   text-align: left;
 }
 th {
-  font-weight: 600;
+  font-weight: $w-bold;
 }
 
 
@@ -205,19 +233,19 @@ input[type="color"] {
   border-radius: 0;
 }
 
-// Select dropdown
+// Select dropdown; @TODO: fine-tune this
 select {
   @include border-radius;
-  @include box-shadow(0 1px 2px rgba(64, 64, 64, 0.1));
   @include font-size($s-text-smaller);
-  @include gradient-vertical($d-gradient-begin, $d-gradient-end);
+  @include gradient-vertical($d-gradient-1, $d-gradient-2);
   @include rem('height', $spacer - $spacer/4);
   @include rem('margin-bottom', $spacer/4);
   border: 1px solid #d2d2d2;
+  box-shadow: 0 1px 2px rgba(64, 64, 64, .1);
   color: lighten($c-body, 22);
-  cursor:pointer;
+  cursor: pointer;
   display: inline-block;
-  font-weight: 400;
+  font-weight: $w-normal;
   outline: none;
 }
 

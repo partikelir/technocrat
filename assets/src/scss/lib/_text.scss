@@ -1,0 +1,66 @@
+// ==== TEXT ==== //
+
+// Hanging indent; via Scut
+@mixin k-hanging-indent($indent: 1em) {
+  padding-left: $indent;
+  text-indent: -$indent;
+}
+
+
+
+// Highlight text
+@mixin k-highlight($color, $radius) {
+  @include k-border-radius($radius);
+  background: $color;
+  border: 1px solid darken($color, 7);
+  display: inline;
+  padding: 0.08em 0.25em 0.08em 0.25em; // Padding should be proportionate, not rooted to rems
+}
+
+
+
+// For the odd occasion where you need to reset a highlight for some reason
+@mixin k-highlight-reset {
+  background: inherit;
+  border: inherit;
+  border-radius: inherit;
+  display: inherit;
+  padding: inherit;
+}
+
+
+
+// To reverse reverse italics :3
+@mixin k-regular-italics($elements: null) {
+  $element-list: em, cite, i;
+  @each $el in $elements {
+    $element-list: append($element-list, unquote($el), comma)
+  }
+  font-style: normal;
+  #{$element-list} {
+    font-style: italic;
+  }
+}
+
+
+
+// Reverse italics; via Scut
+@mixin k-reverse-italics($elements: null) {
+  $element-list: em, cite, i;
+  @each $el in $elements {
+    $element-list: append($element-list, unquote($el), comma)
+  }
+  font-style: italic;
+  #{$element-list} {
+    font-style: normal;
+  }
+}
+
+
+
+// Truncate text; via http://web-design-weekly.com/2013/05/12/handy-sass-mixins/
+@mixin k-text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

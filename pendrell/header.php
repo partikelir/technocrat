@@ -27,14 +27,15 @@
 				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 				<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
 			</div><!-- .site-branding -->
-
-			<nav id="site-navigation" class="inline-menu" role="navigation">
-				<button class="menu-toggle"><?php _e( 'Menu', 'pendrell' ); ?></button>
-				<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'pendrell' ); ?></a>
-				<?php wp_nav_menu( array( 'theme_location' => 'header', 'menu_class' => 'menu-header' ) ); ?>
+			<div id="site-interface">
+				<button id="responsive-menu-toggle" role="button"><?php _e( 'Menu', 'pendrell' ); ?></button>
+				<span class="button"><a href="#content" class="skip-link screen-reader-text" role="button"><?php _e( 'Skip to content', 'pendrell' ); ?></a></span>
+			</div><!-- #site-interface -->
+			<nav id="site-navigation" role="navigation">
+				<?php wp_nav_menu( array( 'theme_location' => 'header', 'menu_class' => 'menu-header inline-menu' ) ); ?>
 			</nav><!-- #site-navigation -->
 		</header><!-- #masthead -->
 	</div><!-- .site-header-wrapper -->
 
 	<div class="site-content-wrapper">
-		<div id="content" class="site-content">
+		<div id="content" class="site-content<?php pendrell_content_class(); ?>">

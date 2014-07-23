@@ -1,21 +1,21 @@
 // ==== WIDGETS ==== //
-.widget-title {
-  @extend %small-headers;
-  color: $c-widget-head;
-}
-.widget-area {
+
+.widget-area { // @TODO: fat footer style for single-column breakpoint
   p,
   li {
     @include link-stylist($link-color: false);
   }
-  @media screen and (min-width: $break-single-column) {
+  @include respond-to(large) {
     float: right;
-    width: percentage( $sidebar-width / $content-width );
+    width: percentage($sidebar-width / $content-width);
   }
+}
+.widget-title {
+  @extend %small-headers;
+  color: $c-widget-head;
 }
 .widget {
   @extend %spacer-below;
-  hyphens: auto;
   word-wrap: break-word;
   p,
   li,
@@ -30,7 +30,7 @@
     @include rem('margin-left', $spacer/2);
   }
   img {
-    @include border-radius();
+    @include border-radius;
     max-width: 100%; // Fluid images for widgets
   }
 }
@@ -47,8 +47,8 @@
   @include rem('margin-bottom', $spacer, 2); // Hack to deal with button alignment issues
   #s {
     width: 150px;
-    @media screen and (min-width: $break-single-column) {
-      width: percentage( 150px / $sidebar-width );
+    @include respond-to(large) {
+      width: percentage(150px / $sidebar-width);
     }
   }
   #searchsubmit {

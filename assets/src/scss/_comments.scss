@@ -3,7 +3,7 @@
 .comments-area {
   max-width: $main-width;
   article {
-    @include rem('margin-bottom', $spacer*2);
+    @include rem('margin-bottom', $spacer*1.5);
     padding: 0;
   }
 }
@@ -13,6 +13,7 @@
 }
 .comment-meta {
   @extend %clearfix-below;
+  @include rem('margin-bottom', $spacer/2);
 }
 .comment-meta-avatar {
   @include rem('margin-right', $spacer/2);
@@ -25,6 +26,17 @@
 }
 .comment-meta-main {
   @extend .entry-meta-main;
+}
+.comment-content {
+  // Simple blockquote styling just for comments
+  blockquote {
+    @include border-radius(9px); // Gives a slightly curved or parenthetical appearance to the bounding border
+    @include k-reverse-italics;
+    border-left: 3px solid $c-divider;
+    color: $c-blockquote-c;
+    font-weight: $w-light;
+    padding-left: $spacer - 3px;
+  }
 }
 .comment-awaiting-moderation {
   @include font-size($s-text-smaller);
@@ -47,7 +59,7 @@
   }
   // Threaded comments
   .children {
-    @media screen and (min-width: $break-medium) {
+    @include respond-to(medium) {
       @include rem('margin-left', $spacer);
     }
   }
@@ -62,7 +74,7 @@
   label {
     @include font-header;
     display: block;
-    font-weight: 600;
+    font-weight: $w-bold;
     text-transform: uppercase;
   }
   input[type="text"],
@@ -70,36 +82,33 @@
     font-family: inherit; // Possibly redundant
     width: 100%;
   }
-  input[type="text"] {
-    @media screen and (min-width: $break-medium) {
+  @include respond-to(medium) {
+    input[type="text"] {
       width: 40%;
-    }
-  }
-  textarea {
-    @media screen and (min-width: $break-medium) {
-      width: 80%;
     }
   }
   .form-submit {
     @extend %spacer-below;
   }
 
-  // Spectific to comment form
+  // Specific to comment form
   p:first-child,
   .logged-in-as,
   .comment-form-url {
     @extend %spacer-below;
   }
-  .form-allowed-tags {
-    @extend %spacer-below;
-    @include font-size($s-text-smaller);
-    color: $c-offset;
-    code {
-      @include font-size($s-text-smallest);
-    }
-  }
   #cancel-comment-reply-link {
     @include font-size($s-text-smaller);
     @include rem('margin-left', $spacer/2);
+  }
+}
+.comment-notes-after { // Formerly .form-allowed-tags
+  @extend %spacer-below;
+  @include font-size($s-text-smaller);
+  color: $c-offset;
+  code {
+    @include font-size($s-text-smallest);
+    @include k-highlight-reset;
+    display: inline;
   }
 }

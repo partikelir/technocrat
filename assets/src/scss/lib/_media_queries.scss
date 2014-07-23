@@ -1,0 +1,31 @@
+// ==== MEDIA QUERIES ==== //
+
+// Master media query mixin; only for use with screens, of course; should work with raw integers or pixel values
+@mixin k-media($min-query: null, $max-query: null) {
+  @if $min-query == null and $max-query == null {
+    @warn "Mixin k-media() received two null values; no output."
+  }
+  @else if $max-query == null {
+    @media screen and (min-width: $min-query+0px) { @content; }
+  }
+  @else if $min-query == null {
+    @media screen and (max-width: $max-query+0px) { @content; }
+  }
+  @else {
+    @media screen and (min-width: $min-query+0px) and (max-width: $max-query+0px) { @content; }
+  }
+}
+
+// Media query shortcut mixins; above and below are self-explanatory, between simply hedges pixels values inward by 1
+@mixin k-media-above($query) {
+  @include k-media($query, null) { @content; }
+}
+@mixin k-media-below($query) {
+  @include k-media(null, $query) { @content; }
+}
+@mixin k-media-between($min-query: null, $max-query: null) {
+  @if $min-query == null or $max-query == null {
+    @warn "Mixin k-media-between() received a null value."
+  }
+  @include k-media($min-query + 1, $max-query - 1) { @content; }
+}

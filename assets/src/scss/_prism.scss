@@ -46,7 +46,7 @@ $p-regex:           adjust-hue($p-tag, 120); //#e90;
     color: $p-regex;
   }
   &.important {
-    font-weight: 600;
+    font-weight: $w-bold;
   }
   &.entity {
     cursor: help;
@@ -60,7 +60,6 @@ $p-regex:           adjust-hue($p-tag, 120); //#e90;
 .style .token.string,
 .token.variable {
   color: $p-variable;
-  background: hsla(0,0%,100%,.5);
 }
 
 .namespace {

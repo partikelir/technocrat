@@ -4,27 +4,18 @@
 
 // Body class filter
 if ( !function_exists( 'pendrell_body_class' ) ) : function pendrell_body_class( $classes ) {
-
   if ( is_multi_author() ) {
     $classes[] = 'group-blog';
   } else {
     $classes[] = 'single-author';
   }
-
   return $classes;
 } endif;
 add_filter( 'body_class', 'pendrell_body_class' );
 
 
 
-// Name wrapper; a stand-in for future microdata use
-if ( !function_exists( 'pendrell_name_wrapper' ) ) : function pendrell_name_wrapper( $content ) {
-  return '<span>' . $content . '</span>';
-} endif;
-
-
-
-// == UBIK == //
+// == SHORTCODES == //
 
 // Shortcode fallback; in case Ubik or other plugins are disabled
 if ( !function_exists( 'pendrell_shortcode_fallback' ) ) : function pendrell_shortcode_fallback( $atts, $content = null ) {
@@ -39,8 +30,23 @@ if ( !function_exists( 'pendrell_shortcode_init' ) ) : function pendrell_shortco
     add_shortcode( 'place', 'pendrell_shortcode_fallback' );
 
   // Group shortcode from Ubik
-  if ( !function_exists( 'ubik_group_shortcode' ) )
+  if ( !function_exists( 'ubik_image_group_shortcode' ) )
     add_shortcode( 'group', 'pendrell_shortcode_fallback' );
+
+  // Discog shortcode from Ubik
+  if ( !function_exists( 'ubik_discography_shortcode' ) )
+    add_shortcode( 'discog', 'pendrell_shortcode_fallback' );
 
 } endif;
 add_action( 'init', 'pendrell_shortcode_init' );
+
+
+
+// == THUMBNAILS == //
+
+// Thumbnail ID fallback
+if ( !function_exists( 'pendrell_thumbnail_id' ) ) : function pendrell_thumbnail_id( $post_id = null, $fallback_id = null ) {
+  if ( function_exists( 'ubik_thumbnail_id' ) )
+    return ubik_thumbnail_id( $post_id, $fallback_id );
+  return get_post_thumbnail_id( $post_id );
+} endif;

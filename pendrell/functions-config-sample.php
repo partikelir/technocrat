@@ -32,3 +32,18 @@ define( 'PENDRELL_MODULE_FULL_WIDTH', true );
 
 // Master switch for post formats
 define( 'PENDRELL_MODULE_POST_FORMATS', true );
+
+// Master switch for full-width styling
+define( 'PENDRELL_MODULE_VIEWS', true );
+
+// Force full-width categories and tags; just enter an array of IDs, names, or slugs below; matches in_category() and has_tag()
+if ( PENDRELL_MODULE_FULL_WIDTH ) {
+  $pendrell_full_width_cats = array();
+  $pendrell_full_width_tags = array();
+}
+
+// Set default views for different categories and tag archives
+if ( PENDRELL_MODULE_VIEWS ) {
+  $pendrell_default_view_cats = array();
+  $pendrell_default_view_tags = array();
+}

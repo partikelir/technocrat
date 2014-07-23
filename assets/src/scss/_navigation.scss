@@ -1,85 +1,5 @@
 // ==== NAVIGATION ==== //
 
-// Buttons from Twenty Twelve; @TODO: clean this up at some point, it's rather ugly
-.button a,
-.menu-toggle,
-input[type="submit"],
-input[type="button"],
-input[type="reset"],
-#cancel-comment-reply-link {
-  @include border-radius;
-  @include box-shadow(0 1px 2px rgba(64, 64, 64, 0.1));
-  @include font-header;
-  @include font-size($s-text-smaller, 4);
-  @include rem('padding', 0 $spacer/4);
-  @include gradient-vertical($d-gradient-begin, $d-gradient-end);
-  border: 1px solid #d2d2d2;
-  color: lighten($c-body, 22);
-  display: inline-block;
-  font-weight: 400;
-  text-decoration: none;
-  vertical-align: middle;
-  &:hover {
-    @include gradient-vertical(#f9f9f9, #ebebeb);
-    color: lighten($c-body, 13);
-  }
-  &:active {
-    @include box-shadow-layered(inset 0 2px 3px 0 #c6c6c6, 0 1px 2px rgba(64, 64, 64, 0.1));
-    @include gradient-vertical(#e1e1e1, #ebebeb);
-    border-color: 1px solid #ebebeb;
-    color: lighten($c-body, 37);
-  }
-}
-
-
-
-// Menu toggle for mobile phones
-.menu-toggle {
-  cursor: pointer;
-  display: block;
-  position: absolute;
-    @include rem('right', $spacer);
-    @include rem('top', $spacer);
-  @media screen and (min-width: $break-medium) {
-    display: none;
-  }
-  &:focus {
-    outline: none; // Removes distracting blue blur
-  }
-}
-
-
-
-
-// Menu; used in header and footer navigation defined in _layout.scss
-.inline-menu {
-  margin-bottom: 0;
-  @include link-stylist($c-menu-link, $c-menu-link, $c-menu-link-h, $c-menu-link, $c-menu-link, false);
-  .current-menu-item > a,
-  .current-menu-ancestor > a,
-  .current_page_item > a,
-  .current_page_ancestor > a {
-    @include ghost;
-    font-weight: 200;
-  }
-  ul {
-    @include list-floated($spacer);
-    @include list-nested;
-    @media screen and (max-width: $break-medium) {
-      & > li:hover > ul {
-        display: none; // Don't bother displaying submenus on small screens
-      }
-    }
-  }
-  li {
-    @include font-header;
-    font-weight: 300;
-    white-space: nowrap;
-  }
-}
-
-
-
 // General navigation
 .page-links,
 .page-navigation,
@@ -88,12 +8,11 @@ input[type="reset"],
   @extend %spacer-below;
   @include link-stylist($link-color: false);
 }
-.nav-above,
+.nav-above {
+  @include rem('margin-bottom', $spacer);
+}
 .nav-below {
   @include rem('margin-bottom', $spacer*3);
-  &:first-child {
-    @include rem('margin-bottom', $spacer);
-  }
 }
 .nav-previous {
   float: left;

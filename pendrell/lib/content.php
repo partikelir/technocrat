@@ -1,28 +1,34 @@
 <?php // ==== CONTENT ==== //
 
-// Generate content title
+// Content title
 if ( !function_exists( 'pendrell_entry_title' ) ) : function pendrell_entry_title( $content = '' ) {
   if ( empty( $content ) )
     $content = get_the_title();
-  $title = '<a href="' . get_permalink() . '" rel="bookmark">' . $content . '</a>';
+  $title = '<h1 class="entry-title"><a href="' . get_permalink() . '" rel="bookmark">' . $content . '</a></h1>';
   echo apply_filters( 'pendrell_entry_title', $title );
+  do_action( 'pendrell_entry_title_after' );
+} endif;
+
+
+
+// Content class
+if ( !function_exists( 'pendrell_content_class' ) ) : function pendrell_content_class() {
+  $classes = apply_filters( 'pendrell_content_class', array() );
+  if ( !empty( $classes ) )
+    echo ' ' . join( ' ', $classes );
 } endif;
 
 
 
 // Content template selector; abstracted here so that content templates can be filtered
 if ( !function_exists( 'pendrell_content_template' ) ) : function pendrell_content_template( $template = null ) {
-
-  if ( empty( $template ) )
-    $template = get_post_format();
-
-  return apply_filters( 'pendrell_content_template', $template );
+  return get_template_part( 'content', apply_filters( 'pendrell_content_template', $template ) );
 } endif;
 
 
 
 // Entry meta wrapper
-if ( !function_exists( 'pendrell_entry_meta' ) ) : function pendrell_entry_meta() {
+if ( !function_exists( 'pendrell_entry_meta' ) ) : function pendrell_entry_meta( $mode = 'full' ) {
   global $post;
 
   do_action( 'pendrell_entry_meta_before' );
@@ -34,7 +40,7 @@ if ( !function_exists( 'pendrell_entry_meta' ) ) : function pendrell_entry_meta(
     } ?>
   </div>
   <div class="entry-meta-main">
-    <?php pendrell_entry_meta_generator(); ?>
+    <?php pendrell_entry_meta_contents( $mode ); ?>
   </div><?php
 
   do_action( 'pendrell_entry_meta_after' );
@@ -43,13 +49,13 @@ if ( !function_exists( 'pendrell_entry_meta' ) ) : function pendrell_entry_meta(
 
 
 // Entry meta; bare bones version, mostly untested... refer to Ubik for the real deal
-if ( !function_exists( 'pendrell_entry_meta_generator' ) ) : function pendrell_entry_meta_generator() {
+if ( !function_exists( 'pendrell_entry_meta_contents' ) ) : function pendrell_entry_meta_contents( $mode = 'full' ) {
 
   // Is Ubik active?
-  if ( function_exists( 'ubik_content_entry_meta' ) ) {
+  if ( function_exists( 'ubik_entry_meta' ) ) {
 
     // Ubik entry meta magic
-    ubik_content_entry_meta();
+    ubik_entry_meta( $mode );
 
   // If Ubik isn't active let's just fallback to Twenty Twelve's entry meta implementation with small updates to conform to hAtom microformat standard
   } else {
@@ -87,16 +93,5 @@ if ( !function_exists( 'pendrell_entry_meta_generator' ) ) : function pendrell_e
       $date,
       $author
     );
-  }
-} endif;
-
-
-
-// Comments template wrapper
-if ( !function_exists( 'pendrell_comments_template' ) ) : function pendrell_comments_template() {
-
-  // If comments are open or we have at least one comment, load up the comment template; via _s
-  if ( comments_open() || get_comments_number() != '0' ) {
-    comments_template( '', true );
   }
 } endif;

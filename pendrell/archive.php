@@ -9,14 +9,15 @@ get_header(); ?>
 
 	<section id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
+			<?php do_action( 'pendrell_archive_header_before' ); ?>
 			<header class="archive-header">
-				<h1 class="archive-title"><?php pendrell_archive_title(); ?></h1>
+				<?php pendrell_archive_title(); ?>
 				<?php pendrell_archive_description(); ?>
 			</header><!-- .archive-header -->
-			<?php if ( have_posts() ) { ?>
-				<?php pendrell_content_nav( 'nav-above' );
+			<?php if ( have_posts() ) {
+				pendrell_content_nav( 'nav-above' );
 				while ( have_posts() ) : the_post();
-					get_template_part( 'content', pendrell_content_template() );
+					pendrell_content_template();
 				endwhile;
 				pendrell_content_nav( 'nav-below' );
 			} else {

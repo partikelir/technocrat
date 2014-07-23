@@ -1,0 +1,28 @@
+// ==== TRIANGLE ==== //
+
+// Pseudo triangle; specify $size in pixels; adapted from https://github.com/catalinred/Animenu/
+@mixin k-triangle(
+  $color: inherit
+, $direction: top
+, $size: 6px
+, $position: absolute
+, $offset: null
+) {
+  &:after {
+    border: $size solid transparent;
+    border-#{k-opposite($direction)}-color: $color;
+    content: '';
+    @if $position {
+      // Offset is explicitly set and it includes the direction the triangle is pointing
+      @if index($offset, $direction) {
+        @include k-position($position, $offset);
+      // An offset was set but it does not appear to offset the triangle itself
+      } @else if $offset {
+        @include k-position($position, join($direction (-$size*2), $offset) );
+      // Make a guess about what a sensible position might look like
+      } @else {
+        @include k-position($position, $direction (-$size*2) );
+      }
+    }
+  }
+}

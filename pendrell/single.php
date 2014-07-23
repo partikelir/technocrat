@@ -10,7 +10,7 @@ get_header(); ?>
 	<section id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
 			<?php while ( have_posts() ) : the_post();
-				  get_template_part( 'content', pendrell_content_template() );
+				  pendrell_content_template();
         endwhile;
         pendrell_content_nav( 'nav-below' );
         pendrell_comments_template();

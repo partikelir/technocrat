@@ -25,12 +25,12 @@ if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueu
     wp_enqueue_style( 'pendrell-fonts-subset', esc_url_raw( $font_url_subset ), array(), null );
   }
 
-  // Deregister bulky mediaelement.js stylesheets; via https://github.com/justintadlock/theme-mediaelement
+  // Deregister bulky mediaelement.js stylesheets; only loaded on pages with audio shortcode etc.; via https://github.com/justintadlock/theme-mediaelement
   //wp_deregister_style( 'mediaelement' );
   //wp_deregister_style( 'wp-mediaelement' );
 
   // Register and enqueue our main stylesheet with versioning based on last modified time
-  wp_register_style( 'pendrell-style', get_stylesheet_uri(), array(), filemtime( get_template_directory() . '/style.css' ) );
+  wp_register_style( 'pendrell-style', get_stylesheet_uri(), $dependencies = array(), filemtime( get_template_directory() . '/style.css' ) );
   wp_enqueue_style( 'pendrell-style' );
 } endif;
 add_action( 'wp_enqueue_scripts', 'pendrell_enqueue_scripts' );
@@ -78,10 +78,6 @@ if ( !function_exists( 'pendrell_sidebar' ) ) : function pendrell_sidebar( $side
   // Filter the $sidebar variable; this way we can set it to "false" by hooking into this function elsewhere
   // This way the regular sidebar can be disabled and you can output whatever you want
   $sidebar = apply_filters( 'pendrell_sidebar', $sidebar );
-
-  // Don't display sidebar for certain post formats
-  if ( ( is_singular() && has_post_format( array( 'aside', 'image', 'link', 'quote', 'status' ) ) ) )
-    $sidebar = false;
 
   // Include the regular sidebar template if $sidebar has not been set to "false"
   if ( $sidebar )
