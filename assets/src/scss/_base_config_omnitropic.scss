@@ -5,27 +5,30 @@
 // == FONT SIZING == //
 
 // Default font size and baseline (unitless integers); $base should be 16, set $s-text to alter body text font size
-$base:            16;
-$baseline:        30;
+$base:              16;
+$baseline:          30;
 
 // Headers
-$s-header-title:  48;
-$s-header-big:    36;
-$s-header:        28;
-$s-header-sub:    22;
-$s-header-small:  14;
+$s-header-title:    48;
+$s-header-big:      36;
+$s-header:          28;
+$s-header-sub:      22;
+$s-header-small:    14;
 
 // Menus
-$s-menu-header:   22;
-$s-menu-footer:   14;
-$s-menu-sub:      12;
+$s-menu-header:     22;
+$s-menu-header-sm:  16; // Lower than 16 doesn't display well on mobile devices
+$s-menu-footer:     14;
+
+// Submenus
+$s-sub:             14;
 
 // Body text
-$s-text-big:      24;
-$s-text:          18; // Default body text font size
-$s-text-small:    16;
-$s-text-smaller:  14;
-$s-text-smallest: 12;
+$s-text-big:        24;
+$s-text:            18; // Default body text font size
+$s-text-small:      16;
+$s-text-smaller:    14;
+$s-text-smallest:   12;
 
 
 
@@ -33,8 +36,15 @@ $s-text-smallest: 12;
 
 $f-body: $helv-neue-l;
 $f-head: $oxygen;
-$f-menu: $orbitron;
 $f-mono: $courier;
+
+
+
+// == FONT WEIGHTS == //
+
+$w-light:           300;
+$w-normal:          400;
+$w-bold:            600;
 
 
 
@@ -42,25 +52,27 @@ $f-mono: $courier;
 
 $content-width:     960px;
 $main-width:        624px;
+$thumbnail-size:    150px;
 $spacer:            $baseline+0px; // Typically used in conjunction with the rem mixin
 $sidebar-width:     ($content-width - $main-width) - ($spacer * 2);
-$full-width:        false; // Toggle for full-width styles; set to true if the theme uses functionality contained in full-width.php
+$full-width:        true; // Toggle for full-width styles; set to true if the theme uses functionality contained in full-width.php
 
 
 
 // == BREAKPOINTS == //
 
-$break-single-column: $main-width + ($spacer * 8); // Causes sidebar to slide below content
-$break-medium: $main-width;
-$break-large: $content-width;
+$b-small:           $main-width/1.5;
+$b-medium:          $main-width + ($spacer * 2);
+$b-large:           $main-width + ($spacer * 8); // Causes sidebar to slide below content
+$b-full:            $content-width;
 
 
 
 // == COLOURS == //
 
 // Palette
-$c-white:         #fff;
-$c-black:         #000;
+$c-white:         white();
+$c-black:         black();
 $c-dark:          #444547;
 $c-green:         #a2bf68;
 $c-yellow:        #fff9c0;
@@ -86,6 +98,11 @@ $c-menu-link-h:   darken($c-white, 13);
 $c-menu-current:  darken($c-white, 13);
 $c-menu-bg:       lighten($c-dark, 13);
 
+// Submenus
+$c-sub:           lighten($c-body, 17);
+$c-sub-h:         $c-white;
+$c-sub-bg:        darken($c-body-bg, 11);
+
 // Meta
 $c-meta:          lighten($c-body, 33);
 $c-meta-link:     darken($c-meta, 33);
@@ -95,10 +112,10 @@ $c-meta-link-a:   $c-meta-link;
 $c-meta-link-f:   $c-meta-link;
 
 // Footer
-$c-footer:        darken($c-body-bg, 37);
-$c-footer-link:   lighten($c-footer, 13);
-$c-footer-link-v: $c-footer-link;
-$c-footer-link-h: lighten($c-footer-link, 13);
+$c-footer:        white(.7);
+$c-footer-link:   white();
+$c-footer-link-v: white();
+$c-footer-link-h: white(.85);
 $c-footer-link-a: $c-footer-link-h;
 $c-footer-link-f: $c-footer-link-h;
 
@@ -106,6 +123,7 @@ $c-footer-link-f: $c-footer-link-h;
 $c-abbr:          $c-offset;
 $c-blockquote:    $c-offset;
 $c-blockquote-bg: darken($c-body-bg, 3);
+$c-blockquote-c:  lighten($c-body, 37); // Comment blockquote
 $c-code:          $c-offset;
 $c-code-bg:       darken($c-body-bg, 7);
 $c-del:           lighten($c-body, 27);
@@ -125,6 +143,7 @@ $c-success:       $c-green;
 $c-archive:       lighten($c-body, 17);
 $c-caption:       lighten($c-body, 37);
 $c-divider:       rgba($c-body, .09);
+$c-interface:     darken($c-body-bg, 27);
 $c-site-desc:     $c-body;
 $c-site-title:    $c-head;
 $c-small-header:  $c-offset;
@@ -132,6 +151,8 @@ $c-small-print:   lighten($c-body, 23);
 $c-text-box:      lighten($c-body, 7);
 $c-text-box-bg:   darken($c-body-bg, 7);
 $c-text-box-sh:   darken($c-text-box-bg, 3);
+$c-tooltip:       lighten($c-body, 7);
+$c-tooltip-bg:    $c-yellow;//darken($c-body-bg, 4);
 $c-widget-head:   darken($c-body, 7);
 $c-widget:        lighten($c-body, 23);
 
@@ -139,29 +160,36 @@ $c-widget:        lighten($c-body, 23);
 
 // == DESIGN PATTERNS == //
 
-// Dividing line
-$d-divider: 1px solid $c-divider;
-
-// Gallery
-$d-image-spacer: $spacer/2;
-
-// Gradients
-$d-gradient-1: #f4f4f4;
-$d-gradient-2: #e6e6e6;
-
-// Border radius
-$d-radius: 3px;
-
-// Box shadow
-$d-shadow: 0 1px 4px rgba($c-black, .2);
+// Divider
+$d-divider:       1px solid $c-divider;
 
 // Glow
-$d-glow: 0px 0px 5px $c-highlight;
+$d-glow:          0px 0px 5px $c-highlight;
+
+// Gradients
+$d-gradient-1:    darken($c-body-bg, 4);
+$d-gradient-2:    darken($c-body-bg, 10);
+
+// Image spacer; defines the space between gallery items and grouped images
+$d-image-spacer:  $spacer;
+
+// Interface border for buttons and submenus
+$d-interface:     1px solid $c-interface;
+
+// Mouseover border bottom
+$d-mouseover:     1px dotted rgba($c-body, .4);
+
+// Border radius default
+$d-radius:        3px;
+
+// Box shadow
+$d-shadow:        0 1px 4px black(.2);
 
 
 
 // == REFERENCE == //
 
+// $b: breakpoint
 // $c: colours
 // $d: design pattern
 // $f: font stack
