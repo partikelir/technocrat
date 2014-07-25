@@ -35,4 +35,4 @@ node_modules
 assets/staging
 
 ## Project specific
-functions-config.php
+#functions-config.php
