@@ -107,7 +107,7 @@ add_filter( 'pendrell_content_template', 'pendrell_view_template' );
 
 
 
-//
+// Add to body class array
 if ( !function_exists( 'pendrell_view_body_class' ) ) : function pendrell_view_body_class( $classes ) {
   if ( pendrell_is_view( 'excerpt' ) )
     $classes[] = 'excerpt-view';
