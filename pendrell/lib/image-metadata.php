@@ -30,7 +30,7 @@ if ( !function_exists( 'pendrell_image_info' ) ) : function pendrell_image_info(
 
   if ( !empty( $metadata['image_meta'] ) ) {
     ?><div class="image-info">
-      <h3><?php _e( 'Image Info', 'pendrell' ); ?></h3>
+      <h2><?php _e( 'Image Info', 'pendrell' ); ?></h2>
       <div class="image-description">
       <?php if ( $metadata['height'] && $metadata['width'] ) {
         printf( __( 'Full Size: <a href="%1$s" title="Link to full size image" rel="enclosure">%2$s &times; %3$s px</a></br>', 'pendrell' ),
