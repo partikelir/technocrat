@@ -21,13 +21,17 @@ You can see Pendrell in action on my blog, [Synapticism](http://synapticism.com)
 * Code highlighting via [Prism](http://prismjs.com).
 * Smart context-dependent search form.
 * Optional author information box.
-* Much, much more;
+* Much, much more...
 
 
 
 ## INSTALLATION
 
 Drop the 'pendrell/pendrell' directory into /wp-content/themes/ and activate it via the WordPress admin interface.
+
+### REQUIREMENTS
+
+WordPress 3.9+ and PHP 5.3+.
 
 ### CONFIGURATION
 
