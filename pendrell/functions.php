@@ -45,6 +45,9 @@ if ( PENDRELL_MODULE_POST_FORMATS )
 if ( PENDRELL_MODULE_VIEWS )
   require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/views.php' );
 
+// Local development mode; relies on WP-Config-X or some similar system
+if ( WP_LOCAL_DEV )
+  require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/development.php' );
 
 
 // == SETUP == //
