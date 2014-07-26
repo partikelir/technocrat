@@ -77,17 +77,21 @@ if ( !function_exists( 'pendrell_image_markup' ) ) : function pendrell_image_mar
 
 // Image shortcode fallback in case Ubik is not active
 if ( !function_exists( 'pendrell_image_shortcode' ) ) : function pendrell_image_shortcode( $atts, $caption = null ) {
-  extract( shortcode_atts( array(
+  $args = shortcode_atts( array(
     'id'            => '',
     'title'         => '',
     'align'         => 'none',
     'url'           => '',
     'size'          => 'medium',
     'alt'           => ''
-  ), $atts ) );
+  ), $atts );
 
-  // The get_image_tag function requires a simple alignment e.g. "none", "left", etc.
-  $align = str_replace( 'align', '', $align );
+  $id = $args['id'];
+  $title = $args['title'];
+  $align = str_replace( 'align', '', $args['align'] ); // The get_image_tag function requires a simple alignment e.g. "none", "left", etc.
+  $url = $args['url'];
+  $size = $args['size'];
+  $alt = $args['alt'];
 
   // Default img element generator
   $html = get_image_tag( $id, $alt, $title, $align, $size );

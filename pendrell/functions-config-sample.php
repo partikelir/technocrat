@@ -27,6 +27,12 @@ define( 'PENDRELL_GOOGLE_FONTS', 'Raleway:200,300,600' );
 // Google web fonts custom subset support; string or false to disable
 define( 'PENDRELL_GOOGLE_FONTS_SUBSET', false );
 
+// Image licensing specific to my projects; edit `lib/image-metadata.php` to customize; true/false
+define( 'PENDRELL_IMAGE_LICENSE', false );
+
+// Terms of use for images; this should be a full URL to your terms of use; string or false to disable
+define( 'PENDRELL_IMAGE_LICENSE_TERMS', false );
+
 // Master switch for full-width styling
 define( 'PENDRELL_MODULE_FULL_WIDTH', true );
 

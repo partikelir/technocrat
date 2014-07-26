@@ -252,7 +252,6 @@
   @extend %button-container;
 }
 .entry-meta-main {
-  @extend %clearfix-below;
   @include font-size($s-text-smaller);
   @include link-stylist($c-meta-link, $c-meta-link-v, $c-meta-link-h, $c-meta-link-a, $c-meta-link-f);
   color: $c-meta;

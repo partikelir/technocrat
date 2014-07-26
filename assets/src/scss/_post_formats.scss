@@ -1,11 +1,13 @@
 // ==== POST FORMATS ==== //
 
 // Hiding aside, quotation, and status titles to preserve structured data and visual flow
-article.format-aside,
-article.format-quote,
-article.format-status {
-  header {
-    @include hide;
+body:not(.list-view) { // There's no way to isolate this, alas
+  article.format-aside,
+  article.format-quote,
+  article.format-status {
+    header {
+      @include hide;
+    }
   }
 }
 
@@ -24,10 +26,12 @@ article.format-status {
 
 
 // Status
-article.format-status {
-  .entry-content {
-    @include font-size($s-text-big);
-    font-weight: $w-light;
+body:not(.list-view) {
+  article.format-status {
+    .entry-content {
+      @include font-size($s-text-big);
+      font-weight: $w-light;
+    }
   }
 }
 

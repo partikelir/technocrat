@@ -188,15 +188,37 @@
 
 
 
+// To be applied to the container element around an image standing in for a link (e.g. post thumbnail, gallery item)
+@mixin image-fade {
+  backface-visibility: hidden; // Prevents flicker
+  overflow: hidden;
+  img {
+    @include border-radius;
+    display: block;
+    transition: all .65s ease; // Can't transition "filter", probably because we'd have to add a bunch of vendor prefixes; let's just transition all
+    width: 100%;
+  }
+  &:hover {
+    cursor: pointer;
+    img {
+      filter: brightness(70%) opacity(80%) grayscale(100%);
+      transition: all .4s ease;
+    }
+  }
+}
+
+
+
 // Image fallback; a stylized placeholder for images that don't load or are slow to load
 @mixin image-fallback {
   @include border-radius;
   background-color: $c-text-box-bg;
   box-shadow: 0 0 $spacer*2 black(.1) inset;
-  transition: background-color .8s ease-out;
+  transition: background-color .8s ease-out, box-shadow 1.1s ease-in;
   &:hover {
-    background-color: lighten($c-text-box-bg, 3);
-    transition: background-color .5s ease-in-out;
+    background-color: lighten($c-text-box-bg, 4);
+    box-shadow: 0 0 $spacer*1 black(.08) inset;
+    transition: background-color .5s ease-in-out, box-shadow .3s ease;
   }
 }
 
@@ -204,14 +226,8 @@
 
 // Image overlay; used in gallery and thumbnail overlays
 @mixin image-overlay($overlay: ".wp-caption", $style: "title") {
-  @include border-radius;
-  overflow: hidden;
+  @include image-fade;
   position: relative;
-  img {
-    backface-visibility: hidden; // Prevents flicker
-    transition: all .5s ease-out; // Can't transition: filter for some reason
-    width: 100%;
-  }
   #{$overlay} {
     @include font-size($s-text-small);
     @if $style == "caption" {
@@ -230,7 +246,7 @@
     @include border-radius(0 0 $d-radius $d-radius);
     @include k-regular-italics;
     @include rem('padding', $spacer/4 $spacer/4);
-    background-image: linear-gradient(black(0), black(.8));
+    background-image: linear-gradient(black(0), black(.6));
     background-repeat: repeat-x;
     box-sizing: border-box;
     color: $c-white;
@@ -241,7 +257,7 @@
     position: absolute;
       bottom: 0;
       left: 0;
-    transition: opacity .8s ease-out;
+    transition: opacity .75s ease-out;
     width: 100%;
     &:before {
       content: "";
@@ -254,14 +270,9 @@
     }
   }
   &:hover {
-    cursor: pointer;
-    img {
-      filter: brightness(70%) grayscale(100%);
-      transition: all .3s ease-in;
-    }
     #{$overlay} {
       opacity: 1;
-      transition: opacity .5s ease;
+      transition: opacity .4s ease;
     }
   }
 }
