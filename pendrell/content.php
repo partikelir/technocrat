@@ -11,10 +11,9 @@
 			<?php pendrell_entry_title(); ?>
 		</header><!-- .entry-header -->
 		<div class="entry-content">
-			<?php the_content(); ?>
-			<?php pendrell_link_pages(); ?>
+			<?php the_content(); pendrell_link_pages(); ?>
 		</div><!-- .entry-content -->
 		<footer class="entry-meta">
-			<?php pendrell_entry_meta(); ?>
+			<?php pendrell_entry_meta(); pendrell_image_meta(); ?>
 		</footer><!-- .entry-meta -->
 	</article><!-- #post -->

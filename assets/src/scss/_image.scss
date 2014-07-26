@@ -16,7 +16,10 @@
   border-top: $d-divider;
 }
 .image-description {
-  @extend %small-text;
+  @include font-size($s-text-smaller);
+  @include respond-to(medium) {
+    @include font-size($s-text-small);
+  }
 }
 
 
