@@ -76,27 +76,41 @@
 .list-view {
   .entry-title { // @TODO: make sure only relevant article titles are shrunk
     @include font-size($s-header-sub);
+    margin-bottom: 0;
   }
   article {
     @include font-size($s-text-small);
     @include rem('margin-bottom', $spacer);
   }
+
+  // Entry meta
+  .entry-meta {
+    @include font-size($s-text-smallest);
+    @include k-clearfix-reset;
+    text-transform: uppercase;
+  }
+  &.single-author .by-author,
+  .last-updated {
+    @include hide; // Hide non-essential info for brevity
+  }
+
+  // Entry content
   .entry-content-wrapper {
     margin-left: $thumbnail-size + $spacer;
   }
-  .last-updated {
-    @include hide;
+
+  // Edge cases
+  &.archive .entry-content > p:first-child {
+    margin: 0;
   }
   &.full-width {
     h1.entry-title {
       @include font-size($s-header);
-      margin-bottom: 0;
     }
   }
-  .entry-meta {
-    @include k-clearfix-reset;
-  }
 }
+
+// This class only appears in list-view so it is safe to declare it out of context
 .entry-thumbnail {
   float: left;
   width: 150px;

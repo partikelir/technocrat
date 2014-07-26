@@ -26,7 +26,7 @@
 				<?php pendrell_entry_title(); ?>
 			</header><!-- .entry-header -->
 			<footer class="entry-meta">
-				<?php pendrell_entry_meta( 'concise' ); ?>
+				<?php pendrell_entry_meta( 'mini' ); ?>
 			</footer><!-- .entry-meta -->
 			<div class="entry-content">
 				<?php // Trim excerpts for lists using Ubik

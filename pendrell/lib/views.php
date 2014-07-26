@@ -5,15 +5,17 @@
 // Views conditional test; is this a view and, if so, does it match the type supplied?
 if ( !function_exists( 'pendrell_is_view' ) ) : function pendrell_is_view( $type = '' ) {
   $view = get_query_var( 'view' );
-  if ( !empty( $view ) ) {
-    if ( !empty( $type ) ) {
-      if ( $view === $type ) {
-        return true; // This is the specified type
-      } else {
-        return false; // This is a view but it is not the specified type
+  if ( is_main_query() && ( is_archive() || is_front_page() || is_home() || is_search() ) ) {
+    if ( !empty( $view ) ) {
+      if ( !empty( $type ) ) {
+        if ( $view === $type ) {
+          return true; // This is the specified type
+        } else {
+          return false; // This is a view but it is not the specified type
+        }
       }
+      return true; // This is a view
     }
-    return true; // This is a view
   }
   return false; // This is not a view
 } endif;

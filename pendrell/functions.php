@@ -35,6 +35,7 @@ require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/general.php' 
 require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/image.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/image-metadata.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/navigation.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/terms.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/various.php' );
 
 // Optional modules set in `functions-config.php`
