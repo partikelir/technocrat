@@ -192,7 +192,6 @@
 @mixin image-fade {
   backface-visibility: hidden; // Prevents flicker
   overflow: hidden;
-  transition: box-shadow .8s ease;
   img {
     @include border-radius;
     display: block;
@@ -200,9 +199,7 @@
     width: 100%;
   }
   &:hover {
-    box-shadow: 0 0 $spacer*2 black(.3) inset;
     cursor: pointer;
-    transition: box-shadow .1s ease-in;
     img {
       filter: brightness(70%) opacity(80%) grayscale(100%);
       transition: all .4s ease;
