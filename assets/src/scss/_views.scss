@@ -73,18 +73,16 @@
 
 // == LIST VIEW == //
 
-// @TODO: needs a lot of work; this is merely a prototype
 .list-view {
   .entry-title { // @TODO: make sure only relevant article titles are shrunk
     @include font-size($s-header-sub);
-    margin-bottom: 0;
   }
   article {
     @include font-size($s-text-small);
-    @include rem('margin-bottom', $spacer*2);
+    @include rem('margin-bottom', $spacer);
   }
   .entry-content-wrapper {
-    margin-left: 150px + $spacer;
+    margin-left: $thumbnail-size + $spacer;
   }
   .last-updated {
     @include hide;
@@ -95,6 +93,9 @@
       margin-bottom: 0;
     }
   }
+  .entry-meta {
+    @include k-clearfix-reset;
+  }
 }
 .entry-thumbnail {
   float: left;
@@ -104,6 +105,7 @@
   }
   img {
     @include border-radius;
+    display: block;
   }
 }
 

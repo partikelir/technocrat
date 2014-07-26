@@ -33,12 +33,13 @@ if ( !function_exists( 'pendrell_entry_meta' ) ) : function pendrell_entry_meta(
 
   do_action( 'pendrell_entry_meta_before' );
 
-  ?><div class="entry-meta-buttons">
-    <?php edit_post_link( __( 'Edit', 'pendrell' ), ' <span class="edit-link button">', '</span>' );
-    if ( !is_singular() && !post_password_required() && ( comments_open() || get_comments_number() != '0' ) ) {
-      ?> <span class="leave-reply button"><?php comments_popup_link( __( 'Respond', 'pendrell' ), __( '1 Response', 'pendrell' ), __( '% Responses', 'pendrell' ) ); ?></span><?php
-    } ?>
-  </div>
+  if ( $mode != 'concise' ) {
+    ?><div class="entry-meta-buttons">
+      <?php edit_post_link( __( 'Edit', 'pendrell' ), ' <span class="edit-link button">', '</span>' );
+      if ( !is_singular() && !post_password_required() && ( comments_open() || get_comments_number() != '0' ) ) {
+        ?> <span class="leave-reply button"><?php comments_popup_link( __( 'Respond', 'pendrell' ), __( '1 Response', 'pendrell' ), __( '% Responses', 'pendrell' ) ); ?></span><?php
+      } ?>
+    </div><?php } ?>
   <div class="entry-meta-main">
     <?php pendrell_entry_meta_contents( $mode ); ?>
   </div><?php
