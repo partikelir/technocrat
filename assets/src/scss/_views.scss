@@ -22,10 +22,6 @@
   figure.wp-caption {
     @include image-overlay(".wp-caption-text", "title");
     // Assumes `float: left` is set elsewhere
-    img {
-      @include border-radius;
-      display: block; // Gets rid of some pesky whitespace issues; only necessary here because gallery view doesn't wrap posts in .entry-content
-    }
   }
 
   // Responsive gallery view; not especially DRY but it has the advantage of being targetted and precise; no wasted CSS here
@@ -73,10 +69,21 @@
 
 // == LIST VIEW == //
 
+// This class only appears in list-view so it is safe to declare it without nesting
+.entry-thumbnail {
+  float: left;
+  width: 150px;
+  figure.wp-caption {
+    @include image-fade;
+    margin: 0;
+  }
+}
+
+// This section is messy and disorganized mainly to prevent unnecessary nesting
 .list-view {
-  .entry-title { // @TODO: make sure only relevant article titles are shrunk
+  .entry-title {
     @include font-size($s-header-sub);
-    margin-bottom: 0;
+    margin: 0;
   }
   article {
     @include font-size($s-text-small);
@@ -94,32 +101,45 @@
     @include hide; // Hide non-essential info for brevity
   }
 
-  // Entry content
+  // Entry content (with more below for full-width styling)
   .entry-content-wrapper {
     margin-left: $thumbnail-size + $spacer;
+  }
+  .entry-content p {
+    @include font-size($s-text-small);
   }
 
   // Edge cases
   &.archive .entry-content > p:first-child {
-    margin: 0;
+    margin: 0; // Resets margins added to paragraph tags (which is all we should end up with after pulling out an excerpt)
   }
-  &.full-width {
-    h1.entry-title {
-      @include font-size($s-header);
-    }
+
+  // Link post format
+  .entry-link {
+    @include hide;
   }
 }
 
-// This class only appears in list-view so it is safe to declare it out of context
-.entry-thumbnail {
-  float: left;
-  width: 150px;
-  figure.wp-caption {
-    margin: 0;
+// Full-width list-view
+.entry-title {
+  @include full-width($media: large, $body-class: ".list-view") {
+    @include font-size($s-header);
   }
-  img {
-    @include border-radius;
-    display: block;
+}
+.entry-content p {
+  @include full-width($media: large, $body-class: ".list-view") {
+    @include font-size($s-text);
+  }
+}
+
+// Reset a few things when a list appears within a post or page
+.entry-content .list-view {
+  a,
+  a:visited {
+    border-bottom: none;
+  }
+  p {
+    margin: 0;
   }
 }
 

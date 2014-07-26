@@ -195,16 +195,16 @@ if ( !function_exists( 'pendrell_view_switch' ) ) : function pendrell_view_switc
       'icon' => 'gallery-view',
       'url'  => add_query_arg( 'view', 'gallery' )
     ),
-  );
-
-  // Not used, kept for reference
-  $views_more = array(
     array(
       'name' => 'list',
       'text' => __( 'List', 'pendrell' ),
       'icon' => 'list-view',
       'url'  => add_query_arg( 'view', 'list' )
     ),
+  );
+
+  // Not used, kept for reference
+  $views_more = array(
      array(
       'name' => 'excerpt',
       'text' => __( 'Excerpt', 'pendrell' ),
