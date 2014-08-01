@@ -290,7 +290,7 @@ add_shortcode( 'view-posts', 'pendrell_view_posts_shortcode' );
 
 
 
-// Generate HTML for the view-posts shortcode
+// Generate HTML for the view-posts shortcode; @TODO: make this more customizable; currently it's very limited to just a few modes
 if ( !function_exists( 'pendrell_view_posts' ) ) : function pendrell_view_posts( $id = '', $view = 'list', $mode = '', $taxonomy = '', $title = '', $content ) {
 
   global $post; // Must be declared
@@ -330,7 +330,9 @@ if ( !function_exists( 'pendrell_view_posts' ) ) : function pendrell_view_posts(
       )
     );
     $args = array(
-      'tax_query'         => $tax_query
+      'order'             => 'desc'
+    , 'orderby'           => 'date'
+    , 'tax_query'         => $tax_query
     );
   }
 
