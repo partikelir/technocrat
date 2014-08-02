@@ -1,9 +1,0 @@
-// ==== WORDPRESS ==== //
-
-// Dashicons mixin for use with WordPress dashicon font; defaults to :before
-@mixin k-dashicon($content, $dir: before) {
-  &:#{$dir} {
-    font-family: "dashicons";
-    content: "#{$content}";
-  }
-}
