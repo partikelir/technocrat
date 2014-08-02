@@ -11,7 +11,7 @@
     "wordpress"
   ],
   "author": "Alexander Synaptic",
-  "license": "GNU General Public Licence 2.0",
+  "license": "GPLv3",
   "main": "index.js",
   "private": true,
   "devDependencies": {
