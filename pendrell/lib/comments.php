@@ -12,7 +12,7 @@ if ( !function_exists( 'pendrell_comments_template' ) ) : function pendrell_comm
 // Comments form wrapper; tidier display of commenting markup options among other things
 if ( !function_exists( 'pendrell_comments_form' ) ) : function pendrell_comments_form() {
 
-  if ( pendrell_comments_markdown_enabled() ) {
+  if ( get_option( 'wpcom_publish_comments_with_markdown' ) == true ) {
     $notes = sprintf( __( '<a href="https://daringfireball.net/projects/markdown/syntax" target="_blank"><span data-tooltip="%1$s">Markdown</span></a> and <span data-tooltip="%2$s">HTML</span> enabled in comments', 'pendrell' ),
       __( 'Markdown is a shorthand system of formatting text on the web. Click to find out more!', 'pendrell' ),
       sprintf( __( 'Valid tags and attributes: %s', 'pendrell' ), esc_attr( allowed_tags() ) )
@@ -28,7 +28,7 @@ if ( !function_exists( 'pendrell_comments_form' ) ) : function pendrell_comments
   // Reference: http://codex.wordpress.org/Function_Reference/comment_form
   comment_form(
     array(
-      'id_form'             => 'commentform', // @TODO: change these
+      'id_form'             => 'commentform',
       'id_submit'           => 'submit',
       'cancel_reply_link'   => __( 'Cancel', 'pendrell' ),
       'title_reply'         => __( 'Respond', 'pendrell' ),
@@ -37,11 +37,4 @@ if ( !function_exists( 'pendrell_comments_form' ) ) : function pendrell_comments
       'comment_notes_after' => $notes
     )
   );
-} endif;
-
-
-
-// Check if Markdown is enabled for comments
-if ( !function_exists( 'pendrell_comments_markdown_enabled' ) ) : function pendrell_comments_markdown_enabled() {
-  return (bool) get_option( 'wpcom_publish_comments_with_markdown' );
 } endif;
