@@ -94,8 +94,8 @@
   @include rem('padding-top', $spacer/2, 1);
   border-top: $d-divider;
 
-  // Immediate child link styling
-  .current-menu-item,
+  // Immediate child link styling; temporarily removed as it doesn't really seem necessary
+  /*.current-menu-item,
   .current-menu-ancestor,
   .current_page_item,
   .current_page_ancestor {
@@ -110,7 +110,7 @@
         color: lighten($c-menu-link-h, 17);
       }
     }
-  }
+  }*/
 
   // No submenus in the footer
   ul {
