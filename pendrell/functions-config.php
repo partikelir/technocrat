@@ -24,9 +24,6 @@ define( 'PENDRELL_COPYRIGHT_YEAR', 2011 );
 // Google web fonts to load; string false will load Open Sans as a fallback
 define( 'PENDRELL_GOOGLE_FONTS', 'Raleway:200,300,600' );
 
-// Google web fonts custom subset support; string or false to disable
-define( 'PENDRELL_GOOGLE_FONTS_SUBSET', false );
-
 // Image licensing specific to my projects; edit `lib/image-metadata.php` to customize; true/false
 define( 'PENDRELL_IMAGE_LICENSE', true );
 

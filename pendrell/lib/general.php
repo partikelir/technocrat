@@ -7,7 +7,13 @@ if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueu
 	if ( !is_admin() ) { // http://www.ericmmartin.com/5-tips-for-using-jquery-with-wordpress/
 		wp_enqueue_script( 'pendrell', get_stylesheet_directory_uri() . '/pendrell.min.js', array( 'jquery' ), filemtime( get_template_directory() . '/pendrell.min.js' ), true );
     wp_enqueue_script( 'pendrell-plugins', get_stylesheet_directory_uri() . '/pendrell-plugins.min.js', array( 'jquery' ), filemtime( get_template_directory() . '/pendrell-plugins.min.js' ), true );
-	}
+
+    // AJAX handling the WordPress way; @TODO: decide whether to implement this or not
+    //wp_localize_script( 'pendrell-plugins', 'PendrellAjax', array(
+      //'ajaxurl' => admin_url( 'admin-ajax.php' )//,
+      //'security' => wp_create_nonce( 'pendrell-ajax-nonce' )
+    //) );
+  }
 
   // Adds JavaScript to pages with the comment form to support sites with threaded comments
   if ( is_singular() && comments_open() && get_option( 'thread_comments' ) )
@@ -18,16 +24,6 @@ if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueu
   if ( !empty( $font_url ) ) {
     wp_enqueue_style( 'pendrell-fonts', esc_url_raw( $font_url ), array(), null );
   }
-
-  // Google web fonts custom subset support
-  if ( PENDRELL_GOOGLE_FONTS_SUBSET ) {
-    $font_url_subset = pendrell_get_font_url( PENDRELL_GOOGLE_FONTS_SUBSET );
-    wp_enqueue_style( 'pendrell-fonts-subset', esc_url_raw( $font_url_subset ), array(), null );
-  }
-
-  // Deregister bulky mediaelement.js stylesheets; only loaded on pages with audio shortcode etc.; via https://github.com/justintadlock/theme-mediaelement
-  //wp_deregister_style( 'mediaelement' );
-  //wp_deregister_style( 'wp-mediaelement' );
 
   // Register and enqueue our main stylesheet with versioning based on last modified time
   wp_register_style( 'pendrell-style', get_stylesheet_uri(), $dependencies = array(), filemtime( get_template_directory() . '/style.css' ) );
@@ -86,7 +82,7 @@ if ( !function_exists( 'pendrell_sidebar' ) ) : function pendrell_sidebar( $side
 
 
 
-// Footer info
+// Footer info; relies on information in functions-config.php to generate appropriate content; it is't elegant but it gets the job done
 if ( !function_exists( 'pendrell_footer_info' ) ) : function pendrell_footer_info() {
 
   // Copyright statement

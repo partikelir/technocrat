@@ -37,5 +37,5 @@
 		</header><!-- #masthead -->
 	</div><!-- .site-header-wrapper -->
 
-	<div class="site-content-wrapper">
+	<div id="content-wrapper" class="site-content-wrapper">
 		<div id="content" class="site-content<?php pendrell_content_class(); ?>">

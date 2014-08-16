@@ -21,7 +21,12 @@ gulp.task('styles', function() {
 });
 
 gulp.task('plugins', function() {
-  return gulp.src(['assets/src/js/plugins/*.js', 'assets/src/js/plugins.js'])
+  // Manually load uncompressed Bower components in order; if you need something more complex look into RequireJS or Browserify
+  return gulp.src([
+      'assets/bower_components/history.js/scripts/bundled-uncompressed/html4+html5/jquery.history.js'
+    , 'assets/src/js/plugins/*.js'
+    , 'assets/src/js/plugins.js'
+  ])
   .pipe(plugins.concat(project+'-plugins.js'))
   .pipe(gulp.dest('assets/staging'))
   .pipe(plugins.rename({ suffix: '.min' }))
@@ -54,7 +59,7 @@ gulp.task('clean', function() {
   .pipe(plugins.clean());
 });
 
-gulp.task('bower_components', function() { // Executed on bower update
+gulp.task('bower_components', function() { // Executed on `bower update`
   return gulp.src(['assets/bower_components/normalize.css/normalize.css'])
   .pipe(plugins.rename('_base_normalize.scss'))
   .pipe(gulp.dest('assets/src/scss'));

@@ -109,7 +109,7 @@ add_filter( 'pendrell_content_template', 'pendrell_view_template' );
 
 
 
-// Add to body class array
+// Add to content class array
 if ( !function_exists( 'pendrell_view_body_class' ) ) : function pendrell_view_body_class( $classes ) {
   if ( pendrell_is_view( 'excerpt' ) )
     $classes[] = 'excerpt-view';
@@ -261,6 +261,7 @@ add_action( 'pendrell_archive_header_before', 'pendrell_view_switch' );
 // Example: [view-posts view="gallery" mode="children" title="Profiles"]Here are some profiles related to this page...[/view-posts]
 // Example: [view-posts mode="tagged" title="Releases"]The full discography of artist X.[/view-posts]
 // @TODO: this function needs a lot of work; this prototype is sufficient for my needs as of now but it should be expanded...
+// For some ideas, consider: http://plugins.svn.wordpress.org/display-posts-shortcode/tags/2.4/display-posts-shortcode.php
 if ( !function_exists( 'pendrell_view_posts_shortcode' ) ) : function pendrell_view_posts_shortcode( $atts, $content = null ) {
   $args = shortcode_atts( array(
     'id'        => ''

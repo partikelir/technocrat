@@ -26,6 +26,7 @@ define( 'PENDRELL_THEME_VERSION', '0.10' );
 // Pendrell is abstracted into the `pendrell/lib` directory
 if ( is_admin() )
   require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/admin.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/ajax.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/archive.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/author.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/comments.php' );
