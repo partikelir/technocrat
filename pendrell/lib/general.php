@@ -6,7 +6,10 @@ if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueu
   // Load theme-specific JavaScript with versioning based on last modified time
 	if ( !is_admin() ) { // http://www.ericmmartin.com/5-tips-for-using-jquery-with-wordpress/
 		wp_enqueue_script( 'pendrell', get_stylesheet_directory_uri() . '/pendrell.min.js', array( 'jquery' ), filemtime( get_template_directory() . '/pendrell.min.js' ), true );
-    wp_enqueue_script( 'pendrell-plugins', get_stylesheet_directory_uri() . '/pendrell-plugins.min.js', array( 'jquery' ), filemtime( get_template_directory() . '/pendrell-plugins.min.js' ), true );
+    if ( PENDRELL_SCRIPTS_AJAXIFY )
+      wp_enqueue_script( 'pendrell-ajaxify', get_stylesheet_directory_uri() . '/pendrell-ajaxify.min.js', array( 'jquery' ), filemtime( get_template_directory() . '/pendrell-ajaxify.min.js' ), true );
+    if ( PENDRELL_SCRIPTS_PRISM )
+      wp_enqueue_script( 'pendrell-prism', get_stylesheet_directory_uri() . '/pendrell-prism.min.js', array( 'jquery' ), filemtime( get_template_directory() . '/pendrell-prism.min.js' ), true );
 
     // Set some variables via PHP prior to loading our custom scripts
     wp_localize_script( 'pendrell', 'themeVars', array(

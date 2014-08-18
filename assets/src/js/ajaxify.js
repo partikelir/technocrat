@@ -6,14 +6,16 @@
     History = window.History
   , $ = window.jQuery
   , document = window.document
-  , ajaxifyOptions = {      // Edit these variables to customize this script; there should be no need to touch anything else
+  // Edit these variables to customize this script; there should be no need to touch anything else
+  , ajaxifyOptions = {
       contentSelector:      '#content-wrapper'
     , menuSelector:         '.menu-header' // The selector for the entire menu
     , contentFadeOut:       600
     , contentFadeIn:        120
     , scrollDuration:       300
     , spinnerFadeOut:       300
-    , spinnerOptions: {     // Reference: https://fgnass.github.io/spin.js/
+    // Reference: https://fgnass.github.io/spin.js/
+    , spinnerOptions: {
         lines: 8
       , length: 24
       , width: 12
@@ -22,8 +24,7 @@
       , trail: 40
       , top: '25%'
     }
-  }
-  ;
+  };
 
   // Check to see if History.js is enabled; if not, return false and let the site load normally
   if ( !History.enabled ) {

@@ -20,16 +20,14 @@ gulp.task('styles', function() {
   .pipe(gulp.dest(build));
 });
 
-gulp.task('plugins', function() {
-  // Manually load uncompressed Bower components in order; if you need something more complex look into RequireJS or Browserify
+gulp.task('scripts', function() {
   return gulp.src([
-      'assets/bower_components/history.js/scripts/bundled-uncompressed/html4+html5/jquery.history.js'
-    , 'assets/bower_components/spin.js/spin.js'
-    , 'assets/bower_components/spin.js/jquery.spin.js'
-    , 'assets/src/js/plugins/*.js'
-    , 'assets/src/js/plugins.js'
+      'assets/src/js/main.js'
+    , 'assets/src/js/navigation.js'
   ])
-  .pipe(plugins.concat(project+'-plugins.js'))
+  .pipe(plugins.jshint('.jshintrc'))
+  .pipe(plugins.jshint.reporter('default'))
+  .pipe(plugins.concat(project+'.js'))
   .pipe(gulp.dest('assets/staging'))
   .pipe(plugins.rename({ suffix: '.min' }))
   .pipe(plugins.uglify())
@@ -37,11 +35,25 @@ gulp.task('plugins', function() {
   .pipe(gulp.dest(build));
 });
 
-gulp.task('scripts', function() {
-  return gulp.src(['assets/src/js/*.js', '!assets/src/js/plugins.js'])
-  .pipe(plugins.jshint('.jshintrc'))
-  .pipe(plugins.jshint.reporter('default'))
-  .pipe(plugins.concat(project+'.js'))
+gulp.task('scripts-ajaxify', function() {
+  // Manually load uncompressed Bower components in order; if you need something more complex look into RequireJS or Browserify
+  return gulp.src([
+      'assets/bower_components/history.js/scripts/bundled-uncompressed/html4+html5/jquery.history.js'
+    , 'assets/bower_components/spin.js/spin.js'
+    , 'assets/bower_components/spin.js/jquery.spin.js'
+    , 'assets/src/js/ajaxify.js'
+  ])
+  .pipe(plugins.concat(project+'-ajaxify.js'))
+  .pipe(gulp.dest('assets/staging'))
+  .pipe(plugins.rename({ suffix: '.min' }))
+  .pipe(plugins.uglify())
+  .pipe(plugins.livereload(server))
+  .pipe(gulp.dest(build));
+});
+
+gulp.task('scripts-prism', function() {
+  return gulp.src(['assets/src/js/prism.js'])
+  .pipe(plugins.concat(project+'-prism.js'))
   .pipe(gulp.dest('assets/staging'))
   .pipe(plugins.rename({ suffix: '.min' }))
   .pipe(plugins.uglify())
@@ -73,10 +85,10 @@ gulp.task('watch', function() {
       return console.log(err)
     };
     gulp.watch('assets/src/scss/**/*.scss', ['styles']);
-    gulp.watch('assets/src/js/**/*.js', ['plugins', 'scripts']);
+    gulp.watch('assets/src/js/**/*.js', ['scripts', 'scripts-ajaxify']);
     gulp.watch('assets/src/img/**/*', ['images']);
     gulp.watch(build+'**/*.php').on('change', function(file) { plugins.livereload(server).changed(file.path); });
   });
 });
 
-gulp.task('default', ['styles', 'plugins', 'scripts', 'images', 'clean', 'watch']);
+gulp.task('default', ['styles', 'scripts', 'scripts-ajaxify', 'scripts-prism', 'images', 'clean', 'watch']);

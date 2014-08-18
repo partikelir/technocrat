@@ -39,6 +39,12 @@ define( 'PENDRELL_MODULE_POST_FORMATS', true );
 // Master switch for full-width styling
 define( 'PENDRELL_MODULE_VIEWS', true );
 
+// Master switch for Ajaxify page loading script
+define( 'PENDRELL_SCRIPTS_AJAXIFY', false );
+
+// Master switch for Prism code-highlighting script
+define( 'PENDRELL_SCRIPTS_PRISM', false );
+
 // Force full-width categories and tags; just enter an array of IDs, names, or slugs below; matches in_category() and has_tag()
 if ( PENDRELL_MODULE_FULL_WIDTH ) {
   $pendrell_full_width_cats = array();
