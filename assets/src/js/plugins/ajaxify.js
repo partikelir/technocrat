@@ -6,15 +6,22 @@
     History = window.History
   , $ = window.jQuery
   , document = window.document
-  , ajaxifyOptions = {
+  , ajaxifyOptions = {      // Edit these variables to customize this script; there should be no need to touch anything else
       contentSelector:      '#content-wrapper'
-    , menuSelector:         '.menu-header'
-    , loaderSrc:            themeVars.templateDirectory + '/img/loaders/loader-black-spinner.gif' // Should be transparent
-    , loaderWidth:          64 // Width in pixels of the loader graphic; no need to get fancy here
+    , menuSelector:         '.menu-header' // The selector for the entire menu
     , contentFadeOut:       600
     , contentFadeIn:        120
     , scrollDuration:       300
-    , loaderFadeOut:        300
+    , spinnerFadeOut:       300
+    , spinnerOptions: {     // Reference: https://fgnass.github.io/spin.js/
+        lines: 8
+      , length: 24
+      , width: 12
+      , radius: 24
+      , speed: 1.5
+      , trail: 40
+      , top: '25%'
+    }
   }
   ;
 
@@ -119,13 +126,10 @@
       // Fade out existing content; use animate to preserve the element's height (avoids scrollbar flicker)
       $content.animate({ opacity: 0 }, ajaxifyOptions.contentFadeOut);
 
-      // Add the loader div before the content
-      if ( '' != ajaxifyOptions.loaderSrc ) {
-        $content.before(
-          '<div id="ajaxify-loader" style="position: fixed; left: 50%; margin-top: 30px; margin-left: -'+ ajaxifyOptions.loaderWidth / 2 +'px;">'+
-            '<img src="' + ajaxifyOptions.loaderSrc + '" />'+
-          '</div>'
-        );
+      // Spin spin sugar; degrades gracefully if spin.js not found
+      if ( $.isFunction(window.Spinner) ) {
+        $content.before('<div id="spinner" style="position: fixed; height: 100%; width: 100%;"></div>');
+        $('#spinner').spin(ajaxifyOptions.spinnerOptions);
       }
 
       // AJAX page request; fetch the content we need
@@ -196,7 +200,7 @@
 
           // Clean up
           $body.removeClass('loading');
-          $('#ajaxify-loader').fadeOut(ajaxifyOptions.loaderFadeOut, function() { $(this).remove(); });
+          $('#spinner').fadeOut(ajaxifyOptions.spinnerFadeOut, function() { $(this).remove(); });
           $window.trigger('statechangecomplete'); // This is an arbitrary name give to trigger other events after this script fires
 
           // Inform Google Analytics of the change; compatible with the new Universal Analytics script; @TODO: test this in a live environment

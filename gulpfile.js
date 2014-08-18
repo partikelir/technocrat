@@ -24,6 +24,8 @@ gulp.task('plugins', function() {
   // Manually load uncompressed Bower components in order; if you need something more complex look into RequireJS or Browserify
   return gulp.src([
       'assets/bower_components/history.js/scripts/bundled-uncompressed/html4+html5/jquery.history.js'
+    , 'assets/bower_components/spin.js/spin.js'
+    , 'assets/bower_components/spin.js/jquery.spin.js'
     , 'assets/src/js/plugins/*.js'
     , 'assets/src/js/plugins.js'
   ])

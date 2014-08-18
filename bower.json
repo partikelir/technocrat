@@ -23,6 +23,7 @@
   "dependencies": {
     "normalize.css": "~3.0.1",
     "meyer-reset": "*",
-    "history.js": "~1.8.0"
+    "history.js": "~1.8.0",
+    "spin.js": "~2.0.1"
   }
 }
