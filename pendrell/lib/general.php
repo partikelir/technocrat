@@ -8,11 +8,12 @@ if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueu
 		wp_enqueue_script( 'pendrell', get_stylesheet_directory_uri() . '/pendrell.min.js', array( 'jquery' ), filemtime( get_template_directory() . '/pendrell.min.js' ), true );
     wp_enqueue_script( 'pendrell-plugins', get_stylesheet_directory_uri() . '/pendrell-plugins.min.js', array( 'jquery' ), filemtime( get_template_directory() . '/pendrell-plugins.min.js' ), true );
 
-    // AJAX handling the WordPress way; @TODO: decide whether to implement this or not
-    //wp_localize_script( 'pendrell-plugins', 'PendrellAjax', array(
-      //'ajaxurl' => admin_url( 'admin-ajax.php' )//,
-      //'security' => wp_create_nonce( 'pendrell-ajax-nonce' )
-    //) );
+    // Set some variables via PHP prior to loading our custom scripts
+    wp_localize_script( 'pendrell', 'themeVars', array(
+        'ajaxUrl'               => admin_url( 'admin-ajax.php' )
+      , 'templateDirectory'     => get_template_directory_uri()
+      )
+    );
   }
 
   // Adds JavaScript to pages with the comment form to support sites with threaded comments

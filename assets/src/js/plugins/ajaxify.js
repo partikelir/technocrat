@@ -8,8 +8,8 @@
   , document = window.document
   , ajaxifyOptions = {
       contentSelector:      '#content-wrapper'
-    , menuSelector:         '.inline-menu'
-    , loaderSrc:            ''
+    , menuSelector:         '.menu-header'
+    , loaderSrc:            themeVars.templateDirectory + '/img/loaders/loader-black-spinner.gif' // Should be transparent
     , loaderWidth:          64 // Width in pixels of the loader graphic; no need to get fancy here
     , contentFadeOut:       600
     , contentFadeIn:        120
@@ -68,6 +68,14 @@
     $.fn.ajaxify = function(){
       var $this = $(this);
 
+      // @TODO: external links handler
+      //$this.find('a:not(:internal)')
+      //.on('click', function(event){
+        // target blank or open popup for anything not covered below
+      //  event.preventDefault();
+      //  return false;
+      //});
+
       // Run the script when clicking on certain links; WP-specific exceptions have been added here
       $this.find('a:internal:not(.no-ajaxy, [href^="#"], [href*="wp-login"], [href*="wp-admin"])')
       // Filter URLs that end in specified file extensions; the use of the not operator only returns links that aren't to files
@@ -81,7 +89,9 @@
           title = $this.attr('title') || null;
 
         // Continue as normal for command clicks etc.
-        if ( event.which == 2 || event.metaKey ) { return true; }
+        if ( event.which == 2 || event.metaKey ) {
+          return true;
+        }
 
         // Ajaxify this link
         History.pushState(null,title,url);
@@ -97,22 +107,22 @@
     $body.ajaxify();
 
     // Hook into state changes
-    $window.bind('statechange',function(){
+    $window.bind('statechange', function(){
       var
         State = History.getState(),
         url = State.url,
-        relativeUrl = url.replace(rootUrl,'');
+        relativeUrl = url.replace(rootUrl, '');
 
       // Set loading class
       $body.addClass('loading');
 
       // Fade out existing content; use animate to preserve the element's height (avoids scrollbar flicker)
-      $content.animate({ opacity: 0 },ajaxifyOptions.contentFadeOut);
+      $content.animate({ opacity: 0 }, ajaxifyOptions.contentFadeOut);
 
       // Add the loader div before the content
       if ( '' != ajaxifyOptions.loaderSrc ) {
         $content.before(
-          '<div id="ajaxify-loader" style="position: fixed; left: 50%; margin-left: -'+ ajaxifyOptions.loaderWidth / 2 +'px;">'+
+          '<div id="ajaxify-loader" style="position: fixed; left: 50%; margin-top: 30px; margin-left: -'+ ajaxifyOptions.loaderWidth / 2 +'px;">'+
             '<img src="' + ajaxifyOptions.loaderSrc + '" />'+
           '</div>'
         );
@@ -122,17 +132,18 @@
       $.ajax({
         url: url,
         success: function(data, textStatus, jqXHR){
-
           var
             $data         = $(documentHtml(data))
           , $dataBody     = $data.find('#document-body:first')
           , $dataContent  = $dataBody.find(contentSelector).filter(':first')
           , $dataMenu     = $dataBody.find(menuSelector)
           , $scripts
+          , $metas
+          , $links
           , contentHtml;
 
           // Add classes to body; makes WordPress run smoothly
-          jQuery('body').attr('class', $dataBody.attr('class'));
+          $('body').attr('class', $dataBody.attr('class'));
 
           // Fetch the scripts from the body; this way scripts can be updated dynamically as they can differ from page to page
           $scripts = $dataBody.find('#document-script');
@@ -149,15 +160,17 @@
             return false;
           }
 
-          // Update the content
+          // Update the content and ajaxify the links contained within
           $content.stop(true,true);
           $content.html(contentHtml).ajaxify();
 
           // Fade the content back in
           $content.animate({ opacity: 1, visibility: "visible" },ajaxifyOptions.contentFadeIn);
 
-          // Scroll to the top of the container
-          jQuery('html, body').animate({ scrollTop: jQuery(contentSelector).offset().top }, ajaxifyOptions.scrollDuration, "swing");
+          // Scroll to the top of the content container when below the fold
+          if ( $(window).scrollTop() > $(contentSelector).offset().top ) {
+            $('html, body').animate({ scrollTop: $(contentSelector).offset().top }, ajaxifyOptions.scrollDuration, "swing");
+          }
 
           // Update the title
           document.title = $data.find('#document-title:first').text();
@@ -204,3 +217,27 @@
   }); // end onDomLoad
 
 })(window);
+
+// @TODO: ajaxify search and other form elements (e.g. the monthly dropdown menu)
+// The code below, borrowed from AWS, does not do what we want
+// Search URL needs to be preserved; this just hacks it together based on a guess
+// Process: create a hidden div, implant a link to the desired URL, swap actions when clicking on the submit button to clicking on said link
+// If we get the link right then the rest falls into place
+jQuery(document).ready(function(){
+
+  // Append anchor tag to DOM to make the search in site ajaxify.
+  var searchButtonHtml = '<span id="ajax-search" style="display:none;"><a href=""></a></span>'
+  jQuery("body").prepend(searchButtonHtml);
+
+  //Make the link ajaxify.
+  jQuery("#ajax-search").ajaxify();
+
+  jQuery('.search-form').on('submit',
+    function(d){
+      //d.preventDefault();
+      var host = "http://synaptic.dev:8080/?s=";
+      jQuery("#ajax-search a").attr("href", host + jQuery(this).find('input[type="search"]').val());
+      jQuery("#ajax-search a").trigger("click");
+    }
+  );
+});
