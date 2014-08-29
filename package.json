@@ -1,6 +1,6 @@
 {
   "name": "pendrell",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "description": "A minimal yet fully-featured WordPress theme for content-rich blogs.",
   "homepage": "https://github.com/synapticism/pendrell",
   "repository": {
@@ -15,20 +15,25 @@
   "main": "index.js",
   "private": true,
   "devDependencies": {
-    "gulp": "^3.8.0",
-    "gulp-autoprefixer": "0.0.6",
-    "gulp-cache": "^0.1.11",
-    "gulp-clean": "^0.3.0",
-    "gulp-concat": "^2.1.7",
-    "gulp-imagemin": "^0.1.5",
-    "gulp-jshint": "^1.4.2",
-    "gulp-livereload": "^1.5.0",
-    "gulp-load-plugins": "^0.3.0",
-    "gulp-minify-css": "^0.3.4",
-    "gulp-rename": "^1.1.0",
-    "gulp-ruby-sass": "^0.3.1",
-    "gulp-uglify": "^0.2.1",
-    "gulp-util": "^2.2.17",
-    "tiny-lr": "0.0.5"
+    "gulp": "^3.8.7",
+    "gulp-autoprefixer": "0.0.9",
+    "gulp-cache": "^0.2.1",
+    "gulp-clean": "^0.3.1",
+    "gulp-concat": "^2.3.4",
+    "gulp-imagemin": "^1.0.1",
+    "gulp-jshint": "^1.8.4",
+    "gulp-livereload": "^2.1.1",
+    "gulp-load-plugins": "^0.6.0",
+    "gulp-minify-css": "^0.3.7",
+    "gulp-rename": "^1.2.0",
+    "gulp-ruby-sass": "^0.7.1",
+    "gulp-uglify": "^1.0.0",
+    "gulp-util": "^3.0.0",
+    "tiny-lr": "0.1.1",
+    "browser-sync": "^1.3.6",
+    "jquery": "^2.1.1"
+  },
+  "scripts": {
+    "postinstall": "bower install"
   }
 }

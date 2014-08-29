@@ -17,7 +17,7 @@ define( 'PENDRELL_HOME', home_url() );
 // Basic theme info; don't edit these either
 define( 'PENDRELL_THEME_NAME', 'Pendrell' );
 define( 'PENDRELL_THEME_URL', 'http://github.com/synapticism/pendrell' );
-define( 'PENDRELL_THEME_VERSION', '0.10' );
+define( 'PENDRELL_THEME_VERSION', '0.11' );
 
 
 
