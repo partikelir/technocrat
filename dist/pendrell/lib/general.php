@@ -3,13 +3,22 @@
 // Enqueue scripts
 if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueue_scripts() {
 
-  // Load theme-specific JavaScript with versioning based on last modified time
-	if ( !is_admin() ) { // http://www.ericmmartin.com/5-tips-for-using-jquery-with-wordpress/
-		wp_enqueue_script( 'pendrell-core', get_stylesheet_directory_uri() . '/pendrell-core.js', array( 'jquery' ), filemtime( get_template_directory() . '/pendrell-core.js' ), true );
+  // Front-end scripts
+	if ( !is_admin() ) {
+
+    // Load minified scripts if debug mode is off
+    if ( WP_DEBUG === true ) {
+      $suffix = '';
+    } else {
+      $suffix = '.min';
+    }
+
+    // Load theme-specific JavaScript with versioning based on last modified time; http://www.ericmmartin.com/5-tips-for-using-jquery-with-wordpress/
+		wp_enqueue_script( 'pendrell-core', get_stylesheet_directory_uri() . '/js/core' . $suffix . '.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/core' . $suffix . '.js' ), true );
     if ( PENDRELL_SCRIPTS_AJAXIFY )
-      wp_enqueue_script( 'pendrell-ajaxify', get_stylesheet_directory_uri() . '/pendrell-ajaxify.js', array( 'jquery' ), filemtime( get_template_directory() . '/pendrell-ajaxify.js' ), true );
+      wp_enqueue_script( 'pendrell-ajaxify', get_stylesheet_directory_uri() . '/js/ajaxify' . $suffix . '.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/ajaxify' . $suffix . '.js' ), true );
     if ( PENDRELL_SCRIPTS_PRISM )
-      wp_enqueue_script( 'pendrell-prism', get_stylesheet_directory_uri() . '/pendrell-prism.js', array( 'jquery' ), filemtime( get_template_directory() . '/pendrell-prism.js' ), true );
+      wp_enqueue_script( 'pendrell-prism', get_stylesheet_directory_uri() . '/js/prism' . $suffix . '.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/prism' . $suffix . '.js' ), true );
 
     // Set some variables via PHP prior to loading our custom scripts
     wp_localize_script( 'pendrell-core', 'themeVars', array(

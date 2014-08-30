@@ -25,9 +25,12 @@ gulp.task('styles', function() {
   .pipe(plugins.rubySass({
     loadPath: bower // Adds the `bower_components` directory to the load path so you can @import directly
   , precision: 8
-  , 'sourcemap=none': true // Not yet ready for prime time!
+  , 'sourcemap=none': true // Not yet ready for prime time! Sass 3.4 has sourcemaps on by default but this causes some problems from the Gulp toolchain
   }))
   .pipe(plugins.autoprefixer('last 2 versions', 'ie 9', 'ios 6', 'android 4'))
+  .pipe(gulp.dest(build))
+  .pipe(plugins.rename({suffix: '.min'}))
+  .pipe(plugins.minifyCss({ keepSpecialComments: 1 }))
   .pipe(gulp.dest(build));
 });
 
@@ -35,8 +38,13 @@ gulp.task('styles', function() {
 
 // ==== SCRIPTS ==== //
 
-// Scripts; broken out into different tasks to create specific bundles
-gulp.task('scripts', ['scripts-lint', 'scripts-core', 'scripts-ajaxify', 'scripts-html5', 'scripts-prism']);
+// Scripts; broken out into different tasks to create specific bundles which are then compressed in place
+gulp.task('scripts', ['scripts-lint', 'scripts-core', 'scripts-ajaxify', 'scripts-html5', 'scripts-prism'], function(){
+  return gulp.src([build+'js/**/*.js', '!'+build+'js/**/*.min.js']) // Avoid recusive min.min.min.js
+  .pipe(plugins.rename({suffix: '.min'}))
+  .pipe(plugins.uglify())
+  .pipe(gulp.dest(build+'js/'));
+});
 
 // Only lint custom scripts; ignore the custom build of Prism since it spits out all kinds of errors
 gulp.task('scripts-lint', function() {
@@ -51,11 +59,11 @@ gulp.task('scripts-core', function() {
     assets+'js/core.js'
   , assets+'js/navigation.js'
   ])
-  .pipe(plugins.concat(project+'-core.js'))
-  .pipe(gulp.dest(build));
+  .pipe(plugins.concat('core.js'))
+  .pipe(gulp.dest(build+'js/'));
 });
 
-// Ajaxify module; the order of dependencies is important
+// Ajaxify module; the order of dependencies is important here; relies on jQuery, already loaded in the head
 gulp.task('scripts-ajaxify', function() {
   return gulp.src([
     bower+'history.js/scripts/bundled-uncompressed/html4+html5/jquery.history.js'
@@ -63,22 +71,22 @@ gulp.task('scripts-ajaxify', function() {
   , bower+'spin.js/jquery.spin.js'
   , assets+'js/ajaxify.js'
   ])
-  .pipe(plugins.concat(project+'-ajaxify.js'))
-  .pipe(gulp.dest(build));
+  .pipe(plugins.concat('ajaxify.js'))
+  .pipe(gulp.dest(build+'js/'));
 });
 
-// HTML5 shiv that originally came with Twenty Twelve
+// HTML5 shiv that originally came with Twenty Twelve; provides backwards compatibility with legacy IE browsers: https://github.com/aFarkas/html5shiv
 gulp.task('scripts-html5', function() {
-  return gulp.src([bower+'html5shiv/dist/html5shiv.js'])
-  .pipe(plugins.concat(project+'-html5.js'))
-  .pipe(gulp.dest(build));
+  return gulp.src(bower+'html5shiv/dist/html5shiv.js')
+  .pipe(plugins.concat('html5shiv.js'))
+  .pipe(gulp.dest(build+'js/'));
 });
 
 // Prism code highlighting; roll your own at http://prismjs.com/
 gulp.task('scripts-prism', function() {
-  return gulp.src([assets+'js/prism.js'])
-  .pipe(plugins.concat(project+'-prism.js'))
-  .pipe(gulp.dest(build));
+  return gulp.src(assets+'js/prism.js')
+  .pipe(plugins.concat('prism.js'))
+  .pipe(gulp.dest(build+'js/'));
 });
 
 
@@ -93,30 +101,25 @@ gulp.task('clean', function() {
 
 // Totally wipe the contents of the distribution folder; this way any files that have been removed from the build will also be removed here
 gulp.task('wipe', function() {
-  return gulp.src(dist)
+  return gulp.src(dist, {read: false })
   .pipe(plugins.rimraf());
 });
 
 // Prepare a distribution, the properly minified, uglified, and tidied up version of the theme ready for installation
-gulp.task('package', function() {
+gulp.task('package', ['clean', 'wipe'], function() {
 
   // Define filters
-  var styles = plugins.filter('**/*.css')
-    , scripts = plugins.filter('**/*.js')
+  var styles = plugins.filter(['**/*.css', '!**/*.min.css'])
     , images = plugins.filter(['**/*.(jpg|jpeg|gif|png)']) // @TODO: double-check this works as expected
   ;
 
-  return gulp.src(build+'**/*')
+  // Take everything in the build folder
+  return gulp.src([build+'**/*', '!'+build+'**/*.min.css'])
 
-  // Compress stylesheets
+  // Compress existing stylesheets rather than duplicating previously compressed copies
   .pipe(styles)
   .pipe(plugins.minifyCss({ keepSpecialComments: 1 }))
   .pipe(styles.restore())
-
-  // Compress scripts
-  .pipe(scripts)
-  .pipe(plugins.uglify())
-  .pipe(scripts.restore())
 
   // Compress images
   .pipe(images)
@@ -127,7 +130,7 @@ gulp.task('package', function() {
   })))
   .pipe(images.restore())
 
-  // Send everything to the `dist` folder
+  // Send everything to the `dist/project` folder
   .pipe(gulp.dest(dist+project+'/'));
 });
 
@@ -137,9 +140,7 @@ gulp.task('package', function() {
 
 // Executed on `bower update` which is in turn triggered by `npm update`; used to get around Sass's inability to properly @import vanilla CSS
 gulp.task('bower_components', function() {
-  return gulp.src([
-    bower+'normalize.css/normalize.css'
-  ])
+  return gulp.src(bower+'normalize.css/normalize.css')
   .pipe(plugins.rename('_base_normalize.scss'))
   .pipe(gulp.dest(assets+'scss'));
 });
@@ -148,13 +149,17 @@ gulp.task('bower_components', function() {
 
 // ==== WATCH & RELOAD ==== //
 
-gulp.task('watch', function() {
+// Start the LiveReload server; not asynchronous
+gulp.task('server', function() {
   plugins.livereload.listen(35729, function (err) {
     if (err) {
       return console.log(err)
     };
   });
+});
 
+// Watch
+gulp.task('watch', ['server'], function() {
   gulp.watch(assets+'scss/**/*.scss', ['styles', 'reload']);
   gulp.watch(assets+'js/**/*.js', ['scripts', 'reload']);
   gulp.watch([
@@ -175,5 +180,5 @@ gulp.task('reload', function() {
 // ==== TASKS ==== //
 
 gulp.task('build', ['styles', 'scripts']);
-gulp.task('release', ['clean', 'wipe', 'package', 'reload']); // @TODO: deployment
+gulp.task('release', ['package', 'reload']);
 gulp.task('default', ['build', 'watch']);

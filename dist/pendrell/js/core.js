@@ -1,3 +1,7 @@
+// ==== CORE ==== //
+
+// Anything entered here will end up at the top of pendrell-core.js
+
 // Navigation.js adapted from _s: handles toggling the responsive navigation menu
 ( function() {
 	var container, button, menu;
