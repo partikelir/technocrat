@@ -13,9 +13,6 @@ var project     = 'pendrell'
 var gulp        = require('gulp')
   , gutil       = require('gulp-util')
   , plugins     = require('gulp-load-plugins')({ camelize: true })  // This loads all modules prefixed with "gulp-" to plugin.moduleName
-  , server      = require('tiny-lr')()
-  //, server      = lr()
-  //, browserSync = require('browser-sync')
 ;
 
 
@@ -31,8 +28,7 @@ gulp.task('styles', function() {
   , 'sourcemap=none': true // Not yet ready for prime time!
   }))
   .pipe(plugins.autoprefixer('last 2 versions', 'ie 9', 'ios 6', 'android 4'))
-  .pipe(gulp.dest(build))
-  .pipe(plugins.livereload(server));
+  .pipe(gulp.dest(build));
 });
 
 
@@ -40,9 +36,7 @@ gulp.task('styles', function() {
 // ==== SCRIPTS ==== //
 
 // Scripts; broken out into different tasks to create specific bundles
-gulp.task('scripts', ['scripts-lint', 'scripts-core', 'scripts-ajaxify', 'scripts-html5', 'scripts-prism'], function() {
-  plugins.livereload(server);
-});
+gulp.task('scripts', ['scripts-lint', 'scripts-core', 'scripts-ajaxify', 'scripts-html5', 'scripts-prism']);
 
 // Only lint custom scripts; ignore the custom build of Prism since it spits out all kinds of errors
 gulp.task('scripts-lint', function() {
@@ -152,39 +146,28 @@ gulp.task('bower_components', function() {
 
 
 
-// ==== EXPERIMENTAL ==== //
-
-gulp.task('browser-sync', function() {
-  browserSync.init({
-    files: ['src/**/*', 'build/**.*']
-  , proxy: 'synaptic.dev:8080'
-  //, server: {
-  //  baseDir: ['build', 'dist']
-  //}
-  , watchOptions: {
-    debounceDelay: 1000
-  }
-  });
-});
-
-
-
-// ==== WATCH ==== //
+// ==== WATCH & RELOAD ==== //
 
 gulp.task('watch', function() {
-  server.listen(35729, function (err) { // Listen on port 35729
+  plugins.livereload.listen(35729, function (err) {
     if (err) {
       return console.log(err)
     };
-
-    gulp.watch(assets+'scss/**/*.scss', ['styles', function() {
-      plugins.livereload(server);
-    }]);
-    gulp.watch(assets+'js/**/*.js', ['scripts']);
-    gulp.watch(build+'**/*.php').on('change', function(file) {
-      plugins.livereload(server).changed(file.path);
-    });
   });
+
+  gulp.watch(assets+'scss/**/*.scss', ['styles', 'reload']);
+  gulp.watch(assets+'js/**/*.js', ['scripts', 'reload']);
+  gulp.watch([
+    build+'**/*.php'
+  , build+'**/*.(jpg|jpeg|gif|png)'
+  ]).on('change', function(file) {
+    plugins.livereload.changed(file.path);
+  });
+});
+
+// Reload shortcut
+gulp.task('reload', function() {
+  plugins.livereload.changed();
 });
 
 
@@ -192,5 +175,5 @@ gulp.task('watch', function() {
 // ==== TASKS ==== //
 
 gulp.task('build', ['styles', 'scripts']);
-gulp.task('release', ['clean', 'wipe', 'package']); // @TODO: deployment
+gulp.task('release', ['clean', 'wipe', 'package', 'reload']); // @TODO: deployment
 gulp.task('default', ['build', 'watch']);
