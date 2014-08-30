@@ -32,7 +32,6 @@ sitemap.xml.gz
 .sass-cache
 bower_components
 node_modules
-assets/staging
 
 ## Project specific
 #functions-config.php
