@@ -39,11 +39,11 @@ This theme has no options page; modify the `functions-config-sample.php` file, r
 
 ### DEVELOPMENT
 
-I develop Pendrell on a local OS X development environment provisioned with Sass, Bower, and Gulp. To get started you'll need to have Sass installed: `gem install sass`. After that, `npm install` should get you up and running. Bower is called using npm's `scripts.postinstall` feature.
+I develop Pendrell on a local OS X development environment provisioned with Sass, Bower, and Gulp. Presumably you are working with a similar setup. To get started you'll need to have Sass installed: `gem install sass`. After that, `npm install` should get you up and running. Bower is automatically called using npm's `scripts.postinstall` feature. At this point you can build Pendrell with `gulp`.
 
-To build and watch Pendrell during development: `gulp`.
+When making modifications in development be sure to alter the files in the `src` folder. Local development can be facilitated by creating a symbolic link to `build` and/or `dist` from within your WordPress `wp-content/themes` folder *e.g.* `ln -s ~/dev/pendrell/build pendrell` or `ln -s ~/dev/pendrell/dist/pendrell pendrell`.
 
-To create a new Pendrell package for production under `pendrell/dist`: `gulp package`.
+To create a new production-ready distribution under `pendrell/dist` use `gulp package`. This can also be tested locally using a variation on the symbolic link command above.
 
 Pendrell is written in Sass without Compass. [Normalize.css](https://necolas.github.io/normalize.css/) and [Eric Meyer's reset](http://meyerweb.com/eric/tools/css/reset/) are integrated by default. Pendrell also relies on [Kipple](https://github.com/synapticism/kipple), my zygotic library of Sass hacks.
 
