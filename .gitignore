@@ -32,7 +32,9 @@ sitemap.xml.gz
 .sass-cache
 bower_components
 node_modules
+build
 
 ## Project specific
-#functions-config.php
+dev.php
 development.php
+functions-config.php

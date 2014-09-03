@@ -17,7 +17,7 @@
   "devDependencies": {
     "gulp": "^3.8.7",
     "gulp-autoprefixer": "0.0.9",
-    "gulp-cache": "^0.2.1",
+    "gulp-cache": "^0.2.2",
     "gulp-concat": "^2.3.4",
     "gulp-filter": "^1.0.0",
     "gulp-imagemin": "^1.0.1",
