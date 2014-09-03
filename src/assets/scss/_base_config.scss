@@ -142,7 +142,7 @@ $c-archive:       lighten($c-body, 17);
 $c-caption:       lighten($c-body, 37);
 $c-divider:       rgba($c-body, .09);
 $c-interface:     darken($c-body-bg, 27);
-$c-site-desc:     $c-body;
+$c-site-desc:     lighten($c-body, 27);
 $c-site-title:    $c-head;
 $c-small-header:  $c-offset;
 $c-small-print:   lighten($c-body, 23);

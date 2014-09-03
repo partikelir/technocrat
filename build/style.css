@@ -1187,18 +1187,21 @@ span[data-tooltip] {
       color: #9ad6e5; }
 
 .site-description {
-  font-size: 12px;
-  font-size: 0.75rem;
-  line-height: 2.5;
-  border: 0;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-  color: #505050; }
+  font-size: 14px;
+  font-size: 0.875rem;
+  line-height: 2.14285714;
+  color: #959595;
+  font-style: italic; }
+  @media screen and (max-width: 684px) {
+    .site-description {
+      border: 0;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px; } }
 
 .site-branding {
   padding-bottom: 15px;

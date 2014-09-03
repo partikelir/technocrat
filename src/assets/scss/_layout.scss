@@ -40,9 +40,13 @@
 }
 .site-description {
   @extend %clearfix-below;
-  @include font-size($s-text-smallest);
-  @include hide;
+  @include font-size($s-text-smaller);
   color: $c-site-desc;
+  font-style: italic;
+  // Hide the site description on smaller screens
+  @include k-media-below($b-medium) {
+    @include hide;
+  }
 }
 .site-branding {
   @include rem('padding-bottom', $spacer/2);
