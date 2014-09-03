@@ -4,9 +4,8 @@
 var project     = 'pendrell'
   , build       = './build/'
   , dist        = './dist/'
-  , src         = './src/'
-  , assets      = src+'assets/'
-  , bower       = assets+'bower_components/'
+  , source      = './src/'
+  , bower       = source+'bower_components/'
 ;
 
 // Initialization sequence
@@ -21,7 +20,7 @@ var gulp        = require('gulp')
 
 // Stylesheet handling; don't forget `gem install sass`; Compass is not included by default here
 gulp.task('styles', function() {
-  return gulp.src([assets+'scss/*.scss', '!'+assets+'scss/_*.scss']) // Ignore partials
+  return gulp.src([source+'scss/*.scss', '!'+source+'scss/_*.scss']) // Ignore partials
   .pipe(plugins.rubySass({
     loadPath: bower // Adds the `bower_components` directory to the load path so you can @import directly
   , precision: 8
@@ -48,7 +47,7 @@ gulp.task('scripts', ['scripts-lint', 'scripts-core', 'scripts-ajaxify', 'script
 
 // Only lint custom scripts; ignore the error-riddled custom build of Prism
 gulp.task('scripts-lint', function() {
-  return gulp.src([assets+'js/**/*.js', '!'+assets+'js/prism.js'])
+  return gulp.src([source+'js/**/*.js', '!'+source+'js/prism.js'])
   .pipe(plugins.jshint('.jshintrc'))
   .pipe(plugins.jshint.reporter('default'));
 });
@@ -56,8 +55,8 @@ gulp.task('scripts-lint', function() {
 // These are the core custom scripts
 gulp.task('scripts-core', function() {
   return gulp.src([
-    assets+'js/core.js'
-  , assets+'js/navigation.js'
+    source+'js/core.js'
+  , source+'js/navigation.js'
   ])
   .pipe(plugins.concat('core.js'))
   .pipe(gulp.dest(build+'js/'));
@@ -69,7 +68,7 @@ gulp.task('scripts-ajaxify', function() {
     bower+'history.js/scripts/bundled-uncompressed/html4+html5/jquery.history.js'
   , bower+'spin.js/spin.js'
   , bower+'spin.js/jquery.spin.js'
-  , assets+'js/ajaxify.js'
+  , source+'js/ajaxify.js'
   ])
   .pipe(plugins.concat('ajaxify.js'))
   .pipe(gulp.dest(build+'js/'));
@@ -84,9 +83,30 @@ gulp.task('scripts-html5', function() {
 
 // Prism code highlighting; roll your own at http://prismjs.com/
 gulp.task('scripts-prism', function() {
-  return gulp.src(assets+'js/prism.js')
+  return gulp.src(source+'js/prism.js')
   .pipe(plugins.concat('prism.js'))
   .pipe(gulp.dest(build+'js/'));
+});
+
+
+
+// ==== IMAGES ==== //
+
+// Copy images; note that `src/img` maps to `build`, not `build/img`
+gulp.task('images', function() {
+  return gulp.src(source+'img/**/*(*.png|*.jpg|*.jpeg|*.gif)')
+  .pipe(gulp.dest(build));
+});
+
+
+
+
+// ==== PHP ==== //
+
+// Copy PHP source files to the build directory
+gulp.task('php', function() {
+  return gulp.src(source+'php/**/*.php')
+  .pipe(gulp.dest(build));
 });
 
 
@@ -109,26 +129,26 @@ gulp.task('wipe', ['clean'], function() {
 gulp.task('package', ['wipe'], function() {
 
   // Define filters
-  var styles = plugins.filter(['**/*.css', '!**/*.min.css'])
-    , images = plugins.filter(['**/*.(jpg|jpeg|gif|png)']) // @TODO: double-check this works as expected
+  var styleFilter = plugins.filter(['**/*.css', '!**/*.min.css'])
+    , imageFilter = plugins.filter(['**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '!screenshot.png'])
   ;
 
   // Take everything in the build folder
   return gulp.src([build+'**/*', '!'+build+'**/*.min.css'])
 
   // Compress existing stylesheets rather than duplicating previously compressed copies
-  .pipe(styles)
+  .pipe(styleFilter)
   .pipe(plugins.minifyCss({ keepSpecialComments: 1 }))
-  .pipe(styles.restore())
+  .pipe(styleFilter.restore())
 
-  // Compress images
-  .pipe(images)
-  .pipe(plugins.cache(plugins.imagemin({
+  // Compress images; @TODO: cache this
+  .pipe(imageFilter)
+  .pipe(plugins.imagemin({
     optimizationLevel: 7
   , progressive: true
   , interlaced: true
-  })))
-  .pipe(images.restore())
+  }))
+  .pipe(imageFilter.restore())
 
   // Send everything to the `dist/project` folder
   .pipe(gulp.dest(dist+project+'/'));
@@ -142,7 +162,7 @@ gulp.task('package', ['wipe'], function() {
 gulp.task('bower_components', function() {
   return gulp.src(bower+'normalize.css/normalize.css')
   .pipe(plugins.rename('_base_normalize.scss'))
-  .pipe(gulp.dest(assets+'scss'));
+  .pipe(gulp.dest(source+'scss'));
 });
 
 
@@ -158,10 +178,12 @@ gulp.task('server', ['build'], function() {
   });
 });
 
-// Watch task: build styles and scripts when files are modified, livereload when anything in the `build` or `dist` folders change
+// Watch task: build stuff when files are modified, livereload when anything in the `build` or `dist` folders change
 gulp.task('watch', ['server'], function() {
-  gulp.watch(assets+'scss/**/*.scss', ['styles']);
-  gulp.watch(assets+'js/**/*.js', ['scripts']);
+  gulp.watch(source+'scss/**/*.scss', ['styles']);
+  gulp.watch(source+'js/**/*.js', ['scripts']);
+  gulp.watch(source+'img/**/*', ['images']);
+  gulp.watch(source+'php/**/*.php', ['php']);
   gulp.watch([build+'**/*', dist+'**/*']).on('change', function(file) {
     plugins.livereload.changed(file.path);
   });
@@ -171,11 +193,11 @@ gulp.task('watch', ['server'], function() {
 
 // ==== TASKS ==== //
 
-// Build styles and scripts
-gulp.task('build', ['styles', 'scripts']);
+// Build styles and scripts; copy PHP files
+gulp.task('build', ['styles', 'scripts', 'images', 'php']);
 
 // Release creates a clean distribution package under `dist` after running build, clean, and wipe in sequence
-// This is a resource-intensive task; @TODO: integrate deployment and git updating?
+// NOTE: this is a resource-intensive task; @TODO: integrate deployment and git updating?
 gulp.task('release', ['package']);
 
 // The default task runs watch which boots up the Livereload server after an initial build is finished
