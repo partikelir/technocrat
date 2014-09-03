@@ -40,13 +40,13 @@ gulp.task('styles', function() {
 
 // Scripts; broken out into different tasks to create specific bundles which are then compressed in place
 gulp.task('scripts', ['scripts-lint', 'scripts-core', 'scripts-ajaxify', 'scripts-html5', 'scripts-prism'], function(){
-  return gulp.src([build+'js/**/*.js', '!'+build+'js/**/*.min.js']) // Avoid recusive min.min.min.js
+  return gulp.src([build+'js/**/*.js', '!'+build+'js/**/*.min.js']) // Avoid recursive min.min.min.js
   .pipe(plugins.rename({suffix: '.min'}))
   .pipe(plugins.uglify())
   .pipe(gulp.dest(build+'js/'));
 });
 
-// Only lint custom scripts; ignore the custom build of Prism since it spits out all kinds of errors
+// Only lint custom scripts; ignore the error-riddled custom build of Prism
 gulp.task('scripts-lint', function() {
   return gulp.src([assets+'js/**/*.js', '!'+assets+'js/prism.js'])
   .pipe(plugins.jshint('.jshintrc'))
@@ -93,20 +93,20 @@ gulp.task('scripts-prism', function() {
 
 // ==== PACKAGING ==== //
 
-// Clean out junk files from build prior to copying everything over
-gulp.task('clean', function() {
+// Clean out junk files after build
+gulp.task('clean', ['build'], function() {
   return gulp.src(build+'**/.DS_Store', { read: false })
   .pipe(plugins.rimraf());
 });
 
-// Totally wipe the contents of the distribution folder; this way any files that have been removed from the build will also be removed here
-gulp.task('wipe', function() {
+// Totally wipe the contents of the distribution folder after doing a clean build
+gulp.task('wipe', ['clean'], function() {
   return gulp.src(dist, {read: false })
   .pipe(plugins.rimraf());
 });
 
-// Prepare a distribution, the properly minified, uglified, and tidied up version of the theme ready for installation
-gulp.task('package', ['clean', 'wipe'], function() {
+// Prepare a distribution, the properly minified, uglified, and sanitized version of the theme ready for installation
+gulp.task('package', ['wipe'], function() {
 
   // Define filters
   var styles = plugins.filter(['**/*.css', '!**/*.min.css'])
@@ -149,8 +149,8 @@ gulp.task('bower_components', function() {
 
 // ==== WATCH & RELOAD ==== //
 
-// Start the LiveReload server; not asynchronous
-gulp.task('server', function() {
+// Start the livereload server; not asynchronous
+gulp.task('server', ['build'], function() {
   plugins.livereload.listen(35729, function (err) {
     if (err) {
       return console.log(err)
@@ -158,27 +158,25 @@ gulp.task('server', function() {
   });
 });
 
-// Watch
+// Watch task: build styles and scripts when files are modified, livereload when anything in the `build` or `dist` folders change
 gulp.task('watch', ['server'], function() {
-  gulp.watch(assets+'scss/**/*.scss', ['styles', 'reload']);
-  gulp.watch(assets+'js/**/*.js', ['scripts', 'reload']);
-  gulp.watch([
-    build+'**/*.php'
-  , build+'**/*.(jpg|jpeg|gif|png)'
-  ]).on('change', function(file) {
+  gulp.watch(assets+'scss/**/*.scss', ['styles']);
+  gulp.watch(assets+'js/**/*.js', ['scripts']);
+  gulp.watch([build+'**/*', dist+'**/*']).on('change', function(file) {
     plugins.livereload.changed(file.path);
   });
-});
-
-// Reload shortcut
-gulp.task('reload', function() {
-  plugins.livereload.changed();
 });
 
 
 
 // ==== TASKS ==== //
 
+// Build styles and scripts
 gulp.task('build', ['styles', 'scripts']);
-gulp.task('release', ['package', 'reload']);
-gulp.task('default', ['build', 'watch']);
+
+// Release creates a clean distribution package under `dist` after running build, clean, and wipe in sequence
+// This is a resource-intensive task; @TODO: integrate deployment and git updating?
+gulp.task('release', ['package']);
+
+// The default task runs watch which boots up the Livereload server after an initial build is finished
+gulp.task('default', ['watch']);
