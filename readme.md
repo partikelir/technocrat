@@ -2,7 +2,7 @@
 
 Pendrell is a minimal yet fully-featured WordPress theme for single author personal blogs. It is designed to be proficient at displaying beautiful, legible type alongside big, bold imagery. Use it for long-form journalism, photo-blogging, and more--but be prepared to dive into the code! Pendrell is something of a hacker theme; there is no options page, theme customizer, or any other bloat, which means you won't find it in the WordPress theme repository. Instead, what you get is a powerful WordPress theme built with the goodness of Sass, Bower, and Gulp. To get the most out of Pendrell you'll also want to install [Ubik](https://github.com/synapticism/ubik), my handy library of WordPress hacks bundled as a plugin.
 
-![Pendrell example screenshot](/pendrell/screenshot.png "Pendrell example screenshot")
+![Pendrell example screenshot](/dist/pendrell/screenshot.png "Pendrell example screenshot")
 
 You can see Pendrell in action on my blog, [Synapticism](http://synapticism.com).
 
