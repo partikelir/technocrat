@@ -4,8 +4,8 @@
 var project     = 'pendrell'
   , build       = './build/'
   , dist        = './dist/'
-  , source      = './src/'
-  , bower       = source+'bower_components/'
+  , source      = './src/' // 'source' instead of 'src' to avoid confusion with gulp.src
+  , bower       = './bower_components/'
 ;
 
 // Initialization sequence
@@ -92,9 +92,9 @@ gulp.task('scripts-prism', function() {
 
 // ==== IMAGES ==== //
 
-// Copy images; note that `src/img` maps to `build`, not `build/img`
+// Copy images; minification occurs during packaging
 gulp.task('images', function() {
-  return gulp.src(source+'img/**/*(*.png|*.jpg|*.jpeg|*.gif)')
+  return gulp.src(source+'**/*(*.png|*.jpg|*.jpeg|*.gif)')
   .pipe(gulp.dest(build));
 });
 
@@ -105,7 +105,7 @@ gulp.task('images', function() {
 
 // Copy PHP source files to the build directory
 gulp.task('php', function() {
-  return gulp.src(source+'php/**/*.php')
+  return gulp.src(source+'**/*.php')
   .pipe(gulp.dest(build));
 });
 
@@ -182,8 +182,8 @@ gulp.task('server', ['build'], function() {
 gulp.task('watch', ['server'], function() {
   gulp.watch(source+'scss/**/*.scss', ['styles']);
   gulp.watch(source+'js/**/*.js', ['scripts']);
-  gulp.watch(source+'img/**/*', ['images']);
-  gulp.watch(source+'php/**/*.php', ['php']);
+  gulp.watch(source+'**/*(*.png|*.jpg|*.jpeg|*.gif)', ['images']);
+  gulp.watch(source+'**/*.php', ['php']);
   gulp.watch([build+'**/*', dist+'**/*']).on('change', function(file) {
     plugins.livereload.changed(file.path);
   });

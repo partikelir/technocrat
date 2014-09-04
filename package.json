@@ -16,7 +16,7 @@
   "private": true,
   "devDependencies": {
     "gulp": "^3.8.7",
-    "gulp-autoprefixer": "0.0.9",
+    "gulp-autoprefixer": "^0.0.10",
     "gulp-cache": "^0.2.2",
     "gulp-concat": "^2.3.4",
     "gulp-filter": "^1.0.0",

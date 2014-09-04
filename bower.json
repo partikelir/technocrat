@@ -18,15 +18,14 @@
     "node_modules",
     "bower_components",
     "test",
-    "tests"
+    "tests",
+    "build"
   ],
-  "dependencies": {
-    "meyer-reset": "*",
-    "normalize.css": "~3.0.1",
-    "history.js": "~1.8.0",
-    "spin.js": "~2.0.1"
-  },
   "devDependencies": {
-    "html5shiv": "~3.7.2"
+    "meyer-reset": "*",
+    "normalize.css": "^3.0.1",
+    "history.js": "^1.8.0",
+    "spin.js": "^2.0.1",
+    "html5shiv": "^3.7.2"
   }
 }
