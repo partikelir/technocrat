@@ -42,7 +42,9 @@
   @extend %clearfix-below;
   @include font-size($s-text-smaller);
   color: $c-site-desc;
-  font-style: italic;
+  opacity: 0;
+  transition: opacity .8s ease-out;
+
   // Hide the site description on smaller screens
   @include k-media-below($b-medium) {
     @include hide;
@@ -50,6 +52,12 @@
 }
 .site-branding {
   @include rem('padding-bottom', $spacer/2);
+
+  // Show site description
+  &:hover .site-description {
+    opacity: 1;
+    transition: opacity .5s ease;
+  }
 }
 
 
