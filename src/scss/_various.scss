@@ -22,12 +22,12 @@
 
 // Clearing helper classes; @TODO: verify whether this is used anywhere or just legacy junk
 .clear {
-  //@extend %clearfix-below;
+  @extend %clearfix-below;
 }
 
 
 
-// Form entry
+// Form entry; @TODO: organize this
 .alert {
   color: $c-alert;
   font-weight: $w-bold;
@@ -43,10 +43,14 @@
 .success {
   color: $c-success;
 }
+.warning {
+  color: $c-alert;
+  font-style: italic;
+}
 
 
 
-// Footnotes; for use with Markdown Extra
+// Footnotes; for use with Markdown Extra implementations e.g. JP Markdown
 .footnotes {
   @extend %small-text;
 }
@@ -84,7 +88,7 @@
     position: absolute;
     top: 5px;
     left: 5px;
-    z-index: 100000; // Above WP toolbar
+    z-index: 100000;
   }
 }
 

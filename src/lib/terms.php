@@ -4,7 +4,9 @@
 
 // Check whether a blog has more than one category; via _s: https://github.com/Automattic/_s/blob/master/inc/template-tags.php
 function pendrell_categorized_blog() {
+
   if ( false === ( $all_the_cool_cats = get_transient( '_pendrell_categories' ) ) ) {
+
     // Create an array of all the categories that are attached to posts.
     $all_the_cool_cats = get_categories( array(
       'fields'     => 'ids',

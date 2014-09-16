@@ -13,6 +13,9 @@
 @mixin center {
   @include k-center-block;
 }
+@mixin circle {
+  @include k-circle;
+}
 @mixin clearfix-above {
   @include k-clearfix-above;
 }

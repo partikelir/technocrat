@@ -7,16 +7,18 @@
     border-top: $d-divider;
   }
 }
-.author-avatar {
+.author-avatar { // @TODO: standardize this
   display: none; // Only display author avatar on larger screens
   @include respond-to(medium) {
-    @include rem('margin', 0 0 0 $spacer/2);
+    @include rem('margin', ($spacer * -2) 0 0 ($spacer * -4.5) );
     display: block;
-    float: right;
+    float: left;
     line-height: 0; // Keeps the container snug around the avatar image
+    width: $spacer * 4;
   }
   img {
-    @include border-radius;
+    @include circle;
+    width: 100%;
   }
 }
 .author-description {

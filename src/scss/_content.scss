@@ -16,7 +16,7 @@
 
   // Single post and page views
   @include respond-to(large) {
-    .page &,
+    body.page &, // Targets singular pages, avoiding conflict with .search-results .page .entry-title declaration
     .single & {
       @include font-size($s-header-title);
       font-weight: $w-light;

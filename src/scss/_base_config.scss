@@ -133,7 +133,7 @@ $c-pre:           darken($c-body, 13);
 $c-table:         lighten($c-body, 19);
 
 // Forms
-$c-alert:         $c-red;
+$c-alert:         lighten($c-red, 13);
 $c-required:      $c-red;
 $c-success:       $c-green;
 

@@ -21,6 +21,10 @@ Utilities:
 
 ## PUBLISHING
 
+### IMAGE MANAGEMENT
+
+Pendrell makes extensive use of featured image/post thumbnail functionality.
+
 ### IMAGE SHORTCODE
 
 If [Ubik](https://github.com/synapticism/ubik) is active Pendrell will handle images and image captions with an image shortcode. There is no need to write your own shortcode; simply insert an image from the media library and it should look something like this:
@@ -61,7 +65,7 @@ Dig into Ubik's code to learn more.
 
 ## POST FORMATS
 
-Pendrell supports five post formats at present.
+Pendrell supports five post formats at present. At present (autumn 2014) I recommend using [my fork](https://github.com/synapticism/wp-post-formats) of Crowd Favorite's [WP-Post-Formats plugin](https://github.com/crowdfavorite/wp-post-formats) to manage post formats on the back-end.
 
 ### ASIDE
 
@@ -119,7 +123,7 @@ This pattern is used by the `content-quote.php` template part. No need to enter 
 
 ### SYNTAX HIGHLIGHTING
 
-Pendrell ships with [Prism](http://prismjs.com/). Syntax highlighting is easy:
+Pendrell ships with [Prism](http://prismjs.com/) but must be activated in `functions-config.php`. Syntax highlighting is easy:
 
 ```
 <pre>
@@ -128,3 +132,5 @@ Pendrell ships with [Prism](http://prismjs.com/). Syntax highlighting is easy:
 ```
 
 The same can be accomplished with JP Markdown by using three back-ticks immediately followed by the class name *e.g.* `language-php`.
+
+If you want to highlight any languages I haven't included in the Prism file shipped with Pendrell you can roll your own and replace `src/js/prism.js` before running `gulp package` and uploading a new distribution.
