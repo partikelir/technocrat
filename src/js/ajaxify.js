@@ -1,118 +1,123 @@
 // ==== AJAXIFY WORDPRESS ==== //
 
-// Adapted from:
+// This script is heavily adapted from:
 // - The original Ajaxify v1.0.1 gist: https://github.com/browserstate/ajaxify
 // - Ajaxify WordPress Site v1.5.4: https://github.com/wp-plugins/ajaxify-wordpress-site
 
 // With guidance from:
 // - http://blog.fraser-hart.co.uk/how-to-ajaxify-your-website-with-ajaxify-and-history-js/
 
+// Major architectural changes:
+// - Removes history.js (buggy) and jQuery.scrollTo
+// - Requires HTML5-History-API: https://github.com/devote/HTML5-History-API
+
 // Features:
-// - Improved comments
+// - Improved comments to give you more of an idea of what's going on
 // - All user-configurable settings are near the top of the file; no options screen bloat
 // - Integrates spin.js to dispense with loading graphics
-// - Won't Ajaxify links to downloadable files
+// - Extensions whitelist; won't Ajaxify links to downloadable files
 // - Only updates changed scripts in the body and outside of the content selector
 // - Inline scripts outside of the content selector will be added as needed (might be a bit buggy)
 // - Some meta and link elements in the header now change (not for SEO, just for user bookmarking and such)
 // - Uses jQuery native scrollTop instead of jQuery.scrollTo plugin; scrolls only when below the top of the content selector
 // - Smooth fade in and fade out animations
-// - Works with the new Universal Analytics script from Google
+// - Compatible with the new Universal Analytics script from Google
 
 // Caveats:
-// - This is my first halfway serious jQuery/Ajax project; there may be some bugs
+// - This is my first halfway serious jQuery/Ajax project; there will be bugs
 // - If you see something worth changing please contribute!
+
+// To do:
+// - Handle scripts in the head
+
+
+
+// Edit these variables to customize this script; there should be no need to touch anything else
+var ajaxifyOptions = {
+    contentSelector:      '#content-wrapper'
+  , menuSelector:         '.menu-header' // The selector for the entire menu
+  , contentFadeOut:       600
+  , contentFadeIn:        120
+  , scrollDuration:       300
+
+  // spin.js options; reference: https://fgnass.github.io/spin.js/
+  , spinnerFadeOut:       300
+  , spinnerOptions: {
+      lines: 25
+    , length: 0
+    , width: 4
+    , radius: 25
+    , speed: 1.5
+    , trail: 40
+    , top: '25%'
+  }
+
+  // Whitelisted extensions
+  , extensionsFilter:     /\.(jpg|jpeg|png|gif|bmp|pdf|mp3|flac|wav|rar|zip)$/i
+
+  // Handle various WordPress-related edge cases
+  , wordPress:            true
+};
+
+
 
 // Ready...
 (function(window,undefined){
 
-  // Prepare our base variables and configuration settings
+  // Prepare our base variables
   var
-    History = window.History
-  , $ = window.jQuery
-  , document = window.document
+    $         = window.jQuery
+  , document  = window.document
+  , location  = window.history.location || window.location;
 
-  // Edit these variables to customize this script; there should be no need to touch anything else
-  , ajaxifyOptions = {
-      contentSelector:      '#content-wrapper'
-    , menuSelector:         '.menu-header' // The selector for the entire menu
-    , contentFadeOut:       600
-    , contentFadeIn:        120
-    , scrollDuration:       300
-    , spinnerFadeOut:       300
-    , spinnerOptions: {     // Reference: https://fgnass.github.io/spin.js/
-        lines: 25
-      , length: 0
-      , width: 4
-      , radius: 25
-      , speed: 1.5
-      , trail: 40
-      , top: '25%'
-    }
-  };
+  // Check to see if the browser supports the HTML5 history API; if not, let the site load normally
+  if ( !(window.history && history.pushState) ) {
+    return false;
+  }
 
-  // Check to see if History.js is enabled; if not, let the site load normally
-  if ( !History.enabled ) { return false; }
-
-  // Wait for Document
+  // Wait for document
   $(function(){
     var
-      $window               = $(window)
-    , $body                 = $(document.body)
-    , rootUrl               = History.getRootUrl()
-    , contentSelector       = ajaxifyOptions.contentSelector
-    , menuSelector          = ajaxifyOptions.menuSelector
-    , $content              = $(contentSelector).filter(':first')
-    , contentNode           = $content.get(0)
-    ;
+      $window         = $(window)
+    , $body           = $(document.body)
+    , contentSelector = ajaxifyOptions.contentSelector
+    , menuSelector    = ajaxifyOptions.menuSelector
+    , $content        = $(contentSelector).filter(':first')
+    , rootUrl         = (function(){
+      var
+        port = document.location.port ? ':' + document.location.port : ''
+      , root = document.location.protocol + '//' + ( document.location.hostname || document.location.host ) + port + '/';
+      return root;
+    }());
 
-    // Ensure content isn't empty
+    // Ensure content isn't empty; if it is, use the current document contents
     if ( $content.length === 0 ) {
       $content = $body;
     }
 
-    // Identifies internal links
-    $.expr[':'].internal = function(obj, index, meta, stack){
+    // A selector to identify internal links
+    $.expr[':'].internal = function(obj,index,meta,stack){
       var
-        $this = $(obj),
-        url = $this.attr('href') || '',
-        isInternalLink;
+        $this = $(obj)
+      , url = ( $this.attr('href') || '' )
+      , isInternalLink;
 
-      // Test the link
+      // Validate the link to ensure it matches the current root URL
       isInternalLink = url.substring(0,rootUrl.length) === rootUrl || url.indexOf(':') === -1;
 
-      // Ignore or keep
       return isInternalLink;
     };
 
-    // HTML helper; easily select elements from the page to load by selecting #document-html, #document-head, and #document-body
-    var documentHtml = function(html){
-      var result = String(html)
-        .replace(/<\!DOCTYPE[^>]*>/i, '')
-        .replace(/<(html|head|body)([\s\>])/gi,'<div id="document-$1"$2')
-        .replace(/<\/(html|head|body)\>/gi,'</div>')
-      ;
-      return $.trim(result);
-    };
-
-    // Ajaxify helper; trigger page loading for qualifying links
+    // Ajaxify helper; trigger page loading for matched links
     $.fn.ajaxify = function(){
       var $this = $(this);
-
-      // @TODO: external links handler
-      //$this.find('a:not(:internal)')
-      //.on('click', function(event){
-        // target blank or open popup for anything not covered below
-      //  event.preventDefault();
-      //  return false;
-      //});
 
       // Run the script when clicking on certain links; WP-specific exceptions have been added here
       $this.find('a:internal:not(.no-ajaxy, [href^="#"], [href*="wp-login"], [href*="wp-admin"])')
 
       // Filter URLs that end in specified file extensions; the use of the not operator only returns links that aren't to files
       .filter(function() {
-        return !this.href.match(/\.(jpg|jpeg|png|gif|bmp|pdf|mp3|flac|wav|rar|zip)$/i); // @TODO: move this up to ajaxifyOptions
+        return !this.href.match(ajaxifyOptions.extensionsFilter);
       })
       .on('click', function(event){
         var
@@ -120,14 +125,19 @@
           url   = $this.attr('href'),
           title = $this.attr('title') || null;
 
-        // Continue as normal for command clicks etc.
-        if ( event.which === 2 || event.metaKey ) {
+        // Continue as normal for command and control key clicks to open in a new tab and such; reference: https://github.com/browserstate/ajaxify/pull/15/files
+        if ( event.which === 2 || event.metaKey || event.ctrlKey ) {
           return true;
         }
 
-        // Ajaxify this link
-        History.pushState(null,title,url);
-        event.preventDefault();
+        // If url is a hash or not set, just return; @TODO: test this
+        if ( !url || url[0] === '#') {
+          return true;
+        }
+
+        // Push state, load new content via AJAX, and prevent the default action with `return false`
+        history.pushState(null,title,url);
+        ajaxifyLoader();
         return false;
       });
 
@@ -135,24 +145,30 @@
       return $this;
     };
 
-    // Ajaxify our internal links
-    $body.ajaxify();
-
-    // Hook into state changes
-    $window.bind('statechange', function(){
+    // This function dynamically loads content from the requested page
+    function ajaxifyLoader(){
       var
-        State = History.getState(),
-        url = State.url,
-        relativeUrl = url.replace(rootUrl, '');
+        url = location.href
+      , relativeUrl = url.replace(rootUrl, '');
+
+      // HTML helper; easily select elements from the page to load by selecting #document-html, #document-head, and #document-body
+      var documentHtml = function(html){
+        var result = String(html)
+          .replace(/<\!DOCTYPE[^>]*>/i, '')
+          .replace(/<(html|head|body)([\s\>])/gi,'<div id="document-$1"$2')
+          .replace(/<\/(html|head|body)\>/gi,'</div>')
+        ;
+        return $.trim(result);
+      };
 
       // Set loading class
       $body.addClass('loading');
 
       // Fade out existing content; use animate to preserve the element's height (avoids scrollbar flicker)
-      $content.animate({ opacity: 0 }, ajaxifyOptions.contentFadeOut);
+      $content.animate({opacity:0}, ajaxifyOptions.contentFadeOut);
 
       // Spin spin sugar; degrades gracefully if spin.js not found
-      if ( $.isFunction(window.Spinner) ) {
+      if ( $.isFunction( window.Spinner ) ) {
         $content.before('<div id="spinner" style="position: fixed; height: 100%; width: 100%;"></div>');
         $('#spinner').spin(ajaxifyOptions.spinnerOptions);
       }
@@ -160,7 +176,7 @@
       // AJAX page request; fetch the content we need
       $.ajax({
         url: url,
-        success: function(data, textStatus, jqXHR){
+        success: function(data,textStatus,jqXHR){
           var
             $data         = $(documentHtml(data))
           , $dataBody     = $data.find('#document-body:first')
@@ -170,7 +186,7 @@
           , contentHtml;
 
           // Add classes to body; makes WordPress pages render smoothly
-          $('body').attr('class', $dataBody.attr('class') );
+          $('body').attr( 'class', $dataBody.attr('class') );
 
           // Fetch body scripts not in the content (which will be replaced anyhow)
           $scripts = $dataBody.find('script').not(contentSelector+' script');
@@ -178,20 +194,22 @@
 
           // Fetch the content
           contentHtml = $dataContent.html() || $data.html();
+
+          // If no content is received for any reason let's forward the user on to the target URL
           if ( !contentHtml ) {
             document.location.href = url;
             return false;
           }
 
           // Update the content and ajaxify the links contained within
-          $content.stop(true,true);
+          $content.stop(true, true);
           $content.html(contentHtml).ajaxify();
 
           // Fade the content back in
-          $content.animate({ opacity: 1, visibility: "visible" }, ajaxifyOptions.contentFadeIn);
+          $content.animate({opacity:1,visibility:"visible"}, ajaxifyOptions.contentFadeIn);
 
           // Scroll to the top of the content container when below the fold
-          if ( $(window).scrollTop() > $(contentSelector).offset().top ) {
+          if ( $(window).scrollTop() > $(contentSelector).offset().top) {
             $('html, body').animate({ scrollTop: $(contentSelector).offset().top }, ajaxifyOptions.scrollDuration, "swing");
           }
 
@@ -284,47 +302,32 @@
           // Clean up
           $body.removeClass('loading');
           $('#spinner').fadeOut(ajaxifyOptions.spinnerFadeOut, function(){ $(this).remove(); });
-          $window.trigger('statechangecomplete'); // This is an arbitrary name give to trigger other events after this script fires
 
           // Inform Google Analytics of the change; compatible with the new Universal Analytics script; @TODO: test this in a live environment
           if ( typeof window.ga !== 'undefined' ) {
             window.ga('send', 'pageview', relativeUrl);
+          } else if ( typeof window._gaq !== 'undefined' ) {
+            window._gaq.push(['_trackPageview', relativeUrl]); // Legacy analytics; ref: https://github.com/browserstate/ajaxify/pull/25
           }
 
         },
+
         // Fallback functionality
         error: function(jqXHR, textStatus, errorThrown){
           document.location.href = url;
           return false;
         }
       }); // end AJAX page request
+    }
 
+    // Hook into state changes i.e. when the user goes backwards or forwards in the browser
+    $window.on('popstate', function(e) {
+      ajaxifyLoader();
     }); // end onStateChange
+
+    // Ajaxify our internal links
+    $body.ajaxify();
 
   }); // end onDomLoad
 
 })(window);
-
-// @TODO: ajaxify search and other form elements (e.g. the monthly dropdown menu)
-// The code below, borrowed from AWS, does not do what we want
-// Search URL needs to be preserved; this just hacks it together based on a guess
-// Process: create a hidden div, implant a link to the desired URL, swap actions when clicking on the submit button to clicking on said link
-// If we get the link right then the rest falls into place
-jQuery(document).ready(function(){
-
-  // Append anchor tag to DOM to make the search in site ajaxify.
-  var searchButtonHtml = '<span id="ajax-search" style="display:none;"><a href=""></a></span>';
-  jQuery("body").prepend(searchButtonHtml);
-
-  //Make the link ajaxify.
-  jQuery("#ajax-search").ajaxify();
-
-  jQuery('.search-form').on('submit',
-    function(d){
-      //d.preventDefault();
-      var host = "http://synaptic.dev:8080/?s=";
-      jQuery("#ajax-search a").attr("href", host + jQuery(this).find('input[type="search"]').val());
-      jQuery("#ajax-search a").trigger("click");
-    }
-  );
-});

@@ -65,7 +65,7 @@ gulp.task('scripts-core', function() {
 // Ajaxify module; the order of dependencies is important here; relies on jQuery, already loaded in the head
 gulp.task('scripts-ajaxify', function() {
   return gulp.src([
-    bower+'history.js/scripts/bundled-uncompressed/html4+html5/jquery.history.js'
+    bower+'html5-history-api/history.iegte8.js'
   , bower+'spin.js/spin.js'
   , bower+'spin.js/jquery.spin.js'
   , source+'js/ajaxify.js'
