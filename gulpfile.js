@@ -38,7 +38,7 @@ gulp.task('styles', function() {
 // ==== SCRIPTS ==== //
 
 // Scripts; broken out into different tasks to create specific bundles which are then compressed in place
-gulp.task('scripts', ['scripts-lint', 'scripts-core', 'scripts-ajaxify', 'scripts-html5', 'scripts-prism'], function(){
+gulp.task('scripts', ['scripts-lint', 'scripts-core', 'scripts-ajaxinate', 'scripts-html5', 'scripts-prism'], function(){
   return gulp.src([build+'js/**/*.js', '!'+build+'js/**/*.min.js']) // Avoid recursive min.min.min.js
   .pipe(plugins.rename({suffix: '.min'}))
   .pipe(plugins.uglify())
@@ -62,15 +62,15 @@ gulp.task('scripts-core', function() {
   .pipe(gulp.dest(build+'js/'));
 });
 
-// Ajaxify module; the order of dependencies is important here; relies on jQuery, already loaded in the head
-gulp.task('scripts-ajaxify', function() {
+// Ajaxinate module; the order of dependencies is important here; relies on jQuery, already loaded in the head
+gulp.task('scripts-ajaxinate', function() {
   return gulp.src([
     bower+'html5-history-api/history.iegte8.js'
   , bower+'spin.js/spin.js'
   , bower+'spin.js/jquery.spin.js'
-  , source+'js/ajaxify.js'
+  , bower+'ajaxinate/src/ajaxinate.js'
   ])
-  .pipe(plugins.concat('ajaxify.js'))
+  .pipe(plugins.concat('ajaxinate.js'))
   .pipe(gulp.dest(build+'js/'));
 });
 
@@ -181,7 +181,7 @@ gulp.task('server', ['build'], function() {
 // Watch task: build stuff when files are modified, livereload when anything in the `build` or `dist` folders change
 gulp.task('watch', ['server'], function() {
   gulp.watch(source+'scss/**/*.scss', ['styles']);
-  gulp.watch(source+'js/**/*.js', ['scripts']);
+  gulp.watch([source+'js/**/*.js', bower+'**/*.js'], ['scripts']);
   gulp.watch(source+'**/*(*.png|*.jpg|*.jpeg|*.gif)', ['images']);
   gulp.watch(source+'**/*.php', ['php']);
   gulp.watch([build+'**/*', dist+'**/*']).on('change', function(file) {
