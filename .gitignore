@@ -38,3 +38,4 @@ build
 dev.php
 development.php
 functions-config.php
+dist/pendrell/functions-config.php
