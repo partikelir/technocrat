@@ -47,7 +47,7 @@ gulp.task('scripts', ['scripts-lint', 'scripts-core', 'scripts-ajaxinate', 'scri
 
 // Only lint custom scripts; ignore the error-riddled custom build of Prism
 gulp.task('scripts-lint', function() {
-  return gulp.src([source+'js/**/*.js', '!'+source+'js/prism.js'])
+  return gulp.src([bower+'ajaxinate/src/ajaxinate.js', source+'js/**/*.js', '!'+source+'js/prism.js'])
   .pipe(plugins.jshint('.jshintrc'))
   .pipe(plugins.jshint.reporter('default'));
 });
@@ -69,6 +69,8 @@ gulp.task('scripts-ajaxinate', function() {
   , bower+'spin.js/spin.js'
   , bower+'spin.js/jquery.spin.js'
   , bower+'ajaxinate/src/ajaxinate.js'
+  , bower+'ajaxinate/src/ajaxinate-wp.js'
+  , source+'js/ajaxinate.js'
   ])
   .pipe(plugins.concat('ajaxinate.js'))
   .pipe(gulp.dest(build+'js/'));
@@ -77,14 +79,12 @@ gulp.task('scripts-ajaxinate', function() {
 // HTML5 shiv that originally came with Twenty Twelve; provides backwards compatibility with legacy IE browsers: https://github.com/aFarkas/html5shiv
 gulp.task('scripts-html5', function() {
   return gulp.src(bower+'html5shiv/dist/html5shiv.js')
-  .pipe(plugins.concat('html5shiv.js'))
   .pipe(gulp.dest(build+'js/'));
 });
 
 // Prism code highlighting; roll your own at http://prismjs.com/
 gulp.task('scripts-prism', function() {
   return gulp.src(source+'js/prism.js')
-  .pipe(plugins.concat('prism.js'))
   .pipe(gulp.dest(build+'js/'));
 });
 
@@ -173,7 +173,7 @@ gulp.task('bower_components', function() {
 gulp.task('server', ['build'], function() {
   plugins.livereload.listen(35729, function (err) {
     if (err) {
-      return console.log(err)
+      return console.log(err);
     };
   });
 });
@@ -198,7 +198,7 @@ gulp.task('build', ['styles', 'scripts', 'images', 'php']);
 
 // Release creates a clean distribution package under `dist` after running build, clean, and wipe in sequence
 // NOTE: this is a resource-intensive task; @TODO: integrate deployment and git updating?
-gulp.task('release', ['package']);
+gulp.task('dist', ['package']);
 
 // The default task runs watch which boots up the Livereload server after an initial build is finished
 gulp.task('default', ['watch']);
