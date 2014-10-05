@@ -32,8 +32,10 @@ sitemap.xml.gz
 .sass-cache
 bower_components
 node_modules
-assets/staging
+build
 
 ## Project specific
-#functions-config.php
+dev.php
 development.php
+functions-config.php
+dist/pendrell/functions-config.php
