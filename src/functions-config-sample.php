@@ -40,7 +40,7 @@ define( 'PENDRELL_MODULE_POST_FORMATS', true );
 define( 'PENDRELL_MODULE_VIEWS', true );
 
 // Master switch for Ajaxify page loading script
-define( 'PENDRELL_SCRIPTS_AJAXIFY', false );
+define( 'PENDRELL_SCRIPTS_AJAXINATE', false );
 
 // Master switch for Prism code-highlighting script
 define( 'PENDRELL_SCRIPTS_PRISM', false );

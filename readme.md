@@ -1,6 +1,6 @@
 # PENDRELL
 
-Pendrell is a minimal yet fully-featured WordPress theme for single author personal blogs. It is designed to be proficient at displaying beautiful, legible type alongside big, bold imagery. Use it for long-form journalism, photo-blogging, and more--but be prepared to dive into the code! Pendrell is something of a hacker theme; there is no options page, theme customizer, or any other bloat, which means you won't find it in the WordPress theme repository. Instead, what you get is a powerful WordPress theme built with the goodness of Sass, Bower, and Gulp. To get the most out of Pendrell you'll also want to install [Ubik](https://github.com/synapticism/ubik), my handy library of WordPress hacks bundled as a plugin.
+Pendrell is a minimal yet fully-featured WordPress theme for single author personal blogs. It is designed to be proficient at displaying beautiful, legible type alongside big, bold imagery. Use it for long-form journalism, photo-blogging, and more--but be prepared to dive into the code! Pendrell is something of a hacker theme; there is no options page, theme customizer, or any other bloat, which means you won't find it in the WordPress theme repository. Instead, what you get is a powerful WordPress theme [built with the goodness of Sass, Bower, and Gulp](https://github.com/synapticism/wordpress-gulp-bower-sass). To get the most out of Pendrell you'll also want to install [Ubik](https://github.com/synapticism/ubik), my handy library of WordPress hacks bundled as a plugin.
 
 ![Pendrell example screenshot](/dist/pendrell/screenshot.png "Pendrell example screenshot")
 
@@ -17,7 +17,7 @@ You can see Pendrell in action on my blog, [Synapticism](http://synapticism.com)
 * Improved post format styling and support for asides, images (really just a thin wrapper for attachments), links, quotations, and status updates.
 * Google web font support; configure in `functions.php`.
 * Built-in contact form page template; no need for a wasteful plugin.
-* Automated CSS/JS minification via Gulp build system. This theme is highly optimized.
+* Automated CSS/JS minification via Gulp build system. This theme is *highly* optimized.
 * Code highlighting via [Prism](http://prismjs.com).
 * Optional AJAX page loading.
 * Smart context-dependent search form.
