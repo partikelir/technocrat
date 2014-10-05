@@ -1,0 +1,258 @@
+// ==== CONTENT ==== //
+
+// Entry title
+.entry-title {
+  @include font-size($s-header);
+  font-weight: $w-normal;
+  @include respond-to(medium) {
+    @include font-size($s-header-big); // This is the normal title size seen on the homepage
+  }
+
+  // Drop the size of entry titles on archives and in search results
+  .archive &,
+  .search-results & {
+    @include font-size($s-header);
+  }
+
+  // Single post and page views
+  @include respond-to(large) {
+    body.page &, // Targets singular pages, avoiding conflict with .search-results .page .entry-title declaration
+    .single & {
+      @include font-size($s-header-title);
+      font-weight: $w-light;
+    }
+  }
+
+  // Boost the font size for full-width archives
+  @include full-width($media: large, $body-class: ".archive") {
+    @include font-size($s-header-big);
+  }
+}
+
+
+
+// Shared post and comment contents; additional styling specific to just post contents can be found below; styling specific to comments can be found in comments.scss
+.entry-content,
+.comment-content {
+  @extend %clearfix-below;
+  @include link-stylist($link-color: false);
+  word-wrap: break-word;
+
+  // Paragraph spacing
+  p {
+    @extend %spacer-below;
+  }
+
+  // Header spacing; not needed in .comment-content as we don't allow headers
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @extend %spacer-below;
+  }
+
+  // Headers
+  h1,
+  h2,
+  h3 {
+    @include rem('margin-top', $spacer*2); // Spaces out headers within body copy
+    & + h1,
+    & + h2,
+    & + h3 {
+      margin-top: 0; // Allows for subheadings
+    }
+  }
+
+  // Paragraph spacing
+  p {
+    @extend %spacer-below;
+  }
+
+  // Lists and definitions
+  ol,
+  ul,
+  dl {
+    @include rem('margin-bottom', $spacer);
+  }
+  ul ul,
+  ol ol,
+  ul ol,
+  ol ul,
+  dl dl {
+    margin-bottom: 0;
+  }
+  ul {
+    list-style: disc outside;
+    ul {
+      list-style: circle;
+    }
+  }
+  ol {
+    list-style: decimal outside;
+    ol {
+      list-style: lower-alpha;
+    }
+  }
+  li {
+    @include rem('margin', 0 0 0 $spacer);
+  }
+  dd {
+    @include rem('margin', 0 $spacer $spacer);
+  }
+  dl {
+    @include rem('margin', 0 $spacer);
+  }
+
+  // Tables
+  table {
+    @include rem('margin-bottom', $spacer, 1);
+    border-bottom: $d-divider;
+    color: $c-table;
+    width: 100%;
+    caption {
+      @extend %small-text;
+    }
+  }
+  th {
+    @extend %small-headers;
+  }
+  td {
+    @include font-size($s-text-smaller, 1);
+    border-top: $d-divider;
+  }
+
+  // Images
+  img {
+    @include border-radius;
+    display: block;
+  }
+
+  // First children of .entry-content and .comment-content that require extra spacing for visual flow
+  > blockquote,
+  > div,
+  > figure,
+  > img,
+  > pre {
+    &:first-child {
+      @extend %spacer-above;
+    }
+  }
+}
+
+
+
+// Exclusive to post contents
+.entry-content {
+
+  // Blockquote; isolated here as we display blockquotes differently in posts vs comments
+  blockquote {
+    @include font-size($s-text-big);
+    @include inset-box;
+    @include k-reverse-italics;
+    font-weight: $w-light;
+    p {
+      &:last-child {
+        margin: 0;
+      }
+      &:first-child:before { // Add opening and closing quotation marks to the blockquote element
+        content: "\201C";
+      }
+      &:nth-last-of-type(1):after { // Correctly adds quotation mark when footer or cite elements are present at the end of the blockquote
+        content: "\201D";
+      }
+    }
+    footer { // The footer element of a blockquote adds information about the source of the quotation
+      @include font-size($s-text-small);
+      display: block;
+      font-style: normal;
+      text-align: right;
+      cite {
+        font-style: italic; // Cancelled out by the k-reverse-italics mixin above
+      }
+      &:before {
+        content: "\2014\00a0";
+      }
+    }
+  }
+
+  // Asides; use this instead of <small> in post contents; does not appear in comments
+  aside {
+    @extend %spacer-below;
+    @include k-reverse-italics;
+    @include small-print;
+  }
+
+  // First children of .entry-content that require extra spacing for visual flow
+  .archive &,
+  .search-results & {
+    > p:first-child {
+      @extend %spacer-above;
+    }
+  }
+
+  // Full-width styling
+  @include full-width($media: large) {
+    @include font-size($s-text-big);
+    color: darken($c-body, 7); // Darken content as much of it will be a thinner weight
+
+    h1 { @include font-size($s-header-title); }
+    h2 { @include font-size($s-header-big); }
+    h3 { @include font-size($s-header); }
+    h4 { @include font-size($s-header-sub); }
+    h5 { @include font-size($s-text-small); }
+    h6 { @include font-size($s-text-smaller); }
+
+    // Lighter weight
+    p,
+    dl,
+    ol,
+    ul {
+      font-weight: $w-light;
+    }
+    address,
+    b,
+    dt,
+    strong {
+      font-weight: $w-bold;
+    }
+
+    // These are all usually $s-text-small; kick it up a notch
+    aside,
+    code,
+    pre,
+    small,
+    table caption,
+    .entry-caption,
+    .footnotes,
+    .references {
+      @include font-size($s-text);
+    }
+
+    td {
+      @include font-size($s-text, 1);
+    }
+
+    // Restore the sub/superscript reset
+    sub,
+    sup {
+      font-size: 75%;
+    }
+  }
+}
+
+
+
+// Entry meta
+.entry-meta {
+  @extend %clearfix;
+}
+.entry-meta-buttons {
+  @extend %button-container;
+}
+.entry-meta-main {
+  @include font-size($s-text-smaller);
+  @include link-stylist($c-meta-link, $c-meta-link-v, $c-meta-link-h, $c-meta-link-a, $c-meta-link-f);
+  color: $c-meta;
+}

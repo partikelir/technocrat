@@ -1,0 +1,101 @@
+// ==== VARIOUS ==== //
+
+// Alignment
+.alignleft {
+  float: left;
+}
+.alignright {
+  float: right;
+}
+.aligncenter {
+  @extend %clearfix-below;
+  @include center;
+  text-align: center; // Presumably we might be applying this to elements that contain text
+}
+.alignnone {
+  @extend %clearfix;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+
+
+// Clearing helper classes; @TODO: verify whether this is used anywhere or just legacy junk
+.clear {
+  @extend %clearfix-below;
+}
+
+
+
+// Form entry; @TODO: organize this
+.alert {
+  color: $c-alert;
+  font-weight: $w-bold;
+}
+.alert-field {
+  box-shadow: 0 0 6px rgba($c-alert, .9);
+  border: 1px solid $c-alert;
+  outline: none;
+}
+.required {
+  color: $c-required;
+}
+.success {
+  color: $c-success;
+}
+.warning {
+  color: $c-alert;
+  font-style: italic;
+}
+
+
+
+// Footnotes; for use with Markdown Extra implementations e.g. JP Markdown
+.footnotes {
+  @extend %small-text;
+}
+
+
+
+// References list; for use with scholarly works
+.references {
+  @include font-size($s-text-smaller);
+  ol,
+  ul {
+    list-style: none;
+  }
+  li {
+    @include k-hanging-indent($spacer);
+    margin: 0;
+  }
+}
+
+
+
+// Screen reader text adapted from Twenty Twelve
+.screen-reader-text {
+  clip: rect(1px, 1px, 1px, 1px);
+  position: absolute !important;
+  // @TODO: update and test this component
+  .menu-header &:focus {
+    @include border-radius;
+    background: transparent;
+    border: 2px solid #333;
+    clip: auto !important;
+    color: $c-black;
+    display: block;
+    padding: 12px;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    z-index: 100000;
+  }
+}
+
+
+
+// WordPress theme guidelines requires these classes even though we don't use them
+.bypostauthor,
+.sticky {
+  margin: 0;
+}
