@@ -1932,7 +1932,7 @@ var XN8 = {};
 
 (function($){
   $(function(){
-    $(document.body).ajaxinate({
+    $('body').ajaxinate({
       contentSel: '#content-wrapper',
       menuSel: '.menu-header'
     }); // To set an option include an object literal e.g. `ajaxinate({ searchBase: 'search' });`
