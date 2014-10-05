@@ -5,13 +5,13 @@
   display: none;
   button {
     position: relative;
-    &:hover {
-      border-radius: 3px 3px 0 0;
-    }
   }
   @include respond-to(medium) {
     display: inline-block;
   }
+}
+.view-options-on {
+  border-radius: 3px 3px 0 0;
 }
 
 
