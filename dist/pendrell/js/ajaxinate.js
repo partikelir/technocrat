@@ -1446,11 +1446,14 @@ var XN8 = {};
       // Initialize internal link selector
       this.internalSel();
 
+      // Initialize event handlers for the element(s) specified
+      this.prep(this.element);
+
       // Initialize popstate event handler
       this.popThis();
 
-      // Initialize event handlers for the element(s) specified
-      this.prep(this.element);
+      // Initialize spinner
+      this.spinner();
     },
 
 
@@ -1475,50 +1478,12 @@ var XN8 = {};
 
 
 
-    // Utility function to get the root URL with trailing slash e.g. http(s)://yourdomain.com/
-    root: function(){
-      var
-        port = document.location.port ? ':' + document.location.port : '',
-        url = document.location.protocol + '//' + (document.location.hostname || document.location.host) + port + '/';
-      return url;
-    }, // end root()
-
-
-
-    // Help parse HTML; @TODO: get rid of this, it's probably unnecessary
-    parseDoc: function(html){
-      var
-        result = String(html)
-        .replace(/<\!DOCTYPE[^>]*>/i, '')
-        .replace(/<(html|head|body)([\s\>])/gi,'<div id="document-$1"$2')
-        .replace(/<\/(html|head|body)\>/gi,'</div>')
-      ;
-      return $.trim(result);
-    }, // end parseDoc()
-
-
-
-    // Update Google Analytics on content load
-    analytics: function(url){
-
-      // Set the relative URL
-      var relativeUrl = '/' + url.replace(this.root(), '');
-
-      // Inform Google Analytics of the change; compatible with the new Universal Analytics script; @TODO: test this in a live environment
-      if ( typeof window.ga !== 'undefined' ) {
-        window.ga('send', 'pageview', relativeUrl);
-      } else if ( typeof window._gaq !== 'undefined' ) {
-        window._gaq.push(['_trackPageview', relativeUrl]); // Legacy analytics; ref: https://github.com/browserstate/ajaxify/pull/25
-      }
-    }, // end analytics()
-
-
-
-    // Primary function for binding to links and forms
+    // Primary event binding function
     prep: function(element){
       var self = this;
 
       // Run the script when clicking on certain links; additional exceptions can be defined in the options
+      // @TODO: optimize this; we can't simply bind events to body and prevent retriggering prep due to selector complexity
       $(element).find('a:internal:not(.no-ajaxinate, [href^="#"]' + self.opts.exceptions + ')')
 
       // Filter URLs that end in specified file extensions; the use of the not operator only returns links that aren't to files
@@ -1568,7 +1533,7 @@ var XN8 = {};
         history.pushState(state,title,url);
         this.load(url);
         return false;
-      } // else: do nothing
+      }
     }, // end pusher()
 
 
@@ -1590,6 +1555,39 @@ var XN8 = {};
 
 
 
+    // Conditionally initialize spinner div; degrades gracefully if spin.js not found
+    spinner: function(){
+      if ( $.isFunction(window.Spinner) ) {
+        this.content.before('<div id="spinner" style="position: fixed; height: 100%; width: 100%;"></div>');
+        $('#spinner').spin(this.opts.spinOpts).hide();
+      }
+    },
+
+
+
+    // Utility function to get the root URL with trailing slash e.g. http(s)://yourdomain.com/
+    root: function(){
+      var
+        port = document.location.port ? ':' + document.location.port : '',
+        url = document.location.protocol + '//' + (document.location.hostname || document.location.host) + port + '/';
+      return url;
+    }, // end root()
+
+
+
+    // Help parse HTML; @TODO: get rid of this, it might be unnecessary
+    parseDoc: function(html){
+      var
+        result = String(html)
+        .replace(/<\!DOCTYPE[^>]*>/i, '')
+        .replace(/<(html|head|body)([\s\>])/gi,'<div id="document-$1"$2')
+        .replace(/<\/(html|head|body)\>/gi,'</div>')
+      ;
+      return $.trim(result);
+    }, // end parseDoc()
+
+
+
     // This function dynamically loads content from the requested page
     load: function(url){
 
@@ -1598,17 +1596,15 @@ var XN8 = {};
       var
         self       = this,
         $body      = $(document.body),
+        $spinner   = $('#spinner'),
         contentSel = this.opts.contentSel,
         menuSel    = this.opts.menuSel;
 
       // Fade out existing content; use animate to preserve the element's height (avoids scrollbar flicker)
       this.content.animate({ opacity: 0 }, this.opts.contentOut);
 
-      // Spin spin sugar; degrades gracefully if spin.js not found
-      if ( $.isFunction(window.Spinner) ) {
-        this.content.before('<div id="spinner" style="position: fixed; height: 100%; width: 100%;"></div>');
-        $('#spinner').spin(self.opts.spinOpts);
-      }
+      // Spin spin sugar
+      $spinner.show();
 
       // AJAX page request; fetch the content we need
       $.ajax({
@@ -1616,33 +1612,31 @@ var XN8 = {};
         success: function(data,textStatus,jqXHR){
           var
             $data         = $(self.parseDoc(data)),
-            $dataBody     = $data.find('#document-body:first'),
-            $dataContent  = $dataBody.find(contentSel).filter(':first'),
-            $dataMenu     = $dataBody.find(menuSel),
-            $contentHtml  = $dataContent.html() || $data.html(),
-            $scripts      = $dataBody.find('script').not(contentSel+' script'),
+            $bodyNew      = $data.find('#document-body:first'),
+            $content      = $bodyNew.find(contentSel).filter(':first').html() || $data.html(),
+            $menu         = $bodyNew.find(menuSel).html(),
+            $scripts      = $bodyNew.find('script').not(contentSel+' script'),
             $title        = $data.find('title:first').text();
 
           // If no content is received for any reason let's forward the user on to the target URL
-          if (!$contentHtml) {
+          if (!$content) {
             document.location.href = url;
             return false;
           }
 
           // Update the content and prep event handlers
           self.content.stop(true,true);
-          self.prep(self.content.html($contentHtml));
+          self.prep(self.content.html($content));
 
           // Swap the menu(s) and prep event handlers
-          self.prep($(menuSel).html($dataMenu.html()));
+          self.prep($(menuSel).html($menu));
 
           // Harmonize body classes; makes WordPress pages render smoothly but also generally useful
-          $body.attr('class', $dataBody.attr('class'));
+          $body.attr('class', $bodyNew.attr('class'));
 
           // Fade the content back in and update various elements
           self.content.animate({ opacity: 1, visibility: "visible" }, self.opts.contentIn);
           self.scripts($scripts);
-          self.scroll();
           self.title($title);
           self.meta($data);
         },
@@ -1657,7 +1651,10 @@ var XN8 = {};
         complete: function(jqXHR,textStatus){
 
           // Fade out spinner
-          $('#spinner').fadeOut(self.opts.spinFade, function(){ $(this).remove(); });
+          $spinner.fadeOut(self.opts.spinFade, function(){ $(this).hide(); });
+
+          // Scroll to the appropriate location
+          self.scroll();
 
           // Update analytics
           self.analytics(url);
@@ -1670,41 +1667,16 @@ var XN8 = {};
 
 
 
-    // Update scroll position
-    scroll: function(){
-      var
-        contentSel = this.opts.contentSel,
-        scrollDelay  = this.opts.scrollDelay;
-
-      // Test for the presence of a hash in the URL
-      if (location.hash && location.hash !== '') {
-
-        // Define the selector
-        var hashSelector = '[id="'+location.hash.substring(1)+'"]';
-
-        // Test whether the selector exists; fall back on regular scroll routine if not
-        if ( $(hashSelector).length ) {
-          $('body').animate({ scrollTop: $(hashSelector).offset().top }, scrollDelay, "swing"); // @TODO: delay scroll to allow images to load
-        } else if ( ( $(window).scrollTop() > $(contentSel).offset().top ) ) {
-          $('body').animate({ scrollTop: $(contentSel).offset().top }, scrollDelay, "swing");
-        }
-
-      // Scroll to the top of the content container when below the fold
-      } else if ( ( $(window).scrollTop() > $(contentSel).offset().top ) ) {
-        $('body').animate({ scrollTop: $(contentSel).offset().top }, scrollDelay, "swing");
-      }
-
-    }, // end scroll()
-
-
-
     // Update scripts
     scripts: function($scripts){
-
-      var contentSel = this.opts.contentSel;
+      var
+        $body       = $('body'),
+        contentScr  = this.opts.contentSel + ' script'; // Selects content scripts
 
       // Fetch body scripts not in the content (which will be replaced anyhow)
-      if ( $scripts.length ) { $scripts.detach(); }
+      if ( $scripts.length ) {
+        $scripts.detach();
+      }
 
       // Update the body scripts outside of the content area; we're assuming that header scripts don't change
       $scripts.each(function(){
@@ -1717,23 +1689,23 @@ var XN8 = {};
               notNewScript = false;
 
           // Check existing scripts to see if they contain the same stuff
-          $.each( $('body').find('script:not(:empty)').not(contentSel+' script'), function(){
+          $.each( $body.find('script:not(:empty)').not(contentScr), function(){
             if ( $(this).html() === inlineScript ) { notNewScript = true; }
           });
 
           // Paste new stuff in if it isn't found in the current DOM; this is quite a kludge
           if ( notNewScript === false ) {
-            $('body').find('script:not(:empty)').not(contentSel+' script').filter(':first').before( '<script>'+$(this).html()+'</script>' );
+            $body.find('script:not(:empty)').not(contentScr).filter(':first').before( '<script>'+$(this).html()+'</script>' );
           }
 
         } else {
 
           // Test for the presence of each body script; if it isn't found load it and add it to the DOM
-          if ( !$('body').find('script[src*="' + $(this).attr('src') + '"]').length ) {
+          if ( !$body.find('script[src*="' + $(this).attr('src') + '"]').length ) {
             $.getScript( $(this).attr('src') );
             var newScript = document.createElement('script');
             newScript.src = $(this).attr('src'); // No need for type="text/javascript" in HTML5
-            $('body')[0].appendChild( newScript );
+            $body[0].appendChild( newScript );
           }
         }
       });
@@ -1745,24 +1717,34 @@ var XN8 = {};
     title: function($title){
 
       // Update the title
-      document.title = $title;
+      document.title = $title
+        .replace('<','&lt;')
+        .replace('>','&gt;')
+        .replace(' & ',' &amp; ')
+      ;
+
+      // Legacy try/catch block from Ajaxify
       try {
         document.getElementsByTagName('title')[0].innerHTML = document.title.replace('<','&lt;').replace('>','&gt;').replace(' & ',' &amp; ');
       }
       catch ( Exception ) {}
+
     }, // end title()
 
 
 
-    // Update meta and links elements
+    // Update meta and links elements; @TODO: modularize this; it's pretty wasteful for something that brings little value
     meta: function($data){
+      var
+        $headData = $data.find('#document-head').detach(), // Decapitate!
+        $head = $('head');
 
       // Change the meta description tag; presumably this is used in bookmarking and such
-      if ( $data.find('meta[name="description"]').length ) {
+      if ( $headData.find('meta[name="description"]').length ) {
         if ( !$('meta[name="description"]').length ) {
-          $('head').append( $data.find('meta[name="description"]') );
+          $head.append( $headData.find('meta[name="description"]') );
         } else {
-          $('meta[name="description"]').attr('content', $data.find('meta[name="description"]').attr('content') );
+          $('meta[name="description"]').attr('content', $headData.find('meta[name="description"]').attr('content') );
         }
       }
 
@@ -1779,7 +1761,7 @@ var XN8 = {};
       ], function(i, val){
 
         // Link element not found in new page; remove it from current page if it exists
-        if ( !$data.find(val).length ) {
+        if ( !$headData.find(val).length ) {
           $(val).remove();
 
         // Link element found in new page
@@ -1787,20 +1769,66 @@ var XN8 = {};
 
           // Link element isn't on current page; add it to the header
           if ( !$(val).length ) {
-            $('head').append( $data.find(val) );
+            $head.append( $headData.find(val) );
 
           // Link element IS on current page; update attributes
           } else {
-            if ( $data.find(val).attr('href') ) {
-              $(val).attr('href', $data.find(val).attr('href') );
+            if ( $headData.find(val).attr('href') ) {
+              $(val).attr('href', $headData.find(val).attr('href') );
             }
-            if ( $data.find(val).attr('title') ) {
-              $(val).attr('title', $data.find(val).attr('title') );
+            if ( $headData.find(val).attr('title') ) {
+              $(val).attr('title', $headData.find(val).attr('title') );
             }
           }
         }
       });
-    } // end meta()
+    }, // end meta()
+
+
+
+    // Update scroll position
+    scroll: function(){
+      var
+        $body       = $('body'),
+        $content    = $(this.opts.contentSel),
+        scrollDelay = this.opts.scrollDelay;
+
+      // Test for the presence of a hash in the URL
+      if (location.hash && location.hash !== '') {
+
+        // Define the selector
+        var $hash = $('[id="'+location.hash.substring(1)+'"]');
+
+        // Test whether the selector exists; fall back on regular scroll routine if not
+        if ( $hash.length ) {
+          $body.animate({ scrollTop: $hash.offset().top }, scrollDelay, "swing"); // @TODO: delay scroll to allow images to load
+        } else if ( ( $(window).scrollTop() > $content.offset().top ) ) {
+          $body.animate({ scrollTop: $content.offset().top }, scrollDelay, "swing");
+        }
+
+      // Scroll to the top of the content container when below the fold
+      } else if ( ( $(window).scrollTop() > $content.offset().top ) ) {
+        $body.animate({ scrollTop: $content.offset().top }, scrollDelay, "swing");
+      }
+
+    }, // end scroll()
+
+
+
+    // Update Google Analytics on content load
+    analytics: function(url){
+
+      // Set the relative URL
+      var relativeUrl = '/' + url.replace(this.root(), '');
+
+      // Inform Google Analytics of the change; compatible with the new Universal Analytics script
+      if ( typeof window.ga !== 'undefined' ) {
+        window.ga('send', 'pageview', relativeUrl);
+      } else if ( typeof window._gaq !== 'undefined' ) {
+        window._gaq.push(['_trackPageview', relativeUrl]); // Legacy analytics; ref: https://github.com/browserstate/ajaxify/pull/25
+      }
+    } // end analytics()
+
   }; // end Ajaxinate.prototype
 
 
@@ -1851,16 +1879,19 @@ var XN8 = {};
 ;(function($, window, document, undefined){
   'use strict';
 
+  var PT = XN8.Ajaxinate.prototype;
+
   // Hook into prep to add WordPress-specific methods
-  XN8.Ajaxinate.prototype._prep = XN8.Ajaxinate.prototype.prep;
-  XN8.Ajaxinate.prototype.prep = function(element){
+  PT._prep = PT.prep;
+  PT.prep = function(element){
     this._prep(element);
     this.wpArchives(element);
     this.wpSearch(element);
   }; // end prep()
 
+
   // URL encode function to emulate WP's search rewrite; via: http://phpjs.org/functions/urlencode/
-  XN8.Ajaxinate.prototype.encode = function(str){
+  PT.encode = function(str){
     str = (str+'').toString();
     return encodeURIComponent(str)
       .replace(/!/g, '%21')
@@ -1872,7 +1903,7 @@ var XN8 = {};
   }; // end encode()
 
   // WordPress archive dropdown handler; for use with the archive widget; don't use with the category widget, the code is completely different
-  XN8.Ajaxinate.prototype.wpArchives = function(element){
+  PT.wpArchives = function(element){
     var self = this;
 
     $(element).find('select[name$="dropdown"]')
@@ -1886,7 +1917,7 @@ var XN8 = {};
   }; // end wpDropdown()
 
   // WordPress search form; you may need to customize this to suit your own theme
-  XN8.Ajaxinate.prototype.wpSearch = function(element){
+  PT.wpSearch = function(element){
     var self = this;
 
     $(element).find(self.opts.searchSel)
@@ -1931,8 +1962,8 @@ var XN8 = {};
 // Selective content loading for WordPress: https://github.com/synapticism/ajaxinate
 
 (function($){
-  $(function(){
-    $('body').ajaxinate({
+  $(function(){ // Shortcut to $(document).ready(handler);
+    $(document.body).ajaxinate({
       contentSel: '#content-wrapper',
       menuSel: '.menu-header'
     }); // To set an option include an object literal e.g. `ajaxinate({ searchBase: 'search' });`
