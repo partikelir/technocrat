@@ -1575,13 +1575,15 @@ var XN8 = {};
 
 
 
-    // Help parse HTML; @TODO: get rid of this, it might be unnecessary
-    parseDoc: function(html){
+    // Document helper; browsers often strip out html, head, body, title, base, and meta tags; see https://api.jquery.com/load/
+    // This function facilitates access by transforming those elements to divs with ids that match the original e.g. #doc-title
+    // See also: https://gist.github.com/cowboy/742952/
+    docHelp: function(html){
       var
         result = String(html)
         .replace(/<\!DOCTYPE[^>]*>/i, '')
-        .replace(/<(html|head|body)([\s\>])/gi,'<div id="document-$1"$2')
-        .replace(/<\/(html|head|body)\>/gi,'</div>')
+        .replace(/<(html|head|body|title|base|meta)([\s\>])/gi,'<div id="doc-$1"$2')
+        .replace(/<\/(html|head|body|title|base|meta)\>/gi,'</div>')
       ;
       return $.trim(result);
     }, // end parseDoc()
@@ -1611,8 +1613,8 @@ var XN8 = {};
         url: url,
         success: function(data,textStatus,jqXHR){
           var
-            $data         = $(self.parseDoc(data)),
-            $bodyNew      = $data.find('#document-body:first'),
+            $data         = $(self.docHelp(data)),
+            $bodyNew      = $data.find('#doc-body:first'),
             $content      = $bodyNew.find(contentSel).filter(':first').html() || $data.html(),
             $menu         = $bodyNew.find(menuSel).html(),
             $scripts      = $bodyNew.find('script').not(contentSel+' script'),
@@ -1624,8 +1626,10 @@ var XN8 = {};
             return false;
           }
 
-          // Update the content and prep event handlers
+          // Stop animation immediately
           self.content.stop(true,true);
+
+          // Update the content and prep event handlers
           self.prep(self.content.html($content));
 
           // Swap the menu(s) and prep event handlers
@@ -1634,11 +1638,15 @@ var XN8 = {};
           // Harmonize body classes; makes WordPress pages render smoothly but also generally useful
           $body.attr('class', $bodyNew.attr('class'));
 
-          // Fade the content back in and update various elements
+          // Fade the content back in
           self.content.animate({ opacity: 1, visibility: "visible" }, self.opts.contentIn);
-          self.scripts($scripts);
+
+          // Update header and body scripts outside of the content area
+          //self.scripts($scripts);
           self.title($title);
-          self.meta($data);
+          //self.meta($data);
+          //self.head($headNew);
+          //$('head').html($headNew.html());
         },
 
         // Error handling; fall back on regular page load if anything goes wrong
@@ -1676,36 +1684,45 @@ var XN8 = {};
       // Fetch body scripts not in the content (which will be replaced anyhow)
       if ( $scripts.length ) {
         $scripts.detach();
+      } else {
+        return false; // Quit while you're ahead
       }
 
       // Update the body scripts outside of the content area; we're assuming that header scripts don't change
       $scripts.each(function(){
 
+        var $this = $(this);
+
         // If the current script is empty we assume it must be inline
-        if ( '' !== $(this).html() ) {
+        if ( '' !== $this.html() ) {
 
           // Save the currect script contents for use in the loop to follow
-          var inlineScript = $(this).html(),
-              notNewScript = false;
+          var
+            inlineScript = $this.html(),
+            isNew        = true;
 
           // Check existing scripts to see if they contain the same stuff
           $.each( $body.find('script:not(:empty)').not(contentScr), function(){
-            if ( $(this).html() === inlineScript ) { notNewScript = true; }
+            if ( $this.html() === inlineScript ) {
+              isNew = false;
+            }
           });
 
           // Paste new stuff in if it isn't found in the current DOM; this is quite a kludge
-          if ( notNewScript === false ) {
-            $body.find('script:not(:empty)').not(contentScr).filter(':first').before( '<script>'+$(this).html()+'</script>' );
+          if ( isNew === true ) {
+            $body.find('script:not(:empty)').not(contentScr).filter(':first').before( '<script>' + $this.html() + '</script>' );
           }
 
+        // Fetch new non-inline scripts
         } else {
 
           // Test for the presence of each body script; if it isn't found load it and add it to the DOM
-          if ( !$body.find('script[src*="' + $(this).attr('src') + '"]').length ) {
-            $.getScript( $(this).attr('src') );
-            var newScript = document.createElement('script');
-            newScript.src = $(this).attr('src'); // No need for type="text/javascript" in HTML5
-            $body[0].appendChild( newScript );
+          if ( !$body.find('script[src*="' + $this.attr('src') + '"]').length ) {
+            $.getScript( $this.attr('src') );
+
+            //var newScript = document.createElement('script');
+            //newScript.src = $this.attr('src'); // No need for type="text/javascript" in HTML5
+            //$body[0].appendChild(newScript);
           }
         }
       });
@@ -1736,7 +1753,7 @@ var XN8 = {};
     // Update meta and links elements; @TODO: modularize this; it's pretty wasteful for something that brings little value
     meta: function($data){
       var
-        $headData = $data.find('#document-head').detach(), // Decapitate!
+        $headData = $data.find('#doc-head').detach(), // Decapitate!
         $head = $('head');
 
       // Change the meta description tag; presumably this is used in bookmarking and such
