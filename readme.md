@@ -19,7 +19,7 @@ You can see Pendrell in action on my blog, [Synapticism](http://synapticism.com)
 * Built-in contact form page template; no need for a wasteful plugin.
 * Automated CSS/JS minification via Gulp build system. This theme is *highly* optimized.
 * Code highlighting via [Prism](http://prismjs.com).
-* Optional AJAX page loading with [Ajaxinate](https://github.com/synapticism/ajaxinate).
+* Optional AJAX page loading with [Ajaxinate](https://github.com/synapticism/ajaxinate) and [Ajaxinate WP](https://github.com/synapticism/ajaxinate-wp).
 * Smart context-dependent search form.
 * Much, much more...
 

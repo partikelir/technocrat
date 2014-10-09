@@ -70,7 +70,7 @@ gulp.task('scripts-ajaxinate', function() {
   , bower+'spin.js/spin.js'
   , bower+'spin.js/jquery.spin.js'
   , bower+'ajaxinate/src/ajaxinate.js'
-  , bower+'ajaxinate/src/ajaxinate-wp.js'
+  , bower+'ajaxinate-wp/src/ajaxinate-wp.js'
   , source+'js/ajaxinate.js'
   ])
   .pipe(plugins.concat('ajaxinate.js'))

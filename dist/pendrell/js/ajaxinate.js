@@ -1470,8 +1470,18 @@ var XN8 = {};
           rooturl = self.root(),
           isInternal;
 
-        // Validate the link to ensure it matches the current root URL
-        isInternal = url.substring(0,rooturl.length) === rooturl || url.indexOf(':') === -1;
+        // Test the link:
+        // - Check whether the domains are the same
+        // - Check whether the link is relative (e.g. does not contain http(s)://)
+        // - Check whether the link begins with a hash (#)
+        // - Filter certain file extensions defined in the options (e.g. images, audio files, etc.)
+        isInternal =
+          url.substring(0,rooturl.length) === rooturl ||
+          url.indexOf(':') === -1 ||
+          url.indexOf('#') !== 0 ||
+          !url.match(self.opts.exceptions)
+        ;
+
         return isInternal;
       };
     }, // end internalSel()
@@ -1482,14 +1492,11 @@ var XN8 = {};
     prep: function(element){
       var self = this;
 
-      // Run the script when clicking on certain links; additional exceptions can be defined in the options
-      // @TODO: optimize this; we can't simply bind events to body and prevent retriggering prep due to selector complexity
-      $(element).find('a:internal:not(.no-ajaxinate, [href^="#"]' + self.opts.exceptions + ')')
+      // Select all anchor tags within the target element; uses native JavaScript methods (fast)
+      $(element).find('a')
 
-      // Filter URLs that end in specified file extensions; the use of the not operator only returns links that aren't to files
-      .filter(function(){
-        return !this.href.match(self.opts.extensions);
-      })
+      // Now filter the results to find certain internal links; uses complex jQuery selectors (slow)
+      .filter(':internal' + self.opts.filters)
 
       // Manage click event
       .on('click', function(event){
@@ -1503,12 +1510,20 @@ var XN8 = {};
         // - Command and control key clicks e.g. to open in a new tab; reference: https://github.com/browserstate/ajaxify/pull/15/files
         // - See also: event.altKey, event.shiftKey (not implemented)
         // - URL not set or URL is only a hash
-        if (event.which === 2 || event.metaKey || event.ctrlKey || !url || url[0] === '#') {
+        if (
+          event.which === 2 ||
+          event.metaKey ||
+          event.ctrlKey ||
+          !url ||
+          url[0] === '#'
+        ) {
           return true;
         }
 
         self.pusher(title,url,event);
       });
+
+      console.timeEnd("prep");
     }, // end prep()
 
 
@@ -1565,36 +1580,8 @@ var XN8 = {};
 
 
 
-    // Utility function to get the root URL with trailing slash e.g. http(s)://yourdomain.com/
-    root: function(){
-      var
-        port = document.location.port ? ':' + document.location.port : '',
-        url = document.location.protocol + '//' + (document.location.hostname || document.location.host) + port + '/';
-      return url;
-    }, // end root()
-
-
-
-    // Document helper; browsers often strip out html, head, body, title, base, and meta tags; see https://api.jquery.com/load/
-    // This function facilitates access by transforming those elements to divs with ids that match the original e.g. #doc-title
-    // See also: https://gist.github.com/cowboy/742952/
-    docHelp: function(html){
-      var
-        result = String(html)
-        .replace(/<\!DOCTYPE[^>]*>/i, '')
-        .replace(/<(html|head|body|title|base|meta)([\s\>])/gi,'<div id="doc-$1"$2')
-        .replace(/<\/(html|head|body|title|base|meta)\>/gi,'</div>')
-      ;
-      return $.trim(result);
-    }, // end parseDoc()
-
-
-
     // This function dynamically loads content from the requested page
     load: function(url){
-
-      url = url || location.href;
-
       var
         self       = this,
         $body      = $(document.body),
@@ -1602,10 +1589,13 @@ var XN8 = {};
         contentSel = this.opts.contentSel,
         menuSel    = this.opts.menuSel;
 
-      // Fade out existing content; use animate to preserve the element's height (avoids scrollbar flicker)
-      this.content.animate({ opacity: 0 }, this.opts.contentOut);
+      // Just in case it wasn't set
+      url = url || location.href;
 
-      // Spin spin sugar
+      // Fade out existing content; use animate to preserve the element's height (avoids scrollbar flicker)
+      this.content.animate({ opacity: this.opts.outOpacity }, this.opts.outDelay);
+
+      // Spin spin sugar; no delay needed here
       $spinner.show();
 
       // AJAX page request; fetch the content we need
@@ -1614,11 +1604,8 @@ var XN8 = {};
         success: function(data,textStatus,jqXHR){
           var
             $data         = $(self.docHelp(data)),
-            $bodyNew      = $data.find('#doc-body:first'),
-            $content      = $bodyNew.find(contentSel).filter(':first').html() || $data.html(),
-            $menu         = $bodyNew.find(menuSel).html(),
-            $scripts      = $bodyNew.find('script').not(contentSel+' script'),
-            $title        = $data.find('title:first').text();
+            $docBody      = $data.find('#doc-body:first'),
+            $content      = $docBody.find(contentSel).filter(':first').html() || $data.html();
 
           // If no content is received for any reason let's forward the user on to the target URL
           if (!$content) {
@@ -1626,27 +1613,29 @@ var XN8 = {};
             return false;
           }
 
+          // Quickly fade content out entirely
+          self.content.animate({ opacity: 0 }, 20);
+
           // Stop animation immediately
           self.content.stop(true,true);
 
           // Update the content and prep event handlers
-          self.prep(self.content.html($content));
+          self.prep( self.content.html($content) );
 
           // Swap the menu(s) and prep event handlers
-          self.prep($(menuSel).html($menu));
+          self.prep( $(menuSel).html( $docBody.find(menuSel).html() ) );
 
           // Harmonize body classes; makes WordPress pages render smoothly but also generally useful
-          $body.attr('class', $bodyNew.attr('class'));
+          $body.attr('class', $docBody.attr('class'));
 
           // Fade the content back in
-          self.content.animate({ opacity: 1, visibility: "visible" }, self.opts.contentIn);
+          self.content.animate({ opacity: 1, visibility: "visible" }, self.opts.inDelay);
 
-          // Update header and body scripts outside of the content area
-          //self.scripts($scripts);
-          self.title($title);
-          //self.meta($data);
-          //self.head($headNew);
-          //$('head').html($headNew.html());
+          // Update body scripts outside of the content area
+          self.scripts( $docBody.find('script').not(contentSel+' script') );
+
+          // Update document title
+          self.title( $data.find('#doc-title:first').text() );
         },
 
         // Error handling; fall back on regular page load if anything goes wrong
@@ -1690,10 +1679,9 @@ var XN8 = {};
 
       // Update the body scripts outside of the content area; we're assuming that header scripts don't change
       $scripts.each(function(){
-
         var $this = $(this);
 
-        // If the current script is empty we assume it must be inline
+        // If the current script isn't empty we assume it must be inline
         if ( '' !== $this.html() ) {
 
           // Save the currect script contents for use in the loop to follow
@@ -1710,96 +1698,40 @@ var XN8 = {};
 
           // Paste new stuff in if it isn't found in the current DOM; this is quite a kludge
           if ( isNew === true ) {
-            $body.find('script:not(:empty)').not(contentScr).filter(':first').before( '<script>' + $this.html() + '</script>' );
+            $body.find('script:not(:empty)').not(contentScr).filter(':first').before('<script>' + $this.html() + '</script>');
           }
 
         // Fetch new non-inline scripts
         } else {
 
-          // Test for the presence of each body script; if it isn't found load it and add it to the DOM
+          // Test for the presence of each script; no sense in repeating ourselves here
           if ( !$body.find('script[src*="' + $this.attr('src') + '"]').length ) {
-            $.getScript( $this.attr('src') );
-
-            //var newScript = document.createElement('script');
-            //newScript.src = $this.attr('src'); // No need for type="text/javascript" in HTML5
-            //$body[0].appendChild(newScript);
+            // $.getScript does not cache scripts by default so we'll skip the shortcut and go straight to the source
+            $.ajax({
+              url: $this.attr('src'),
+              dataType: "script",
+              cache: true,
+              complete: function(){ // In case caching isn't working... add the script to the DOM
+                var newScript = document.createElement('script');
+                newScript.src = $this.attr('src'); // No need for type="text/javascript" in HTML5
+                $body[0].appendChild(newScript);
+              }
+            }); // end $.ajax()
           }
         }
-      });
+      }); // end $scripts.each()
     }, // end scripts()
 
 
 
     // Update document title
     title: function($title){
-
-      // Update the title
       document.title = $title
         .replace('<','&lt;')
         .replace('>','&gt;')
-        .replace(' & ',' &amp; ')
+        .replace('&','&amp;')
       ;
-
-      // Legacy try/catch block from Ajaxify
-      try {
-        document.getElementsByTagName('title')[0].innerHTML = document.title.replace('<','&lt;').replace('>','&gt;').replace(' & ',' &amp; ');
-      }
-      catch ( Exception ) {}
-
     }, // end title()
-
-
-
-    // Update meta and links elements; @TODO: modularize this; it's pretty wasteful for something that brings little value
-    meta: function($data){
-      var
-        $headData = $data.find('#doc-head').detach(), // Decapitate!
-        $head = $('head');
-
-      // Change the meta description tag; presumably this is used in bookmarking and such
-      if ( $headData.find('meta[name="description"]').length ) {
-        if ( !$('meta[name="description"]').length ) {
-          $head.append( $headData.find('meta[name="description"]') );
-        } else {
-          $('meta[name="description"]').attr('content', $headData.find('meta[name="description"]').attr('content') );
-        }
-      }
-
-      // Kill some meta tags that change from page to page; they aren't important enough to bother swapping out
-      $('meta[property], meta[name^="twitter"]').remove();
-
-      // Set various link properties
-      $.each( [
-        'link[rel="prev"]'
-      , 'link[rel="next"]'
-      , 'link[rel="canonical"]'
-      , 'link[rel="shortlink"]'
-      , 'link[rel="author"]'
-      ], function(i, val){
-
-        // Link element not found in new page; remove it from current page if it exists
-        if ( !$headData.find(val).length ) {
-          $(val).remove();
-
-        // Link element found in new page
-        } else {
-
-          // Link element isn't on current page; add it to the header
-          if ( !$(val).length ) {
-            $head.append( $headData.find(val) );
-
-          // Link element IS on current page; update attributes
-          } else {
-            if ( $headData.find(val).attr('href') ) {
-              $(val).attr('href', $headData.find(val).attr('href') );
-            }
-            if ( $headData.find(val).attr('title') ) {
-              $(val).attr('title', $headData.find(val).attr('title') );
-            }
-          }
-        }
-      });
-    }, // end meta()
 
 
 
@@ -1818,7 +1750,7 @@ var XN8 = {};
 
         // Test whether the selector exists; fall back on regular scroll routine if not
         if ( $hash.length ) {
-          $body.animate({ scrollTop: $hash.offset().top }, scrollDelay, "swing"); // @TODO: delay scroll to allow images to load
+          $body.animate({ scrollTop: $hash.offset().top }, scrollDelay, "swing"); // @TODO: delay scroll to allow images to load?
         } else if ( ( $(window).scrollTop() > $content.offset().top ) ) {
           $body.animate({ scrollTop: $content.offset().top }, scrollDelay, "swing");
         }
@@ -1834,9 +1766,7 @@ var XN8 = {};
 
     // Update Google Analytics on content load
     analytics: function(url){
-
-      // Set the relative URL
-      var relativeUrl = '/' + url.replace(this.root(), '');
+      var relativeUrl = '/' + url.replace(this.root(), ''); // Set the relative URL required by Google Analytics
 
       // Inform Google Analytics of the change; compatible with the new Universal Analytics script
       if ( typeof window.ga !== 'undefined' ) {
@@ -1844,7 +1774,32 @@ var XN8 = {};
       } else if ( typeof window._gaq !== 'undefined' ) {
         window._gaq.push(['_trackPageview', relativeUrl]); // Legacy analytics; ref: https://github.com/browserstate/ajaxify/pull/25
       }
-    } // end analytics()
+    }, // end analytics()
+
+
+
+    // Document helper; browsers often strip out html, head, body, title, base, and meta tags when using .innerHTML; see https://api.jquery.com/load/
+    // This function allows access to these tags by transforming them to divs with ids that match the original e.g. #doc-title
+    // See also: https://gist.github.com/cowboy/742952/
+    docHelp: function(html){
+      var
+        result = String(html)
+          .replace(/<\!DOCTYPE[^>]*>/i, '')
+          .replace(/<(html|head|body|title|base|meta)([\s\>])/gi,'<div id="doc-$1"$2')
+          .replace(/<\/(html|head|body|title|base|meta)\>/gi,'</div>')
+      ;
+      return $.trim(result);
+    }, // end docHelp()
+
+
+
+    // Utility function to get the root URL with trailing slash e.g. http(s)://yourdomain.com/
+    root: function(){
+      var
+        port = document.location.port ? ':' + document.location.port : '',
+        url = document.location.protocol + '//' + (document.location.hostname || document.location.host) + port + '/';
+      return url;
+    } // end root()
 
   }; // end Ajaxinate.prototype
 
@@ -1853,8 +1808,8 @@ var XN8 = {};
   // A lightweight plugin wrapper around the constructor preventing multiple instantiations
   $.fn.ajaxinate = function (opts){
     return this.each(function(){
-      if (!$.data(this, 'plugin_ajaxinate')) {
-        $.data(this, 'plugin_ajaxinate', new Ajaxinate(this, opts));
+      if (!$.data(this, 'XN8_ajaxinate')) {
+        $.data(this, 'XN8_ajaxinate', new Ajaxinate(this, opts));
       }
     });
   };
@@ -1865,8 +1820,9 @@ var XN8 = {};
   $.fn.ajaxinate.defaults = {
     contentSel:    '#content' // The selector for all page contents
   , menuSel:       '#menu'    // The selector for the entire menu
-  , contentOut:    600
-  , contentIn:     120
+  , outDelay:      600
+  , outOpacity:    0.2
+  , inDelay:       120
   , scrollDelay:   300
   , spinFade:      300        // Spinner fade out duration
   , spinOpts: {               // spin.js options; reference: https://fgnass.github.io/spin.js/
@@ -1879,19 +1835,19 @@ var XN8 = {};
     , top:    '25%'
   }
 
-  // Whitelisted extensions
-  , extensions: /\.(jpg|jpeg|png|gif|bmp|pdf|mp3|flac|wav|rar|zip)$/i
+  // Whitelisted extensions (regexp); these will negate the custom "internal" selector
+  , exceptions: /\.(jpg|jpeg|png|gif|bmp|pdf|mp3|flac|wav|rar|zip)$/i
 
-  // Do not activate links that match these selectors; usage: ', [href*="test"]'
-  , exceptions: ''
+  // Additional selectors to filter when binding events (string); use ":not(selector)", for example, to skip certain selectors e.g. `:not([href*="test"])` etc.
+  , filters: ''
   };
 
 }).apply(XN8, [jQuery, window, document]);
 
-// ==== AJAXINATE WORDPRESS ADAPTER ==== //
+// ==== AJAXINATE WORDPRESS EXTENSION ==== //
 
 // Augments the Ajaxinate script to handle several scenarios unique to WordPress
-// Must be called *after* the main Ajaxinate script
+// Must be called *after* the main Ajaxinate script; assumes XN8 is already defined
 
 ;(function($, window, document, undefined){
   'use strict';
@@ -1907,6 +1863,7 @@ var XN8 = {};
   }; // end prep()
 
 
+
   // URL encode function to emulate WP's search rewrite; via: http://phpjs.org/functions/urlencode/
   PT.encode = function(str){
     str = (str+'').toString();
@@ -1918,6 +1875,8 @@ var XN8 = {};
       .replace(/\*/g, '%2A')
       .replace(/%20/g, '+');
   }; // end encode()
+
+
 
   // WordPress archive dropdown handler; for use with the archive widget; don't use with the category widget, the code is completely different
   PT.wpArchives = function(element){
@@ -1932,6 +1891,8 @@ var XN8 = {};
       self.pusher(title,url,event);
     });
   }; // end wpDropdown()
+
+
 
   // WordPress search form; you may need to customize this to suit your own theme
   PT.wpSearch = function(element){
@@ -1963,14 +1924,16 @@ var XN8 = {};
     });
   }; // end wpSearch()
 
+
+
   // Search form selector
   $.fn.ajaxinate.defaults.searchSel  = '.search-form';
 
   // Search rewrite base; for use with permalinks for search e.g. http://yoursite.com/search/testing+this;
   $.fn.ajaxinate.defaults.searchBase = 'search';
 
-  // WordPress-specific exceptions
-  $.fn.ajaxinate.defaults.exceptions = $.fn.ajaxinate.defaults.exceptions + ', [href*="wp-login"], [href*="wp-admin"], [href*="replytocom"], [id*="cancel-comment-reply-link"]';
+  // WordPress-specific exceptions; there are more efficient ways to do this sort of thing but this is easier to configure
+  $.fn.ajaxinate.defaults.filters    = $.fn.ajaxinate.defaults.filters + ':not([href*="wp-login"], [href*="wp-admin"], [href*="replytocom"], [id*="cancel-comment-reply-link"])';
 
 }).apply(XN8, [jQuery, window, document]);
 
