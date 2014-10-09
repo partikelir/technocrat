@@ -24,8 +24,8 @@
   "devDependencies": {
     "meyer-reset": "*",
     "normalize.css": "^3.0.1",
-    "spin.js": "^2.0.1",
     "html5shiv": "^3.7.2",
-    "html5-history-api": "~4.1.0"
+    "html5-history-api": "^4.1.0",
+    "spin.js": "^2.0.1"
   }
 }
