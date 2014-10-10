@@ -1410,7 +1410,7 @@ $('#el').spin('flower', 'red');
 
 // Documentation: https://github.com/synapticism/ajaxinate
 
-// Global namespace object
+// Global namespace object; inspiration for the design of this via Ryan Florence: http://ryanflorence.com/authoring-jquery-plugins-with-object-oriented-javascript/
 var XN8 = {};
 
 ;(function($, window, document, undefined){
@@ -1435,12 +1435,13 @@ var XN8 = {};
   Ajaxinate.prototype = {
     init: function(){
 
-      // Fetch initial content
+      // Fetch initial content and menu
       this.content = $(this.opts.contentSel).filter(':first');
+      this.menu = $(this.opts.menuSel).filter(':first');
 
-      // Ensure content isn't empty; if it is, use the current document contents
-      if ( this.content.length === 0 ) {
-        this.content = $(document.body);
+      // Invalid content selector; abort mission! (We can handle a bad menu selector, however...)
+      if (!this.content.length) {
+        return false;
       }
 
       // Initialize internal link selector
@@ -1450,7 +1451,7 @@ var XN8 = {};
       this.prep(this.element);
 
       // Initialize popstate event handler
-      this.popThis();
+      this.popper();
 
       // Initialize spinner
       this.spinner();
@@ -1467,22 +1468,10 @@ var XN8 = {};
         var
           $this   = $(obj),
           url     = $this.attr('href') || '',
-          rooturl = self.root(),
-          isInternal;
+          rooturl = self.root();
 
-        // Test the link:
-        // - Check whether the domains are the same
-        // - Check whether the link is relative (e.g. does not contain http(s)://)
-        // - Check whether the link begins with a hash (#)
-        // - Filter certain file extensions defined in the options (e.g. images, audio files, etc.)
-        isInternal =
-          url.substring(0,rooturl.length) === rooturl ||
-          url.indexOf(':') === -1 ||
-          url.indexOf('#') !== 0 ||
-          !url.match(self.opts.exceptions)
-        ;
-
-        return isInternal;
+        // The link is "internal" if: the domain matches the current domain or there is no protocol (i.e. it is a relative link)
+        return url.substring(0,rooturl.length) === rooturl || url.indexOf(':') === -1;
       };
     }, // end internalSel()
 
@@ -1505,68 +1494,71 @@ var XN8 = {};
           url   = $this.attr('href'),
           title = $this.attr('title') || null; // Not hugely important but we'll use a title attribute if one happens to be present
 
-        // Return true (and allow normal browser behavior) under certain circumstances:
-        // - Middle mouse button clicks; reference: https://api.jquery.com/event.which/
+        // Return false (and prevent all actions) under these circumstances:
+        // - URL is the same as the current location (no sense in reloading anything)
+        // - URL is just a hash (ditto)
+        if ( url === location.href || url === '#' ) {
+          return false;
+        }
+
+        // Return true (and allow normal browser behavior) under these circumstances:
+        // - Middle mouse button clicks (event.which === 2); reference: https://api.jquery.com/event.which/
         // - Command and control key clicks e.g. to open in a new tab; reference: https://github.com/browserstate/ajaxify/pull/15/files
         // - See also: event.altKey, event.shiftKey (not implemented)
-        // - URL not set or URL is only a hash
+        // - URL not set (shouldn't happen) or URL begins with a hash (in document link)
+        // - URL matches the exceptions defined in the options (defaults: certain file extensions e.g. images, audio files, etc.)
         if (
           event.which === 2 ||
-          event.metaKey ||
-          event.ctrlKey ||
-          !url ||
-          url[0] === '#'
+          event.metaKey     ||
+          event.ctrlKey     ||
+          !url              ||
+          url[0] === '#'    ||
+          url.match(self.opts.exceptions)
         ) {
+          // @TODO: .trigger('internalException') custom event?
           return true;
         }
 
-        self.pusher(title,url,event);
-      });
+        // Don't make a page request if we've come this far
+        event.preventDefault();
 
-      console.timeEnd("prep");
+        // Push and load
+        self.pusher(title,url);
+      });
     }, // end prep()
 
 
 
-    // Push state, load new content via AJAX, and prevent the default action with `return false`
-    pusher: function(title,url,event){
+    // Push state handler; isolated here for greater modularity; you can call this from plugins more easily
+    pusher: function(title,url){
 
-      // Prevent navigation
-      event.preventDefault();
+      // Initiate a state object for this push; @TODO: flesh this out a bit, it's not hugely useful in its present state
+      var state = {
+        title: title,
+        url: url
+      };
 
-      // Perform various tests here, starting with a quick check to see if the URL differs from what is currently displayed
-      if (url !== location.href) {
+      // Push state
+      history.pushState(state,title,url);
 
-        // Store state object; we use this when requesting content for a popstate event
-        var state = {
-          title: title,
-          url: url,
-          // Scroll object handling, for future reference: https://stackoverflow.com/questions/16731271/history-pushstate-and-scroll-position
-          //scrollTop: $(window).scrollTop()
-        };
-
-        history.pushState(state,title,url);
-        this.load(url);
-        return false;
-      }
+      // Load new content via AJAX
+      this.load(url);
     }, // end pusher()
 
 
 
     // The popstate event fires when the user navigates backward or forward in the browser
-    popThis: function(){
+    popper: function(){
       var self = this;
 
       $(window).on('popstate', function(event){
-        // Test for the presence of a hash in the URL to allow users to skip between anchors in a single document
-        // @TODO: also handle cases where users are returning to a location with a hash; e.g. if location.hash and location.href != old.href
-        if (!location.hash) {
-          event.preventDefault();
+
+        // @TODO: check previous state object to see whether more than just the hash has changed
+        if (location.hash.substring(1) === '') {
           self.load(location.href);
-          return false;
         }
       });
-    }, // end popThis()
+    }, // end popper()
 
 
 
@@ -1576,7 +1568,7 @@ var XN8 = {};
         this.content.before('<div id="spinner" style="position: fixed; height: 100%; width: 100%;"></div>');
         $('#spinner').spin(this.opts.spinOpts).hide();
       }
-    },
+    }, // end spinner()
 
 
 
@@ -1589,10 +1581,7 @@ var XN8 = {};
         contentSel = this.opts.contentSel,
         menuSel    = this.opts.menuSel;
 
-      // Just in case it wasn't set
-      url = url || location.href;
-
-      // Fade out existing content; use animate to preserve the element's height (avoids scrollbar flicker)
+      // Dim existing content; use animate to preserve the element's height (avoids scrollbar flicker)
       this.content.animate({ opacity: this.opts.outOpacity }, this.opts.outDelay);
 
       // Spin spin sugar; no delay needed here
@@ -1602,37 +1591,41 @@ var XN8 = {};
       $.ajax({
         url: url,
         success: function(data,textStatus,jqXHR){
-          var
-            $data         = $(self.docHelp(data)),
-            $docBody      = $data.find('#doc-body:first'),
-            $content      = $docBody.find(contentSel).filter(':first').html() || $data.html();
-
-          // If no content is received for any reason let's forward the user on to the target URL
-          if (!$content) {
-            document.location.href = url;
-            return false;
-          }
 
           // Quickly fade content out entirely
           self.content.animate({ opacity: 0 }, 20);
+
+          var
+            $data         = $(self.docHelp(data)),
+            $docBody      = $data.find('#doc-body:first'),
+            $content      = $docBody.find(contentSel).filter(':first'),
+            $menu         = $docBody.find(menuSel).filter(':first');
+
+          // If no content is received for any reason just forward the user on to the target URL
+          if (!$content.length) {
+            document.location.href = url;
+            return false;
+          }
 
           // Stop animation immediately
           self.content.stop(true,true);
 
           // Update the content and prep event handlers
-          self.prep( self.content.html($content) );
+          self.prep( self.content.html( $content.html() ) );
 
-          // Swap the menu(s) and prep event handlers
-          self.prep( $(menuSel).html( $docBody.find(menuSel).html() ) );
+          // Swap the menu(s) and prep event handlers if a menu is found
+          if ($menu.length) {
+            self.prep( self.menu.html( $menu.html() ) );
+          }
 
           // Harmonize body classes; makes WordPress pages render smoothly but also generally useful
           $body.attr('class', $docBody.attr('class'));
 
           // Fade the content back in
-          self.content.animate({ opacity: 1, visibility: "visible" }, self.opts.inDelay);
+          self.content.animate({ opacity: 1 }, self.opts.inDelay);
 
           // Update body scripts outside of the content area
-          self.scripts( $docBody.find('script').not(contentSel+' script') );
+          self.scripts( $docBody.find('script').not(contentSel+':first script') );
 
           // Update document title
           self.title( $data.find('#doc-title:first').text() );
@@ -1668,13 +1661,13 @@ var XN8 = {};
     scripts: function($scripts){
       var
         $body       = $('body'),
-        contentScr  = this.opts.contentSel + ' script'; // Selects content scripts
+        contentScr  = this.opts.contentSel + ':first script'; // Selects content scripts
 
       // Fetch body scripts not in the content (which will be replaced anyhow)
       if ( $scripts.length ) {
         $scripts.detach();
       } else {
-        return false; // Quit while you're ahead
+        return false; // Early exit; there are no scripts to work with
       }
 
       // Update the body scripts outside of the content area; we're assuming that header scripts don't change
@@ -1682,7 +1675,7 @@ var XN8 = {};
         var $this = $(this);
 
         // If the current script isn't empty we assume it must be inline
-        if ( '' !== $this.html() ) {
+        if ( $this.html() !== '' ) {
 
           // Save the currect script contents for use in the loop to follow
           var
@@ -1739,25 +1732,26 @@ var XN8 = {};
     scroll: function(){
       var
         $body       = $('body'),
-        $content    = $(this.opts.contentSel),
-        scrollDelay = this.opts.scrollDelay;
+        hash        = location.hash.substring(1),
+        scrollDelay = this.opts.scrollDelay,
+        top         = $(this.opts.contentSel).filter(':first').offset().top;
 
-      // Test for the presence of a hash in the URL
-      if (location.hash && location.hash !== '') {
+      // Test for the presence of a hash in the location
+      if (hash !== '') {
 
         // Define the selector
-        var $hash = $('[id="'+location.hash.substring(1)+'"]');
+        var $hash = $('[id="'+hash+'"]');
 
-        // Test whether the selector exists; fall back on regular scroll routine if not
+        // Test whether the selector exists; scroll there if found and fall back on regular scroll routine if not
         if ( $hash.length ) {
-          $body.animate({ scrollTop: $hash.offset().top }, scrollDelay, "swing"); // @TODO: delay scroll to allow images to load?
-        } else if ( ( $(window).scrollTop() > $content.offset().top ) ) {
-          $body.animate({ scrollTop: $content.offset().top }, scrollDelay, "swing");
+          $body.animate({ scrollTop: $hash.offset().top }, scrollDelay, "swing");
+          return; // Early exit from function; we've got something to scroll to and it's going to be below the fold
         }
+      }
 
       // Scroll to the top of the content container when below the fold
-      } else if ( ( $(window).scrollTop() > $content.offset().top ) ) {
-        $body.animate({ scrollTop: $content.offset().top }, scrollDelay, "swing");
+      if ( $(window).scrollTop() > top ) {
+        $body.animate({ scrollTop: top }, scrollDelay, "swing");
       }
 
     }, // end scroll()
@@ -1821,7 +1815,7 @@ var XN8 = {};
     contentSel:    '#content' // The selector for all page contents
   , menuSel:       '#menu'    // The selector for the entire menu
   , outDelay:      600
-  , outOpacity:    0.2
+  , outOpacity:    0.2        // Dimming rather than completely hiding content
   , inDelay:       120
   , scrollDelay:   300
   , spinFade:      300        // Spinner fade out duration
@@ -1882,13 +1876,14 @@ var XN8 = {};
   PT.wpArchives = function(element){
     var self = this;
 
-    $(element).find('select[name$="dropdown"]')
+    $(element)
+    .find('select[name$="dropdown"]')
     .removeAttr('onchange') // Ditch the default JavaScript event handler
     .on('change', function(event){
       var url   = $(this).val(),
           title = $(this).find(':selected').text().trim() || null;
 
-      self.pusher(title,url,event);
+      self.pusher(title,url);
     });
   }; // end wpDropdown()
 
@@ -1898,16 +1893,18 @@ var XN8 = {};
   PT.wpSearch = function(element){
     var self = this;
 
-    $(element).find(self.opts.searchSel)
+    $(element)
+    .find(self.opts.searchSel)
     .on('submit', function(event){
       var
         url = '',
         s = $('input[type="search"]', this).val() || null;
 
+      event.preventDefault();
+
       // If the form was submitted without content focus on the search field
       if (s === null) {
 
-        event.preventDefault();
         $('input[type="search"]', this).focus();
 
       // Setup our search URL
@@ -1919,7 +1916,7 @@ var XN8 = {};
         }
 
         // Launch without title
-        self.pusher(null,url,event);
+        self.pusher(s,url);
       }
     });
   }; // end wpSearch()
@@ -1933,7 +1930,7 @@ var XN8 = {};
   $.fn.ajaxinate.defaults.searchBase = 'search';
 
   // WordPress-specific exceptions; there are more efficient ways to do this sort of thing but this is easier to configure
-  $.fn.ajaxinate.defaults.filters    = $.fn.ajaxinate.defaults.filters + ':not([href*="wp-login"], [href*="wp-admin"], [href*="replytocom"], [id*="cancel-comment-reply-link"])';
+  $.fn.ajaxinate.defaults.filters    = $.fn.ajaxinate.defaults.filters + ':not([href*="wp-login"], [href*="wp-admin"], [href*="replytocom"], [id*="cancel-comment-reply-link"], [href$="/feed/"])';
 
 }).apply(XN8, [jQuery, window, document]);
 
