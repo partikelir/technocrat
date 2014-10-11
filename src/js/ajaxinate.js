@@ -2,7 +2,7 @@
 
 // Selective content loading for WordPress: https://github.com/synapticism/ajaxinate
 
-(function($){
+;(function($){
   $(function(){ // Shortcut to $(document).ready(handler);
     $(document.body).ajaxinate({
       contentSel: '#content-wrapper',

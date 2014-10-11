@@ -40,7 +40,7 @@ gulp.task('styles', function() {
 // ==== SCRIPTS ==== //
 
 // Scripts; broken out into different tasks to create specific bundles which are then compressed in place
-gulp.task('scripts', ['scripts-lint', 'scripts-core', 'scripts-ajaxinate', 'scripts-html5', 'scripts-prism'], function(){
+gulp.task('scripts', ['scripts-lint', 'scripts-html5', 'scripts-core', 'scripts-prism', 'scripts-xn8', 'scripts-xn8-prism'], function(){
   return gulp.src([build+'js/**/*.js', '!'+build+'js/**/*.min.js']) // Avoid recursive min.min.min.js
   .pipe(plugins.rename({suffix: '.min'}))
   .pipe(plugins.uglify())
@@ -54,18 +54,35 @@ gulp.task('scripts-lint', function() {
   .pipe(plugins.jshint.reporter('default'));
 });
 
+// HTML5 shiv that originally came with Twenty Twelve; provides backwards compatibility with legacy IE browsers: https://github.com/aFarkas/html5shiv
+gulp.task('scripts-html5', function() {
+  return gulp.src(bower+'html5shiv/dist/html5shiv.js')
+  .pipe(gulp.dest(build+'js/'));
+});
+
 // These are the core custom scripts
 gulp.task('scripts-core', function() {
   return gulp.src([
-    source+'js/core.js'
-  , source+'js/navigation.js'
+    source+'js/navigation.js'
+  , source+'js/core.js'
   ])
   .pipe(plugins.concat('core.js'))
   .pipe(gulp.dest(build+'js/'));
 });
 
+// Prism code highlighting; roll your own at http://prismjs.com/
+gulp.task('scripts-prism', function() {
+  return gulp.src([
+    source+'js/prism.js'
+  , source+'js/navigation.js'
+  , source+'js/core.js'
+  ])
+  .pipe(plugins.concat('prism.js'))
+  .pipe(gulp.dest(build+'js/'));
+});
+
 // Ajaxinate module; the order of dependencies is important here; relies on jQuery, already loaded in the head
-gulp.task('scripts-ajaxinate', function() {
+gulp.task('scripts-xn8', function() {
   return gulp.src([
     bower+'html5-history-api/history.iegte8.js'
   , bower+'spin.js/spin.js'
@@ -73,20 +90,27 @@ gulp.task('scripts-ajaxinate', function() {
   , bower+'ajaxinate/src/ajaxinate.js'
   , bower+'ajaxinate-wp/src/ajaxinate-wp.js'
   , source+'js/ajaxinate.js'
+  , source+'js/navigation.js'
+  , source+'js/core.js'
   ])
-  .pipe(plugins.concat('ajaxinate.js'))
+  .pipe(plugins.concat('xn8.js'))
   .pipe(gulp.dest(build+'js/'));
 });
 
-// HTML5 shiv that originally came with Twenty Twelve; provides backwards compatibility with legacy IE browsers: https://github.com/aFarkas/html5shiv
-gulp.task('scripts-html5', function() {
-  return gulp.src(bower+'html5shiv/dist/html5shiv.js')
-  .pipe(gulp.dest(build+'js/'));
-});
-
-// Prism code highlighting; roll your own at http://prismjs.com/
-gulp.task('scripts-prism', function() {
-  return gulp.src(source+'js/prism.js')
+// Ajaxinate/Prism
+gulp.task('scripts-xn8-prism', function() {
+  return gulp.src([
+    bower+'html5-history-api/history.iegte8.js'
+  , bower+'spin.js/spin.js'
+  , bower+'spin.js/jquery.spin.js'
+  , bower+'ajaxinate/src/ajaxinate.js'
+  , bower+'ajaxinate-wp/src/ajaxinate-wp.js'
+  , source+'js/ajaxinate.js'
+  , source+'js/prism.js'
+  , source+'js/navigation.js'
+  , source+'js/core.js'
+  ])
+  .pipe(plugins.concat('xn8-prism.js'))
   .pipe(gulp.dest(build+'js/'));
 });
 

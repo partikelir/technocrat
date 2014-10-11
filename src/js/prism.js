@@ -3,7 +3,7 @@
 // @author Lea Verou http://lea.verou.me
 // Custom build for Pendrell
 
-(function(){
+;(function(){
 
 // Private helper vars
 var lang = /\blang(?:uage)?-(?!\*)(\w+)\b/i;

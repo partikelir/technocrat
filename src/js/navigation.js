@@ -1,5 +1,5 @@
 // Navigation.js adapted from _s: handles toggling the responsive navigation menu
-( function() {
+;( function() {
 	var container, button, menu;
 
 	container = document.getElementById( 'site-navigation' );
