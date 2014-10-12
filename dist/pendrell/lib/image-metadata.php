@@ -2,11 +2,13 @@
 
 // Image info wrapper for image attachments and image format posts
 if ( !function_exists( 'pendrell_image_meta' ) ) : function pendrell_image_meta() {
-  if (
-    ( is_attachment() && wp_attachment_is_image() )
-    || ( is_singular() && has_post_format( 'image' ) )
-  ) {
-    pendrell_image_info();
+  if ( PENDRELL_IMAGE_META ) {
+    if (
+      ( is_attachment() && wp_attachment_is_image() )
+      || ( is_singular() && has_post_format( 'image' ) )
+    ) {
+      pendrell_image_info();
+    }
   }
 } endif;
 
@@ -92,7 +94,11 @@ if ( !function_exists( 'pendrell_image_license' ) ) : function pendrell_image_li
 
   // An array of arrays containing information about various licenses that may be applied to different content
   $licenses = array(
-    'cc-by-nc' => array(
+    'cc-by' => array(
+      'name'  => 'Creative Commons BY 4.0'
+    , 'url'   => 'https://creativecommons.org/licenses/by/4.0/'
+    )
+  , 'cc-by-nc' => array(
       'name'  => 'Creative Commons BY-NC 4.0'
     , 'url'   => 'https://creativecommons.org/licenses/by-nc/4.0/'
     )
@@ -100,9 +106,9 @@ if ( !function_exists( 'pendrell_image_license' ) ) : function pendrell_image_li
       'name'  => 'Creative Commons BY-NC-ND 4.0'
     , 'url'   => 'https://creativecommons.org/licenses/by-nc-nd/4.0/'
     )
-  , 'copyright' => array(
-      'name'  => 'Under copyright control'
-    , 'url'   => ''
+  , 'cc-by-nc-sa' => array(
+      'name'  => 'Creative Commons BY-NC-SA 4.0'
+    , 'url'   => 'https://creativecommons.org/licenses/by-nc-sa/4.0/'
     )
   , 'public-domain' => array(
       'name'  => 'Public domain'
@@ -110,7 +116,8 @@ if ( !function_exists( 'pendrell_image_license' ) ) : function pendrell_image_li
     )
   );
 
-  // Test various conditions here... these are always going to be specific to your blog as long as you post different types of content; as such, you will need to custom code conditionals to meet your needs
+  // Test various conditions here... these are always going to be specific to your blog as long as you post different types of content
+  // As such, you will need to custom code conditionals to meet your needs...
   if ( has_tag( 'design' ) || ( is_attachment() && has_tag( 'design', $post->post_parent ) ) ) {
     $license = $licenses['cc-by-nc-nd'];
   } elseif ( has_tag( 'photography' ) || ( is_attachment() && has_tag( 'photography', $post->post_parent ) ) ) {
@@ -119,8 +126,9 @@ if ( !function_exists( 'pendrell_image_license' ) ) : function pendrell_image_li
     $license = '';
   }
 
+  // Set license terms; a path must be set in `functions-config.php` for this to work
   if ( PENDRELL_IMAGE_LICENSE_TERMS ) {
-    $terms = sprintf( __( 'see my <a href="%s">terms of use</a> for more info', 'pendrell' ), PENDRELL_IMAGE_LICENSE_TERMS );
+    $terms = sprintf( __( 'see <a href="%s">terms of use</a> for more info', 'pendrell' ), trailingslashit( get_home_url() ) . PENDRELL_IMAGE_LICENSE_TERMS );
   } else {
     $terms = '';
   }

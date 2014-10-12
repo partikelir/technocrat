@@ -27,8 +27,12 @@ define( 'PENDRELL_GOOGLE_FONTS', 'Raleway:200,300,600' );
 // Image licensing specific to my projects; edit `lib/image-metadata.php` to customize; true/false
 define( 'PENDRELL_IMAGE_LICENSE', false );
 
-// Terms of use for images; this should be a full URL to your terms of use; string or false to disable
+// Terms of use for images; this should be the *path* to your terms of use or copyright statement; string or false to disable
+// Example: if your terms of use are at http://website.com/page/terms-of-use then write 'page/terms-of-use'
 define( 'PENDRELL_IMAGE_LICENSE_TERMS', false );
+
+// Display image metadata (exposure, shutter speed, etc. plus optional license and terms); true/false
+define( 'PENDRELL_IMAGE_META', true );
 
 // Master switch for full-width styling
 define( 'PENDRELL_MODULE_FULL_WIDTH', true );
