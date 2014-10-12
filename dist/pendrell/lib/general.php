@@ -13,8 +13,9 @@ if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueu
       $suffix = '.min';
     }
 
-    // Load theme-specific JavaScript with versioning based on last modified time; http://www.ericmmartin.com/5-tips-for-using-jquery-with-wordpress/
-		if ( PENDRELL_SCRIPTS_AJAXINATE && PENDRELL_SCRIPTS_PRISM ) {
+    // Load theme-specific JavaScript bundles with versioning based on last modified time; http://www.ericmmartin.com/5-tips-for-using-jquery-with-wordpress/
+		// Package bundles with Gulp; see `/gulpfile.js`
+    if ( PENDRELL_SCRIPTS_AJAXINATE && PENDRELL_SCRIPTS_PRISM ) {
       wp_enqueue_script( 'pendrell-xn8-prism', get_stylesheet_directory_uri() . '/js/xn8-prism' . $suffix . '.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/xn8-prism' . $suffix . '.js' ), true );
     } else if ( PENDRELL_SCRIPTS_AJAXINATE ) {
       wp_enqueue_script( 'pendrell-xn8', get_stylesheet_directory_uri() . '/js/xn8' . $suffix . '.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/xn8' . $suffix . '.js' ), true );

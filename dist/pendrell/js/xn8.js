@@ -1554,6 +1554,7 @@ var XN8 = {};
       $(window).on('popstate', function(event){
 
         // @TODO: check previous state object to see whether more than just the hash has changed
+        // Get your hash: http://lea.verou.me/2011/05/get-your-hash-the-bulletproof-way/
         if (location.hash.substring(1) === '') {
           self.load(location.href);
         }
