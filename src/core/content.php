@@ -68,21 +68,8 @@ if ( !function_exists( 'pendrell_entry_meta_contents' ) ) : function pendrell_en
 
     global $post;
 
-    if ( pendrell_categorized_blog() ) {
-      if ( function_exists( 'ubik_get_the_popular_term_list' ) ) {
-        $categories_list = ubik_get_the_popular_term_list( $post->ID, 'category', '', ', ', '', 0 ); // Show all categories by popularity
-      } else {
-        $categories_list = get_the_category_list( ', ' );
-      }
-    } else {
-      $categories_list = '';
-    }
-
-    if ( function_exists( 'ubik_get_the_popular_term_list' ) ) {
-      $tag_list = ubik_get_the_popular_term_list( $post->ID, 'post_tag', '', ', ' );
-    } else {
-      $tag_list = get_the_tag_list( '', ', ' );
-    }
+    $categories_list = get_the_category_list( ', ' );
+    $tag_list = get_the_tag_list( '', ', ' );
 
     if ( $mode == 'mini' ) {
       $date = sprintf( '<time class="entry-date post-date published updated" datetime="%1$s">%2$s</time>',
