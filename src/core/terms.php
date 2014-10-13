@@ -25,7 +25,7 @@ function pendrell_categorized_blog() {
   } else {
     return false;
   }
-}
+} // @TODO: custom switch to kill categories without look-up
 
 // Flush out the transients used in pendrell_categorized_blog
 function pendrell_category_transient_flusher() {

@@ -23,33 +23,38 @@ define( 'PENDRELL_THEME_VERSION', '0.11' );
 
 // == MODULE LOADING == //
 
-// Pendrell is abstracted into the `pendrell/lib` directory
+// Pendrell is abstracted into the `pendrell/core` directory
 if ( is_admin() )
-  require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/admin.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/ajax.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/archive.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/author.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/comments.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/content.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/feed.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/general.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/image.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/image-metadata.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/navigation.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/terms.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/various.php' );
+  require_once( trailingslashit( get_stylesheet_directory() ) . 'core/admin.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . 'core/archive.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . 'core/author.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . 'core/comments.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . 'core/content.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . 'core/feed.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . 'core/general.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . 'core/image.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . 'core/navigation.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . 'core/terms.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . 'core/various.php' );
 
-// Optional modules set in `functions-config.php`
+// Local development mode; relies on WP-Config-X or some similar system; see https://github.com/synapticism/wp-config-x
+if ( WP_LOCAL_DEV ) {
+  require_once( trailingslashit( get_stylesheet_directory() ) . 'dev/ajax.php' );
+  require_once( trailingslashit( get_stylesheet_directory() ) . 'dev/development.php' );
+}
+
+// Optional modules configured in `functions-config.php`
+if ( PENDRELL_MODULE_FOOTER_INFO )
+  require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/footer-info.php' );
 if ( PENDRELL_MODULE_FULL_WIDTH )
-  require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/full-width.php' );
+  require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/full-width.php' );
+if ( PENDRELL_MODULE_IMAGE_META )
+  require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/image-metadata.php' );
 if ( PENDRELL_MODULE_POST_FORMATS )
-  require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/post-formats.php' );
+  require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/post-formats.php' );
 if ( PENDRELL_MODULE_VIEWS )
-  require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/views.php' );
+  require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/views.php' );
 
-// Local development mode; relies on WP-Config-X or some similar system
-if ( WP_LOCAL_DEV )
-  require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/development.php' );
 
 
 // == SETUP == //

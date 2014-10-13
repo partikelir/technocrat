@@ -2,7 +2,7 @@
 
 // Image info wrapper for image attachments and image format posts
 if ( !function_exists( 'pendrell_image_meta' ) ) : function pendrell_image_meta() {
-  if ( PENDRELL_IMAGE_META ) {
+  if ( PENDRELL_MODULE_IMAGE_META ) {
     if (
       ( is_attachment() && wp_attachment_is_image() )
       || ( is_singular() && has_post_format( 'image' ) )
@@ -69,8 +69,7 @@ if ( !function_exists( 'pendrell_image_info' ) ) : function pendrell_image_info(
         printf( __( 'ISO: %s.<br/>', 'pendrell' ), $metadata['image_meta']['iso'] );
 
       // Credit/copyright info is contained within $metadata['image_meta']['credit'] and $metadata['image_meta']['copyright'] but isn't used here
-      if ( PENDRELL_IMAGE_LICENSE )
-        echo pendrell_image_license();
+      echo pendrell_image_license();
 
       if ( $metadata['height'] && $metadata['width'] ) {
         printf( __( 'Full size: <a href="%1$s" title="Link to full size image" rel="enclosure">%2$s &times; %3$s px</a>.</br>', 'pendrell' ),
@@ -92,11 +91,22 @@ if ( !function_exists( 'pendrell_image_info' ) ) : function pendrell_image_info(
 if ( !function_exists( 'pendrell_image_license' ) ) : function pendrell_image_license() {
   global $post; // Required so we can reference $post->post_parent while testing attachments
 
+  // These variables are set in functions-config.php
+  global $pendrell_image_license_cats, $pendrell_image_license_tags, $pendrell_image_license_terms;
+
   // An array of arrays containing information about various licenses that may be applied to different content
   $licenses = array(
     'cc-by' => array(
       'name'  => 'Creative Commons BY 4.0'
     , 'url'   => 'https://creativecommons.org/licenses/by/4.0/'
+    )
+  , 'cc-by-nd' => array(
+      'name'  => 'Creative Commons BY-ND 4.0'
+    , 'url'   => 'https://creativecommons.org/licenses/by-nd/4.0/'
+    )
+  , 'cc-by-sa' => array(
+      'name'  => 'Creative Commons BY-SA 4.0'
+    , 'url'   => 'https://creativecommons.org/licenses/by-sa/4.0/'
     )
   , 'cc-by-nc' => array(
       'name'  => 'Creative Commons BY-NC 4.0'
@@ -114,25 +124,34 @@ if ( !function_exists( 'pendrell_image_license' ) ) : function pendrell_image_li
       'name'  => 'Public domain'
     , 'url'   => 'https://creativecommons.org/publicdomain/zero/1.0/'
     )
+  , 'copyright' => array(
+      'name'  => 'under copyright control'
+    , 'url'   => 'https://en.wikipedia.org/wiki/Copyright'
+    )
   );
 
-  // Test various conditions here... these are always going to be specific to your blog as long as you post different types of content
-  // As such, you will need to custom code conditionals to meet your needs...
-  if ( has_tag( 'design' ) || ( is_attachment() && has_tag( 'design', $post->post_parent ) ) ) {
-    $license = $licenses['cc-by-nc-nd'];
-  } elseif ( has_tag( 'photography' ) || ( is_attachment() && has_tag( 'photography', $post->post_parent ) ) ) {
-    $license = $licenses['cc-by-nc'];
-  } else {
-    $license = '';
+  // Blank variables
+  $html = '';
+  $license = '';
+  $terms = $pendrell_image_license_terms;
+
+  // Test various conditions here... set category/tag and license pairs in `functions-config.php`
+  if ( is_array( $pendrell_image_license_cats ) ) {
+    foreach ( $pendrell_image_license_cats as $cat => $cat_license ) {
+      if ( in_category( $cat ) || ( is_attachment() && in_category( $cat, $post->post_parent ) ) ) {
+        $license = $licenses[$cat_license];
+      }
+    }
+  }
+  if ( is_array( $pendrell_image_license_tags ) ) {
+    foreach ( $pendrell_image_license_tags as $tag => $tag_license ) {
+      if ( has_tag( $tag ) || ( is_attachment() && has_tag( $tag, $post->post_parent ) ) ) {
+        $license = $licenses[$tag_license];
+      }
+    }
   }
 
-  // Set license terms; a path must be set in `functions-config.php` for this to work
-  if ( PENDRELL_IMAGE_LICENSE_TERMS ) {
-    $terms = sprintf( __( 'see <a href="%s">terms of use</a> for more info', 'pendrell' ), trailingslashit( get_home_url() ) . PENDRELL_IMAGE_LICENSE_TERMS );
-  } else {
-    $terms = '';
-  }
-
+  // Construct the license statement
   if ( !empty( $license ) && !empty( $terms ) ) {
     $html = sprintf( '<a href="%1$s" itemprop="license" rel="license">%2$s</a>; %3$s', $license['url'], $license['name'], $terms );
   } else {

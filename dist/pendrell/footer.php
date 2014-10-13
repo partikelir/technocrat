@@ -20,9 +20,7 @@
       <div class="site-footer-buttons">
         <span class="button"><a href="#top"><?php _e( 'Back to top', 'pendrell' ); ?></a></span>
       </div>
-      <div class="site-footer-info">
-        <?php pendrell_footer_info(); ?>
-      </div><!-- .site-footer-info -->
+      <?php do_action( 'pendrell_footer' ); ?>
   	</footer><!-- .site-footer -->
   </div><!-- .site-footer-wrapper -->
 </div><!-- #page -->

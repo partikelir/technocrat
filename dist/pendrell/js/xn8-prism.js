@@ -1629,7 +1629,7 @@ var XN8 = {};
           self.scripts( $docBody.find('script').not(contentSel+':first script') );
 
           // Update document title
-          self.title( $data.find('#doc-title:first').text() );
+          document.title = self.sanitize( $data.find('#doc-title:first').text() );
         },
 
         // Error handling; fall back on regular page load if anything goes wrong
@@ -1718,14 +1718,21 @@ var XN8 = {};
 
 
 
-    // Update document title
-    title: function($title){
-      document.title = $title
-        .replace('<','&lt;')
-        .replace('>','&gt;')
-        .replace('&','&amp;')
-      ;
-    }, // end title()
+    // Escape HTML entities in a string
+    sanitize: function(str){
+      return String(str).replace(/[&<>"'\/!=]/g, function(s){
+        return {
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&apos;",
+          "/": "&#047;",
+          "!": "&#033;",
+          "=": "&#061;"
+        }[s];
+      });
+    }, // end sanitize()
 
 
 
