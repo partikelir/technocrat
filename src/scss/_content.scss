@@ -70,6 +70,13 @@
     @extend %spacer-below;
   }
 
+  // Text styling
+  cite,
+  em,
+  i {
+    font-weight: $w-light; // This must be set otherwise these elements inherit font-weight: normal for some reason
+  }
+
   // Lists and definitions
   ol,
   ul,

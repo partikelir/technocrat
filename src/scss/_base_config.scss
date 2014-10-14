@@ -58,8 +58,8 @@ $full-width:        true; // Toggle for full-width styles; set to true if the th
 
 // == BREAKPOINTS == //
 
-$b-small:           $main-width/1.5;
-$b-medium:          $main-width + ($spacer * 2);
+$b-small:           $main-width/1.2;
+$b-medium:          $main-width + ($spacer * 3);
 $b-large:           $main-width + ($spacer * 8); // Causes sidebar to slide below content
 $b-full:            $content-width;
 

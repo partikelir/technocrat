@@ -14,12 +14,12 @@ if ( !function_exists( 'pendrell_comments_form' ) ) : function pendrell_comments
 
   if ( get_option( 'wpcom_publish_comments_with_markdown' ) == true ) {
     $notes = sprintf( __( '<a href="https://daringfireball.net/projects/markdown/syntax" target="_blank"><span data-tooltip="%1$s">Markdown</span></a> and <span data-tooltip="%2$s">HTML</span> enabled in comments', 'pendrell' ),
-      __( 'Markdown is a shorthand system of formatting text on the web. Click to find out more!', 'pendrell' ),
-      sprintf( __( 'Valid tags and attributes: %s', 'pendrell' ), esc_attr( allowed_tags() ) )
+      __( 'Markdown is an awesome plain text formatting syntax. Click below for more info!', 'pendrell' ),
+      sprintf( __( 'Valid tags/attributes: %s', 'pendrell' ), esc_attr( allowed_tags() ) )
     );
   } else {
     $notes = sprintf( __( '<span data-tooltip="%s">HTML</span> enabled in comments', 'pendrell' ),
-      sprintf( __( 'Valid tags and attributes: %s', 'pendrell' ), esc_attr( allowed_tags() ) )
+      sprintf( __( 'Valid tags/attributes: %s', 'pendrell' ), esc_attr( allowed_tags() ) )
     );
   }
 

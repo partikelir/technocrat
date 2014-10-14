@@ -1,6 +1,6 @@
 // ==== WIDGETS ==== //
 
-.widget-area { // @TODO: fat footer style for single-column breakpoint
+.widget-area {
   p,
   li {
     @include link-stylist($link-color: false);
@@ -32,6 +32,11 @@
   img {
     @include border-radius;
     max-width: 100%; // Fluid images for widgets
+  }
+  // @TODO: single-column widgets should flow around one another
+  @include k-media-between($b-medium, $b-large) {
+    float: left;
+    width: 50%;
   }
 }
 .textwidget {

@@ -17,7 +17,7 @@ define( 'PENDRELL_HOME', home_url() );
 // Basic theme info; don't edit these either
 define( 'PENDRELL_THEME_NAME', 'Pendrell' );
 define( 'PENDRELL_THEME_URL', 'http://github.com/synapticism/pendrell' );
-define( 'PENDRELL_THEME_VERSION', '0.11' );
+define( 'PENDRELL_THEME_VERSION', '0.12' );
 
 
 
@@ -30,7 +30,6 @@ require_once( trailingslashit( get_stylesheet_directory() ) . 'core/archive.php'
 require_once( trailingslashit( get_stylesheet_directory() ) . 'core/author.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'core/comments.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'core/content.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . 'core/feed.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'core/general.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'core/image.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'core/navigation.php' );

@@ -57,9 +57,13 @@ add_filter( 'query_vars', 'pendrell_view_query_var' );
 // Set default views under different conditions
 if ( !function_exists( 'pendrell_view_default' ) ) : function pendrell_view_default() {
 
-  // Set search results
-  if ( is_search() && !pendrell_is_view() ) {
-    set_query_var( 'view', 'excerpt' );
+  // Set a few defaults
+  if ( !pendrell_is_view() ) {
+    if ( is_search() ) {
+      set_query_var( 'view', 'excerpt' );
+    } elseif ( is_tax( 'post_format', 'post-format-gallery' ) || is_tax( 'post_format', 'post-format-image' ) ) {
+      set_query_var( 'view', 'gallery' );
+    }
   }
 
   // Test the categories and tags set in functions-config.php

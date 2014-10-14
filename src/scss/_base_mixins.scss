@@ -294,6 +294,10 @@
 @mixin layout-box {
   @include rem('padding-left', $spacer);
   @include rem('padding-right', $spacer);
+  @include respond-to(small) {
+    @include rem('padding-left', $spacer/2);
+    @include rem('padding-right', $spacer/2);
+  }
   @include respond-to(medium) {
     @include k-center-block($content-width);
     @include rem('padding-left', $spacer*1.5);
@@ -402,9 +406,6 @@
     // Return the property and its list of converted values
     #{$property}: $rem-values;
   }
-  // @TODO: investigate the extra space in the output e.g.:
-  //margin: 0 30px 30px;
-  //margin:  0 1.875rem 1.875rem;
 }
 
 

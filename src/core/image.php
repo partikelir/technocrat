@@ -100,11 +100,3 @@ if ( !function_exists( 'pendrell_image_shortcode' ) ) : function pendrell_image_
 } endif;
 if ( !function_exists( 'ubik_image_shortcode' ) )
   add_shortcode( 'image', 'pendrell_image_shortcode' );
-
-
-
-// Wrapper for ubik_thumbnail_id()
-if ( !function_exists( 'pendrell_thumbnail_id' ) ) : function pendrell_thumbnail_id( $post_id = null, $fallback_id = null ) {
-  if ( function_exists( 'ubik_thumbnail_id' ) )
-    return ubik_thumbnail_id( $post_id, $fallback_id );
-} endif;
