@@ -30,34 +30,34 @@ if ( !function_exists( 'pendrell_archive_title' ) ) : function pendrell_archive_
 
 
 
-// Conditional archive descriptions
+// Archive descriptions
 if ( !function_exists( 'pendrell_archive_description' ) ) : function pendrell_archive_description() {
 
-  // Only output archive descriptions for categories, tags, taxonomies
+  // Archive descriptions for categories, tags, taxonomies
   if ( is_category() || is_tag() || is_tax() ) {
 
-    // Initialize content variable
-    $content = '';
+    // Initialize description
+    $desc = '';
 
-    // This filter allows for the insertion of breadcrumps and other things
-    $content = apply_filters( 'pendrell_archive_term_before', $content );
-
-    // Check to see if we have a description for this category, tag, or taxonomy
-    $description = apply_filters( 'pendrell_archive_term_description', term_description() );
+    // Check to see if we have a description for this category, tag, or taxonomy and apply a filter
+    $desc = apply_filters( 'pendrell_term_archive_description', term_description() );
 
     // Got something?
-    if ( !empty( $description ) )
-      $content .= '<div class="archive-description">' . $description . '</div>';
+    if ( !empty( $desc ) )
+      $desc = '<div class="archive-description">' . $desc . '</div>';
 
-    // Filter:
-    $content = apply_filters( 'pendrell_archive_term_after', $content );
+    // Before the archive description (e.g. for breadcrumbs)
+    do_action( 'pendrell_archive_description_before' );
 
     // Conditional output
-    if ( !empty( $content ) ) {
-      ?><div class="archive-content"><?php echo $content; ?></div><?php
+    if ( !empty( $desc ) ) {
+      ?><div class="archive-content"><?php echo $desc; ?></div><?php
     }
 
-  // Also output descriptions for authors
+    // After the archive description
+    do_action( 'pendrell_archive_description_after' );
+
+  // Archive descriptions for individual authors
   } elseif ( is_author() ) {
 
     // Author edit link for users with the appropriate capabilities
@@ -72,61 +72,3 @@ if ( !function_exists( 'pendrell_archive_description' ) ) : function pendrell_ar
     }
   }
 } endif;
-
-// Allow shortcodes in term descriptions
-add_filter( 'term_description', 'shortcode_unautop' );
-add_filter( 'term_description', 'do_shortcode' );
-
-
-
-// Display an edit term link for authorized users
-if ( !function_exists( 'pendrell_archive_edit_term_link' ) ) : function pendrell_archive_edit_term_link( $content = null ) {
-
-  // Fetch the current query object
-  $term = get_queried_object();
-
-  // Bail if something went wrong
-  if ( !$term )
-    return $content;
-
-  // Fetch the taxonomy and test the current user's capabilities
-  $tax = get_taxonomy( $term->taxonomy );
-  if ( !current_user_can( $tax->cap->edit_terms ) )
-    return $content;
-
-  // If we made it this far let's grab the raw edit term link
-  $link = get_edit_term_link( $term->term_id, $term->taxonomy );
-
-  // If that worked let's make it pretty
-  if ( !empty( $link ) )
-    $content .= "\n" . '<div class="entry-meta-buttons"><span class="edit-link button"><a href="' . $link . '">' . __( 'Edit', 'pendrell' ) . '</a></span></div>';
-
-  return $content;
-} endif;
-add_filter( 'pendrell_archive_term_before', 'pendrell_archive_edit_term_link' );
-
-
-
-// Empty term description prompt; a bit of a placeholder for a front-end term editor
-if ( !function_exists( 'pendrell_archive_term_description' ) ) : function pendrell_archive_term_description( $content = null ) {
-
-  if ( empty( $content ) ) {
-
-    // Fetch the current query object
-    $term = get_queried_object();
-
-    // Bail if something went wrong
-    if ( !$term )
-      return $content;
-
-    // Fetch the taxonomy and test the current user's capabilities
-    $tax = get_taxonomy( $term->taxonomy );
-    if ( !current_user_can( $tax->cap->edit_terms ) )
-      return $content;
-
-    $content = '<span class="warning">' . __( 'This term description is empty!', 'pendrell' ) . '</span>';
-  }
-
-  return $content;
-} endif;
-add_filter( 'pendrell_archive_term_description', 'pendrell_archive_term_description' );

@@ -1,6 +1,6 @@
 <?php // === ADMIN FUNCTIONS === //
 
-// Add custom images sizes to the media uploader dropdown
+// Add custom images sizes to the media uploader dropdown; use a plugin like Regenerate Thumbnails as needed: https://wordpress.org/plugins/regenerate-thumbnails/
 if ( !function_exists( 'pendrell_image_sizes' ) ) : function pendrell_image_sizes( $sizes ) {
 
 	// Cheap hack to keep "full size" at the bottom of the dropdown: unset and reset it after adding our custom sizes

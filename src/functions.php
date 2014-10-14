@@ -34,6 +34,7 @@ require_once( trailingslashit( get_stylesheet_directory() ) . 'core/feed.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'core/general.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'core/image.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'core/navigation.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . 'core/terms.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'core/various.php' );
 
 // Local development mode; relies on WP-Config-X or some similar system; see https://github.com/synapticism/wp-config-x
