@@ -24,15 +24,15 @@
 		<div class="entry-content-wrapper">
 			<header class="entry-header">
 				<?php pendrell_entry_title(); ?>
-			</header><!-- .entry-header -->
+			</header>
 			<footer class="entry-meta">
 				<?php pendrell_entry_meta( 'mini' ); ?>
-			</footer><!-- .entry-meta -->
+			</footer>
 			<div class="entry-content">
 				<?php // Trim excerpts for lists using Ubik
 				if ( function_exists( 'ubik_excerpt_length_transient' ) )
 					ubik_excerpt_length_transient(25);
 				the_excerpt(); ?>
-			</div><!-- .entry-content -->
-		</div><!-- .entry-content-wrapper -->
-	</article><!-- #post -->
+			</div>
+		</div>
+	</article>

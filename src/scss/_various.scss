@@ -20,7 +20,7 @@
 
 
 
-// Clearing helper classes; @TODO: verify whether this is used anywhere or just legacy junk
+// Clearing helper class; still in use
 .clear {
   @extend %clearfix-below;
 }

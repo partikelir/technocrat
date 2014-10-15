@@ -9,7 +9,7 @@
 	<article id="post-0" class="post no-results not-found">
 		<header class="entry-header">
 			<h1 class="entry-title"><?php _e( 'No results', 'pendrell' ); ?></h1>
-		</header><!-- .entry-header -->
+		</header>
 		<div class="entry-content">
 			<?php if ( is_search() ) { ?>
 				<p><?php _e( 'Sorry, but nothing matched your search terms. Please try again:', 'pendrell' ); ?></p>
@@ -19,5 +19,5 @@
 				<p><?php _e( 'What are you looking for? Try searching for it:', 'pendrell' ); ?></p>
 			<?php } ?>
 			<?php get_search_form(); ?>
-		</div><!-- .entry-content -->
-	</article><!-- #post-0 -->
+		</div>
+	</article>

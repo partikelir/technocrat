@@ -18,6 +18,7 @@
     "supernew": true,
     "globals": {
         "_": true,
-        "jQuery": true
+        "jQuery": true,
+        "pendrellVars": true
     }
 }

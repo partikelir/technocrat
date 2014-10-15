@@ -1,7 +1,8 @@
 // ==== COMMENTS ==== //
 
-.comments-area {
+#comments {
   max-width: $main-width;
+  @include rem('margin-top', $spacer*3);
   article {
     @include rem('margin-bottom', $spacer*1.5);
     padding: 0;
@@ -69,7 +70,6 @@
 
 // General response form
 .comment-form {
-  @include rem('margin-bottom', $spacer*2);
   @include font-size($s-header-small);
   label {
     @include font-header;

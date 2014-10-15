@@ -6,6 +6,10 @@ if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueu
   // Front-end scripts
 	if ( !is_admin() ) {
 
+    global $wp_query;
+    $handle = 'pendrell-core'; // A generic script handle
+    $script_vars = array(); // An empty array that can be filled with variables to send to front-end scripts
+
     // Load minified scripts if debug mode is off
     if ( WP_DEBUG === true ) {
       $suffix = '';
@@ -14,22 +18,41 @@ if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueu
     }
 
     // Load theme-specific JavaScript bundles with versioning based on last modified time; http://www.ericmmartin.com/5-tips-for-using-jquery-with-wordpress/
-		// Package bundles with Gulp; see `/gulpfile.js`
+		// These bundles are created with Gulp; see `/gulpfile.js`
+    // The handle is the same for each bundle since we're only loading one script; if you load others be sure to provide a new handle
     if ( PENDRELL_SCRIPTS_AJAXINATE && PENDRELL_SCRIPTS_PRISM ) {
-      wp_enqueue_script( 'pendrell-xn8-prism', get_stylesheet_directory_uri() . '/js/xn8-prism' . $suffix . '.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/xn8-prism' . $suffix . '.js' ), true );
+      wp_enqueue_script( $handle, get_stylesheet_directory_uri() . '/js/p-xn8-prism' . $suffix . '.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/p-xn8-prism' . $suffix . '.js' ), true );
+    } else if ( PENDRELL_SCRIPTS_PAGELOAD && PENDRELL_SCRIPTS_PRISM ) {
+      wp_enqueue_script( $handle, get_stylesheet_directory_uri() . '/js/p-pg8-prism' . $suffix . '.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/p-pg8-prism' . $suffix . '.js' ), true );
     } else if ( PENDRELL_SCRIPTS_AJAXINATE ) {
-      wp_enqueue_script( 'pendrell-xn8', get_stylesheet_directory_uri() . '/js/xn8' . $suffix . '.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/xn8' . $suffix . '.js' ), true );
+      wp_enqueue_script( $handle, get_stylesheet_directory_uri() . '/js/p-xn8' . $suffix . '.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/p-xn8' . $suffix . '.js' ), true );
+    } else if ( PENDRELL_SCRIPTS_PAGELOAD ) {
+      wp_enqueue_script( $handle, get_stylesheet_directory_uri() . '/js/p-pg8' . $suffix . '.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/p-pg8' . $suffix . '.js' ), true );
     } else if ( PENDRELL_SCRIPTS_PRISM ) {
-      wp_enqueue_script( 'pendrell-prism', get_stylesheet_directory_uri() . '/js/prism' . $suffix . '.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/prism' . $suffix . '.js' ), true );
+      wp_enqueue_script( $handle, get_stylesheet_directory_uri() . '/js/p-prism' . $suffix . '.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/p-prism' . $suffix . '.js' ), true );
     } else {
-      wp_enqueue_script( 'pendrell-core', get_stylesheet_directory_uri() . '/js/core' . $suffix . '.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/core' . $suffix . '.js' ), true );
+      wp_enqueue_script( $handle, get_stylesheet_directory_uri() . '/js/p-core' . $suffix . '.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/p-core' . $suffix . '.js' ), true );
+    }
+
+    // What page are we on? And what is the pages limit?
+    $max = $wp_query->max_num_pages;
+    $paged = ( get_query_var('paged') > 1 ) ? get_query_var('paged') : 1;
+
+    // Set variables used by the page load module
+    // Note the use of array_merge; this pattern allows us to combine settings from different sources at the expense of overwriting variables of the same name previously set
+    if ( PENDRELL_SCRIPTS_PAGELOAD ) {
+      $script_vars = array_merge( $script_vars, array(
+        'startPage' => $paged,
+        'maxPages' => $max,
+        'nextLink' => next_posts($max, false)
+      ) );
     }
 
     // Set some variables via PHP prior to loading our custom scripts
-    wp_localize_script( 'pendrell-core', 'themeVars', array(
+    wp_localize_script( $handle, 'pendrellVars', array_merge( array(
         'ajaxUrl'               => admin_url( 'admin-ajax.php' )
       , 'templateDirectory'     => get_template_directory_uri()
-      )
+      ), $script_vars )
     );
   }
 

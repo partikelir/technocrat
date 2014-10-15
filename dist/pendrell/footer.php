@@ -10,20 +10,20 @@
  * @since Pendrell 0.4
  */
 ?>
-    </div><!-- .site-content -->
-	</div><!-- .site-content-wrapper -->
+    </div>
+	</div>
   <div class="site-footer-wrapper">
   	<footer id="colophon" class="site-footer" role="contentinfo">
       <nav id="site-footer-navigation" role="navigation">
         <?php wp_nav_menu( array( 'theme_location' => 'footer', 'menu_class' => 'menu-footer inline-menu' ) ); ?>
-      </nav><!-- #site-footer-navigation -->
+      </nav>
       <div class="site-footer-buttons">
         <span class="button"><a href="#top"><?php _e( 'Back to top', 'pendrell' ); ?></a></span>
       </div>
       <?php do_action( 'pendrell_footer' ); ?>
-  	</footer><!-- .site-footer -->
-  </div><!-- .site-footer-wrapper -->
-</div><!-- #page -->
+  	</footer>
+  </div>
+</div>
 <?php wp_footer(); ?>
 </body>
 </html>

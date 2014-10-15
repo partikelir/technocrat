@@ -1739,7 +1739,7 @@ var XN8 = {};
     // Update scroll position
     scroll: function(){
       var
-        $body       = $('body'),
+        $body       = $('body, html'),
         hash        = location.hash.substring(1),
         scrollDelay = this.opts.scrollDelay,
         top         = $(this.opts.contentSel).filter(':first').offset().top;
@@ -1835,7 +1835,7 @@ var XN8 = {};
     , speed:  1.5
     , trail:  40
     , top:    '25%'
-  }
+    }
 
   // Whitelisted extensions (regexp); these will negate the custom "internal" selector
   , exceptions: /\.(jpg|jpeg|png|gif|bmp|pdf|mp3|flac|wav|rar|zip)$/i
@@ -1998,6 +1998,7 @@ var XN8 = {};
 // For compatibility with Ajaxinate be sure to bind events to a DOM element that isn't ever replaced (e.g. `body`)
 
 ;(function($){
+  // View options button: clicking on this toggles a menu of other views that can be selected
   $('body').on('click', '.view-options button', function(){
     $(this).toggleClass('view-options-on');
     $('.button-dropdown').toggle(200, 'swing');

@@ -70,8 +70,12 @@
   @include rem('padding-bottom', $spacer);
   @include rem('padding-top', $spacer);
 }
+main {
+  @extend %clearfix;
+}
 .content-area {
-  max-width: $main-width; // Keeps content contained regardless of whether sidebar appears
+  // Keeps content contained regardless of whether sidebar appears
+  max-width: $main-width; // @TODO: content thinner than $main-width won't fill main element
   // Float for the sidebar
   @include respond-to(large) {
     float: left;

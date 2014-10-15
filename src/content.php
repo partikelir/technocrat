@@ -9,11 +9,14 @@
 	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> role="article">
 		<header class="entry-header">
 			<?php pendrell_entry_title(); ?>
-		</header><!-- .entry-header -->
+		</header>
 		<div class="entry-content">
 			<?php the_content(); pendrell_link_pages(); ?>
-		</div><!-- .entry-content -->
+		</div>
 		<footer class="entry-meta">
 			<?php pendrell_entry_meta(); pendrell_image_meta(); ?>
-		</footer><!-- .entry-meta -->
-	</article><!-- #post -->
+		</footer>
+		<?php if ( is_singular() ) {
+			pendrell_comments_template();
+		} ?>
+	</article>

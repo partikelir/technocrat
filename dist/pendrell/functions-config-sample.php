@@ -12,6 +12,9 @@ define( 'PENDRELL_GOOGLE_FONTS', 'Raleway:200,300,600' );
 // Master switch for Ajaxinate page loading script
 define( 'PENDRELL_SCRIPTS_AJAXINATE', false );
 
+// Master switch for page load module
+define( 'PENDRELL_SCRIPTS_PAGELOAD', true );
+
 // Master switch for Prism syntax highlighting script
 define( 'PENDRELL_SCRIPTS_PRISM', false );
 

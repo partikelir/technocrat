@@ -38,39 +38,39 @@ function pendrell_comments( $comment, $args, $depth ) {
       <header class="comment-meta comment-author vcard">
         <div class="comment-meta-avatar">
         	<?php echo get_avatar( $comment, 60 ); ?>
-        </div><!-- .comment-meta-avatar -->
+        </div>
         <div class="comment-meta-buttons">
           <?php edit_comment_link( __( 'Edit', 'pendrell' ), ' <span class="edit-link button">', '</span>' ); ?>
           <?php comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply', 'pendrell' ), 'before' => ' <span class="leave-reply button">', 'after' => '</span>', 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
-        </div><!-- .comment-meta-buttons -->
+        </div>
         <div class="comment-meta-main">
         	<h3><?php comment_author_link(); ?></h3>
         <?php
-          printf( 'This comment was posted <a href="%1$s" rel="bookmark"><time datetime="%2$s">%3$s, %4$s</time></a>.',
+          printf( __( '<a href="%1$s" rel="bookmark"><time datetime="%2$s">%3$s, %4$s</time></a>', 'pendrell' ),
             esc_url( get_comment_link( $comment->comment_ID ) ),
             get_comment_time('c'),
             get_comment_date(),
             get_comment_time()
           );
         ?>
-      	</div><!-- .comment-meta-main -->
-      </header><!-- .comment-meta -->
+      	</div>
+      </header>
 
-      <?php if ( '0' == $comment->comment_approved ) : ?>
+      <?php if ( $comment->comment_approved == '0' ) : ?>
         <p class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.', 'pendrell' ); ?></p>
       <?php endif; ?>
 
       <section class="comment-content comment">
         <?php comment_text(); ?>
-      </section><!-- .comment-content -->
+      </section>
 
-    </article><!-- #comment-## -->
+    </article>
   <?php
     break;
   endswitch; // end comment_type check
 } ?>
 
-<div id="comments" class="comments-area">
+<section id="comments" class="comments-area">
 
 	<?php if ( have_comments() ) : ?>
 
@@ -88,7 +88,7 @@ function pendrell_comments( $comment, $args, $depth ) {
         'short_ping'  => true
       ) );
       ?>
-		</ol><!-- .commentlist -->
+		</ol>
 
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
 		<nav id="comment-nav-below" class="navigation" role="navigation">
@@ -107,4 +107,4 @@ function pendrell_comments( $comment, $args, $depth ) {
 
 	<?php pendrell_comments_form(); ?>
 
-</div><!-- #comments .comments-area -->
+</section>

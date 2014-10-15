@@ -42,6 +42,7 @@ input[type="reset"],
 ul.button-dropdown {
   @include dropdown-button(right);
   display: none;
+  // @TODO: fix this in Firefox
   //opacity: 0;
   //transition: opacity .3s ease-out, visibility .3s ease-out;
   //visibility: hidden;

@@ -33,7 +33,7 @@
     @include border-radius;
     max-width: 100%; // Fluid images for widgets
   }
-  // @TODO: single-column widgets should flow around one another
+  // @TODO: single-column widgets should flow around one another; this is a brutal hack that yields inelegant results
   @include k-media-between($b-medium, $b-large) {
     float: left;
     width: 50%;

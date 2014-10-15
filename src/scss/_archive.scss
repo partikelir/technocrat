@@ -1,6 +1,6 @@
 // ==== ARCHIVES ==== //
 
-.archive-header {
+#archive-header {
   @extend %spacer-below;
   @include full-width($media: large) {
     h1 {

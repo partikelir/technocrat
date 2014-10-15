@@ -9,7 +9,7 @@ function pendrell_ajax_callback() {
   die(); // Complete the request
 }
 
-//if ( is_admin() ) {
-//  add_action( 'wp_ajax_loader', 'pendrell_ajax_callback' );
-//  add_action( 'wp_ajax_nopriv_loader', 'pendrell_ajax_callback' );
-//}
+if ( is_admin() ) {
+  add_action( 'wp_ajax_page_load', 'pendrell_ajax_callback' );
+  add_action( 'wp_ajax_nopriv_page_load', 'pendrell_ajax_callback' );
+}

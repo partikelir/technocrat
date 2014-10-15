@@ -10,7 +10,7 @@ get_header(); ?>
 	<section id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
 			<?php pendrell_content_template( 'none' ); ?>
-		</main><!-- #content -->
-	</section><!-- #primary -->
+		</main>
+	</section>
 
 <?php get_footer(); ?>

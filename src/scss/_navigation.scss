@@ -2,16 +2,17 @@
 
 // General navigation
 .page-links,
-.page-navigation,
-.post-navigation {
+.nav-content,
+.nav-pages,
+.nav-posts {
   @extend %clearfix;
   @extend %spacer-below;
   @include link-stylist($link-color: false);
 }
-.nav-above {
+#nav-above {
   @include rem('margin-bottom', $spacer);
 }
-.nav-below {
+#nav-below {
   @include rem('margin-bottom', $spacer*3);
 }
 .nav-previous {

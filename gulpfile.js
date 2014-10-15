@@ -40,7 +40,17 @@ gulp.task('styles', function() {
 // ==== SCRIPTS ==== //
 
 // Scripts; broken out into different tasks to create specific bundles which are then compressed in place
-gulp.task('scripts', ['scripts-lint', 'scripts-html5', 'scripts-core', 'scripts-prism', 'scripts-xn8', 'scripts-xn8-prism'], function(){
+// @TODO: a better bundling method; this is getting out of hand...
+gulp.task('scripts', [
+    'scripts-lint',
+    'scripts-html5',
+    'scripts-core',
+    'scripts-prism',
+    'scripts-pg8',
+    'scripts-pg8-prism',
+    'scripts-xn8',
+    'scripts-xn8-prism'
+  ], function(){
   return gulp.src([build+'js/**/*.js', '!'+build+'js/**/*.min.js']) // Avoid recursive min.min.min.js
   .pipe(plugins.rename({suffix: '.min'}))
   .pipe(plugins.uglify())
@@ -49,7 +59,7 @@ gulp.task('scripts', ['scripts-lint', 'scripts-html5', 'scripts-core', 'scripts-
 
 // Only lint custom scripts; ignore the error-riddled custom build of Prism
 gulp.task('scripts-lint', function() {
-  return gulp.src([bower+'ajaxinate/src/ajaxinate.js', source+'js/**/*.js', '!'+source+'js/prism.js'])
+  return gulp.src([source+'js/**/*.js', '!'+source+'js/prism.js'])
   .pipe(plugins.jshint('.jshintrc'))
   .pipe(plugins.jshint.reporter('default'));
 });
@@ -66,23 +76,49 @@ gulp.task('scripts-core', function() {
     source+'js/navigation.js'
   , source+'js/core.js'
   ])
-  .pipe(plugins.concat('core.js'))
+  .pipe(plugins.concat('p-core.js'))
   .pipe(gulp.dest(build+'js/'));
 });
 
 // Prism code highlighting; roll your own at http://prismjs.com/
-gulp.task('scripts-prism', function() {
+gulp.task('scripts-prism', ['scripts-core'], function() {
   return gulp.src([
     source+'js/prism.js'
-  , source+'js/navigation.js'
-  , source+'js/core.js'
+  , build+'js/p-core.js'
   ])
-  .pipe(plugins.concat('prism.js'))
+  .pipe(plugins.concat('p-prism.js'))
+  .pipe(gulp.dest(build+'js/'));
+});
+
+// Page loader module: loads the next page of content with jQuery
+gulp.task('scripts-pg8', ['scripts-core'], function() {
+  return gulp.src([
+    bower+'html5-history-api/history.iegte8.js'
+  , bower+'spin.js/spin.js'
+  , bower+'spin.js/jquery.spin.js'
+  , source+'js/page-loader.js'
+  , build+'js/p-core.js'
+  ])
+  .pipe(plugins.concat('p-pg8.js'))
+  .pipe(gulp.dest(build+'js/'));
+});
+
+// Page loader module: loads the next page of content with jQuery
+gulp.task('scripts-pg8-prism', ['scripts-core'], function() {
+  return gulp.src([
+    bower+'html5-history-api/history.iegte8.js'
+  , bower+'spin.js/spin.js'
+  , bower+'spin.js/jquery.spin.js'
+  , source+'js/page-loader.js'
+  , source+'js/prism.js'
+  , build+'js/p-core.js'
+  ])
+  .pipe(plugins.concat('p-pg8-prism.js'))
   .pipe(gulp.dest(build+'js/'));
 });
 
 // Ajaxinate module; the order of dependencies is important here; relies on jQuery, already loaded in the head
-gulp.task('scripts-xn8', function() {
+gulp.task('scripts-xn8', ['scripts-core'], function() {
   return gulp.src([
     bower+'html5-history-api/history.iegte8.js'
   , bower+'spin.js/spin.js'
@@ -90,15 +126,14 @@ gulp.task('scripts-xn8', function() {
   , bower+'ajaxinate/src/ajaxinate.js'
   , bower+'ajaxinate-wp/src/ajaxinate-wp.js'
   , source+'js/ajaxinate.js'
-  , source+'js/navigation.js'
-  , source+'js/core.js'
+  , build+'js/p-core.js'
   ])
-  .pipe(plugins.concat('xn8.js'))
+  .pipe(plugins.concat('p-xn8.js'))
   .pipe(gulp.dest(build+'js/'));
 });
 
 // Ajaxinate/Prism
-gulp.task('scripts-xn8-prism', function() {
+gulp.task('scripts-xn8-prism', ['scripts-core'], function() {
   return gulp.src([
     bower+'html5-history-api/history.iegte8.js'
   , bower+'spin.js/spin.js'
@@ -107,10 +142,9 @@ gulp.task('scripts-xn8-prism', function() {
   , bower+'ajaxinate-wp/src/ajaxinate-wp.js'
   , source+'js/ajaxinate.js'
   , source+'js/prism.js'
-  , source+'js/navigation.js'
-  , source+'js/core.js'
+  , build+'js/p-core.js'
   ])
-  .pipe(plugins.concat('xn8-prism.js'))
+  .pipe(plugins.concat('p-xn8-prism.js'))
   .pipe(gulp.dest(build+'js/'));
 });
 

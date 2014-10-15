@@ -26,16 +26,16 @@
 			<div class="site-branding">
 				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 				<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
-			</div><!-- .site-branding -->
+			</div>
 			<div id="site-interface">
 				<button id="responsive-menu-toggle" role="button"><?php _e( 'Menu', 'pendrell' ); ?></button>
 				<span class="button"><a href="#content" class="skip-link screen-reader-text" role="button"><?php _e( 'Skip to content', 'pendrell' ); ?></a></span>
-			</div><!-- #site-interface -->
+			</div>
 			<nav id="site-navigation" role="navigation">
 				<?php wp_nav_menu( array( 'theme_location' => 'header', 'menu_class' => 'menu-header inline-menu' ) ); ?>
-			</nav><!-- #site-navigation -->
-		</header><!-- #masthead -->
-	</div><!-- .site-header-wrapper -->
+			</nav>
+		</header>
+	</div>
 
 	<div id="content-wrapper" class="site-content-wrapper">
 		<div id="content" class="site-content<?php pendrell_content_class(); ?>">
