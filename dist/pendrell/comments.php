@@ -91,10 +91,10 @@ function pendrell_comments( $comment, $args, $depth ) {
 		</ol>
 
 		<?php if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) : // are there comments to navigate through ?>
-		<nav id="comment-nav-below" class="navigation" role="navigation">
+		<nav id="comment-nav-below" class="nav-comments" role="navigation">
 			<h1 class="screen-reader-text"><?php _e( 'Comment navigation', 'pendrell' ); ?></h1>
-			<div class="nav-previous"><?php previous_comments_link( __( '<span class="nav-arrow">&larr; </span>Older Comments', 'pendrell' ) ); ?></div>
-			<div class="nav-next"><?php next_comments_link( __( 'Newer Comments<span class="nav-arrow"> &rarr;</span>', 'pendrell' ) ); ?></div>
+			<div class="nav-previous"><?php previous_comments_link( __( '<span class="nav-arrow">&larr; </span>Older comments', 'pendrell' ) ); ?></div>
+			<div class="nav-next"><?php next_comments_link( __( 'Newer comments<span class="nav-arrow"> &rarr;</span>', 'pendrell' ) ); ?></div>
 		</nav>
 		<?php endif; // check for comment navigation ?>
 

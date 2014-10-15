@@ -11,7 +11,7 @@
 			<?php pendrell_entry_title(); ?>
 		</header>
 		<div class="entry-content">
-			<?php the_content(); pendrell_link_pages(); ?>
+			<?php the_content(); pendrell_nav_link_pages(); ?>
 		</div>
 		<footer class="entry-meta">
 			<?php pendrell_entry_meta(); pendrell_image_meta(); ?>

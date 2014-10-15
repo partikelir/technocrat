@@ -1,4 +1,4 @@
-<?php // === GENERAL === //
+<?php // ==== GENERAL ==== //
 
 // Enqueue scripts
 if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueue_scripts() {
@@ -34,24 +34,25 @@ if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueu
       wp_enqueue_script( $handle, get_stylesheet_directory_uri() . '/js/p-core' . $suffix . '.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/p-core' . $suffix . '.js' ), true );
     }
 
-    // What page are we on? And what is the pages limit?
-    $max = $wp_query->max_num_pages;
-    $paged = ( get_query_var('paged') > 1 ) ? get_query_var('paged') : 1;
-
     // Set variables used by the page load module
-    // Note the use of array_merge; this pattern allows us to combine settings from different sources at the expense of overwriting variables of the same name previously set
     if ( PENDRELL_SCRIPTS_PAGELOAD ) {
+
+      // What page are we on? And what is the pages limit?
+      $max = $wp_query->max_num_pages;
+      $paged = ( get_query_var('paged') > 1 ) ? get_query_var('paged') : 1;
+
+      // Note the use of array_merge; this pattern allows us to combine settings from different sources at the expense of overwriting variables of the same name previously set
       $script_vars = array_merge( $script_vars, array(
         'startPage' => $paged,
-        'maxPages' => $max,
-        'nextLink' => next_posts($max, false)
+        'maxPages'  => $max,
+        'nextLink'  => next_posts($max, false)
       ) );
     }
 
     // Set some variables via PHP prior to loading our custom scripts
     wp_localize_script( $handle, 'pendrellVars', array_merge( array(
-        'ajaxUrl'               => admin_url( 'admin-ajax.php' )
-      , 'templateDirectory'     => get_template_directory_uri()
+        'ajaxUrl'             => admin_url( 'admin-ajax.php' )
+      , 'templateDirectory'   => get_template_directory_uri()
       ), $script_vars )
     );
   }
@@ -69,6 +70,7 @@ if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueu
   // Register and enqueue our main stylesheet with versioning based on last modified time
   wp_register_style( 'pendrell-style', get_stylesheet_uri(), $dependencies = array(), filemtime( get_template_directory() . '/style.css' ) );
   wp_enqueue_style( 'pendrell-style' );
+
 } endif;
 add_action( 'wp_enqueue_scripts', 'pendrell_enqueue_scripts' );
 
@@ -119,4 +121,5 @@ if ( !function_exists( 'pendrell_sidebar' ) ) : function pendrell_sidebar( $side
   // Include the regular sidebar template if $sidebar has not been set to "false"
   if ( $sidebar )
     get_sidebar();
+
 } endif;

@@ -13,7 +13,7 @@ get_header(); ?>
         pendrell_content_template();
       endwhile; ?>
 		</main>
-    <?php pendrell_content_nav( 'nav-below' ); ?>
+    <?php pendrell_nav_page( 'nav-below' ); ?>
 	</section>
 
 <?php pendrell_sidebar(); ?>

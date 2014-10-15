@@ -1,5 +1,8 @@
 <?php // ==== VIEWS ==== //
 
+// This module allows for different content templates to be called
+// Display posts by excerpt, in a list, or as post thumbnails
+
 // == CONDITIONALS == //
 
 // Views conditional test; is this a view and, if so, does it match the type supplied?

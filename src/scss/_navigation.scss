@@ -2,9 +2,10 @@
 
 // General navigation
 .page-links,
+.nav-comments,
 .nav-content,
-.nav-pages,
-.nav-posts {
+.nav-page,
+.nav-post {
   @extend %clearfix;
   @extend %spacer-below;
   @include link-stylist($link-color: false);

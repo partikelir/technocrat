@@ -1,4 +1,4 @@
-<?php // === AUTHOR === //
+<?php // ==== AUTHOR ==== //
 
 // Author info on posts
 if ( !function_exists( 'pendrell_author_meta' ) ) : function pendrell_author_meta() {
