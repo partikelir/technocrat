@@ -17,11 +17,12 @@ You can see Pendrell in action on my personal blog, [Synapticism](http://synapti
 * Consistent vertical rhythm (excluding images; that's just too much trouble).
 * Full-width view for image and gallery post format posts increases font size and removes sidebar. Great for photo-blogging.
 * Improved post format styling and support for asides, images (really just a thin wrapper for attachments), links, quotations, and status updates.
-* Built-in contact form page template; no need for a wasteful plugin.
+* Built-in AJAX contact form page template; no need for a wasteful plugin.
 * Automated CSS/JS minification via Gulp build system. This theme is *highly* optimized.
 * Google web font support; configure in `functions.php`.
 * Code highlighting via [Prism](http://prismjs.com).
-* Optional AJAX page loading with [Ajaxinate](https://github.com/synapticism/ajaxinate) and [Ajaxinate WP](https://github.com/synapticism/ajaxinate-wp).
+* Optional selective content loading with [Ajaxinate](https://github.com/synapticism/ajaxinate) and [Ajaxinate WP](https://github.com/synapticism/ajaxinate-wp).
+* Optional AJAX page loading (click "next" and more content will appear).
 * Smart context-dependent search form.
 * Much, much more...
 
