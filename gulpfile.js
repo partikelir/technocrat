@@ -44,6 +44,7 @@ gulp.task('styles', function() {
 gulp.task('scripts', [
     'scripts-lint',
     'scripts-html5',
+    'scripts-contact',
     'scripts-core',
     'scripts-prism',
     'scripts-pg8',
@@ -67,6 +68,16 @@ gulp.task('scripts-lint', function() {
 // HTML5 shiv that originally came with Twenty Twelve; provides backwards compatibility with legacy IE browsers: https://github.com/aFarkas/html5shiv
 gulp.task('scripts-html5', function() {
   return gulp.src(bower+'html5shiv/dist/html5shiv.js')
+  .pipe(gulp.dest(build+'js/'));
+});
+
+// Contact form standalone script
+gulp.task('scripts-contact', function() {
+  return gulp.src([
+    bower+'jquery-validation/dist/jquery.validate.js'
+  , source+'js/contact-form.js'
+  ])
+  .pipe(plugins.concat('contact-form.js'))
   .pipe(gulp.dest(build+'js/'));
 });
 

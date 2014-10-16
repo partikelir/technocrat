@@ -10,7 +10,7 @@ var PG8 = {};
   'use strict';
 
   // Exit early if WordPress didn't pass us anything
-  if (typeof pendrellVars === 'undefined' || pendrellVars === '') {
+  if (typeof pendrellVars === 'undefined' || pendrellVars.PG8 === '') {
     return;
   }
 
@@ -19,11 +19,11 @@ var PG8 = {};
 
   // Constructor function
   var PageLoader = this.PageLoader = function(opts){
-    this.thisPage = parseInt(pendrellVars.startPage);
+    this.thisPage = parseInt(pendrellVars.PG8.startPage);
     this.thisLink = location.href;
     this.nextPage = this.thisPage + 1;
-    this.nextLink = pendrellVars.nextLink;
-    this.maxPages = parseInt(pendrellVars.maxPages);
+    this.nextLink = pendrellVars.PG8.nextLink;
+    this.maxPages = parseInt(pendrellVars.PG8.maxPages);
     this.opts     = $.extend({}, $.fn.pageloader.defaults, opts);
     this.content  = $(this.opts.contentSel);
 

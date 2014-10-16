@@ -32,11 +32,6 @@
   color: $c-alert;
   font-weight: $w-bold;
 }
-.alert-field {
-  box-shadow: 0 0 6px rgba($c-alert, .9);
-  border: 1px solid $c-alert;
-  outline: none;
-}
 .required {
   color: $c-required;
 }
@@ -46,6 +41,18 @@
 .warning {
   color: $c-alert;
   font-style: italic;
+}
+
+// Form errors
+input.error,
+textarea.error {
+  box-shadow: 0 0 6px rgba($c-alert, .9);
+  border: 1px solid $c-alert;
+  outline: none;
+}
+label.error {
+  color: $c-alert;
+  font-weight: $w-bold;
 }
 
 

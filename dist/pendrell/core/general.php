@@ -6,7 +6,6 @@ if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueu
   // Front-end scripts
 	if ( !is_admin() ) {
 
-    global $wp_query;
     $handle = 'pendrell-core'; // A generic script handle
     $script_vars = array(); // An empty array that can be filled with variables to send to front-end scripts
 
@@ -34,22 +33,40 @@ if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueu
       wp_enqueue_script( $handle, get_stylesheet_directory_uri() . '/js/p-core' . $suffix . '.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/p-core' . $suffix . '.js' ), true );
     }
 
-    // Set variables used by the page load module
+    // Contact form (CF1) variable setup
+    if ( is_page_template( 'page-templates/contact-form.php' ) ) {
+      wp_enqueue_script( 'pendrell-contact-form', get_stylesheet_directory_uri() . '/js/contact-form' . $suffix . '.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/contact-form' . $suffix . '.js' ), true );
+
+      // Non-destructively merge array and namespace custom variables
+      $script_vars = array_merge( $script_vars, array(
+        'CF1' => array(
+          'from'          => __( 'Please enter your name. But what if this is way too long?', 'pendrell' ),
+          'email'         => __( 'Enter your email.', 'pendrell' ),
+          'invalidEmail'  => __( 'Enter a valid email address.', 'pendrell' ),
+          'message'       => __( 'Please enter a message.', 'pendrell' ),
+          'message'       => __( 'Your message was too short.', 'pendrell' )
+      ) ) );
+    }
+
+    // Page load (PG8) variable setup
     if ( PENDRELL_SCRIPTS_PAGELOAD ) {
+
+      global $wp_query;
 
       // What page are we on? And what is the pages limit?
       $max = $wp_query->max_num_pages;
       $paged = ( get_query_var('paged') > 1 ) ? get_query_var('paged') : 1;
 
-      // Note the use of array_merge; this pattern allows us to combine settings from different sources at the expense of overwriting variables of the same name previously set
+      // Non-destructively merge array and namespace custom variables
       $script_vars = array_merge( $script_vars, array(
-        'startPage' => $paged,
-        'maxPages'  => $max,
-        'nextLink'  => next_posts($max, false)
-      ) );
+        'PG8' => array(
+          'startPage' => $paged,
+          'maxPages'  => $max,
+          'nextLink'  => next_posts($max, false)
+      ) ) );
     }
 
-    // Set some variables via PHP prior to loading our custom scripts
+    // Pass variables to JavaScript at runtime; see: http://codex.wordpress.org/Function_Reference/wp_localize_script
     wp_localize_script( $handle, 'pendrellVars', array_merge( array(
         'ajaxUrl'             => admin_url( 'admin-ajax.php' )
       , 'templateDirectory'   => get_template_directory_uri()

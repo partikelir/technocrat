@@ -68,27 +68,33 @@
 
 
 
-// General response form
+// Comment response form; @TODO: extrapolate this into general form styling
 .comment-form {
   @include font-size($s-header-small);
-  label {
+  label:not(.error) {
     @include font-header;
+    @include rem('margin-top', $spacer/2);
     display: block;
     font-weight: $w-bold;
     text-transform: uppercase;
   }
+  label.error {
+    @include font-size($s-text-smaller);
+    display: block; // Errors go below inputs
+  }
+  input[type="email"],
   input[type="text"],
+  input[type="url"] {
+    font-family: inherit; // Possibly redundant
+    width: percentage( ( ($main-width/2) - 8) / $main-width ); // Should yield a perfect 50% after accounting for borders and such
+  }
   textarea {
     font-family: inherit; // Possibly redundant
+    max-width: $main-width;
     width: 100%;
   }
-  @include respond-to(medium) {
-    input[type="text"] {
-      width: 40%;
-    }
-  }
-  .form-submit {
-    @extend %spacer-below;
+  .form-submit { // @TODO: generalize this to .submit?
+    @extend %spacer-above;
   }
 
   // Specific to comment form
