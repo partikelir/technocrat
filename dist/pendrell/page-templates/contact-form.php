@@ -27,7 +27,7 @@ get_header(); ?>
               <p class="comment-notes"><?php _e( 'Required fields are marked <span class="required">*</span>', 'pendrell' ); ?></p>
 
               <label for="from"><?php _e( 'Name', 'pendrell' ); ?> <span class="required">*</span></label>
-              <input id="from" name="from" type="text" placeholder="<?php esc_attr_e( 'Your name', 'pendrell' ); ?>" value="" />
+              <input id="from" name="from" type="text" placeholder="<?php _e( 'Your name', 'pendrell' ); ?>" value="" />
 
               <label for="email"><?php _e( 'Email', 'pendrell' ); ?> <span class="required">*</span></label>
               <input id="email" name="email" type="text" placeholder="<?php esc_attr_e( 'your@email.com', 'pendrell' ); ?>" value="" />
@@ -46,7 +46,7 @@ get_header(); ?>
                 <input name="hades" type="text" />
               </div>
 
-              <?php wp_nonce_field( 'form_submit', 'contact_form_nonce' ) ?>
+              <?php wp_nonce_field( 'contact_form', '_contact_form_nonce' ); ?>
 
               <div class="form-submit">
                 <input id="submit" name="submit" type="submit" value="<?php esc_attr_e( 'Send message', 'pendrell' ); ?>" />

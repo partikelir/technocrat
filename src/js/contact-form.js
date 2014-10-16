@@ -22,7 +22,7 @@
         },
         message: {
           required: true,
-          minlength: 10
+          minlength: 5
         },
         hades: {
           maxlength: 0
@@ -42,25 +42,32 @@
 
       // Things to do when the user hits submit
       submitHandler: function(form) {
+        var
+          $contactForm = $('#contact-form'),
+          formData = $(form).serialize();
 
         // @TODO: invoke spinner
+        $contactForm.append('<div id="status">'+CF1.formSent+'</div>');
 
         $('#submit').hide();
 
-        $('#contact-form').append('<div id="response"></div>');
+        // Response placeholder
+        $contactForm.append('<div id="response"></div>');
 
-        var formData = $(form).serialize();
-
+        // Send the form data
         $.ajax({
           type: 'POST',
           url: pendrellVars.ajaxUrl,
-          data: formData + "&action=contact_form",
-          success: function(response) {
-            var $response = $('#response');
-
-            $response.hide().html(response).fadeIn('slow');
-
+          data: formData+'&action=contact_form',
+          success: function(data) {
+            $('#response').hide().html(data).fadeIn('slow');
+          },
+          error: function(jqXHR,textStatus,errorThrown){
+            $('#response').hide().html('<p class="alert" role="alert">'+CF1.formError+textStatus+'.</p>').fadeIn('slow');
+          },
+          complete: function(jqXHR,textStatus){
             // @TODO: hide spinner
+            $('#status').hide();
           }
         });
       },

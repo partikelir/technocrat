@@ -14,7 +14,11 @@ function pendrell_contact_form() {
   // - https://wordpress.stackexchange.com/questions/147529/contact-form-in-template-with-jquery-validate-and-ajax
 
   // Logic goes here
-  if ( isset( $_POST['submit'] ) && wp_verify_nonce( $_POST['contact_form_nonce'], 'form_submit' ) ) {
+  if ( isset( $_POST['submit'] ) && wp_verify_nonce( $_POST['_contact_form_nonce'], 'contact_form' ) ) {
+
+    // Starting conditions
+    $email_sent = false;
+    $has_error = false;
 
     // Validate incoming data
     $spam    = filter_var( trim( $_POST['hades'] ), FILTER_SANITIZE_STRING);
@@ -32,7 +36,7 @@ function pendrell_contact_form() {
 
     // Check form data for errors
     if ( empty( $from ) || empty( $email ) || empty( $message ) || !empty( $spam ) ) {
-      $has_error  = true;
+      $has_error = true;
     }
 
     // We don't really need a subject
@@ -40,7 +44,7 @@ function pendrell_contact_form() {
       $subject = __( 'No subject', 'pendrell' );
 
     // If no errors came up we can safely proceed
-    if ( !isset( $has_error ) ) {
+    if ( $has_error === false ) {
 
       // Get IP of sender
       if ( isset( $_SERVER ) ) {
@@ -81,17 +85,23 @@ function pendrell_contact_form() {
       $email_sent = true;
     }
 
+    if ( $has_error === true )
+      echo '<p class="alert" role="alert">' . __( 'Something went wrong. Please try again!', 'pendrell' ) . '</p>';
+
     if ( $email_sent === true )
       echo '<p class="success" role="status">' . __( 'Your message has been sent! Thank you for making contact.', 'pendrell' ) . '</p>';
 
   } else {
+
+    // Unspecified error
     echo '<p class="alert" role="alert">' . __( 'Something went wrong. Please try again!', 'pendrell' ) . '</p>';
   }
 
-  // Complete the request
+  // Complete the request and return whatever we've got
   die();
 }
 
+// Checks for admin but works on the front-end as per http://codex.wordpress.org/AJAX_in_Plugins
 if ( is_admin() ) {
   add_action( 'wp_ajax_contact_form', 'pendrell_contact_form' );
   add_action( 'wp_ajax_nopriv_contact_form', 'pendrell_contact_form' );

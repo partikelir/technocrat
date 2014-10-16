@@ -40,11 +40,13 @@ if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueu
       // Non-destructively merge array and namespace custom variables
       $script_vars = array_merge( $script_vars, array(
         'CF1' => array(
-          'from'          => __( 'Please enter your name. But what if this is way too long?', 'pendrell' ),
+          'from'          => __( 'Please enter your name.', 'pendrell' ),
           'email'         => __( 'Enter your email.', 'pendrell' ),
           'invalidEmail'  => __( 'Enter a valid email address.', 'pendrell' ),
           'message'       => __( 'Please enter a message.', 'pendrell' ),
-          'message'       => __( 'Your message was too short.', 'pendrell' )
+          'messageLength' => __( 'This message is too short.', 'pendrell' ),
+          'formSent'      => __( 'Your request has been received.', 'pendrell' ),
+          'formError'     => __( 'There was an error submitting your request: ', 'pendrell' )
       ) ) );
     }
 
@@ -52,6 +54,8 @@ if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueu
     if ( PENDRELL_SCRIPTS_PAGELOAD ) {
 
       global $wp_query;
+
+      // @TODO: conditionals to test whether we're on the index or in the archives
 
       // What page are we on? And what is the pages limit?
       $max = $wp_query->max_num_pages;
