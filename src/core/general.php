@@ -4,7 +4,7 @@
 if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueue_scripts() {
 
   // Front-end scripts
-	if ( !is_admin() ) {
+  if ( !is_admin() ) {
 
     $handle = 'pendrell-core'; // A generic script handle
     $script_vars = array(); // An empty array that can be filled with variables to send to front-end scripts
@@ -21,13 +21,13 @@ if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueu
     // The handle is the same for each bundle since we're only loading one script; if you load others be sure to provide a new handle
     if ( PENDRELL_SCRIPTS_AJAXINATE && PENDRELL_SCRIPTS_PRISM ) {
       wp_enqueue_script( $handle, get_stylesheet_directory_uri() . '/js/p-xn8-prism' . $suffix . '.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/p-xn8-prism' . $suffix . '.js' ), true );
-    } else if ( PENDRELL_SCRIPTS_PAGELOAD && PENDRELL_SCRIPTS_PRISM ) {
+    } elseif ( PENDRELL_SCRIPTS_PAGELOAD && PENDRELL_SCRIPTS_PRISM && pendrell_load_pg8() ) {
       wp_enqueue_script( $handle, get_stylesheet_directory_uri() . '/js/p-pg8-prism' . $suffix . '.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/p-pg8-prism' . $suffix . '.js' ), true );
-    } else if ( PENDRELL_SCRIPTS_AJAXINATE ) {
+    } elseif ( PENDRELL_SCRIPTS_AJAXINATE ) {
       wp_enqueue_script( $handle, get_stylesheet_directory_uri() . '/js/p-xn8' . $suffix . '.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/p-xn8' . $suffix . '.js' ), true );
-    } else if ( PENDRELL_SCRIPTS_PAGELOAD ) {
+    } elseif ( PENDRELL_SCRIPTS_PAGELOAD && pendrell_load_pg8() ) {
       wp_enqueue_script( $handle, get_stylesheet_directory_uri() . '/js/p-pg8' . $suffix . '.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/p-pg8' . $suffix . '.js' ), true );
-    } else if ( PENDRELL_SCRIPTS_PRISM ) {
+    } elseif ( PENDRELL_SCRIPTS_PRISM ) {
       wp_enqueue_script( $handle, get_stylesheet_directory_uri() . '/js/p-prism' . $suffix . '.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/p-prism' . $suffix . '.js' ), true );
     } else {
       wp_enqueue_script( $handle, get_stylesheet_directory_uri() . '/js/p-core' . $suffix . '.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/p-core' . $suffix . '.js' ), true );
@@ -51,11 +51,9 @@ if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueu
     }
 
     // Page load (PG8) variable setup
-    if ( PENDRELL_SCRIPTS_PAGELOAD ) {
+    if ( PENDRELL_SCRIPTS_PAGELOAD && pendrell_load_pg8() ) {
 
       global $wp_query;
-
-      // @TODO: conditionals to test whether we're on the index or in the archives
 
       // What page are we on? And what is the pages limit?
       $max = $wp_query->max_num_pages;
@@ -70,13 +68,17 @@ if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueu
       ) ) );
     }
 
-    // Pass variables to JavaScript at runtime; see: http://codex.wordpress.org/Function_Reference/wp_localize_script
-    wp_localize_script( $handle, 'pendrellVars', array_merge( array(
-        'ajaxUrl'             => admin_url( 'admin-ajax.php' )
-      , 'templateDirectory'   => get_template_directory_uri()
-      ), $script_vars )
-    );
-  }
+    // Currently we don't need any front-end variables without $script_vars being populated
+    if ( !empty( $script_vars ) ) {
+
+      // Pass variables to JavaScript at runtime; see: http://codex.wordpress.org/Function_Reference/wp_localize_script
+      wp_localize_script( $handle, 'pendrellVars', array_merge( array(
+          'ajaxUrl'             => admin_url( 'admin-ajax.php' )
+        , 'templateDirectory'   => get_template_directory_uri()
+        ), $script_vars )
+      );
+    }
+  } // end is_admin()
 
   // Adds JavaScript to pages with the comment form to support sites with threaded comments
   if ( is_singular() && comments_open() && get_option( 'thread_comments' ) )

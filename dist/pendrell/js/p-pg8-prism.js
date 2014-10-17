@@ -1465,7 +1465,7 @@ var PG8 = {};
     // Create a placeholder; abstracted into a function for DRYness
     holder: function(){
       this.content.append('<div id="content-page-' + this.nextPage + '" class="clear" data-href="'+this.nextLink+'"></div>');
-    }, // end placeholder()
+    }, // end holder()
 
 
 
@@ -1501,38 +1501,50 @@ var PG8 = {};
         clearTimeout($.data(this, 'pushTimer'));
         clearTimeout($.data(this, 'infinTimer'));
 
-        // Push state
+        // Manage push state based on scroll position
         $.data(this, 'pushTimer', setTimeout(function() {
-          self.content.children().each(function(){
-            var
-              $this   = $(this),
-              $window = $(window),
-              top     = $this.offset().top - self.opts.scrollOffset,
-              bottom  = $this.outerHeight()+top;
 
-            // @TODO: set history when scrolling quickly to the top
-            if ( top <= $window.scrollTop() && $window.scrollTop() < bottom ) {
-              self.pusher($this.data('href'));
-            }
-          }); // end each()
+          // Setup some useful variables including info about the top-most page
+          var
+            firstPage = self.content.children(':first'),
+            firstTop  = firstPage.offset().top,
+            firstLink = firstPage.data('href'),
+            winTop    = $window.scrollTop();
+
+          // Push state if the top of the window is above the first page
+          if ( winTop <= firstTop ) {
+            self.pusher(firstLink);
+          } else {
+
+            // Monitor the children of the main content selector; should be a bunch of divs representing each page of content
+            self.content.children().each(function(){
+              var
+                $this   = $(this),
+                top     = $this.offset().top - self.opts.scrollOffset,
+                bottom  = $this.outerHeight()+top;
+
+              // Push state if the top of the window falls into the range of a given page
+              if ( top <= winTop && winTop < bottom ) {
+                self.pusher($this.data('href'));
+              }
+            }); // end each()
+          } // end if
         }, self.opts.pushDelay)); // end $.data()
 
         // Infinite scroll, a lazy implementation
         $.data(this, 'infinTimer', setTimeout(function() {
           var
             $document       = $(document),
-            $window         = $(window),
             scrollHeight    = $document.height(),
-            scrollPosition  = $(window).height() + $(window).scrollTop(),
+            scrollPosition  = $window.height() + $window.scrollTop(),
             scrollDiff      = scrollHeight - scrollPosition;
 
-          // Trigger a click near the bottom of the window... but not at the -absolute- bottom (allows for footer functionality)
+          // Trigger a click near the bottom of the window... but not at the -absolute- bottom (this way we can still reach the footer)
           if ( scrollDiff < self.opts.infinOffset && scrollDiff >= 1 ) {
             $(self.opts.nextSel).trigger('click');
           }
-
         }, self.opts.infinDelay)); // end $.data()
-      });
+      }); // end $window.on('scroll')
     }, // end handler()
 
 

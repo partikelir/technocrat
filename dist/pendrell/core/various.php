@@ -50,3 +50,15 @@ if ( !function_exists( 'pendrell_thumbnail_id' ) ) : function pendrell_thumbnail
     return ubik_thumbnail_id( $post_id, $fallback_id );
   return get_post_thumbnail_id( $post_id );
 } endif;
+
+
+
+// == PAGE LOADER == //
+
+// Test whether the current request will work with the page loader script (PG8)
+if ( !function_exists( 'pendrell_load_pg8' ) ) : function pendrell_load_pg8() {
+  if ( is_archive() || is_home() || is_search() )
+    return true;
+  return false;
+} endif;
+
