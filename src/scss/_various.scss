@@ -32,6 +32,9 @@
   color: $c-alert;
   font-weight: $w-bold;
 }
+.notice {
+  font-style: italic;
+}
 .required {
   color: $c-required;
 }

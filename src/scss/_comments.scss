@@ -1,6 +1,7 @@
 // ==== COMMENTS ==== //
 
-#comments {
+// General comments area
+.comments-area {
   max-width: $main-width;
   @include rem('margin-top', $spacer*3);
   article {
@@ -12,11 +13,35 @@
   @extend %spacer-below;
   @include font-size($s-header-sub);
 }
-.comment-meta {
+
+
+
+// == COMMENT LIST == //
+
+.comment-list {
+  .pingback,
+  .trackback {
+    @include font-size($s-header-small);
+    @include ghost;
+  }
+  // Threaded comments
+  .children {
+    @include respond-to(medium) {
+      @include rem('margin-left', $spacer);
+    }
+  }
+  // Comment awaiting moderation
+  .warning {
+    @include font-size($s-text-smaller);
+  }
+}
+
+// Specific to individual comments
+.comment-author {
   @extend %clearfix-below;
   @include rem('margin-bottom', $spacer/2);
 }
-.comment-meta-avatar {
+.comment-avatar {
   @include rem('margin-right', $spacer/2);
   display: inline-block;
   float: left;
@@ -25,7 +50,7 @@
     @include border-radius($spacer/4);
   }
 }
-.comment-meta-main {
+.comment-meta {
   @extend .entry-meta-main;
 }
 .comment-content {
@@ -39,76 +64,24 @@
     padding-left: $spacer - 3px;
   }
 }
-.comment-awaiting-moderation {
-  @include font-size($s-text-smaller);
-  color: $c-red;
-  font-style: italic;
-}
 
 
 
-// These classes contain right-aligned buttons
-.comment-meta-buttons,
-.comment-reply-title small {
-  @extend %button-container;
-}
-.comment-list {
-  .pingback,
-  .trackback {
-    @include font-size($s-header-small);
-    @include ghost;
-  }
-  // Threaded comments
-  .children {
-    @include respond-to(medium) {
-      @include rem('margin-left', $spacer);
-    }
-  }
-}
+// == RESPONSE FORM == //
 
-
-
-// Comment response form; @TODO: extrapolate this into general form styling
+// Specific to comment form; see `_ui_elements.scss` for general declarations
 .comment-form {
-  @include font-size($s-header-small);
-  label:not(.error) {
-    @include font-header;
-    @include rem('margin-top', $spacer/2);
-    display: block;
-    font-weight: $w-bold;
-    text-transform: uppercase;
-  }
-  label.error {
-    @include font-size($s-text-smaller);
-    display: block; // Errors go below inputs
-  }
-  input[type="email"],
-  input[type="text"],
-  input[type="url"] {
-    font-family: inherit; // Possibly redundant
-    width: percentage( ( ($main-width/2) - 8) / $main-width ); // Should yield a perfect 50% after accounting for borders and such
-  }
-  textarea {
-    font-family: inherit; // Possibly redundant
-    max-width: $main-width;
-    width: 100%;
-  }
-  .form-submit { // @TODO: generalize this to .submit?
-    @extend %spacer-above;
-  }
-
-  // Specific to comment form
-  p:first-child,
   .logged-in-as,
   .comment-form-url {
     @extend %spacer-below;
   }
-  #cancel-comment-reply-link {
-    @include font-size($s-text-smaller);
-    @include rem('margin-left', $spacer/2);
+  #submit {
+    @include rem('margin-bottom', $spacer*2); // Needed for when the comment form moves around
   }
 }
-.comment-notes-after { // Formerly .form-allowed-tags
+
+// Formerly .form-allowed-tags; this is
+.comment-notes-after {
   @extend %spacer-below;
   @include font-size($s-text-smaller);
   color: $c-offset;
@@ -117,4 +90,13 @@
     @include k-highlight-reset;
     display: inline;
   }
+}
+
+// These classes contain right-aligned buttons
+.comment-buttons,
+.comment-reply-title small {
+  @extend %button-container;
+}
+#cancel-comment-reply-link { // Only appears when replying to individual comments
+  @include button;
 }

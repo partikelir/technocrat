@@ -114,3 +114,19 @@ if ( !function_exists( 'pendrell_nav_link_pages' ) ) : function pendrell_nav_lin
     'after' => '</nav>'
   ) );
 } endif;
+
+
+
+// Comment navigation; @TODO: comment-loader.js script to pull in more comments via AJAX (low priority)
+if ( !function_exists( 'pendrell_nav_comments' ) ) : function pendrell_nav_comments() {
+
+  // Check to see whether comments are paged and if there is more than one page
+  if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) {
+    ?><nav id="nav-comments" class="nav-comments" role="navigation">
+      <h1 class="screen-reader-text"><?php _e( 'Comment navigation', 'pendrell' ); ?></h1>
+      <div class="nav-previous"><?php previous_comments_link( __( '<span class="nav-arrow">&larr; </span>Previous comments', 'pendrell' ) ); ?></div>
+      <div class="nav-next"><?php next_comments_link( __( 'Next comments<span class="nav-arrow"> &rarr;</span>', 'pendrell' ) ); ?></div>
+    </nav><?php
+  }
+} endif;
+

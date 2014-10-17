@@ -16,6 +16,9 @@
 #nav-below {
   @include rem('margin-bottom', $spacer*3);
 }
+#nav-comments {
+  @include rem('margin-bottom', $spacer*2);
+}
 .nav-previous {
   float: left;
   width: 50%;

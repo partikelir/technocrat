@@ -57,7 +57,7 @@ if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueu
 
       // What page are we on? And what is the pages limit?
       $max = $wp_query->max_num_pages;
-      $paged = ( get_query_var('paged') > 1 ) ? get_query_var('paged') : 1;
+      $paged = ( get_query_var( 'paged' ) > 1 ) ? get_query_var( 'paged' ) : 1;
 
       // Non-destructively merge array and namespace custom variables
       $script_vars = array_merge( $script_vars, array(
@@ -73,8 +73,7 @@ if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueu
 
       // Pass variables to JavaScript at runtime; see: http://codex.wordpress.org/Function_Reference/wp_localize_script
       wp_localize_script( $handle, 'pendrellVars', array_merge( array(
-          'ajaxUrl'             => admin_url( 'admin-ajax.php' )
-        , 'templateDirectory'   => get_template_directory_uri()
+          'ajaxUrl' => admin_url( 'admin-ajax.php' )
         ), $script_vars )
       );
     }

@@ -21,10 +21,10 @@ get_header(); ?>
           <div class="entry-content">
             <?php the_content(); ?>
           </div>
-          <div id="contact-form-wrapper">
+          <div>
             <h3><a name="contact-form"></a><?php _e( 'Contact form', 'pendrell' ); ?></h3>
-            <form id="contact-form" class="comment-form" method="post" action="" enctype="application/x-www-form-urlencoded">
-              <p class="comment-notes"><?php _e( 'Required fields are marked <span class="required">*</span>', 'pendrell' ); ?></p>
+            <form id="response-form" class="contact-form" method="post" action="" enctype="application/x-www-form-urlencoded">
+              <p><?php _e( 'Required fields are marked <span class="required">*</span>', 'pendrell' ); ?></p>
 
               <label for="from"><?php _e( 'Name', 'pendrell' ); ?> <span class="required">*</span></label>
               <input id="from" name="from" type="text" placeholder="<?php _e( 'Your name', 'pendrell' ); ?>" value="" />
@@ -47,10 +47,7 @@ get_header(); ?>
               </div>
 
               <?php wp_nonce_field( 'contact_form', '_contact_form_nonce' ); ?>
-
-              <div class="form-submit">
-                <input id="submit" name="submit" type="submit" value="<?php esc_attr_e( 'Send message', 'pendrell' ); ?>" />
-              </div>
+              <input id="submit" name="submit" type="submit" value="<?php esc_attr_e( 'Send message', 'pendrell' ); ?>" />
             </form>
           </div>
         </article>

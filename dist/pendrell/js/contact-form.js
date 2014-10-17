@@ -1376,7 +1376,7 @@ $.extend($.fn, {
     var CF1 = pendrellVars.CF1;
 
     // Validate the contact form; see jQuery validation plugin docs for more info: http://jqueryvalidation.org/documentation/
-    $('#contact-form').validate({
+    $('#response-form').validate({
 
       // Define the various rules by which the form will be validated
       rules: {
@@ -1408,16 +1408,16 @@ $.extend($.fn, {
       // Things to do when the user hits submit
       submitHandler: function(form) {
         var
-          $contactForm = $('#contact-form'),
+          $contactForm = $('#response-form'),
           formData = $(form).serialize();
 
         // @TODO: invoke spinner
-        $contactForm.append('<div id="status">'+CF1.formSent+'</div>');
+        $contactForm.append('<div id="spinner">'+CF1.formSent+'</div>');
 
         $('#submit').hide();
 
         // Response placeholder
-        $contactForm.append('<div id="response"></div>');
+        $contactForm.append('<div id="status"></div>');
 
         // Send the form data
         $.ajax({
@@ -1425,14 +1425,14 @@ $.extend($.fn, {
           url: pendrellVars.ajaxUrl,
           data: formData+'&action=contact_form',
           success: function(data) {
-            $('#response').hide().html(data).fadeIn('slow');
+            $('#status').hide().html(data).fadeIn('slow');
           },
           error: function(jqXHR,textStatus,errorThrown){
-            $('#response').hide().html('<p class="alert" role="alert">'+CF1.formError+textStatus+'.</p>').fadeIn('slow');
+            $('#status').hide().html('<p class="alert" role="alert">'+CF1.formError+textStatus+'.</p>').fadeIn('slow');
           },
           complete: function(jqXHR,textStatus){
             // @TODO: hide spinner
-            $('#status').hide();
+            $('#spinner').hide();
           }
         });
       },

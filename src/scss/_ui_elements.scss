@@ -1,0 +1,105 @@
+// ==== INTERFACE ==== //
+
+// This partial is meant to contain all user interface elements: buttons, forms, and so on...
+
+
+
+// == VARIOUS == //
+
+// Button styling adapted from Twenty Twelve
+button,
+.button a,
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
+#cancel-comment-reply-link {
+  @include button;
+}
+
+// Button dropdown wrapper; apply to a list within a button element; borrows only the essentials from Kipple's k-list-nested mixin
+ul.button-dropdown {
+  @include dropdown-button(right);
+  display: none;
+  // @TODO: fix this in Firefox
+  //opacity: 0;
+  //transition: opacity .3s ease-out, visibility .3s ease-out;
+  //visibility: hidden;
+  //button:hover > & {
+  //  opacity: 1;
+  //  transition: opacity .09s ease-in, visibility .09s ease-in;
+  //  visibility: visible;
+  //}
+}
+
+// Tooltips are based on the data-tooltip attribute; e.g. <span data-tooltip="This is a tooltip">Hover here!</span>
+.tooltip,
+span[data-tooltip] {
+  @include tooltip;
+}
+
+
+
+// == RESPONSIVE MENU == //
+
+// Site interface: the toolbar/menu at top right
+#site-interface {
+  display: block;
+  // Spacing needs to match the spacing in the layout-box mixin in the custom library
+  @include k-absolute(right $spacer top $spacer);
+  @include respond-to(medium) {
+    @include rem('right', $spacer*1.5);
+  }
+}
+
+// Menu toggle for mobile phones and small screens
+#responsive-menu-toggle {
+  @include respond-to(medium) {
+    display: none;
+  }
+  &.toggled {
+    @extend button:active;
+  }
+}
+
+
+
+// == RESPONSE FORM == //
+
+// Response form; used in comments and the contact form
+#response-form {
+  @include font-size($s-header-small);
+  label:not(.error) {
+    @include font-header;
+    @include rem('margin-top', $spacer/2);
+    display: block;
+    font-weight: $w-bold;
+    text-transform: uppercase;
+  }
+  label.error {
+    @include font-size($s-text-smaller);
+    display: block; // Errors go below inputs
+  }
+  input[type="email"],
+  input[type="text"],
+  input[type="url"] {
+    font-family: inherit; // Possibly redundant
+    width: percentage( ( ($main-width/2) - 8) / $main-width ); // Should yield a perfect 50% after accounting for borders and such
+  }
+  textarea {
+    font-family: inherit; // Possibly redundant
+    max-width: $main-width;
+    width: 100%;
+  }
+  input[type="submit"] {
+    @extend %spacer-above;
+    display: block;
+  }
+}
+
+// Specific to the contact form (CF1)
+.contact-form {
+  #spinner,
+  #status {
+    @extend %spacer-above;
+  }
+}
