@@ -14,7 +14,7 @@
     @include font-size($s-text);
   }
   @include rem('margin-bottom', $spacer*2);
-  color: $c-archive;
+  color: $c-text-lighter;
   p {
     @extend %spacer-below;
   }

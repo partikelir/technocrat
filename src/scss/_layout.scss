@@ -1,6 +1,23 @@
 // ==== LAYOUT ==== //
 
-// == BACKGROUNDS == //
+// Layout box; pads and centers the header, content area, and footer
+@mixin layout-box {
+  @include rem('padding-left', $spacer);
+  @include rem('padding-right', $spacer);
+  @include respond-to(small) {
+    @include rem('padding-left', $spacer/2);
+    @include rem('padding-right', $spacer/2);
+  }
+  @include respond-to(medium) {
+    @include k-center-block($content-width);
+    @include rem('padding-left', $spacer*1.5);
+    @include rem('padding-right', $spacer*1.5);
+  }
+}
+
+
+
+// == WRAPPERS == //
 
 .site-header-wrapper {
   // Header background

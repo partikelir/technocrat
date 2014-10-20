@@ -59,7 +59,7 @@
     @include border-radius(9px); // Gives a slightly curved or parenthetical appearance to the bounding border
     @include k-reverse-italics;
     border-left: 3px solid $c-divider;
-    color: $c-blockquote-c;
+    color: lighten($c-text-lightest, 10);
     font-weight: $w-light;
     padding-left: $spacer - 3px;
   }
@@ -84,7 +84,7 @@
 .comment-notes-after {
   @extend %spacer-below;
   @include font-size($s-text-smaller);
-  color: $c-offset;
+  color: $c-text-lighter;
   code {
     @include font-size($s-text-smallest);
     @include k-highlight-reset;

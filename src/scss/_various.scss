@@ -92,7 +92,7 @@ label.error {
     background: transparent;
     border: 2px solid #333;
     clip: auto !important;
-    color: $c-black;
+    color: black();
     display: block;
     padding: 12px;
     position: absolute;

@@ -35,7 +35,7 @@
   @extend %clearfix-below;
   @include font-size($s-text-smaller);
   @include k-reverse-italics;
-  color: $c-caption;
+  color: lighten($c-text-lightest, 10);
 }
 
 

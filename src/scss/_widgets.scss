@@ -12,7 +12,7 @@
 }
 .widget-title {
   @extend %small-headers;
-  color: $c-widget-head;
+  color: $c-text-dark;
 }
 .widget {
   @extend %spacer-below;
@@ -21,7 +21,7 @@
   li,
   .textwidget {
     @include font-size($s-text-smaller);
-    color: $c-widget;
+    color: $c-text-lighter;
   }
   p {
     @extend %spacer-below;

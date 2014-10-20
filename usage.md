@@ -133,4 +133,14 @@ Pendrell ships with [Prism](http://prismjs.com/) but must be activated in `funct
 
 The same can be accomplished with JP Markdown by using three back-ticks immediately followed by the class name *e.g.* `language-php`.
 
-If you want to highlight any languages I haven't included in the Prism file shipped with Pendrell you can roll your own and replace `src/js/prism.js` before running `gulp package` and uploading a new distribution.
+If you want to highlight any languages I haven't included in the Prism file shipped with Pendrell you can roll your own and replace `src/js/prism.js` before running `gulp dist` and uploading a new distribution.
+
+
+
+### NOT RECOMMENDED
+
+The WordPress code base is littered with old functions that are hard to work with, produce ugly markup, or simply aren't very good. To polish the output of these functions or to replicate the functionality might be out of scope for this theme--and so there are a few things I recommend *not* using:
+
+- In-post pagination with `<!--nextpage-->` and so on. This calls `wp_link_pages()`, a function that doesn't even allow you to specify a divider between page numbers. Avoid!
+- Audio, video, or any other media shortcode; I haven't yet messed around with any of these as I don't use them myself.
+

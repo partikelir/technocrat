@@ -175,6 +175,9 @@ var PG8 = {};
         self.nextPage = page + 1;
         self.nextLink = link.replace(/\/page\/[0-9]?/, '/page/'+self.nextPage);
 
+        // @TODO: load scripts necessary to display content on new pages e.g. MediaElement.js
+        // Follow the link for an example: https://github.com/Automattic/jetpack/blob/master/modules/infinite-scroll/infinity.js
+
         // Change the URL
         self.pusher(self.thisLink);
 
@@ -191,6 +194,8 @@ var PG8 = {};
         // Hide spinner
         $('#spinner').hide();
 
+        self.loaded();
+
         // Scroll to the appropriate location
         self.scroll();
 
@@ -198,6 +203,15 @@ var PG8 = {};
         self.analytics('/'+location.href.replace(self.root(), ''));
       });
     }, // end loader()
+
+
+
+    // Emit the DOMContentLoaded event (for compatibility with Prism.js and other scripts)
+    loaded: function(){
+      var loaded = document.createEvent("Event");
+      loaded.initEvent("DOMContentLoaded", true, true);
+      window.document.dispatchEvent(loaded);
+    },
 
 
 
@@ -249,8 +263,8 @@ var PG8 = {};
   , scrollDelay:   300          // Smooth scrolling delay
   , scrollOffset:  30           // To account for margins and such
   , pushDelay:     250          // How long to wait on scroll before trying to update history
-  , infinDelay:    1000         // How long to wait before pulling new content automatically
-  , infinOffset:   200          // How close to the bottom of the window to trigger infinite scrolling
+  , infinDelay:    600          // How long to wait before pulling new content automatically
+  , infinOffset:   250          // How close to the bottom of the window to trigger infinite scrolling
   , spinOpts: {                 // spin.js options; reference: https://fgnass.github.io/spin.js/
       lines:  25
     , length: 0

@@ -8,7 +8,7 @@ html {
 // Body
 body {
   @include font-size($s-text);
-  color: $c-body;
+  color: $c-text;
   background-color: $c-body-bg;
   font-family: $f-body;
   font-weight: $w-light;
@@ -18,7 +18,7 @@ body {
 // Headers
 h1,h2,h3,h4,h5,h6 {
   @include font-header;
-  color: $c-head;
+  color: $c-text-darkest;
 }
 h1 { @include font-size($s-header-big); }
 h2 { @include font-size($s-header); }
@@ -64,7 +64,6 @@ a {
 // Reset-like things with variables or WordPress-specific styling
 abbr {
   border-bottom: $d-mouseover;
-  color: $c-abbr;
   line-height: 0;
   &:hover {
     cursor: help;
@@ -90,24 +89,25 @@ i {
 del,
 s,
 strike {
-  color: $c-del;
+  color: $c-text-lighter;
+  opacity: .6;
   text-decoration: line-through;
 }
 ins {
-  @include highlight($c-ins-bg);
+  @include highlight($c-highlight-bg);
   text-decoration: none;
 }
 hr { // @TODO: space out hrs; paragraph tags presently overlap margins
   @extend %clearfix;
   @include rem('margin-bottom', $spacer/2);
   @include rem('margin-top', $spacer/2, 1);
-  background-color: $c-hr;
+  background-color: $c-divider;
   border: 0;
   height: 1px;
 }
 mark {
   background: transparent;
-  color: $c-mark;
+  color: $c-highlight;
   text-decoration: none;
 }
 small {
@@ -137,8 +137,8 @@ q {
 // Pre and code blocks
 pre {
   @include font-size($s-text-small);
-  @include inset-box;
-  color: $c-pre;
+  @include inset-box($c-code-box, $c-code-box-bg, black(.2));
+  @include letterpress(black(.25));
   tab-size: 2;
   white-space: pre;
   word-wrap: normal; // Allows for horizontal scrollbars
@@ -159,8 +159,8 @@ code {
   li > &,
   p > &,
   strong > & {
-    @include highlight(rgba($c-code-bg, .33));
-    color: $c-code;
+    @include highlight(rgba($c-body-darker, .33));
+    color: $c-text-lighter;
     font-size: 80%; // Hack for fixing oversized monospace fonts
     //line-height: 0; // @TODO: check if this is still necessary
   }
@@ -241,7 +241,7 @@ select {
   @include rem('margin-bottom', $spacer/4);
   border: 1px solid #d2d2d2;
   box-shadow: 0 1px 2px rgba(64, 64, 64, .1);
-  color: lighten($c-body, 22);
+  color: $c-text-lighter;
   cursor: pointer;
   display: inline-block;
   font-weight: $w-normal;

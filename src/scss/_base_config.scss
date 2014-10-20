@@ -6,6 +6,15 @@
 $base:              16;
 $baseline:          30;
 
+// Text
+//$s-text-biggest:    42;
+//$s-text-bigger:     28;
+$s-text-big:        24;
+$s-text:            18; // Default body text font size
+$s-text-small:      16;
+$s-text-smaller:    14;
+$s-text-smallest:   12;
+
 // Headers
 $s-header-title:    48;
 $s-header-big:      36;
@@ -21,12 +30,7 @@ $s-menu-footer:     14;
 // Submenus
 $s-sub:             14;
 
-// Body text
-$s-text-big:        24;
-$s-text:            18; // Default body text font size
-$s-text-small:      16;
-$s-text-smaller:    14;
-$s-text-smallest:   12;
+
 
 
 
@@ -67,43 +71,55 @@ $b-full:            $content-width;
 
 // == COLOURS == //
 
-// @TODO: this is getting unusable... migrate this stuff to a better system
-
 // Palette
 $c-white:         white();
 $c-black:         black();
-$c-dark:          #505050;
-$c-green:         #a2bf68;
-$c-yellow:        #fff9c0;
-$c-red:           #a30000;
 
-// Base
-$c-body:          $c-dark;
-$c-body-bg:       $c-white;
-$c-head:          darken($c-body, 33);
+$c-green:         #8acd51;
+$c-yellow:        #fff9c0;
+$c-red:           #81260d;
+
+// General
+$c-body-bg:       white();
+$c-site-title:    #0E0E0E;
+$c-site-desc:     #9C9C9C;
 $c-highlight:     #ED7251;
-$c-offset:        lighten($c-body, 13);
-$c-link:          #5cb6cc;
+$c-interface:     #BABABA;
+
+// Text
+$c-text:          #535353;
+$c-text-darkest:  darken($c-text, 23);
+$c-text-darker:   darken($c-text, 13);
+$c-text-dark:     darken($c-text, 7);
+$c-text-light:    lighten($c-text, 9);
+$c-text-lighter:  lighten($c-text, 19);
+$c-text-lightest: lighten($c-text, 27);
+
+// Backgrounds
+$c-body-dark:     darken($c-body-bg, 3);
+$c-body-darker:   darken($c-body-bg, 13);
+$c-body-darkest:  darken($c-body-bg, 27);
 
 // Links
+$c-link:          #5cb6cc;
 $c-link-v:        $c-link;
 $c-link-h:        saturate(lighten($c-link, 17), 7);
 $c-link-a:        saturate(lighten($c-link, 13), 13);
 $c-link-f:        saturate(lighten($c-link, 17), 7);
 
 // Menus
-$c-menu-link:     lighten($c-body, 33);
+$c-menu-link:     $c-text-lightest;
 $c-menu-link-h:   $c-highlight;
 $c-menu-current:  lighten($c-menu-link, 23);
 
 // Submenus
-$c-sub:           lighten($c-body, 17);
-$c-sub-h:         $c-white;
-$c-sub-bg:        darken($c-body-bg, 11);
+$c-sub:           lighten($c-text, 17);
+$c-sub-h:         white();
+$c-sub-bg:        $c-body-darker;//darken($c-body-bg, 11);
 
 // Meta
-$c-meta:          lighten($c-body, 33);
-$c-meta-link:     darken($c-meta, 33);
+$c-meta:          lighten($c-text-lightest, 10);
+$c-meta-link:     $c-text;
 $c-meta-link-v:   $c-meta-link;
 $c-meta-link-h:   $c-highlight;
 $c-meta-link-a:   $c-meta-link;
@@ -117,42 +133,20 @@ $c-footer-link-h: $c-meta-link-h;
 $c-footer-link-a: $c-meta-link-a;
 $c-footer-link-f: $c-meta-link-f;
 
-// Elements
-$c-abbr:          $c-offset;
-$c-blockquote:    $c-offset;
-$c-blockquote-bg: darken($c-body-bg, 3);
-$c-blockquote-c:  lighten($c-body, 37); // Comment blockquote
-$c-code:          $c-offset;
-$c-code-bg:       darken($c-body-bg, 13);
-$c-del:           lighten($c-body, 33);
-$c-hr:            rgba($c-body, .09);
-$c-ins-bg:        $c-yellow;
-$c-mark:          $c-highlight;
-$c-mark-bg:       $c-ins-bg;
-$c-pre:           darken($c-body, 13);
-$c-table:         lighten($c-body, 19);
-
 // Forms
 $c-alert:         lighten($c-red, 13);
 $c-required:      $c-red;
 $c-success:       $c-green;
 
+// Code blocks
+$c-code-box:      #CEE0E4;
+$c-code-box-bg:   rgba(#356b78, .93);
+
 // Various
-$c-archive:       lighten($c-body, 17);
-$c-caption:       lighten($c-body, 37);
-$c-divider:       rgba($c-body, .09);
-$c-interface:     darken($c-body-bg, 27);
-$c-site-desc:     lighten($c-body, 27);
-$c-site-title:    $c-head;
-$c-small-header:  $c-offset;
-$c-small-print:   lighten($c-body, 23);
-$c-text-box:      lighten($c-body, 7);
-$c-text-box-bg:   darken($c-body-bg, 7);
-$c-text-box-sh:   darken($c-text-box-bg, 3);
-$c-tooltip:       lighten($c-body, 7);
-$c-tooltip-bg:    $c-yellow;//darken($c-body-bg, 4);
-$c-widget-head:   darken($c-body, 7);
-$c-widget:        lighten($c-body, 23);
+$c-divider:       rgba($c-text, .09); // For use with <hr> etc.
+$c-shadow:        black(.07);//rgba($c-body-darker, .5);
+$c-highlight-bg:  $c-yellow;
+
 
 
 
@@ -175,13 +169,10 @@ $d-image-spacer:  $spacer;
 $d-interface:     1px solid $c-interface;
 
 // Mouseover border bottom
-$d-mouseover:     1px dotted rgba($c-body, .4);
+$d-mouseover:     1px dotted rgba($c-text, .4);
 
 // Border radius default
 $d-radius:        3px;
-
-// Box shadow
-$d-shadow:        0 1px 4px black(.2);
 
 
 

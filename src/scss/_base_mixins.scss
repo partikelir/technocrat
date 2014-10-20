@@ -1,149 +1,55 @@
 // ==== MIXINS ==== //
 
-// == GENERAL == //
+// == BASE METAL == //
 
-// Button styling
-@mixin button {
-  @include border-radius;
-  @include font-button;
-  @include font-size($s-text-smaller, 4);
-  @include gradient-vertical($d-gradient-1, $d-gradient-2);
-  @include rem('padding', 0 $spacer/4);
-  border: $d-interface;
-  box-shadow: 0 1px 2px rgba(64, 64, 64, .1);
-  color: lighten($c-body, 17);
-  cursor: pointer;
-  display: inline-block;
-  font-weight: $w-normal;
-  text-decoration: none;
-  vertical-align: middle;
-  &:hover {
-    @include gradient-vertical(lighten($d-gradient-1, 3), lighten($d-gradient-2, 1));
-    color: lighten($c-body, 13);
+// Rem generator via Twenty Twelve; specify property, pixel values, and optional offset to account for borders and such
+@mixin rem($property, $px-values, $offset: 0) {
+
+  // Convert the baseline into rems
+  $baseline-rem: $base+0px / 1rem;
+
+  // Subtract the offset
+  @if type-of($px-values) == "number" {
+    $px-values: $px-values - $offset;
   }
-  &:active {
-    @include gradient-vertical(darken($d-gradient-1, 7), lighten($d-gradient-2, 1));
-    border-color: 1px solid darken($c-body-bg, 8);
-    box-shadow: inset 0 2px 3px 0 #c6c6c6, 0 1px 2px rgba(64, 64, 64, .1);
-    color: lighten($c-body, 37);
+
+  // Print the first line in pixel values
+  #{$property}: $px-values;
+
+  // If there is only one (numeric) value, return the property/value line for it.
+  @if type-of($px-values) == "number" {
+    #{$property}: $px-values / $baseline-rem;
   }
-  &:focus {
-    outline: none; // Blue border is rather distracting
+
+  // Create an empty list that we can dump values into
+  @else {
+    $rem-values: unquote("");
+    @each $value in $px-values {
+      // If the value is zero, return 0
+      @if $value == 0 {
+        $rem-values: append($rem-values, $value);
+      }
+      @else {
+        $rem-values: append($rem-values, $value / $baseline-rem);
+      }
+    }
+    // Return the property and its list of converted values
+    #{$property}: $rem-values;
   }
 }
 
 
 
-// Button dropdown menu; hover over a button element with an embedded list to select an option
-@mixin dropdown-button($alignment: null) {
-  // Setup variables that change based on alignment
-  $alignment-args: left -1px top 100%; // -1px offset accounts for the border
-  $border-radius: 0 4px 4px 4px;
-  $child-radius: 0 3px 0 0;
-  @if $alignment == right {
-    $alignment-args: right -1px top 100%;
-    $border-radius: 4px 0 4px 4px;
-    $child-radius: 3px 0 0 0;
-  }
-  @include k-dropdown(
-    $dropdown-background: $c-sub-bg linear-gradient(white(.5), white(0)) repeat-x
-  , $dropdown-border-color: $c-interface
-  , $dropdown-border-radius: $border-radius
-  , $dropdown-border-size: 1px
-  , $dropdown-shadow-inside: 0 -2px 3px rgba(64, 64, 64, .08) inset
-  , $dropdown-shadow-outside: 1px 1px 4px black(.08)
-  );
-  @include k-absolute($alignment-args);
-  li {
-    &:first-child > a {
-      border-radius: $child-radius;
-    }
-    display: block;
-    margin: 0;
-    text-align: left;
-    white-space: nowrap;
-    width: 100%;
-    a {
-      color: $c-sub;
-      display: block;
-      &:visited {
-        color: $c-sub;
-      }
-      &:hover {
-        background: darken($c-sub-bg, 13);
-        box-shadow: 0 -2px 4px black(.06) inset;
-        color: $c-sub-h;
-      }
-      &:active,
-      &:focus {
-        color: $c-sub-h;
-      }
-    }
-  }
-}
-
-
-
-// Dropdown menu; for use with the main site navigation menu
-@mixin dropdown-menu($wordpress-menu: true) {
-  @include k-dropdown(
-    $dropdown-background: $c-sub-bg linear-gradient(white(.5), white(0)) repeat-x
-  , $dropdown-border-color: $c-interface
-  , $dropdown-border-radius: $d-radius
-  , $dropdown-border-size: 1px
-  , $dropdown-shadow-inside: 0 -2px 3px rgba(64, 64, 64, .08) inset
-  , $dropdown-shadow-outside: 1px 1px 4px black(.08)
-  );
-  @include font-size($s-sub);
-  li {
-    a {
-      color: $c-sub;
-      &:visited {
-        color: $c-sub;
-      }
-      &:hover {
-        background: darken($c-sub-bg, 13);
-        box-shadow: 0 -2px 4px black(.06) inset;
-        color: $c-sub-h;
-      }
-      &:active,
-      &:focus {
-        color: $c-sub-h;
-      }
-    }
-  }
-  @if $wordpress-menu == true {
-    .current-menu-item,
-    .current-menu-ancestor,
-    .current_page_item,
-    .current_page_ancestor {
-      > a {
-        color: lighten($c-sub, 33);
-        &:visited {
-          color: lighten($c-sub, 33);
-        }
-        &:hover,
-        &:active,
-        &:focus {
-          color: lighten($c-sub-h, 13);
-        }
-      }
-    }
-  }
-}
-
-
+// == FONTS == //
 
 // Various font styles
 @mixin font-button {
-  @include font-header;
+  @include font-header; // This is merely an alias for font-header but you could set different styles here specific to buttons
 }
 @mixin font-header {
   font-family: $f-head;
   font-weight: $w-light;
 }
-
-
 
 // Font size mixin; $size (integer): pixel value of desired font size; $offset (integer); pixel value offset to account for borders and other things that disrupt line-height
 @mixin font-size($size: $s-text, $offset: 0) {
@@ -154,7 +60,20 @@
   line-height: ( ( ($baseline - $offset) * $buffer) / $size );
 }
 
+// Letterpress effect
+@mixin letterpress($colour: $c-body-bg) {
+  text-shadow: 0px 1px $colour;
+}
 
+// Small print
+@mixin small-print($font-size: $s-text-small) {
+  @include font-size($font-size);
+  color: lighten($c-text-lightest, 10);
+}
+
+
+
+// == FULL-WIDTH MODULE == //
 
 // Full-width mixin; just a shortcut for wrapping content using the optional full-width functionality
 // Optionally wrap content in a media query by setting $media
@@ -174,17 +93,7 @@
 
 
 
-// Gradients; adapted from Twenty Twelve
-@mixin gradient-horizontal($begin: $d-gradient-1, $end: $d-gradient-2) {
-  background-color: $end;
-  background-image: linear-gradient(to left, $begin, $end);
-}
-@mixin gradient-vertical($begin: $d-gradient-1, $end: $d-gradient-2) {
-  background-color: $end;
-  background-image: linear-gradient(to top, $begin, $end);
-}
-
-
+// == IMAGES == //
 
 // To be applied to the container element around an image standing in for a link (e.g. post thumbnail, gallery item)
 @mixin image-fade {
@@ -210,11 +119,14 @@
 // Image fallback; a stylized placeholder for images that don't load or are slow to load
 @mixin image-fallback {
   @include border-radius;
-  background-color: $c-text-box-bg;
+  background-color: $c-body-darker;
+  background-image: repeating-linear-gradient(to top right, transparent, transparent 2%, black(.04) 2%, black(.04) 4%);
+  backface-visibility: hidden;
+  transform: rotate(background-image, 45deg);
   box-shadow: 0 0 $spacer*2 black(.1) inset;
   transition: background-color .8s ease-out, box-shadow 1.1s ease-in;
   &:hover {
-    background-color: lighten($c-text-box-bg, 4);
+    background-color: lighten($c-body-darker, 7);
     box-shadow: 0 0 $spacer*1 black(.08) inset;
     transition: background-color .5s ease-in-out, box-shadow .3s ease;
   }
@@ -236,7 +148,7 @@
       @include respond-to(large) {
         @include font-header;
         @include font-size($s-text-big);
-        text-shadow: 2px 2px 5px black(.6);
+        text-shadow: 1px 1px 5px black(.7);
       }
       text-align: center;
       text-shadow: 0px 1px 2px black(.8);
@@ -244,10 +156,10 @@
     @include border-radius(0 0 $d-radius $d-radius);
     @include k-regular-italics;
     @include rem('padding', $spacer/4 $spacer/4);
-    background-image: linear-gradient(black(0), black(.6));
+    background-image: linear-gradient(black(0), black(.5));
     background-repeat: repeat-x;
     box-sizing: border-box;
-    color: $c-white;
+    color: white();
     line-height: 1.25; // No need for vertical rhythm here!
     margin: 0;
     max-height: 100%;
@@ -277,35 +189,7 @@
 
 
 
-// Inset box; for use with blockquote, pre, etc.
-@mixin inset-box($color: $c-text-box, $background: $c-text-box-bg, $shadow: $c-text-box-sh) {
-  @include border-radius(9px);
-  @include rem('margin', 0 0 $spacer 0);
-  @include rem('padding', $spacer/2 $spacer $spacer/2 $spacer);
-  background: rgba($background, .5);
-  box-shadow: inset 4px 4px 8px $shadow, 1px 1px 4px $shadow;
-  color: $color;
-  text-shadow: 0px 1px $c-body-bg;
-}
-
-
-
-// Layout box; pads and centers the header, content area, and footer
-@mixin layout-box {
-  @include rem('padding-left', $spacer);
-  @include rem('padding-right', $spacer);
-  @include respond-to(small) {
-    @include rem('padding-left', $spacer/2);
-    @include rem('padding-right', $spacer/2);
-  }
-  @include respond-to(medium) {
-    @include k-center-block($content-width);
-    @include rem('padding-left', $spacer*1.5);
-    @include rem('padding-right', $spacer*1.5);
-  }
-}
-
-
+// == LINKS == //
 
 // Link stylist; pass 'false' to disable styling for any of these
 // @TODO: group same values
@@ -372,43 +256,7 @@
 
 
 
-// Rem generator via Twenty Twelve; specify property, pixel values, and optional offset to account for borders and such
-@mixin rem($property, $px-values, $offset: 0) {
-
-  // Convert the baseline into rems
-  $baseline-rem: $base+0px / 1rem;
-
-  // Subtract the offset
-  @if type-of($px-values) == "number" {
-    $px-values: $px-values - $offset;
-  }
-
-  // Print the first line in pixel values
-  #{$property}: $px-values;
-
-  // If there is only one (numeric) value, return the property/value line for it.
-  @if type-of($px-values) == "number" {
-    #{$property}: $px-values / $baseline-rem;
-  }
-
-  // Create an empty list that we can dump values into
-  @else {
-    $rem-values: unquote("");
-    @each $value in $px-values {
-      // If the value is zero, return 0
-      @if $value == 0 {
-        $rem-values: append($rem-values, $value);
-      }
-      @else {
-        $rem-values: append($rem-values, $value / $baseline-rem);
-      }
-    }
-    // Return the property and its list of converted values
-    #{$property}: $rem-values;
-  }
-}
-
-
+// == MEDIA QUERIES == //
 
 // Media query breakpoints mixin; adapted from http://thesassway.com/intermediate/responsive-web-design-in-sass-using-media-queries-in-sass-32
 @mixin respond-to($media) {
@@ -434,42 +282,167 @@
 
 
 
-// Small print
-@mixin small-print($font-size: $s-text-small) {
-  @include font-size($font-size);
-  color: $c-small-print;
-}
+// == UI ELEMENTS == //
 
-
-
-// Text input; for use with forms, textarea, etc.
-@mixin text-input($shadow: $c-text-box-sh, $font-size: $s-text-smaller) {
+// Button styling
+@mixin button {
   @include border-radius;
-  @include font-size($font-size, 8);
-  @include rem('padding', 3px);
-  background: darken($c-body-bg, 3);
-  border: $d-divider;
-  box-shadow: inset 2px 2px 4px $shadow;
-  color: lighten($c-body, 23);
-  font-family: inherit;
+  @include font-button;
+  @include font-size($s-text-smaller, 4);
+  @include gradient-vertical($d-gradient-1, $d-gradient-2);
+  @include letterpress;
+  @include rem('padding', 0 $spacer/4);
+  border: $d-interface;
+  box-shadow: 0 1px 2px rgba(64, 64, 64, .1);
+  color: $c-text;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: $w-normal;
+  text-decoration: none;
+  vertical-align: middle;
+  &:hover {
+    @include gradient-vertical(lighten($d-gradient-1, 3), lighten($d-gradient-2, 1));
+    color: $c-text-lighter;
+  }
+  &:active {
+    @include gradient-vertical(darken($d-gradient-1, 7), lighten($d-gradient-2, 1));
+    border-color: 1px solid darken($c-body-bg, 8);
+    box-shadow: inset 0 2px 3px 0 #c6c6c6, 0 1px 2px rgba(64, 64, 64, .1);
+    color: lighten($c-text-lightest, 10);
+  }
   &:focus {
-    color: $c-body;
-    background-color: darken($c-body-bg, 7);
+    outline: none; // Blue border is rather distracting
   }
 }
 
 
 
-// == DEVELOPMENT == //
-
-// A few untested mixins and functions via Sacha Greif: http://sachagreif.com/useful-sass-mixins/
-
-// Box emboss
-@mixin box-emboss($opacity: 0.75, $opacity2: 0.75) {
-  box-shadow: white($opacity) 0 1px 0, inset black($opacity2) 0 1px 0;
+// Button dropdown menu; hover over a button element with an embedded list to select an option
+@mixin dropdown-button($alignment: null) {
+  // Setup variables that change based on alignment
+  $alignment-args: left -1px top 100%; // -1px offset accounts for the border
+  $border-radius: 0 4px 4px 4px;
+  $child-radius: 0 3px 0 0;
+  @if $alignment == right {
+    $alignment-args: right -1px top 100%;
+    $border-radius: 4px 0 4px 4px;
+    $child-radius: 3px 0 0 0;
+  }
+  @include k-dropdown(
+    $dropdown-background: $c-sub-bg linear-gradient(white(.5), white(0)) repeat-x
+  , $dropdown-border-color: $c-interface
+  , $dropdown-border-radius: $border-radius
+  , $dropdown-border-size: 1px
+  , $dropdown-shadow-inside: 0 -2px 3px rgba(64, 64, 64, .08) inset
+  , $dropdown-shadow-outside: 1px 1px 4px black(.08)
+  );
+  @include k-absolute($alignment-args);
+  li {
+    &:first-child > a {
+      border-radius: $child-radius;
+    }
+    display: block;
+    margin: 0;
+    text-align: left;
+    white-space: nowrap;
+    width: 100%;
+    a {
+      color: $c-sub;
+      display: block;
+      &:visited {
+        color: $c-sub;
+      }
+      &:hover {
+        background: darken($c-sub-bg, 13);
+        box-shadow: 0 -2px 4px black(.06) inset;
+        color: $c-sub-h;
+        text-shadow: none;
+      }
+      &:active,
+      &:focus {
+        color: $c-sub-h;
+      }
+    }
+  }
 }
 
-// Letterpress
-@mixin letterpress($opacity) {
-  text-shadow: white($opacity) 0 1px 0;
+
+
+// Dropdown menu; for use with the main site navigation menu
+@mixin dropdown-menu($wordpress-menu: true) {
+  @include k-dropdown(
+    $dropdown-background: $c-sub-bg linear-gradient(white(.5), white(0)) repeat-x
+  , $dropdown-border-color: $c-interface
+  , $dropdown-border-radius: $d-radius
+  , $dropdown-border-size: 1px
+  , $dropdown-shadow-inside: 0 -2px 3px rgba(64, 64, 64, .08) inset
+  , $dropdown-shadow-outside: 1px 1px 4px black(.08)
+  );
+  @include font-size($s-sub);
+  li {
+    a {
+      color: $c-sub;
+      &:visited {
+        color: $c-sub;
+      }
+      &:hover {
+        background: darken($c-sub-bg, 13);
+        box-shadow: 0 -2px 4px black(.06) inset;
+        color: $c-sub-h;
+      }
+      &:active,
+      &:focus {
+        color: $c-sub-h;
+      }
+    }
+  }
+  @if $wordpress-menu == true {
+    .current-menu-item,
+    .current-menu-ancestor,
+    .current_page_item,
+    .current_page_ancestor {
+      > a {
+        color: lighten($c-sub, 33);
+        &:visited {
+          color: lighten($c-sub, 33);
+        }
+        &:hover,
+        &:active,
+        &:focus {
+          color: lighten($c-sub-h, 13);
+        }
+      }
+    }
+  }
+}
+
+
+
+// Inset box; for use with blockquote, pre, etc.
+@mixin inset-box($color: $c-text-light, $background: $c-body-dark, $shadow: $c-shadow) {
+  @include border-radius(6px);
+  @include rem('margin', 0 0 $spacer 0);
+  @include rem('padding', $spacer/2);
+  background: $background;
+  box-shadow: inset 3px 3px 7px $shadow, 1px 1px 4px $shadow;
+  color: $color;
+}
+
+
+
+// Text input; for use with forms, textarea, etc.
+@mixin text-input($shadow: $c-shadow, $font-size: $s-text-smaller) {
+  @include border-radius;
+  @include font-size($font-size, 8);
+  @include letterpress;
+  @include rem('padding', 3px);
+  background: darken($c-body-bg, 3);
+  border: $d-divider;
+  box-shadow: inset 2px 2px 4px $shadow;
+  color: lighten($c-text, 23);
+  font-family: inherit;
+  &:focus {
+    color: $c-text;
+    background-color: darken($c-body-bg, 7);
+  }
 }

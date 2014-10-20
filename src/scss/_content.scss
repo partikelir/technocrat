@@ -116,8 +116,14 @@
   table {
     @include rem('margin-bottom', $spacer, 1);
     border-bottom: $d-divider;
-    color: $c-table;
     width: 100%;
+    a,
+    a:visited,
+    a:hover,
+    a:focus,
+    a:active {
+      border-bottom: none;
+    }
     caption {
       @extend %small-text;
     }
@@ -157,7 +163,9 @@
   blockquote {
     @include font-size($s-text-big);
     @include inset-box;
+    @include letterpress;
     @include k-reverse-italics;
+    color: $c-text-dark;
     font-weight: $w-light;
     p {
       &:last-child {
@@ -202,7 +210,7 @@
   // Full-width styling
   @include full-width($media: large) {
     @include font-size($s-text-big);
-    color: darken($c-body, 7); // Darken content as much of it will be a thinner weight
+    color: $c-text-dark; // Darken content as much of it will be a thinner weight
 
     h1 { @include font-size($s-header-title); }
     h2 { @include font-size($s-header-big); }

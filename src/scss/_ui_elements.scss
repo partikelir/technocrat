@@ -2,9 +2,7 @@
 
 // This partial is meant to contain all user interface elements: buttons, forms, and so on...
 
-
-
-// == VARIOUS == //
+// == BUTTONS == //
 
 // Button styling adapted from Twenty Twelve
 button,
@@ -29,12 +27,6 @@ ul.button-dropdown {
   //  transition: opacity .09s ease-in, visibility .09s ease-in;
   //  visibility: visible;
   //}
-}
-
-// Tooltips are based on the data-tooltip attribute; e.g. <span data-tooltip="This is a tooltip">Hover here!</span>
-.tooltip,
-span[data-tooltip] {
-  @include tooltip;
 }
 
 
@@ -102,4 +94,14 @@ span[data-tooltip] {
   #status {
     @extend %spacer-above;
   }
+}
+
+
+
+// == TOOLTIPS == //
+
+// Tooltips are based on the data-tooltip attribute; e.g. <span data-tooltip="This is a tooltip">Hover here!</span>
+.tooltip,
+span[data-tooltip] {
+  @include tooltip;
 }
