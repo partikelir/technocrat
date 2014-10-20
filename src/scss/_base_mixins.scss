@@ -121,8 +121,6 @@
   @include border-radius;
   background-color: $c-body-darker;
   background-image: repeating-linear-gradient(to top right, transparent, transparent 2%, black(.04) 2%, black(.04) 4%);
-  backface-visibility: hidden;
-  transform: rotate(background-image, 45deg);
   box-shadow: 0 0 $spacer*2 black(.1) inset;
   transition: background-color .8s ease-out, box-shadow 1.1s ease-in;
   &:hover {
