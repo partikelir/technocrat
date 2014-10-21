@@ -18,7 +18,7 @@ get_header(); ?>
 				pendrell_comments_template();
         endwhile;
       ?>
-		</main><!-- #content -->
-	</section><!-- #primary -->
+		</main>
+	</section>
 
 <?php get_footer(); ?>

@@ -52,7 +52,7 @@ get_header(); ?>
           </div>
         </article>
 			<?php endwhile; // end of the loop. ?>
-		</main><!-- #content -->
-	</section><!-- #primary -->
+		</main>
+	</section>
 
 <?php get_footer(); ?>
