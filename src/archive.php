@@ -17,7 +17,7 @@ get_header(); ?>
 		<main id="main" class="site-main" role="main">
 			<?php if ( have_posts() ) {
 				while ( have_posts() ) : the_post();
-					pendrell_content_template();
+					pendrell_template_part();
 				endwhile;
 			} else {
 				get_template_part( 'content', 'none' );

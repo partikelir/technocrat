@@ -1,6 +1,6 @@
 <?php // ==== CONTENT ==== //
 
-// Content title
+// Content title; displayed at the top of posts, pages, etc.
 if ( !function_exists( 'pendrell_entry_title' ) ) : function pendrell_entry_title( $content = '' ) {
   if ( empty( $content ) )
     $content = get_the_title();
@@ -11,18 +11,11 @@ if ( !function_exists( 'pendrell_entry_title' ) ) : function pendrell_entry_titl
 
 
 
-// Content class
+// Content class; applies a filter to the content wrapper to allow other functions to alter the look and feel of posts, pages, etc.
 if ( !function_exists( 'pendrell_content_class' ) ) : function pendrell_content_class() {
   $classes = apply_filters( 'pendrell_content_class', array() );
   if ( !empty( $classes ) )
     echo ' ' . join( ' ', $classes );
-} endif;
-
-
-
-// Content template selector; abstracted here so that content templates can be filtered
-if ( !function_exists( 'pendrell_content_template' ) ) : function pendrell_content_template( $template = null ) {
-  return get_template_part( 'content', apply_filters( 'pendrell_content_template', $template ) );
 } endif;
 
 

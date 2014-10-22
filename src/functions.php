@@ -17,7 +17,7 @@ define( 'PENDRELL_HOME', home_url() );
 // Basic theme info; don't edit these either
 define( 'PENDRELL_THEME_NAME', 'Pendrell' );
 define( 'PENDRELL_THEME_URL', 'http://github.com/synapticism/pendrell' );
-define( 'PENDRELL_THEME_VERSION', '0.12' );
+define( 'PENDRELL_THEME_VERSION', '0.13' );
 
 
 
@@ -33,6 +33,7 @@ require_once( trailingslashit( get_stylesheet_directory() ) . 'core/content.php'
 require_once( trailingslashit( get_stylesheet_directory() ) . 'core/general.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'core/image.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'core/navigation.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . 'core/templates.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'core/terms.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'core/various.php' );
 
@@ -53,9 +54,10 @@ if ( PENDRELL_MODULE_IMAGE_META )
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/image-metadata.php' );
 if ( PENDRELL_MODULE_POST_FORMATS )
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/post-formats.php' );
-if ( PENDRELL_MODULE_VIEWS )
+if ( PENDRELL_MODULE_VIEWS ) {
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/views.php' );
-
+  require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/view-posts-shortcode.php' );
+}
 
 
 // == SETUP == //
