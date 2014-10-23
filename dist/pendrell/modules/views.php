@@ -219,7 +219,7 @@ if ( !function_exists( 'pendrell_view_mapping' ) ) : function pendrell_view_mapp
           if ( $taxonomy === 'category' ) {
             if ( is_category( $term ) )
               set_query_var( $view, '' );
-          } elseif ( $taxonomy === 'tag' ) {
+          } elseif ( $taxonomy === 'post_tag' ) {
             if ( is_tag( $term ) )
               set_query_var( $view, '' );
           } elseif ( is_tax( $taxonomy, $term ) ) {
