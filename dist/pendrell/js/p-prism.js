@@ -676,12 +676,6 @@ Prism.languages.sql= {
 
 ;(function($){
   $(function(){ // Shortcut to $(document).ready(handler);
-
-    // View options button: clicking on this toggles a menu of other views that can be selected
-    $('body').on('click', '.view-options button', function(){
-      $(this).toggleClass('view-options-on');
-      $('.button-dropdown').toggle(200, 'swing');
-    });
-
+    // Insert code here
   });
 }(jQuery));

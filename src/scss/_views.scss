@@ -1,21 +1,5 @@
 // ==== VIEWS ==== //
 
-.view-options {
-  @extend %button-container;
-  display: none;
-  button {
-    position: relative;
-  }
-  @include respond-to(medium) {
-    display: inline-block;
-  }
-}
-.view-options-on {
-  border-radius: 3px 3px 0 0;
-}
-
-
-
 // == GALLERY VIEW == //
 
 .gallery-view {
@@ -142,12 +126,6 @@
     margin: 0;
   }
 }
-
-
-
-// == EXCERPT VIEW == //
-
-// Nothing needed here just yet!
 
 
 

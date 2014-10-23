@@ -14,21 +14,6 @@ input[type="reset"],
   @include button;
 }
 
-// Button dropdown wrapper; apply to a list within a button element; borrows only the essentials from Kipple's k-list-nested mixin
-ul.button-dropdown {
-  @include dropdown-button(right);
-  display: none;
-  // @TODO: fix this in Firefox
-  //opacity: 0;
-  //transition: opacity .3s ease-out, visibility .3s ease-out;
-  //visibility: hidden;
-  //button:hover > & {
-  //  opacity: 1;
-  //  transition: opacity .09s ease-in, visibility .09s ease-in;
-  //  visibility: visible;
-  //}
-}
-
 
 
 // == RESPONSIVE MENU == //

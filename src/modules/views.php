@@ -2,24 +2,36 @@
 
 // The views module allows for template parts to be controlled by URL rewrites
 // For example, to view a category in gallery mode, navigate to <website.com/category/kittens/gallery>
-// By default there are three defined views: gallery, list, and posts (which is just the default view)
+// By default there are two defined views, gallery and list, as well as a default 'posts' view to display content in the usual way
 
 
 
 // == SETUP == //
 
+// A global array of defined views
+$pendrell_views = array(
+  'gallery' => array(
+    'name'    => _x( 'Gallery', 'Gallery view', 'pendrell' )
+  ),
+  'list'    => array(
+    'name'    => _x( 'List', 'List view', 'pendrell' )
+  ),
+  'posts'   => array(
+    'name'    => _x( 'Posts', 'Posts view', 'pendrell' )
+  )
+);
+
+
+
 // Setup views; add rewrite tags and rules
 if ( !function_exists( 'pendrell_view_setup' ) ) : function pendrell_view_setup() {
 
-  global $pendrell_view_names, $pendrell_view_taxonomies;
+  global $pendrell_views, $pendrell_views_taxonomies;
 
   // Cycle through each view to add rewrite tags and rules
-  if ( !empty( $pendrell_view_names ) ) {
+  if ( !empty( $pendrell_views ) ) {
 
-    // Add a default "posts" view to the custom definitions
-    $pendrell_view_names[] = _x( 'posts', 'Name of the standard posts view (all lowercase)', 'pendrell' );
-
-    foreach ( $pendrell_view_names as $view ) {
+    foreach ( $pendrell_views as $view => $data ) {
       add_rewrite_tag( '%' . $view . '%', '' ); // Regex is currently blank; if we want to capture: '([^/]+)'
 
       // Root rewrite rules
@@ -27,8 +39,8 @@ if ( !function_exists( 'pendrell_view_setup' ) ) : function pendrell_view_setup(
       add_rewrite_rule( $view . '/?$', 'index.php?&' . $view . '=', 'top' );
 
       // Cycle through each taxonomy to apply additional rules
-      if ( !empty( $pendrell_view_taxonomies ) ) {
-        foreach ( $pendrell_view_taxonomies as $taxonomy ) {
+      if ( !empty( $pendrell_views_taxonomies ) ) {
+        foreach ( $pendrell_views_taxonomies as $taxonomy ) {
 
           // Clear existing variables from the last run through the loop
           unset($tax);
@@ -63,15 +75,12 @@ add_action( 'init', 'pendrell_view_setup' );
 // A simple function to get the current view
 if ( !function_exists( 'pendrell_get_view' ) ) : function pendrell_get_view() {
 
-  global $wp_query, $pendrell_view_names;
+  global $wp_query, $pendrell_views;
 
   // Cycle through the views array and test whether the requisite query variable exists
-  if ( !empty( $pendrell_view_names ) ) {
+  if ( !empty( $pendrell_views ) ) {
 
-    // Add a default "posts" view to the custom definitions
-    $pendrell_view_names[] = _x( 'posts', 'Name of the standard posts view (all lowercase)', 'pendrell' );
-
-    foreach ( $pendrell_view_names as $view ) {
+    foreach ( $pendrell_views as $view => $data ) {
       if ( isset( $wp_query->query_vars[ $view ] ) )
          $the_view = $view;
     }
@@ -198,11 +207,11 @@ add_action( 'pre_get_posts', 'pendrell_view_pre_get_posts' );
 // Assign default views to different taxonomy archives in `functions-config.php`
 if ( !function_exists( 'pendrell_view_mapping' ) ) : function pendrell_view_mapping() {
 
-  global $pendrell_view_map;
+  global $pendrell_views_map;
 
   // Dual loops to cycle through the default assignments
-  if ( !empty( $pendrell_view_map ) && is_array( $pendrell_view_map ) ) {
-    foreach ( $pendrell_view_map as $taxonomy => $term_set ) {
+  if ( !empty( $pendrell_views_map ) && is_array( $pendrell_views_map ) ) {
+    foreach ( $pendrell_views_map as $taxonomy => $term_set ) {
       if ( !empty( $term_set ) ) {
         foreach ( $term_set as $term => $view ) {
 
@@ -222,3 +231,64 @@ if ( !function_exists( 'pendrell_view_mapping' ) ) : function pendrell_view_mapp
   }
 } endif;
 add_action( 'parse_query', 'pendrell_view_mapping' );
+
+
+
+
+// == VIEW SWITCHER == //
+
+// @TODO: convert pages from one view to another basedn posts_per_page
+
+// A way to switch between different views
+if ( !function_exists( 'pendrell_view_switcher' ) ) : function pendrell_view_switcher() {
+
+  global $pendrell_views, $pendrell_views_taxonomies, $wp;
+
+  // Exit early if there is no need to display these options
+  if ( !is_home() && !is_category() && !is_tag() && !is_tax( $pendrell_views_taxonomies ) )
+    return;
+
+  // Fetch the current view
+  $this_view = pendrell_get_view();
+
+  // If view isn't set then we're looking at a standard 'posts' view
+  if ( empty( $this_view ) )
+    $this_view = 'posts';
+
+  // Get current URL
+  $link = trailingslashit( home_url( $wp->request ) );
+
+  // Create a patterns array containing all views and the page parameter (which we'll restore later on)
+  $patterns = array_merge( array_keys( $pendrell_views ), array( 'page' ) );
+
+  // Cycle through the views and trim the URL as needed
+  foreach ( $patterns as $pattern ) {
+    if ( strpos( $link, $pattern ) !== false ) {
+      $link = substr( $link, 0, strpos( $link, $pattern ) );
+    }
+  }
+
+  // Get current page, if any
+  $paged = ( get_query_var( 'paged' ) > 1 ) ? get_query_var( 'paged' ) : 1;
+  if ( $paged > 1 ) {
+    $page = 'page/' . $paged . '/';
+  } else {
+    $page = '';
+  }
+
+  // Initialize output
+  $output = '';
+
+  // Loop through the views and construct the list
+  foreach ( $pendrell_views as $view => $data ) {
+    if ( $view !== $this_view ) {
+      $output .= '<li><a href="' . $link . $view . '/' . $page . '">' . $data['name'] . '</a></li>';
+    }
+  }
+
+  // Output wrapper
+  $output = "\n" . '<nav class="view-switcher">' . "\n" . '<ul>' . "\n" . $output . '</ul>' . "\n" . '</nav>' . "\n";
+
+  echo $output;
+} endif;
+add_action( 'pendrell_archive_description_before', 'pendrell_view_switcher', 9 );

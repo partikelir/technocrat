@@ -96,14 +96,8 @@ define( 'PENDRELL_MODULE_VIEWS', false );
 // Set default views for different categories and tag archives
 if ( PENDRELL_MODULE_VIEWS ) {
 
-  // A list of views to define; there's no need to change this without hacking on the code
-  $pendrell_view_names = array( 'gallery', 'list' );
-
-  // Taxonomies to apply rewrite rules to (this way <website.com/category/kittens/list> works as you would expect)
-  $pendrell_view_taxonomies = array( 'category', 'post_tag', 'post_format' );
-
   // Set default views for different taxonomies; format is 'taxonomy' => array( 'term' => 'view' )
-  $pendrell_view_map = array(
+  $pendrell_views_map = array(
     'category'    => array(
       'photography' => 'gallery'
     ),
@@ -114,4 +108,7 @@ if ( PENDRELL_MODULE_VIEWS ) {
     'post_tag'    => array(
     )
   );
+
+  // Taxonomies to apply rewrite rules to (this way <website.com/category/kittens/list> works as you would expect)
+  $pendrell_views_taxonomies = array( 'category', 'post_tag', 'post_format' );
 }

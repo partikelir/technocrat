@@ -9,6 +9,7 @@
   }
 }
 .archive-content {
+  @extend %clearfix-above;
   @include font-size($s-text-small);
   @include full-width($media: large) {
     @include font-size($s-text);

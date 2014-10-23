@@ -1,6 +1,6 @@
 <?php // ==== TERMS ==== //
 
-// Display an edit term link for authorized users
+// Display an edit term link for authorized users when viewing archive descriptions
 if ( !function_exists( 'pendrell_term_archive_edit_link' ) ) : function pendrell_term_archive_edit_link( $content = null ) {
 
   // Fetch the current query object
@@ -20,11 +20,11 @@ if ( !function_exists( 'pendrell_term_archive_edit_link' ) ) : function pendrell
 
   // If that worked let's make it pretty
   if ( !empty( $link ) )
-    $content .= "\n" . '<div class="entry-meta-buttons"><span class="edit-link button"><a href="' . $link . '">' . __( 'Edit', 'pendrell' ) . '</a></span></div>';
+    $content = '<div class="entry-meta-buttons"><span class="edit-link button"><a href="' . $link . '">' . __( 'Edit', 'pendrell' ) . '</a></span></div>' . "\n" . $content;
 
-  echo $content;
+  return $content;
 } endif;
-add_action( 'pendrell_archive_description_before', 'pendrell_term_archive_edit_link' );
+add_filter( 'pendrell_archive_description', 'pendrell_term_archive_edit_link' );
 
 
 

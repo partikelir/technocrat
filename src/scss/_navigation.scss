@@ -31,15 +31,28 @@
 
 
 
-// Breadcrumb navigation; used in Ubik's Places module and kept here since it might be useful as a general pattern
-.breadcrumbs {
+// Breadcrumb navigation template; used in Ubik's Places module and kept here since it might be useful as a general pattern
+%breadcrumbs-static {
   @extend %spacer-below;
   li {
     @include font-size($s-text-smaller);
     display: inline-block;
     margin-left: 0;
-    & + li:before {
-      content: "\00a0\2192\00a0"; // Or perhaps you'd like to use a "greater than" symbol: \003e
-    }
+  }
+}
+.breadcrumbs {
+  @extend %breadcrumbs-static;
+  li + li:before {
+    content: "\00a0\2192\00a0"; // Right-facing arrow: \2192; Greater than: \003e
+  }
+}
+
+// View switcher, as defined in `src/modules/views.php`
+.view-switcher {
+  @extend %breadcrumbs-static;
+  @include rem('margin-right', $spacer);
+  float: left;
+  li + li:before {
+    content: "\00a0\00b7\00a0"; // Middle dot: \00b7
   }
 }

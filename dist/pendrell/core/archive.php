@@ -51,11 +51,8 @@ if ( !function_exists( 'pendrell_archive_description' ) ) : function pendrell_ar
 
     // Conditional output
     if ( !empty( $desc ) ) {
-      ?><div class="archive-content"><?php echo $desc; ?></div><?php
+      ?><div class="archive-content"><?php echo apply_filters( 'pendrell_archive_description', $desc ); ?></div><?php
     }
-
-    // After the archive description
-    do_action( 'pendrell_archive_description_after' );
 
   // Archive descriptions for individual authors
   } elseif ( is_author() ) {
