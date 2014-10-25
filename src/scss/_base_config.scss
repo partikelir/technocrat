@@ -7,9 +7,9 @@ $base:              16;
 $baseline:          30;
 
 // Text
-//$s-text-biggest:    42;
-//$s-text-bigger:     28;
-$s-text-big:        24;
+$s-text-biggest:    28;
+$s-text-bigger:     24;
+$s-text-big:        21;
 $s-text:            18; // Default body text font size
 $s-text-small:      16;
 $s-text-smaller:    14;
@@ -24,7 +24,7 @@ $s-header-small:    14;
 
 // Menus
 $s-menu-header:     18;
-$s-menu-header-sm:  16; // Lower than 16 doesn't display well on mobile devices
+$s-menu-header-sm:  18; // Lower than 16 doesn't display well on mobile devices
 $s-menu-footer:     14;
 
 // Submenus
@@ -76,7 +76,7 @@ $c-white:         white();
 $c-black:         black();
 
 $c-green:         #8acd51;
-$c-yellow:        #fff9c0;
+$c-yellow:        #fff9c0; // ffdd52
 $c-red:           #81260d;
 
 // General

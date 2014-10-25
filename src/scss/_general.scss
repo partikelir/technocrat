@@ -121,6 +121,51 @@ sup {
 
 
 
+// Blockquotes
+blockquote {
+  @extend %spacer-below;
+  @include font-size($s-text-small);
+  @include full-width {
+    @include font-size($s-text-big);
+  }
+  @include k-reverse-italics;
+  @include letterpress;
+  @include rem('padding', $spacer/2 $spacer/2 $spacer/2 $spacer - 9px);
+  background: rgba($c-body-darker, .25); // Transparent so that blockquotes can be nested
+  border-left: 9px solid $c-divider;
+  box-shadow: inset 0px -2px 7px black(.04);
+  color: rgba($c-text, .75); // Transparent so that blockquotes can be nested
+  font-weight: $w-light;
+  p {
+    &:last-child {
+      margin: 0;
+    }
+    &:first-child:before { // Add opening and closing quotation marks to the blockquote element
+      content: "\201C";
+    }
+    &:nth-last-of-type(1):after { // Correctly adds quotation mark when footer or cite elements are present at the end of the blockquote
+      content: "\201D";
+    }
+  }
+  footer { // The footer element of a blockquote adds information about the source of the quotation
+    @include font-size($s-text-smaller);
+    @include full-width {
+      @include font-size($s-text-small);
+    }
+    display: block;
+    font-style: normal;
+    text-align: right;
+    cite {
+      font-style: italic; // Cancelled out by the k-reverse-italics mixin above
+    }
+    &:before {
+      content: "\2014\00a0"; // Citation dash
+    }
+  }
+}
+
+
+
 // Inline quotations
 q {
   quotes: none;
@@ -134,11 +179,15 @@ q {
 
 
 
-// Pre and code blocks
+// Pre and code blocks (but really just code blocks)
 pre {
+  @extend %spacer-below;
   @include font-size($s-text-small);
-  @include inset-box($c-code-box, $c-code-box-bg, black(.2));
   @include letterpress(black(.25));
+  @include rem('padding', $spacer/2);
+  background: $c-code-box-bg;
+  box-shadow: inset 3px 3px 7px black(.18);
+  color: $c-code-box;
   tab-size: 2;
   white-space: pre;
   word-wrap: normal; // Allows for horizontal scrollbars

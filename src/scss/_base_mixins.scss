@@ -145,7 +145,7 @@
     @if $style == "title" {
       @include respond-to(large) {
         @include font-header;
-        @include font-size($s-text-big);
+        @include font-size($s-text-bigger);
         text-shadow: 1px 1px 5px black(.7);
       }
       text-align: center;
@@ -412,18 +412,6 @@
       }
     }
   }
-}
-
-
-
-// Inset box; for use with blockquote, pre, etc.
-@mixin inset-box($color: $c-text-light, $background: $c-body-dark, $shadow: $c-shadow) {
-  @include border-radius(6px);
-  @include rem('margin', 0 0 $spacer 0);
-  @include rem('padding', $spacer/2);
-  background: $background;
-  box-shadow: inset 3px 3px 7px $shadow, 1px 1px 4px $shadow;
-  color: $color;
 }
 
 

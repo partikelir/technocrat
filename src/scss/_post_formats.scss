@@ -25,11 +25,30 @@ body:not(.list-view) { // There's no way to isolate this, alas
 
 
 
+// Quotation; a slight modification of the basic blockquote style defines in general.scss
+body:not(.list-view) {
+  article.format-quote {
+    blockquote {
+      @include border-radius(6px);
+      @include font-size($s-text-bigger);
+      border: none;
+      box-shadow: inset 3px 3px 7px $c-shadow;
+      color: $c-text;
+      @include rem('padding', $spacer/2 $spacer);
+      footer {
+        @include font-size($s-text-small);
+      }
+    }
+  }
+}
+
+
+
 // Status
 body:not(.list-view) {
   article.format-status {
     .entry-content {
-      @include font-size($s-text-big);
+      @include font-size($s-text-bigger);
       font-weight: $w-light;
     }
   }

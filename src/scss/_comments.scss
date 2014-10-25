@@ -53,17 +53,6 @@
 .comment-meta {
   @extend .entry-meta-main;
 }
-.comment-content {
-  // Simple blockquote styling just for comments
-  blockquote {
-    @include border-radius(9px); // Gives a slightly curved or parenthetical appearance to the bounding border
-    @include k-reverse-italics;
-    border-left: 3px solid $c-divider;
-    color: lighten($c-text-lightest, 10);
-    font-weight: $w-light;
-    padding-left: $spacer - 3px;
-  }
-}
 
 
 
