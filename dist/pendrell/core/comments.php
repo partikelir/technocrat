@@ -2,9 +2,8 @@
 
 // Comments template wrapper; load template if comments are open or we have at least one comment; via _s
 if ( !function_exists( 'pendrell_comments_template' ) ) : function pendrell_comments_template() {
-  if ( comments_open() || get_comments_number() != '0' ) {
+  if ( is_singular() && ( comments_open() || get_comments_number() != '0' ) )
     comments_template( '', true );
-  }
 } endif;
 
 

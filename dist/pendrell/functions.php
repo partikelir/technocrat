@@ -39,7 +39,7 @@ require_once( trailingslashit( get_stylesheet_directory() ) . 'core/various.php'
 
 // Local development mode; relies on WP-Config-X or some similar system; see https://github.com/synapticism/wp-config-x
 if ( WP_LOCAL_DEV ) {
-  require_once( trailingslashit( get_stylesheet_directory() ) . 'dev/development.php' );
+  //require_once( trailingslashit( get_stylesheet_directory() ) . 'dev/development.php' );
 }
 
 // Contact form module

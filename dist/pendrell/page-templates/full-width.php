@@ -11,14 +11,13 @@
 
 get_header(); ?>
 
-	<section id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
-			<?php while ( have_posts() ) : the_post();
-          get_template_part( 'content' );
-				pendrell_comments_template();
-        endwhile;
-      ?>
-		</main>
-	</section>
+  <section id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+      <?php while ( have_posts() ) : the_post();
+        pendrell_template_part();
+      endwhile; ?>
+    </main>
+    <?php pendrell_nav_page( 'nav-below' ); ?>
+  </section>
 
 <?php get_footer(); ?>

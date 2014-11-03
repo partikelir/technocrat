@@ -35,7 +35,3 @@ node_modules
 build
 
 ## Project specific
-dev.php
-development.php
-functions-config.php
-dist/pendrell/functions-config.php

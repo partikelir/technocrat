@@ -14,9 +14,7 @@
 			<?php the_content(); pendrell_nav_link_pages(); ?>
 		</div>
 		<footer class="entry-meta">
-			<?php pendrell_entry_meta(); pendrell_image_meta(); ?>
+			<?php pendrell_entry_meta(); ?>
 		</footer>
-		<?php if ( is_singular() ) {
-			pendrell_comments_template();
-		} ?>
+		<?php pendrell_comments_template(); ?>
 	</article>

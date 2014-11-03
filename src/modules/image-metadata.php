@@ -1,21 +1,12 @@
 <?php // ==== IMAGE METADATA ==== //
 
-// Image info wrapper for image attachments and image format posts
-if ( !function_exists( 'pendrell_image_meta' ) ) : function pendrell_image_meta() {
-  if ( PENDRELL_MODULE_IMAGE_META ) {
-    if (
-      ( is_attachment() && wp_attachment_is_image() )
-      || ( is_singular() && has_post_format( 'image' ) )
-    ) {
-      pendrell_image_info();
-    }
-  }
-} endif;
-
-
-
 // Display EXIF data for photographs
-if ( !function_exists( 'pendrell_image_info' ) ) : function pendrell_image_info() {
+if ( !function_exists( 'pendrell_image_meta' ) ) : function pendrell_image_meta() {
+
+  // Exit early if we aren't displaying a singular image attachment or image format post
+  if ( !is_singular() || ( is_attachment() && !wp_attachment_is_image() ) || ( is_singular() && !is_attachment() && !has_post_format( 'image' ) ) )
+    return;
+
   global $post;
 
   // Two scenarios to handle: regular attachments and image format posts with a featured image
@@ -84,6 +75,7 @@ if ( !function_exists( 'pendrell_image_info' ) ) : function pendrell_image_info(
 <?php
   }
 } endif;
+add_action( 'pendrell_entry_meta_after', 'pendrell_image_meta' );
 
 
 
