@@ -18,7 +18,7 @@ body {
 // Headers
 h1,h2,h3,h4,h5,h6 {
   @include font-header;
-  color: $c-text-darkest;
+  color: $c-text-darker;
 }
 h1 { @include font-size($s-header-big); }
 h2 { @include font-size($s-header); }

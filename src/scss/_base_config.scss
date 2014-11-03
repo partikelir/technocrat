@@ -71,23 +71,20 @@ $b-full:            $content-width;
 
 // == COLOURS == //
 
-// Palette
-$c-white:         white();
-$c-black:         black();
-
-$c-green:         #8acd51;
-$c-yellow:        #fff9c0; // ffdd52
-$c-red:           #81260d;
+// Custom colours added to the standard library
+$k-colours: map-merge($k-colours, (
+  norse-blue: #5cb6cc
+));
 
 // General
 $c-body-bg:       white();
-$c-site-title:    #0E0E0E;
-$c-site-desc:     #9C9C9C;
-$c-highlight:     #ED7251;
-$c-interface:     #BABABA;
+$c-site-title:    grey(16);
+$c-site-desc:     grey(156);
+$c-highlight:     colour(burnt-sienna);
+$c-interface:     grey(186);
 
 // Text
-$c-text:          #535353;
+$c-text:          grey(84);
 $c-text-darkest:  darken($c-text, 23);
 $c-text-darker:   darken($c-text, 13);
 $c-text-dark:     darken($c-text, 7);
@@ -101,7 +98,7 @@ $c-body-darker:   darken($c-body-bg, 13);
 $c-body-darkest:  darken($c-body-bg, 27);
 
 // Links
-$c-link:          #5cb6cc;
+$c-link:          colour(norse-blue);
 $c-link-v:        $c-link;
 $c-link-h:        saturate(lighten($c-link, 17), 7);
 $c-link-a:        saturate(lighten($c-link, 13), 13);
@@ -115,7 +112,7 @@ $c-menu-current:  lighten($c-menu-link, 23);
 // Submenus
 $c-sub:           lighten($c-text, 17);
 $c-sub-h:         white();
-$c-sub-bg:        $c-body-darker;//darken($c-body-bg, 11);
+$c-sub-bg:        $c-body-darker;
 
 // Meta
 $c-meta:          lighten($c-text-lightest, 10);
@@ -134,18 +131,18 @@ $c-footer-link-a: $c-meta-link-a;
 $c-footer-link-f: $c-meta-link-f;
 
 // Forms
-$c-alert:         lighten($c-red, 13);
-$c-required:      $c-red;
-$c-success:       $c-green;
+$c-alert:         colour(milano-red);
+$c-required:      colour(pueblo);
+$c-success:       colour(atlantis);
 
 // Code blocks
-$c-code-box:      #CEE0E4;
-$c-code-box-bg:   rgba(#356b78, .93);
+$c-code-box:      colour(iceberg);
+$c-code-box-bg:   rgba(colour(blumine), .93);
 
 // Various
 $c-divider:       rgba($c-text, .09); // For use with <hr> etc.
-$c-shadow:        black(.07);//rgba($c-body-darker, .5);
-$c-highlight-bg:  $c-yellow;
+$c-shadow:        black(.07);
+$c-highlight-bg:  colour(lemon-chiffon);
 
 
 
