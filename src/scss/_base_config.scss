@@ -36,9 +36,13 @@ $s-sub:             14;
 
 // == FONT STACKS == //
 
-$f-body:            $helv-neue-l;
-$f-head:            $raleway;
-$f-mono:            $courier;
+// Suggested pairings:
+// $k-helv-neue-l and $k-raleway; Raleway:200,300,600
+// $k-noto-serif and $k-roboto-slab; Noto+Serif:400,400italic,700,700italic|Roboto+Slab:300,400,700
+
+$f-body:            $k-helv-neue-l;
+$f-head:            $k-raleway;
+$f-mono:            $k-courier;
 
 
 
@@ -73,7 +77,9 @@ $b-full:            $content-width;
 
 // Custom colours added to the standard library
 $k-colours: map-merge($k-colours, (
-  norse-blue: #5cb6cc
+  norse-blue:     #5cb6cc,
+  suomi-blue:     #559dd1,
+  steel-sky:      #444547
 ));
 
 // General

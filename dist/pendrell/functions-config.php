@@ -111,8 +111,7 @@ if ( PENDRELL_MODULE_VIEWS ) {
     'post_tag'    => array(
       'design'      => 'gallery',
       'photography' => 'gallery',
-      'eframe'      => 'gallery',
-      'testing' => 'gallery'
+      'eframe'      => 'gallery'
     )
   );
 
