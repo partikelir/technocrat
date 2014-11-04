@@ -16,7 +16,7 @@ define( 'PENDRELL_SCRIPTS_AJAXINATE', false );
 define( 'PENDRELL_SCRIPTS_PAGELOAD', true );
 
 // Master switch for Prism syntax highlighting script
-define( 'PENDRELL_SCRIPTS_PRISM', true );
+define( 'PENDRELL_SCRIPTS_PRISM', false );
 
 
 
@@ -27,7 +27,7 @@ define( 'PENDRELL_SCRIPTS_PRISM', true );
 // == FOOTER INFO == //
 
 // Master switch for footer info
-define( 'PENDRELL_MODULE_FOOTER_INFO', true );
+define( 'PENDRELL_MODULE_FOOTER_INFO', false );
 
 // Set some variables used in the footer info module
 if ( PENDRELL_MODULE_FOOTER_INFO ) {
@@ -37,7 +37,7 @@ if ( PENDRELL_MODULE_FOOTER_INFO ) {
     'author' => get_the_author_meta( 'display_name', 1 ), // Author to give credit to in copyright statement
     'author_url' => get_the_author_meta( 'user_url', 1 ), // Author URL for the copyright statement
     'string' => '', // Arbitrary HTML string to display in place of all this processing
-    'year' => '2011' // Earliest year for the copyright; easier than making a database call
+    'year' => '' // Earliest year for the copyright; easier than making a database call
   );
 }
 
@@ -51,7 +51,7 @@ define( 'PENDRELL_MODULE_FULL_WIDTH', true );
 // Force full-width categories and tags; just enter an array of IDs, names, or slugs below; matches in_category() and has_tag()
 if ( PENDRELL_MODULE_FULL_WIDTH ) {
   $pendrell_full_width_cats = array();
-  $pendrell_full_width_tags = array( 'design', 'photography' );
+  $pendrell_full_width_tags = array();
 }
 
 
@@ -59,27 +59,19 @@ if ( PENDRELL_MODULE_FULL_WIDTH ) {
 // == IMAGE METADATA == //
 
 // Display image metadata (exposure, shutter speed, etc. plus optional license and terms); true/false
-define( 'PENDRELL_MODULE_IMAGE_META', true );
+define( 'PENDRELL_MODULE_IMAGE_META', false );
 
 // Terms of use statement; appended to the license statement
 if ( PENDRELL_MODULE_IMAGE_META ) {
 
   // Set image licenses by category
-  $pendrell_image_license_cats = array(
-    'design'      => 'cc-by-nc-nd'
-  , 'photography' => 'cc-by-nc'
-  );
+  $pendrell_image_license_cats = array();
 
   // Set image licenses by tag
-  $pendrell_image_license_tags = array(
-    'design'      => 'cc-by-nc-nd'
-  , 'photography' => 'cc-by-nc'
-  );
+  $pendrell_image_license_tags = array();
 
   // An optional terms of use statement
-  $pendrell_image_license_terms = sprintf(
-    __( 'see <a href="%s">terms of use</a> for more info', 'pendrell' ), trailingslashit( home_url() ) . 'terms-of-use'
-  );
+  $pendrell_image_license_terms = '';
 }
 
 
@@ -87,34 +79,25 @@ if ( PENDRELL_MODULE_IMAGE_META ) {
 // == POST FORMATS == //
 
 // Master switch for post formats
-define( 'PENDRELL_MODULE_POST_FORMATS', true );
+define( 'PENDRELL_MODULE_POST_FORMATS', false );
 
 
 
 // == VIEWS == //
 
 // Master switch for views
-define( 'PENDRELL_MODULE_VIEWS', true );
+define( 'PENDRELL_MODULE_VIEWS', false );
 
 // Set default views for different categories and tag archives
 if ( PENDRELL_MODULE_VIEWS ) {
 
   // Set default views for different taxonomies; format is 'taxonomy' => array( 'term' => 'view' )
   $pendrell_views_map = array(
-    'category'    => array(
-      'photography' => 'gallery'
-    ),
-    'post_format' => array(
-      'post-format-gallery' => 'gallery',
-      'post-format-image'   => 'gallery'
-    ),
-    'post_tag'    => array(
-      'design'      => 'gallery',
-      'photography' => 'gallery',
-      'eframe'      => 'gallery'
-    )
+    'category'    => array(),
+    'post_format' => array(),
+    'post_tag'    => array()
   );
 
   // Taxonomies to apply rewrite rules to (this way <website.com/category/kittens/list> works as you would expect)
-  $pendrell_views_taxonomies = array( 'category', 'post_tag', 'post_format', 'places' );
+  $pendrell_views_taxonomies = array( 'category', 'post_tag' );
 }
