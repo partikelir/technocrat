@@ -250,6 +250,7 @@ gulp.task('bower_normalize', function() {
 // Copy Ubik components into the `src/lib` directory
 gulp.task('bower_ubik', function() {
   return gulp.src([
+    bower+'ubik-excluder/**/*.php',
     bower+'ubik-imagery/**/*.php'
   ])
   .pipe(gulp.dest(source+'lib'));

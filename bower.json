@@ -25,6 +25,7 @@
     "html5-history-api": "^4.1.0",
     "spin.js": "^2.0.1",
     "jquery-validation": "^1.13.1",
-    "ubik-imagery": "https://github.com/synapticism/ubik-imagery.git"
+    "ubik-imagery": "https://github.com/synapticism/ubik-imagery.git",
+    "ubik-excluder": "https://github.com/synapticism/ubik-excluder.git"
   }
 }
