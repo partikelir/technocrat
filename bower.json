@@ -1,12 +1,8 @@
 {
   "name": "pendrell",
-  "version": "0.13.0",
   "homepage": "https://github.com/synapticism/pendrell",
   "authors": [
     "Alexander Synaptic <alexander@synapticism.com>"
-  ],
-  "moduleType": [
-    "amd"
   ],
   "keywords": [
     "wordpress"
@@ -19,7 +15,8 @@
     "bower_components",
     "test",
     "tests",
-    "build"
+    "build",
+    "src/lib"
   ],
   "devDependencies": {
     "meyer-reset": "*",
@@ -27,6 +24,7 @@
     "html5shiv": "^3.7.2",
     "html5-history-api": "^4.1.0",
     "spin.js": "^2.0.1",
-    "jquery-validation": "~1.13.1"
+    "jquery-validation": "^1.13.1",
+    "ubik-imagery": "https://github.com/synapticism/ubik-imagery.git"
   }
 }

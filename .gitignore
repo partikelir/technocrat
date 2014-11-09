@@ -33,5 +33,6 @@ sitemap.xml.gz
 bower_components
 node_modules
 build
+src/lib
 
 ## Project specific

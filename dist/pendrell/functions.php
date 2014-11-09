@@ -21,7 +21,7 @@ define( 'PENDRELL_THEME_VERSION', '0.13' );
 
 
 
-// == MODULE LOADING == //
+// == CORE == //
 
 // Pendrell is abstracted into the `pendrell/core` directory
 if ( is_admin() )
@@ -41,6 +41,17 @@ require_once( trailingslashit( get_stylesheet_directory() ) . 'core/various.php'
 if ( WP_LOCAL_DEV ) {
   //require_once( trailingslashit( get_stylesheet_directory() ) . 'dev/development.php' );
 }
+
+
+
+// == LIBRARY == //
+
+// Ubik Imagery: minimalist image management for WordPress
+require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/ubik-imagery/ubik-imagery.php' );
+
+
+
+// == MODULES == //
 
 // Contact form module
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/contact-form.php' );

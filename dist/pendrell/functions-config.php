@@ -20,6 +20,12 @@ define( 'PENDRELL_SCRIPTS_PRISM', false );
 
 
 
+// ==== LIBRARY ==== //
+
+// Overwrite default library settings here...
+
+
+
 // ==== MODULES ==== //
 
 // Edit below to active and configure any of Pendrell's optional modules

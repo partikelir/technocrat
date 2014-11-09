@@ -29,7 +29,7 @@
 				<?php pendrell_entry_meta( 'mini' ); ?>
 			</footer>
 			<div class="entry-content">
-				<?php // Trim excerpts for lists using Ubik
+				<?php // Trim excerpts for lists using Ubik; degrades gracefully is Ubik isn't active
 				if ( function_exists( 'ubik_excerpt_length_transient' ) )
 					ubik_excerpt_length_transient(25);
 				the_excerpt(); ?>

@@ -50,7 +50,7 @@ if ( !function_exists( 'pendrell_entry_meta' ) ) : function pendrell_entry_meta(
 // Entry meta; bare bones version, mostly untested... refer to Ubik for the real deal
 if ( !function_exists( 'pendrell_entry_meta_contents' ) ) : function pendrell_entry_meta_contents( $mode = 'full' ) {
 
-  // Is Ubik active?
+  // Is Ubik active? @TODO: make all of this internal
   if ( function_exists( 'ubik_entry_meta' ) && $mode == 'full' ) {
 
     // Ubik entry meta magic

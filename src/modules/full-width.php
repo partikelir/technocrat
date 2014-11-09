@@ -46,24 +46,8 @@ if ( !function_exists( 'pendrell_full_width_content' ) ) : function pendrell_ful
   }
 
   return false;
-
 } endif;
 add_filter( 'pendrell_full_width', 'pendrell_full_width_content' );
-
-
-
-// Full-width image size filter; assumes 'large' size images fill the window, which they should
-if ( !function_exists( 'pendrell_full_width_image_resize' ) ) : function pendrell_full_width_image_resize( $size ) {
-  if ( pendrell_is_full_width() ) {
-    if ( $size === 'medium' )
-      $size = 'large';
-  } else {
-    if ( $size === 'large' || $size === 'full' ) // Try to catch images that are exactly 960 px
-      $size = 'medium';
-  }
-  return $size;
-} endif;
-add_filter( 'ubik_image_markup_size', 'pendrell_full_width_image_resize' );
 
 
 
@@ -84,3 +68,18 @@ if ( !function_exists( 'pendrell_full_width_sidebar' ) ) : function pendrell_ful
   return $sidebar;
 } endif;
 add_filter( 'pendrell_sidebar', 'pendrell_full_width_sidebar' );
+
+
+
+// Full-width image size filter; assumes 'large' size images fill the window, which they should
+if ( !function_exists( 'pendrell_full_width_image_resize' ) ) : function pendrell_full_width_image_resize( $size ) {
+  if ( pendrell_is_full_width() ) {
+    if ( $size === 'medium' )
+      $size = 'large';
+  } else {
+    if ( $size === 'large' || $size === 'full' ) // Try to catch images that are exactly 960 px
+      $size = 'medium';
+  }
+  return $size;
+} endif;
+add_filter( 'ubik_imagery_markup_size', 'pendrell_full_width_image_resize' );
