@@ -1,22 +1,22 @@
-<?php // ==== CONFIGURATION ==== //
+<?php // ==== CONFIGURATION DEFAULTS ==== //
 
 // Switch for author info boxes on single posts; true/false
-define( 'PENDRELL_AUTHOR_META', false );
+defined( 'PENDRELL_AUTHOR_META' )         || define( 'PENDRELL_AUTHOR_META', false );
 
 // Baseline for the vertical rhythm; should match whatever is set in _base_config.scss; integer
-define( 'PENDRELL_BASELINE', 30 );
+defined( 'PENDRELL_BASELINE' )            || define( 'PENDRELL_BASELINE', 30 );
 
 // Google web fonts to load; string false will load Open Sans as a fallback
-define( 'PENDRELL_GOOGLE_FONTS', 'Raleway:200,300,600' );
+defined( 'PENDRELL_GOOGLE_FONTS' )        || define( 'PENDRELL_GOOGLE_FONTS', 'Raleway:200,300,600' );
 
 // Master switch for Ajaxinate page loading script
-define( 'PENDRELL_SCRIPTS_AJAXINATE', false );
+defined( 'PENDRELL_SCRIPTS_AJAXINATE' )   || define( 'PENDRELL_SCRIPTS_AJAXINATE', false );
 
 // Master switch for page load module
-define( 'PENDRELL_SCRIPTS_PAGELOAD', true );
+defined( 'PENDRELL_SCRIPTS_PAGELOAD' )    || define( 'PENDRELL_SCRIPTS_PAGELOAD', true );
 
 // Master switch for Prism syntax highlighting script
-define( 'PENDRELL_SCRIPTS_PRISM', false );
+defined( 'PENDRELL_SCRIPTS_PRISM' )       || define( 'PENDRELL_SCRIPTS_PRISM', false );
 
 
 
@@ -27,7 +27,7 @@ define( 'PENDRELL_SCRIPTS_PRISM', false );
 // == FOOTER INFO == //
 
 // Master switch for footer info
-define( 'PENDRELL_MODULE_FOOTER_INFO', false );
+defined( 'PENDRELL_MODULE_FOOTER_INFO' )  || define( 'PENDRELL_MODULE_FOOTER_INFO', false );
 
 // Set some variables used in the footer info module
 if ( PENDRELL_MODULE_FOOTER_INFO ) {
@@ -46,7 +46,7 @@ if ( PENDRELL_MODULE_FOOTER_INFO ) {
 // == FULL WIDTH == //
 
 // Master switch for full-width styling
-define( 'PENDRELL_MODULE_FULL_WIDTH', false );
+defined( 'PENDRELL_MODULE_FULL_WIDTH' )   || define( 'PENDRELL_MODULE_FULL_WIDTH', false );
 
 // Force full-width categories and tags; just enter an array of IDs, names, or slugs below; matches in_category() and has_tag()
 if ( PENDRELL_MODULE_FULL_WIDTH ) {
@@ -59,7 +59,7 @@ if ( PENDRELL_MODULE_FULL_WIDTH ) {
 // == IMAGE METADATA == //
 
 // Display image metadata (exposure, shutter speed, etc. plus optional license and terms); true/false
-define( 'PENDRELL_MODULE_IMAGE_META', false );
+defined( 'PENDRELL_MODULE_IMAGE_META' )   || define( 'PENDRELL_MODULE_IMAGE_META', false );
 
 // Terms of use statement; appended to the license statement
 if ( PENDRELL_MODULE_IMAGE_META ) {
@@ -84,14 +84,14 @@ if ( PENDRELL_MODULE_IMAGE_META ) {
 // == POST FORMATS == //
 
 // Master switch for post formats
-define( 'PENDRELL_MODULE_POST_FORMATS', false );
+defined( 'PENDRELL_MODULE_POST_FORMATS' ) || define( 'PENDRELL_MODULE_POST_FORMATS', false );
 
 
 
 // == VIEWS == //
 
 // Master switch for views
-define( 'PENDRELL_MODULE_VIEWS', false );
+defined( 'PENDRELL_MODULE_VIEWS' )        || define( 'PENDRELL_MODULE_VIEWS', false );
 
 // Set default views for different categories and tag archives
 if ( PENDRELL_MODULE_VIEWS ) {

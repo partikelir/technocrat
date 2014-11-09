@@ -3,11 +3,11 @@
 // == CONFIGURATION == //
 
 // Load the configuration file for this theme; all options are set here
-if ( is_readable( trailingslashit( get_stylesheet_directory() ) . 'functions-config.php' ) ) {
+if ( is_readable( trailingslashit( get_stylesheet_directory() ) . 'functions-config.php' ) )
   require_once( trailingslashit( get_stylesheet_directory() ) . 'functions-config.php' );
-} else {
-  require_once( trailingslashit( get_stylesheet_directory() ) . 'functions-config-sample.php' );
-}
+
+// Load configuration defaults
+require_once( trailingslashit( get_stylesheet_directory() ) . 'functions-config-defaults.php' );
 
 // There should be no need to edit these
 define( 'PENDRELL_NAME', get_bloginfo( 'name' ) );
