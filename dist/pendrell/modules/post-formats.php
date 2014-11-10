@@ -12,7 +12,7 @@ add_filter( 'pendrell_sidebar', 'pendrell_post_formats_sidebar' );
 
 // == LINKS == //
 
-// Get quotation metadata; assumes WP Post Formats or equivalent is in use
+// Get link metadata; assumes WP-Post-Formats or equivalent is in use
 if ( !function_exists( 'pendrell_link_metadata' ) ) : function pendrell_link_metadata() {
 
 	if ( !has_post_format( 'link' ) )

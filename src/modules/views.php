@@ -6,7 +6,7 @@
 
 
 
-// == SETUP == //
+// == DEFAULTS == //
 
 // A global array of defined views
 $pendrell_views = array(
@@ -21,7 +21,13 @@ $pendrell_views = array(
   )
 );
 
+// This should be set in `functions-config.php`; let's default back to categories and tags if it hasn't already
+if ( empty( $pendrell_views_taxonomies ) || !is_array( $pendrell_views_taxonomies ) )
+  $pendrell_views_taxonomies = array( 'category', 'post_tag' );
 
+
+
+// == SETUP == //
 
 // Setup views; add rewrite tags and rules
 if ( !function_exists( 'pendrell_view_setup' ) ) : function pendrell_view_setup() {
@@ -237,7 +243,7 @@ add_action( 'parse_query', 'pendrell_view_mapping' );
 
 // == VIEW SWITCHER == //
 
-// @TODO: convert pages from one view to another basedn posts_per_page
+// @TODO: convert pages from one view to another based on posts_per_page
 
 // A way to switch between different views
 if ( !function_exists( 'pendrell_view_switcher' ) ) : function pendrell_view_switcher() {

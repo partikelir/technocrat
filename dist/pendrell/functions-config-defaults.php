@@ -51,7 +51,7 @@ if ( PENDRELL_MODULE_FOOTER_INFO === 'default' ) {
 // == FULL WIDTH == //
 
 // Master switch for full-width styling
-defined( 'PENDRELL_MODULE_FULL_WIDTH' )   || define( 'PENDRELL_MODULE_FULL_WIDTH', false );
+defined( 'PENDRELL_MODULE_FULL_WIDTH' )   || define( 'PENDRELL_MODULE_FULL_WIDTH', true );
 
 // Force full-width categories and tags; just enter an array of IDs, names, or slugs below; matches in_category() and has_tag()
 if ( PENDRELL_MODULE_FULL_WIDTH === 'example' ) {
@@ -66,7 +66,7 @@ if ( PENDRELL_MODULE_FULL_WIDTH === 'example' ) {
 // Display image metadata (exposure, shutter speed, etc. plus optional license and terms); true/false
 defined( 'PENDRELL_MODULE_IMAGE_META' )   || define( 'PENDRELL_MODULE_IMAGE_META', false );
 
-// Terms of use statement; appended to the license statement
+// Optional image licenses per category or tag and an optional terms of use statement
 if ( PENDRELL_MODULE_IMAGE_META === 'example' ) {
 
   // Set image licenses by category
@@ -78,7 +78,7 @@ if ( PENDRELL_MODULE_IMAGE_META === 'example' ) {
   , 'photography' => 'cc-by-nc'
   );
 
-  // An optional terms of use statement
+  // Terms of use statement; defaults to '' if it isn't defined in `functions-config.php`
   $pendrell_image_license_terms = sprintf(
     __( 'see <a href="%s">terms of use</a> for more info', 'pendrell' ), trailingslashit( home_url() ) . 'terms-of-use'
   );
@@ -89,14 +89,14 @@ if ( PENDRELL_MODULE_IMAGE_META === 'example' ) {
 // == POST FORMATS == //
 
 // Master switch for post formats
-defined( 'PENDRELL_MODULE_POST_FORMATS' ) || define( 'PENDRELL_MODULE_POST_FORMATS', false );
+defined( 'PENDRELL_MODULE_POST_FORMATS' ) || define( 'PENDRELL_MODULE_POST_FORMATS', true );
 
 
 
 // == VIEWS == //
 
 // Master switch for views
-defined( 'PENDRELL_MODULE_VIEWS' )        || define( 'PENDRELL_MODULE_VIEWS', false );
+defined( 'PENDRELL_MODULE_VIEWS' )        || define( 'PENDRELL_MODULE_VIEWS', true );
 
 // Set default views for different categories and tag archives
 if ( PENDRELL_MODULE_VIEWS === 'example' ) {

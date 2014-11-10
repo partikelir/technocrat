@@ -79,12 +79,20 @@ add_action( 'pendrell_entry_meta_after', 'pendrell_image_meta' );
 
 
 
-// Ugly image licensing handler; if WordPress handled licensing information this wouldn't be such a hack!
+// Ugly image licensing handler; if WordPress handled licensing metadata this wouldn't be such a hack!
 if ( !function_exists( 'pendrell_image_license' ) ) : function pendrell_image_license() {
-  global $post; // Required so we can reference $post->post_parent while testing attachments
 
-  // These variables are set in functions-config.php
-  global $pendrell_image_license_cats, $pendrell_image_license_tags, $pendrell_image_license_terms;
+  // $post required so we can reference $post->post_parent while testing attachments; other variables set in functions-config.php
+  global $post, $pendrell_image_license_cats, $pendrell_image_license_tags, $pendrell_image_license_terms;
+
+  // Empty terms handling
+  if ( empty( $pendrell_image_license_terms ) )
+    $pendrell_image_license_terms = '';
+
+  // Initialize blank variables
+  $html = '';
+  $license = '';
+  $terms = $pendrell_image_license_terms;
 
   // An array of arrays containing information about various licenses that may be applied to different content
   $licenses = array(
@@ -122,11 +130,6 @@ if ( !function_exists( 'pendrell_image_license' ) ) : function pendrell_image_li
     )
   );
 
-  // Blank variables
-  $html = '';
-  $license = '';
-  $terms = $pendrell_image_license_terms;
-
   // Test various conditions here... set category/tag and license pairs in `functions-config.php`
   if ( is_array( $pendrell_image_license_cats ) ) {
     foreach ( $pendrell_image_license_cats as $cat => $cat_license ) {
@@ -147,13 +150,11 @@ if ( !function_exists( 'pendrell_image_license' ) ) : function pendrell_image_li
   if ( !empty( $license ) && !empty( $terms ) ) {
     $html = sprintf( '<a href="%1$s" itemprop="license" rel="license">%2$s</a>; %3$s', $license['url'], $license['name'], $terms );
   } else {
-    $html = '';
     if ( !empty( $license ) )
       $html = sprintf( '<a href="%1$s" itemprop="license" rel="license">%2$s</a>', $license['url'], $license['name'] );
     if ( !empty( $terms ) )
       $html = $terms;
   }
-
   if ( !empty( $html ) )
     $html = __( 'License: ', 'pendrell' ) . $html . '.<br/>';
 

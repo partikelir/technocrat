@@ -66,7 +66,7 @@ if ( PENDRELL_MODULE_FULL_WIDTH === 'example' ) {
 // Display image metadata (exposure, shutter speed, etc. plus optional license and terms); true/false
 defined( 'PENDRELL_MODULE_IMAGE_META' )   || define( 'PENDRELL_MODULE_IMAGE_META', false );
 
-// Terms of use statement; appended to the license statement
+// Optional image licenses per category or tag and an optional terms of use statement
 if ( PENDRELL_MODULE_IMAGE_META === 'example' ) {
 
   // Set image licenses by category
@@ -78,7 +78,7 @@ if ( PENDRELL_MODULE_IMAGE_META === 'example' ) {
   , 'photography' => 'cc-by-nc'
   );
 
-  // An optional terms of use statement
+  // Terms of use statement; defaults to '' if it isn't defined in `functions-config.php`
   $pendrell_image_license_terms = sprintf(
     __( 'see <a href="%s">terms of use</a> for more info', 'pendrell' ), trailingslashit( home_url() ) . 'terms-of-use'
   );
