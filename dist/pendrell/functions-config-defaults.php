@@ -1,4 +1,4 @@
-<?php // ==== CONFIGURATION DEFAULTS ==== //
+<?php // ==== CONFIGURATION (DEFAULT) ==== //
 
 // Switch for author info boxes on single posts; true/false
 defined( 'PENDRELL_AUTHOR_META' )         || define( 'PENDRELL_AUTHOR_META', false );
@@ -22,7 +22,12 @@ defined( 'PENDRELL_SCRIPTS_PRISM' )       || define( 'PENDRELL_SCRIPTS_PRISM', f
 
 // ==== MODULES ==== //
 
-// Edit below to active and configure any of Pendrell's optional modules
+// This section outlines configuration options for each module
+// So, for instance, if you want to activate the "footer info" module, place this in your `functions-config.php`:
+// define( 'PENDRELL_MODULE_FOOTER_INFO', true );
+// Next, create and popular a global array $pendrell_footer_info according to the specifications in the example below
+
+
 
 // == FOOTER INFO == //
 
@@ -30,14 +35,14 @@ defined( 'PENDRELL_SCRIPTS_PRISM' )       || define( 'PENDRELL_SCRIPTS_PRISM', f
 defined( 'PENDRELL_MODULE_FOOTER_INFO' )  || define( 'PENDRELL_MODULE_FOOTER_INFO', false );
 
 // Set some variables used in the footer info module
-if ( PENDRELL_MODULE_FOOTER_INFO ) {
+if ( PENDRELL_MODULE_FOOTER_INFO === 'default' ) {
 
   // There are so many different things you might want in your footer that I've made this super flexible; edit `src/modules/footer-info.php` as you see fit
   $pendrell_footer_info = array(
-    'author' => '', // Author to give credit to in copyright statement e.g. get_the_author_meta( 'display_name', 1 )
-    'author_url' => '', // Author URL for the copyright statement e.g. get_the_author_meta( 'user_url', 1 )
-    'string' => '', // Arbitrary HTML string to display in place of all this processing
-    'year' => '' // Earliest year for the copyright; easier than making a database call
+    'author'      => '', // Author to give credit to in copyright statement e.g. get_the_author_meta( 'display_name', 1 )
+    'author_url'  => '', // Author URL for the copyright statement e.g. get_the_author_meta( 'user_url', 1 )
+    'string'      => '', // Arbitrary HTML string to display in place of all this processing
+    'year'        => ''  // Earliest year for the copyright; easier than making a database call
   );
 }
 
@@ -49,9 +54,9 @@ if ( PENDRELL_MODULE_FOOTER_INFO ) {
 defined( 'PENDRELL_MODULE_FULL_WIDTH' )   || define( 'PENDRELL_MODULE_FULL_WIDTH', false );
 
 // Force full-width categories and tags; just enter an array of IDs, names, or slugs below; matches in_category() and has_tag()
-if ( PENDRELL_MODULE_FULL_WIDTH ) {
+if ( PENDRELL_MODULE_FULL_WIDTH === 'example' ) {
   $pendrell_full_width_cats = array();
-  $pendrell_full_width_tags = array( 'design', 'photography' );
+  $pendrell_full_width_tags = array();
 }
 
 
@@ -62,7 +67,7 @@ if ( PENDRELL_MODULE_FULL_WIDTH ) {
 defined( 'PENDRELL_MODULE_IMAGE_META' )   || define( 'PENDRELL_MODULE_IMAGE_META', false );
 
 // Terms of use statement; appended to the license statement
-if ( PENDRELL_MODULE_IMAGE_META ) {
+if ( PENDRELL_MODULE_IMAGE_META === 'example' ) {
 
   // Set image licenses by category
   $pendrell_image_license_cats = array();
@@ -94,7 +99,7 @@ defined( 'PENDRELL_MODULE_POST_FORMATS' ) || define( 'PENDRELL_MODULE_POST_FORMA
 defined( 'PENDRELL_MODULE_VIEWS' )        || define( 'PENDRELL_MODULE_VIEWS', false );
 
 // Set default views for different categories and tag archives
-if ( PENDRELL_MODULE_VIEWS ) {
+if ( PENDRELL_MODULE_VIEWS === 'example' ) {
 
   // Set default views for different taxonomies; format is 'taxonomy' => array( 'term' => 'view' )
   $pendrell_views_map = array(

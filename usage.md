@@ -1,4 +1,6 @@
-# PENDRELL: USAGE
+# USAGE
+
+**Note: this file is outdated.**
 
 ## PLUGINS
 

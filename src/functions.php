@@ -6,7 +6,7 @@
 if ( is_readable( trailingslashit( get_stylesheet_directory() ) . 'functions-config.php' ) )
   require_once( trailingslashit( get_stylesheet_directory() ) . 'functions-config.php' );
 
-// Load configuration defaults
+// Load configuration defaults; anything not set in the custom configuration (above) will be set here
 require_once( trailingslashit( get_stylesheet_directory() ) . 'functions-config-defaults.php' );
 
 // There should be no need to edit these
@@ -17,7 +17,7 @@ define( 'PENDRELL_HOME', home_url() );
 // Basic theme info; don't edit these either
 define( 'PENDRELL_THEME_NAME', 'Pendrell' );
 define( 'PENDRELL_THEME_URL', 'http://github.com/synapticism/pendrell' );
-define( 'PENDRELL_THEME_VERSION', '0.13' );
+define( 'PENDRELL_THEME_VERSION', '0.13.1' );
 
 
 
@@ -44,13 +44,6 @@ if ( WP_LOCAL_DEV ) {
 
 
 
-// == LIBRARY == //
-
-// Ubik Imagery: minimalist image management for WordPress
-require_once( trailingslashit( get_stylesheet_directory() ) . 'lib/ubik-imagery/ubik-imagery.php' );
-
-
-
 // == MODULES == //
 
 // Contact form module
@@ -69,6 +62,15 @@ if ( PENDRELL_MODULE_VIEWS ) {
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/views.php' );
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/view-posts-shortcode.php' );
 }
+
+// == UBIK == //
+
+// Ubik Excluder: arbitrarily exclude posts from the homepage
+require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-excluder/ubik-excluder.php' );
+
+// Ubik Imagery: minimalist image management for WordPress
+require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-imagery/ubik-imagery.php' );
+
 
 
 // == SETUP == //

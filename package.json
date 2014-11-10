@@ -1,7 +1,7 @@
 {
   "name": "pendrell",
-  "version": "0.13.0",
-  "description": "A minimal yet fully-featured WordPress theme for content-rich blogs.",
+  "version": "0.13.1",
+  "description": "A minimal yet fully-featured WordPress theme for content-rich blogs",
   "homepage": "https://github.com/synapticism/pendrell",
   "repository": {
     "type": "git",
@@ -20,7 +20,6 @@
     "gulp-autoprefixer": "^1.0.1",
     "gulp-cache": "^0.2.2",
     "gulp-concat": "^2.4.1",
-    "gulp-filter": "^1.0.2",
     "gulp-imagemin": "^1.0.1",
     "gulp-jshint": "^1.8.4",
     "gulp-livereload": "^2.1.1",
