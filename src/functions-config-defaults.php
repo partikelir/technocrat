@@ -51,7 +51,7 @@ if ( PENDRELL_MODULE_FOOTER_INFO === 'default' ) {
 // == FULL WIDTH == //
 
 // Master switch for full-width styling
-defined( 'PENDRELL_MODULE_FULL_WIDTH' )   || define( 'PENDRELL_MODULE_FULL_WIDTH', false );
+defined( 'PENDRELL_MODULE_FULL_WIDTH' )   || define( 'PENDRELL_MODULE_FULL_WIDTH', true );
 
 // Force full-width categories and tags; just enter an array of IDs, names, or slugs below; matches in_category() and has_tag()
 if ( PENDRELL_MODULE_FULL_WIDTH === 'example' ) {
@@ -89,14 +89,14 @@ if ( PENDRELL_MODULE_IMAGE_META === 'example' ) {
 // == POST FORMATS == //
 
 // Master switch for post formats
-defined( 'PENDRELL_MODULE_POST_FORMATS' ) || define( 'PENDRELL_MODULE_POST_FORMATS', false );
+defined( 'PENDRELL_MODULE_POST_FORMATS' ) || define( 'PENDRELL_MODULE_POST_FORMATS', true );
 
 
 
 // == VIEWS == //
 
 // Master switch for views
-defined( 'PENDRELL_MODULE_VIEWS' )        || define( 'PENDRELL_MODULE_VIEWS', false );
+defined( 'PENDRELL_MODULE_VIEWS' )        || define( 'PENDRELL_MODULE_VIEWS', true );
 
 // Set default views for different categories and tag archives
 if ( PENDRELL_MODULE_VIEWS === 'example' ) {

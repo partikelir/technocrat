@@ -8,7 +8,7 @@
 
 	<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 		<div class="entry-thumbnail">
-			<?php echo pendrell_image_markup(
+			<?php echo ubik_image_markup(
 		    $html = '',
 		    $id = pendrell_thumbnail_id(),
 		    $caption = '',
