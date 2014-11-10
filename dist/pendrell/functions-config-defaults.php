@@ -34,17 +34,13 @@ defined( 'PENDRELL_SCRIPTS_PRISM' )       || define( 'PENDRELL_SCRIPTS_PRISM', f
 // Master switch for footer info
 defined( 'PENDRELL_MODULE_FOOTER_INFO' )  || define( 'PENDRELL_MODULE_FOOTER_INFO', false );
 
-// Set some variables used in the footer info module
-if ( PENDRELL_MODULE_FOOTER_INFO === 'default' ) {
-
-  // There are so many different things you might want in your footer that I've made this super flexible; edit `src/modules/footer-info.php` as you see fit
-  $pendrell_footer_info = array(
-    'author'      => '', // Author to give credit to in copyright statement e.g. get_the_author_meta( 'display_name', 1 )
-    'author_url'  => '', // Author URL for the copyright statement e.g. get_the_author_meta( 'user_url', 1 )
-    'string'      => '', // Arbitrary HTML string to display in place of all this processing
-    'year'        => ''  // Earliest year for the copyright; easier than making a database call
-  );
-}
+// There are so many different things you might want in your footer that I've made this super flexible; edit `src/modules/footer-info.php` as you see fit
+// $pendrell_footer_info = array(
+//   'author'      => '', // Author to give credit to in copyright statement e.g. get_the_author_meta( 'display_name', 1 )
+//   'author_url'  => '', // Author URL for the copyright statement e.g. get_the_author_meta( 'user_url', 1 )
+//   'string'      => '', // Arbitrary HTML string to display in place of all this processing
+//   'year'        => ''  // Earliest year for the copyright; easier than making a database call
+// );
 
 
 
@@ -53,11 +49,9 @@ if ( PENDRELL_MODULE_FOOTER_INFO === 'default' ) {
 // Master switch for full-width styling
 defined( 'PENDRELL_MODULE_FULL_WIDTH' )   || define( 'PENDRELL_MODULE_FULL_WIDTH', true );
 
-// Force full-width categories and tags; just enter an array of IDs, names, or slugs below; matches in_category() and has_tag()
-if ( PENDRELL_MODULE_FULL_WIDTH === 'example' ) {
-  $pendrell_full_width_cats = array();
-  $pendrell_full_width_tags = array();
-}
+// Optional: force full-width categories and tags; just enter an array of IDs, names, or slugs below; matches in_category() and has_tag()
+// $pendrell_full_width_cats = array();
+// $pendrell_full_width_tags = array();
 
 
 
@@ -66,23 +60,19 @@ if ( PENDRELL_MODULE_FULL_WIDTH === 'example' ) {
 // Display image metadata (exposure, shutter speed, etc. plus optional license and terms); true/false
 defined( 'PENDRELL_MODULE_IMAGE_META' )   || define( 'PENDRELL_MODULE_IMAGE_META', false );
 
-// Optional image licenses per category or tag and an optional terms of use statement
-if ( PENDRELL_MODULE_IMAGE_META === 'example' ) {
+// Set image licenses by category
+// $pendrell_image_license_cats = array();
 
-  // Set image licenses by category
-  $pendrell_image_license_cats = array();
+// Set image licenses by tag
+// $pendrell_image_license_tags = array(
+//   'design'      => 'cc-by-nc-nd'
+// , 'photography' => 'cc-by-nc'
+// );
 
-  // Set image licenses by tag
-  $pendrell_image_license_tags = array(
-    'design'      => 'cc-by-nc-nd'
-  , 'photography' => 'cc-by-nc'
-  );
-
-  // Terms of use statement; defaults to '' if it isn't defined in `functions-config.php`
-  $pendrell_image_license_terms = sprintf(
-    __( 'see <a href="%s">terms of use</a> for more info', 'pendrell' ), trailingslashit( home_url() ) . 'terms-of-use'
-  );
-}
+// Terms of use statement; defaults to '' if it isn't defined in `functions-config.php`
+// $pendrell_image_license_terms = sprintf(
+//   __( 'see <a href="%s">terms of use</a> for more info', 'pendrell' ), trailingslashit( home_url() ) . 'terms-of-use'
+// );
 
 
 
@@ -98,22 +88,18 @@ defined( 'PENDRELL_MODULE_POST_FORMATS' ) || define( 'PENDRELL_MODULE_POST_FORMA
 // Master switch for views
 defined( 'PENDRELL_MODULE_VIEWS' )        || define( 'PENDRELL_MODULE_VIEWS', true );
 
-// Set default views for different categories and tag archives
-if ( PENDRELL_MODULE_VIEWS === 'example' ) {
+// Set default views for different taxonomies; format is 'taxonomy' => array( 'term' => 'view' )
+// $pendrell_views_map = array(
+//   'category'    => array(
+//     'photography' => 'gallery'
+//   ),
+//   'post_format' => array(
+//     'post-format-gallery' => 'gallery',
+//     'post-format-image'   => 'gallery'
+//   ),
+//   'post_tag'    => array(
+//   )
+// );
 
-  // Set default views for different taxonomies; format is 'taxonomy' => array( 'term' => 'view' )
-  $pendrell_views_map = array(
-    'category'    => array(
-      'photography' => 'gallery'
-    ),
-    'post_format' => array(
-      'post-format-gallery' => 'gallery',
-      'post-format-image'   => 'gallery'
-    ),
-    'post_tag'    => array(
-    )
-  );
-
-  // Taxonomies to apply rewrite rules to (this way <website.com/category/kittens/list> works as you would expect)
-  $pendrell_views_taxonomies = array( 'category', 'post_tag', 'post_format' );
-}
+// Taxonomies to apply rewrite rules to (this way <website.com/category/kittens/list> works as you would expect)
+// $pendrell_views_taxonomies = array( 'category', 'post_tag', 'post_format' );

@@ -9,12 +9,14 @@ if ( is_readable( trailingslashit( get_stylesheet_directory() ) . 'functions-con
 // Load configuration defaults; anything not set in the custom configuration (above) will be set here
 require_once( trailingslashit( get_stylesheet_directory() ) . 'functions-config-defaults.php' );
 
-// There should be no need to edit these
+
+
+// == CONSTANTS == //
+
+// There should be no need to edit any of these
 define( 'PENDRELL_NAME', get_bloginfo( 'name' ) );
 define( 'PENDRELL_DESCRIPTION', get_bloginfo( 'description' ) );
 define( 'PENDRELL_HOME', home_url() );
-
-// Basic theme info; don't edit these either
 define( 'PENDRELL_THEME_NAME', 'Pendrell' );
 define( 'PENDRELL_THEME_URL', 'http://github.com/synapticism/pendrell' );
 define( 'PENDRELL_THEME_VERSION', '0.13.1' );
@@ -46,7 +48,7 @@ if ( WP_LOCAL_DEV ) {
 
 // == MODULES == //
 
-// Contact form module
+// Contact form
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/contact-form.php' );
 
 // Optional modules configured in `functions-config.php`
@@ -63,12 +65,7 @@ if ( PENDRELL_MODULE_VIEWS ) {
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/view-posts-shortcode.php' );
 }
 
-// == UBIK == //
-
-// Ubik Excluder: arbitrarily exclude posts from the homepage
-require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-excluder/ubik-excluder.php' );
-
-// Ubik Imagery: minimalist image management for WordPress
+// Ubik modules
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-imagery/ubik-imagery.php' );
 
 
@@ -78,12 +75,14 @@ require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-imag
 // Includes some image size definitions and other things that belong here in the config file
 function pendrell_setup() {
 
+  // == LANGUAGES == //
+
   // Language loading
   load_theme_textdomain( 'pendrell', trailingslashit( get_template_directory() ) . 'languages' );
 
-  // Conditionally add post format support
-  if ( PENDRELL_MODULE_POST_FORMATS )
-    add_theme_support( 'post-formats', array( 'aside', 'gallery', 'image', 'link', 'quote', 'status' ) );
+
+
+  // == THEME SUPPORT == //
 
   // HTML5 theme options
   add_theme_support( 'html5', array(
@@ -97,6 +96,17 @@ function pendrell_setup() {
   // Adds RSS feed links to <head> for posts and comments.
   add_theme_support( 'automatic-feed-links' );
 
+  // Coming up in WP 4.1: http://codex.wordpress.org/Function_Reference/add_theme_support#Title_Tag
+  //add_theme_support( 'title-tag' );
+
+  // Conditionally add post format support
+  if ( PENDRELL_MODULE_POST_FORMATS )
+    add_theme_support( 'post-formats', array( 'aside', 'gallery', 'image', 'link', 'quote', 'status' ) );
+
+
+
+  // == LAYOUT == //
+
   // $content_width limits the size of the largest image size available via the media uploader
   // It should be set once and left alone apart from that; don't do anything fancy with it; it is part of WordPress core
   global $content_width;
@@ -105,7 +115,11 @@ function pendrell_setup() {
 
   // Width of the main content column; should correspond to equivalent values in the stylesheet; NOT a WordPress core thing
   // This variable is mainly used here in functions.php; it should match the variable defined in _base.scss
-  $main_width = 624;
+  $main_width = round( $content_width * 0.65 ); // = 624
+
+
+
+  // == IMAGES == //
 
   // This theme uses a custom image size for featured images; it isn't really a "thumbnail" and it actually differs from the thumbnail image size
   add_theme_support( 'post-thumbnails' );
@@ -131,12 +145,14 @@ function pendrell_setup() {
   // Set the medium and large size image sizes under media settings; default to our new full width image size in media uploader
   update_option( 'image_default_size', 'medium' );
 
-  // This theme styles the visual editor with editor-style.css to match the theme style; @TODO: check this out sometime
-  //add_editor_style();
+
+
+  // == MENUS == //
 
   // Register header and footer menus
   register_nav_menu( 'header', __( 'Header menu', 'pendrell' ) );
   register_nav_menu( 'footer', __( 'Footer menu', 'pendrell' ) );
+
 }
 add_action( 'after_setup_theme', 'pendrell_setup', 11 );
 

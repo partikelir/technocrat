@@ -6,7 +6,7 @@
  */
 ?>
 
-	<?php echo ubik_image_markup(
+	<?php echo ubik_imagery_markup(
     $html = '',
     $id = pendrell_thumbnail_id(),
     $caption = get_the_title(),
