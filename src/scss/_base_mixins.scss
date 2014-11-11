@@ -42,7 +42,7 @@
 
 // == FONTS == //
 
-// Set all font styles in one place
+// Set all font styles in one place; leave blank to inherit
 @mixin font-style($style: "body") {
   @if type-of($style) != "string" {
     @warn "Warning: @mixin font-style failed; not a string.";
@@ -73,6 +73,12 @@
   @if $style == "entry-title" {
     @extend %head-light;
   }
+  @if $style == "entry-content" {
+    //
+  }
+  @if $style == "entry-meta" {
+    //
+  }
 
   // Widgets
   @if $style == "widget-title" {
@@ -98,10 +104,10 @@
 
   // Post formats
   @if $style == "quotation" {
-    // Nothing specific
+    //
   }
   @if $style == "status" {
-    // Nothing specific
+    //
   }
 
   // Image overlays

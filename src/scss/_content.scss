@@ -35,6 +35,7 @@
 .entry-content,
 .comment-content {
   @extend %clearfix-below;
+  @include font-style("entry-content");
   @include link-stylist($link-color: false);
   word-wrap: break-word;
 
@@ -230,6 +231,7 @@
 // Entry meta
 .entry-meta {
   @extend %clearfix;
+  @include font-style("entry-meta");
 }
 .entry-meta-buttons {
   @extend %button-container;
