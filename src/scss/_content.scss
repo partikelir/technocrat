@@ -126,7 +126,7 @@
       border-bottom: none;
     }
     caption {
-      @extend %small-text;
+      @include font-size($s-text-small);
     }
   }
   th {

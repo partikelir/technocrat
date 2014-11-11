@@ -31,6 +31,22 @@
 
 
 
+// == FONT SIZES == //
+
+%text-small {
+  @include font-size($s-text-small);
+}
+
+%text-smaller {
+  @include font-size($s-text-smaller);
+}
+
+%text-smallest {
+  @include font-size($s-text-smallest);
+}
+
+
+
 // == FONT STYLING == //
 
 %body-light {
@@ -63,15 +79,10 @@
   font-weight: $w-head-bold;
 }
 
-%head-small {
+%head-bold-uppercase {
   font-family: $f-head;
   font-weight: $w-head-bold;
   text-transform: uppercase;
-}
-
-// Small text
-%small-text {
-  @include font-size($s-text-small);
 }
 
 

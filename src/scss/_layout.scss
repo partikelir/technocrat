@@ -57,6 +57,7 @@
 .site-description {
   @extend %clearfix-below;
   @include font-size($s-text-smaller);
+  @include font-style("site-description");
   color: $c-site-desc;
   opacity: 0;
   transition: opacity .8s ease-out;

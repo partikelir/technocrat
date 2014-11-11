@@ -50,7 +50,7 @@
 
   // Standard stuff
   @if $style == "head" {
-    @extend %head-light;
+    @extend %head-bold;
   }
   @if $style == "body" {
     @extend %body-light;
@@ -62,17 +62,19 @@
 
   // Site layout
   @if $style == "site-title" {
-    font-family: $f-head;
-    font-weight: $w-head-light;
+    @extend %head-light;
     text-transform: uppercase;
   }
+  @if $style == "site-description" {
+    @extend %head-normal;
+  }
   @if $style == "menu" {
-    @extend %head-light;
+    @extend %head-normal;
   }
 
   // Content
   @if $style == "entry-title" {
-    @extend %head-light;
+    @extend %head-normal;
   }
   @if $style == "entry-content" {
     //
@@ -83,7 +85,7 @@
 
   // Widgets
   @if $style == "widget-title" {
-    @extend %head-small;
+    @extend %head-bold-uppercase;
   }
   @if $style == "widget-text" {
     @extend %body-normal;
@@ -91,13 +93,13 @@
 
   // User interface
   @if $style == "table-head" {
-    @extend %head-small;
+    @extend %head-bold-uppercase;
   }
   @if $style == "button" {
-    @extend %head-light;
+    @extend %head-bold;
   }
   @if $style == "label" {
-    @extend %head-small;
+    @extend %head-bold-uppercase;
   }
   @if $style == "input" {
     @extend %body-normal;
@@ -113,7 +115,7 @@
 
   // Image overlays
   @if $style == "image-overlay-title" {
-    @extend %head-light;
+    @extend %head-normal;
   }
   @if $style == "image-overlay-caption" {
     @extend %body-normal;

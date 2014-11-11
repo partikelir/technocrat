@@ -62,7 +62,7 @@ label.error {
 
 // Footnotes; for use with Markdown Extra implementations e.g. JP Markdown
 .footnotes {
-  @extend %small-text;
+  @include font-size($s-text-small);
 }
 
 

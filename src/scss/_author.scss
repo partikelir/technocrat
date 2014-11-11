@@ -23,6 +23,6 @@
 }
 .author-description {
   p {
-    @extend %small-text;
+    @include font-size($s-text-small);
   }
 }
