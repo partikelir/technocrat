@@ -57,12 +57,13 @@
   }
   @if $style == "mono" {
     font-family: $f-mono;
-    font-weight: $w-normal;
+    font-weight: $w-mono-normal;
   }
 
   // Site layout
   @if $style == "site-title" {
-    font-weight: 200;
+    font-family: $f-head;
+    font-weight: $w-head-light;
     text-transform: uppercase;
   }
   @if $style == "menu" {

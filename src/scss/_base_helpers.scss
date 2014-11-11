@@ -35,37 +35,37 @@
 
 %body-light {
   font-family: $f-body;
-  font-weight: $w-light;
+  font-weight: $w-body-light;
 }
 
 %body-normal {
   font-family: $f-body;
-  font-weight: $w-normal;
+  font-weight: $w-body-normal;
 }
 
 %body-bold {
   font-family: $f-body;
-  font-weight: $w-bold;
+  font-weight: $w-body-bold;
 }
 
 %head-light {
   font-family: $f-head;
-  font-weight: $w-light;
+  font-weight: $w-head-light;
 }
 
 %head-normal {
   font-family: $f-head;
-  font-weight: $w-normal;
+  font-weight: $w-head-normal;
 }
 
 %head-bold {
   font-family: $f-head;
-  font-weight: $w-bold;
+  font-weight: $w-head-bold;
 }
 
 %head-small {
   font-family: $f-head;
-  font-weight: $w-bold;
+  font-weight: $w-head-bold;
   text-transform: uppercase;
 }
 

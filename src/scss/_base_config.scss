@@ -48,9 +48,20 @@ $f-mono:            $k-courier;
 
 // == FONT WEIGHTS == //
 
-$w-light:           300;
-$w-normal:          400;
-$w-bold:            600;
+// These are specific to the fonts being used...
+
+$w-body-light:           300;
+$w-body-normal:          400;
+$w-body-bold:            600;
+
+$w-head-light:           200;
+$w-head-normal:          300;
+$w-head-bold:            600;
+
+$w-mono-light:           300;
+$w-mono-normal:          400;
+$w-mono-bold:            700;
+
 
 
 // == LAYOUT == //

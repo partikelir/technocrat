@@ -19,7 +19,7 @@
     body.page &, // Targets singular pages, avoiding conflict with .search-results .page .entry-title declaration
     .single & {
       @include font-size($s-header-title);
-      //font-weight: $w-light;
+      //font-weight: $w-light; // @TODO: is this needed?
     }
   }
 
@@ -75,7 +75,7 @@
   cite,
   em,
   i {
-    font-weight: $w-light; // This must be set otherwise these elements inherit font-weight: normal for some reason
+    font-weight: $w-body-light; // This must be set otherwise these elements inherit font-weight: normal for some reason
   }
 
   // Lists and definitions
@@ -193,13 +193,13 @@
     dl,
     ol,
     ul {
-      font-weight: $w-light;
+      font-weight: $w-body-light;
     }
     address,
     b,
     dt,
     strong {
-      font-weight: $w-bold;
+      font-weight: $w-body-bold;
     }
 
     // These are all usually $s-text-small; kick it up a notch

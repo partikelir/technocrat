@@ -46,7 +46,7 @@ $p-regex:           adjust-hue($c-highlight, 180);
     color: $p-regex;
   }
   &.important {
-    font-weight: $w-bold;
+    font-weight: $w-mono-bold;
   }
   &.entity {
     cursor: help;

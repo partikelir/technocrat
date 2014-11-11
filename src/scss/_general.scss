@@ -72,12 +72,12 @@ address {
   @extend %spacer-below;
   font-style: normal; // Italics is sometimes a bit harder to read
   &:first-line {
-    font-weight: $w-bold;
+    font-weight: $w-body-bold;
   }
 }
 b,
 strong {
-  font-weight: $w-bold;
+  font-weight: $w-body-bold;
 }
 cite,
 em,
@@ -230,7 +230,7 @@ dl {
 dl {
   list-style: none;
   dt {
-    font-weight: $w-bold;
+    font-weight: $w-body-bold;
   }
 }
 
@@ -240,11 +240,7 @@ dl {
 caption,
 td,
 th {
-  font-weight: $w-normal;
   text-align: left;
-}
-th {
-  font-weight: $w-bold;
 }
 
 
@@ -292,7 +288,7 @@ select {
   color: $c-text-lighter;
   cursor: pointer;
   display: inline-block;
-  font-weight: $w-normal;
+  font-weight: $w-body-normal;
   outline: none;
 }
 

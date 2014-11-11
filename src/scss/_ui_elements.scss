@@ -49,8 +49,6 @@ input[type="reset"],
     @include font-style("label");
     @include rem("margin-top", $spacer/2);
     display: block;
-    font-weight: $w-bold;
-    text-transform: uppercase;
   }
   label.error {
     @include font-size($s-text-smaller);

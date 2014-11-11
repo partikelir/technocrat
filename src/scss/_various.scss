@@ -30,7 +30,7 @@
 // Form entry; @TODO: organize this
 .alert {
   color: $c-alert;
-  font-weight: $w-bold;
+  font-weight: $w-body-bold;
 }
 .notice {
   font-style: italic;
@@ -55,7 +55,7 @@ textarea.error {
 }
 label.error {
   color: $c-alert;
-  font-weight: $w-bold;
+  font-weight: $w-body-bold;
 }
 
 
