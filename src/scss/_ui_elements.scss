@@ -23,14 +23,14 @@ input[type="reset"],
   display: block;
   // Spacing needs to match the spacing in the layout-box mixin in the custom library
   @include k-absolute(right $spacer top $spacer);
-  @include respond-to(medium) {
-    @include rem('right', $spacer*1.5);
+  @include respond-to("medium") {
+    @include rem("right", $spacer*1.5);
   }
 }
 
 // Menu toggle for mobile phones and small screens
 #responsive-menu-toggle {
-  @include respond-to(medium) {
+  @include respond-to("medium") {
     display: none;
   }
   &.toggled {
@@ -47,7 +47,7 @@ input[type="reset"],
   @include font-size($s-header-small);
   label:not(.error) {
     @include font-style("label");
-    @include rem('margin-top', $spacer/2);
+    @include rem("margin-top", $spacer/2);
     display: block;
     font-weight: $w-bold;
     text-transform: uppercase;

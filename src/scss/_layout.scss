@@ -2,16 +2,16 @@
 
 // Layout box; pads and centers the header, content area, and footer
 @mixin layout-box {
-  @include rem('padding-left', $spacer);
-  @include rem('padding-right', $spacer);
-  @include respond-to(small) {
-    @include rem('padding-left', $spacer/2);
-    @include rem('padding-right', $spacer/2);
+  @include rem("padding-left", $spacer);
+  @include rem("padding-right", $spacer);
+  @include respond-to("small") {
+    @include rem("padding-left", $spacer/2);
+    @include rem("padding-right", $spacer/2);
   }
-  @include respond-to(medium) {
+  @include respond-to("medium") {
     @include k-center-block($content-width);
-    @include rem('padding-left', $spacer*1.5);
-    @include rem('padding-right', $spacer*1.5);
+    @include rem("padding-left", $spacer*1.5);
+    @include rem("padding-right", $spacer*1.5);
   }
 }
 
@@ -35,14 +35,14 @@
 
 .site-header {
   @include layout-box;
-  @include rem('padding-top', $spacer);
+  @include rem("padding-top", $spacer);
   position: relative;
 }
 .site-title {
   @extend %clearfix-below;
   @include font-size($s-header);
   @include font-style("site-title");
-  @include respond-to(medium) {
+  @include respond-to("medium") {
     @include font-size($s-header-title);
   }
   a {
@@ -67,7 +67,7 @@
   }
 }
 .site-branding {
-  @include rem('padding-bottom', $spacer/2);
+  @include rem("padding-bottom", $spacer/2);
 
   // Show site description
   &:hover .site-description {
@@ -83,8 +83,8 @@
 .site-content {
   @extend %clearfix-below;
   @include layout-box;
-  @include rem('padding-bottom', $spacer);
-  @include rem('padding-top', $spacer);
+  @include rem("padding-bottom", $spacer);
+  @include rem("padding-top", $spacer);
 }
 main {
   // Mainly for gallery view (in which main is filed with floating figure elements)
@@ -94,12 +94,12 @@ main {
   // Keeps content contained regardless of whether sidebar appears
   max-width: $main-width; // @TODO: this is buggy; really we want to be setting width explicitly
 
-  @include respond-to(medium) {
+  @include respond-to("medium") {
     min-width: $main-width;
   }
 
   // Float for the sidebar
-  @include respond-to(large) {
+  @include respond-to("large") {
     float: left;
     max-width: percentage( $main-width / $content-width );
   }
@@ -112,7 +112,7 @@ main {
 
   // Individual articles
   article {
-    @include rem('margin-bottom', $spacer*3);
+    @include rem("margin-bottom", $spacer*3);
   }
 }
 
@@ -129,7 +129,7 @@ main {
 .site-footer-buttons {
   @extend %button-container;
   display: block;
-  @include respond-to(medium) {
+  @include respond-to("medium") {
     display: none;
   }
 }

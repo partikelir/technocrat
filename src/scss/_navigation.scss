@@ -11,13 +11,13 @@
   @include link-stylist($link-color: false);
 }
 #nav-above {
-  @include rem('margin-bottom', $spacer);
+  @include rem("margin-bottom", $spacer);
 }
 #nav-below {
-  @include rem('margin-bottom', $spacer*3);
+  @include rem("margin-bottom", $spacer*3);
 }
 #nav-comments {
-  @include rem('margin-bottom', $spacer*2);
+  @include rem("margin-bottom", $spacer*2);
 }
 .nav-previous {
   float: left;
@@ -50,7 +50,7 @@
 // View switcher, as defined in `src/modules/views.php`
 .view-switcher {
   @extend %breadcrumbs-static;
-  @include rem('margin-right', $spacer);
+  @include rem("margin-right", $spacer);
   float: left;
   li + li:before {
     content: "\00a0\00b7\00a0"; // Middle dot: \00b7

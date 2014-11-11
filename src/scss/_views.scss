@@ -71,7 +71,7 @@
   }
   article {
     @include font-size($s-text-small);
-    @include rem('margin-bottom', $spacer);
+    @include rem("margin-bottom", $spacer);
   }
 
   // Entry meta

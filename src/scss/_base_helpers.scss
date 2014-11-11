@@ -23,10 +23,10 @@
 
 // Spacing, to preserve a modicum of vertical rhythm
 %spacer-above {
-  @include rem('margin-top', $spacer);
+  @include rem("margin-top", $spacer);
 }
 %spacer-below {
-  @include rem('margin-bottom', $spacer);
+  @include rem("margin-bottom", $spacer);
 }
 
 
@@ -80,7 +80,7 @@
 
 // Right-aligned button container
 %button-container {
-  @include rem('margin-left', $spacer/2);
+  @include rem("margin-left", $spacer/2);
   float: right;
   height: $spacer;
 }

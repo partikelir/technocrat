@@ -12,12 +12,12 @@
 
 .image-info {
   @extend %spacer-above;
-  @include rem('padding-top', $spacer, 1);
+  @include rem("padding-top", $spacer, 1);
   border-top: $d-divider;
 }
 .image-description {
   @include font-size($s-text-smaller);
-  @include respond-to(medium) {
+  @include respond-to("medium") {
     @include font-size($s-text-small);
   }
 }
@@ -149,7 +149,7 @@ figure.wp-caption,
 // Nicer layout for successive image groups
 @if $spacer != $d-image-spacer {
   .img-group + .img-group {
-    @include rem('margin-top', -($spacer - $d-image-spacer) ); // Assumes $spacer > $d-image-spacer
+    @include rem("margin-top", -($spacer - $d-image-spacer) ); // Assumes $spacer > $d-image-spacer
   }
 }
 

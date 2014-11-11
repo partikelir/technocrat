@@ -6,7 +6,7 @@
     @include font-style("widget-text");
     @include link-stylist($link-color: false);
   }
-  @include respond-to(large) {
+  @include respond-to("large") {
     float: right;
     width: percentage($sidebar-width / $content-width);
   }
@@ -29,7 +29,7 @@
     @extend %spacer-below;
   }
   ul ul {
-    @include rem('margin-left', $spacer/2);
+    @include rem("margin-left", $spacer/2);
   }
   img {
     @include border-radius;
@@ -47,14 +47,14 @@
     list-style: disc outside;
   }
   li {
-    @include rem('margin-left', $spacer);
+    @include rem("margin-left", $spacer);
   }
 }
 .widget_search {
-  @include rem('margin-bottom', $spacer, 2); // Hack to deal with button alignment issues
+  @include rem("margin-bottom", $spacer, 2); // Hack to deal with button alignment issues
   #s {
     width: 150px;
-    @include respond-to(large) {
+    @include respond-to("large") {
       width: percentage(150px / $sidebar-width);
     }
   }

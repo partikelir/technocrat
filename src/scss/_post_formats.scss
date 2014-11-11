@@ -34,7 +34,7 @@ body:not(.list-view) {
       border: none;
       box-shadow: inset 3px 3px 7px $c-shadow;
       color: $c-text;
-      @include rem('padding', $spacer/2 $spacer);
+      @include rem("padding", $spacer/2 $spacer);
       footer {
         @include font-size($s-text-small);
       }

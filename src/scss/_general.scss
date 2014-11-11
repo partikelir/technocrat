@@ -98,8 +98,8 @@ ins {
 }
 hr { // @TODO: space out hrs; paragraph tags presently overlap margins
   @extend %clearfix;
-  @include rem('margin-bottom', $spacer/2);
-  @include rem('margin-top', $spacer/2, 1);
+  @include rem("margin-bottom", $spacer/2);
+  @include rem("margin-top", $spacer/2, 1);
   background-color: $c-divider;
   border: 0;
   height: 1px;
@@ -130,7 +130,7 @@ blockquote {
   }
   @include k-reverse-italics;
   @include letterpress;
-  @include rem('padding', $spacer/2 $spacer/2 $spacer/2 $spacer - 9px);
+  @include rem("padding", $spacer/2 $spacer/2 $spacer/2 $spacer - 9px);
   background: rgba($c-body-darker, .25); // Transparent so that blockquotes can be nested
   border-left: 9px solid $c-divider;
   box-shadow: inset 0px -2px 7px black(.04);
@@ -183,7 +183,7 @@ pre {
   @extend %spacer-below;
   @include font-size($s-text-small);
   @include letterpress(black(.25));
-  @include rem('padding', $spacer/2);
+  @include rem("padding", $spacer/2);
   background: $c-code-box-bg;
   box-shadow: inset 3px 3px 7px black(.18);
   color: $c-code-box;
@@ -285,8 +285,8 @@ select {
   @include border-radius;
   @include font-size($s-text-smaller);
   @include gradient-vertical($d-gradient-1, $d-gradient-2);
-  @include rem('height', $spacer - $spacer/4);
-  @include rem('margin-bottom', $spacer/4);
+  @include rem("height", $spacer - $spacer/4);
+  @include rem("margin-bottom", $spacer/4);
   border: 1px solid #d2d2d2;
   box-shadow: 0 1px 2px rgba(64, 64, 64, .1);
   color: $c-text-lighter;

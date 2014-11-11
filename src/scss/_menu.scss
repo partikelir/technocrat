@@ -69,13 +69,13 @@
   }
 
   // Media query to enable all menu features on larger screens
-  @include respond-to(medium) {
+  @include respond-to("medium") {
     @include font-size($s-menu-header);
     border-bottom: $d-divider; // Border for the whole menu
     display: block;
     width: 100%;
     > li {
-      @include rem('padding-bottom', $spacer/2, 1); // Padding list items rather than the whole list so submenus display properly
+      @include rem("padding-bottom", $spacer/2, 1); // Padding list items rather than the whole list so submenus display properly
       > ul {
         display: block;
       }
@@ -89,8 +89,8 @@
 .menu-footer {
   @include font-size($s-menu-footer);
   @include link-stylist($c-menu-link, $c-menu-link, $c-menu-link-h, $c-menu-link, $c-menu-link, $link-border: false);
-  @include rem('padding-bottom', $spacer/2);
-  @include rem('padding-top', $spacer/2, 1);
+  @include rem("padding-bottom", $spacer/2);
+  @include rem("padding-top", $spacer/2, 1);
   border-top: $d-divider;
 
   // Immediate child link styling; temporarily removed as it doesn't really seem necessary

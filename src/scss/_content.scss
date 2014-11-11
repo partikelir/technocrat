@@ -4,7 +4,7 @@
 .entry-title {
   @include font-size($s-header);
   @include font-style("entry-title");
-  @include respond-to(medium) {
+  @include respond-to("medium") {
     @include font-size($s-header-big); // This is the normal title size seen on the homepage
   }
 
@@ -15,7 +15,7 @@
   }
 
   // Single post and page views
-  @include respond-to(large) {
+  @include respond-to("large") {
     body.page &, // Targets singular pages, avoiding conflict with .search-results .page .entry-title declaration
     .single & {
       @include font-size($s-header-title);
@@ -58,7 +58,7 @@
   h1,
   h2,
   h3 {
-    @include rem('margin-top', $spacer*2); // Spaces out headers within body copy
+    @include rem("margin-top", $spacer*2); // Spaces out headers within body copy
     & + h1,
     & + h2,
     & + h3 {
@@ -82,7 +82,7 @@
   ol,
   ul,
   dl {
-    @include rem('margin-bottom', $spacer);
+    @include rem("margin-bottom", $spacer);
   }
   ul ul,
   ol ol,
@@ -104,18 +104,18 @@
     }
   }
   li {
-    @include rem('margin', 0 0 0 $spacer);
+    @include rem("margin", 0 0 0 $spacer);
   }
   dd {
-    @include rem('margin', 0 $spacer $spacer);
+    @include rem("margin", 0 $spacer $spacer);
   }
   dl {
-    @include rem('margin', 0 $spacer);
+    @include rem("margin", 0 $spacer);
   }
 
   // Tables
   table {
-    @include rem('margin-bottom', $spacer, 1);
+    @include rem("margin-bottom", $spacer, 1);
     border-bottom: $d-divider;
     width: 100%;
     a,

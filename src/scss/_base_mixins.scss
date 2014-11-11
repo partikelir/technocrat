@@ -124,7 +124,7 @@
 // Font size mixin; $size (integer): pixel value of desired font size; $offset (integer); pixel value offset to account for borders and other things that disrupt line-height
 @mixin font-size($size: $s-text, $offset: 0) {
 
-  @include rem('font-size', $size+0px);
+  @include rem("font-size", $size+0px);
 
   // Buffer for font sizes larger than the baseline; simply doubles or triples baseline size as needed
   $buffer: 1;
@@ -226,14 +226,14 @@
       @include font-style("image-overlay-title");
       text-align: center;
       text-shadow: 0px 1px 2px black(.8);
-      @include respond-to(large) {
+      @include respond-to("large") {
         @include font-size($s-text-bigger);
         text-shadow: 1px 1px 5px black(.7);
       }
     }
     @include border-radius(0 0 $d-radius $d-radius);
     @include k-regular-italics;
-    @include rem('padding', $spacer/4 $spacer/4);
+    @include rem("padding", $spacer/4 $spacer/4);
     background-image: linear-gradient(black(0), black(.5));
     background-repeat: repeat-x;
     box-sizing: border-box;
@@ -337,23 +337,23 @@
 // == MEDIA QUERIES == //
 
 // Media query breakpoints mixin; adapted from http://thesassway.com/intermediate/responsive-web-design-in-sass-using-media-queries-in-sass-32
-@mixin respond-to($media) {
-  @if ($media == small) or ($media == mobile) {
+@mixin respond-to($media: "medium") {
+  @if ($media == "small") or ($media == "mobile") {
     @include k-media-below($b-small) { @content; }
   }
-  @else if ($media == small-medium) {
+  @else if ($media == "small-medium") {
     @include k-media-between($b-small, $b-medium - 1) { @content; }
   }
-  @else if ($media == medium) {
+  @else if ($media == "medium") {
     @include k-media-above($b-medium) { @content; }
   }
-  @else if ($media == medium-large) {
+  @else if ($media == "medium-large") {
     @include k-media-between($b-medium, $b-large - 1) { @content; }
   }
-  @else if ($media == large) or ($media == single-column) {
+  @else if ($media == "large") or ($media == "single-column") {
     @include k-media-above($b-large) { @content; }
   }
-  @else if ($media == full) {
+  @else if ($media == "full") {
     @include k-media-above($b-full) { @content; }
   }
 }
@@ -369,7 +369,7 @@
   @include font-style("button");
   @include gradient-vertical($d-gradient-1, $d-gradient-2);
   @include letterpress;
-  @include rem('padding', 0 $spacer/4);
+  @include rem("padding", 0 $spacer/4);
   border: $d-interface;
   box-shadow: 0 1px 2px rgba(64, 64, 64, .1);
   color: $c-text;
@@ -501,7 +501,7 @@
   @include font-size($font-size, 8);
   @include font-style("input");
   @include letterpress;
-  @include rem('padding', 3px);
+  @include rem("padding", 3px);
   background: darken($c-body-bg, 3);
   border: $d-divider;
   box-shadow: inset 2px 2px 4px $shadow;

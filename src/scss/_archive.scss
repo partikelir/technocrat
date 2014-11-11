@@ -14,7 +14,7 @@
   @include full-width($media: large) {
     @include font-size($s-text);
   }
-  @include rem('margin-bottom', $spacer*2);
+  @include rem("margin-bottom", $spacer*2);
   color: $c-text-lighter;
   p {
     @extend %spacer-below;
