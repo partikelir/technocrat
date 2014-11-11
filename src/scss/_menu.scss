@@ -5,8 +5,7 @@
   @include k-list-floated($spacer);
   margin-bottom: 0;
   li {
-    @include font-header;
-    font-weight: $w-light;
+    @include font-style("menu");
     white-space: nowrap;
   }
   @include k-media-below($b-medium) {

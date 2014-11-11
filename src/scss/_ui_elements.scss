@@ -46,7 +46,7 @@ input[type="reset"],
 #response-form {
   @include font-size($s-header-small);
   label:not(.error) {
-    @include font-header;
+    @include font-style("label");
     @include rem('margin-top', $spacer/2);
     display: block;
     font-weight: $w-bold;

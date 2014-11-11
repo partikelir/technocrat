@@ -8,16 +8,15 @@ html {
 // Body
 body {
   @include font-size($s-text);
+  @include font-style("body");
   color: $c-text;
   background-color: $c-body-bg;
-  font-family: $f-body;
-  font-weight: $w-light;
   text-rendering: optimizeLegibility;
 }
 
 // Headers
 h1,h2,h3,h4,h5,h6 {
-  @include font-header;
+  @include font-style("head");
   color: $c-text-darker;
 }
 h1 { @include font-size($s-header-big); }
@@ -34,7 +33,7 @@ pre,
 samp,
 tt,
 var {
-  font-family: $f-mono;
+  @include font-style("mono");
 }
 
 // Links
@@ -124,6 +123,7 @@ sup {
 // Blockquotes
 blockquote {
   @extend %spacer-below;
+  @include font-style("quotation");
   @include font-size($s-text-small);
   @include full-width {
     @include font-size($s-text-big);
@@ -135,7 +135,6 @@ blockquote {
   border-left: 9px solid $c-divider;
   box-shadow: inset 0px -2px 7px black(.04);
   color: rgba($c-text, .75); // Transparent so that blockquotes can be nested
-  font-weight: $w-light;
   p {
     &:last-child {
       margin: 0;

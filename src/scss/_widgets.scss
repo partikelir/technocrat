@@ -3,6 +3,7 @@
 .widget-area {
   p,
   li {
+    @include font-style("widget-text");
     @include link-stylist($link-color: false);
   }
   @include respond-to(large) {
@@ -11,7 +12,8 @@
   }
 }
 .widget-title {
-  @extend %small-headers;
+  @include font-size($s-header-small);
+  @include font-style("widget-title");
   color: $c-text-dark;
 }
 .widget {

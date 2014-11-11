@@ -49,7 +49,7 @@ body:not(.list-view) {
   article.format-status {
     .entry-content {
       @include font-size($s-text-bigger);
-      font-weight: $w-light;
+      @include font-style("status");
     }
   }
 }

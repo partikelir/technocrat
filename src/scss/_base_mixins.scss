@@ -42,21 +42,94 @@
 
 // == FONTS == //
 
-// Various font styles
-@mixin font-button {
-  @include font-header; // This is merely an alias for font-header but you could set different styles here specific to buttons
+// Set all font styles in one place
+@mixin font-style($style: "body") {
+  @if type-of($style) != "string" {
+    @warn "Warning: @mixin font-style failed; not a string.";
+  }
+
+  // Standard stuff
+  @if $style == "head" {
+    @extend %head-light;
+  }
+  @if $style == "body" {
+    @extend %body-light;
+  }
+  @if $style == "mono" {
+    font-family: $f-mono;
+    font-weight: $w-normal;
+  }
+
+  // Site layout
+  @if $style == "site-title" {
+    font-weight: 200;
+    text-transform: uppercase;
+  }
+  @if $style == "menu" {
+    @extend %head-light;
+  }
+
+  // Content
+  @if $style == "entry-title" {
+    @extend %head-light;
+  }
+
+  // Widgets
+  @if $style == "widget-title" {
+    @extend %head-small;
+  }
+  @if $style == "widget-text" {
+    @extend %body-normal;
+  }
+
+  // User interface
+  @if $style == "table-head" {
+    @extend %head-small;
+  }
+  @if $style == "button" {
+    @extend %head-light;
+  }
+  @if $style == "label" {
+    @extend %head-small;
+  }
+  @if $style == "input" {
+    @extend %body-normal;
+  }
+
+  // Post formats
+  @if $style == "quotation" {
+    // Nothing specific
+  }
+  @if $style == "status" {
+    // Nothing specific
+  }
+
+  // Image overlays
+  @if $style == "image-overlay-title" {
+    @extend %head-light;
+  }
+  @if $style == "image-overlay-caption" {
+    @extend %body-normal;
+  }
 }
-@mixin font-header {
-  font-family: $f-head;
-  font-weight: $w-light;
-}
+
+
 
 // Font size mixin; $size (integer): pixel value of desired font size; $offset (integer); pixel value offset to account for borders and other things that disrupt line-height
 @mixin font-size($size: $s-text, $offset: 0) {
+
   @include rem('font-size', $size+0px);
-  $buffer: 1; // Buffer for font sizes larger than the baseline; simply doubles or triples baseline size as needed
-  @if $size >= $baseline * 2 { $buffer: 3; }
-  @elseif $size >= $baseline { $buffer: 2; }
+
+  // Buffer for font sizes larger than the baseline; simply doubles or triples baseline size as needed
+  $buffer: 1;
+
+  @if $size >= $baseline * 2 {
+    $buffer: 3;
+  }
+  @elseif $size >= $baseline {
+    $buffer: 2;
+  }
+
   line-height: ( ( ($baseline - $offset) * $buffer) / $size );
 }
 
@@ -139,17 +212,18 @@
   #{$overlay} {
     @include font-size($s-text-small);
     @if $style == "caption" {
+      @include font-style("image-overlay-caption");
       text-align: left;
       text-shadow: 0px 1px 2px black(.8);
     }
     @if $style == "title" {
+      @include font-style("image-overlay-title");
+      text-align: center;
+      text-shadow: 0px 1px 2px black(.8);
       @include respond-to(large) {
-        @include font-header;
         @include font-size($s-text-bigger);
         text-shadow: 1px 1px 5px black(.7);
       }
-      text-align: center;
-      text-shadow: 0px 1px 2px black(.8);
     }
     @include border-radius(0 0 $d-radius $d-radius);
     @include k-regular-italics;
@@ -285,8 +359,8 @@
 // Button styling
 @mixin button {
   @include border-radius;
-  @include font-button;
   @include font-size($s-text-smaller, 4);
+  @include font-style("button");
   @include gradient-vertical($d-gradient-1, $d-gradient-2);
   @include letterpress;
   @include rem('padding', 0 $spacer/4);
@@ -295,7 +369,6 @@
   color: $c-text;
   cursor: pointer;
   display: inline-block;
-  font-weight: $w-normal;
   text-decoration: none;
   vertical-align: middle;
   &:hover {
@@ -420,13 +493,13 @@
 @mixin text-input($shadow: $c-shadow, $font-size: $s-text-smaller) {
   @include border-radius;
   @include font-size($font-size, 8);
+  @include font-style("input");
   @include letterpress;
   @include rem('padding', 3px);
   background: darken($c-body-bg, 3);
   border: $d-divider;
   box-shadow: inset 2px 2px 4px $shadow;
   color: lighten($c-text, 23);
-  font-family: inherit;
   &:focus {
     color: $c-text;
     background-color: darken($c-body-bg, 7);

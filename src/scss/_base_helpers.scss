@@ -2,6 +2,10 @@
 
 // These silent selectors should be used for common styling patterns
 
+
+
+// == CLEARFIX == //
+
 // Clearfix
 %clearfix-above {
   @include clearfix-above;
@@ -13,6 +17,10 @@
   @include clearfix;
 }
 
+
+
+// == SPACING == //
+
 // Spacing, to preserve a modicum of vertical rhythm
 %spacer-above {
   @include rem('margin-top', $spacer);
@@ -21,9 +29,41 @@
   @include rem('margin-bottom', $spacer);
 }
 
-// Small header style
-%small-headers {
-  @include font-size($s-header-small);
+
+
+// == FONT STYLING == //
+
+%body-light {
+  font-family: $f-body;
+  font-weight: $w-light;
+}
+
+%body-normal {
+  font-family: $f-body;
+  font-weight: $w-normal;
+}
+
+%body-bold {
+  font-family: $f-body;
+  font-weight: $w-bold;
+}
+
+%head-light {
+  font-family: $f-head;
+  font-weight: $w-light;
+}
+
+%head-normal {
+  font-family: $f-head;
+  font-weight: $w-normal;
+}
+
+%head-bold {
+  font-family: $f-head;
+  font-weight: $w-bold;
+}
+
+%head-small {
   font-family: $f-head;
   font-weight: $w-bold;
   text-transform: uppercase;
@@ -33,6 +73,10 @@
 %small-text {
   @include font-size($s-text-small);
 }
+
+
+
+// == UI ELEMENTS == //
 
 // Right-aligned button container
 %button-container {

@@ -3,7 +3,7 @@
 // Entry title
 .entry-title {
   @include font-size($s-header);
-  font-weight: $w-normal;
+  @include font-style("entry-title");
   @include respond-to(medium) {
     @include font-size($s-header-big); // This is the normal title size seen on the homepage
   }
@@ -19,7 +19,7 @@
     body.page &, // Targets singular pages, avoiding conflict with .search-results .page .entry-title declaration
     .single & {
       @include font-size($s-header-title);
-      font-weight: $w-light;
+      //font-weight: $w-light;
     }
   }
 
@@ -129,7 +129,8 @@
     }
   }
   th {
-    @extend %small-headers;
+    @include font-size($s-header-small);
+    @include font-style("table-head");
   }
   td {
     @include font-size($s-text-smaller, 1);
