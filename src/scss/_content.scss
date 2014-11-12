@@ -178,59 +178,13 @@
   }
 
   // Full-width styling
-  @include full-width($media: large) {
-    //@include font-size($s-text * 1.5);
-    color: $c-text-dark; // Darken content as much of it will be a thinner weight
-
+  @include full-width {
     > :not(figure) {
       max-width: $main-width;
     }
     figure,
     .img-group {
       max-width: 100%;
-    }
-
-    h1 { @include font-size($s-header-title); }
-    h2 { @include font-size($s-header-big); }
-    h3 { @include font-size($s-header); }
-    h4 { @include font-size($s-header-sub); }
-    h5 { @include font-size($s-text-small); }
-    h6 { @include font-size($s-text-smaller); }
-
-    // Lighter weight
-    p,
-    dl,
-    ol,
-    ul {
-      font-weight: $w-body-light;
-    }
-    address,
-    b,
-    dt,
-    strong {
-      font-weight: $w-body-bold;
-    }
-
-    // These are all usually $s-text-small; kick it up a notch
-    aside,
-    code,
-    pre,
-    small,
-    table caption,
-    .entry-caption,
-    .footnotes,
-    .references {
-      @include font-size($s-text);
-    }
-
-    td {
-      @include font-size($s-text, 1);
-    }
-
-    // Restore the sub/superscript reset
-    sub,
-    sup {
-      font-size: 75%;
     }
   }
 }
@@ -241,7 +195,6 @@
 .entry-meta {
   @extend %clearfix;
   @include font-style("entry-meta");
-  max-width: $main-width;
 }
 .entry-meta-buttons {
   @extend %button-container;
@@ -250,4 +203,5 @@
   @include font-size($s-text-smaller);
   @include link-stylist($c-meta-link, $c-meta-link-v, $c-meta-link-h, $c-meta-link-a, $c-meta-link-f);
   color: $c-meta;
+  max-width: $main-width;
 }
