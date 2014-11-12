@@ -34,33 +34,106 @@ $s-sub:             14;
 
 
 
-// == FONT STACKS == //
+// == FONTS == //
 
 // Suggested pairings:
 // $k-helv-neue-l and $k-raleway; Raleway:200,300,600
 // $k-noto-serif and $k-roboto-slab; Noto+Serif:400,400italic,700,700italic|Roboto+Slab:300,400,700
 
 $f-body:            $k-helv-neue-l;
+$w-body-light:      300;
+$w-body-normal:     400;
+$w-body-bold:       600;
+
 $f-head:            $k-raleway;
+$w-head-light:      200;
+$w-head-normal:     300;
+$w-head-bold:       600;
+
 $f-mono:            $k-courier;
+$w-mono-light:      300;
+$w-mono-normal:     400;
+$w-mono-bold:       700;
 
+// Font styles are wrapped in a mixin for ease of use and configuration; leave blank to inherit
+@mixin font-style($style: "body") {
+  @if type-of($style) != "string" {
+    @warn "Warning: @mixin font-style failed; not a string.";
+  }
 
+  // Standard stuff
+  @if $style == "head" {
+    @extend %head-bold;
+  }
+  @if $style == "body" {
+    @extend %body-light;
+  }
+  @if $style == "mono" {
+    font-family: $f-mono;
+    font-weight: $w-mono-normal;
+  }
 
-// == FONT WEIGHTS == //
+  // Site layout
+  @if $style == "site-title" {
+    @extend %head-light;
+    text-transform: uppercase;
+  }
+  @if $style == "site-description" {
+    @extend %head-normal;
+  }
+  @if $style == "menu" {
+    @extend %head-normal;
+  }
 
-// These are specific to the fonts being used...
+  // Content
+  @if $style == "entry-title" {
+    @extend %head-normal;
+  }
+  @if $style == "entry-content" {
+    //
+  }
+  @if $style == "entry-meta" {
+    //
+  }
 
-$w-body-light:           300;
-$w-body-normal:          400;
-$w-body-bold:            600;
+  // Widgets
+  @if $style == "widget-title" {
+    @extend %head-bold-uppercase;
+  }
+  @if $style == "widget-text" {
+    @extend %body-normal;
+  }
 
-$w-head-light:           200;
-$w-head-normal:          300;
-$w-head-bold:            600;
+  // User interface
+  @if $style == "table-head" {
+    @extend %head-bold-uppercase;
+  }
+  @if $style == "button" {
+    @extend %head-bold;
+  }
+  @if $style == "label" {
+    @extend %head-bold-uppercase;
+  }
+  @if $style == "input" {
+    @extend %body-normal;
+  }
 
-$w-mono-light:           300;
-$w-mono-normal:          400;
-$w-mono-bold:            700;
+  // Post formats
+  @if $style == "quotation" {
+    //
+  }
+  @if $style == "status" {
+    //
+  }
+
+  // Image overlays
+  @if $style == "image-overlay-title" {
+    @extend %head-normal;
+  }
+  @if $style == "image-overlay-caption" {
+    @extend %body-normal;
+  }
+}
 
 
 

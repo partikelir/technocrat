@@ -42,88 +42,6 @@
 
 // == FONTS == //
 
-// Set all font styles in one place; leave blank to inherit
-@mixin font-style($style: "body") {
-  @if type-of($style) != "string" {
-    @warn "Warning: @mixin font-style failed; not a string.";
-  }
-
-  // Standard stuff
-  @if $style == "head" {
-    @extend %head-bold;
-  }
-  @if $style == "body" {
-    @extend %body-light;
-  }
-  @if $style == "mono" {
-    font-family: $f-mono;
-    font-weight: $w-mono-normal;
-  }
-
-  // Site layout
-  @if $style == "site-title" {
-    @extend %head-light;
-    text-transform: uppercase;
-  }
-  @if $style == "site-description" {
-    @extend %head-normal;
-  }
-  @if $style == "menu" {
-    @extend %head-normal;
-  }
-
-  // Content
-  @if $style == "entry-title" {
-    @extend %head-normal;
-  }
-  @if $style == "entry-content" {
-    //
-  }
-  @if $style == "entry-meta" {
-    //
-  }
-
-  // Widgets
-  @if $style == "widget-title" {
-    @extend %head-bold-uppercase;
-  }
-  @if $style == "widget-text" {
-    @extend %body-normal;
-  }
-
-  // User interface
-  @if $style == "table-head" {
-    @extend %head-bold-uppercase;
-  }
-  @if $style == "button" {
-    @extend %head-bold;
-  }
-  @if $style == "label" {
-    @extend %head-bold-uppercase;
-  }
-  @if $style == "input" {
-    @extend %body-normal;
-  }
-
-  // Post formats
-  @if $style == "quotation" {
-    //
-  }
-  @if $style == "status" {
-    //
-  }
-
-  // Image overlays
-  @if $style == "image-overlay-title" {
-    @extend %head-normal;
-  }
-  @if $style == "image-overlay-caption" {
-    @extend %body-normal;
-  }
-}
-
-
-
 // Font size mixin; $size (integer): pixel value of desired font size; $offset (integer); pixel value offset to account for borders and other things that disrupt line-height
 @mixin font-size($size: $s-text, $offset: 0) {
 
@@ -145,12 +63,6 @@
 // Letterpress effect
 @mixin letterpress($colour: $c-body-bg) {
   text-shadow: 0px 1px $colour;
-}
-
-// Small print
-@mixin small-print($font-size: $s-text-small) {
-  @include font-size($font-size);
-  color: lighten($c-text-lightest, 10);
 }
 
 
@@ -392,57 +304,6 @@
   }
   &:focus {
     outline: none; // Blue border is rather distracting
-  }
-}
-
-
-
-// Button dropdown menu; hover over a button element with an embedded list to select an option
-@mixin dropdown-button($alignment: null) {
-  // Setup variables that change based on alignment
-  $alignment-args: left -1px top 100%; // -1px offset accounts for the border
-  $border-radius: 0 4px 4px 4px;
-  $child-radius: 0 3px 0 0;
-  @if $alignment == right {
-    $alignment-args: right -1px top 100%;
-    $border-radius: 4px 0 4px 4px;
-    $child-radius: 3px 0 0 0;
-  }
-  @include k-dropdown(
-    $dropdown-background: $c-sub-bg linear-gradient(white(.5), white(0)) repeat-x
-  , $dropdown-border-color: $c-interface
-  , $dropdown-border-radius: $border-radius
-  , $dropdown-border-size: 1px
-  , $dropdown-shadow-inside: 0 -2px 3px rgba(64, 64, 64, .08) inset
-  , $dropdown-shadow-outside: 1px 1px 4px black(.08)
-  );
-  @include k-absolute($alignment-args);
-  li {
-    &:first-child > a {
-      border-radius: $child-radius;
-    }
-    display: block;
-    margin: 0;
-    text-align: left;
-    white-space: nowrap;
-    width: 100%;
-    a {
-      color: $c-sub;
-      display: block;
-      &:visited {
-        color: $c-sub;
-      }
-      &:hover {
-        background: darken($c-sub-bg, 13);
-        box-shadow: 0 -2px 4px black(.06) inset;
-        color: $c-sub-h;
-        text-shadow: none;
-      }
-      &:active,
-      &:focus {
-        color: $c-sub-h;
-      }
-    }
   }
 }
 

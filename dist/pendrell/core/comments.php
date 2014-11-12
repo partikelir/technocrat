@@ -34,7 +34,7 @@ if ( !function_exists( 'pendrell_comments' ) ) : function pendrell_comments( $co
       ?>
       <li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
         <article id="comment-<?php comment_ID(); ?>">
-          <header class="ccomment-author vcard">
+          <header class="comment-author vcard">
             <div class="comment-avatar">
               <?php echo get_avatar( $comment, 60 ); ?>
             </div>

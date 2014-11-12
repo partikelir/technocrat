@@ -1,0 +1,91 @@
+// ==== TRASH BIN ==== //
+
+// This file is essentially a trash bin for various bits and pieces of SCSS that are no longer used in this theme
+
+
+
+// == DEPRECATED == //
+
+// Styles that apply to deprecated elements in the HTML5 specification
+
+acronym {
+  @extend abbr;
+}
+
+big {
+  font-size: 120%;
+  line-height: 0;
+}
+
+tt {
+  @extend var;
+}
+
+
+
+// == LEFTOVERS == //
+
+// Unused styling from Twenty Twelve
+img.wp-smiley,
+.rsswidget img {
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  display: inline;
+  margin-bottom: 0;
+  margin-top: 0;
+  padding: 0;
+}
+
+
+
+// == MIXINS == //
+
+// Button dropdown menu; hover over a button element with an embedded list to select an option
+@mixin dropdown-button($alignment: null) {
+  // Setup variables that change based on alignment
+  $alignment-args: left -1px top 100%; // -1px offset accounts for the border
+  $border-radius: 0 4px 4px 4px;
+  $child-radius: 0 3px 0 0;
+  @if $alignment == right {
+    $alignment-args: right -1px top 100%;
+    $border-radius: 4px 0 4px 4px;
+    $child-radius: 3px 0 0 0;
+  }
+  @include k-dropdown(
+    $dropdown-background: $c-sub-bg linear-gradient(white(.5), white(0)) repeat-x
+  , $dropdown-border-color: $c-interface
+  , $dropdown-border-radius: $border-radius
+  , $dropdown-border-size: 1px
+  , $dropdown-shadow-inside: 0 -2px 3px rgba(64, 64, 64, .08) inset
+  , $dropdown-shadow-outside: 1px 1px 4px black(.08)
+  );
+  @include k-absolute($alignment-args);
+  li {
+    &:first-child > a {
+      border-radius: $child-radius;
+    }
+    display: block;
+    margin: 0;
+    text-align: left;
+    white-space: nowrap;
+    width: 100%;
+    a {
+      color: $c-sub;
+      display: block;
+      &:visited {
+        color: $c-sub;
+      }
+      &:hover {
+        background: darken($c-sub-bg, 13);
+        box-shadow: 0 -2px 4px black(.06) inset;
+        color: $c-sub-h;
+        text-shadow: none;
+      }
+      &:active,
+      &:focus {
+        color: $c-sub-h;
+      }
+    }
+  }
+}

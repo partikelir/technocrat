@@ -164,8 +164,9 @@
   // Asides; use this instead of <small> in post contents; does not appear in comments
   aside {
     @extend %spacer-below;
+    @include font-size($s-text-small);
     @include k-reverse-italics;
-    @include small-print;
+    color: lighten($c-text-lightest, 10);
   }
 
   // First children of .entry-content that require extra spacing for visual flow
@@ -178,8 +179,16 @@
 
   // Full-width styling
   @include full-width($media: large) {
-    @include font-size($s-text-bigger);
+    //@include font-size($s-text * 1.5);
     color: $c-text-dark; // Darken content as much of it will be a thinner weight
+
+    > :not(figure) {
+      max-width: $main-width;
+    }
+    figure,
+    .img-group {
+      max-width: 100%;
+    }
 
     h1 { @include font-size($s-header-title); }
     h2 { @include font-size($s-header-big); }
@@ -232,6 +241,7 @@
 .entry-meta {
   @extend %clearfix;
   @include font-style("entry-meta");
+  max-width: $main-width;
 }
 .entry-meta-buttons {
   @extend %button-container;

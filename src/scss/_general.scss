@@ -110,7 +110,9 @@ mark {
   text-decoration: none;
 }
 small {
-  @include small-print; // Set to font-size: 80% in Normalize.css, wiped out be Eric Meyer's reset, reset to 16px here
+  // Set to font-size: 80% in Normalize.css, wiped out be Eric Meyer's reset, reset to 16px here
+  @include rem("font-size", $s-text-small+0px);
+  color: lighten($c-text-lightest, 10);
   line-height: inherit;
 }
 sub,

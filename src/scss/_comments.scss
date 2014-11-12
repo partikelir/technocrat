@@ -40,6 +40,9 @@
 .comment-author {
   @extend %clearfix-below;
   @include rem("margin-bottom", $spacer/2);
+  h3 {
+    font-weight: $w-head-normal;
+  }
 }
 .comment-avatar {
   @include rem("margin-right", $spacer/2);
@@ -51,7 +54,9 @@
   }
 }
 .comment-meta {
-  @extend .entry-meta-main;
+  @include font-size($s-text-smaller);
+  @include link-stylist($c-meta-link, $c-meta-link-v, $c-meta-link-h, $c-meta-link-a, $c-meta-link-f, $link-border: false);
+  color: $c-meta;
 }
 
 

@@ -93,22 +93,24 @@ main {
 }
 .content-area {
   // Keeps content contained regardless of whether sidebar appears
-  max-width: $main-width; // @TODO: this is buggy; really we want to be setting width explicitly
+  //max-width: $main-width; // @TODO: this is buggy; really we want to be setting width explicitly
+  width: $main-width;
 
   @include respond-to("medium") {
-    min-width: $main-width;
+    //min-width: $main-width;
   }
 
   // Float for the sidebar
   @include respond-to("large") {
     float: left;
-    max-width: percentage( $main-width / $content-width );
+    //max-width: percentage( $main-width / $content-width );
   }
 
   // Remove sidebar and float on full-width display
   @include full-width {
     float: none;
-    max-width: 100%;
+    width: $content-width;
+    //max-width: 100%; /////////////////////////////////////////////////
   }
 
   // Individual articles

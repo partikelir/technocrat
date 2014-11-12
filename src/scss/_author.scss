@@ -14,7 +14,7 @@
     display: block;
     float: left;
     line-height: 0; // Keeps the container snug around the avatar image
-    width: $spacer * 4;
+    width: $spacer*4;
   }
   img {
     @include circle;
