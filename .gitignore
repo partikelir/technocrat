@@ -33,5 +33,6 @@ sitemap.xml.gz
 bower_components
 node_modules
 build
+dist/pendrell/modules/ubik-*
 
 ## Project specific

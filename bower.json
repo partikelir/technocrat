@@ -26,9 +26,18 @@
     "spin.js": "^2.0.1",
     "jquery-validation": "^1.13.1",
     "ubik-imagery": "https://github.com/synapticism/ubik-imagery.git",
+    "ubik-admin": "https://github.com/synapticism/ubik-admin.git",
+    "ubik-analytics": "https://github.com/synapticism/ubik-analytics.git",
+    "ubik-cleaner": "https://github.com/synapticism/ubik-cleaner.git",
+    "ubik-comments": "https://github.com/synapticism/ubik-comments.git",
     "ubik-excluder": "https://github.com/synapticism/ubik-excluder.git",
-    "ubik-quick-terms": "https://github.com/synapticism/ubik-quick-terms.git",
+    "ubik-feed": "https://github.com/synapticism/ubik-feed.git",
+    "ubik-lingual": "https://github.com/synapticism/ubik-lingual.git",
+    "ubik-markdown": "https://github.com/synapticism/ubik-markdown.git",
     "ubik-places": "https://github.com/synapticism/ubik-places.git",
+    "ubik-post-formats": "https://github.com/synapticism/ubik-post-formats.git",
+    "ubik-quick-terms": "https://github.com/synapticism/ubik-quick-terms.git",
+    "ubik-search": "https://github.com/synapticism/ubik-search.git",
     "ubik-series": "https://github.com/synapticism/ubik-series.git"
   }
 }

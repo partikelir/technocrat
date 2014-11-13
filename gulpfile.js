@@ -10,7 +10,7 @@ var project     = 'pendrell'
 ;
 
 // Ubik components (array); ubikPlugins specifies optional theme-specific components; ubikCore is required for this theme to function
-var ubikPlugins = ['excluder', 'places', 'quick-terms', 'series']
+var ubikPlugins = ['analytics', 'cleaner', 'comments', 'excluder', 'feed', 'lingual', 'markdown', 'places', 'post-formats', 'quick-terms', 'search', 'series']
   , ubikCore    = ['imagery']
   , ubik        = ubikCore.concat(ubikPlugins)
 ;
