@@ -65,8 +65,23 @@ if ( PENDRELL_MODULE_VIEWS ) {
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/view-posts-shortcode.php' );
 }
 
-// Ubik modules
+// Ubik modules (required)
+require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-imagery/ubik-imagery.php' );
+
+// Ubik modules (optional)
+if ( PENDRELL_UBIK_EXCLUDER )
+  require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-excluder/ubik-excluder.php' );
+if ( PENDRELL_UBIK_PLACES ) {
+  require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-places/ubik-places.php' );
+  add_action( 'pendrell_archive_description_before', 'ubik_places_breadcrumb' );
+}
+if ( PENDRELL_UBIK_QUICK_TERMS )
+  require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-quick-terms/ubik-quick-terms.php' );
+if ( PENDRELL_UBIK_SERIES ) {
+  require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-series/ubik-series.php' );
+  add_action( 'pendrell_entry_meta_before', 'ubik_series_list' );
+}
 
 
 

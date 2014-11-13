@@ -103,3 +103,18 @@ defined( 'PENDRELL_MODULE_VIEWS' )        || define( 'PENDRELL_MODULE_VIEWS', tr
 
 // Taxonomies to apply rewrite rules to (this way <website.com/category/kittens/list> works as you would expect)
 // $pendrell_views_taxonomies = array( 'category', 'post_tag', 'post_format' );
+
+
+
+// == UBIK == //
+
+// Ubik is a series of lightwight WordPress plugins designed for easy integration into themes.
+// Use these switches to turn on or off certain optional components.
+
+defined( 'PENDRELL_UBIK_ANALYTICS' )      || define( 'PENDRELL_UBIK_ANALYTICS', false );
+defined( 'PENDRELL_UBIK_EXCLUDER' )       || define( 'PENDRELL_UBIK_EXCLUDER', false );
+defined( 'PENDRELL_UBIK_MARKDOWN' )       || define( 'PENDRELL_UBIK_MARKDOWN', false );
+defined( 'PENDRELL_UBIK_PLACES' )         || define( 'PENDRELL_UBIK_PLACES', false );
+defined( 'PENDRELL_UBIK_QUICK_TERMS' )    || define( 'PENDRELL_UBIK_QUICK_TERMS', false );
+defined( 'PENDRELL_UBIK_SEARCH' )         || define( 'PENDRELL_UBIK_SEARCH', false );
+defined( 'PENDRELL_UBIK_SERIES' )         || define( 'PENDRELL_UBIK_SERIES', true );

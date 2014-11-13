@@ -9,6 +9,12 @@ var project     = 'pendrell'
   , bower       = './bower_components/'
 ;
 
+// Ubik components (array); ubikPlugins specifies optional theme-specific components; ubikCore is required for this theme to function
+var ubikPlugins = ['excluder', 'places', 'quick-terms', 'series']
+  , ubikCore    = ['imagery']
+  , ubik        = ubikCore.concat(ubikPlugins)
+;
+
 // Initialization sequence
 var gulp        = require('gulp')
   , gutil       = require('gulp-util')
@@ -183,7 +189,7 @@ gulp.task('languages', function() {
 
 // ==== PHP ==== //
 
-gulp.task('php', ['php-core', 'php-ubik']);
+gulp.task('php', ['php-core', 'ubik']);
 
 // Copy PHP source files to the build directory
 gulp.task('php-core', function() {
@@ -191,12 +197,24 @@ gulp.task('php-core', function() {
   .pipe(gulp.dest(build));
 });
 
-// Copy Ubik components into the `src/lib` directory
-gulp.task('php-ubik', function() {
-  return gulp.src([
-    bower+'ubik-excluder/**/*.php',
-    bower+'ubik-imagery/**/*.php'
-  ])
+
+
+// ==== UBIK ==== //
+
+// Copy Ubik components into the `build/modules` directory
+gulp.task('ubik', function() {
+
+  // Iterate through the Ubik array and wrap each plugin in the glob pattern
+  ubik.forEach(function(plugin, i, array) {
+    array[i] = bower+'ubik-'+plugin+'/**/*';
+  });
+
+  // Ignore some stuff
+  var ubikIgnore = ['!'+bower+'ubik*/**/*.json', '!'+bower+'ubik*/**/readme.*'];
+  ubik = ubik.concat(ubikIgnore);
+
+  // Copy components
+  return gulp.src(ubik)
   .pipe(gulp.dest(build+'modules'));
 });
 

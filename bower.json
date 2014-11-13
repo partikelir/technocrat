@@ -26,6 +26,9 @@
     "spin.js": "^2.0.1",
     "jquery-validation": "^1.13.1",
     "ubik-imagery": "https://github.com/synapticism/ubik-imagery.git",
-    "ubik-excluder": "https://github.com/synapticism/ubik-excluder.git"
+    "ubik-excluder": "https://github.com/synapticism/ubik-excluder.git",
+    "ubik-quick-terms": "https://github.com/synapticism/ubik-quick-terms.git",
+    "ubik-places": "https://github.com/synapticism/ubik-places.git",
+    "ubik-series": "https://github.com/synapticism/ubik-series.git"
   }
 }
