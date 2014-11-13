@@ -229,6 +229,28 @@ dl {
   font-style: normal;
   font-weight: normal;
 }
+ul ul,
+ol ol,
+ul ol,
+ol ul,
+dl dl {
+  margin-bottom: 0;
+}
+ul {
+  list-style: disc outside;
+  ul {
+    list-style: circle;
+  }
+}
+ol {
+  list-style: decimal outside;
+  ol {
+    list-style: lower-alpha;
+    ol {
+      list-style: lower-roman;
+    }
+  }
+}
 dl {
   list-style: none;
   dt {

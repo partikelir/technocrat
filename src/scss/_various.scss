@@ -63,8 +63,6 @@ label.error {
 // Large-print type; breaks vertical rhythm
 .large-print {
   @include font-size($s-text-bigger);
-  //@include rem("font-size", $s-text-biggest+0px);
-  //@include rem("line-height", $spacer*1.2);
   color: $c-text-dark; // Darken content as much of it will be a thinner weight
 
   h1 { @include font-size($s-header-title); }

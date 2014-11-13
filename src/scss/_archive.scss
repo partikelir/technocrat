@@ -8,6 +8,9 @@
     }
   }
 }
+.archive-title {
+  @include font-style("archive-title");
+}
 .archive-content {
   @extend %clearfix-above;
   @include font-size($s-text-small);

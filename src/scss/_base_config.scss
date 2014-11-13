@@ -73,7 +73,7 @@ $w-mono-bold:       700;
     font-weight: $w-mono-normal;
   }
 
-  // Site layout
+  // Masthead
   @if $style == "site-title" {
     @extend %head-light;
     text-transform: uppercase;
@@ -81,7 +81,14 @@ $w-mono-bold:       700;
   @if $style == "site-description" {
     @extend %head-normal;
   }
+
+  // Menu
   @if $style == "menu" {
+    @extend %head-normal;
+  }
+
+  // Archives
+  @if $style == "archive-title" {
     @extend %head-normal;
   }
 

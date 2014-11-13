@@ -34,19 +34,12 @@ Domain Path: /languages/
 // == MODULES == //
 
 @import "post_formats";   // Post formats: aside, link, status, etc.
+@import "ubik";           // Ubik adapter
 @import "views";          // Views module
 @import "prism";          // Prism syntax highlighting
 
 
 
-// == PLUGINS == //
-
-@import "places";         // Ubik places taxonomy
-@import "series";         // Ubik series taxonomy
-
-
-
 // == EXPERIMENTAL == //
 
-//@import "mediaelement"; // Mediaelement.js styling
 @import "print";      // Print styles from Twenty Twelve

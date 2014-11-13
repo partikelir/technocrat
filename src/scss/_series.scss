@@ -1,9 +1,0 @@
-// ==== SERIES ==== //
-
-.entry-meta-series {
-  @extend %spacer-below;
-  .series-description {}
-  ol {
-    list-style: decimal outside;
-  }
-}

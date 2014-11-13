@@ -19,6 +19,9 @@
 // == COMMENT LIST == //
 
 .comment-list {
+  list-style: none;
+
+  // Pingbacks/trackbacks
   .pingback,
   .trackback {
     @include font-size($s-header-small);

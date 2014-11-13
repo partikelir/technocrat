@@ -1,10 +1,19 @@
 // ==== WIDGETS ==== //
 
 .widget-area {
+  li,
   p,
-  li {
+  .textwidget {
+    @include font-size($s-text-smaller);
     @include font-style("widget-text");
     @include link-stylist($link-color: false);
+    color: $c-text-lighter;
+  }
+  li {
+    list-style: none;
+  }
+  p {
+    @extend %spacer-below;
   }
   @include respond-to("large") {
     float: right;
@@ -19,15 +28,6 @@
 .widget {
   @extend %spacer-below;
   word-wrap: break-word;
-  p,
-  li,
-  .textwidget {
-    @include font-size($s-text-smaller);
-    color: $c-text-lighter;
-  }
-  p {
-    @extend %spacer-below;
-  }
   ul ul {
     @include rem("margin-left", $spacer/2);
   }
