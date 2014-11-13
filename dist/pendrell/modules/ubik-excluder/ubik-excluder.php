@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Ubik Excluder
  * Plugin URI: http://github.com/synapticism/ubik-excluder
- * Description: Arbitrarily exclude WordPress posts by category, tag, or post format.
+ * Description: Arbitrarily exclude WordPress posts from the homepage
  * Author: Alexander Synaptic
  * Author URI: http://alexandersynaptic.com
  * Version: 0.0.1

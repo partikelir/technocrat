@@ -1,4 +1,4 @@
-<?php // ==== UBIK CONFIGURATION ==== //
+<?php // ==== CONFIGURATION ==== //
 
 // Default number of columns for the [group] shortcode
 defined( 'UBIK_IMAGERY_GROUP_COLUMNS' )             || define( 'UBIK_IMAGERY_GROUP_COLUMNS', 2 );

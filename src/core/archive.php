@@ -30,6 +30,19 @@ if ( !function_exists( 'pendrell_archive_title' ) ) : function pendrell_archive_
 
 
 
+// Adds places to the Pendrell archive title system; @TODO: see if this is even necessary anymore
+function ubik_places_archive_title( $title ) {
+  if ( is_tax( 'places' ) ) {
+    $term = get_term_by( 'slug', get_query_var( 'term' ), 'places' );
+    $title = sprintf( __( '%s archives', 'pendrell' ), '<span>' . apply_filters( 'ubik_places_title', $term->name ) . '</span>' );
+  }
+  return $title;
+}
+if ( PENDRELL_UBIK_PLACES )
+  add_filter( 'pendrell_archive_title', 'ubik_places_archive_title' );
+
+
+
 // Archive descriptions
 if ( !function_exists( 'pendrell_archive_description' ) ) : function pendrell_archive_description() {
 

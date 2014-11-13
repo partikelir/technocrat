@@ -58,3 +58,14 @@ if ( !function_exists( 'pendrell_load_pg8' ) ) : function pendrell_load_pg8() {
   return false;
 } endif;
 
+
+
+// == LARGE PRINT == //
+
+// Large-print post class; prototype function; @TODO: assess how useful this is
+if ( !function_exists( 'pendrell_large_print_post_class' ) ) : function pendrell_large_print_post_class( $classes ) {
+  if ( 1 === 0 ) // is_category( 'photography' )
+    $classes[] = 'large-print';
+  return $classes;
+} endif;
+add_filter( 'post_class', 'pendrell_large_print_post_class' );

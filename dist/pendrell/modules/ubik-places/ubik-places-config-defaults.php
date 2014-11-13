@@ -1,0 +1,3 @@
+<?php // ==== CONFIGURATION ==== //
+
+// No options
