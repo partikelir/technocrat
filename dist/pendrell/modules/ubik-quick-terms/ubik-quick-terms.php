@@ -23,4 +23,4 @@ require_once( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'ubik-quick-terms
 
 // Load plugin core
 if ( is_admin() )
-  require_once( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'ubik-quick-terms-setup.php' );
+  require_once( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'ubik-quick-terms-core.php' );

@@ -22,7 +22,7 @@ if ( is_readable( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'ubik-places-
 require_once( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'ubik-places-config-defaults.php' );
 
 // Load plugin core
+require_once( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'ubik-places-core.php' );
 require_once( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'ubik-places-navigation.php' );
-require_once( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'ubik-places-setup.php' );
 require_once( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'ubik-places-shortcode.php' );
 require_once( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'ubik-places-widget.php' );

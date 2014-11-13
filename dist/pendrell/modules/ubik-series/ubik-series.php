@@ -22,4 +22,4 @@ if ( is_readable( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'ubik-series-
 require_once( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'ubik-series-config-defaults.php' );
 
 // Load plugin core
-require_once( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'ubik-series-setup.php' );
+require_once( trailingslashit( plugin_dir_path( __FILE__ ) ) . 'ubik-series-core.php' );
