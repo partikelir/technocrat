@@ -3,7 +3,7 @@
 // Footer info; relies on information in functions-config.php to generate appropriate content; it is't elegant but it gets the job done for now
 if ( !function_exists( 'pendrell_footer_info' ) ) : function pendrell_footer_info() {
 
-  global $pendrell_footer_info; // Defined in `src/functions-config.php`
+  global $pendrell_footer_info; // Defined in `src/functions-config.php` using the template in `src/functions-config-defaults.php`
   $output = '';
 
   // Set the copyright year or range of years

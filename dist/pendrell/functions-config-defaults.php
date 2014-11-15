@@ -31,8 +31,7 @@ defined( 'PENDRELL_SCRIPTS_PRISM' )       || define( 'PENDRELL_SCRIPTS_PRISM', f
 
 // == FOOTER INFO == //
 
-// Master switch for footer info
-defined( 'PENDRELL_MODULE_FOOTER_INFO' )  || define( 'PENDRELL_MODULE_FOOTER_INFO', false );
+// No master switch needed; this module will output some default information if you don't set anything here
 
 // There are so many different things you might want in your footer that I've made this super flexible; edit `src/modules/footer-info.php` as you see fit
 // $pendrell_footer_info = array(

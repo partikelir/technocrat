@@ -109,19 +109,20 @@ function ubik_places_widget( $term = null ) {
 
   }
 
-  // Only output places widget markup if we have results
+  // Only output places widget markup if we have results; @TODO: turn this into a real widget
   if ( !empty( $places ) ) {
 
-    ?><div id="secondary" class="widget-area" role="complementary">
-      <aside id="places" class="widget widget_places">
-        <?php if ( !empty( $places ) ) {
-          foreach ( $places as $place ) {
-            ?><h3 class="widget-title"><?php echo $place['title']; ?></a></h3>
-            <ul class="place-list"><?php echo wp_list_categories( $place['args'] ); ?></ul><?php
-          }
-        } ?>
-      </aside>
-    </div><!-- #secondary --><?php
-
+    ?><div id="wrap-sidebar">
+      <div id="secondary" class="widget-area" role="complementary">
+        <aside id="places" class="widget widget_places">
+          <?php if ( !empty( $places ) ) {
+            foreach ( $places as $place ) {
+              ?><h3 class="widget-title"><?php echo $place['title']; ?></a></h3>
+              <ul class="place-list"><?php echo wp_list_categories( $place['args'] ); ?></ul><?php
+            }
+          } ?>
+        </aside>
+      </div>
+    </div><?php
   }
 }

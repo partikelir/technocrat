@@ -51,9 +51,10 @@ if ( WP_LOCAL_DEV ) {
 // Contact form
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/contact-form.php' );
 
+// Footer info
+require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/footer-info.php' );
+
 // Optional modules configured in `functions-config.php`
-if ( PENDRELL_MODULE_FOOTER_INFO )
-  require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/footer-info.php' );
 if ( PENDRELL_MODULE_FULL_WIDTH )
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/full-width.php' );
 if ( PENDRELL_MODULE_IMAGE_META )
@@ -80,9 +81,11 @@ if ( PENDRELL_UBIK_FEED )
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-feed/ubik-feed.php' );
 if ( PENDRELL_UBIK_LINGUAL ) {
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-lingual/ubik-lingual.php' );
-  add_filter( 'pendrell_entry_title', 'ubik_lingual_unpinyin' ); // @TODO: verify that all of these are needed
-  add_filter( 'ubik_content_title', 'ubik_lingual_unpinyin' );
-  add_filter( 'ubik_places_title', 'ubik_lingual_unpinyin' );
+  add_filter( 'pendrell_entry_title', 'ubik_lingual_unpinyin' );
+  add_filter( 'pendrell_archive_title', 'ubik_lingual_unpinyin' );
+  add_filter( 'ubik_content_title', 'ubik_lingual_unpinyin' ); // @TODO: verify this is still needed
+  if ( PENDRELL_UBIK_PLACES )
+    add_filter( 'ubik_places_title', 'ubik_lingual_unpinyin' );
 }
 if ( PENDRELL_UBIK_MARKDOWN )
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-markdown/ubik-markdown.php' );
