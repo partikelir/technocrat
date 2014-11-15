@@ -1,5 +1,6 @@
 // ==== WIDGETS ==== //
 
+// Widget area is also defined in `layout.scss`
 .widget-area {
   li,
   p,
@@ -8,16 +9,13 @@
     @include font-style("widget-text");
     @include link-stylist($link-color: false);
     color: $c-text-lighter;
+    word-wrap: break-word;
   }
   li {
     list-style: none;
   }
   p {
     @extend %spacer-below;
-  }
-  @include respond-to("large") {
-    float: right;
-    width: percentage($sidebar-width / $content-width);
   }
 }
 .widget-title {
@@ -27,38 +25,23 @@
 }
 .widget {
   @extend %spacer-below;
-  word-wrap: break-word;
+  &:last-child {
+    margin-bottom: 0; // Eliminate spacer on the very last widget
+  }
   ul ul {
-    @include rem("margin-left", $spacer/2);
+    @include rem("margin-left", $spacer/2); // Half length indentation since we don't have that much space to play with
   }
   img {
     @include border-radius;
-    max-width: 100%; // Fluid images for widgets
-  }
-  // @TODO: single-column widgets should flow around one another; this is a brutal hack that yields inelegant results
-  @include k-media-between($b-medium, $b-large) {
-    float: left;
-    width: 50%;
+    max-width: 100%; // Responsive images for widgets
   }
 }
-.textwidget {
+.textwidget { // @TODO: test whether these styles are still used and/or need to be isolated under .textwidget
   ul {
     @extend %spacer-below;
     list-style: disc outside;
   }
   li {
     @include rem("margin-left", $spacer);
-  }
-}
-.widget_search {
-  @include rem("margin-bottom", $spacer, 2); // Hack to deal with button alignment issues
-  #s {
-    width: 150px;
-    @include respond-to("large") {
-      width: percentage(150px / $sidebar-width);
-    }
-  }
-  #searchsubmit {
-    vertical-align: middle;
   }
 }

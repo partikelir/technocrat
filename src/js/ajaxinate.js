@@ -5,7 +5,7 @@
 ;(function($){
   $(function(){ // Shortcut to $(document).ready(handler);
     $(document.body).ajaxinate({
-      contentSel: '#content-wrapper',
+      contentSel: '#wrap-main',
       menuSel: '.menu-header'
     }); // To set an option include an object literal e.g. `ajaxinate({ searchBase: 'search' });`
   });

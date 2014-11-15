@@ -21,7 +21,6 @@ input[type="reset"],
 // Site interface: the toolbar/menu at top right
 #site-interface {
   display: block;
-  // Spacing needs to match the spacing in the layout-box mixin in the custom library
   @include k-absolute(right $spacer top $spacer);
   @include respond-to("medium") {
     @include rem("right", $spacer*1.5);
@@ -71,12 +70,38 @@ input[type="reset"],
   }
 }
 
-// Specific to the contact form (CF1)
+// Specific to the contact form (CF1), which inherits from #response-form
 .contact-form {
   #spinner,
   #status {
     @extend %spacer-above;
   }
+}
+
+
+
+// == SEARCH FORM == //
+
+// Search form input field stretches to the width of the contain; adapted from: http://boulderinformationservices.wordpress.com/2011/02/02/input-field-and-submit-button-on-the-same-line-full-width/
+.search-form {
+  width: 50%; // Width of the search form in most contexts
+  .widget & {
+    width: 100%; // Search form in the sidebar stretches to fill
+  }
+}
+.search-field-wrap {
+  overflow: hidden;
+  padding-right: 15px;
+}
+.search-field {
+  width: 100%;
+  &:focus {
+    outline: none; // Remove a weird glow caused by all this CSS voodoo
+  }
+}
+.search-submit {
+  float: right;
+  margin-top: 2px; // Hack to deal with button alignment issues; @TODO: fix
 }
 
 

@@ -85,7 +85,7 @@
     @include hide; // Hide non-essential info for brevity
   }
 
-  // Entry content (with more below for full-width styling)
+  // Entry content (with more below for full-width styling); @TODO: review the utility of this
   .entry-content-wrapper {
     margin-left: $thumbnail-size + $spacer;
   }

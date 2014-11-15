@@ -133,11 +133,11 @@ label.error {
 
 
 
-// Screen reader text adapted from Twenty Twelve
+// Screen reader text adapted from Twenty Twelve; @TODO: fix the bug (below) and update the theme for greater accessibility
 .screen-reader-text {
-  clip: rect(1px, 1px, 1px, 1px);
-  position: absolute !important;
-  // @TODO: update and test this component
+  @include hide; // @BUG: the approach (below) creates unnecessary white space on the right side of the document and in the search form
+  //clip: rect(1px, 1px, 1px, 1px);
+  //position: absolute !important;
   .menu-header &:focus {
     @include border-radius;
     background: transparent;

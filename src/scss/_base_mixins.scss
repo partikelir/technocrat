@@ -343,9 +343,10 @@
     .current_page_item,
     .current_page_ancestor {
       > a {
-        color: lighten($c-sub, 33);
+        background: darken($c-sub-bg, 3);
+        color: lighten($c-sub, 23);
         &:visited {
-          color: lighten($c-sub, 33);
+          color: lighten($c-sub, 23);
         }
         &:hover,
         &:active,

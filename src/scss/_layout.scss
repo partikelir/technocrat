@@ -1,32 +1,78 @@
 // ==== LAYOUT ==== //
 
-// Layout box; pads and centers the header, content area, and footer
-@mixin layout-box {
-  @include rem("padding-left", $spacer);
-  @include rem("padding-right", $spacer);
+// == WRAPPERS == //
+
+// These wrappers allow for backgrounds and layout options to be defined for each of the four sections (header, content, sidebar, and footer)
+// There is also a fifth meta-wrapper to bind content and sidebar on large screens
+
+// A general wrapper for various site elements
+%wrap {
+  box-sizing: border-box; // Makes life a little easier
   @include respond-to("small") {
     @include rem("padding-left", $spacer/2);
     @include rem("padding-right", $spacer/2);
   }
+  @include respond-to("small-medium") {
+    @include rem("padding-left", $spacer);
+    @include rem("padding-right", $spacer);
+  }
   @include respond-to("medium") {
+    @include rem("padding-left", $spacer*1.5);
+    @include rem("padding-right", $spacer*1.5);
+  }
+}
+#wrap-header {
+  @extend %wrap;
+  @include rem("padding-top", $spacer);
+  position: relative; // Contains #site-interface, which is absolutely positioned
+}
+#wrap-main { // Wrapper around content and sidebar
+  @extend %clearfix;
+  @include respond-to("large") {
     @include k-center-block($content-width);
     @include rem("padding-left", $spacer*1.5);
     @include rem("padding-right", $spacer*1.5);
   }
 }
-
-
-
-// == WRAPPERS == //
-
-.site-header-wrapper {
-  // Header background
+#wrap-content {
+  @extend %wrap;
+  @include rem("padding-top", $spacer);
+  @include rem("padding-bottom", $spacer);
+  @include respond-to("large") {
+    @include rem("padding-right", $spacer);
+    float: left;
+    padding-left: 0;
+    width: percentage( ( $main-width + $spacer ) / $content-width );
+    @if $full-width == true { // Only output this if the current theme supports a full-width view
+      .full-width & {
+        float: none;
+        padding-right: 0;
+        width: 100%;
+      }
+    }
+  }
 }
-.site-content-wrapper {
-  // Content background
+#wrap-sidebar {
+  @extend %wrap;
+  @include rem("padding-top", $spacer);
+  @include rem("padding-bottom", $spacer);
+  @include respond-to("large") {
+    @include rem("padding-left", $spacer);
+    float: right;
+    padding-right: 0;
+    width: percentage( 1 - ( ( $main-width + $spacer ) / $content-width ) );
+    @if $full-width == true { // Only output this if the current theme supports a full-width view
+      .full-width & {
+        float: none;
+        padding-left: 0;
+        width: 100%;
+      }
+    }
+  }
 }
-.site-footer-wrapper {
-  // Footer background
+#wrap-footer {
+  @extend %wrap;
+  position: relative; // For use with the "Back to top" button
 }
 
 
@@ -34,9 +80,7 @@
 // == HEADER == //
 
 .site-header {
-  @include layout-box;
-  @include rem("padding-top", $spacer);
-  position: relative;
+  @include k-center-block($content-width);
 }
 .site-title {
   @extend %clearfix-below;
@@ -61,17 +105,13 @@
   color: $c-site-desc;
   opacity: 0;
   transition: opacity .8s ease-out;
-
-  // Hide the site description on smaller screens
   @include k-media-below($b-medium) {
-    @include hide;
+    @include hide; // Hide the site description on smaller screens
   }
 }
 .site-branding {
   @include rem("padding-bottom", $spacer/2);
-
-  // Show site description
-  &:hover .site-description {
+  &:hover .site-description { // Show site description on hover
     opacity: 1;
     transition: opacity .5s ease;
   }
@@ -83,26 +123,8 @@
 
 .site-content {
   @extend %clearfix-below;
-  @include layout-box;
-  @include rem("padding-bottom", $spacer);
-  @include rem("padding-top", $spacer);
-}
-main {
-  // Mainly for gallery view (in which main is filed with floating figure elements)
-  @extend %clearfix;
-}
-.content-area {
   max-width: $main-width; // Keeps content contained regardless of whether sidebar appears
-
-  // Float for the sidebar
-  @include respond-to("large") {
-    float: left;
-    max-width: percentage( $main-width / $content-width ); // Maintains the margins between content area and sidebar
-  }
-
-  // Remove sidebar and float on full-width display
   @include full-width {
-    float: none;
     max-width: $content-width;
   }
 
@@ -111,22 +133,39 @@ main {
     @include rem("margin-bottom", $spacer*3);
   }
 }
+main {
+  @extend %clearfix; // Mainly for gallery view (in which main is filed with floating figure elements)
+}
+
+
+
+// == SIDEBAR == //
+
+.widget-area {
+  max-width: $main-width;
+  @include k-media-between($b-small, $b-large) {
+    column-count: 2;
+    @include rem("column-gap", $spacer*2);
+    .widget {
+      break-inside: avoid;
+    }
+  }
+}
 
 
 
 // == FOOTER == //
 
 .site-footer {
-  @extend %clearfix-below;
-  @include layout-box;
+  @include k-center-block($content-width);
   @include link-stylist($c-footer-link, $c-footer-link-v, $c-footer-link-h, $c-footer-link-a, $c-footer-link-f, $link-border: false);
   color: $c-footer;
 }
-.site-footer-buttons {
+.site-footer-buttons { // @TODO: ensure footer wrapper fills this space
   @extend %button-container;
-  display: block;
+  @extend %spacer-below;
   @include respond-to("medium") {
-    display: none;
+    @include hide;
   }
 }
 .site-footer-info {

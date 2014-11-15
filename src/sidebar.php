@@ -6,9 +6,11 @@
  * @subpackage Pendrell
  * @since Pendrell 0.4
  */
-
-if ( is_active_sidebar( 'sidebar-main' ) ) { ?>
-	<div id="secondary" class="widget-area" role="complementary">
-		<?php dynamic_sidebar( 'sidebar-main' ); ?>
-	</div><?php
-}
+?>
+<div id="wrap-sidebar">
+  <?php if ( is_active_sidebar( 'sidebar-main' ) ) { ?>
+  <div id="secondary" class="widget-area" role="complementary">
+  	<?php dynamic_sidebar( 'sidebar-main' ); ?>
+  </div>
+  <?php } ?>
+</div>

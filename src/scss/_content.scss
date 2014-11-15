@@ -10,7 +10,8 @@
 
   // Drop the size of entry titles on archives and in search results
   .archive &,
-  .search-results & {
+  .search-results &,
+  .search-no-results & {
     @include font-size($s-header);
   }
 
@@ -177,6 +178,7 @@
 .entry-meta {
   @extend %clearfix;
   @include font-style("entry-meta");
+  max-width: $main-width;
 }
 .entry-meta-buttons {
   @extend %button-container;
@@ -185,5 +187,4 @@
   @include font-size($s-text-smaller);
   @include link-stylist($c-meta-link, $c-meta-link-v, $c-meta-link-h, $c-meta-link-a, $c-meta-link-f);
   color: $c-meta;
-  max-width: $main-width;
 }
