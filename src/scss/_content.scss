@@ -19,8 +19,7 @@
   @include respond-to("large") {
     body.page &, // Targets singular pages, avoiding conflict with .search-results .page .entry-title declaration
     .single & {
-      @include font-size($s-header-title);
-      //font-weight: $w-light; // @TODO: is this needed?
+      //@include font-size($s-header-title); // @TODO: fix this, it's an ugly mess
     }
   }
 
