@@ -69,6 +69,7 @@ if ( PENDRELL_MODULE_VIEWS ) {
 // Ubik modules (required)
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-imagery/ubik-imagery.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-search/ubik-search.php' );
 
 // Ubik modules (optional)
 if ( PENDRELL_UBIK_ANALYTICS )
@@ -95,8 +96,6 @@ if ( PENDRELL_UBIK_PLACES ) {
 }
 if ( PENDRELL_UBIK_POST_FORMATS )
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-post-formats/ubik-post-formats.php' );
-if ( PENDRELL_UBIK_SEARCH )
-  require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-search/ubik-search.php' );
 if ( PENDRELL_UBIK_SERIES ) {
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-series/ubik-series.php' );
   add_action( 'pendrell_entry_meta_before', 'ubik_series_list' );
@@ -168,6 +167,8 @@ function pendrell_setup() {
   set_post_thumbnail_size( $main_width, $main_width );
 
   // Add a few additional image sizes for various other purposes
+  add_image_size( 'quarter', $content_width/4, 9999 );
+  add_image_size( 'quarter-square', $content_width/4, $content_width/4, true );
   add_image_size( 'third', $content_width/3, 9999 );
   add_image_size( 'third-square', $content_width/3, $content_width/3, true );
   add_image_size( 'half', $content_width/2, 9999 );

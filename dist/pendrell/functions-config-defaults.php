@@ -121,5 +121,7 @@ defined( 'PENDRELL_UBIK_MARKDOWN' )       || define( 'PENDRELL_UBIK_MARKDOWN', t
 defined( 'PENDRELL_UBIK_PLACES' )         || define( 'PENDRELL_UBIK_PLACES', true );
 defined( 'PENDRELL_UBIK_POST_FORMATS' )   || define( 'PENDRELL_UBIK_POST_FORMATS', true );
 defined( 'PENDRELL_UBIK_QUICK_TERMS' )    || define( 'PENDRELL_UBIK_QUICK_TERMS', true );
-defined( 'PENDRELL_UBIK_SEARCH' )         || define( 'PENDRELL_UBIK_SEARCH', true );
 defined( 'PENDRELL_UBIK_SERIES' )         || define( 'PENDRELL_UBIK_SERIES', true );
+
+// Configure Ubik below...
+define( 'UBIK_SEARCH_FORM_REVERSE', true ); // Reverses the order of search field and submit button; required for this theme
