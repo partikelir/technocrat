@@ -49,7 +49,7 @@ if ( !function_exists( 'pendrell_nav_page' ) ) : function pendrell_nav_page( $ht
   if ( !empty( $ancestors ) ) {
     $parent = $ancestors[0];
     if ( !empty( $parent ) ) {
-      $parent = '<div class="nav-previous"><a href="' . get_permalink( $parent ) . '"><span class="nav-arrow">&larr;</span> ' . get_the_title( $parent ) . '</div>';
+      $parent = '<div class="nav-previous"><a href="' . get_permalink( $parent ) . '"><span class="nav-arrow">&larr;</span> ' . get_the_title( $parent ) . '</a></div>';
     }
   }
 
@@ -58,7 +58,7 @@ if ( !function_exists( 'pendrell_nav_page' ) ) : function pendrell_nav_page( $ht
   if ( !empty( $children ) ) {
     $child = $children[0]->ID;
     if ( !empty( $child ) ) {
-      $child = '<div class="nav-next"><a href="' . get_permalink( $child ) . '">' . get_the_title( $child ) . ' <span class="nav-arrow">&rarr;</span></div>';
+      $child = '<div class="nav-next"><a href="' . get_permalink( $child ) . '">' . get_the_title( $child ) . ' <span class="nav-arrow">&rarr;</span></a></div>';
     }
   }
 

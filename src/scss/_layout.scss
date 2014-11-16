@@ -159,16 +159,15 @@ main {
 .site-footer {
   @include k-center-block($content-width);
   @include link-stylist($c-footer-link, $c-footer-link-v, $c-footer-link-h, $c-footer-link-a, $c-footer-link-f, $link-border: false);
+  @include rem("padding-bottom", $spacer);
   color: $c-footer;
 }
-.site-footer-buttons { // @TODO: ensure footer wrapper fills this space
+.site-footer-buttons {
   @extend %button-container;
-  @extend %spacer-below;
   @include respond-to("medium") {
     @include hide;
   }
 }
 .site-footer-info {
-  @extend %spacer-below;
   @include font-size($s-text-smallest);
 }

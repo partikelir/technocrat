@@ -42,8 +42,8 @@ add_action( 'init', 'pendrell_shortcode_init' );
 
 // Thumbnail ID fallback
 if ( !function_exists( 'pendrell_thumbnail_id' ) ) : function pendrell_thumbnail_id( $post_id = null, $fallback_id = null ) {
-  if ( function_exists( 'ubik_thumbnail_id' ) )
-    return ubik_thumbnail_id( $post_id, $fallback_id );
+  if ( function_exists( 'ubik_imagery_thumbnail_id' ) )
+    return ubik_imagery_thumbnail_id( $post_id, $fallback_id );
   return get_post_thumbnail_id( $post_id );
 } endif;
 
