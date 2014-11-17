@@ -66,10 +66,19 @@ if ( PENDRELL_MODULE_VIEWS ) {
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/view-posts-shortcode.php' );
 }
 
+
+
+// == UBIK == //
+
 // Ubik modules (required)
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-imagery/ubik-imagery.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-search/ubik-search.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-terms/ubik-terms.php' );
+add_filter( 'pendrell_archive_description', 'ubik_terms_edit_link' );
+add_filter( 'pendrell_term_archive_description', 'ubik_terms_edit_description_prompt' );
+
+
 
 // Ubik modules (optional)
 if ( PENDRELL_UBIK_ANALYTICS )
@@ -90,12 +99,16 @@ if ( PENDRELL_UBIK_LINGUAL ) {
 }
 if ( PENDRELL_UBIK_MARKDOWN )
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-markdown/ubik-markdown.php' );
+if ( PENDRELL_UBIK_META )
+  require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-meta/ubik-meta.php' );
 if ( PENDRELL_UBIK_PLACES ) {
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-places/ubik-places.php' );
   add_action( 'pendrell_archive_description_before', 'ubik_places_breadcrumb' );
 }
 if ( PENDRELL_UBIK_POST_FORMATS )
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-post-formats/ubik-post-formats.php' );
+if ( PENDRELL_UBIK_RECORDPRESS )
+  require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-recordpress/ubik-recordpress.php' );
 if ( PENDRELL_UBIK_SERIES ) {
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-series/ubik-series.php' );
   add_action( 'pendrell_entry_meta_before', 'ubik_series_list' );

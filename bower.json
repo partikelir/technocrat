@@ -34,10 +34,13 @@
     "ubik-feed": "https://github.com/synapticism/ubik-feed.git",
     "ubik-lingual": "https://github.com/synapticism/ubik-lingual.git",
     "ubik-markdown": "https://github.com/synapticism/ubik-markdown.git",
+    "ubik-meta": "https://github.com/synapticism/ubik-meta.git",
     "ubik-places": "https://github.com/synapticism/ubik-places.git",
     "ubik-post-formats": "https://github.com/synapticism/ubik-post-formats.git",
     "ubik-quick-terms": "https://github.com/synapticism/ubik-quick-terms.git",
+    "ubik-quick-terms": "https://github.com/synapticism/ubik-recordpress.git",
     "ubik-search": "https://github.com/synapticism/ubik-search.git",
-    "ubik-series": "https://github.com/synapticism/ubik-series.git"
+    "ubik-series": "https://github.com/synapticism/ubik-series.git",
+    "ubik-series": "https://github.com/synapticism/ubik-terms.git"
   }
 }
