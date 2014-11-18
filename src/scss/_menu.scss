@@ -21,6 +21,8 @@
 .menu-header {
   @include font-size($s-menu-header);
   @include k-list-nested;
+  border-bottom: $d-divider; // Border for the whole menu
+  width: 100%;
 
   // Link styling
   a:hover {
@@ -42,6 +44,7 @@
 
   // Submenu styling; placed here to avoid unnecessary nesting
   > li {
+    @include rem("padding-bottom", $spacer/2, 1); // Padding list items rather than the whole list so submenus display properly
 
     // Styling specific to the first submenu
     > ul {
@@ -64,14 +67,9 @@
 
   // Media query to enable all menu features on larger screens
   @include k-media-above($b-medium) {
-    border-bottom: $d-divider; // Border for the whole menu
     display: block;
-    width: 100%;
-    > li {
-      @include rem("padding-bottom", $spacer/2, 1); // Padding list items rather than the whole list so submenus display properly
-      > ul {
-        display: block;
-      }
+    > li > ul {
+      display: block;
     }
   }
 }
@@ -85,24 +83,6 @@
   @include rem("padding-bottom", $spacer/2);
   @include rem("padding-top", $spacer/2, 1);
   border-top: $d-divider;
-
-  // Immediate child link styling; temporarily removed as it doesn't really seem necessary
-  /*.current-menu-item,
-  .current-menu-ancestor,
-  .current_page_item,
-  .current_page_ancestor {
-    > a {
-      color: lighten($c-menu-link, 17);
-      &:visited {
-        color: lighten($c-menu-link, 17);
-      }
-      &:hover,
-      &:active,
-      &:focus {
-        color: lighten($c-menu-link-h, 17);
-      }
-    }
-  }*/
 
   // No submenus in the footer
   ul {

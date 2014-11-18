@@ -126,10 +126,7 @@ sup {
 blockquote {
   @extend %spacer-below;
   @include font-style("quotation");
-  @include font-size($s-text-small);
-  @include full-width {
-    @include font-size($s-text-big);
-  }
+  @include font-sizes($s-text-small, $s-text-big);
   @include k-reverse-italics;
   @include letterpress;
   @include rem("padding", $spacer/2 $spacer/2 $spacer/2 $spacer - 9px);
@@ -149,10 +146,7 @@ blockquote {
     }
   }
   footer { // The footer element of a blockquote adds information about the source of the quotation
-    @include font-size($s-text-smaller);
-    @include full-width {
-      @include font-size($s-text-small);
-    }
+    @include font-sizes($s-text-smaller, $s-text-small);
     display: block;
     font-style: normal;
     text-align: right;

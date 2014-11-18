@@ -2,8 +2,8 @@
 
 .archive-header {
   @extend %spacer-below;
-  @include full-width($media: large) {
-    h1 {
+  @include k-media-above($b-large) {
+    .full-width & h1 {
       @include font-size($s-header-title);
     }
   }
@@ -14,8 +14,10 @@
 .archive-content {
   @extend %clearfix-above;
   @include font-size($s-text-small);
-  @include full-width($media: large) {
-    @include font-size($s-text);
+  @include k-media-above($b-large) {
+    .full-width & {
+      @include font-size($s-text);
+    }
   }
   @include rem("margin-bottom", $spacer*2);
   color: $c-text-lighter;

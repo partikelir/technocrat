@@ -53,6 +53,8 @@
 
 // == LIST VIEW == //
 
+// @TODO: this needs some serious work, especially as it relates to _post_formats.scss
+
 // This class only appears in list-view so it is safe to declare it without nesting
 .entry-thumbnail {
   float: left;
@@ -106,13 +108,17 @@
 
 // Full-width list-view
 .entry-title {
-  @include full-width($media: large, $body-class: ".list-view") {
-    @include font-size($s-header);
+  @include k-media-above($b-large) {
+    .full-width.list-view {
+      @include font-size($s-header);
+    }
   }
 }
 .entry-content p {
-  @include full-width($media: large, $body-class: ".list-view") {
-    @include font-size($s-text);
+  @include k-media-above($b-large) {
+    .full-width.list-view {
+      @include font-size($s-text);
+    }
   }
 }
 

@@ -53,27 +53,3 @@ body:not(.list-view) {
     }
   }
 }
-
-
-
-// Sidebar reset for post formats specified in the `pendrell_post_formats_sidebar` function in `src/modules/post-formats.php`
-.single-format-aside,
-.single-format-link,
-.single-format-quote,
-.single-format-status {
-  .content-area {
-    float: none;
-    max-width: $main-width;
-  }
-}
-
-// Sidebar reset for image and gallery post format posts are presumably handled by the full-width module; this is here in case it's inactive
-@if $full-width == false {
-  .single-format-gallery,
-  .single-format-image {
-    .content-area {
-      float: none;
-      max-width: $content-width;
-    }
-  }
-}

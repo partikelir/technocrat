@@ -43,12 +43,10 @@
     float: left;
     padding-left: 0;
     width: percentage( ( $main-width + $spacer ) / $content-width );
-    @if $full-width == true { // Only output this if the current theme supports a full-width view
-      .full-width & {
-        float: none;
-        padding-right: 0;
-        width: 100%;
-      }
+    .full-width & {
+      float: none;
+      padding-right: 0;
+      width: 100%;
     }
   }
 }
@@ -61,12 +59,10 @@
     float: right;
     padding-right: 0;
     width: percentage( 1 - ( ( $main-width + $spacer ) / $content-width ) );
-    @if $full-width == true { // Only output this if the current theme supports a full-width view
-      .full-width & {
-        float: none;
-        padding-left: 0;
-        width: 100%;
-      }
+    .full-width & {
+      float: none;
+      padding-left: 0;
+      width: 100%;
     }
   }
 }
@@ -138,7 +134,7 @@
 .site-content {
   @extend %clearfix-below;
   max-width: $main-width; // Keeps content contained regardless of whether sidebar appears
-  @include full-width {
+  .full-width & {
     max-width: $content-width;
   }
 

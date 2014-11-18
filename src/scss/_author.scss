@@ -8,17 +8,16 @@
   }
 }
 .author-avatar {
-  display: none; // Only display author avatar on larger screens
-  @include k-media-above($b-medium) {
-    @include rem("margin", $spacer/2 $spacer/2 $spacer/2 0 );
-    display: block;
-    float: left;
-    line-height: 0; // Keeps the container snug around the avatar image
-    width: $spacer*4;
-  }
+  @include rem("margin", $spacer/2 $spacer/2 $spacer/2 0 );
+  float: left;
+  line-height: 0; // Keeps the container snug around the avatar image
+  width: $spacer*4;
   img {
     @include circle;
     width: 100%;
+  }
+  @include k-media-below($b-medium) {
+    display: none; // Only display author avatar on larger screens
   }
 }
 .author-description {

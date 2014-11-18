@@ -19,7 +19,7 @@ define( 'PENDRELL_DESCRIPTION', get_bloginfo( 'description' ) );
 define( 'PENDRELL_HOME', home_url() );
 define( 'PENDRELL_THEME_NAME', 'Pendrell' );
 define( 'PENDRELL_THEME_URL', 'http://github.com/synapticism/pendrell' );
-define( 'PENDRELL_THEME_VERSION', '0.14' );
+define( 'PENDRELL_THEME_VERSION', '0.14.1' );
 
 
 
@@ -36,7 +36,6 @@ require_once( trailingslashit( get_stylesheet_directory() ) . 'core/general.php'
 require_once( trailingslashit( get_stylesheet_directory() ) . 'core/image.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'core/navigation.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'core/templates.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . 'core/terms.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'core/various.php' );
 
 // Local development mode; relies on WP-Config-X or some similar system; see https://github.com/synapticism/wp-config-x

@@ -23,9 +23,11 @@
     }
   }
 
-  // Boost the font size for full-width archives
-  @include full-width($media: large, $body-class: ".archive") {
-    @include font-size($s-header-big);
+  // Boost the font size for full-width archives; @TODO: assess whether this is useful anymore
+  @include k-media-above($b-large) {
+    .full-width.archive & {
+      @include font-size($s-header-big);
+    }
   }
 }
 
@@ -158,8 +160,8 @@
     }
   }
 
-  // Full-width styling
-  @include full-width {
+  // Full-width styling adjustments
+  .full-width & {
     > * {
       max-width: $main-width;
     }

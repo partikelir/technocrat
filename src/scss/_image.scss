@@ -33,13 +33,10 @@
 .entry-caption,
 .wp-caption-text {
   @extend %clearfix-below;
-  @include font-size($s-text-smaller);
+  @include font-sizes($s-text-smaller, $s-text-small);
   @include k-reverse-italics;
   color: lighten($c-text-lightest, 10);
   max-width: 100%; // Captions are more readable when limited to $main-width but this looks weird; we'll sacrifice readability for appearance in this instance
-  @include full-width {
-    @include font-size($s-text-small); // Bump up the size a little
-  }
 }
 
 
@@ -53,13 +50,13 @@ figure.wp-caption,
   overflow: auto; // Without this the floats won't float
   &.alignleft {
     margin-right: percentage($spacer / $main-width);
-    @include full-width {
+    .full-width & {
       margin-right: percentage($spacer / $content-width);
     }
   }
   &.alignright {
     margin-left: percentage($spacer / $main-width);
-    @include full-width {
+    .full-width & {
       margin-left: percentage($spacer / $content-width);
     }
   }
@@ -85,7 +82,7 @@ figure.wp-caption,
   @include image-overlay(".gallery-caption", "caption");
   float: left;
   margin: 0 percentage($d-image-spacer / $main-width) percentage($d-image-spacer / $main-width) 0;
-  @include full-width {
+  .full-width & {
     margin: 0 percentage($d-image-spacer / $content-width) percentage($d-image-spacer / $content-width) 0;
   }
 }
@@ -100,11 +97,7 @@ figure.wp-caption,
     &:nth-of-type(#{$i}n+1) {
       clear: left;
     }
-  }
-}
-@if $full-width == true {
-  @for $i from 1 to 10 {
-    .full-width .gallery-columns-#{$i} .gallery-item {
+    .full-width & {
       max-width: percentage(1 / ($i) ) - percentage( ( ($d-image-spacer * ($i - 1) ) / $content-width) / $i);
     }
   }
@@ -140,7 +133,7 @@ figure.wp-caption,
     float: left;
     margin: 0 percentage($d-image-spacer / $main-width) percentage($d-image-spacer / $main-width) 0;
     width: 100%; // Force images to fill the available space
-    @include full-width {
+    .full-width & {
       margin: 0 percentage($d-image-spacer / $content-width) percentage($d-image-spacer / $content-width) 0;
     }
     img {
@@ -167,11 +160,7 @@ figure.wp-caption,
     &:nth-of-type(#{$i}n+1) {
       clear: left;
     }
-  }
-}
-@if $full-width == true {
-  @for $i from 2 to 6 {
-    .full-width .img-group-#{$i} figure.wp-caption {
+    .full-width & {
       max-width: percentage(1 / ($i) ) - percentage( ( ($d-image-spacer * ($i - 1) ) / $content-width) / $i);
     }
   }

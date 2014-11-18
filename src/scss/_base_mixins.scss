@@ -60,29 +60,21 @@
   line-height: ( ( ($baseline - $offset) * $buffer) / $size );
 }
 
-// Letterpress effect
-@mixin letterpress($colour: $c-body-bg) {
-  text-shadow: 0px 1px $colour;
+
+
+// Full-width font sizes; not to be used when offsets are required
+@mixin font-sizes($size1, $size2) {
+  @include font-size($size1);
+  .full-width & {
+    @include font-size($size2);
+  }
 }
 
 
 
-// == FULL-WIDTH MODULE == //
-
-// Full-width mixin; just a shortcut for wrapping content using the optional full-width functionality
-// Optionally wrap content in a media query by setting $media
-@mixin full-width($media: null, $body-class: null) {
-  @if $full-width == true {
-    .full-width#{$body-class} & {
-      @if $media != null {
-        @include respond-to($media) {
-          @content;
-        }
-      } @else {
-        @content;
-      }
-    }
-  }
+// Letterpress effect
+@mixin letterpress($colour: $c-body-bg) {
+  text-shadow: 0px 1px $colour;
 }
 
 
@@ -244,32 +236,6 @@
         }
       }
     }
-  }
-}
-
-
-
-// == MEDIA QUERIES == //
-
-// Media query breakpoints mixin; adapted from http://thesassway.com/intermediate/responsive-web-design-in-sass-using-media-queries-in-sass-32
-@mixin respond-to($media: "medium") {
-  @if ($media == "small") or ($media == "mobile") {
-    @include k-media-below($b-small) { @content; }
-  }
-  @else if ($media == "small-medium") {
-    @include k-media-between($b-small, $b-medium - 1) { @content; }
-  }
-  @else if ($media == "medium") {
-    @include k-media-above($b-medium) { @content; }
-  }
-  @else if ($media == "medium-large") {
-    @include k-media-between($b-medium, $b-large - 1) { @content; }
-  }
-  @else if ($media == "large") or ($media == "single-column") {
-    @include k-media-above($b-large) { @content; }
-  }
-  @else if ($media == "full") {
-    @include k-media-above($b-full) { @content; }
   }
 }
 
