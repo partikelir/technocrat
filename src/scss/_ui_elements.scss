@@ -22,14 +22,17 @@ input[type="reset"],
 #site-interface {
   display: block;
   @include k-absolute(right $spacer top $spacer);
-  @include respond-to("medium") {
+  @include k-media-below($b-small) {
+    @include rem("right", $spacer/2);
+  }
+  @include k-media-above($b-medium) {
     @include rem("right", $spacer*1.5);
   }
 }
 
 // Menu toggle for mobile phones and small screens
 #responsive-menu-toggle {
-  @include respond-to("medium") {
+  @include k-media-above($b-medium) {
     display: none;
   }
   &.toggled {
@@ -85,6 +88,7 @@ input[type="reset"],
 // Search form input field stretches to the width of the contain; adapted from: http://boulderinformationservices.wordpress.com/2011/02/02/input-field-and-submit-button-on-the-same-line-full-width/
 .search-form {
   width: 50%; // Width of the search form in most contexts
+  #site-navigation &,
   .widget & {
     width: 100%; // Search form in the sidebar stretches to fill
   }

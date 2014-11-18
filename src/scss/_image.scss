@@ -17,7 +17,7 @@
 }
 .image-description {
   @include font-size($s-text-smaller);
-  @include respond-to("medium") {
+  @include k-media-above($b-medium) {
     @include font-size($s-text-small);
   }
 }

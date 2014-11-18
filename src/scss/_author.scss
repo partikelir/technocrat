@@ -9,7 +9,7 @@
 }
 .author-avatar {
   display: none; // Only display author avatar on larger screens
-  @include respond-to("medium") {
+  @include k-media-above($b-medium) {
     @include rem("margin", $spacer/2 $spacer/2 $spacer/2 0 );
     display: block;
     float: left;

@@ -29,7 +29,7 @@
   }
   // Threaded comments
   .children {
-    @include respond-to("medium") {
+    @include k-media-above($b-medium) {
       @include rem("margin-left", $spacer);
     }
   }

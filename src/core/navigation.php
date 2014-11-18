@@ -1,5 +1,14 @@
 <?php // ==== NAVIGATION ==== //
 
+// Site navigation; this outputs the header menu and search form
+if ( !function_exists( 'pendrell_nav_site' ) ) : function pendrell_nav_site() {
+  get_search_form();
+  wp_nav_menu( array( 'theme_location' => 'header', 'menu_class' => 'menu-header inline-menu' ) );
+} endif;
+add_action( 'pendrell_site_navigation', 'pendrell_nav_site' );
+
+
+
 // Content navigation: used in archive, index, and search templates
 if ( !function_exists( 'pendrell_nav_content' ) ) : function pendrell_nav_content( $html_id = 'nav-below' ) {
 

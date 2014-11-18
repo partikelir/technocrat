@@ -19,14 +19,8 @@
 
 // Header menu; applied to a ul element
 .menu-header {
-  @include font-size($s-menu-header-sm);
+  @include font-size($s-menu-header);
   @include k-list-nested;
-
-  // Toggle display with mobile-friendly menu button
-  display: none;
-  &.toggled {
-    display: block;
-  }
 
   // Link styling
   a:hover {
@@ -69,8 +63,7 @@
   }
 
   // Media query to enable all menu features on larger screens
-  @include respond-to("medium") {
-    @include font-size($s-menu-header);
+  @include k-media-above($b-medium) {
     border-bottom: $d-divider; // Border for the whole menu
     display: block;
     width: 100%;

@@ -31,7 +31,7 @@
 					<span class="button skip-link screen-reader-text"><a href="#content" role="button"><?php _e( 'Skip to content', 'pendrell' ); ?></a></span>
 				</div>
 				<nav id="site-navigation" role="navigation">
-					<?php wp_nav_menu( array( 'theme_location' => 'header', 'menu_class' => 'menu-header inline-menu' ) ); ?>
+					<?php do_action( 'pendrell_site_navigation' ); ?>
 				</nav>
 			</header>
 		</div>

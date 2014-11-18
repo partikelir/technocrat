@@ -141,7 +141,7 @@
       @include font-style("image-overlay-title");
       text-align: center;
       text-shadow: 0px 1px 2px black(.8);
-      @include respond-to("large") {
+      @include k-media-above($b-large) {
         @include font-size($s-text-bigger);
         text-shadow: 1px 1px 5px black(.7);
       }

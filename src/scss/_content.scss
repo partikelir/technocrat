@@ -4,7 +4,7 @@
 .entry-title {
   @include font-size($s-header);
   @include font-style("entry-title");
-  @include respond-to("medium") {
+  @include k-media-above($b-medium) {
     @include font-size($s-header-big); // This is the normal title size seen on the homepage
   }
 
@@ -16,7 +16,7 @@
   }
 
   // Single post and page views
-  @include respond-to("large") {
+  @include k-media-above($b-large) {
     body.page &, // Targets singular pages, avoiding conflict with .search-results .page .entry-title declaration
     .single & {
       //@include font-size($s-header-title); // @TODO: fix this, it's an ugly mess
