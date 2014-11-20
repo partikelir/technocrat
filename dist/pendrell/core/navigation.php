@@ -10,22 +10,22 @@ add_action( 'pendrell_site_navigation', 'pendrell_nav_site' );
 
 
 // Content navigation: used in archive, index, and search templates
-if ( !function_exists( 'pendrell_nav_content' ) ) : function pendrell_nav_content( $html_id = 'nav-below' ) {
+if ( !function_exists( 'pendrell_nav_content' ) ) : function pendrell_nav_content( $id = 'nav-below' ) {
 
   global $wp_query;
 
   // No funny business
-  $html_id = esc_attr( $html_id );
+  $id = esc_attr( $id );
 
   // Don't print empty markup if there's only one page
   if ( $wp_query->max_num_pages < 2 )
     return;
 
   // Don't display top navigation on page 1; it creates unnecessary visual clutter
-  if ( ( $html_id === 'nav-above' && is_paged() ) || $html_id !== 'nav-above' ) {
+  if ( ( $id === 'nav-above' && is_paged() ) || $id !== 'nav-above' ) {
 
     // Hack: switch navigation links from "newer" and "older" to "next" and "previous"; solves UI problems with custom post ordering
-    ?><nav id="<?php echo $html_id; ?>" class="nav-content" role="navigation">
+    ?><nav id="<?php echo $id; ?>" class="nav-content <?php echo $id; ?>" role="navigation">
       <h2 class="screen-reader-text"><?php _e( 'Content navigation', 'pendrell' ); ?></h2>
       <div class="nav-links">
       <?php if ( get_previous_posts_link() ) { ?>
@@ -44,12 +44,12 @@ if ( !function_exists( 'pendrell_nav_content' ) ) : function pendrell_nav_conten
 
 
 // Page navigation: should only be used in page.php template
-if ( !function_exists( 'pendrell_nav_page' ) ) : function pendrell_nav_page( $html_id = 'nav-below' ) {
+if ( !function_exists( 'pendrell_nav_page' ) ) : function pendrell_nav_page( $id = 'nav-below' ) {
 
   global $post;
 
   // No funny business
-  $html_id = esc_attr( $html_id );
+  $id = esc_attr( $id );
   $child = '';
   $parent = '';
 
@@ -73,7 +73,7 @@ if ( !function_exists( 'pendrell_nav_page' ) ) : function pendrell_nav_page( $ht
 
   // Check if we have anything; if so, let's output what we've found
   if ( !empty( $parent ) || !empty( $child ) ) {
-    ?><nav id="<?php echo $html_id; ?>" class="nav-page" role="navigation">
+    ?><nav id="<?php echo $id; ?>" class="nav-page <?php echo $id; ?>" role="navigation">
       <h2 class="screen-reader-text"><?php _e( 'Post navigation', 'pendrell' ); ?></h2>
       <div class="nav-links">
         <?php echo $parent . $child; ?>
@@ -85,10 +85,10 @@ if ( !function_exists( 'pendrell_nav_page' ) ) : function pendrell_nav_page( $ht
 
 
 // Post navigation; only used in single.php temple
-if ( !function_exists( 'pendrell_nav_post' ) ) : function pendrell_nav_post( $html_id = 'nav-below' ) {
+if ( !function_exists( 'pendrell_nav_post' ) ) : function pendrell_nav_post( $id = 'nav-below' ) {
 
   // No funny business
-  $html_id = esc_attr( $html_id );
+  $id = esc_attr( $id );
 
   // Default taxonomy
   $post_tax = 'category';
@@ -105,7 +105,7 @@ if ( !function_exists( 'pendrell_nav_post' ) ) : function pendrell_nav_post( $ht
 
   // Output markup if we've got a match
   if ( !empty( $next ) || !empty( $prev ) ) {
-    ?><nav id="<?php echo $html_id; ?>" class="nav-post" role="navigation">
+    ?><nav id="<?php echo $id; ?>" class="nav-post <?php echo $id; ?>" role="navigation">
       <h2 class="screen-reader-text"><?php _e( 'Post navigation', 'pendrell' ); ?></h2>
       <div class="nav-links">
         <?php echo $prev . $next; ?>

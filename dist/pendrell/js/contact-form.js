@@ -1412,12 +1412,12 @@ $.extend($.fn, {
           formData = $(form).serialize();
 
         // @TODO: invoke spinner
-        $contactForm.append('<div id="spinner">'+CF1.formSent+'</div>');
+        $contactForm.append('<div id="cf1-spinner" class="contact-form-spinner">'+CF1.formSent+'</div>');
 
-        $('#submit').hide();
+        $('#cf1-submit').hide();
 
         // Response placeholder
-        $contactForm.append('<div id="status"></div>');
+        $contactForm.append('<div id="cf1-status" class="contact-form-status"></div>');
 
         // Send the form data
         $.ajax({
@@ -1425,14 +1425,14 @@ $.extend($.fn, {
           url: pendrellVars.ajaxUrl,
           data: formData+'&action=contact_form',
           success: function(data) {
-            $('#status').hide().html(data).fadeIn('slow');
+            $('#cf1-status').hide().html(data).fadeIn('slow');
           },
           error: function(jqXHR,textStatus,errorThrown){
-            $('#status').hide().html('<p class="alert" role="alert">'+CF1.formError+textStatus+'.</p>').fadeIn('slow');
+            $('#cf1-status').hide().html('<p class="alert" role="alert">'+CF1.formError+textStatus+'.</p>').fadeIn('slow');
           },
           complete: function(jqXHR,textStatus){
             // @TODO: hide spinner
-            $('#spinner').hide();
+            $('#cf1-spinner').hide();
           }
         });
       },

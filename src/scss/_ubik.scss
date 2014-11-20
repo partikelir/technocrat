@@ -1,10 +1,24 @@
 // ==== UBIK ==== //
 
+// == NETLABELS == //
+
+ul.discography-thumbnails {
+  list-style: none;
+  li {
+    @extend %spacer-below;
+    margin-left: 0;
+  }
+}
+
+
+
 // == PLACES == //
 
 .place-list {
   @extend %spacer-below;
 }
+
+
 
 // == SERIES == //
 

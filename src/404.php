@@ -6,7 +6,7 @@
  */
 
 get_header(); ?>
-  <div id="wrap-content">
+  <div id="wrap-content" class="wrap-content">
     <div id="content" class="site-content<?php pendrell_content_class(); ?>">
       <section id="primary" class="content-area">
       	<main id="main" class="site-main" role="main">

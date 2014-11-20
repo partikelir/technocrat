@@ -2,11 +2,15 @@
 
 // General comments area
 .comments-area {
-  max-width: $main-width;
+  max-width: $main-width; // @TODO: redundant?
   @include rem("margin-top", $spacer*3);
   article {
-    @include rem("margin-bottom", $spacer*1.5);
-    padding: 0;
+    @include border-radius(6px);
+    @include rem("margin", $spacer/-2 $spacer/-2 $spacer*1.5 $spacer/-2);
+    @include rem("padding", $spacer/2);
+  }
+  ol {
+    list-style: none; // Reset list style from `_general.scss`
   }
 }
 .comments-title {
@@ -19,7 +23,6 @@
 // == COMMENT LIST == //
 
 .comment-list {
-  list-style: none;
 
   // Pingbacks/trackbacks
   .pingback,
@@ -61,6 +64,13 @@
   @include link-stylist($c-meta-link, $c-meta-link-v, $c-meta-link-h, $c-meta-link-a, $c-meta-link-f, $link-border: false);
   color: $c-meta;
 }
+// Specific to the post author's comments
+.bypostauthor {
+  article {
+    background: $c-body-dark;
+    box-shadow: $d-inset-box;
+  }
+}
 
 
 
@@ -73,7 +83,7 @@
     @extend %spacer-below;
   }
   #submit {
-    @include rem("margin-bottom", $spacer*2); // Needed for when the comment form moves around
+    @extend %spacer-below-double; // Needed for when the comment form moves around
   }
 }
 

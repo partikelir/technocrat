@@ -49,7 +49,7 @@
     // Styling specific to the first submenu
     > ul {
       display: none; // Only display submenus on larger screens
-      margin-top: -$spacer/4; // Breaks vertical rhythm but gives a more natural look
+      margin-top: $spacer/-4; // Breaks vertical rhythm but gives a more natural look
       > li:first-child > a {
         @include triangle; // Pseudo triangle on first submenu only
         border-color: $c-interface;

@@ -13,13 +13,13 @@
 }
 .archive-content {
   @extend %clearfix-above;
+  @extend %spacer-below-double;
   @include font-size($s-text-small);
   @include k-media-above($b-large) {
     .full-width & {
       @include font-size($s-text);
     }
   }
-  @include rem("margin-bottom", $spacer*2);
   color: $c-text-lighter;
   p {
     @extend %spacer-below;

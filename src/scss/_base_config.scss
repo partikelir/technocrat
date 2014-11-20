@@ -257,6 +257,9 @@ $d-gradient-2:    darken($c-body-bg, 10);
 // Image spacer; defines the space between gallery items and grouped images
 $d-image-spacer:  $spacer;
 
+// Inset box shadow style
+$d-inset-box:     inset 3px 3px 7px $c-shadow;
+
 // Interface border for buttons and submenus
 $d-interface:     1px solid $c-interface;
 

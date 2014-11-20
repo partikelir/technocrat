@@ -25,8 +25,26 @@
 %spacer-above {
   @include rem("margin-top", $spacer);
 }
+%spacer-above-double {
+  @include rem("margin-top", $spacer*2);
+}
+%spacer-above-triple {
+  @include rem("margin-top", $spacer*3);
+}
+%spacer-above-half {
+  @include rem("margin-top", $spacer/2);
+}
 %spacer-below {
   @include rem("margin-bottom", $spacer);
+}
+%spacer-below-double {
+  @include rem("margin-bottom", $spacer*2);
+}
+%spacer-below-triple {
+  @include rem("margin-bottom", $spacer*3);
+}
+%spacer-below-half {
+  @include rem("margin-bottom", $spacer/2);
 }
 
 

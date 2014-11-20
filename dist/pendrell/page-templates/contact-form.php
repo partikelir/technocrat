@@ -10,7 +10,7 @@
  */
 
 get_header(); ?>
-  <div id="wrap-content">
+  <div id="wrap-content" class="wrap-content">
     <div id="content" class="site-content<?php pendrell_content_class(); ?>">
     	<section id="primary" class="content-area">
     		<main id="main" class="site-main" role="main">
@@ -24,7 +24,7 @@ get_header(); ?>
               </div>
               <div>
                 <h3><a name="contact-form"></a><?php _e( 'Contact form', 'pendrell' ); ?></h3>
-                <form id="response-form" class="contact-form" method="post" action="" enctype="application/x-www-form-urlencoded">
+                <form id="response-form" class="response-form contact-form" method="post" action="" enctype="application/x-www-form-urlencoded">
                   <p><?php _e( 'Required fields are marked <span class="required">*</span>', 'pendrell' ); ?></p>
 
                   <label for="from"><?php _e( 'Name', 'pendrell' ); ?> <span class="required">*</span></label>

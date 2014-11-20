@@ -21,12 +21,12 @@
     @include rem("padding-right", $spacer*1.5);
   }
 }
-#wrap-header {
+.wrap-header {
   @extend %wrap;
   @include rem("padding-top", $spacer);
   position: relative; // Contains #site-interface, which is absolutely positioned
 }
-#wrap-main { // Wrapper around content and sidebar
+.wrap-main { // Wrapper around content and sidebar
   @extend %clearfix;
   @include k-media-above($b-large) {
     @include k-center-block($content-width);
@@ -34,7 +34,7 @@
     @include rem("padding-right", $spacer*1.5);
   }
 }
-#wrap-content {
+.wrap-content {
   @extend %wrap;
   @include rem("padding-top", $spacer);
   @include rem("padding-bottom", $spacer);
@@ -50,7 +50,7 @@
     }
   }
 }
-#wrap-sidebar {
+.wrap-sidebar {
   @extend %wrap;
   @include rem("padding-top", $spacer);
   @include rem("padding-bottom", $spacer);
@@ -66,7 +66,7 @@
     }
   }
 }
-#wrap-footer {
+.wrap-footer {
   @extend %wrap;
   position: relative; // For use with the "Back to top" button
 }
@@ -112,7 +112,7 @@
     @include hide; // Hide the site description on smaller screens
   }
 }
-#site-navigation {
+.site-navigation {
   @include k-media-below($b-medium) {
     display: none;
   }
@@ -140,7 +140,7 @@
 
   // Individual articles within the content area
   article {
-    @include rem("margin-bottom", $spacer*3);
+    @extend %spacer-below-triple;
   }
 }
 main {
