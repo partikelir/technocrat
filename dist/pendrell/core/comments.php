@@ -21,7 +21,7 @@ if ( !function_exists( 'pendrell_comments' ) ) : function pendrell_comments( $co
 
       ?>
       <li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
-        <article class="pingback"><?php _e( 'Pingback:', 'pendrell' ); ?> <?php comment_author_link(); ?> <?php edit_comment_link( __( 'Edit', 'pendrell' ), '<div class="comment-buttons"><span class="edit-link button">', '</span></div>' ); ?></article>
+        <article class="pingback comment-pingback"><?php _e( 'Pingback:', 'pendrell' ); ?> <?php comment_author_link(); ?> <?php edit_comment_link( __( 'Edit', 'pendrell' ), '<div class="comment-buttons"><span class="edit-link button">', '</span></div>' ); ?></article>
       </li>
       <?php
       break;
@@ -33,7 +33,7 @@ if ( !function_exists( 'pendrell_comments' ) ) : function pendrell_comments( $co
 
       ?>
       <li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
-        <article id="comment-<?php comment_ID(); ?>">
+        <article id="comment-<?php comment_ID(); ?>" class="comment-article">
           <header class="comment-author vcard">
             <div class="comment-avatar">
               <?php echo get_avatar( $comment, 60 ); ?>
@@ -43,7 +43,7 @@ if ( !function_exists( 'pendrell_comments' ) ) : function pendrell_comments( $co
               <?php comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply', 'pendrell' ), 'before' => ' <span class="leave-reply button">', 'after' => '</span>', 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
             </div>
             <div class="comment-meta">
-              <h3><?php comment_author_link(); ?></h3>
+              <h1><?php comment_author_link(); ?></h1>
             <?php
               printf( __( '<a href="%1$s" rel="bookmark"><time datetime="%2$s">%3$s, %4$s</time></a>', 'pendrell' ),
                 esc_url( get_comment_link( $comment->comment_ID ) ),
@@ -56,7 +56,7 @@ if ( !function_exists( 'pendrell_comments' ) ) : function pendrell_comments( $co
           </header>
 
           <?php if ( $comment->comment_approved == '0' ) : ?>
-            <p class="warning"><?php _e( 'Your comment is awaiting moderation.', 'pendrell' ); ?></p>
+            <p class="comment-warning"><?php _e( 'Your comment is awaiting moderation.', 'pendrell' ); ?></p>
           <?php endif; ?>
 
           <section class="comment-content">

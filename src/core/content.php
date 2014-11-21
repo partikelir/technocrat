@@ -1,5 +1,21 @@
 <?php // ==== CONTENT ==== //
 
+// Minimally functional wp_title filter; use Ubik (or your plugin of choice) for more SEO-friendly page titles
+// @TODO: remove/extract this code
+if ( !function_exists( 'pendrell_wp_title' ) ) : function pendrell_wp_title( $title, $sep = '-' ) {
+  if ( is_front_page() || is_home() ) {
+    $title = PENDRELL_NAME;
+    if ( PENDRELL_DESCRIPTION )
+      $title .= ' ' . $sep . ' ' . get_bloginfo( 'description' );
+  } else {
+    $title = $title . get_bloginfo( 'name' );
+  }
+  return $title;
+} endif;
+add_filter( 'wp_title', 'pendrell_wp_title', 11, 3 );
+
+
+
 // Content title; displayed at the top of posts, pages, etc.
 if ( !function_exists( 'pendrell_entry_title' ) ) : function pendrell_entry_title( $content = '' ) {
   if ( empty( $content ) )

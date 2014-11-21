@@ -113,14 +113,14 @@ label.error {
 
 // Footnotes; for use with Markdown Extra implementations e.g. JP Markdown
 .footnotes {
-  @include font-size($s-text-small);
+  @extend %text-small;
 }
 
 
 
 // References list; for use with scholarly works
 .references {
-  @include font-size($s-text-smaller);
+  @extend %text-smaller;
   ol,
   ul {
     list-style: none;

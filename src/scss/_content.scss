@@ -84,7 +84,7 @@
   ol,
   ul,
   dl {
-    @include rem("margin-bottom", $spacer);
+    @extend %spacer-below;
   }
   li {
     @include rem("margin", 0 0 0 $spacer);
@@ -109,7 +109,7 @@
       border-bottom: none;
     }
     caption {
-      @include font-size($s-text-small);
+      @extend %text-small;
     }
   }
   th {

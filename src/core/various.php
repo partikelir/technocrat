@@ -1,6 +1,6 @@
 <?php // ==== VARIOUS ==== //
 
-// == MISC == //
+// == BODY CLASSES == //
 
 // Body class filter
 if ( !function_exists( 'pendrell_body_class' ) ) : function pendrell_body_class( $classes ) {
@@ -35,37 +35,3 @@ if ( !function_exists( 'pendrell_shortcode_init' ) ) : function pendrell_shortco
 
 } endif;
 add_action( 'init', 'pendrell_shortcode_init' );
-
-
-
-// == THUMBNAILS == //
-
-// Thumbnail ID fallback
-if ( !function_exists( 'pendrell_thumbnail_id' ) ) : function pendrell_thumbnail_id( $post_id = null, $fallback_id = null ) {
-  if ( function_exists( 'ubik_imagery_thumbnail_id' ) )
-    return ubik_imagery_thumbnail_id( $post_id, $fallback_id );
-  return get_post_thumbnail_id( $post_id );
-} endif;
-
-
-
-// == PAGE LOADER == //
-
-// Test whether the current request will work with the page loader script (PG8)
-if ( !function_exists( 'pendrell_load_pg8' ) ) : function pendrell_load_pg8() {
-  if ( is_archive() || is_home() || is_search() )
-    return true;
-  return false;
-} endif;
-
-
-
-// == LARGE PRINT == //
-
-// Large-print post class; prototype function; @TODO: assess how useful this is
-if ( !function_exists( 'pendrell_large_print_post_class' ) ) : function pendrell_large_print_post_class( $classes ) {
-  if ( 1 === 0 ) // is_category( 'photography' )
-    $classes[] = 'large-print';
-  return $classes;
-} endif;
-add_filter( 'post_class', 'pendrell_large_print_post_class' );

@@ -36,7 +36,7 @@ body:not(.list-view) {
       color: $c-text;
       @include rem("padding", $spacer/2 $spacer);
       footer {
-        @include font-size($s-text-small);
+        @extend %text-small;
       }
     }
   }

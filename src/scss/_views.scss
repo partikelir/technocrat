@@ -72,8 +72,8 @@
     margin: 0;
   }
   article {
-    @include font-size($s-text-small);
-    @include rem("margin-bottom", $spacer);
+    @extend %spacer-below;
+    @extend %text-small;
   }
 
   // Entry meta
@@ -92,7 +92,7 @@
     margin-left: $thumbnail-size + $spacer;
   }
   .entry-content p {
-    @include font-size($s-text-small);
+    @extend %text-small;
   }
 
   // Edge cases

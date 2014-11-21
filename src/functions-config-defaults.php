@@ -45,9 +45,6 @@ defined( 'PENDRELL_SCRIPTS_PRISM' )       || define( 'PENDRELL_SCRIPTS_PRISM', f
 
 // == FULL WIDTH == //
 
-// Master switch for full-width styling
-defined( 'PENDRELL_MODULE_FULL_WIDTH' )   || define( 'PENDRELL_MODULE_FULL_WIDTH', true );
-
 // Optional: force full-width categories and tags; just enter an array of IDs, names, or slugs below; matches in_category() and has_tag()
 // $pendrell_full_width_cats = array();
 // $pendrell_full_width_tags = array();

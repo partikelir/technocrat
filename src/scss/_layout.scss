@@ -179,5 +179,5 @@ main {
   }
 }
 .site-footer-info {
-  @include font-size($s-text-smallest);
+  @extend %text-smallest;
 }

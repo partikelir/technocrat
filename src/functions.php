@@ -33,6 +33,7 @@ require_once( trailingslashit( get_stylesheet_directory() ) . 'core/author.php' 
 require_once( trailingslashit( get_stylesheet_directory() ) . 'core/comments.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'core/content.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'core/general.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . 'core/full-width.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'core/image.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'core/navigation.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'core/templates.php' );
@@ -47,15 +48,12 @@ if ( WP_LOCAL_DEV ) {
 
 // == MODULES == //
 
-// Contact form
+// Required
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/contact-form.php' );
-
-// Footer info
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/footer-info.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik.php' );
 
-// Optional modules configured in `functions-config.php`
-if ( PENDRELL_MODULE_FULL_WIDTH )
-  require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/full-width.php' );
+// Optional
 if ( PENDRELL_MODULE_IMAGE_META )
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/image-metadata.php' );
 if ( PENDRELL_MODULE_POST_FORMATS )
@@ -63,62 +61,6 @@ if ( PENDRELL_MODULE_POST_FORMATS )
 if ( PENDRELL_MODULE_VIEWS ) {
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/views.php' );
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/view-posts-shortcode.php' );
-}
-
-
-
-// == UBIK == //
-
-// Ubik modules (required)
-require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-imagery/ubik-imagery.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-search/ubik-search.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-terms/ubik-terms.php' );
-add_filter( 'pendrell_archive_description', 'ubik_terms_edit_link' );
-add_filter( 'pendrell_term_archive_description', 'ubik_terms_edit_description_prompt' );
-
-
-
-// Ubik modules (optional)
-if ( PENDRELL_UBIK_ANALYTICS )
-  require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-analytics/ubik-analytics.php' );
-if ( PENDRELL_UBIK_COMMENTS )
-  require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-comments/ubik-comments.php' );
-if ( PENDRELL_UBIK_EXCLUDER )
-  require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-excluder/ubik-excluder.php' );
-if ( PENDRELL_UBIK_FEED )
-  require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-feed/ubik-feed.php' );
-if ( PENDRELL_UBIK_LINGUAL ) {
-  require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-lingual/ubik-lingual.php' );
-  add_filter( 'pendrell_entry_title', 'ubik_lingual_unpinyin' );
-  add_filter( 'pendrell_archive_title', 'ubik_lingual_unpinyin' );
-  add_filter( 'ubik_content_title', 'ubik_lingual_unpinyin' ); // @TODO: verify this is still needed
-  if ( PENDRELL_UBIK_PLACES )
-    add_filter( 'ubik_places_title', 'ubik_lingual_unpinyin' );
-}
-if ( PENDRELL_UBIK_MARKDOWN )
-  require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-markdown/ubik-markdown.php' );
-if ( PENDRELL_UBIK_META )
-  require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-meta/ubik-meta.php' );
-if ( PENDRELL_UBIK_PLACES ) {
-  require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-places/ubik-places.php' );
-  add_action( 'pendrell_archive_description_before', 'ubik_places_breadcrumb' );
-}
-if ( PENDRELL_UBIK_POST_FORMATS )
-  require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-post-formats/ubik-post-formats.php' );
-if ( PENDRELL_UBIK_RECORDPRESS )
-  require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-recordpress/ubik-recordpress.php' );
-if ( PENDRELL_UBIK_SERIES ) {
-  require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-series/ubik-series.php' );
-  add_action( 'pendrell_entry_meta_before', 'ubik_series_list' );
-}
-
-// Ubik modules (admin only)
-if ( is_admin() ) {
-  if ( PENDRELL_UBIK_ADMIN )
-    require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-admin/ubik-admin.php' );
-  if ( PENDRELL_UBIK_QUICK_TERMS )
-    require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-quick-terms/ubik-quick-terms.php' );
 }
 
 

@@ -34,3 +34,14 @@ if ( !function_exists( 'pendrell_image_wrapper' ) ) : function pendrell_image_wr
 } endif;
 remove_filter( 'the_content', 'prepend_attachment' ); // Removes default WordPress functionality for *all* attachments, not just images
 add_filter( 'the_content', 'pendrell_image_wrapper' );
+
+
+
+// == THUMBNAILS == //
+
+// Thumbnail ID fallback
+if ( !function_exists( 'pendrell_thumbnail_id' ) ) : function pendrell_thumbnail_id( $post_id = null, $fallback_id = null ) {
+  if ( function_exists( 'ubik_imagery_thumbnail_id' ) )
+    return ubik_imagery_thumbnail_id( $post_id, $fallback_id );
+  return get_post_thumbnail_id( $post_id );
+} endif;

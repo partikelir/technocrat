@@ -2,13 +2,8 @@
 
 // General comments area
 .comments-area {
-  max-width: $main-width; // Required to bound comments area when there is no sidebar displayed
   @include rem("margin-top", $spacer*3);
-  article {
-    @include border-radius(6px);
-    @include rem("margin", $spacer/-2 $spacer/-2 $spacer*1.5 $spacer/-2);
-    @include rem("padding", $spacer/2);
-  }
+  max-width: $main-width; // Required to bound comments area when there is no sidebar displayed
   ol {
     list-style: none; // Reset list style from `_general.scss`
   }
@@ -23,31 +18,40 @@
 // == COMMENT LIST == //
 
 .comment-list {
-
-  // Pingbacks/trackbacks
-  .pingback,
-  .trackback {
-    @include font-size($s-header-small);
-    @include ghost;
-  }
-  // Threaded comments
-  .children {
+  .children { // Threaded comments
     @include k-media-above($b-medium) {
       @include rem("margin-left", $spacer);
     }
   }
-  // Comment awaiting moderation
-  .warning {
-    @include font-size($s-text-smaller);
-  }
+}
+
+// Pingbacks/trackbacks
+.comment-pingback {
+  @include font-size($s-header-small);
+  @include ghost;
+}
+
+// Comment awaiting moderation
+.comment-warning {
+  @extend %text-smaller;
 }
 
 // Specific to individual comments
+.comment-article {
+  @include border-radius(6px);
+  @include rem("margin", $spacer/-2 $spacer/-2 $spacer*1.5 $spacer/-2);
+  @include rem("padding", $spacer/2);
+  .bypostauthor & { // Specific to the post author's comments
+    background: $c-body-dark;
+    box-shadow: $d-inset-box;
+  }
+}
 .comment-author {
   @extend %clearfix-below;
   @include rem("margin-bottom", $spacer/2);
-  h3 {
-    font-weight: $w-head-normal;
+  h1 {
+    @include font-size($s-text-big);
+    @include font-style("comment-author");
   }
 }
 .comment-avatar {
@@ -63,13 +67,6 @@
   @include font-size($s-text-smaller);
   @include link-stylist($c-meta-link, $c-meta-link-v, $c-meta-link-h, $c-meta-link-a, $c-meta-link-f, $link-border: false);
   color: $c-meta;
-}
-// Specific to the post author's comments
-.bypostauthor {
-  article {
-    background: $c-body-dark;
-    box-shadow: $d-inset-box;
-  }
 }
 
 

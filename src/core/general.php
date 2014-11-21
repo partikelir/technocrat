@@ -1,5 +1,7 @@
 <?php // ==== GENERAL ==== //
 
+// == SCRIPTS & STYLESHEET LOADING == //
+
 // Enqueue scripts
 if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueue_scripts() {
 
@@ -98,6 +100,8 @@ add_action( 'wp_enqueue_scripts', 'pendrell_enqueue_scripts' );
 
 
 
+// == GOOGLE FONTS == //
+
 // Hack: simplify and customize Google font loading; reference Twenty Twelve for more advanced options
 if ( !function_exists( 'pendrell_get_font_url' ) ) : function pendrell_get_font_url( $fonts = '' ) {
   $font_url = '';
@@ -118,30 +122,11 @@ if ( !function_exists( 'pendrell_get_font_url' ) ) : function pendrell_get_font_
 
 
 
-// Minimally functional wp_title filter; use Ubik (or your plugin of choice) for more SEO-friendly page titles
-if ( !function_exists( 'pendrell_wp_title' ) ) : function pendrell_wp_title( $title, $sep = '-' ) {
-  if ( is_front_page() || is_home() ) {
-    $title = PENDRELL_NAME;
-    if ( PENDRELL_DESCRIPTION )
-      $title .= ' ' . $sep . ' ' . get_bloginfo( 'description' );
-  } else {
-    $title = $title . get_bloginfo( 'name' );
-  }
-  return $title;
-} endif;
-add_filter( 'wp_title', 'pendrell_wp_title', 11, 3 );
+// == PAGE LOADER == //
 
-
-
-// Sidebar handler; since WordPress hasn't really made things easy in this department
-if ( !function_exists( 'pendrell_sidebar' ) ) : function pendrell_sidebar( $sidebar = true ) {
-
-  // Filter the $sidebar variable; this way we can set it to "false" by hooking into this function elsewhere
-  // This way the regular sidebar can be disabled and you can output whatever you want
-  $sidebar = apply_filters( 'pendrell_sidebar', $sidebar );
-
-  // Include the regular sidebar template if $sidebar has not been set to "false"
-  if ( $sidebar )
-    get_sidebar();
-
+// Test whether the current request will work with the page loader script (PG8)
+if ( !function_exists( 'pendrell_load_pg8' ) ) : function pendrell_load_pg8() {
+  if ( is_archive() || is_home() || is_search() )
+    return true;
+  return false;
 } endif;

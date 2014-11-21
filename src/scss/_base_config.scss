@@ -103,6 +103,11 @@ $w-mono-bold:       700;
     //
   }
 
+  // Comments
+  @if $style == "comment-author" {
+    @extend %head-normal;
+  }
+
   // Widgets
   @if $style == "widget-title" {
     @extend %head-bold-uppercase;
