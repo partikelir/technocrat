@@ -9,8 +9,8 @@ $baseline:          30;
 // Text
 $s-text-biggest:    28;
 $s-text-bigger:     24;
-$s-text-big:        21;
-$s-text:            18; // Default body text font size
+$s-text-big:        22;
+$s-text:            20; // Default body text font size
 $s-text-small:      16;
 $s-text-smaller:    14;
 $s-text-smallest:   12;
@@ -168,7 +168,8 @@ $b-full:            $content-width;
 $k-colours: map-merge($k-colours, (
   norse-blue:     #5cb6cc,
   suomi-blue:     #559dd1,
-  steel-sky:      #444547
+  steel-sky:      #444547,
+  jove:           #24221E
 ));
 
 // General
@@ -231,8 +232,8 @@ $c-required:      colour(pueblo);
 $c-success:       colour(atlantis);
 
 // Code blocks
-$c-code-box:      colour(iceberg);
-$c-code-box-bg:   rgba(colour(blumine), .93);
+$c-code-box:      colour(malta);
+$c-code-box-bg:   rgba(colour(jove), .9);
 
 // Various
 $c-divider:       rgba($c-text, .09); // For use with <hr> etc.

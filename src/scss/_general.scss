@@ -178,9 +178,10 @@ q {
 pre {
   @extend %spacer-below;
   @include font-size($s-text-small);
-  @include letterpress(black(.25));
+  @include letterpress(black(.3));
   @include rem("padding", $spacer/2);
   background: $c-code-box-bg;
+  background-image: repeating-linear-gradient(45deg, transparent, transparent $spacer/2, black(.04) $spacer/2, black(.04) $spacer);
   box-shadow: inset 3px 3px 7px black(.18);
   color: $c-code-box;
   tab-size: 2;

@@ -2,7 +2,7 @@
 
 // General comments area
 .comments-area {
-  max-width: $main-width; // @TODO: redundant?
+  max-width: $main-width; // Required to bound comments area when there is no sidebar displayed
   @include rem("margin-top", $spacer*3);
   article {
     @include border-radius(6px);

@@ -133,7 +133,7 @@
   > figure,
   > img,
   > pre {
-    &:first-child {
+    &:first-child:not(.alignright):not(.alignleft) { // @TODO: scrap this altogether; there's a better way to layout headers and content
       @extend %spacer-above;
     }
   }

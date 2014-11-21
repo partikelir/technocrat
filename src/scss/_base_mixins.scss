@@ -106,7 +106,7 @@
 @mixin image-fallback {
   @include border-radius;
   background-color: $c-body-darker;
-  background-image: repeating-linear-gradient(to top right, transparent, transparent 2%, black(.04) 2%, black(.04) 4%);
+  background-image: repeating-linear-gradient(45deg, transparent, transparent $spacer/4, black(.04) $spacer/4, black(.04) $spacer/2);
   box-shadow: 0 0 $spacer*2 black(.1) inset;
   transition: background-color .8s ease-out, box-shadow 1.1s ease-in;
   &:hover {
