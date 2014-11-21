@@ -11,6 +11,7 @@ require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-sear
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-terms/ubik-terms.php' );
 add_filter( 'pendrell_archive_description', 'ubik_terms_edit_link' );
 add_filter( 'pendrell_term_archive_description', 'ubik_terms_edit_description_prompt' );
+require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-title/ubik-title.php' );
 
 
 
@@ -26,11 +27,10 @@ if ( PENDRELL_UBIK_FEED )
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-feed/ubik-feed.php' );
 if ( PENDRELL_UBIK_LINGUAL ) {
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-lingual/ubik-lingual.php' );
-  add_filter( 'pendrell_entry_title', 'ubik_lingual_unpinyin' );
-  add_filter( 'pendrell_archive_title', 'ubik_lingual_unpinyin' );
-  add_filter( 'ubik_content_title', 'ubik_lingual_unpinyin' ); // @TODO: verify this is still needed
+  //add_filter( 'pendrell_entry_title', 'ubik_lingual_unpinyin' );
+  add_filter( 'ubik_title', 'ubik_lingual_unpinyin' );
   if ( PENDRELL_UBIK_PLACES )
-    add_filter( 'ubik_places_title', 'ubik_lingual_unpinyin' );
+    add_filter( 'ubik_places_title', 'ubik_lingual_unpinyin' ); // Small header in the faux widget
 }
 if ( PENDRELL_UBIK_MARKDOWN )
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-markdown/ubik-markdown.php' );

@@ -10,7 +10,7 @@ get_header(); ?>
     <div id="content" class="site-content<?php pendrell_content_class(); ?>">
 			<section id="primary" class="content-area">
 				<header class="archive-header">
-					<h1 class="archive-title"><?php printf( __( 'Search results for &ldquo;%s&rdquo;', 'pendrell' ), '<mark>' . get_search_query() . '</mark>' ); ?></h1>
+					<?php pendrell_archive_title(); ?>
 				</header>
 				<?php pendrell_nav_content( 'nav-above' ); ?>
 				<main id="main" class="site-main" role="main">

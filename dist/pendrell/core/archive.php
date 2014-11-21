@@ -1,45 +1,14 @@
 <?php // ==== ARCHIVES ==== //
 
-// Generates all-purpose archive titles
+// A simple wrapper for archive titles using Ubik Title; active in 404, archive, and search templates
 if ( !function_exists( 'pendrell_archive_title' ) ) : function pendrell_archive_title() {
-  if ( is_day() ) {
-    $title = sprintf( __( 'Daily archives: %s', 'pendrell' ), get_the_date() );
-  } elseif ( is_month() ) {
-    $title = sprintf( __( 'Monthly archives: %s', 'pendrell' ), get_the_date( _x( 'F Y', 'monthly archives date format', 'pendrell' ) ) );
-  } elseif ( is_year() ) {
-    $title = sprintf( __( 'Yearly archives: %s', 'pendrell' ), get_the_date( _x( 'Y', 'yearly archives date format', 'pendrell' ) ) );
-  } elseif ( is_author() ) {
-    $title = sprintf( __( 'Posts by %s', 'pendrell' ), get_the_author() );
-  } elseif ( is_category() ) {
-    $title = sprintf( __( '%s', 'pendrell' ), single_cat_title( '', false ) );
-  } elseif ( is_post_type_archive() ) {
-    $title = sprintf( __( '%s', 'pendrell' ), post_type_archive_title( '', false ) );
-  } elseif ( is_tag() ) {
-    $title = sprintf( __( '%s', 'pendrell' ), single_tag_title( '', false ) );
-  } elseif ( is_tax() ) {
-    if ( is_tax( 'post_format' ) && get_post_format() === 'quote' ) {
-      $title = sprintf( __( '%s archives', 'pendrell' ), __( 'Quotation', 'pendrell' ) );
-    } else {
-      $title = sprintf( __( '%s archives', 'pendrell' ), single_term_title( '', false ) );
-    }
+  if ( function_exists( 'ubik_title' ) ) {
+    $title = ubik_title();
   } else {
-    $title = __( 'Archives', 'pendrell' );
+    $title = single_cat_title( '', false ); // Lame fallback; under no circumstances should ubik_title not be found
   }
-  echo '<h1 class="archive-title">' . apply_filters( 'pendrell_archive_title', $title ) . '</h1>';
+  echo '<h1 class="archive-title">' . $title . '</h1>';
 } endif;
-
-
-
-// Adds places to the Pendrell archive title system; @TODO: see if this is even necessary anymore
-function ubik_places_archive_title( $title ) {
-  if ( is_tax( 'places' ) ) {
-    $term = get_term_by( 'slug', get_query_var( 'term' ), 'places' );
-    $title = sprintf( __( '%s archives', 'pendrell' ), '<span>' . apply_filters( 'ubik_places_title', $term->name ) . '</span>' );
-  }
-  return $title;
-}
-if ( PENDRELL_UBIK_PLACES )
-  add_filter( 'pendrell_archive_title', 'ubik_places_archive_title' );
 
 
 

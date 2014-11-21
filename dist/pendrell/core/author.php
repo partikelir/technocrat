@@ -7,7 +7,7 @@ if ( !function_exists( 'pendrell_author_meta' ) ) : function pendrell_author_met
     is_singular()
     && get_the_author_meta( 'description' ) // Only if there is a description
     && !has_post_format( array( 'aside', 'image', 'link', 'quote', 'status' ) ) // Not for small content
-    && !is_page( array( 'about', 'about-me', 'bio', 'biography' ) ) // No sense in duplicated info
+    && !is_page( array( 'about', 'about-me', 'bio', 'biography' ) ) // No sense in duplicating info
     && !is_page_template( 'page-templates/contact-form.php' ) // Not on the contact form either
   ) {
     pendrell_author_info();

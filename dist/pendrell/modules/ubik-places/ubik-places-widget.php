@@ -112,7 +112,7 @@ function ubik_places_widget( $term = null ) {
   // Only output places widget markup if we have results; @TODO: turn this into a real widget
   if ( !empty( $places ) ) {
 
-    ?><div id="wrap-sidebar">
+    ?><div id="wrap-sidebar" class="wrap-sidebar">
       <div id="secondary" class="widget-area" role="complementary">
         <aside id="places" class="widget widget_places">
           <?php if ( !empty( $places ) ) {
