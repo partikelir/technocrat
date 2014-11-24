@@ -110,7 +110,8 @@ if ( !function_exists( 'pendrell_get_font_url' ) ) : function pendrell_get_font_
   if ( empty( $fonts ) )
     $fonts = PENDRELL_GOOGLE_FONTS ? PENDRELL_GOOGLE_FONTS : 'Open+Sans:400italic,700italic,400,700'; // Default back to Open Sans
 
-  // Encode pipe character; explanation: http://www.designfordigital.com/2014/04/07/google-fonts-bad-value-css-validate/
+  // Encode commas and pipe characters; explanation: http://www.designfordigital.com/2014/04/07/google-fonts-bad-value-css-validate/
+  $fonts = str_replace( ',', '%2C', $fonts );
   $fonts = str_replace( '|', '%7C', $fonts );
 
   $protocol = is_ssl() ? 'https' : 'http';

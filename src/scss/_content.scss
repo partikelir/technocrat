@@ -121,6 +121,14 @@
     border-top: $d-divider;
   }
 
+  // Asides; use this instead of <small> in post contents; does not appear in comments but the styling is kept here for ease of maintenance
+  aside {
+    @extend %spacer-below;
+    @include font-size($s-text-small);
+    @include k-reverse-italics;
+    color: lighten($c-text-lightest, 10);
+  }
+
   // Images
   img {
     @include border-radius;
@@ -144,15 +152,7 @@
 // Exclusive to post contents
 .entry-content {
 
-  // Asides; use this instead of <small> in post contents; does not appear in comments
-  aside {
-    @extend %spacer-below;
-    @include font-size($s-text-small);
-    @include k-reverse-italics;
-    color: lighten($c-text-lightest, 10);
-  }
-
-  // First children of .entry-content that require extra spacing for visual flow
+  // Specific .entry-content instances that require extra spacing for visual flow
   .archive &,
   .search-results & {
     > p:first-child {

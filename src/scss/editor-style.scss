@@ -1,0 +1,15 @@
+// A draft version of an editor-style.css file for Pendrell
+
+@import "base";
+@import "general";
+@import "content"; // This doesn't load anything; instead, it is extended below
+// @TODO: @import "image";
+@import "various"; // For alignment, footnotes, references, etc.
+
+body {
+  @extend .entry-content;
+  > * {
+    @include rem("margin-left", $spacer/2);
+    @include rem("margin-right", $spacer/2);
+  }
+}

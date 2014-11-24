@@ -25,18 +25,13 @@ add_filter( 'image_size_names_choose', 'pendrell_image_sizes' );
 
 
 
-// Filter TinyMCE CSS path to include Google Fonts; adapted from Twenty Twelve; @TODO: test this with the visual editor
-if ( !function_exists( 'pendrell_mce_css' ) ) : function pendrell_mce_css( $mce_css ) {
-  $font_url = pendrell_get_font_url();
-
-  if ( empty( $font_url ) )
-    return $mce_css;
-
-  if ( !empty( $mce_css ) )
-    $mce_css .= ',';
-
-  $mce_css .= esc_url_raw( str_replace( ',', '%2C', $font_url ) );
-
-  return $mce_css;
+// Styles the visual editor like the front-end; @TODO: complete this component, presently it is only sketched out
+if ( !function_exists( 'pendrell_editor_style' ) ) : function pendrell_editor_style() {
+  if ( is_admin() ) {
+    add_editor_style( array(
+      get_template_directory_uri() . '/editor-style.css?version=' . filemtime( get_template_directory() . '/editor-style.css' ), // Cache busting only works with absolute URLs
+      pendrell_get_font_url() // Add Google Fonts to the visual editor
+    ) );
+  }
 } endif;
-add_filter( 'mce_css', 'pendrell_mce_css' );
+add_action( 'after_setup_theme', 'pendrell_editor_style' );
