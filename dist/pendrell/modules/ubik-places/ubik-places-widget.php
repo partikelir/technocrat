@@ -1,7 +1,7 @@
 <?php // ==== WIDGET ==== //
 
 // Places widget; this isn't a true widget... but it's also not 200+ lines of code I don't need
-function ubik_places_widget( $term = null ) {
+if ( !function_exists( 'ubik_places_widget' ) ) : function ubik_places_widget( $term = null ) {
 
   $tax = 'places';
 
@@ -125,4 +125,4 @@ function ubik_places_widget( $term = null ) {
       </div>
     </div><?php
   }
-}
+} endif; // ubik_places_widget()

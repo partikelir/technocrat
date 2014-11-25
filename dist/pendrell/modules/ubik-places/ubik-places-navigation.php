@@ -3,7 +3,7 @@
 // == BREADCRUMBS == //
 
 // Breadcrumb navigation for places based on http://www.billerickson.net/wordpress-taxonomy-breadcrumbs/
-function ubik_places_breadcrumb( $term = '' ) {
+if ( !function_exists( 'ubik_places_breadcrumb' ) ) : function ubik_places_breadcrumb( $term = '' ) {
 
   $content = '';
   $tax = get_query_var( 'taxonomy' );
@@ -47,4 +47,4 @@ function ubik_places_breadcrumb( $term = '' ) {
     }
   }
   echo $content;
-}
+} endif; // ubik_places_breadcrumb()

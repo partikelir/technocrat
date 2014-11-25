@@ -1,7 +1,7 @@
 <?php // ==== SHORTCODE ==== //
 
 // Places shortcode; simply wrap places in [place]Place name[/place]; alternately [place slug="place_slug"]Place name[/place]
-function ubik_places_shortcode( $atts, $content = null ) {
+if ( !function_exists( 'ubik_places_shortcode' ) ) : function ubik_places_shortcode( $atts, $content = null ) {
 
   // Extract attributes
   $args = shortcode_atts( array(
@@ -42,4 +42,4 @@ function ubik_places_shortcode( $atts, $content = null ) {
 
   // If the preceding loop didn't find a match we still return the original content as-is; graceful fallback
   return $content;
-}
+} endif; // ubik_places_shortcode()

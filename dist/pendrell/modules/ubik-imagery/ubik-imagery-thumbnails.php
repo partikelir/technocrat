@@ -1,7 +1,7 @@
 <?php // ==== THUMBNAILS ==== //
 
 // Default thumbnail taken from first attached image; adapted from: http://wpengineer.com/1735/easier-better-solutions-to-get-pictures-on-your-posts/
-function ubik_imagery_thumbnail( $html, $post_id, $post_thumbnail_id, $size, $attr ) {
+if ( !function_exists( 'ubik_imagery_thumbnail' ) ) : function ubik_imagery_thumbnail( $html, $post_id, $post_thumbnail_id, $size, $attr ) {
 
   // If this post doesn't already have a thumbnail
   if ( empty( $html ) && !empty( $post_id ) )
@@ -15,13 +15,13 @@ function ubik_imagery_thumbnail( $html, $post_id, $post_thumbnail_id, $size, $at
   }
 
   return $html;
-}
+} endif;
 add_filter( 'post_thumbnail_html', 'ubik_imagery_thumbnail', 11, 5 );
 
 
 
 // Return the ID of a post's thumbnail, the first attached image, or a fallback image specified in the configuration file
-function ubik_imagery_thumbnail_id( $post_id = null, $fallback_id = null ) {
+if ( !function_exists( 'ubik_imagery_thumbnail_id' ) ) : function ubik_imagery_thumbnail_id( $post_id = null, $fallback_id = null ) {
 
   // Try to get the current post ID if one was not passed
   if ( $post_id === null )
@@ -66,16 +66,16 @@ function ubik_imagery_thumbnail_id( $post_id = null, $fallback_id = null ) {
 
   // No thumbnail, attachment, or fallback image was found
   return false;
-}
+} endif; // end ubik_imagery_thumbnail_id()
 
 
 
 // Remove image width and height attributes from most images; via https://gist.github.com/miklb/2919525
-function ubik_imagery_thumbnail_dimensions( $html ) {
+if ( !function_exists( 'ubik_imagery_thumbnail_dimensions' ) ) : function ubik_imagery_thumbnail_dimensions( $html ) {
   $html = preg_replace( '/(width|height)=\"\d*\"\s/', "", $html );
   $html = preg_replace( '/(width|height)=\"\d*\"\s/', "", $html );
   return $html;
-}
+} endif;
 if ( UBIK_IMAGERY_THUMBNAIL_NO_DIMENSIONS ) {
   add_filter( 'post_thumbnail_html', 'ubik_imagery_thumbnail_dimensions', 10 );
   add_filter( 'img_caption_shortcode', 'ubik_imagery_thumbnail_dimensions', 10 );

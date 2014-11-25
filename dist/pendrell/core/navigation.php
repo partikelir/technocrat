@@ -93,9 +93,9 @@ if ( !function_exists( 'pendrell_nav_post' ) ) : function pendrell_nav_post( $id
   // Default taxonomy
   $post_tax = 'category';
 
-  // If this blog isn't big on categories let's use tags instead; depends on Ubik Terms
-  if ( function_exists( 'is_categorized_blog' ) ) {
-    if ( !is_categorized_blog() )
+  // If this blog isn't big on categories let's use tags instead; relies on the is_categorized conditional from Ubik core
+  if ( function_exists( 'is_categorized' ) ) {
+    if ( !is_categorized() )
       $post_tax = 'post_tags';
   }
 

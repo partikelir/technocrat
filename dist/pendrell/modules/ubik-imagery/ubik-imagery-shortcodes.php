@@ -1,7 +1,7 @@
 <?php // ==== SHORTCODES ==== //
 
 // Create a really simple image shortcode based on HTML5 image markup standards
-function ubik_imagery_image_shortcode( $atts, $caption = '' ) {
+if ( !function_exists( 'ubik_imagery_image_shortcode' ) ) : function ubik_imagery_image_shortcode( $atts, $caption = '' ) {
   $args = shortcode_atts( array(
     'id'            => '',
     'title'         => '',
@@ -19,13 +19,13 @@ function ubik_imagery_image_shortcode( $atts, $caption = '' ) {
   $alt    = (string) $args['alt'];
 
   return apply_filters( 'ubik_imagery_image_shortcode', ubik_imagery_markup( $html = '', $id, $caption, $title, $align, $url, $size, $alt ) );
-}
+} endif;
 add_shortcode( 'image', 'ubik_imagery_image_shortcode' );
 
 
 
 // A simple shortcode designed to group images; see Pendrell for an example of usage: https://github.com/synapticism/pendrell
-function ubik_imagery_group_shortcode( $atts, $content ) {
+if ( !function_exists( 'ubik_imagery_group_shortcode' ) ) : function ubik_imagery_group_shortcode( $atts, $content ) {
 
   // Default values
   $args = shortcode_atts( array(
@@ -60,7 +60,7 @@ function ubik_imagery_group_shortcode( $atts, $content ) {
   if ( !empty( $content ) )
     $content = '<div class="img-group' . $column_class . '">' . $content . '</div>';
   return apply_filters( 'ubik_imagery_group_shortcode', $content );
-}
+} endif;
 add_shortcode( 'group', 'ubik_imagery_group_shortcode' );
 
 
@@ -69,7 +69,7 @@ add_shortcode( 'group', 'ubik_imagery_group_shortcode' );
 // Source: http://joostkiens.com/improving-wp-caption-shortcode/
 // Or perhaps: http://writings.orangegnome.com/writes/improved-html5-wordpress-captions/
 // Or was it: http://clicknathan.com/2011/10/06/convert-wordpress-default-captions-shortcode-to-html-5-figure-and-figcaption-tags/
-function ubik_imagery_caption_shortcode( $val, $atts, $html = '' ) {
+if ( !function_exists( 'ubik_imagery_caption_shortcode' ) ) : function ubik_imagery_caption_shortcode( $val, $atts, $html = '' ) {
   $args = shortcode_atts( array(
     'id'      => '',
     'align'   => 'none',
@@ -89,7 +89,7 @@ function ubik_imagery_caption_shortcode( $val, $atts, $html = '' ) {
 
   // Pass whatever we have to the general image markup generator
   return ubik_imagery_markup( $html, $id, $caption, $title = '', $align );
-}
+} endif;
 add_filter( 'img_caption_shortcode', 'ubik_imagery_caption_shortcode', 10, 3 );
 
 
@@ -97,7 +97,7 @@ add_filter( 'img_caption_shortcode', 'ubik_imagery_caption_shortcode', 10, 3 );
 // == ADMIN == //
 
 // Generate the image shortcode when inserting images into a post
-function ubik_imagery_send_to_editor( $html, $id, $caption = '', $title = '', $align = '', $url = '', $size = 'medium', $alt = '' ) {
+if ( !function_exists( 'ubik_imagery_send_to_editor' ) ) : function ubik_imagery_send_to_editor( $html, $id, $caption = '', $title = '', $align = '', $url = '', $size = 'medium', $alt = '' ) {
 
   if ( !empty( $id ) )
     $content = ' id="' . esc_attr( $id ) . '"';
@@ -132,5 +132,5 @@ function ubik_imagery_send_to_editor( $html, $id, $caption = '', $title = '', $a
   }
 
   return $content;
-}
+} endif;
 add_filter( 'image_send_to_editor', 'ubik_imagery_send_to_editor', 10, 9 );

@@ -29,7 +29,9 @@
     "ubik-analytics": "https://github.com/synapticism/ubik-analytics.git",
     "ubik-cleaner": "https://github.com/synapticism/ubik-cleaner.git",
     "ubik-comments": "https://github.com/synapticism/ubik-comments.git",
+    "ubik-excerpt": "https://github.com/synapticism/ubik-excerpt.git",
     "ubik-excluder": "https://github.com/synapticism/ubik-excluder.git",
+    "ubik-favicons": "https://github.com/synapticism/ubik-favicons.git",
     "ubik-feed": "https://github.com/synapticism/ubik-feed.git",
     "ubik-imagery": "https://github.com/synapticism/ubik-imagery.git",
     "ubik-lingual": "https://github.com/synapticism/ubik-lingual.git",
@@ -40,8 +42,10 @@
     "ubik-quick-terms": "https://github.com/synapticism/ubik-quick-terms.git",
     "ubik-recordpress": "https://github.com/synapticism/ubik-recordpress.git",
     "ubik-search": "https://github.com/synapticism/ubik-search.git",
+    "ubik-seo": "https://github.com/synapticism/ubik-seo.git",
     "ubik-series": "https://github.com/synapticism/ubik-series.git",
     "ubik-terms": "https://github.com/synapticism/ubik-terms.git",
+    "ubik-time": "https://github.com/synapticism/ubik-time.git",
     "ubik-title": "https://github.com/synapticism/ubik-title.git"
   }
 }

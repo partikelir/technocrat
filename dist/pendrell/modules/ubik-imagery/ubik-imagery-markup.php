@@ -2,7 +2,7 @@
 
 // Generalized image markup generator; used by captioned images and image shortcodes; alternate markup presented on feeds is intended to validate
 // Note: the $title variable is *not* used at all; it's WordPress legacy code; images don't need titles anyhow, only alt attributes
-function ubik_imagery_markup(
+if ( !function_exists( 'ubik_imagery_markup' ) ) : function ubik_imagery_markup(
   $html     = '',
   $id       = '',
   $caption  = '',
@@ -190,4 +190,4 @@ function ubik_imagery_markup(
     }
   }
   return $content;
-}
+} endif; // end ubik_imagery_markup()

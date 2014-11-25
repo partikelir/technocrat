@@ -2,7 +2,7 @@
 
 // == SCRIPTS & STYLESHEET LOADING == //
 
-// Enqueue scripts
+// Enqueue scripts; additional ideas to consider: https://github.com/roots/roots/blob/master/lib/scripts.php
 if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueue_scripts() {
 
   // Front-end scripts
