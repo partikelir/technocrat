@@ -73,18 +73,16 @@
     @extend %spacer-below;
   }
 
-  // Text styling
-  cite,
-  em,
-  i {
-    font-weight: $w-body-light; // This must be set otherwise these elements inherit font-weight: normal for some reason
-  }
-
   // Lists and definitions
   ol,
   ul,
   dl {
     @extend %spacer-below;
+    ol,
+    ul,
+    dl {
+      margin-bottom: 0; // Remove spacing for sub-lists
+    }
   }
   li {
     @include rem("margin", 0 0 0 $spacer);

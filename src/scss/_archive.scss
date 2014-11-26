@@ -17,10 +17,10 @@
   @include font-size($s-text-small);
   @include k-media-above($b-large) {
     .full-width & {
-      @include font-size($s-text);
+      @include font-size($s-text-bigger);
+      color: $c-text-light;
     }
   }
-  color: $c-text-lighter;
   p {
     @extend %spacer-below;
   }
