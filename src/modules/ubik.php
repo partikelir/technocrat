@@ -6,6 +6,7 @@
 
 // == REQUIRED == //
 
+require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik/ubik.php' ); // Must come first
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-excerpt/ubik-excerpt.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-favicons/ubik-favicons.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-imagery/ubik-imagery.php' );

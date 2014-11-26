@@ -25,6 +25,7 @@
     "html5-history-api": "^4.1.0",
     "spin.js": "^2.0.1",
     "jquery-validation": "^1.13.1",
+    "ubik": "https://github.com/synapticism/ubik.git",
     "ubik-admin": "https://github.com/synapticism/ubik-admin.git",
     "ubik-analytics": "https://github.com/synapticism/ubik-analytics.git",
     "ubik-cleaner": "https://github.com/synapticism/ubik-cleaner.git",

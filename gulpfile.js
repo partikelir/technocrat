@@ -209,9 +209,9 @@ gulp.task('ubik', function() {
     array[i] = bower+'ubik-'+plugin+'/**/*';
   });
 
-  // Ignore some stuff
+  // Ignore patterns and integrate Ubik core
   var ubikIgnore = ['!'+bower+'ubik*/**/*.json', '!'+bower+'ubik*/**/readme.*'];
-  ubik = ubik.concat(ubikIgnore);
+  ubik = ubik.concat(bower+'ubik/**/*', ubikIgnore);
 
   // Copy components
   return gulp.src(ubik)
