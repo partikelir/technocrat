@@ -29,6 +29,8 @@ You can see Pendrell in action on my personal blog, [Synapticism](http://synapti
 
 ## INSTALLATION
 
+Clone the repo and run `npm install` then `gulp dist` to build a complete copy of Pendrell.
+
 Drop the 'dist/pendrell' directory into `/wp-content/themes/` and activate it via the WordPress admin interface.
 
 ### REQUIREMENTS
