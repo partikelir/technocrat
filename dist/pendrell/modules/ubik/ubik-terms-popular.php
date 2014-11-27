@@ -42,6 +42,7 @@ if ( !function_exists( 'ubik_popular_terms_sort' ) ) : function ubik_popular_ter
 
 
 // Adapted from the WordPress core; display a list of popular terms
+// @filter: term_links-$taxonomy
 if ( !function_exists( 'ubik_popular_terms_list' ) ) : function ubik_popular_terms_list( $id, $taxonomy, $before = '', $sep = '', $after = '', $threshold = 1 ) {
 
   $terms = ubik_popular_terms( $id, $taxonomy, $threshold );

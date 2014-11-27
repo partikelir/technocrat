@@ -177,6 +177,7 @@ q {
 // Pre and code blocks (but really just code blocks)
 pre {
   @extend %spacer-below;
+  @include border-radius;
   @include font-size($s-text-small);
   @include letterpress(black(.3));
   @include rem("padding", $spacer/2);

@@ -3,6 +3,7 @@
 // Control what sort of content appears on your homepage... set all applicable variables in `ubik-excluder-config.php` or define locally
 
 // Exclude specific categories from the homepage
+// @global: (array) $ubik_exclude_cats
 if ( !function_exists( 'ubik_exclude_cats' ) ) : function ubik_exclude_cats( $query ) {
   if ( !is_admin() && $query->is_home() && $query->is_main_query() && $query->get( 'ubik_include_all' ) !== true ) {
 
@@ -24,6 +25,7 @@ if ( !empty( $ubik_exclude_cats ) )
 
 
 // Exclude specific post formats from the homepage
+// @global: (array) $ubik_exclude_formats
 if ( !function_exists( 'ubik_exclude_formats' ) ) : function ubik_exclude_formats( $query ) {
   if ( !is_admin() && $query->is_home() && $query->is_main_query() && $query->get( 'ubik_include_all' ) !== true ) {
 
@@ -49,6 +51,7 @@ if ( !empty( $ubik_exclude_formats ) )
 
 
 // Exclude specific tags from the homepage
+// @global: (array) $ubik_exclude_tags
 if ( !function_exists( 'ubik_exclude_tags' ) ) : function ubik_exclude_tags( $query ) {
   if ( !is_admin() && $query->is_home() && $query->is_main_query() && $query->get( 'ubik_include_all' ) !== true ) {
 

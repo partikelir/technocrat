@@ -6,6 +6,7 @@ if ( !function_exists( 'is_categorized' ) ) : function is_categorized() {
 } endif;
 
 // Check whether a blog has more than one category; via _s: https://github.com/Automattic/_s/blob/master/inc/template-tags.php
+// @constant: UBIK_NO_CATEGORIES
 if ( !function_exists( 'ubik_is_categorized' ) ) : function ubik_is_categorized() {
 
   // Hard switch for the category test; only acts when false

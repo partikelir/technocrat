@@ -1,6 +1,7 @@
 <?php // ==== WIDGET ==== //
 
 // Places widget; this isn't a true widget... but it's also not 200+ lines of code I don't need
+// @filter: ubik_places_title
 if ( !function_exists( 'ubik_places_widget' ) ) : function ubik_places_widget( $term = null ) {
 
   $tax = 'places';

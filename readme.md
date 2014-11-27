@@ -2,7 +2,7 @@
 
 Pendrell is a minimal yet fully-featured WordPress theme for single author personal blogs. It is designed to excel at displaying beautiful, legible type alongside big, bold imagery. Use it for long-form journalism, photo-blogging, and more--but be prepared to dive into the code! Pendrell is something of a hacker theme; there is no options page, theme customizer, or bloat, which means you won't find it in the WordPress theme repository. Instead, what you get is a powerful WordPress hacker theme [built with the goodness of Sass, Bower, and Gulp](https://github.com/synapticism/wordpress-gulp-bower-sass).
 
-Pendrell requires a companion plugin, [Ubik](https://github.com/synapticism/ubik), to maximize the awesomeness. It'll run without Ubik but a lot of goodness will be missing.
+Pendrell is built with the [Ubik](https://github.com/synapticism/ubik) suite of WordPress components.
 
 ![Pendrell example screenshot](/dist/pendrell/screenshot.png "Pendrell example screenshot")
 
@@ -17,14 +17,13 @@ You can see Pendrell in action on my personal blog, [Synapticism](http://synapti
 * Consistent vertical rhythm (excluding images; that's just too much trouble).
 * Full-width view for image and gallery post format posts increases font size and removes sidebar. Great for photo-blogging.
 * Improved post format styling and support for asides, images (really just a thin wrapper for attachments), links, quotations, and status updates.
+* AJAX page loading (click "next" and more content will appear).
 * Built-in AJAX contact form page template; no need for a wasteful plugin.
 * Automated CSS/JS minification via Gulp build system. This theme is *highly* optimized.
 * Google web font support; configure in `functions.php`.
-* Code highlighting via [Prism](http://prismjs.com).
-* Optional selective content loading with [Ajaxinate](https://github.com/synapticism/ajaxinate) and [Ajaxinate WP](https://github.com/synapticism/ajaxinate-wp).
-* Optional AJAX page loading (click "next" and more content will appear).
+* Code highlighting with [Prism](http://prismjs.com).
 * Smart context-dependent search form.
-* Much, much more...
+* A zillion little optimizations via [Ubik](https://github.com/synapticism/ubik).
 
 
 
@@ -34,11 +33,11 @@ Drop the 'dist/pendrell' directory into `/wp-content/themes/` and activate it vi
 
 ### REQUIREMENTS
 
-WordPress 3.9+ and PHP 5.3+ to run the theme and [Ubik](https://github.com/synapticism/ubik). For development and customization: gem, npm, Sass, Bower, and Gulp.
+To use the theme: WordPress 3.9+ and PHP 5.2. For development and customization: gem, npm, Sass, Bower, and Gulp.
 
 ### CONFIGURATION
 
-This theme has no options page; modify the `functions-config-sample.php` file, renaming it to `functions-config.php`, if you wish to change any of the default settings. Pendrell's settings are meant to be self-explanatory; read the comments for more directions.
+**This theme has no options page**; modify the `functions-config.php` file if you wish to change any of the default settings. You will need to be able to read source code to really make use of this theme! It is not meant to be user-friendly in the traditional sense. Pendrell is, instead, more of a hacker theme and an experimental testbed for some new ideas in WordPress development.
 
 ### DEVELOPMENT
 
@@ -51,14 +50,6 @@ When making modifications in development be sure to alter files in the `src` fol
 To create a new production-ready distribution under `pendrell/dist/pendrell` use `gulp dist`. This can also be tested locally using a variation on the symbolic link command above.
 
 Pendrell uses vanilla Sass (no Compass) alongside [Kipple](https://github.com/synapticism/kipple), my zygotic library of Sass hacks, [Normalize.css](https://necolas.github.io/normalize.css/), and [Eric Meyer's reset](http://meyerweb.com/eric/tools/css/reset/).
-
-### PLUGINS
-
-Pendrell is designed for use with [Ubik](https://github.com/synapticism/ubik), my all-purpose WordPress plugin toolkit. It includes all the theme-agnostic snippets, hacks, and other functionality that would usually be included in a theme (but shouldn't be). You will want to install and configure Ubik to get the most out of Pendrell.
-
-I have also been experimenting with selective page loading using [Ajaxinate](https://github.com/synapticism/ajaxinate). This functionality is disabled by default. There's no need to install anything extra, however; just flip the switch in `functions-config.php` and configured `/src/js/ajaxinate.js` to suit your modifications.
-
-Apart from that I have prepared a list of recommended plugins and usage patterns in [usage.md](/usage.md).
 
 
 

@@ -26,10 +26,10 @@
 			<?php pendrell_entry_title(); ?>
 		</header>
 		<footer class="entry-meta">
-			<?php pendrell_entry_meta( 'mini' ); ?>
+			<?php pendrell_entry_meta_list_view(); ?>
 		</footer>
 		<div class="entry-content">
-			<?php // Trim excerpts for lists using Ubik; degrades gracefully is Ubik isn't active
+			<?php // Trim excerpts for lists using Ubik; degrades gracefully if Ubik isn't active
 			if ( function_exists( 'ubik_excerpt_length_transient' ) )
 				ubik_excerpt_length_transient(25);
 			the_excerpt(); ?>

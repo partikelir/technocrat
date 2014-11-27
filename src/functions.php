@@ -19,7 +19,7 @@ define( 'PENDRELL_DESCRIPTION', get_bloginfo( 'description' ) );
 define( 'PENDRELL_HOME', home_url() );
 define( 'PENDRELL_THEME_NAME', 'Pendrell' );
 define( 'PENDRELL_THEME_URL', 'http://github.com/synapticism/pendrell' );
-define( 'PENDRELL_THEME_VERSION', '0.14.1' );
+define( 'PENDRELL_THEME_VERSION', '0.14.2' );
 
 
 

@@ -106,7 +106,7 @@ if ( !function_exists( 'pendrell_is_view' ) ) : function pendrell_is_view( $type
   global $wp_query;
 
   // Only proceed where relevant
-  if ( is_main_query() && ( is_archive() || is_home() ) ) {
+  if ( $wp_query->is_main_query() && ( is_archive() || is_home() ) ) {
 
     $view = pendrell_get_view();
 
@@ -205,6 +205,26 @@ if ( !function_exists( 'pendrell_view_pre_get_posts' ) ) : function pendrell_vie
   }
 } endif;
 add_action( 'pre_get_posts', 'pendrell_view_pre_get_posts' );
+
+
+
+// Modify entry meta format on list view
+if ( !function_exists( 'pendrell_view_date_format' ) ) : function pendrell_view_date_format( $format ) {
+  if ( pendrell_is_view( 'gallery' ) )
+    $format = _x( 'M Y', 'gallery view date format', 'pendrell' );
+  if ( pendrell_is_view( 'list' ) )
+    $format = _x( 'F jS, Y', 'list view date format', 'pendrell' );
+  return $format;
+} endif;
+add_filter( 'ubik_time_human_format', 'pendrell_view_date_format' );
+add_filter( 'ubik_meta_full_format', 'pendrell_view_date_format' );
+
+
+
+// Entry meta for list view, called directly from the template
+if ( !function_exists( 'pendrell_entry_meta_list_view' ) ) : function pendrell_entry_meta_list_view() {
+  echo strip_tags( ubik_meta_date()[0], '<span><time>' ); // Publication date with any potential links stripped
+} endif;
 
 
 

@@ -80,11 +80,8 @@
   .entry-meta {
     @include font-size($s-text-smallest);
     @include k-clearfix-reset;
+    color: $c-text-lightest;
     text-transform: uppercase;
-  }
-  &.single-author .by-author,
-  .last-updated {
-    @include hide; // Hide non-essential info for brevity
   }
 
   // Entry content (with more below for full-width styling); @TODO: review the utility of this
