@@ -34,5 +34,6 @@ bower_components
 node_modules
 build
 dist/pendrell/modules/ubik-*
+dist/pendrell/modules/ubik/
 
 ## Project specific
