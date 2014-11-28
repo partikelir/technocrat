@@ -223,7 +223,8 @@ add_filter( 'ubik_meta_full_format', 'pendrell_view_date_format' );
 
 // Entry meta for list view, called directly from the template
 if ( !function_exists( 'pendrell_entry_meta_list_view' ) ) : function pendrell_entry_meta_list_view() {
-  echo strip_tags( ubik_meta_date()[0], '<span><time>' ); // Publication date with any potential links stripped
+  $date = ubik_meta_date();
+  echo strip_tags( $date[0], '<span><time>' ); // Publication date with any potential links stripped
 } endif;
 
 
