@@ -34,6 +34,8 @@ require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-titl
 
 if ( PENDRELL_UBIK_ANALYTICS )
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-analytics/ubik-analytics.php' );
+if ( PENDRELL_UBIK_CLEANER )
+  require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-cleaner/ubik-cleaner.php' );
 if ( PENDRELL_UBIK_COMMENTS )
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-comments/ubik-comments.php' );
 if ( PENDRELL_UBIK_EXCLUDER )
