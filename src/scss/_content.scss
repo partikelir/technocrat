@@ -8,8 +8,9 @@
     @include font-size($s-header-big); // This is the normal title size seen on the homepage
   }
 
-  // Drop the size of entry titles on archives and in search results
+  // Drop the size of entry titles on archives, 404 pages, and in search results
   .archive &,
+  .error404 &,
   .search-results &,
   .search-no-results & {
     @include font-size($s-header);
