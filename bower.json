@@ -47,6 +47,7 @@
     "ubik-series": "https://github.com/synapticism/ubik-series.git",
     "ubik-terms": "https://github.com/synapticism/ubik-terms.git",
     "ubik-time": "https://github.com/synapticism/ubik-time.git",
-    "ubik-title": "https://github.com/synapticism/ubik-title.git"
+    "ubik-title": "https://github.com/synapticism/ubik-title.git",
+    "picturefill": "~2.2.0"
   }
 }

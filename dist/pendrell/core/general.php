@@ -8,8 +8,9 @@ if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueu
   // Front-end scripts
   if ( !is_admin() ) {
 
-    $handle = 'pendrell-core'; // A generic script handle
-    $script_vars = array(); // An empty array that can be filled with variables to send to front-end scripts
+    $handle = 'pendrell-core';  // A generic script handle
+    $script_name = '';          // To be filled later
+    $script_vars = array();     // An empty array that can be filled with variables to send to front-end scripts
 
     // Load minified scripts if debug mode is off
     if ( WP_DEBUG === true ) {
@@ -18,22 +19,23 @@ if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueu
       $suffix = '.min';
     }
 
+    // Figure out which script to load based on various options set in `src/functions-config-defaults.php`
+    // Note: Ajaxinate and Page Loader are mutually exclusive; @TODO: decide whether to keep or remove Ajaxinate altogether
+    if ( PENDRELL_SCRIPTS_AJAXINATE )
+      $script_name .= '-xn8';
+    if ( PENDRELL_SCRIPTS_AJAXINATE === false && PENDRELL_SCRIPTS_PAGELOAD && pendrell_load_pg8() )
+      $script_name .= '-pg8';
+    if ( PENDRELL_SCRIPTS_AJAXINATE === false && PENDRELL_SCRIPTS_PICTUREFILL )
+      $script_name .= '-pf';
+    if ( PENDRELL_SCRIPTS_PRISM )
+      $script_name .= '-prism';
+    if ( empty( $script_name ) )
+      $script_name .= '-core';
+
     // Load theme-specific JavaScript bundles with versioning based on last modified time; http://www.ericmmartin.com/5-tips-for-using-jquery-with-wordpress/
-		// These bundles are created with Gulp; see `/gulpfile.js`
+    // These bundles are created with Gulp; see `/gulpfile.js`
     // The handle is the same for each bundle since we're only loading one script; if you load others be sure to provide a new handle
-    if ( PENDRELL_SCRIPTS_AJAXINATE && PENDRELL_SCRIPTS_PRISM ) {
-      wp_enqueue_script( $handle, get_stylesheet_directory_uri() . '/js/p-xn8-prism' . $suffix . '.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/p-xn8-prism' . $suffix . '.js' ), true );
-    } elseif ( PENDRELL_SCRIPTS_PAGELOAD && PENDRELL_SCRIPTS_PRISM && pendrell_load_pg8() ) {
-      wp_enqueue_script( $handle, get_stylesheet_directory_uri() . '/js/p-pg8-prism' . $suffix . '.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/p-pg8-prism' . $suffix . '.js' ), true );
-    } elseif ( PENDRELL_SCRIPTS_AJAXINATE ) {
-      wp_enqueue_script( $handle, get_stylesheet_directory_uri() . '/js/p-xn8' . $suffix . '.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/p-xn8' . $suffix . '.js' ), true );
-    } elseif ( PENDRELL_SCRIPTS_PAGELOAD && pendrell_load_pg8() ) {
-      wp_enqueue_script( $handle, get_stylesheet_directory_uri() . '/js/p-pg8' . $suffix . '.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/p-pg8' . $suffix . '.js' ), true );
-    } elseif ( PENDRELL_SCRIPTS_PRISM ) {
-      wp_enqueue_script( $handle, get_stylesheet_directory_uri() . '/js/p-prism' . $suffix . '.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/p-prism' . $suffix . '.js' ), true );
-    } else {
-      wp_enqueue_script( $handle, get_stylesheet_directory_uri() . '/js/p-core' . $suffix . '.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/p-core' . $suffix . '.js' ), true );
-    }
+    wp_enqueue_script( $handle, get_stylesheet_directory_uri() . '/js/p' . $script_name . $suffix . '.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/p' . $script_name . $suffix . '.js' ), true );
 
     // Contact form (CF1) variable setup
     if ( is_page_template( 'page-templates/contact-form.php' ) ) {
