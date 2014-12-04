@@ -132,4 +132,3 @@ define( 'UBIK_SEARCH_FORM_REVERSE', true ); // Reverses the order of search fiel
 // Enable `srcset` output
 if ( PENDRELL_SCRIPTS_PICTUREFILL )
   define( 'UBIK_IMAGERY_SRCSET', true );
-

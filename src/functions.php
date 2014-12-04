@@ -62,6 +62,8 @@ if ( PENDRELL_MODULE_VIEWS ) {
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/views.php' );
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/view-posts-shortcode.php' );
 }
+if ( PENDRELL_SCRIPTS_PICTUREFILL )
+  require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/picturefill.php' ); // Special case; see source
 
 
 
@@ -104,7 +106,7 @@ function pendrell_setup() {
 
   // $content_width limits the size of the largest image size available via the media uploader
   // It should be set once and left alone apart from that; don't do anything fancy with it; it is part of WordPress core
-  global $content_width;
+  global $content_width, $main_width;
   if ( !isset( $content_width ) )
     $content_width = 960;
 
