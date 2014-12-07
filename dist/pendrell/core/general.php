@@ -25,7 +25,7 @@ if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueu
       $script_name .= '-xn8';
     if ( PENDRELL_SCRIPTS_AJAXINATE === false && PENDRELL_SCRIPTS_PAGELOAD && pendrell_load_pg8() )
       $script_name .= '-pg8';
-    if ( PENDRELL_SCRIPTS_AJAXINATE === false && PENDRELL_SCRIPTS_PICTUREFILL )
+    if ( PENDRELL_SCRIPTS_AJAXINATE === false && PENDRELL_MODULE_RESPONSIVE && pendrell_load_pf() )
       $script_name .= '-pf';
     if ( PENDRELL_SCRIPTS_PRISM )
       $script_name .= '-prism';
@@ -102,6 +102,24 @@ add_action( 'wp_enqueue_scripts', 'pendrell_enqueue_scripts' );
 
 
 
+// == CONDITIONAL SCRIPT LOADING == //
+
+// Test whether the current request will work with the Page Loader script (PG8)
+if ( !function_exists( 'pendrell_load_pg8' ) ) : function pendrell_load_pg8() {
+  if ( is_archive() || is_home() || is_search() )
+    return true;
+  return false;
+} endif;
+
+// Test whether the current request will work with the Picturefill script (PF)
+if ( !function_exists( 'pendrell_load_pf' ) ) : function pendrell_load_pf() {
+  if ( is_404() || ( is_attachment() && !wp_is_attachment_image() ) ) // Could also return false on certain post formats
+    return false;
+  return true;
+} endif;
+
+
+
 // == GOOGLE FONTS == //
 
 // Hack: simplify and customize Google font loading; reference Twenty Twelve for more advanced options
@@ -121,15 +139,4 @@ if ( !function_exists( 'pendrell_get_font_url' ) ) : function pendrell_get_font_
   $font_url = "$protocol://fonts.googleapis.com/css?family=" . $fonts;
 
   return $font_url;
-} endif;
-
-
-
-// == PAGE LOADER == //
-
-// Test whether the current request will work with the page loader script (PG8)
-if ( !function_exists( 'pendrell_load_pg8' ) ) : function pendrell_load_pg8() {
-  if ( is_archive() || is_home() || is_search() )
-    return true;
-  return false;
 } endif;

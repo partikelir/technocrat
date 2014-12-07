@@ -1,5 +1,6 @@
-<?php // ==== PICTUREFILL ==== //
+<?php // ==== RESPONSIVE IMAGES ==== //
 
+// The following code depends on Ubik Imagery and Picturefill
 // Notes about the `sizes` attribute:
 // - The *order* of media queries is important; browsers pick the first match so start with the largest query!
 // - The purpose of the `sizes` attribute is to give the browser an accurate estimation of the *rendered size* of an image at different viewport widths
@@ -148,5 +149,5 @@ if ( !function_exists( 'pendrell_views_sizes_default' ) ) : function pendrell_vi
 
   return $default;
 } endif;
-if ( PENDRELL_SCRIPTS_PICTUREFILL )
+if ( PENDRELL_MODULE_RESPONSIVE && PENDRELL_MODULE_VIEWS )
   add_filter( 'pendrell_sizes_default', 'pendrell_views_sizes_default' );
