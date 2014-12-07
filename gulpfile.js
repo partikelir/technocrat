@@ -45,7 +45,8 @@ gulp.task('styles', function() {
 
 // ==== SCRIPTS ==== //
 
-// Scripts; broken out into different tasks to create specific bundles which are then compressed in place
+// Scripts broken out into different tasks to create specific bundles which are then compressed in place
+// Rationale: why bother letting WP queue individual scripts when we can easily roll bundles for all occasions?
 // @TODO: a better bundling method; this is getting out of hand...
 gulp.task('scripts', [
     'scripts-lint',
@@ -55,6 +56,7 @@ gulp.task('scripts', [
     'scripts-prism',
     'scripts-pg8',
     'scripts-pf',
+    'scripts-pf-prism',
     'scripts-pg8-pf',
     'scripts-pg8-prism',
     'scripts-pg8-pf-prism',
@@ -141,6 +143,17 @@ gulp.task('scripts-pg8-prism', ['scripts-core'], function() {
 gulp.task('scripts-pf', ['scripts-core'], function() {
   return gulp.src([
     bower+'picturefill/dist/picturefill.js'
+  , build+'js/p-core.js'
+  ])
+  .pipe(plugins.concat('p-pf.js'))
+  .pipe(gulp.dest(build+'js/'));
+});
+
+// Picturefill + Prism
+gulp.task('scripts-pf-prism', ['scripts-core'], function() {
+  return gulp.src([
+    bower+'picturefill/dist/picturefill.js'
+  , source+'js/prism.js'
   , build+'js/p-core.js'
   ])
   .pipe(plugins.concat('p-pf.js'))

@@ -20,7 +20,9 @@ if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueu
     }
 
     // Figure out which script to load based on various options set in `src/functions-config-defaults.php`
-    // Note: Ajaxinate and Page Loader are mutually exclusive; @TODO: decide whether to keep or remove Ajaxinate altogether
+    // Notes:
+    // - Ajaxinate and Page Loader are mutually exclusive (@TODO: decide whether to keep or remove Ajaxinate altogether)
+    // - There is a caching trade-off to having multiple bundles loaded conditionally... faster individual page loads, more scripts to load overall
     if ( PENDRELL_SCRIPTS_AJAXINATE )
       $script_name .= '-xn8';
     if ( PENDRELL_SCRIPTS_AJAXINATE === false && PENDRELL_SCRIPTS_PAGELOAD && pendrell_load_pg8() )
