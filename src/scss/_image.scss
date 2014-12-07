@@ -136,13 +136,9 @@ figure.wp-caption,
     .full-width & {
       margin: 0 percentage($d-image-spacer / $content-width) percentage($d-image-spacer / $content-width) 0;
     }
-    img {
-      &.size-full {
-        // @TODO: crop non-square images using some fancy CSS
-      }
-    }
   }
 }
+
 // Nicer layout for successive image groups
 @if $spacer != $d-image-spacer {
   .img-group + .img-group {

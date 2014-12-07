@@ -82,4 +82,4 @@ if ( !function_exists( 'pendrell_full_width_image_resize' ) ) : function pendrel
   }
   return $size;
 } endif;
-add_filter( 'ubik_imagery_markup_size', 'pendrell_full_width_image_resize' );
+add_filter( 'ubik_imagery_size', 'pendrell_full_width_image_resize' );

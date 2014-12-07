@@ -15,6 +15,9 @@ defined( 'PENDRELL_SCRIPTS_AJAXINATE' )   || define( 'PENDRELL_SCRIPTS_AJAXINATE
 // Master switch for page load module
 defined( 'PENDRELL_SCRIPTS_PAGELOAD' )    || define( 'PENDRELL_SCRIPTS_PAGELOAD', true );
 
+// Master switch for Picturefill
+defined( 'PENDRELL_SCRIPTS_PICTUREFILL' ) || define( 'PENDRELL_SCRIPTS_PICTUREFILL', true );
+
 // Master switch for Prism syntax highlighting script
 defined( 'PENDRELL_SCRIPTS_PRISM' )       || define( 'PENDRELL_SCRIPTS_PRISM', false );
 
@@ -125,3 +128,7 @@ defined( 'PENDRELL_UBIK_SEO' )            || define( 'PENDRELL_UBIK_SEO', true )
 
 // Configure Ubik below...
 define( 'UBIK_SEARCH_FORM_REVERSE', true ); // Reverses the order of search field and submit button; *required* for this theme
+
+// Enable `srcset` output
+if ( PENDRELL_SCRIPTS_PICTUREFILL )
+  define( 'UBIK_IMAGERY_SRCSET', true );

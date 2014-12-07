@@ -62,6 +62,8 @@ if ( PENDRELL_MODULE_VIEWS ) {
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/views.php' );
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/view-posts-shortcode.php' );
 }
+if ( PENDRELL_SCRIPTS_PICTUREFILL )
+  require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/picturefill.php' ); // Special case; see source
 
 
 
@@ -104,7 +106,7 @@ function pendrell_setup() {
 
   // $content_width limits the size of the largest image size available via the media uploader
   // It should be set once and left alone apart from that; don't do anything fancy with it; it is part of WordPress core
-  global $content_width;
+  global $content_width, $main_width;
   if ( !isset( $content_width ) )
     $content_width = 960;
 
@@ -121,16 +123,9 @@ function pendrell_setup() {
   set_post_thumbnail_size( $main_width, $main_width );
 
   // Add a few additional image sizes for various other purposes
-  add_image_size( 'quarter', $content_width/4, 9999 );
-  add_image_size( 'quarter-square', $content_width/4, $content_width/4, true );
-  add_image_size( 'third', $content_width/3, 9999 );
-  add_image_size( 'third-square', $content_width/3, $content_width/3, true );
-  add_image_size( 'half', $content_width/2, 9999 );
-  add_image_size( 'half-square', $content_width/2, $content_width/2, true );
-  add_image_size( 'medium-square', $main_width, $main_width, true );
-  add_image_size( 'large-square', $content_width, $content_width, true );
+  ubik_imagery_add_fractional_sizes( $margin = PENDRELL_BASELINE );
 
-  // Forcing medium and large sizes to match $content_width and $site_width; explicitly setting thumbnail image size
+  // Forcing medium and large sizes to match $content_width and $main_width; explicitly setting thumbnail image size
   update_option( 'thumbnail_size_w', 150 );
   update_option( 'thumbnail_size_h', 150 );
   update_option( 'thumbnail_crop', 1 );
@@ -138,6 +133,10 @@ function pendrell_setup() {
   update_option( 'medium_size_h', 9999 );
   update_option( 'large_size_w', $content_width );
   update_option( 'large_size_h', 9999 );
+
+  // Additional hard-cropped square versions of both medium and large image sizes
+  add_image_size( 'medium-square', $main_width, $main_width, true );
+  add_image_size( 'large-square', $content_width, $content_width, true );
 
   // Set the medium and large size image sizes under media settings; default to our new full width image size in media uploader
   update_option( 'image_default_size', 'medium' );

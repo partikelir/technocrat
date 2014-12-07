@@ -32,8 +32,17 @@ if ( !function_exists( 'pendrell_image_wrapper' ) ) : function pendrell_image_wr
   // Generate image markup from ID, size, caption, and URL and append existing content
   return ubik_imagery_markup( $html = '', $id, $caption, $title = '', $align = '', $url, $size ) . $content;
 } endif;
-remove_filter( 'the_content', 'prepend_attachment' ); // Removes default WordPress functionality for *all* attachments, not just images
 add_filter( 'the_content', 'pendrell_image_wrapper' );
+
+
+
+// Clear out WordPress default markup for image attachments
+if ( !function_exists( 'pendrell_image_prepend' ) ) : function pendrell_image_prepend( $content = '' ) {
+  if ( wp_attachment_is_image() )
+    $content = ''; // Pendrell handles image attachments internally; jettison WordPress default markup
+  return $content;
+} endif;
+add_filter( 'prepend_attachment', 'pendrell_image_prepend' );
 
 
 

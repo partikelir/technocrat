@@ -54,7 +54,10 @@ gulp.task('scripts', [
     'scripts-core',
     'scripts-prism',
     'scripts-pg8',
+    'scripts-pf',
+    'scripts-pg8-pf',
     'scripts-pg8-prism',
+    'scripts-pg8-pf-prism',
     'scripts-xn8',
     'scripts-xn8-prism'
   ], function(){
@@ -77,7 +80,7 @@ gulp.task('scripts-html5', function() {
   .pipe(gulp.dest(build+'js/'));
 });
 
-// Contact form standalone script
+// Contact form standalone script (not integrated into any general bundle)
 gulp.task('scripts-contact', function() {
   return gulp.src([
     bower+'jquery-validation/dist/jquery.validate.js'
@@ -107,7 +110,7 @@ gulp.task('scripts-prism', ['scripts-core'], function() {
   .pipe(gulp.dest(build+'js/'));
 });
 
-// Page loader module: loads the next page of content with jQuery
+// Page Loader: loads the next page of content with jQuery/AJAX
 gulp.task('scripts-pg8', ['scripts-core'], function() {
   return gulp.src([
     bower+'html5-history-api/history.iegte8.js'
@@ -120,7 +123,7 @@ gulp.task('scripts-pg8', ['scripts-core'], function() {
   .pipe(gulp.dest(build+'js/'));
 });
 
-// Page loader module: loads the next page of content with jQuery
+// Page Loader
 gulp.task('scripts-pg8-prism', ['scripts-core'], function() {
   return gulp.src([
     bower+'html5-history-api/history.iegte8.js'
@@ -134,7 +137,46 @@ gulp.task('scripts-pg8-prism', ['scripts-core'], function() {
   .pipe(gulp.dest(build+'js/'));
 });
 
-// Ajaxinate module; the order of dependencies is important here; relies on jQuery, already loaded in the head
+// Picturefill
+gulp.task('scripts-pf', ['scripts-core'], function() {
+  return gulp.src([
+    bower+'picturefill/dist/picturefill.js'
+  , build+'js/p-core.js'
+  ])
+  .pipe(plugins.concat('p-pf.js'))
+  .pipe(gulp.dest(build+'js/'));
+});
+
+// Page Loader + Picturefill
+gulp.task('scripts-pg8-pf', ['scripts-core'], function() {
+  return gulp.src([
+    bower+'html5-history-api/history.iegte8.js'
+  , bower+'spin.js/spin.js'
+  , bower+'spin.js/jquery.spin.js'
+  , source+'js/page-loader.js'
+  , bower+'picturefill/dist/picturefill.js'
+  , build+'js/p-core.js'
+  ])
+  .pipe(plugins.concat('p-pg8-pf.js'))
+  .pipe(gulp.dest(build+'js/'));
+});
+
+// Page Loader + Picturefill + Prism
+gulp.task('scripts-pg8-pf-prism', ['scripts-core'], function() {
+  return gulp.src([
+    bower+'html5-history-api/history.iegte8.js'
+  , bower+'spin.js/spin.js'
+  , bower+'spin.js/jquery.spin.js'
+  , source+'js/page-loader.js'
+  , source+'js/prism.js'
+  , bower+'picturefill/dist/picturefill.js'
+  , build+'js/p-core.js'
+  ])
+  .pipe(plugins.concat('p-pg8-pf-prism.js'))
+  .pipe(gulp.dest(build+'js/'));
+});
+
+// Ajaxinate: brute-force page loading with jQuery/AJAX; the order of dependencies is important here
 gulp.task('scripts-xn8', ['scripts-core'], function() {
   return gulp.src([
     bower+'html5-history-api/history.iegte8.js'
@@ -149,7 +191,7 @@ gulp.task('scripts-xn8', ['scripts-core'], function() {
   .pipe(gulp.dest(build+'js/'));
 });
 
-// Ajaxinate/Prism
+// Ajaxinate + Prism
 gulp.task('scripts-xn8-prism', ['scripts-core'], function() {
   return gulp.src([
     bower+'html5-history-api/history.iegte8.js'
