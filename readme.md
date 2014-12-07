@@ -1,8 +1,8 @@
 # PENDRELL
 
-Pendrell is a minimal yet fully-featured WordPress theme. It features beautiful, legible typesetting alongside big, bold imagery. Use it for long-form journalism, photo-blogging, and more--but be prepared to dive into the code! Pendrell is something of a hacker theme; there is no options page, theme customizer, or bloat, and you won't find it in the WordPress theme repository. Instead, what you get is a powerful WordPress hacker theme [built with the goodness of Sass, Bower, and Gulp](https://github.com/synapticism/wordpress-gulp-bower-sass).
+Pendrell is a minimal yet fully-featured WordPress theme. It features beautiful, legible typesetting alongside big, bold imagery. Use it for long-form journalism, photo-blogging, and more--but be prepared to dive into the code! Pendrell is something of a hacker theme; there is no options page, theme customizer, or bloat, and you won't find it in the WordPress theme repository. Instead, what you get is a highly optimized and surprisingly powerful theme [built with the goodness of Sass, Bower, and Gulp](https://github.com/synapticism/wordpress-gulp-bower-sass).
 
-Pendrell is built with [Ubik](https://github.com/synapticism/ubik), my suite of WordPress components.
+Pendrell is built with [Ubik](https://github.com/synapticism/ubik), my suite of WordPress components. All necessary components are integrated into Pendrell during the build process; no extra plugins need to be installed.
 
 ![Pendrell example screenshot](/dist/pendrell/screenshot.png "Pendrell example screenshot")
 
@@ -21,7 +21,7 @@ You can see Pendrell in action on my personal blog, [Synapticism](http://synapti
 * Built-in AJAX Page Loader script (click "next" and more content will appear). Not unlike Infinite Scroll but custom-coded for high performance.
 * Built-in AJAX contact form page template; no need for a wasteful plugin.
 * Truly responsive images with [Ubik Imagery](https://github.com/synapticism/ubik-imagery) and [Picturefill](https://github.com/scottjehl/picturefill).
-* Google web font support; configure in `functions.php`.
+* Google web font support; configure in `functions-config.php`.
 * Code highlighting with [Prism](http://prismjs.com).
 * Automated CSS/JS minification via Gulp build system. This theme is *highly* optimized.
 * A zillion little optimizations via [Ubik](https://github.com/synapticism/ubik).
@@ -79,6 +79,6 @@ Utilities:
 
 ## LICENSE
 
-Copyright 2012-2014 [Alexander Synaptic](http://alexandersynaptic.com). Licensed under the GPLv3: http://www.gnu.org/licenses/gpl.txt
+Copyright 2012-2014 [Alexander Synaptic](http://alexandersynaptic.com). The `master` branch is licensed under the [GPLv3](http://www.gnu.org/licenses/gpl.txt); all branches specific to my own personal projects are *not* released under a FOSS license.
 
 Please link back to [my web site](http://synapticism.com) and/or [this GitHub repository](https://github.com/synapticism/pendrell) if you make use of this theme!
