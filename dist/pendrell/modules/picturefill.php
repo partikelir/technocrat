@@ -10,6 +10,7 @@
 //   - Page margins that vary according to viewport width
 //   - Gallery view switches between a two and three column layout (still @TODO)
 // These scenarious will be discussed in the code below...
+// @TODO: investigate Firefox scrollbar inconsistencies; it may be necessary to add another fudge factor to ensure browsers choose the optimal image
 
 // Setup a few media queries for the `sizes` attribute; must be an array even if there is only one value!
 if ( !function_exists( 'pendrell_sizes_media_queries' ) ) : function pendrell_sizes_media_queries( $queries = array(), $size = '', $width = '' ) {
@@ -48,8 +49,15 @@ if ( !function_exists( 'pendrell_sizes_media_queries' ) ) : function pendrell_si
 
     if ( $combined_width > $medium ) {
       $queries[] = '(min-width: ' . ( $combined_width + ( $margin * 3 ) ) . 'px) ' . $width . 'px';
-      $queries[] = '(min-width: ' . $medium_padded . 'px) calc(' . $viewport . 'vw - ' . round( ( ( ( $margin * 3 ) + $margin_inner ) / $factor ), 5 ) . 'px)';
-      $queries[] = '(min-width: ' . $small_padded . 'px) calc(' . $viewport . 'vw - ' . round( ( ( ( $margin * 2 ) + $margin_inner ) / $factor ), 5 ) . 'px)';
+      if ( PENDRELL_MODULE_VIEWS && pendrell_is_view( 'gallery' ) ) { // Special case to handle responsive gallery view defined in `src/scss/_views.scss`
+        $queries[] = '(min-width: ' . $medium_padded . 'px) calc(' . round( 100 / 3, 5 ) . 'vw - ' . round( ( ( ( $margin * 3 ) + ( $margin * 2 ) ) / 3 ), 5 ) . 'px)'; // This media query remains to handle differences in outer page margins
+        $queries[] = '(min-width: ' . ( 600 + ( $margin * 3 ) ) . 'px) calc(' . round( 100 / 3, 5 ) . 'vw - ' . round( ( ( ( $margin * 3 ) + ( $margin * 2 ) ) / 3 ), 5 ) . 'px)'; // Above here it's a three column layout
+        $queries[] = '(min-width: ' . $small_padded . 'px) calc(' . round( 100 / 2, 5 ) . 'vw - ' . round( ( ( ( $margin * 2 ) + $margin ) / 2 ), 5 ) . 'px)'; // This media query remains to handle differences in outer page margins
+        $queries[] = '(min-width: ' . ( 300 + $margin ) . 'px) calc(' . round( 100 / 2, 5 ) . 'vw - ' . round( ( ( $margin + $margin ) / 2 ), 5 ) . 'px)'; // Above here it's a two column layout
+      } else {
+        $queries[] = '(min-width: ' . $medium_padded . 'px) calc(' . $viewport . 'vw - ' . round( ( ( ( $margin * 3 ) + $margin_inner ) / $factor ), 5 ) . 'px)';
+        $queries[] = '(min-width: ' . $small_padded . 'px) calc(' . $viewport . 'vw - ' . round( ( ( ( $margin * 2 ) + $margin_inner ) / $factor ), 5 ) . 'px)';
+      }
     } elseif ( $combined_width > $small ) {
       $queries[] = '(min-width: ' . ( $combined_width + ( $margin * 2 ) ) . 'px) ' . $width . 'px';
       $queries[] = '(min-width: ' . $small_padded . 'px) calc(' . $viewport . 'vw - ' . round( ( ( ( $margin * 2 ) + $margin_inner ) / $factor ), 5 ) . 'px)';
@@ -124,7 +132,21 @@ if ( !function_exists( 'pendrell_sizes_default' ) ) : function pendrell_sizes_de
   }
 
   // Return the default `sizes` attribute
-  return $default;
+  return apply_filters( 'pendrell_sizes_default', $default );
 
 } endif;
 add_filter( 'ubik_imagery_sizes_default', 'pendrell_sizes_default', 10, 3 );
+
+
+
+// The views module introduces a special case with the responsive gallery view
+if ( !function_exists( 'pendrell_views_sizes_default' ) ) : function pendrell_views_sizes_default( $default = '' ) {
+
+  // Gallery view has a responsive layout that slims down to a single column at the smallest breakpoint
+  if ( pendrell_is_view( 'gallery' ) )
+    $default = 'calc(100vw - ' . PENDRELL_BASELINE . 'px)';
+
+  return $default;
+} endif;
+if ( PENDRELL_SCRIPTS_PICTUREFILL )
+  add_filter( 'pendrell_sizes_default', 'pendrell_views_sizes_default' );

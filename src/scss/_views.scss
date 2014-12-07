@@ -13,16 +13,17 @@
 
   // Custom breakpoints specifically for gallery view
   // Note there will be some minor quirks due to slight differences between these custom breakpoints and those of the rest of the site's interface
-  $b-gallery-small: 320 + $spacer*2; // The viewport has to get quite small to trigger this breakpoint but we don't want to lose quality by upscaling the 320px third-square image size
-  $b-gallery-medium: 640 + $d-image-spacer + $spacer*3; // Extra spacer at this width as per layout-box mixin
+
+  $b-gallery-small: 300 + $spacer; // The viewport has to get quite small to trigger this breakpoint but we don't want to lose quality by upscaling the 320px third-square image size
+  $b-gallery-medium: 600 + $d-image-spacer + $spacer*2; // Extra spacer at this width as per layout-box mixin
   @include k-media-below($b-gallery-small) {
     .img-group figure.wp-caption {
-      margin: 0 0 $d-image-spacer 0;
+      margin: 0 0 $d-image-spacer 0; // Only a bottom margin
       max-width: 100%;
     }
   }
   @include k-media-between($b-gallery-small, $b-gallery-medium) {
-    $margin-width: $d-image-spacer / 640px;
+    $margin-width: $d-image-spacer / 600px;
     .img-group figure.wp-caption {
       margin: 0 percentage($margin-width) percentage($margin-width) 0;
       max-width: percentage(1/2) - percentage($margin-width/2);
