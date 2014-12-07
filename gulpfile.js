@@ -156,7 +156,7 @@ gulp.task('scripts-pf-prism', ['scripts-core'], function() {
   , source+'js/prism.js'
   , build+'js/p-core.js'
   ])
-  .pipe(plugins.concat('p-pf.js'))
+  .pipe(plugins.concat('p-pf-prism.js'))
   .pipe(gulp.dest(build+'js/'));
 });
 
