@@ -1,8 +1,8 @@
 # PENDRELL
 
-Pendrell is a minimal yet fully-featured WordPress theme for single author personal blogs. It is designed to excel at displaying beautiful, legible type alongside big, bold imagery. Use it for long-form journalism, photo-blogging, and more--but be prepared to dive into the code! Pendrell is something of a hacker theme; there is no options page, theme customizer, or bloat, which means you won't find it in the WordPress theme repository. Instead, what you get is a powerful WordPress hacker theme [built with the goodness of Sass, Bower, and Gulp](https://github.com/synapticism/wordpress-gulp-bower-sass).
+Pendrell is a minimal yet fully-featured WordPress theme. It features beautiful, legible typesetting alongside big, bold imagery. Use it for long-form journalism, photo-blogging, and more--but be prepared to dive into the code! Pendrell is something of a hacker theme; there is no options page, theme customizer, or bloat, and you won't find it in the WordPress theme repository. Instead, what you get is a powerful WordPress hacker theme [built with the goodness of Sass, Bower, and Gulp](https://github.com/synapticism/wordpress-gulp-bower-sass).
 
-Pendrell is built with the [Ubik](https://github.com/synapticism/ubik) suite of WordPress components.
+Pendrell is built with [Ubik](https://github.com/synapticism/ubik), my suite of WordPress components.
 
 ![Pendrell example screenshot](/dist/pendrell/screenshot.png "Pendrell example screenshot")
 
@@ -15,23 +15,27 @@ You can see Pendrell in action on my personal blog, [Synapticism](http://synapti
 * HTML5-compliant markup; clean and efficient CSS3 styling.
 * Big, beautiful typesetting for [easy reading](http://ia.net/blog/100e2r/).
 * Consistent vertical rhythm (excluding images; that's just too much trouble).
-* Full-width view for image and gallery post format posts increases font size and removes sidebar. Great for photo-blogging.
 * Improved post format styling and support for asides, images (really just a thin wrapper for attachments), links, quotations, and status updates.
-* AJAX page loading (click "next" and more content will appear).
+* Smart context-dependent search form.
+* Full-width view for images and galleries. Great for photo-blogging.
+* Built-in AJAX Page Loader script (click "next" and more content will appear). Not unlike Infinite Scroll but custom-coded for high performance.
 * Built-in AJAX contact form page template; no need for a wasteful plugin.
-* Automated CSS/JS minification via Gulp build system. This theme is *highly* optimized.
+* Truly responsive images with [Ubik Imagery](https://github.com/synapticism/ubik-imagery) and [Picturefill](https://github.com/scottjehl/picturefill).
 * Google web font support; configure in `functions.php`.
 * Code highlighting with [Prism](http://prismjs.com).
-* Smart context-dependent search form.
+* Automated CSS/JS minification via Gulp build system. This theme is *highly* optimized.
 * A zillion little optimizations via [Ubik](https://github.com/synapticism/ubik).
+* Highly commented source code to walk you through everything that Pendrell can do.
 
 
 
 ## INSTALLATION
 
-Clone the repo and run `npm install` then `gulp dist` to build a complete copy of Pendrell.
+Clone the repo and run `npm install` then `gulp dist` to build Pendrell for production.
 
 Drop the 'dist/pendrell' directory into `/wp-content/themes/` and activate it via the WordPress admin interface.
+
+*Note: the copy hosted on GitHub lacks many dependencies that you can only get by building the theme from scratch!*
 
 ### REQUIREMENTS
 
@@ -39,7 +43,7 @@ To use the theme: WordPress 3.9+ and PHP 5.2. For development and customization:
 
 ### CONFIGURATION
 
-**This theme has no options page**; modify the `functions-config.php` file if you wish to change any of the default settings. You will need to be able to read source code to really make use of this theme! It is not meant to be user-friendly in the traditional sense. Pendrell is, instead, more of a hacker theme and an experimental testbed for some new ideas in WordPress development.
+**This theme has no options page**; modify the `src/functions-config.php` file if you wish to change any of the default settings specified in `src/functions-config-defaults.php`. Refer to the comments and patterns in the source code for more information. In general, most options can be set by using `define( 'PENDRELL_CONSTANT', value );`.
 
 ### DEVELOPMENT
 
@@ -52,6 +56,24 @@ When making modifications in development be sure to alter files in the `src` fol
 To create a new production-ready distribution under `pendrell/dist/pendrell` use `gulp dist`. This can also be tested locally using a variation on the symbolic link command above.
 
 Pendrell uses vanilla Sass (no Compass) alongside [Kipple](https://github.com/synapticism/kipple), my zygotic library of Sass hacks, [Normalize.css](https://necolas.github.io/normalize.css/), and [Eric Meyer's reset](http://meyerweb.com/eric/tools/css/reset/).
+
+
+
+## PLUGINS
+
+These plugins are recommended for use with Pendrell:
+
+* [My fork](https://github.com/synapticism/wp-post-formats) of Crowd Favorite's [WP-Post-Formats plugin](https://github.com/crowdfavorite/wp-post-formats).
+* [JP Markdown](http://wordpress.org/plugins/jetpack-markdown/) to enable Markdown. Works well with [Ubik Markdown](https://github.com/synapticism/ubik-markdown) (included in Pendrell).
+* [WordPress SEO](https://wordpress.org/plugins/wordpress-seo/) by Yoast. Plays nice with [Ubik SEO](https://github.com/synapticism/ubik-seo) (included in Pendrell).
+* [WP-Super-Cache](http://ocaoimh.ie/wp-super-cache/) or some other caching plugin. *Cache you must!*
+* [Akismet](http://akismet.com/).
+
+Utilities:
+
+* [Regenerate Thumbnails](http://wordpress.org/extend/plugins/regenerate-thumbnails/) since Pendrell uses custom image sizes.
+* [Un-attach and re-attach media attachments](http://wordpress.org/plugins/unattach-and-re-attach-attachments/) in case you get mixed up.
+* [Post type switcher](http://wordpress.org/extend/post-type-switcher/).
 
 
 

@@ -25,6 +25,7 @@
     "html5-history-api": "^4.1.0",
     "spin.js": "^2.0.1",
     "jquery-validation": "^1.13.1",
+    "picturefill": "~2.2.0",
     "ubik": "https://github.com/synapticism/ubik.git",
     "ubik-admin": "https://github.com/synapticism/ubik-admin.git",
     "ubik-analytics": "https://github.com/synapticism/ubik-analytics.git",
@@ -47,7 +48,6 @@
     "ubik-series": "https://github.com/synapticism/ubik-series.git",
     "ubik-terms": "https://github.com/synapticism/ubik-terms.git",
     "ubik-time": "https://github.com/synapticism/ubik-time.git",
-    "ubik-title": "https://github.com/synapticism/ubik-title.git",
-    "picturefill": "~2.2.0"
+    "ubik-title": "https://github.com/synapticism/ubik-title.git"
   }
 }
