@@ -39,16 +39,11 @@ require_once( trailingslashit( get_stylesheet_directory() ) . 'core/navigation.p
 require_once( trailingslashit( get_stylesheet_directory() ) . 'core/templates.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'core/various.php' );
 
-// Local development mode; relies on WP-Config-X or some similar system; see https://github.com/synapticism/wp-config-x
-if ( WP_LOCAL_DEV ) {
-  //require_once( trailingslashit( get_stylesheet_directory() ) . 'dev/development.php' );
-}
-
 
 
 // == MODULES == //
 
-// Required
+// Required *
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/contact-form.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/footer-info.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik.php' );
@@ -58,12 +53,12 @@ if ( PENDRELL_MODULE_IMAGE_META )
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/image-metadata.php' );
 if ( PENDRELL_MODULE_POST_FORMATS )
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/post-formats.php' );
+if ( PENDRELL_MODULE_RESPONSIVE )
+  require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/responsive-images.php' );
 if ( PENDRELL_MODULE_VIEWS ) {
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/views.php' );
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/view-posts-shortcode.php' );
 }
-if ( PENDRELL_SCRIPTS_PICTUREFILL )
-  require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/picturefill.php' ); // Special case; see source
 
 
 
