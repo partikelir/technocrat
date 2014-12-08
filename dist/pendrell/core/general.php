@@ -115,7 +115,7 @@ if ( !function_exists( 'pendrell_load_pg8' ) ) : function pendrell_load_pg8() {
 
 // Test whether the current request will work with the Picturefill script (PF)
 if ( !function_exists( 'pendrell_load_pf' ) ) : function pendrell_load_pf() {
-  if ( is_404() || ( is_attachment() && !wp_is_attachment_image() ) ) // Could also return false on certain post formats
+  if ( is_404() || ( is_attachment() && !wp_attachment_is_image() ) ) // Could also return false on certain post formats
     return false;
   return true;
 } endif;

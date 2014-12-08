@@ -10,10 +10,6 @@
   @extend %spacer-below;
   @include link-stylist($link-color: false);
 }
-.nav-page,
-.nav-post {
-  max-width: $main-width; // Limit post and page width to $main-width; keeps things contained in full-width mode
-}
 .nav-above {
   @include rem("margin-bottom", $spacer);
 }
