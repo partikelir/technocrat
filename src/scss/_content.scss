@@ -132,48 +132,50 @@
 // Exclusive to post contents
 .entry-content {
 
-  // Full-width styling adjustments
-  .full-width & {
-    @include font-size($s-text-bigger);
+  // Full-width styling adjustments on viewports larger than the medium breakpoint
+  @include k-media-above($b-medium) {
+    .full-width & {
+      @include font-size($s-text-bigger);
 
-    // Increase top header sizes (the rest remain the same)
-    h1 {
-      @include font-size($s-header-biggest);
-    }
-    h2 {
-      @include font-size($s-header-bigger);
-    }
-    h3 {
-      @include font-size($s-header-big);
-    }
-
-    // Give quotations a boost
-    blockquote {
-      @include font-size($s-text-big);
-      footer {
-         @include font-size($s-text-small);
+      // Increase top header sizes (the rest remain the same)
+      h1 {
+        @include font-size($s-header-biggest);
       }
-    }
+      h2 {
+        @include font-size($s-header-bigger);
+      }
+      h3 {
+        @include font-size($s-header-big);
+      }
 
-    // These are all usually $s-text-small; kick it up a notch
-    aside,
-    code,
-    pre,
-    small,
-    table caption,
-    .entry-caption,
-    .footnotes,
-    .references {
-      @include font-size($s-text);
-    }
-    td {
-      @include font-size($s-text, 1);
-    }
+      // Give quotations a boost
+      blockquote {
+        @include font-size($s-text-big);
+        footer {
+           @include font-size($s-text-small);
+        }
+      }
 
-    // Restore the sub/superscript reset
-    sub,
-    sup {
-      font-size: 75%;
+      // These are all usually $s-text-small; kick it up a notch
+      aside,
+      code,
+      pre,
+      small,
+      table caption,
+      .entry-caption,
+      .footnotes,
+      .references {
+        @include font-size($s-text);
+      }
+      td {
+        @include font-size($s-text, 1);
+      }
+
+      // Restore the sub/superscript reset
+      sub,
+      sup {
+        font-size: 75%;
+      }
     }
   }
 }
