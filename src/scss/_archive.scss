@@ -2,15 +2,15 @@
 
 .archive-header {
   @extend %spacer-below;
-  @include k-media-above($b-large) {
-    .full-width & h1 {
-      @include font-size($s-header-biggest);
-    }
-  }
 }
 .archive-title {
   @extend %spacer-below-half;
   @include font-style("archive-title");
+  @include k-media-above($b-large) {
+    .full-width & {
+      @include font-size($s-header-biggest);
+    }
+  }
 }
 .archive-content {
   @extend %clearfix-above;
@@ -19,7 +19,6 @@
   @include k-media-above($b-large) {
     .full-width & {
       @include font-size($s-text-bigger);
-      color: $c-text-lighter;
     }
   }
   p {

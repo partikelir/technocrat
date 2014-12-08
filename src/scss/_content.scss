@@ -6,7 +6,7 @@
   @include font-size($s-header-big);
   @include font-style("entry-title");
   @include k-media-above($b-medium) {
-    @include font-size($s-header-bigger); // This is the normal title size seen on the homepage
+    @include font-size($s-header-bigger); // This is the normal title size seen on the homepage and on singular posts
   }
 
   // Drop the size of entry titles on archives, 404 pages, and in search results
@@ -49,11 +49,11 @@
   h2,
   h3 {
     @include rem("margin-top", $spacer*1.5); // Spaces out headers within body copy
-    & + h1,
-    & + h2,
-    & + h3 {
-      margin-top: 0; // Allows for subheadings e.g. h2 followed snugly by h3
-    }
+  }
+  h1 + h2,
+  h1 + h3,
+  h2 + h3 {
+    margin-top: 0; // Allows for subheadings e.g. h2 followed snugly by h3
   }
   h4,
   h5,
@@ -136,13 +136,24 @@
   .full-width & {
     @include font-size($s-text-bigger);
 
-    // Increase header sizes
-    /*h1 { @include font-size($s-header-biggest); }
-    h2 { @include font-size($s-header-bigger); }
-    h3 { @include font-size($s-header-big); }
-    h4 { @include font-size($s-header-small); }
-    h5 { @include font-size($s-header-smaller); }
-    h6 { @include font-size($s-header-smallest); }*/
+    // Increase top header sizes (the rest remain the same)
+    h1 {
+      @include font-size($s-header-biggest);
+    }
+    h2 {
+      @include font-size($s-header-bigger);
+    }
+    h3 {
+      @include font-size($s-header-big);
+    }
+
+    // Give quotations a boost
+    blockquote {
+      @include font-size($s-text-big);
+      footer {
+         @include font-size($s-text-small);
+      }
+    }
 
     // These are all usually $s-text-small; kick it up a notch
     aside,

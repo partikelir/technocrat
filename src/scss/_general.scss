@@ -15,16 +15,33 @@ body {
 }
 
 // Headers
-h1,h2,h3,h4,h5,h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   @include font-style("head");
   color: $c-text-dark;
 }
-h1 { @include font-size($s-header-bigger); }
-h2 { @include font-size($s-header-big); }
-h3 { @include font-size($s-header); }
-h4 { @include font-size($s-header-small); }
-h5 { @include font-size($s-header-smaller); }
-h6 { @include font-size($s-header-smallest); }
+h1 {
+  @include font-size($s-header-bigger);
+}
+h2 {
+  @include font-size($s-header-big);
+}
+h3 {
+  @include font-size($s-header);
+}
+h4 {
+  @include font-size($s-header-small);
+}
+h5 {
+  @include font-size($s-header-smaller);
+}
+h6 {
+  @include font-size($s-header-smallest);
+}
 
 // Monospaced
 code,
@@ -126,7 +143,7 @@ sup {
 blockquote {
   @extend %spacer-below;
   @include font-style("quotation");
-  @include font-sizes($s-text-small, $s-text-big);
+  @include font-size($s-text-small);
   @include k-reverse-italics;
   @include letterpress;
   @include rem("padding", $spacer/2 $spacer/2 $spacer/2 $spacer - 9px);
@@ -146,7 +163,7 @@ blockquote {
     }
   }
   footer { // The footer element of a blockquote adds information about the source of the quotation
-    @include font-sizes($s-text-smaller, $s-text-small);
+    @include font-size($s-text-smaller);
     display: block;
     font-style: normal;
     text-align: right;

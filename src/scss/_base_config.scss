@@ -18,7 +18,7 @@ $s-text-smallest:   12;
 // Headers
 $s-header-biggest:  48;
 $s-header-bigger:   36;
-$s-header-big:      28;
+$s-header-big:      26; // Don't want this too close to the baseline; line-height gets weird
 $s-header:          24;
 $s-header-small:    18;
 $s-header-smaller:  16;
@@ -239,8 +239,8 @@ $c-required:      colour(pueblo);
 $c-success:       colour(atlantis);
 
 // Code blocks
-$c-code-box:      colour(malta);
-$c-code-box-bg:   rgba(colour(jove), .9);
+$c-code-box:      colour(iron);
+$c-code-box-bg:   rgba(colour(shark), .9);
 
 // Various
 $c-divider:       rgba($c-text, .09); // For use with <hr> etc.

@@ -1,5 +1,7 @@
 // ==== UBIK ==== //
 
+// @TODO: add switches for these declarations
+
 // == NETLABELS == //
 
 ul.discography-thumbnails {
@@ -24,4 +26,10 @@ ul.discography-thumbnails {
 
 .entry-meta-series {
   @extend %spacer-below;
+  h2 {
+    @include font-size($s-header-small);
+  }
+  ol {
+    @include font-size($s-text-small);
+  }
 }

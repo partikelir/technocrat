@@ -10,7 +10,7 @@
 }
 .comments-title {
   @extend %spacer-below;
-  @include font-size($s-header-small);
+  @include font-size($s-header);
 }
 
 
@@ -37,16 +37,18 @@
 }
 
 // Specific to individual comments
+.comment article { // Needs to be written this way to override the specificity of the default `.site-content article` declaration
+  @include rem("margin", $spacer/-2 $spacer/-2 $spacer*2.5 $spacer/-2);
+}
 .comment-article {
-  @include border-radius(6px);
-  @include rem("margin", $spacer/-2 $spacer/-2 $spacer*1.5 $spacer/-2);
   @include rem("padding", $spacer/2);
   .bypostauthor & { // Specific to the post author's comments
+    @include border-radius(6px);
     background: $c-body-dark;
     box-shadow: $d-inset-box;
   }
 }
-.comment-author {
+.comment-author { // Comment author's byline
   @extend %clearfix-below;
   @include rem("margin-bottom", $spacer/2);
   h1 {
@@ -61,6 +63,38 @@
   line-height: 0; // Keeps the container snug around the avatar image
   img.avatar {
     @include border-radius($spacer/4);
+  }
+}
+.comment-content {
+  // Remove margin on the last element for a snug fit
+  :last-child {
+    margin-bottom: 0;
+  }
+
+  // Make comments a little smaller
+  @include font-size($s-text-small);
+  h1 {
+    @include font-size($s-header-big);
+  }
+  h2 {
+    @include font-size($s-header);
+  }
+  h3 {
+    @include font-size($s-header-small);
+  }
+  h4,
+  h5,
+  h6 {
+    @include font-size($s-header-smallest);
+  }
+  blockquote {
+    @include font-size($s-text-smaller);
+    footer {
+      @include font-size($s-text-smallest);
+    }
+  }
+  pre {
+    @include font-size($s-text-smaller);
   }
 }
 .comment-meta {
