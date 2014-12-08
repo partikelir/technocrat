@@ -7,7 +7,7 @@ $base:              16;
 $baseline:          30;
 
 // Text
-$s-text-biggest:    28;
+$s-text-biggest:    32;
 $s-text-bigger:     24;
 $s-text-big:        22;
 $s-text:            20; // Default body text font size
@@ -16,11 +16,13 @@ $s-text-smaller:    14;
 $s-text-smallest:   12;
 
 // Headers
-$s-header-title:    48;
-$s-header-big:      36;
-$s-header:          28;
-$s-header-sub:      22;
-$s-header-small:    14;
+$s-header-biggest:  48;
+$s-header-bigger:   36;
+$s-header-big:      28;
+$s-header:          24;
+$s-header-small:    18;
+$s-header-smaller:  16;
+$s-header-smallest: 14;
 
 // Menus
 $s-menu-header:     20;

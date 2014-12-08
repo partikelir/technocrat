@@ -19,12 +19,12 @@ h1,h2,h3,h4,h5,h6 {
   @include font-style("head");
   color: $c-text-dark;
 }
-h1 { @include font-size($s-header-big); }
-h2 { @include font-size($s-header); }
-h3 { @include font-size($s-header-sub); }
-h4 { @include font-size($s-text-small); }
-h5 { @include font-size($s-text-smaller); }
-h6 { @include font-size($s-text-smallest); }
+h1 { @include font-size($s-header-bigger); }
+h2 { @include font-size($s-header-big); }
+h3 { @include font-size($s-header); }
+h4 { @include font-size($s-header-small); }
+h5 { @include font-size($s-header-smaller); }
+h6 { @include font-size($s-header-smallest); }
 
 // Monospaced
 code,

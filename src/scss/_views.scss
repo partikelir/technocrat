@@ -69,10 +69,10 @@
 // This section is messy and disorganized mainly to prevent unnecessary nesting
 .list-view {
   .entry-title {
-    @include font-size($s-header-sub);
+    @include font-size($s-header);
     margin: 0;
   }
-  article {
+  .site-content article {
     @extend %spacer-below;
     @extend %text-small;
   }

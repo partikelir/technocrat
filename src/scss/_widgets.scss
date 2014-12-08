@@ -19,7 +19,7 @@
   }
 }
 .widget-title {
-  @include font-size($s-header-small);
+  @include font-size($s-header-smallest);
   @include font-style("widget-title");
   color: $c-text-dark;
 }

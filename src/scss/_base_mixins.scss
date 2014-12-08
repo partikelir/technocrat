@@ -51,10 +51,10 @@
   $buffer: 1;
 
   @if $size >= $baseline * 2 {
-    $buffer: 3;
+    $buffer: 2.5;
   }
   @elseif $size >= $baseline {
-    $buffer: 2;
+    $buffer: 1.5;
   }
 
   line-height: ( ( ($baseline - $offset) * $buffer) / $size );

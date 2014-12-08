@@ -8,8 +8,8 @@
 // - In the case of this theme, Pendrell, there are several complications:
 //   - The use of fractional width images (half/third/quarter-width)
 //   - The use of a full-width template
-//   - Page margins that vary according to viewport width
-//   - Gallery view switches between a two and three column layout (still @TODO)
+//   - Page margins vary according to viewport width
+//   - Gallery view switches between a one, two, and three column layout depending on the viewport width
 // These scenarious will be discussed in the code below...
 // @TODO: investigate Firefox scrollbar inconsistencies; it may be necessary to add another fudge factor to ensure browsers choose the optimal image
 

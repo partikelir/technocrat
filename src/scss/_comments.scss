@@ -10,7 +10,7 @@
 }
 .comments-title {
   @extend %spacer-below;
-  @include font-size($s-header-sub);
+  @include font-size($s-header-small);
 }
 
 
@@ -27,7 +27,7 @@
 
 // Pingbacks/trackbacks
 .comment-pingback {
-  @include font-size($s-header-small);
+  @include font-size($s-header-smaller);
   @include ghost;
 }
 

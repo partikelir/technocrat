@@ -4,11 +4,12 @@
   @extend %spacer-below;
   @include k-media-above($b-large) {
     .full-width & h1 {
-      @include font-size($s-header-title);
+      @include font-size($s-header-biggest);
     }
   }
 }
 .archive-title {
+  @extend %spacer-below-half;
   @include font-style("archive-title");
 }
 .archive-content {
@@ -18,7 +19,7 @@
   @include k-media-above($b-large) {
     .full-width & {
       @include font-size($s-text-bigger);
-      color: $c-text-light;
+      color: $c-text-lighter;
     }
   }
   p {

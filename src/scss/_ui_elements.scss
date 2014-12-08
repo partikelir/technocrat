@@ -47,7 +47,7 @@ input[type="reset"],
 // Response form; used in comments and the contact form
 .comment-form,
 .contact-form {
-  @include font-size($s-header-small);
+  @include font-size($s-header-smaller);
   label:not(.error) {
     @include font-style("label");
     @include rem("margin-top", $spacer/2);

@@ -90,7 +90,7 @@
   @include font-size($s-header);
   @include font-style("site-title");
   @include k-media-above($b-medium) {
-    @include font-size($s-header-title);
+    @include font-size($s-header-biggest);
   }
   a {
     color: $c-site-title;
