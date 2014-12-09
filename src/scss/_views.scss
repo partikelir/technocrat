@@ -91,37 +91,30 @@
   }
   .entry-content p {
     @extend %text-small;
-  }
-
-  // Edge cases
-  &.archive .entry-content > p:first-child {
-    margin: 0; // Resets margins added to paragraph tags (which is all we should end up with after pulling out an excerpt)
+    margin: 0;
   }
 
   // Link post format
   .entry-link {
     @include hide;
   }
-}
 
-// Full-width list-view
-.entry-title {
-  @include k-media-above($b-large) {
-    .full-width.list-view {
-      @include font-size($s-header);
-    }
-  }
-}
-.entry-content p {
-  @include k-media-above($b-large) {
-    .full-width.list-view {
-      @include font-size($s-text);
+  // Full-width alterations
+  &.full-width {
+    @include k-media-above($b-large) {
+      .entry-title {
+        @include font-size($s-header);
+      }
+      .entry-content p {
+        @include font-size($s-text);
+      }
     }
   }
 }
 
 // Reset a few things when a list appears within a post or page
 .entry-content .list-view article {
+  @extend %spacer-below;
   a,
   a:visited {
     border-bottom: none;
