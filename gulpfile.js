@@ -1,5 +1,10 @@
 // ==== SETUP ==== //
 
+// @TODO: reduce unnecessary wrapper plugins; see: https://github.com/sogko/gulp-recipes/tree/master/unnecessary-wrapper-gulp-plugins
+// @TODO: a better bundling method; this is getting out of hand...
+// @TODO: add source maps where relevant and well-supported
+// @TODO: integrate deployment and git updating?
+
 // Project configuration
 var project     = 'pendrell'
   , build       = './build/'
@@ -47,19 +52,18 @@ gulp.task('styles', function() {
 
 // Scripts broken out into different tasks to create specific bundles which are then compressed in place
 // Rationale: why bother letting WP queue individual scripts when we can easily roll bundles for all occasions?
-// @TODO: a better bundling method; this is getting out of hand...
 gulp.task('scripts', [
     'scripts-lint',
     'scripts-html5',
     'scripts-contact',
     'scripts-core',
-    'scripts-prism',
     'scripts-pg8',
-    'scripts-pf',
-    'scripts-pf-prism',
     'scripts-pg8-pf',
     'scripts-pg8-prism',
     'scripts-pg8-pf-prism',
+    'scripts-pf',
+    'scripts-pf-prism',
+    'scripts-prism',
     'scripts-xn8',
     'scripts-xn8-prism'
   ], function(){
@@ -102,16 +106,6 @@ gulp.task('scripts-core', function() {
   .pipe(gulp.dest(build+'js/'));
 });
 
-// Prism code highlighting; roll your own at http://prismjs.com/
-gulp.task('scripts-prism', ['scripts-core'], function() {
-  return gulp.src([
-    source+'js/prism.js'
-  , build+'js/p-core.js'
-  ])
-  .pipe(plugins.concat('p-prism.js'))
-  .pipe(gulp.dest(build+'js/'));
-});
-
 // Page Loader: loads the next page of content with jQuery/AJAX
 gulp.task('scripts-pg8', ['scripts-core'], function() {
   return gulp.src([
@@ -122,6 +116,20 @@ gulp.task('scripts-pg8', ['scripts-core'], function() {
   , build+'js/p-core.js'
   ])
   .pipe(plugins.concat('p-pg8.js'))
+  .pipe(gulp.dest(build+'js/'));
+});
+
+// Page Loader + Picturefill
+gulp.task('scripts-pg8-pf', ['scripts-core'], function() {
+  return gulp.src([
+    bower+'html5-history-api/history.iegte8.js'
+  , bower+'spin.js/spin.js'
+  , bower+'spin.js/jquery.spin.js'
+  , source+'js/page-loader.js'
+  , bower+'picturefill/dist/picturefill.js'
+  , build+'js/p-core.js'
+  ])
+  .pipe(plugins.concat('p-pg8-pf.js'))
   .pipe(gulp.dest(build+'js/'));
 });
 
@@ -136,6 +144,21 @@ gulp.task('scripts-pg8-prism', ['scripts-core'], function() {
   , build+'js/p-core.js'
   ])
   .pipe(plugins.concat('p-pg8-prism.js'))
+  .pipe(gulp.dest(build+'js/'));
+});
+
+// Page Loader + Picturefill + Prism
+gulp.task('scripts-pg8-pf-prism', ['scripts-core'], function() {
+  return gulp.src([
+    bower+'html5-history-api/history.iegte8.js'
+  , bower+'spin.js/spin.js'
+  , bower+'spin.js/jquery.spin.js'
+  , source+'js/page-loader.js'
+  , source+'js/prism.js'
+  , bower+'picturefill/dist/picturefill.js'
+  , build+'js/p-core.js'
+  ])
+  .pipe(plugins.concat('p-pg8-pf-prism.js'))
   .pipe(gulp.dest(build+'js/'));
 });
 
@@ -160,32 +183,13 @@ gulp.task('scripts-pf-prism', ['scripts-core'], function() {
   .pipe(gulp.dest(build+'js/'));
 });
 
-// Page Loader + Picturefill
-gulp.task('scripts-pg8-pf', ['scripts-core'], function() {
+// Prism code highlighting; roll your own at http://prismjs.com/
+gulp.task('scripts-prism', ['scripts-core'], function() {
   return gulp.src([
-    bower+'html5-history-api/history.iegte8.js'
-  , bower+'spin.js/spin.js'
-  , bower+'spin.js/jquery.spin.js'
-  , source+'js/page-loader.js'
-  , bower+'picturefill/dist/picturefill.js'
+    source+'js/prism.js'
   , build+'js/p-core.js'
   ])
-  .pipe(plugins.concat('p-pg8-pf.js'))
-  .pipe(gulp.dest(build+'js/'));
-});
-
-// Page Loader + Picturefill + Prism
-gulp.task('scripts-pg8-pf-prism', ['scripts-core'], function() {
-  return gulp.src([
-    bower+'html5-history-api/history.iegte8.js'
-  , bower+'spin.js/spin.js'
-  , bower+'spin.js/jquery.spin.js'
-  , source+'js/page-loader.js'
-  , source+'js/prism.js'
-  , bower+'picturefill/dist/picturefill.js'
-  , build+'js/p-core.js'
-  ])
-  .pipe(plugins.concat('p-pg8-pf-prism.js'))
+  .pipe(plugins.concat('p-prism.js'))
   .pipe(gulp.dest(build+'js/'));
 });
 
@@ -359,7 +363,7 @@ gulp.task('watch', ['server'], function() {
 gulp.task('build', ['styles', 'scripts', 'images', 'languages', 'php']);
 
 // Release creates a clean distribution package under `dist` after running build, clean, and wipe in sequence
-// NOTE: this is a resource-intensive task; @TODO: integrate deployment and git updating?
+// NOTE: this is a resource-intensive task
 gulp.task('dist', ['dist-images']);
 
 // The default task runs watch which boots up the Livereload server after an initial build is finished

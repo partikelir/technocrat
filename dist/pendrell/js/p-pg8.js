@@ -1432,6 +1432,7 @@ var PG8 = {};
     this.nextPage = this.thisPage + 1;
     this.nextLink = pendrellVars.PG8.nextLink;
     this.maxPages = parseInt(pendrellVars.PG8.maxPages);
+    this.maxedOut = 0; // A flag to determine whether all pages have been loaded
     this.opts     = $.extend({}, $.fn.pageloader.defaults, opts);
     this.content  = $(this.opts.contentSel);
 
@@ -1501,7 +1502,7 @@ var PG8 = {};
         clearTimeout($.data(this, 'pushTimer'));
         clearTimeout($.data(this, 'infinTimer'));
 
-        // Manage push state based on scroll position
+        // Manage push state based on scroll position; keeps the URL updated wherever the window position is
         $.data(this, 'pushTimer', setTimeout(function() {
 
           // Setup some useful variables including info about the top-most page
@@ -1531,19 +1532,23 @@ var PG8 = {};
           } // end if
         }, self.opts.pushDelay)); // end $.data()
 
-        // Infinite scroll, a lazy implementation
-        $.data(this, 'infinTimer', setTimeout(function() {
-          var
-            $document       = $(document),
-            scrollHeight    = $document.height(),
-            scrollPosition  = $window.height() + $window.scrollTop(),
-            scrollDiff      = scrollHeight - scrollPosition;
+        // Infinite scroll, a lazy (yet smart) implementation
+        if ( self.maxedOut === 0 ) { // Only bother with this if there are more pages to load
+          $.data(this, 'infinTimer', setTimeout(function() {
+            var
+              $document       = $(document),
+              scrollHeight    = $document.height(),
+              scrollPosition  = $window.height() + $window.scrollTop(), // Position of the bottom of the window
+              scrollLastPage  = self.content.children(':last').offset().top, // Bottom of the content area
+              scrollDiff      = scrollHeight - scrollPosition; // How close to the absolute bottom of the document
 
-          // Trigger a click near the bottom of the window... but not at the -absolute- bottom (this way we can still reach the footer)
-          if ( scrollDiff < self.opts.infinOffset && scrollDiff >= 1 ) {
-            $(self.opts.nextSel).trigger('click');
-          }
-        }, self.opts.infinDelay)); // end $.data()
+            // Trigger a click when the bottom of the window is just below the contents of the last page
+            // But not the absolute bottom; we'd like to be able to reach the footer if we can!
+            if ( scrollPosition > scrollLastPage + self.opts.scrollOffset && scrollPosition <= scrollLastPage + self.opts.scrollOffset + self.opts.infinOffset && scrollDiff >= 1 ) {
+              $(self.opts.nextSel).trigger('click');
+            }
+          }, self.opts.infinDelay)); // end $.data()
+        } // end infinite scroll
       }); // end $window.on('scroll')
     }, // end handler()
 
@@ -1584,6 +1589,7 @@ var PG8 = {};
         self.nextLink = link.replace(/\/page\/[0-9]?/, '/page/'+self.nextPage);
 
         // @TODO: load scripts necessary to display content on new pages e.g. MediaElement.js
+        // Presently this script assumes all scripts are already loaded
         // Follow the link for an example: https://github.com/Automattic/jetpack/blob/master/modules/infinite-scroll/infinity.js
 
         // Change the URL
@@ -1595,6 +1601,7 @@ var PG8 = {};
         // Navigation link handling
         if (self.nextPage > self.maxPages) {
           $navLink.remove(); // End of the line
+          self.maxedOut = 1; // Set a flag to avoid further processing
         } else {
           $('a', $navLink).attr('href', self.nextLink); // Update the navigation links (for right-click etc.)
         }
@@ -1672,7 +1679,7 @@ var PG8 = {};
   , scrollOffset:  30           // To account for margins and such
   , pushDelay:     250          // How long to wait on scroll before trying to update history
   , infinDelay:    600          // How long to wait before pulling new content automatically
-  , infinOffset:   250          // How close to the bottom of the window to trigger infinite scrolling
+  , infinOffset:   300          // Height of the area below the last page in which infinite scrolling will be triggered
   , spinOpts: {                 // spin.js options; reference: https://fgnass.github.io/spin.js/
       lines:  25
     , length: 0

@@ -29,10 +29,10 @@ define( 'PENDRELL_THEME_VERSION', '0.15' );
 if ( is_admin() )
   require_once( trailingslashit( get_stylesheet_directory() ) . 'core/admin.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'core/archive.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . 'core/assets.php' ); // Scripts, styles, and fonts
 require_once( trailingslashit( get_stylesheet_directory() ) . 'core/author.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'core/comments.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'core/content.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . 'core/general.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'core/full-width.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'core/image.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'core/navigation.php' );
