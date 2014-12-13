@@ -61,6 +61,10 @@ if ( PENDRELL_UBIK_POST_FORMATS )
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-post-formats/ubik-post-formats.php' );
 if ( PENDRELL_UBIK_RECORDPRESS )
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-recordpress/ubik-recordpress.php' );
+if ( PENDRELL_UBIK_RELATED ) {
+  require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-related/ubik-related.php' );
+  require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/related.php' );
+}
 if ( PENDRELL_UBIK_SEO )
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-seo/ubik-seo.php' );
 if ( PENDRELL_UBIK_SERIES ) {

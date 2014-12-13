@@ -49,9 +49,9 @@ if ( !function_exists( 'pendrell_view_setup' ) ) : function pendrell_view_setup(
         foreach ( $pendrell_views_taxonomies as $taxonomy ) {
 
           // Clear existing variables from the last run through the loop
-          unset($tax);
-          unset($tax_slug);
-          unset($tax_var);
+          unset( $tax );
+          unset( $tax_slug );
+          unset( $tax_var );
 
           // Fetch the taxonomy object
           $tax = get_taxonomy( $taxonomy );

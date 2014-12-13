@@ -1,9 +1,8 @@
 // ==== COMMENTS ==== //
 
 // General comments area
-.comments-area {
-  @include rem("margin-top", $spacer*3);
-  max-width: $main-width; // Required to bound comments area when there is no sidebar displayed
+.comments-area { // See also .entry-after
+  max-width: $main-width; // Required to limit the width of the comments area when there is no sidebar displayed
   ol {
     list-style: none; // Reset list style from `_general.scss`
   }

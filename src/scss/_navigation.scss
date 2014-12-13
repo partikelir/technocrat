@@ -48,11 +48,13 @@
 }
 
 // View switcher, as defined in `src/modules/views.php`
-.view-switcher {
-  @extend %breadcrumbs-static;
-  @include rem("margin-right", $spacer);
-  float: left;
-  li + li:before {
-    content: "\00a0\00b7\00a0"; // Middle dot: \00b7
+@if ($m-views) {
+  .view-switcher {
+    @extend %breadcrumbs-static;
+    @include rem("margin-right", $spacer);
+    float: left;
+    li + li:before {
+      content: "\00a0\00b7\00a0"; // Middle dot: \00b7
+    }
   }
 }

@@ -195,3 +195,10 @@
   @include link-stylist($c-meta-link, $c-meta-link-v, $c-meta-link-h, $c-meta-link-a, $c-meta-link-f);
   color: $c-meta;
 }
+
+
+
+// Entry after (comments template, related posts, etc.)
+.entry-after {
+  @include rem("margin-top", $spacer*3);
+}

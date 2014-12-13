@@ -1,9 +1,22 @@
 <?php // ==== COMMENTS ==== //
 
 // Comments template wrapper; load template if comments are open or we have at least one comment; via _s
+// @action: pendrell_comment_template_before
+// @action: pendrell_comment_template_after
+// @filter: pendrell_comment_template
 if ( !function_exists( 'pendrell_comments_template' ) ) : function pendrell_comments_template() {
-  if ( is_singular() && ( comments_open() || get_comments_number() != '0' ) )
+
+  do_action( 'pendrell_comment_template_before' );
+
+  // Allow the display of the comments template to be filtered by other functions
+  $display = apply_filters( 'pendrell_comment_template', true );
+
+  // Display the template if all conditions are met
+  if ( $display === true && is_singular() && ( comments_open() || get_comments_number() != '0' ) )
     comments_template( '', true );
+
+  do_action( 'pendrell_comment_template_after' );
+
 } endif;
 
 

@@ -279,6 +279,20 @@ $d-radius:        3px;
 
 
 
+// == MODULES == //
+
+// Styling for optional modules; reduce bloat by switching some of these off
+// @TODO: test and then switch off non-standard modules on master branch
+
+$m-image-metadata:    true; // Built-in
+$m-views:             true; // Built-in
+$m-ubik-places:       true;
+$m-ubik-recordpress:  true;
+$m-ubik-related:      true;
+$m-ubik-series:       true;
+
+
+
 // == REFERENCE == //
 
 // $b: breakpoint
