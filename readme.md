@@ -8,7 +8,7 @@ Pendrell is built with [Ubik](https://github.com/synapticism/ubik), my suite of 
 
 You can see Pendrell in action on my personal blog, [Synapticism](http://synapticism.com).
 
-*Please note that Pendrell is still in the **0.x** branch of development; things can (and will) change!*
+*Please note that Pendrell is still in the 0.x branch of development; things can (and will) change!*
 
 
 

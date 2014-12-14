@@ -29,7 +29,7 @@
 @if ($m-ubik-related) {
   .related-posts {
     h3 {
-      @extend %spacer-below;
+      @extend %spacer-below; // Required to space out the title from the images below
     }
   }
 }
@@ -39,11 +39,7 @@
 // == SERIES == //
 
 @if ($m-ubik-series) {
-  .entry-meta-series { // @TODO: move to entry-after
-    @extend %spacer-below;
-    h2 {
-      @include font-size($s-header-small);
-    }
+  .series {
     ol {
       @include font-size($s-text-small);
     }

@@ -69,7 +69,8 @@ if ( PENDRELL_UBIK_SEO )
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-seo/ubik-seo.php' );
 if ( PENDRELL_UBIK_SERIES ) {
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-series/ubik-series.php' );
-  add_action( 'pendrell_entry_meta_before', 'ubik_series_list' );
+  add_action( 'pendrell_comment_template_before', 'ubik_series', 15 );
+  add_filter( 'ubik_series_list_class', 'pendrell_series_list_class' );
 }
 
 
@@ -113,3 +114,12 @@ if ( !function_exists( 'pendrell_related_taxonomies' ) ) : function pendrell_rel
   return $taxonomies;
 } endif;
 add_filter( 'pendrell_related_taxonomies', 'pendrell_related_taxonomies' );
+
+
+
+// == SERIES == //
+
+// Add a custom class to series list output
+if ( !function_exists( 'pendrell_series_list_class' ) ) : function pendrell_series_list_class( $class ) {
+  return 'entry-after series';
+} endif;
