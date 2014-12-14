@@ -3,10 +3,7 @@
 // == GALLERY VIEW == //
 
 .gallery-view {
-  figure.wp-caption {
-    @include image-overlay(".wp-caption-text", "title");
-    // Assumes `float: left` is set elsewhere
-  }
+  // Assumes `float: left` is set elsewhere
 
   // Responsive gallery view; not especially DRY but it has the advantage of being targetted and precise; no wasted CSS here
   // Won't produce neat 30px margins between images on Firefox because of cross-browser scrollbar inconsistencies; not important enough to fix with JavaScript hackery
@@ -17,14 +14,14 @@
   $b-gallery-small: 300 + $spacer; // The viewport has to get quite small to trigger this breakpoint but we don't want to lose quality by upscaling the 320px third-square image size
   $b-gallery-medium: 600 + $d-image-spacer + $spacer*2; // Extra spacer at this width as per layout-box mixin
   @include k-media-below($b-gallery-small) {
-    .img-group figure.wp-caption {
+    .gallery figure.wp-caption {
       margin: 0 0 $d-image-spacer 0; // Only a bottom margin
       max-width: 100%;
     }
   }
   @include k-media-between($b-gallery-small, $b-gallery-medium) {
     $margin-width: $d-image-spacer / 600px;
-    .img-group figure.wp-caption {
+    .gallery figure.wp-caption {
       margin: 0 percentage($margin-width) percentage($margin-width) 0;
       max-width: percentage(1/2) - percentage($margin-width/2);
       &:nth-of-type(2n) {
@@ -36,8 +33,8 @@
     }
   }
   @include k-media-above($b-gallery-medium) {
-    .img-group figure.wp-caption {
-      // Calculations based on $content-width presume that gallery view is always full-width
+    .gallery figure.wp-caption {
+      // The following calculations based on $content-width presume that gallery view is always full-width
       margin: 0 percentage($d-image-spacer / $content-width) percentage($d-image-spacer / $content-width) 0;
       max-width: percentage(1/3) - percentage( ( ($d-image-spacer * 2 ) / $content-width) / 3 );
       &:nth-of-type(3n) {
@@ -53,8 +50,6 @@
 
 
 // == LIST VIEW == //
-
-// @TODO: this needs some serious work, especially as it relates to _post_formats.scss
 
 // This class only appears in list-view so it is safe to declare it without nesting
 .entry-thumbnail {
@@ -99,7 +94,7 @@
     @include hide;
   }
 
-  // Full-width alterations
+  // Full-width modifications
   &.full-width {
     @include k-media-above($b-large) {
       .entry-title {
@@ -128,4 +123,4 @@
 
 // == VIEW POSTS SHORTCODE == //
 
-// Nothing yet!
+// Nothing yet! @TODO: get to work on this

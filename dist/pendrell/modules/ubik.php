@@ -55,7 +55,7 @@ if ( PENDRELL_UBIK_MARKDOWN )
 if ( PENDRELL_UBIK_PLACES ) {
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-places/ubik-places.php' );
   add_action( 'pendrell_archive_description_before', 'ubik_places_breadcrumb' );
-  add_filter( 'pendrell_sidebar', 'ubik_places_sidebar' );
+  add_filter( 'pendrell_sidebar', 'pendrell_sidebar_places' );
 }
 if ( PENDRELL_UBIK_POST_FORMATS )
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-post-formats/ubik-post-formats.php' );
@@ -87,11 +87,29 @@ if ( is_admin() ) {
 
 // == PLACES SIDEBAR == //
 
-// Don't display regular sidebar on full-width items
-function ubik_places_sidebar( $sidebar ) {
+// Don't display regular sidebar on full-width items; this function appears here as the sidebar-switching filter is specific to Pendrell
+if ( !function_exists( 'pendrell_sidebar_places' ) ) : function pendrell_sidebar_places( $sidebar ) {
   if ( is_tax( 'places' ) && !pendrell_is_full_width() ) {
     ubik_places_widget(); // @TODO: turn this into a real widgetized sidebar
     $sidebar = false;
   }
   return $sidebar;
-}
+} endif;
+
+
+
+// == RELATED POSTS == //
+
+// Add various custom taxonomies to the related posts component; @TODO: relocate these filters to their respective components
+if ( !function_exists( 'pendrell_related_taxonomies' ) ) : function pendrell_related_taxonomies( $taxonomies = array() ) {
+  if ( PENDRELL_UBIK_PLACES )
+    $taxonomies[] = 'places';
+  if ( PENDRELL_UBIK_RECORDPRESS ) {
+    $taxonomies[] = 'artists';
+    $taxonomies[] = 'styles';
+  }
+  if ( PENDRELL_UBIK_SERIES )
+    $taxonomies[] = 'series';
+  return $taxonomies;
+} endif;
+add_filter( 'pendrell_related_taxonomies', 'pendrell_related_taxonomies' );

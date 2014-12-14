@@ -284,7 +284,9 @@ $d-radius:        3px;
 // Styling for optional modules; reduce bloat by switching some of these off
 // @TODO: test and then switch off non-standard modules on master branch
 
-$m-image-metadata:    true; // Built-in
+$m-gallery-shortcode: true; // WordPress core
+$m-image-metadata:    true; // Built-in to Pendrell
+$m-post-formats:      true; // Built-in
 $m-views:             true; // Built-in
 $m-ubik-places:       true;
 $m-ubik-recordpress:  true;

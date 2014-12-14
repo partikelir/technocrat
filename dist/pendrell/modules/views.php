@@ -168,7 +168,7 @@ add_filter( 'body_class', 'pendrell_view_body_class' );
 // View content class filter; adds classes to the main content element rather than body class (for compatibility with the full-width module)
 if ( !function_exists( 'pendrell_view_content_class' ) ) : function pendrell_view_content_class( $classes ) {
   if ( pendrell_is_view( 'gallery' ) )
-    $classes[] = 'img-group';
+    $classes[] = 'gallery';
   return $classes;
 } endif;
 add_filter( 'pendrell_content_class', 'pendrell_view_content_class' );
