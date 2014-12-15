@@ -267,13 +267,17 @@ add_action( 'parse_query', 'pendrell_view_mapping' );
 // @TODO: convert pages from one view to another based on posts_per_page
 
 // A way to switch between different views
+// @filter: pendrell_view_switcher_display
 if ( !function_exists( 'pendrell_view_switcher' ) ) : function pendrell_view_switcher() {
 
-  global $pendrell_views, $pendrell_views_taxonomies, $wp;
+  // Allow this function to be filtered
+  $display = apply_filters( 'pendrell_view_switcher_display', true );
 
   // Exit early if there is no need to display these options
-  if ( !is_home() && !is_category() && !is_tag() && !is_tax( $pendrell_views_taxonomies ) )
+  if ( $display === false || ( !is_home() && !is_category() && !is_tag() && !is_tax( $pendrell_views_taxonomies ) ) )
     return;
+
+  global $pendrell_views, $pendrell_views_taxonomies, $wp;
 
   // Fetch the current view
   $this_view = pendrell_get_view();

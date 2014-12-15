@@ -1,6 +1,7 @@
 <?php // ==== RELATED ==== //
 
 // Display a list of related posts as thumbnails
+// @filter: pendrell_related_display
 // @filter: pendrell_related_taxonomies
 if ( !function_exists( 'pendrell_related_posts' ) ) : function pendrell_related_posts() {
 
@@ -8,8 +9,11 @@ if ( !function_exists( 'pendrell_related_posts' ) ) : function pendrell_related_
   if ( !is_singular() )
     return;
 
+  // Allow this function to be filtered
+  $display = apply_filters( 'pendrell_related_display', true );
+
   // Additional constraints on displaying related posts: not on pages, attachments, password-protected posts, or certain post formats
-  if ( post_password_required() || is_page() || is_attachment() || has_post_format( array( 'aside', 'link', 'quote', 'status' ) ) )
+  if ( $display === false || post_password_required() || is_page() || is_attachment() || has_post_format( array( 'aside', 'link', 'quote', 'status' ) ) )
     return;
 
   // Retrieve a list of related post IDs; null allows the function to use the current post
