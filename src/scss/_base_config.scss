@@ -282,16 +282,29 @@ $d-radius:        3px;
 // == MODULES == //
 
 // Styling for optional modules; reduce bloat by switching some of these off
-// @TODO: test and then switch off non-standard modules on master branch
 
 $m-gallery-shortcode: true; // WordPress core
-$m-image-metadata:    true; // Built-in to Pendrell
-$m-post-formats:      true; // Built-in
-$m-views:             true; // Built-in
-$m-ubik-places:       true;
-$m-ubik-recordpress:  true;
-$m-ubik-related:      true;
-$m-ubik-series:       true;
+$m-image-metadata:    false; // Built-in to Pendrell
+$m-post-formats:      false; // Built-in
+$m-views:             false; // Built-in
+$m-ubik-places:       false;
+$m-ubik-recordpress:  false;
+$m-ubik-related:      false;
+$m-ubik-series:       false;
+
+// Override the settings above; true/false
+$dev: false;
+
+@if ($dev) {
+  $m-gallery-shortcode: true; // WordPress core
+  $m-image-metadata:    true; // Built-in to Pendrell
+  $m-post-formats:      true; // Built-in
+  $m-views:             true; // Built-in
+  $m-ubik-places:       true;
+  $m-ubik-recordpress:  true;
+  $m-ubik-related:      true;
+  $m-ubik-series:       true;
+}
 
 
 

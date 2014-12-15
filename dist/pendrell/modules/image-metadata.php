@@ -21,12 +21,12 @@ if ( !function_exists( 'pendrell_image_meta' ) ) : function pendrell_image_meta(
     $metadata = wp_get_attachment_metadata( $attachment );
 
   if ( !empty( $metadata['image_meta'] ) ) {
-    ?><div class="image-info">
-      <h2><?php _e( 'Image Info', 'pendrell' ); ?></h2>
+    ?><section class="entry-after image-info">
+      <h3><?php _e( 'Image info', 'pendrell' ); ?></h3>
       <p class="image-description">
       <?php
       if ( $metadata['image_meta']['created_timestamp'] )
-        printf( __( 'Taken: %s.<br/>', 'pendrell' ), date( get_option( 'date_format' ), $metadata['image_meta']['created_timestamp'] ) );
+        printf( __( 'Date taken: %s.<br/>', 'pendrell' ), date( get_option( 'date_format' ), $metadata['image_meta']['created_timestamp'] ) );
       if ( $metadata['image_meta']['camera'] )
         printf( __( 'Camera: %s.</br>', 'pendrell' ), $metadata['image_meta']['camera'] );
       if ( $metadata['image_meta']['focal_length'] )
@@ -71,11 +71,10 @@ if ( !function_exists( 'pendrell_image_meta' ) ) : function pendrell_image_meta(
       }
       ?>
       </p>
-    </div>
-<?php
-  }
+    </section>
+  <?php }
 } endif;
-add_action( 'pendrell_entry_meta_after', 'pendrell_image_meta' );
+add_action( 'pendrell_comment_template_before', 'pendrell_image_meta', 1 );
 
 
 

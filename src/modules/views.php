@@ -3,7 +3,8 @@
 // The views module allows for template parts to be controlled by URL rewrites
 // For example, to view a category in gallery mode, navigate to <website.com/category/kittens/gallery>
 // By default there are two defined views, gallery and list, as well as a default 'posts' view to display content in the usual way
-
+// @TODO: transform this into an Ubik component; presently it is too entangled with the theme to make this a simple operation
+// @TODO: views with different posts per page will cause trouble when switching between them
 
 
 // == DEFAULTS == //
@@ -179,17 +180,9 @@ add_filter( 'pendrell_content_class', 'pendrell_view_content_class' );
 
 // Force certain views to be full-width
 if ( !function_exists( 'pendrell_view_full_width' ) ) : function pendrell_view_full_width( $full_width_test ) {
-
-  // Return immediately if the test has already been passed
-  if ( $full_width_test === true )
-    return $full_width_test;
-
-  // Test the view
   if ( pendrell_is_view( 'gallery' ) )
     return true;
-
-  // Otherwise return false
-  return false;
+  return $full_width_test;
 } endif;
 add_filter( 'pendrell_full_width', 'pendrell_view_full_width' );
 
@@ -263,8 +256,6 @@ add_action( 'parse_query', 'pendrell_view_mapping' );
 
 
 // == VIEW SWITCHER == //
-
-// @TODO: convert pages from one view to another based on posts_per_page
 
 // A way to switch between different views
 // @filter: pendrell_view_switcher_display

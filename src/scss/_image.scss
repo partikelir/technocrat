@@ -166,15 +166,7 @@ figure.wp-caption,
 
 // Styling specific to the Image Metadata module for Pendrell
 @if ($m-image-metadata) {
-  .image-info {
-    @extend %spacer-above;
-    @include rem("padding-top", $spacer, 1);
-    border-top: $d-divider;
-  }
   .image-description {
-    @include font-size($s-text-smaller);
-    @include k-media-above($b-medium) {
-      @include font-size($s-text-small);
-    }
+    @include font-size($s-text-small);
   }
 }

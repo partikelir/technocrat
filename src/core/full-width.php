@@ -33,19 +33,20 @@ if ( !function_exists( 'pendrell_full_width_content' ) ) : function pendrell_ful
   // Test the categories and tags set in functions-config.php
   global $pendrell_full_width_cats, $pendrell_full_width_tags;
 
+  // Test categories
   if ( !empty( $pendrell_full_width_cats ) ) {
-    if ( is_category( $pendrell_full_width_cats ) || ( is_singular() && in_category( $pendrell_full_width_cats ) ) ) {
+    if ( is_category( $pendrell_full_width_cats ) || ( is_singular() && in_category( $pendrell_full_width_cats ) ) )
       return true;
-    }
   }
 
+  // Test tags
   if ( !empty( $pendrell_full_width_tags ) ) {
-    if ( is_tag( $pendrell_full_width_tags ) || ( is_singular() && has_tag( $pendrell_full_width_tags ) ) ) {
+    if ( is_tag( $pendrell_full_width_tags ) || ( is_singular() && has_tag( $pendrell_full_width_tags ) ) )
       return true;
-    }
   }
 
-  return false;
+  return $full_width_test;
+
 } endif;
 add_filter( 'pendrell_full_width', 'pendrell_full_width_content' );
 
