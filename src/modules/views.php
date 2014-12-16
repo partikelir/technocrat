@@ -254,6 +254,66 @@ add_action( 'parse_query', 'pendrell_view_mapping' );
 
 
 
+// == RESPONSIVE IMAGES == //
+
+// The views module introduces a special case for the responsive images module
+// Refer to `src/modules/responsive-images.php` for a much more detailed explanation of what is going on here
+if ( !function_exists( 'pendrell_views_sizes_media_queries' ) ) : function pendrell_views_sizes_media_queries( $queries = array(), $size = '', $width = '' ) {
+
+  // Exit early if we don't have the required size and width data
+  if ( empty( $size ) || !is_string( $size ) || empty( $width ) || !is_int( $width ) || !pendrell_is_view( 'gallery' ) )
+    return;
+
+  // Reset queries array
+  $queries = array();
+
+  global $content_width, $main_width;
+
+  // The margins can be filtered; this is mostly in case the inner margin (the space between grouped images) is not the same as the page margins
+  // Example: your outer page margins are 30px on each side but the spacing between images is 20px
+  $margin       = (int) apply_filters( 'pendrell_sizes_margin', PENDRELL_BASELINE );
+  $margin_inner = (int) apply_filters( 'pendrell_sizes_margin_inner', PENDRELL_BASELINE );
+
+  // Breakpoints replicated from `src/scss/_base_config.scss`
+  $b_small = ceil( $main_width/1.2 ); // 520px
+  $b_medium = $main_width + ( $margin * 3 ); // 714px
+
+  // The topmost media query specifies the minimum viewport width at which an image is *fixed* in size (not fluid)
+  $queries[] = '(min-width: ' . ( $content_width + ( $margin * 3 ) ) . 'px) ' . $width . 'px';
+
+  // Above $b_medium there is a step up from 2x to 3x page margins
+  $queries[] = '(min-width: ' . $b_medium . 'px) calc(' . round( ( 1 / 3 - ( ( ( $margin_inner * 2 ) / $content_width ) ) / 3 ) * 100, 5 ) . 'vw - ' . round( ( $margin * 3 ) / 3, 5 ) . 'px)';
+
+  // Above here it's a three column layout but page margins are still 2x
+  $queries[] = '(min-width: ' . ( 600 + $margin_inner + ( $margin * 2 ) ) . 'px) calc(' . round( ( 1 / 3 - ( ( ( $margin_inner * 2 ) / $content_width ) ) / 3 ) * 100, 5 ) . 'vw - ' . round( ( $margin * 2 ) / 3, 5 ) . 'px)';
+
+  // Above $b_small it's a two column layout and the page margins are 2x
+  $queries[] = '(min-width: ' . $b_small . 'px) calc(' . round( ( 1 / 2 - ( ( $margin_inner / $content_width ) ) / 2 ) * 100, 5 ) . 'vw - ' . round( ( $margin * 2 ) / 2, 5 ) . 'px)';
+
+  // Above here it's a two column layout and the page margins are 1x
+  $queries[] = '(min-width: ' . ( 300 + $margin ) . 'px) calc(' . round( ( 1 / 2 - ( ( $margin_inner / $content_width ) ) / 2 ) * 100, 5 ) . 'vw - ' . round( $margin / 2, 5 ) . 'px)';
+
+  return array( $queries );
+
+} endif;
+if ( PENDRELL_MODULE_RESPONSIVE )
+  add_filter( 'ubik_imagery_sizes_media_queries', 'pendrell_views_sizes_media_queries', 11, 3 );
+
+
+
+// Handle default `sizes` attribute for gallery view
+if ( !function_exists( 'pendrell_views_sizes_default' ) ) : function pendrell_views_sizes_default( $default = '', $size = '', $width = '' ) {
+
+  // Gallery view has a responsive layout that slims down to a single column at the smallest breakpoint
+  if ( pendrell_is_view( 'gallery' ) )
+    $default = 'calc(100vw - ' . PENDRELL_BASELINE . 'px)';
+
+  return $default;
+} endif;
+if ( PENDRELL_MODULE_RESPONSIVE )
+  add_filter( 'ubik_imagery_sizes_default', 'pendrell_views_sizes_default', 11, 3 );
+
+
 
 // == VIEW SWITCHER == //
 

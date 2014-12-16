@@ -14,6 +14,7 @@
 // @TODO: investigate Firefox scrollbar inconsistencies; it may be necessary to add another fudge factor to ensure browsers choose the optimal image
 
 // Setup a few media queries for the `sizes` attribute; must be an array even if there is only one value!
+// Note: additional code modifying media queries and default `sizes` can be found in `src/modules/views.php`
 if ( !function_exists( 'pendrell_sizes_media_queries' ) ) : function pendrell_sizes_media_queries( $queries = array(), $size = '', $width = '' ) {
 
   // Exit early if we don't have the required size and width data
@@ -22,20 +23,30 @@ if ( !function_exists( 'pendrell_sizes_media_queries' ) ) : function pendrell_si
 
   global $content_width, $main_width;
 
-  // Get the margin from the main configuration file; 30px
-  $margin = (int) PENDRELL_BASELINE;
+  // Set the bounding width (the maximum size for rendered images)
+  if ( pendrell_is_full_width() ) {
+    $bounding_width = $content_width;
+  } else {
+    $bounding_width = $main_width;
+  }
+
+  // The margins can be filtered; this is mostly in case the inner margin (the space between grouped images) is not the same as the page margins
+  // Example: your outer page margins are 30px on each side but the spacing between images is 20px
+  $margin       = (int) apply_filters( 'pendrell_sizes_margin', PENDRELL_BASELINE );
+  $margin_inner = (int) apply_filters( 'pendrell_sizes_margin_inner', PENDRELL_BASELINE );
 
   // Breakpoints replicated from `src/scss/_base_config.scss`
-  $small = ceil( $main_width/1.2 ) - ( $margin * 2 ); // 460px
-  $small_padded = $small + ( $margin * 2 ); // 520px
-  $medium = $main_width; // 624px
-  $medium_padded = $medium + ( $margin * 3 ); // 714px
+  $b_small = ceil( $main_width/1.2 ); // 520px
+  $b_medium = $main_width + ( $margin * 3 ); // 714px
 
-  // Fractional width sizes, a complicated example of calculating the `sizes` attribute...
+  // Usable space for each breakpoint; for comparison with $width
+  $b_small_content = ceil( $main_width/1.2 ) - ( $margin * 2 ); // 460px
+  $b_medium_content = $main_width; // 624px
+
+  // Fractional width sizes, a complicated example of calculating the `sizes` attribute
   if ( in_array( $size, array( 'half', 'half-square', 'third', 'third-square', 'quarter', 'quarter-square' ) ) ) {
 
     // Multiplier for fractional width sizes
-    $factor = 1;
     if ( in_array( $size, array( 'half', 'half-square' ) ) )
       $factor = 2;
     if ( in_array( $size, array( 'third', 'third-square' ) ) )
@@ -43,53 +54,42 @@ if ( !function_exists( 'pendrell_sizes_media_queries' ) ) : function pendrell_si
     if ( in_array( $size, array( 'quarter', 'quarter-square' ) ) )
       $factor = 4;
 
-    // This works but it's confusing as fuck; @TODO: document this!
-    $viewport = round( 100 / $factor, 5 );
-    $margin_inner = $margin * ( $factor - 1 );
-    $combined_width = ( $width * $factor ) + $margin_inner;
-
-    if ( $combined_width > $medium ) {
-      $queries[] = '(min-width: ' . ( $combined_width + ( $margin * 3 ) ) . 'px) ' . $width . 'px';
-      if ( PENDRELL_MODULE_VIEWS && pendrell_is_view( 'gallery' ) ) { // Special case to handle responsive gallery view defined in `src/scss/_views.scss`
-        $queries[] = '(min-width: ' . $medium_padded . 'px) calc(' . round( 100 / 3, 5 ) . 'vw - ' . round( ( ( ( $margin * 3 ) + ( $margin * 2 ) ) / 3 ), 5 ) . 'px)'; // This media query remains to handle differences in outer page margins
-        $queries[] = '(min-width: ' . ( 600 + ( $margin * 3 ) ) . 'px) calc(' . round( 100 / 3, 5 ) . 'vw - ' . round( ( ( ( $margin * 3 ) + ( $margin * 2 ) ) / 3 ), 5 ) . 'px)'; // Above here it's a three column layout
-        $queries[] = '(min-width: ' . $small_padded . 'px) calc(' . round( 100 / 2, 5 ) . 'vw - ' . round( ( ( ( $margin * 2 ) + $margin ) / 2 ), 5 ) . 'px)'; // This media query remains to handle differences in outer page margins
-        $queries[] = '(min-width: ' . ( 300 + $margin ) . 'px) calc(' . round( 100 / 2, 5 ) . 'vw - ' . round( ( ( $margin + $margin ) / 2 ), 5 ) . 'px)'; // Above here it's a two column layout
-      } else {
-        $queries[] = '(min-width: ' . $medium_padded . 'px) calc(' . $viewport . 'vw - ' . round( ( ( ( $margin * 3 ) + $margin_inner ) / $factor ), 5 ) . 'px)';
-        $queries[] = '(min-width: ' . $small_padded . 'px) calc(' . $viewport . 'vw - ' . round( ( ( ( $margin * 2 ) + $margin_inner ) / $factor ), 5 ) . 'px)';
-      }
-    } elseif ( $combined_width > $small ) {
-      $queries[] = '(min-width: ' . ( $combined_width + ( $margin * 2 ) ) . 'px) ' . $width . 'px';
-      $queries[] = '(min-width: ' . $small_padded . 'px) calc(' . $viewport . 'vw - ' . round( ( ( ( $margin * 2 ) + $margin_inner ) / $factor ), 5 ) . 'px)';
+    // We lead with a media query specifying the minimum viewport width at which an image is *fixed* in size (not fluid)
+    // In this theme only images displayed in full-width mode will reach their full potential; everything else will be fixed but downsized
+    // The second media query handles anything displayed within the bounds of $main_width
+    // Here we abandon $width and attempt to calculate the rendered size of the image from scratch
+    if ( pendrell_is_full_width() ) {
+      $queries[] = '(min-width: ' . ( $bounding_width + ( $margin * 3 ) ) . 'px) ' . $width . 'px';
     } else {
-      $queries[] = '(min-width: ' . ( $combined_width + $margin ) . 'px) ' . $width . 'px';
+      $queries[] = '(min-width: ' . ( $bounding_width + ( $margin * 3 ) ) . 'px) ' . round( ( $bounding_width - ( $margin_inner * ( $factor - 1 ) ) ) / $factor, 5 ) . 'px';
     }
+
+    // The following variable accounts for fractional-width images with percentage-based media queries
+    // For example: third-width images will take up one third of the viewport width minus one third of the total width of the inner margins (of which there will be two in this case) minus the fixed width of the page margins at a given size
+    // These values won't add up to 100 due to the presence of the inner margins
+    $viewport = round( ( 1 / $factor - ( ( ( $margin_inner * ( $factor - 1 ) ) / $bounding_width ) ) / $factor ) * 100, 5 );
+    $queries[] = '(min-width: ' . $b_medium . 'px) calc(' . $viewport . 'vw - ' . round( ( $margin * 3 ) / $factor, 5 ) . 'px)';
+    $queries[] = '(min-width: ' . $b_small . 'px) calc(' . $viewport . 'vw - ' . round( ( $margin * 2 ) / $factor, 5 ) . 'px)';
 
   } else {
 
-    // Maximum rendered image size for the theme; only applies to the non-fractional image size case
-    if ( pendrell_is_full_width() ) {
-      $width = min( $width, $content_width ); // Can't render any larger than $content_width
-    } else {
-      $width = min( $width, $main_width ); // Can't render any larger than $main_width
-    }
+    // Limit the width to the bounding box, whatever it my be for this view
+    $width = min( $width, $bounding_width );
 
-    // The following media queries handle all images intended to fill the content area of this theme
     // The topmost breakpoint is set to the width of the image plus known page margins
     // When this media query is satisfied the image is displayed at its original intended width
     // Below this point the image will naturally expand to fill available space
     // However: the rendered size will *not* be '100vw' (i.e. 100% of the viewport) due to the margins around the content area
     // These margins change according to breakpoints set in `src/scss/_base_config.scss`
-    // Consequently, the viewport width is modified to account for the changing margins at various breakpoints
-    // Finally, the default media query (defined below) handles all other scenarios
-    if ( $width > $medium ) {
+    // Consequently, the viewport width is modified to account for the changing margins at various breakpoints using calc
+    // Note: it is also necessary to specify a default for the `sizes` attribute; have a look at the next function for an example
+    if ( $width > $b_medium_content ) {
       $queries[] = '(min-width: ' . ( $width + ( $margin * 3 ) ) . 'px) ' . $width . 'px';
-      $queries[] = '(min-width: ' . $medium_padded . 'px) calc(100vw - ' . ( $margin * 3 ) . 'px)';
-      $queries[] = '(min-width: ' . $small_padded . 'px) calc(100vw - ' . ( $margin * 2 ) . 'px)';
-    } elseif ( $width > $small ) {
+      $queries[] = '(min-width: ' . $b_medium . 'px) calc(100vw - ' . ( $margin * 3 ) . 'px)';
+      $queries[] = '(min-width: ' . $b_small . 'px) calc(100vw - ' . ( $margin * 2 ) . 'px)';
+    } elseif ( $width > $b_small_content ) {
       $queries[] = '(min-width: ' . ( $width + ( $margin * 2 ) ) . 'px) ' . $width . 'px';
-      $queries[] = '(min-width: ' . $small_padded . 'px) calc(100vw - ' . ( $margin * 2 ) . 'px)';
+      $queries[] = '(min-width: ' . $b_small . 'px) calc(100vw - ' . ( $margin * 2 ) . 'px)';
     } else {
       $queries[] = '(min-width: ' . ( $width + $margin ) . 'px) ' . $width . 'px';
     }
@@ -103,14 +103,31 @@ add_filter( 'ubik_imagery_sizes_media_queries', 'pendrell_sizes_media_queries', 
 
 
 
-// Filter the default `sizes` attribute (which is otherwise blank)
+// Default `sizes` attribute handling for Pendrell; note that gallery view is handled in `src/modules/views.php`
+// @filter: pendrell_sizes_margin
+// @filter: pendrell_sizes_margin_inner
+// @constant: PENDRELL_BASELINE
 if ( !function_exists( 'pendrell_sizes_default' ) ) : function pendrell_sizes_default( $default = '', $size = '', $width = '' ) {
 
-  // Default viewport width and (optionally) a margin; both integers
-  $viewport = 100;
-  $margin = (int) PENDRELL_BASELINE;
+  global $content_width, $main_width;
 
-  // Multiplier
+  // Set the bounding width (the maximum size for rendered images)
+  if ( pendrell_is_full_width() ) {
+    $bounding_width = $content_width;
+  } else {
+    $bounding_width = $main_width;
+  }
+
+  // Default viewport width (integer)
+  $viewport     = 100;
+
+  // The margins can be filtered; this is mostly in case the inner margin (the space between grouped images) is not the same as the page margins
+  // Example: your outer page margins are 30px on each side but the spacing between images is 20px
+  $margin       = (int) apply_filters( 'pendrell_sizes_margin', PENDRELL_BASELINE );
+  $margin_inner = (int) apply_filters( 'pendrell_sizes_margin_inner', PENDRELL_BASELINE );
+
+  // Set the factor by which things need to be divided based on the requested image size
+  // This presumes that Ubik Imagery's sizing conventions are being followed; see: https://github.com/synapticism/ubik-imagery
   $factor = 1;
   if ( in_array( $size, array( 'half', 'half-square' ) ) )
     $factor = 2;
@@ -119,13 +136,13 @@ if ( !function_exists( 'pendrell_sizes_default' ) ) : function pendrell_sizes_de
   if ( in_array( $size, array( 'quarter', 'quarter-square' ) ) )
     $factor = 4;
 
-  // Special handling for fractional width images
+  // Special handling for fractional width images: divide the default viewport width for half/third/quarter-width images (minus the inner margin contribution on a per image basis)
   if ( $factor > 1 ) {
-    $viewport = round( 100 / $factor, 5 ); // Divide the default viewport width for half/third/quarter-width images
-    $margin = ( $margin + ( $margin * ( $factor - 1 ) ) ) / $factor; // Um... trust me
+    $viewport = round( ( 1 / $factor - ( ( ( $margin_inner * ( $factor - 1 ) ) / $bounding_width ) ) / $factor ) * 100, 5 ) + 0.001;
+    $margin   = $margin / $factor;
   }
 
-  // Margins in this theme vary according to viewport size; what we want here is the smallest possible margin
+  // Margins in this theme vary according to viewport size; what we want here is the smallest possible margin (since this is the default media query we are returning)
   if ( !empty( $margin ) ) {
     $default = 'calc(' . $viewport . 'vw - ' . $margin . 'px)'; // `calc()` support: http://caniuse.com/#search=calc
   } else {
@@ -133,21 +150,7 @@ if ( !function_exists( 'pendrell_sizes_default' ) ) : function pendrell_sizes_de
   }
 
   // Return the default `sizes` attribute
-  return apply_filters( 'pendrell_sizes_default', $default );
+  return $default;
 
 } endif;
 add_filter( 'ubik_imagery_sizes_default', 'pendrell_sizes_default', 10, 3 );
-
-
-
-// The views module introduces a special case with the responsive gallery view
-if ( !function_exists( 'pendrell_views_sizes_default' ) ) : function pendrell_views_sizes_default( $default = '' ) {
-
-  // Gallery view has a responsive layout that slims down to a single column at the smallest breakpoint
-  if ( pendrell_is_view( 'gallery' ) )
-    $default = 'calc(100vw - ' . PENDRELL_BASELINE . 'px)';
-
-  return $default;
-} endif;
-if ( PENDRELL_MODULE_RESPONSIVE && PENDRELL_MODULE_VIEWS )
-  add_filter( 'pendrell_sizes_default', 'pendrell_views_sizes_default' );
