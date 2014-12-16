@@ -15,11 +15,11 @@
 
 // Setup a few media queries for the `sizes` attribute; must be an array even if there is only one value!
 // Note: additional code modifying media queries and default `sizes` can be found in `src/modules/views.php`
-if ( !function_exists( 'pendrell_sizes_media_queries' ) ) : function pendrell_sizes_media_queries( $queries = array(), $size = '', $width = '' ) {
+if ( !function_exists( 'pendrell_sizes_media_queries' ) ) : function pendrell_sizes_media_queries( $queries = array(), $size = '', $width = '', $group = 0 ) {
 
   // Exit early if we don't have the required size and width data
   if ( empty( $size ) || !is_string( $size ) || empty( $width ) || !is_int( $width ) )
-    return;
+    return $queries;
 
   global $content_width, $main_width;
 
@@ -44,7 +44,8 @@ if ( !function_exists( 'pendrell_sizes_media_queries' ) ) : function pendrell_si
   $b_medium_content = $main_width; // 624px
 
   // Fractional width sizes, a complicated example of calculating the `sizes` attribute
-  if ( in_array( $size, array( 'half', 'half-square', 'third', 'third-square', 'quarter', 'quarter-square' ) ) ) {
+  // Note: this only works when images are explicitly grouped (i.e. with the `[group]` shortcode or by setting the $group flag when calling `ubik_image_markup`); otherwise they are treated like any other image
+  if ( $group > 0 && in_array( $size, array( 'half', 'half-square', 'third', 'third-square', 'quarter', 'quarter-square' ) ) ) {
 
     // Multiplier for fractional width sizes
     if ( in_array( $size, array( 'half', 'half-square' ) ) )
@@ -99,7 +100,7 @@ if ( !function_exists( 'pendrell_sizes_media_queries' ) ) : function pendrell_si
   return array( $queries );
 
 } endif;
-add_filter( 'ubik_imagery_sizes_media_queries', 'pendrell_sizes_media_queries', 10, 3 );
+add_filter( 'ubik_imagery_sizes_media_queries', 'pendrell_sizes_media_queries', 10, 4 );
 
 
 
@@ -107,7 +108,7 @@ add_filter( 'ubik_imagery_sizes_media_queries', 'pendrell_sizes_media_queries', 
 // @filter: pendrell_sizes_margin
 // @filter: pendrell_sizes_margin_inner
 // @constant: PENDRELL_BASELINE
-if ( !function_exists( 'pendrell_sizes_default' ) ) : function pendrell_sizes_default( $default = '', $size = '', $width = '' ) {
+if ( !function_exists( 'pendrell_sizes_default' ) ) : function pendrell_sizes_default( $default = '', $size = '', $width = '', $group = 0 ) {
 
   global $content_width, $main_width;
 
@@ -137,7 +138,7 @@ if ( !function_exists( 'pendrell_sizes_default' ) ) : function pendrell_sizes_de
     $factor = 4;
 
   // Special handling for fractional width images: divide the default viewport width for half/third/quarter-width images (minus the inner margin contribution on a per image basis)
-  if ( $factor > 1 ) {
+  if ( $factor > 1 && $group > 0 ) {
     $viewport = round( ( 1 / $factor - ( ( ( $margin_inner * ( $factor - 1 ) ) / $bounding_width ) ) / $factor ) * 100, 5 ) + 0.001;
     $margin   = $margin / $factor;
   }
@@ -153,4 +154,4 @@ if ( !function_exists( 'pendrell_sizes_default' ) ) : function pendrell_sizes_de
   return $default;
 
 } endif;
-add_filter( 'ubik_imagery_sizes_default', 'pendrell_sizes_default', 10, 3 );
+add_filter( 'ubik_imagery_sizes_default', 'pendrell_sizes_default', 10, 4 );

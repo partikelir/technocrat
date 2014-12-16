@@ -29,16 +29,17 @@ if ( !function_exists( 'pendrell_related_posts' ) ) : function pendrell_related_
       <div class="gallery gallery-columns-3">
       <?php foreach ( $related_posts as $related_post ) {
         echo ubik_imagery_markup(
-          $html = '',
-          $id = pendrell_thumbnail_id( $related_post ),
-          $caption = get_the_title( $related_post ),
-          $title = '',
-          $align = '',
-          $url = get_permalink( $related_post ),
-          $size = 'third-square',
-          $alt = '',
-          $rel = '',
-          $classes = ''
+          $html     = '',
+          $id       = pendrell_thumbnail_id( $related_post ),
+          $caption  = get_the_title( $related_post ),
+          $title    = '',
+          $align    = '',
+          $url      = get_permalink( $related_post ),
+          $size     = 'third-square',
+          $alt      = '',
+          $rel      = '',
+          $class    = '',
+          $group    = 1
         );
       } ?>
       </div>

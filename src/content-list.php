@@ -9,16 +9,17 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<div class="entry-thumbnail">
 		<?php echo ubik_imagery_markup(
-	    $html = '',
-	    $id = pendrell_thumbnail_id(),
-	    $caption = '',
-	    $title = '',
-	    $align = '',
-	    $url = get_permalink(),
-	    $size = 'thumbnail',
-	    $alt = '',
-	    $rel = '',
-	    $class = ''
+	    $html 		= '',
+	    $id 			= pendrell_thumbnail_id(),
+	    $caption 	= '',
+	    $title 		= '',
+	    $align 		= '',
+	    $url 			= get_permalink(),
+	    $size 		= 'thumbnail',
+	    $alt 			= '',
+	    $rel 			= '',
+	    $class 		= '',
+	    $group    = 0
 	  ); ?>
 	</div>
 	<div class="entry-content-wrapper">

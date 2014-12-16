@@ -293,7 +293,7 @@ $m-ubik-related:      false;
 $m-ubik-series:       false;
 
 // Override the settings above; true/false
-$dev: false;
+$dev: true;
 
 @if ($dev) {
   $m-gallery-shortcode: true; // WordPress core

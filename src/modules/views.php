@@ -258,11 +258,11 @@ add_action( 'parse_query', 'pendrell_view_mapping' );
 
 // The views module introduces a special case for the responsive images module
 // Refer to `src/modules/responsive-images.php` for a much more detailed explanation of what is going on here
-if ( !function_exists( 'pendrell_views_sizes_media_queries' ) ) : function pendrell_views_sizes_media_queries( $queries = array(), $size = '', $width = '' ) {
+if ( !function_exists( 'pendrell_views_sizes_media_queries' ) ) : function pendrell_views_sizes_media_queries( $queries = array(), $size = '', $width = '', $group = 0 ) {
 
   // Exit early if we don't have the required size and width data
   if ( empty( $size ) || !is_string( $size ) || empty( $width ) || !is_int( $width ) || !pendrell_is_view( 'gallery' ) )
-    return;
+    return $queries;
 
   // Reset queries array
   $queries = array();
@@ -297,12 +297,12 @@ if ( !function_exists( 'pendrell_views_sizes_media_queries' ) ) : function pendr
 
 } endif;
 if ( PENDRELL_MODULE_RESPONSIVE )
-  add_filter( 'ubik_imagery_sizes_media_queries', 'pendrell_views_sizes_media_queries', 11, 3 );
+  add_filter( 'ubik_imagery_sizes_media_queries', 'pendrell_views_sizes_media_queries', 11, 4 );
 
 
 
-// Handle default `sizes` attribute for gallery view
-if ( !function_exists( 'pendrell_views_sizes_default' ) ) : function pendrell_views_sizes_default( $default = '', $size = '', $width = '' ) {
+// Handle default `sizes` attribute for gallery view; returns $default unaltered if this isn't a gallery
+if ( !function_exists( 'pendrell_views_sizes_default' ) ) : function pendrell_views_sizes_default( $default = '', $size = '', $width = '', $group = 0 ) {
 
   // Gallery view has a responsive layout that slims down to a single column at the smallest breakpoint
   if ( pendrell_is_view( 'gallery' ) )
@@ -311,7 +311,7 @@ if ( !function_exists( 'pendrell_views_sizes_default' ) ) : function pendrell_vi
   return $default;
 } endif;
 if ( PENDRELL_MODULE_RESPONSIVE )
-  add_filter( 'ubik_imagery_sizes_default', 'pendrell_views_sizes_default', 11, 3 );
+  add_filter( 'ubik_imagery_sizes_default', 'pendrell_views_sizes_default', 11, 4 );
 
 
 
