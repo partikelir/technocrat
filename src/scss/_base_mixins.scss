@@ -165,10 +165,17 @@
       width: 100%;
     }
   }
-  &:hover {
+  &:hover,
+  &.no-id:hover {
     #{$overlay} {
       opacity: 1;
       transition: opacity .4s ease;
+    }
+  }
+  &.no-id {
+    #{$overlay} {
+      opacity: .8; // This class is added when there is no image to display; on these occasions we'd like the title to be visible at all times
+      transition: opacity .75s ease-out;
     }
   }
 }
