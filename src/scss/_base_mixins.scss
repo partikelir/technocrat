@@ -134,8 +134,10 @@
       text-align: center;
       text-shadow: 0px 1px 2px black(.8);
       @include k-media-above($b-large) {
-        @include font-size($s-text-bigger);
-        text-shadow: 1px 1px 5px black(.7);
+        .full-width & {
+          @include font-size($s-text-bigger);
+          text-shadow: 1px 1px 5px black(.7);
+        }
       }
     }
     @include border-radius(0 0 $d-radius $d-radius);

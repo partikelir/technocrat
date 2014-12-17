@@ -101,10 +101,10 @@ if ( !function_exists( 'pendrell_sidebar_places' ) ) : function pendrell_sidebar
 
 // == RELATED POSTS == //
 
-// Add various custom taxonomies to the related posts component; @TODO: relocate these filters to their respective components
+// Add various custom taxonomies to the related posts feature
 if ( !function_exists( 'pendrell_related_taxonomies' ) ) : function pendrell_related_taxonomies( $taxonomies = array() ) {
   if ( PENDRELL_UBIK_PLACES )
-    $taxonomies['places'] = 3;
+    $taxonomies['places'] = 3; // This taxonomy is also extended (below)
   if ( PENDRELL_UBIK_RECORDPRESS ) {
     $taxonomies['artists'] = 3;
     $taxonomies['styles'] = 2;
@@ -115,6 +115,15 @@ if ( !function_exists( 'pendrell_related_taxonomies' ) ) : function pendrell_rel
 } endif;
 if ( PENDRELL_UBIK_RELATED )
   add_filter( 'pendrell_related_taxonomies', 'pendrell_related_taxonomies' );
+
+// Extended taxonomies: a broader search for related posts using sibling terms
+if ( !function_exists( 'pendrell_related_taxonomies_extended' ) ) : function pendrell_related_taxonomies_extended( $taxonomies = array() ) {
+  if ( PENDRELL_UBIK_PLACES )
+    $taxonomies[] = 'places';
+  return $taxonomies;
+} endif;
+if ( PENDRELL_UBIK_RELATED )
+  add_filter( 'ubik_related_taxonomies_extended', 'pendrell_related_taxonomies_extended' );
 
 
 
