@@ -17,7 +17,8 @@ if ( !function_exists( 'pendrell_related_posts' ) ) : function pendrell_related_
     return;
 
   // Retrieve a list of related post IDs; null allows the function to use the current post
-  $related_posts = ubik_related_posts( null, apply_filters( 'pendrell_related_taxonomies', array( 'post_tag' ) ) );
+  // Format: array( 'taxonomy' => (int) weight )
+  $related_posts = ubik_related_posts( null, apply_filters( 'pendrell_related_taxonomies', array( 'post_tag' => 1 ) ) );
 
   // Only proceed if related posts were found
   if ( !empty( $related_posts ) ) {
