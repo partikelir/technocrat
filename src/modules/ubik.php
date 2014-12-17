@@ -104,7 +104,7 @@ if ( !function_exists( 'pendrell_sidebar_places' ) ) : function pendrell_sidebar
 // Add various custom taxonomies to the related posts feature
 if ( !function_exists( 'pendrell_related_taxonomies' ) ) : function pendrell_related_taxonomies( $taxonomies = array() ) {
   if ( PENDRELL_UBIK_PLACES )
-    $taxonomies['places'] = 3; // This taxonomy is also extended (below)
+    $taxonomies['places'] = 2; // This taxonomy is also extended (below)
   if ( PENDRELL_UBIK_RECORDPRESS ) {
     $taxonomies['artists'] = 3;
     $taxonomies['styles'] = 2;
