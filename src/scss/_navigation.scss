@@ -20,10 +20,14 @@
   @extend %spacer-below-double;
 }
 .nav-previous {
+  @include rem("padding-right", $spacer/2);
+  box-sizing: border-box;
   float: left;
   width: 50%;
 }
 .nav-next {
+  @include rem("padding-left", $spacer/2);
+  box-sizing: border-box;
   float: right;
   text-align: right;
   width: 50%;

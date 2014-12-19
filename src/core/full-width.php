@@ -1,6 +1,7 @@
 <?php // ==== FULL WIDTH ==== //
 
 // Abstracted function to test whether the current view is full-width
+// @filter: pendrell_full_width
 if ( !function_exists( 'pendrell_is_full_width' ) ) : function pendrell_is_full_width() {
 
   // Allow other functions to pass the test

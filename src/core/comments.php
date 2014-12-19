@@ -1,9 +1,9 @@
 <?php // ==== COMMENTS ==== //
 
 // Comments template wrapper; load template if comments are open or we have at least one comment; via _s
+// @filter: pendrell_comment_template
 // @action: pendrell_comment_template_before
 // @action: pendrell_comment_template_after
-// @filter: pendrell_comment_template
 if ( !function_exists( 'pendrell_comments_template' ) ) : function pendrell_comments_template() {
 
   do_action( 'pendrell_comment_template_before' );

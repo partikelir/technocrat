@@ -5,7 +5,7 @@ if ( !function_exists( 'pendrell_archive_title' ) ) : function pendrell_archive_
   if ( function_exists( 'ubik_title' ) ) {
     $title = ubik_title();
   } else {
-    $title = single_cat_title( '', false ); // Lame fallback; under no circumstances should ubik_title not be found
+    $title = get_the_archive_title(); // Requires WP 4.1
   }
   echo '<h1 class="archive-title">' . $title . '</h1>';
 } endif;
@@ -13,6 +13,11 @@ if ( !function_exists( 'pendrell_archive_title' ) ) : function pendrell_archive_
 
 
 // Archive descriptions
+// @filter: pendrell_term_archive_description
+// @filter: pendrell_archive_description
+// @action: pendrell_archive_description_before
+// @action: pendrell_archive_description_after
+// @TODO: hook into new WordPress core archive description template tags: https://make.wordpress.org/core/2014/12/04/new-template-tags-in-4-1/
 if ( !function_exists( 'pendrell_archive_description' ) ) : function pendrell_archive_description() {
 
   // Archive descriptions for categories, tags, taxonomies

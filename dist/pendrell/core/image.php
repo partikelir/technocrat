@@ -9,7 +9,7 @@ if ( !function_exists( 'pendrell_image_wrapper' ) ) : function pendrell_image_wr
 
   global $post;
 
-  // Hooks into existing post_thumbnail_size filter; modified for full-width display
+  // Hooks into existing post_thumbnail_size filter; modified for full-width display; @TODO: customize this
   $size = apply_filters( 'post_thumbnail_size', 'medium' );
 
   // Image post formats: load thumbnail and metadata from the attachment

@@ -25,13 +25,13 @@ if ( !function_exists( 'pendrell_shortcode_fallback' ) ) : function pendrell_sho
 // Conditional list of shortcodes to check
 if ( !function_exists( 'pendrell_shortcode_init' ) ) : function pendrell_shortcode_init() {
 
-  // Places shortcode from Ubik
-  if ( !function_exists( 'ubik_places_init' ) )
-    add_shortcode( 'place', 'pendrell_shortcode_fallback' );
-
-  // Discog shortcode from Ubik
+  // Discog shortcode from Ubik RecordPress
   if ( !function_exists( 'ubik_discography_shortcode' ) )
     add_shortcode( 'discog', 'pendrell_shortcode_fallback' );
+
+  // Places shortcode from Ubik Places
+  if ( !function_exists( 'ubik_places_shortcode' ) )
+    add_shortcode( 'place', 'pendrell_shortcode_fallback' );
 
 } endif;
 add_action( 'init', 'pendrell_shortcode_init' );

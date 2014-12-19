@@ -88,7 +88,9 @@ function pendrell_setup() {
   // Adds RSS feed links to <head> for posts and comments.
   add_theme_support( 'automatic-feed-links' );
 
-  // Coming up in WP 4.1: http://codex.wordpress.org/Function_Reference/add_theme_support#Title_Tag
+  // No need for this as long as we're managing our own titles: http://codex.wordpress.org/Function_Reference/add_theme_support#Title_Tag
+  // In WP 4.1 this doesn't actually do anything; it merely enables forward-compatibility with future title generating functions in core
+  // Additional reference: https://make.wordpress.org/core/2014/10/29/title-tags-in-4-1/
   //add_theme_support( 'title-tag' );
 
   // Conditionally add post format support

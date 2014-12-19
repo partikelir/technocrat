@@ -14,6 +14,7 @@ if ( !function_exists( 'pendrell_entry_title' ) ) : function pendrell_entry_titl
 
 
 // Content class; applies a filter to the content wrapper to allow other functions to alter the look and feel of posts, pages, etc.
+// @filter: pendrell_content_class
 if ( !function_exists( 'pendrell_content_class' ) ) : function pendrell_content_class() {
   $classes = apply_filters( 'pendrell_content_class', array() );
   if ( !empty( $classes ) )
