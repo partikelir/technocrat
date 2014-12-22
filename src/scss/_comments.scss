@@ -27,7 +27,7 @@
 // Pingbacks/trackbacks
 .comment-pingback {
   @include font-size($s-header-smaller);
-  @include ghost;
+  @include k-ghost;
 }
 
 // Comment awaiting moderation

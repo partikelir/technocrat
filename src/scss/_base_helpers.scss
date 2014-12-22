@@ -2,24 +2,31 @@
 
 // These silent selectors should be used for common styling patterns
 
-
-
-// == CLEARFIX == //
-
 // Clearfix
 %clearfix-above {
-  @include clearfix-above;
+  @include k-clearfix-above;
 }
 %clearfix-below {
-  @include clearfix-below;
+  @include k-clearfix-below;
 }
 %clearfix {
-  @include clearfix;
+  @include k-clearfix;
 }
 
-
-
-// == SPACING == //
+// Hide
+%hide {
+  @include k-hide-visually;
+}
+%hide-below-medium {
+  @include k-media-below($b-medium) {
+    @include k-hide-visually;
+  }
+}
+%hide-below-large {
+  @include k-media-below($b-large) {
+    @include k-hide-visually;
+  }
+}
 
 // Spacing, to preserve a modicum of vertical rhythm
 %spacer-above {
@@ -47,65 +54,47 @@
   @include rem("margin-bottom", $spacer/2);
 }
 
-
-
-// == FONT SIZES == //
-
+// Font sizes
 %text-small {
   @include font-size($s-text-small);
 }
-
 %text-smaller {
   @include font-size($s-text-smaller);
 }
-
 %text-smallest {
   @include font-size($s-text-smallest);
 }
 
-
-
-// == FONT STYLING == //
-
+// Font styling
 %body-light {
   font-family: $f-body;
   font-weight: $w-body-light;
 }
-
 %body-normal {
   font-family: $f-body;
   font-weight: $w-body-normal;
 }
-
 %body-bold {
   font-family: $f-body;
   font-weight: $w-body-bold;
 }
-
 %head-light {
   font-family: $f-head;
   font-weight: $w-head-light;
 }
-
 %head-normal {
   font-family: $f-head;
   font-weight: $w-head-normal;
 }
-
 %head-bold {
   font-family: $f-head;
   font-weight: $w-head-bold;
 }
-
 %head-bold-uppercase {
   font-family: $f-head;
   font-weight: $w-head-bold;
   text-transform: uppercase;
 }
-
-
-
-// == UI ELEMENTS == //
 
 // Right-aligned button container
 %button-container {

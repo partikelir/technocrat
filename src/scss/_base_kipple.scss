@@ -10,47 +10,11 @@
 @mixin border-radius($radius: $d-radius) {
   @include k-border-radius($radius);
 }
-@mixin center {
-  @include k-center-block;
-}
-@mixin circle {
-  @include k-circle;
-}
-@mixin clearfix-above {
-  @include k-clearfix-above;
-}
-@mixin clearfix-below {
-  @include k-clearfix-below;
-}
-@mixin clearfix {
-  @include k-clearfix;
-}
-@mixin ghost {
-  @include k-ghost;
-}
 @mixin gradient-horizontal($begin: $d-gradient-1, $end: $d-gradient-2) {
   @include k-gradient-horizontal($begin, $end);
 }
 @mixin gradient-vertical($begin: $d-gradient-1, $end: $d-gradient-2) {
   @include k-gradient-vertical($begin, $end);
-}
-@mixin hide {
-  @include k-hide-visually;
-}
-@mixin highlight($color: $c-highlight, $radius: $d-radius) {
-  @include k-highlight($color, $radius);
-}
-@mixin tooltip {
-  @include k-tooltip(
-    $offset: $spacer - 6px
-  , $tooltip-background: $c-highlight-bg
-  , $tooltip-border: $d-interface
-  , $tooltip-border-radius: $d-radius
-  , $tooltip-color: $c-text
-  , $tooltip-font-size: $s-text-smaller
-  , $tooltip-triangle-color: $c-interface
-  );
-  border-bottom: $d-mouseover;
 }
 @mixin triangle(
   $color: inherit

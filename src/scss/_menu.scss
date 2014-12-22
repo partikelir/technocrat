@@ -8,10 +8,8 @@
     @include font-style("menu");
     white-space: nowrap;
   }
-  @include k-media-below($b-medium) {
-    > li:hover > ul {
-      @include hide; // Don't bother displaying submenus on small screens
-    }
+  > li:hover > ul {
+    @extend %hide-below-medium; // Don't bother displaying submenus on small screens
   }
 }
 
@@ -86,6 +84,6 @@
 
   // No submenus in the footer
   ul {
-    @include hide;
+    @extend %hide;
   }
 }

@@ -91,7 +91,7 @@
 
   // Link post format
   .entry-link {
-    @include hide;
+    @extend %hide;
   }
 
   // Full-width modifications

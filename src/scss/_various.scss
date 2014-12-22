@@ -9,7 +9,7 @@
 }
 .aligncenter {
   @extend %clearfix-below;
-  @include center;
+  @include k-center-block;
   text-align: center; // Presumably we might be applying this to elements that contain text
 }
 .alignnone {
@@ -86,7 +86,7 @@ label.error {
 // @TODO: fix the bug (below) and update the theme for greater accessibility
 // @TODO: this approach creates unnecessary white space on the right side of the document and in the search form
 .screen-reader-text {
-  @include hide;
+  @extend %hide;
   //clip: rect(1px, 1px, 1px, 1px);
   //position: absolute !important;
   .menu-header &:focus {

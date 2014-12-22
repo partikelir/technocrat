@@ -110,7 +110,7 @@ strike {
   text-decoration: line-through;
 }
 ins {
-  @include highlight($c-highlight-bg);
+  @include k-highlight($c-highlight-bg, $d-radius);
   text-decoration: none;
 }
 hr { // @TODO: space out hrs; paragraph tags presently overlap margins
@@ -222,15 +222,13 @@ code {
   li > &,
   p > &,
   strong > & {
-    @include highlight(rgba($c-body-darker, .33));
+    @include k-highlight(rgba($c-body-darker, .33), $d-radius);
     color: $c-text-lighter;
     font-size: 80%; // Hack for fixing oversized monospace fonts
-    //line-height: 0; // @TODO: check if this is still necessary
   }
 }
 a code {
   color: $c-link;
-  //line-height: 0; // @TODO: check if this is still necessary
 }
 
 

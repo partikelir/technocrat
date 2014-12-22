@@ -114,5 +114,18 @@ input[type="reset"],
 // Tooltips are based on the data-tooltip attribute; e.g. <span data-tooltip="This is a tooltip">Hover here!</span>
 .tooltip,
 span[data-tooltip] {
-  @include tooltip;
+  @include k-tooltip(
+    $offset: $spacer - 6px
+  , $tooltip-background: $c-highlight-bg
+  , $tooltip-border: $d-interface
+  , $tooltip-border-radius: $d-radius
+  , $tooltip-color: $c-text
+  , $tooltip-font-size: $s-text-smaller
+  , $tooltip-triangle-color: $c-interface
+  );
+  border-bottom: $d-mouseover;
+  &:before {
+    max-width: 600px;
+    width: 50vw;
+  }
 }

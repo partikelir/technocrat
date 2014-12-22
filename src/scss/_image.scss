@@ -56,7 +56,7 @@ figure.wp-caption,
   }
   &.aligncenter {
     img { // Applies centering to the image within the figure, not the figure element itself
-      @include center;
+      @include k-center-block;
     }
   }
 }
@@ -120,9 +120,7 @@ figure.wp-caption,
   .gallery-columns-5,
   .gallery-columns-6 {
     .gallery-caption {
-      @include k-media-below($b-large) { // @TODO: verify that this is working
-        @include hide;
-      }
+      @extend %hide-below-large;
     }
   }
 }
@@ -146,16 +144,46 @@ figure.wp-caption,
       @include image-overlay(".wp-caption-text", "title");
     }
   }
+  .related-posts {
+    figure.wp-caption figcaption.wp-caption-text { // Specificity required to trump the default setting
+      @include k-media-below($b-medium) {
+        @include rem("font-size", $s-text-small+0px);
+      }
+    }
+  }
+  .full-width.gallery-view {
+    figure.wp-caption figcaption {
+      @include k-media-above($b-medium) {
+        @include rem("font-size", $s-text-bigger+0px); // Line-height is managed independently
+        text-shadow: 1px 1px 5px black(.7);
+      }
+    }
+  }
 } @elseif ($m-views) {
   .gallery-view {
     figure.wp-caption {
       @include image-overlay(".wp-caption-text", "title");
     }
   }
+  .full-width.gallery-view {
+    figure.wp-caption figcaption {
+      @include k-media-above($b-medium) {
+        @include rem("font-size", $s-text-bigger+0px); // Line-height is managed independently
+        text-shadow: 1px 1px 5px black(.7);
+      }
+    }
+  }
 } @elseif ($m-ubik-related) {
   .related-posts {
     figure.wp-caption {
       @include image-overlay(".wp-caption-text", "title");
+    }
+  }
+  .related-posts {
+    figure.wp-caption figcaption.wp-caption-text { // Specificity required to trump the default setting
+      @include k-media-below($b-medium) {
+        @include rem("font-size", $s-text-small+0px);
+      }
     }
   }
 }

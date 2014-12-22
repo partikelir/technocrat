@@ -13,7 +13,7 @@
   line-height: 0; // Keeps the container snug around the avatar image
   width: $spacer*4;
   img {
-    @include circle;
+    @include k-circle;
     width: 100%;
   }
   @include k-media-below($b-medium) {
