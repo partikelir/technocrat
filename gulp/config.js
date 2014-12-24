@@ -42,6 +42,15 @@ module.exports = {
       src: source+'**/*(*.png|*.jpg|*.jpeg|*.gif)'
     , dest: build
     }
+  , dist: {
+      src: [dist+'**/*.png', dist+'**/*.jpg', dist+'**/*.jpeg', dist+'**/*.gif', '!'+dist+'screenshot.png']
+    , imagemin: {
+        optimizationLevel: 7
+      , progressive: true
+      , interlaced: true
+      }
+    , dest: dist
+    }
   },
 
   livereload: {
@@ -58,7 +67,7 @@ module.exports = {
     , prism: [source+'js/prism.js']
     , xn8: [bower+'html5-history-api/history.iegte8.js', bower+'spin.js/spin.js', bower+'spin.js/jquery.spin.js', bower+'ajaxinate/src/ajaxinate.js', bower+'ajaxinate-wp/src/ajaxinate-wp.js', source+'js/ajaxinate.js']
     },
-    bundles: { // Bundles are defined by a name
+    bundles: { // Bundles are defined by a name and an array of chunks to concatenate; warning: it's up to you to manage dependencies!
       core: ['core']
     , contact: ['contact']
     , html5shiv: ['html5shiv']
@@ -87,7 +96,7 @@ module.exports = {
 
   styles: {
     build: {
-      src: [source+'scss/*.scss', '!'+source+'scss/_*.scss']
+      src: [source+'scss/*.scss', '!'+source+'scss/_*.scss'] // Ignore partials
     , dest: build
     , sass: { // Don't forget to run `gem install sass`; Compass is not included by default
         loadPath: bower // Adds the `bower_components` directory to the load path so you can @import directly
@@ -98,10 +107,26 @@ module.exports = {
     , rename: { suffix: '.min' }
     , minify: { keepSpecialComments: 1 }
     }
+  , dist: {
+      src: [dist+'**/*.css', '!'+dist+'**/*.min.css']
+    , minify: { keepSpecialComments: 1 }
+    , dest: dist
+    }
   },
 
   svg: {
     // Coming soon
+  },
+
+  theme: {
+    lang: {
+      src: source+lang+'**/*'
+    , dest: build+lang
+    }
+  , php: {
+      src: source+'**/*.php'
+    , dest: build
+    }
   },
 
   ubik: {
@@ -136,6 +161,15 @@ module.exports = {
   , dest: build+'modules' // Ubik components end up here
   , ignore: ['!'+bower+'ubik*/**/*.json', '!'+bower+'ubik*/**/readme.*'] // Glob(s) matching files to ignore when copying from Bower
   , path: bower // Original location of Ubik components to copy
+  },
+
+  utils: {
+    clean: [build+'**/.DS_Store'] // A glob matching junk files to clean out of `build`
+  , wipe: [dist] // Clear things out before packaging; @TODO: also clear out the `build` folder
+  , dist: {
+      src: [build+'**/*', '!'+build+'**/*.min.css']
+    , dest: dist
+    }
   },
 
   watch: { // What to watch before triggering each specified task

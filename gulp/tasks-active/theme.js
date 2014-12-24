@@ -3,40 +3,21 @@
 // These tasks are specific to WordPress themes
 
 var gulp        = require('gulp')
-  , gutil       = require('gulp-util')
   , plugins     = require('gulp-load-plugins')({ camelize: true })
-  , config      = require('../config')
-  , source      = config.paths.source
-  , build       = config.paths.build
-  , dist        = config.paths.dist
-  , lang        = config.paths.lang
-  , bower       = config.paths.bower
-  , ubik        = config.ubik
+  , config      = require('../config').theme
 ;
 
-
-
-// == PHP == //
-
-gulp.task('php', ['php-core', 'ubik']);
-
-// Copy PHP source files to the build directory
-gulp.task('php-core', function() {
-  return gulp.src(source+'**/*.php')
-  .pipe(gulp.dest(build));
+// Copy PHP source files to the `build` folder
+gulp.task('php', ['ubik'], function() {
+  return gulp.src(config.php.src)
+  .pipe(gulp.dest(config.php.dest));
 });
 
-
-
-// == LANGUAGES == //
-
-// Copy everything under `src/languages` indiscriminately
-gulp.task('languages', function() {
-  return gulp.src(source+lang+'**/*')
-  .pipe(gulp.dest(build+lang));
+// Copy everything under `src/languages` indiscriminately; @TODO: better language handling
+gulp.task('lang', function() {
+  return gulp.src(config.lang.src)
+  .pipe(gulp.dest(config.lang.dest));
 });
-
-
 
 // All the theme tasks in one
-gulp.task('theme', ['languages', 'php']);
+gulp.task('theme', ['lang', 'php']);

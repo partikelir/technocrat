@@ -5,7 +5,7 @@ var gulp        = require('gulp')
   , config      = require('../config').watch
 ;
 
-// Watch task: build stuff when files are modified, livereload when anything in the `build` or `dist` folders change
+// Watch task: build stuff when files are modified, inform livereload when anything in the `build` or `dist` folders change
 gulp.task('watch', ['lr-server'], function() {
   gulp.watch(config.styles, ['styles']);
   gulp.watch(config.scripts, ['scripts']);

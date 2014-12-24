@@ -29,21 +29,18 @@ gulp.task('scripts-bundle', ['scripts-lint'], function(){
       });
 
       // Push the results to the bundles array
-      bundles.push( [bundle, chunks] );
+      bundles.push([bundle, chunks]);
     }
   }
 
-  // Define the task for each bundle
+  // Define the task for each bundle in the bundles array
   var tasks = bundles.map(function(bundle) {
-    var name = bundle[0].replace(/_/g, '-') // Replace underscores with hyphens
-      , src = bundle[1];
-
-    return gulp.src(src)
-    .pipe(plugins.concat(config.namespace + name + '.js'))
+    return gulp.src(bundle[1]) // bundle[1]: the list of source files
+    .pipe(plugins.concat(config.namespace + bundle[0].replace(/_/g, '-') + '.js')) // bundle[0] is the nice name of the script; underscores are replaced with hyphens
     .pipe(gulp.dest(config.dest));
   });
 
-  // Cross the streams
+  // Cross the streams ;)
   return merge(tasks);
 });
 
