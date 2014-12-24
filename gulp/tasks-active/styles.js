@@ -2,23 +2,16 @@
 
 var gulp        = require('gulp')
   , plugins     = require('gulp-load-plugins')({ camelize: true })
-  , config      = require('../config')
-  , source      = config.paths.source
-  , build       = config.paths.build
-  , bower       = config.paths.bower
+  , config      = require('../config').styles
 ;
 
-// Stylesheet handling; don't forget `gem install sass`; Compass is not included by default here
+// Stylesheet handling
 gulp.task('styles', function() {
-  return gulp.src([source+'scss/*.scss', '!'+source+'scss/_*.scss']) // Ignore partials
-  .pipe(plugins.rubySass({
-    loadPath: bower // Adds the `bower_components` directory to the load path so you can @import directly
-  , precision: 8
-  , 'sourcemap=none': true // Not yet ready for prime time! Sass 3.4 has sourcemaps on by default but this causes some problems from the Gulp toolchain
-  }))
-  .pipe(plugins.autoprefixer('last 2 versions', 'ie 9', 'ios 6', 'android 4'))
-  .pipe(gulp.dest(build))
-  .pipe(plugins.rename({suffix: '.min'}))
-  .pipe(plugins.minifyCss({ keepSpecialComments: 1 }))
-  .pipe(gulp.dest(build));
+  return gulp.src(config.build.src) // Ignore partials
+  .pipe(plugins.rubySass(config.build.sass))
+  .pipe(plugins.autoprefixer(config.build.autoprefixer))
+  .pipe(gulp.dest(config.build.dest))
+  .pipe(plugins.rename(config.build.rename))
+  .pipe(plugins.minifyCss(config.build.minify))
+  .pipe(gulp.dest(config.build.dest));
 });

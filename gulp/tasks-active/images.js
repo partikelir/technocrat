@@ -7,6 +7,6 @@ var gulp        = require('gulp')
 
 // This merely copies; minification occurs during packaging
 gulp.task('images', function() {
-  return gulp.src(images.src)
-  .pipe(gulp.dest(images.dest));
+  return gulp.src(images.build.src)
+  .pipe(gulp.dest(images.build.dest));
 });
