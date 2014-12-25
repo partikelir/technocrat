@@ -19,7 +19,7 @@ gulp.task('styles', function() {
   .pipe(gulp.dest(config.build.dest)); // Drops a minified CSS file into the `build` folder for debugging
 });
 
-// Take whatever stylesheets made it to the build folder, minify them, and sent them to `dist`
+// Copy stylesheets from the `build` folder to `dist` and minify them along the way
 gulp.task('styles-dist', ['utils-dist'], function() {
   return gulp.src(config.dist.src)
   .pipe(plugins.minifyCss(config.minify))

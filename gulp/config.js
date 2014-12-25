@@ -1,6 +1,6 @@
 // ==== CONFIGURATION ==== //
 
-// Paths
+// Project paths
 var project     = 'pendrell'
   , src         = './src/'
   , build       = './build/'
@@ -8,14 +8,8 @@ var project     = 'pendrell'
   , bower       = './bower_components/'
 ;
 
-// Project configuration
+// Project settings
 module.exports = {
-  paths: { // @TODO: remove
-    build: build
-  , dist: dist
-  , src: src
-  , bower: bower
-  },
 
   bower: {
     normalize: { // Copies normalize from `bower_components` to `src/scss` and renames it
@@ -176,5 +170,6 @@ module.exports = {
     , theme:        src+'**/*.php'
     , livereload:   [build+'**/*']
     }
+  , watcher: 'browsersync' // Who watches the watcher? Easily switch between BrowserSync and Livereload (use 'livereload')
   }
 }
