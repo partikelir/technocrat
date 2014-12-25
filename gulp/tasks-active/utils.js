@@ -7,17 +7,17 @@ var gulp        = require('gulp')
 ;
 
 // Totally wipe the contents of the `dist` folder to prepare for a clean build
-gulp.task('wipe', function(cb) {
+gulp.task('utils-wipe', function(cb) {
   del(config.wipe, cb)
 });
 
 // Clean out junk files after build
-gulp.task('clean', ['build', 'wipe'], function(cb) {
+gulp.task('utils-clean', ['build', 'utils-wipe'], function(cb) {
   del(config.clean, cb)
 });
 
 // Copy everything in the `build` folder (except previously minified stylesheets) to the `dist/project` folder
-gulp.task('copy-dist', ['clean'], function() {
+gulp.task('utils-dist', ['utils-clean'], function() {
   return gulp.src(config.dist.src)
   .pipe(gulp.dest(config.dist.dest));
 });

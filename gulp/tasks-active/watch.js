@@ -6,12 +6,34 @@ var gulp        = require('gulp')
 ;
 
 // Watch task: build stuff when files are modified, inform livereload when anything in the `build` or `dist` folders change
-gulp.task('watch', ['lr-server'], function() {
-  gulp.watch(config.styles, ['styles']);
-  gulp.watch(config.scripts, ['scripts']);
-  gulp.watch(config.images, ['images']);
-  gulp.watch(config.theme, ['theme']);
-  gulp.watch(config.livereload).on('change', function(file) {
+gulp.task('watch-old', ['lr-server'], function() {
+  gulp.watch(config.src.styles, ['styles']);
+  gulp.watch(config.src.scripts, ['scripts']);
+  gulp.watch(config.src.images, ['images']);
+  gulp.watch(config.src.theme, ['theme']);
+  gulp.watch(config.src.livereload).on('change', function(file) {
     plugins.livereload.changed(file.path);
   });
 });
+
+// Watch (BS)
+gulp.task('watch-browsersync', ['browsersync'], function() {
+  gulp.watch(config.src.styles, ['styles']);
+  gulp.watch(config.src.scripts, ['scripts']);
+  gulp.watch(config.src.images, ['images']);
+  gulp.watch(config.src.theme, ['theme']);
+});
+
+// Watch (LR): build stuff when files are modified, inform livereload when anything in the `build` or `dist` folders change
+gulp.task('watch-livereload', ['lr-server'], function() {
+  gulp.watch(config.src.styles, ['styles']);
+  gulp.watch(config.src.scripts, ['scripts']);
+  gulp.watch(config.src.images, ['images']);
+  gulp.watch(config.src.theme, ['theme']);
+  gulp.watch(config.src.livereload).on('change', function(file) {
+    plugins.livereload.changed(file.path);
+  });
+});
+
+// Master control switch for the watch task
+gulp.task('watch', ['watch-browsersync']);

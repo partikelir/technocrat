@@ -12,7 +12,7 @@ gulp.task('images', function() {
 });
 
 // Optimize images in the `dist` folder
-gulp.task('images-dist', ['copy-dist'], function() {
+gulp.task('images-dist', ['utils-dist'], function() {
   return gulp.src(config.dist.src)
   .pipe(plugins.imagemin(config.imagemin))
   .pipe(gulp.dest(config.dist.dest));
