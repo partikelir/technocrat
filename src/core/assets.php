@@ -77,7 +77,7 @@ if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueu
 
   // Contact form (CF1) variable setup
   if ( is_page_template( 'page-templates/contact-form.php' ) ) {
-    wp_enqueue_script( 'pendrell-contact-form', get_stylesheet_directory_uri() . '/js/contact-form' . $suffix . '.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/contact-form' . $suffix . '.js' ), true );
+    wp_enqueue_script( 'pendrell-contact-form', get_stylesheet_directory_uri() . '/js/p-contact-form' . $suffix . '.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/contact-form' . $suffix . '.js' ), true );
 
     // Non-destructively merge array and namespace custom variables
     $script_vars = array_merge( $script_vars, array(

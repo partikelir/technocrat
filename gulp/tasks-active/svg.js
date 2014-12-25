@@ -1,0 +1,3 @@
+// ==== SVG ==== //
+
+// Planned SVG handling
