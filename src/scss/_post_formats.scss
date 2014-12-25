@@ -18,6 +18,7 @@ body:not(.list-view) { // There's no way to isolate this, alas
   @extend %spacer-below;
   @include font-size($s-text-small);
   @include link-stylist($c-meta-link, $c-meta-link-v, $c-meta-link-h, $c-meta-link-a, $c-meta-link-f);
+  @include k-text-truncate; // Stops long URLs from overflowing the article width
   &:before {
     content: "\00a0\27A5\00a0";
   }
