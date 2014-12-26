@@ -8,6 +8,7 @@ var gulp        = require('gulp')
 // Copy images from the source folder to `build`
 gulp.task('images', function() {
   return gulp.src(config.build.src)
+  .pipe(plugins.changed(config.build.dest))
   .pipe(gulp.dest(config.build.dest));
 });
 

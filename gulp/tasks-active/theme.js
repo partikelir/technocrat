@@ -10,12 +10,14 @@ var gulp        = require('gulp')
 // Copy PHP source files to the `build` folder
 gulp.task('theme-php', ['theme-ubik'], function() {
   return gulp.src(config.php.src)
+  .pipe(plugins.changed(config.php.dest))
   .pipe(gulp.dest(config.php.dest));
 });
 
-// Copy everything under `src/languages` indiscriminately; @TODO: better language handling
+// Copy everything under `src/languages` indiscriminately
 gulp.task('theme-lang', function() {
   return gulp.src(config.lang.src)
+  .pipe(plugins.changed(config.lang.dest))
   .pipe(gulp.dest(config.lang.dest));
 });
 
@@ -32,6 +34,7 @@ gulp.task('theme-ubik', function() {
 
   // Let's go!
   return gulp.src(config.ubik.components)
+  .pipe(plugins.changed(config.ubik.dest))
   .pipe(gulp.dest(config.ubik.dest));
 });
 

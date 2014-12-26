@@ -106,7 +106,26 @@ module.exports = {
   },
 
   svg: {
-    // Coming soon
+    images: {
+      src: src+'img/**/*.png'
+    , dest: build+'img/'
+    }
+  , sprites: {
+      src: src+'svg/**/*.svg'
+    , dest: build+'svg/' // Processed sprites end up here
+    , options: {
+        cssFile: './src/scss/_base_svg_sprite.scss' // `src` is defined
+      , layout: 'diagonal'
+      , padding: 5
+      , preview: false
+      , svg: {
+          sprite: 'p-sprite.svg' // Filename for the sprite
+        }
+      , templates: {
+          css: require('fs').readFileSync(src+'scss/_base_svg_sprite_template.scss', 'utf-8')
+        }
+      }
+    }
   },
 
   theme: {

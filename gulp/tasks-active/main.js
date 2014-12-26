@@ -11,5 +11,4 @@ gulp.task('build', ['styles', 'scripts', 'images', 'theme']);
 // Prepare a distribution: the properly minified, uglified, and sanitized version of the theme ready for installation
 // NOTE: this is a resource-intensive task since it wipes the `dist` folder every time
 // Master dist task: wipe -> build -> clean -> copy -> images/styles
-// @TODO: a proper wipe task; currently only the `dist` folder is wiped
 gulp.task('dist', ['images-dist', 'styles-dist']);

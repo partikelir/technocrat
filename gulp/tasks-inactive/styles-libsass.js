@@ -6,8 +6,9 @@ var gulp        = require('gulp')
 ;
 
 // This task is a future proof-of-concept for when Libsass approaches feature parity with the original Sass library
-// It is not currently used
-// @TODO: switch to Libsass and implement source maps
+// It is not currently used as both Pendrell and Kipple use a fair amount of Sass that Libsass does not currently approach
+// Two distinct advantages to Libsass: 1) it's way faster and 2) source maps without all the hassles
+// @TODO: switch to Libsass when the project matures
 gulp.task('styles-libsass', function() {
   return gulp.src(config.build.src)
   .pipe(plugins.sourcemaps.init())
