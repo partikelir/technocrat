@@ -1,0 +1,87 @@
+// ==== SVG SPRITES ==== //
+
+// Adapted from: https://www.liquidlight.co.uk/blog/article/creating-svg-sprites-using-gulp-and-sass/
+
+@import "svg_sprites_map"; // Generated with gulp
+
+$sprite-ie: ".lt-ie9" !default; // This only works if you have Modernizr output this class somewhere; $legacy must also be 'true'
+$sprite: map-get($d-icons, sprite) !default;
+
+// Retrieve an attribute from the SVG sprites map
+@function sprite-attr($name, $attr) {
+  $icon: map-get($d-icons, $name);
+  @if ($icon) {
+    @return map-get($icon, $attr);
+  } @else {
+    @warn "SVG sprites: #{$name} cannot be found!"
+  }
+}
+
+@function icon-attr($icon) {
+  $attr: (
+    width: sprite-attr($icon, width),
+    height: sprite-attr($icon, height),
+    x: sprite-attr($icon, backgroundX),
+    y: sprite-attr($icon, backgroundY)
+  );
+  @return $attr;
+}
+
+// Request an icon from the SVG sprite
+@mixin sprite($icon, $type: all) {
+  @if $type == all {
+    @extend %sprite; // All sprites share the same background; let's extend a helper class
+  }
+
+  $iconMap: icon-attr($icon);
+
+  // Output dimensions
+  @if $type == all or $type == size {
+    @include rem("height", map-get($iconMap, height) + 1);
+    @include rem("width", map-get($iconMap, width) + 1);
+  }
+
+  // Outputs background position in em
+  @if $type == all or $type == bg {
+    @include rem("background-position", map-get($iconMap, x) map-get($iconMap, y));
+  }
+
+  // Add IE fallback
+  @if ($legacy) {
+    @include sprite-ie($icon, $type);
+  }
+}
+
+// IE sprite mixin for when rotation is used
+@mixin sprite-ie($icon, $type: all) {
+  $iconMap: icon-attr($icon);
+
+  @if $sprite-ie {
+    #{$sprite-ie} & {
+      @if $type == all {
+        @extend %sprite-ie; // Shares the PNG background
+      }
+      // Outputs dimensions of the icon
+      @if $type == all or $type == size {
+        width: map-get($iconMap, width);
+        height: map-get($iconMap, height);
+      }
+      // Outputs background position
+      @if $type == all or $type == bg {
+        background-position: (map-get($iconMap, x)) (map-get($iconMap, y));
+      }
+    }
+  }
+}
+
+// Sprite helper class
+@mixin sprite-helper {
+  display: inline-block;
+  background-image: url(map-get($sprite, svgPath));
+  @include rem("background-size", map-get($sprite, width) map-get($sprite, height));
+}
+
+// Sprite helper class (IE version)
+@mixin sprite-helper-ie {
+  background-image: url(map-get($sprite, pngPath));
+}

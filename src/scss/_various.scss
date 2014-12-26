@@ -82,6 +82,13 @@ label.error {
 
 
 
+// WordPress theme guidelines requires some classes even if they aren't used
+.sticky {
+  margin: 0;
+}
+
+
+
 // Screen reader text adapted from Twenty Twelve
 // @TODO: fix the bug (below) and update the theme for greater accessibility
 // @TODO: this approach creates unnecessary white space on the right side of the document and in the search form
@@ -102,11 +109,4 @@ label.error {
     left: 5px;
     z-index: 100000;
   }
-}
-
-
-
-// WordPress theme guidelines requires some classes even if they aren't used
-.sticky {
-  margin: 0;
 }

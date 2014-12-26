@@ -1,0 +1,97 @@
+// ==== UI ELEMENTS ==== //
+
+// Button styling
+@mixin button {
+  @include border-radius;
+  @include font-size($s-text-smaller, 4);
+  @include font-style("button");
+  @include gradient-vertical($d-gradient-1, $d-gradient-2);
+  @include letterpress;
+  @include rem("padding", 0 $spacer/4);
+  border: $d-interface;
+  box-shadow: 0 1px 2px rgba(64, 64, 64, .1);
+  color: $c-text;
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  vertical-align: middle;
+  &:hover {
+    @include gradient-vertical(lighten($d-gradient-1, 3), lighten($d-gradient-2, 1));
+    color: $c-text-lighter;
+  }
+  &:active {
+    @include gradient-vertical(darken($d-gradient-1, 7), lighten($d-gradient-2, 1));
+    border-color: 1px solid darken($c-body-bg, 8);
+    box-shadow: inset 0 2px 3px 0 #c6c6c6, 0 1px 2px rgba(64, 64, 64, .1);
+    color: lighten($c-text-lightest, 10);
+  }
+  &:focus {
+    outline: none; // Blue border is rather distracting
+  }
+}
+
+// Dropdown menu; for use with the main site navigation menu
+@mixin dropdown-menu($wordpress-menu: true) {
+  @include k-dropdown(
+    $dropdown-background: $c-sub-bg linear-gradient(white(.5), white(0)) repeat-x
+  , $dropdown-border-color: $c-interface
+  , $dropdown-border-radius: $d-radius
+  , $dropdown-border-size: 1px
+  , $dropdown-shadow-inside: 0 -2px 3px rgba(64, 64, 64, .08) inset
+  , $dropdown-shadow-outside: 1px 1px 4px black(.08)
+  );
+  @include font-size($s-sub);
+  li {
+    a {
+      color: $c-sub;
+      &:visited {
+        color: $c-sub;
+      }
+      &:hover {
+        background: darken($c-sub-bg, 13);
+        box-shadow: 0 -2px 4px black(.06) inset;
+        color: $c-sub-h;
+      }
+      &:active,
+      &:focus {
+        color: $c-sub-h;
+      }
+    }
+  }
+  @if $wordpress-menu == true {
+    .current-menu-item,
+    .current-menu-ancestor,
+    .current_page_item,
+    .current_page_ancestor {
+      > a {
+        background: darken($c-sub-bg, 3);
+        color: lighten($c-sub, 23);
+        &:visited {
+          color: lighten($c-sub, 23);
+        }
+        &:hover,
+        &:active,
+        &:focus {
+          color: lighten($c-sub-h, 13);
+        }
+      }
+    }
+  }
+}
+
+// Text input; for use with forms, textarea, etc.
+@mixin text-input($shadow: $c-shadow, $font-size: $s-text-smaller) {
+  @include border-radius;
+  @include font-size($font-size, 8);
+  @include font-style("input");
+  @include letterpress;
+  @include rem("padding", 3px);
+  background: darken($c-body-bg, 3);
+  border: $d-divider;
+  box-shadow: inset 2px 2px 4px $shadow;
+  color: lighten($c-text, 23);
+  &:focus {
+    color: $c-text;
+    background-color: darken($c-body-bg, 7);
+  }
+}

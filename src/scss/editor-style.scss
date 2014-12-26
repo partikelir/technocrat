@@ -1,6 +1,6 @@
 // A draft version of an editor-style.css file for Pendrell
 
-@import "base";
+@import "lib/loader";
 @import "general";
 @import "content"; // This doesn't load anything; instead, it is extended below
 // @TODO: @import "image";

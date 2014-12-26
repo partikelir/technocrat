@@ -1,5 +1,13 @@
 // ==== DEFAULT CONFIGURATION ==== //
 
+// Development mode; switches on a few things that are otherwise build-specific
+$dev: true;
+
+// Legacy mode; output styles for older browsers (usually pre-IE9)
+$legacy: false;
+
+
+
 // == FONT SIZING == //
 
 // Default font size and baseline (unitless integers); $base should be 16, set $s-text to alter body text font size
@@ -151,24 +159,6 @@ $w-mono-bold:       700;
 
 
 
-// == LAYOUT == //
-
-$content-width:     960px;
-$main-width:        624px;
-$thumbnail-size:    150px;
-$spacer:            $baseline+0px; // Typically used in conjunction with the rem mixin
-
-
-
-// == BREAKPOINTS == //
-
-$b-small:           $main-width/1.2;
-$b-medium:          $main-width + ($spacer * 3);
-$b-large:           $main-width + ($spacer * 8); // Causes sidebar to slide below content
-$b-full:            $content-width;
-
-
-
 // == COLOURS == //
 
 // Custom colours added to the standard library
@@ -249,6 +239,23 @@ $c-highlight-bg:  colour(lemon-chiffon);
 
 
 
+// == LAYOUT == //
+
+$content-width:     960px;
+$main-width:        624px;
+$thumbnail-size:    150px;
+$spacer:            $baseline+0px; // Typically used in conjunction with the rem mixin
+
+
+
+// == BREAKPOINTS == //
+
+$b-small:           $main-width/1.2;
+$b-medium:          $main-width + ($spacer * 3);
+$b-large:           $main-width + ($spacer * 8); // Causes sidebar to slide below content
+$b-full:            $content-width;
+
+
 
 // == DESIGN PATTERNS == //
 
@@ -291,9 +298,6 @@ $m-ubik-places:       false;
 $m-ubik-recordpress:  false;
 $m-ubik-related:      false;
 $m-ubik-series:       false;
-
-// Override the settings above; true/false
-$dev: true;
 
 @if ($dev) {
   $m-gallery-shortcode: true; // WordPress core

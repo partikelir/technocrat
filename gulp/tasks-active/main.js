@@ -6,7 +6,7 @@ var gulp = require('gulp');
 gulp.task('default', ['watch']);
 
 // Build styles and scripts; copy PHP and language files
-gulp.task('build', ['styles', 'scripts', 'images', 'theme']);
+gulp.task('build', ['images', 'scripts', 'styles', 'svg', 'theme']);
 
 // Prepare a distribution: the properly minified, uglified, and sanitized version of the theme ready for installation
 // NOTE: this is a resource-intensive task since it wipes the `dist` folder every time

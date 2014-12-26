@@ -1,0 +1,64 @@
+// ==== LINKS ==== //
+
+// Link stylist; pass 'false' to disable styling for any of these
+// @TODO: group same values
+@mixin link-stylist(
+  $link: $c-link,
+  $link-visited: $c-link-v,
+  $link-hover: $c-link-h,
+  $link-active: $c-link-a,
+  $link-focus: $c-link-f,
+  $link-border: true,
+  $link-color: true
+) {
+  a {
+    @if $link-border == true {
+      border-bottom: 1px dotted rgba($link, .30);
+    }
+    @if $link-color == true {
+      color: $link;
+    }
+    @if not $link-visited == false {
+      &:visited {
+        @if $link-border == true {
+          border-bottom-color: rgba($link-visited, .25);
+        }
+        @if $link-color == true {
+          color: $link-visited;
+        }
+      }
+    }
+    @if not $link-hover == false {
+      &:hover {
+        @if $link-border == true {
+          border-bottom-color: rgba($link-hover, .35);
+          border-bottom-style: solid;
+        }
+        @if $link-color == true {
+          color: $link-hover;
+        }
+      }
+    }
+    @if not $link-active == false {
+      &:active {
+        @if $link-border == true {
+          border-bottom-color: rgba($link-active, .40);
+          border-bottom-style: solid;
+        }
+        @if $link-color == true {
+          color: $link-active;
+        }
+      }
+    }
+    @if not $link-focus == false {
+      &:focus {
+        @if $link-border == true {
+          border-bottom-color: rgba($link-focus, .30);
+        }
+        @if $link-color == true {
+          color: $link-focus;
+        }
+      }
+    }
+  }
+}

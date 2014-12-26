@@ -14,14 +14,20 @@ module.exports = {
   bower: {
     normalize: { // Copies normalize from `bower_components` to `src/scss` and renames it
       src: bower+'normalize.css/normalize.css'
-    , rename: '_base_normalize.scss'
-    , dest: src+'scss'
+    , rename: '_normalize.scss'
+    , dest: src+'scss/lib'
     }
   },
 
   browsersync: {
-    proxy: 'synaptic.dev:8080' // Using a proxy instead of the built-in server as we have server-side rendering to do via WordPress
-  , files: [build+'/**', '!'+build+'/**.map'] // Exclude map files
+    files: [build+'/**', '!'+build+'/**.map'] // Exclude map files
+  , notify: false // In-line notifications (the blocks of text saying whether you are connected to the BrowserSync server or not)
+  , open: true // Set to false if you don't like the browser window opening automatically
+  , port: 3000 // Port number for the live version of the site; default: 3000
+  , proxy: 'synaptic.dev:8080' // Using a proxy instead of the built-in server as we have server-side rendering to do via WordPress
+  , watchOptions: {
+      debounceDelay: 2000 // Delay for events called in succession for the same file/event
+    }
   },
 
   images: {
@@ -30,7 +36,7 @@ module.exports = {
     , dest: build
     }
   , dist: {
-      src: [dist+'**/*.png', dist+'**/*.jpg', dist+'**/*.jpeg', dist+'**/*.gif', '!'+dist+'screenshot.png']
+      src: [dist+'**/*.png', dist+'**/*.jpg', dist+'**/*.jpeg', dist+'**/*.gif', '!'+dist+'screenshot.png', '!'+dist+'svg/*.png'] // No need to compress the PNG fallback
     , imagemin: {
         optimizationLevel: 7
       , progressive: true
@@ -107,23 +113,30 @@ module.exports = {
 
   svg: {
     images: {
-      src: src+'img/**/*.png'
-    , dest: build+'img/'
+      src: build+'svg/**/*.svg'
+    , dest: build+'svg/'
     }
   , sprites: {
       src: src+'svg/**/*.svg'
     , dest: build+'svg/' // Processed sprites end up here
     , options: {
-        cssFile: './src/scss/_base_svg_sprite.scss' // `src` is defined
+        cssFile: '../../src/scss/lib/_svg_sprites_map.scss' // Relative path from svg.sprites.dest is required here
       , layout: 'diagonal'
-      , padding: 5
+      //, padding: 5
       , preview: false
+      , selector: '%f' // CSS selector to create; %f = filename
       , svg: {
           sprite: 'p-sprite.svg' // Filename for the sprite
         }
       , templates: {
-          css: require('fs').readFileSync(src+'scss/_base_svg_sprite_template.scss', 'utf-8')
+          css: require('fs').readFileSync(src+'scss/templates/_svg_sprites_map.scss', 'utf-8') // Relative to sprites.src
         }
+      , transformData: function(data, config) { // Relative path to the sprite files from the stylesheet
+          data.pngPath = 'svg/p-sprite.svg';
+          data.svgPath = 'svg/p-sprite.png';
+          data.padding = 5; // Needs to be set here when transforming data
+          return data;
+        },
       }
     }
   },
