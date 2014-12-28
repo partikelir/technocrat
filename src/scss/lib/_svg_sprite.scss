@@ -1,13 +1,14 @@
 // ==== SVG SPRITES ==== //
 
 // Adapted from: https://www.liquidlight.co.uk/blog/article/creating-svg-sprites-using-gulp-and-sass/
+// Not currently in use; @TODO: remove, archive, or otherwise find something to do with all this stuff
 
-@import "svg_sprites_map"; // Generated with Gulp
+@import "svg_sprite_sheet"; // Generated with Gulp
 
-$sprite-map: map-get($d-icons, sprite) !default;
+$sprite-sheet: map-get($d-icons, sprite) !default;
 $sprite-ie: ".lt-ie9" !default; // This only works if you have Modernizr output this class somewhere; $legacy must also be 'true'
 
-// Functions to retrieve various attributes from an SVG sprites map
+// Functions to retrieve various attributes from an SVG sprite sheet
 
 // Retrieves the list of properties for an individual sprite
 @function sprite-props($sprite-name) {
@@ -20,7 +21,7 @@ $sprite-ie: ".lt-ie9" !default; // This only works if you have Modernizr output 
   @return $attr;
 }
 
-// Retrieve an attribute for a specific sprite in the sprite map (e.g. return the value of the width attribute for sprite X)
+// Retrieve an attribute for a specific sprite in the sprite sheet (e.g. return the value of the width attribute for sprite X)
 @function sprite-attr($sprite-name, $attr) {
   $sprite-data: map-get($d-icons, $sprite-name);
   @if ($sprite-data) {
@@ -30,7 +31,7 @@ $sprite-ie: ".lt-ie9" !default; // This only works if you have Modernizr output 
   }
 }
 
-// Display a sprite from the SVG/PNG sprite map
+// Display a sprite from the SVG/PNG sprite sheet
 @mixin sprite($sprite-name, $width: null, $height: null) {
 
   // All sprites share the same background; let's extend a helper class
@@ -99,7 +100,7 @@ $sprite-ie: ".lt-ie9" !default; // This only works if you have Modernizr output 
 
   @include rem("width", $sprite-width);
   @include rem("height", $sprite-height);
-  @include rem("background-size", map-get($sprite-map, width) * $sprite-width-factor map-get($sprite-map, height) * $sprite-height-factor);
+  @include rem("background-size", map-get($sprite-sheet, width) * $sprite-width-factor map-get($sprite-sheet, height) * $sprite-height-factor);
 }
 
 // PNG fallback for use with IE 9 (not tested in this adaptation)
@@ -115,10 +116,10 @@ $sprite-ie: ".lt-ie9" !default; // This only works if you have Modernizr output 
 
 // Sprite helper class (SVG version)
 @mixin sprite-helper {
-  background-image: url(map-get($sprite-map, svgPath));
+  background-image: url(map-get($sprite-sheet, svgPath));
 }
 
 // Sprite helper class (PNG version for IE compatibility)
 @mixin sprite-helper-ie {
-  background-image: url(map-get($sprite-map, pngPath));
+  background-image: url(map-get($sprite-sheet, pngPath));
 }
