@@ -21,6 +21,10 @@ body:not(.list-view) { // There's no way to isolate this, alas
   @include k-text-truncate; // Stops long URLs from overflowing the article width
   &:before {
     content: "\00a0\27A5\00a0";
+    //@include sprite("link", $spacer);
+    //content: "";
+    //display: block;
+    //float: left;
   }
 }
 

@@ -26,11 +26,11 @@ gulp.task('theme-ubik', function() {
 
   // Iterate through the Ubik array and wrap each component in a glob pattern to handle the nested directory structure
   config.ubik.components.forEach(function(component, i, components) {
-    components[i] = config.ubik.path+'ubik-'+component+'/**/*';
+    components[i] = config.ubik.src+'ubik-'+component+'/**/*';
   });
 
   // Combine the list of components with the ignore glob; this allows us to copy only the files we need without anything extra from the original GitHub repos
-  config.ubik.components = config.ubik.components.concat(config.ubik.path+'ubik/**/*', config.ubik.ignore);
+  config.ubik.components = config.ubik.components.concat(config.ubik.src+'ubik/**/*', config.ubik.ignore);
 
   // Let's go!
   return gulp.src(config.ubik.components)

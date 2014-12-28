@@ -14,8 +14,19 @@ module.exports = {
   bower: {
     normalize: { // Copies normalize from `bower_components` to `src/scss` and renames it
       src: bower+'normalize.css/normalize.css'
-    , rename: '_normalize.scss'
     , dest: src+'scss/lib'
+    , rename: '_normalize.scss'
+    }
+  , typicons: {
+      src: bower+'typicons.font/src/svg/' // Trailing slash
+    , dest: src+'svg/'
+    , icons: [
+        'media-play'
+      , 'media-pause'
+      , 'media-fast-forward'
+      , 'media-rewind'
+      , 'link'
+      ]
     }
   },
 
@@ -119,10 +130,9 @@ module.exports = {
   , sprites: {
       src: src+'svg/**/*.svg'
     , dest: build+'svg/' // Processed sprites end up here
-    , options: {
+    , options: { // Reference: https://github.com/shakyShane/gulp-svg-sprites
         cssFile: '../../src/scss/lib/_svg_sprites_map.scss' // Relative path from svg.sprites.dest is required here
       , layout: 'diagonal'
-      //, padding: 5
       , preview: false
       , selector: '%f' // CSS selector to create; %f = filename
       , svg: {
@@ -132,8 +142,8 @@ module.exports = {
           css: require('fs').readFileSync(src+'scss/templates/_svg_sprites_map.scss', 'utf-8') // Relative to sprites.src
         }
       , transformData: function(data, config) { // Relative path to the sprite files from the stylesheet
-          data.pngPath = 'svg/p-sprite.svg';
-          data.svgPath = 'svg/p-sprite.png';
+          data.pngPath = 'svg/p-sprite.png';
+          data.svgPath = 'svg/p-sprite.svg';
           data.padding = 5; // Needs to be set here when transforming data
           return data;
         },
@@ -151,10 +161,12 @@ module.exports = {
     , dest: build
     }
   , ubik: {
+      src: bower // Root folder for all Ubik components
+    , dest: build+'modules' // Location in the `build` folder Ubik components should be copied to
       // The following Ubik components will be copied into the theme's build folder
       // Items marked * are required for the theme to function
-      // Each item is on its own line to allow for a better git workflow
-      components: [
+      // Each item is on its own line to allow for a better git workflow (e.g. for different branches it is easy to comment out unnecessary components)
+    , components: [
         'admin'
       , 'analytics'
       , 'cleaner'
@@ -179,9 +191,7 @@ module.exports = {
       , 'time' // *
       , 'title' // *
       ]
-    , dest: build+'modules' // Ubik components end up here
     , ignore: ['!'+bower+'ubik*/**/*.json', '!'+bower+'ubik*/**/readme.*'] // Glob(s) matching files to ignore when copying from Bower
-    , path: bower // Path to the original copy of all Ubik components
     }
   },
 

@@ -8,7 +8,7 @@ var gulp        = require('gulp')
 ;
 
 // Optimize SVG files and create the SVG sprite; this approach presumes you only have so many SVG files to turn into a sprite
-gulp.task('svg-sprite', function() {
+gulp.task('svg-sprites', function() {
   return gulp.src(config.sprites.src)
   .pipe(plugins.svgo())
   .pipe(plugins.svgSprites(config.sprites.options))
@@ -16,11 +16,11 @@ gulp.task('svg-sprite', function() {
 });
 
 // Generate a PNG fallback image for IE9
-gulp.task('svg-sprite-png', ['svg-sprite'], function() {
+gulp.task('svg-sprites-png', ['svg-sprites'], function() {
   return gulp.src(config.images.src)
   .pipe(plugins.svg2png())
   .pipe(gulp.dest(config.images.dest));
 });
 
 // Master SVG sprite task: svg-sprite -> svg-sprite-png
-gulp.task('svg', ['svg-sprite-png']);
+gulp.task('svg', ['svg-sprites-png']);

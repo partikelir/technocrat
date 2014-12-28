@@ -2,86 +2,123 @@
 
 // Adapted from: https://www.liquidlight.co.uk/blog/article/creating-svg-sprites-using-gulp-and-sass/
 
-@import "svg_sprites_map"; // Generated with gulp
+@import "svg_sprites_map"; // Generated with Gulp
 
+$sprite-map: map-get($d-icons, sprite) !default;
 $sprite-ie: ".lt-ie9" !default; // This only works if you have Modernizr output this class somewhere; $legacy must also be 'true'
-$sprite: map-get($d-icons, sprite) !default;
 
-// Retrieve an attribute from the SVG sprites map
-@function sprite-attr($name, $attr) {
-  $icon: map-get($d-icons, $name);
-  @if ($icon) {
-    @return map-get($icon, $attr);
-  } @else {
-    @warn "SVG sprites: #{$name} cannot be found!"
-  }
-}
+// Functions to retrieve various attributes from an SVG sprites map
 
-@function icon-attr($icon) {
+// Retrieves the list of properties for an individual sprite
+@function sprite-props($sprite-name) {
   $attr: (
-    width: sprite-attr($icon, width),
-    height: sprite-attr($icon, height),
-    x: sprite-attr($icon, backgroundX),
-    y: sprite-attr($icon, backgroundY)
+    width: sprite-attr($sprite-name, width),
+    height: sprite-attr($sprite-name, height),
+    x: sprite-attr($sprite-name, backgroundX),
+    y: sprite-attr($sprite-name, backgroundY)
   );
   @return $attr;
 }
 
-// Request an icon from the SVG sprite
-@mixin sprite($icon, $type: all) {
-  @if $type == all {
-    @extend %sprite; // All sprites share the same background; let's extend a helper class
-  }
-
-  $iconMap: icon-attr($icon);
-
-  // Output dimensions
-  @if $type == all or $type == size {
-    @include rem("height", map-get($iconMap, height) + 1);
-    @include rem("width", map-get($iconMap, width) + 1);
-  }
-
-  // Outputs background position in em
-  @if $type == all or $type == bg {
-    @include rem("background-position", map-get($iconMap, x) map-get($iconMap, y));
-  }
-
-  // Add IE fallback
-  @if ($legacy) {
-    @include sprite-ie($icon, $type);
+// Retrieve an attribute for a specific sprite in the sprite map (e.g. return the value of the width attribute for sprite X)
+@function sprite-attr($sprite-name, $attr) {
+  $sprite-data: map-get($d-icons, $sprite-name);
+  @if ($sprite-data) {
+    @return map-get($sprite-data, $attr);
+  } @else {
+    @warn "SVG sprites: #{$sprite-name} cannot be found!"
   }
 }
 
-// IE sprite mixin for when rotation is used
-@mixin sprite-ie($icon, $type: all) {
-  $iconMap: icon-attr($icon);
+// Display a sprite from the SVG/PNG sprite map
+@mixin sprite($sprite-name, $width: null, $height: null) {
 
+  // All sprites share the same background; let's extend a helper class
+  @extend %sprite;
+
+  // Retrieve sprite coordinates and sizing
+  @include sprite-bg($sprite-name, $width, $height);
+  @include sprite-size($sprite-name, $width, $height);
+
+  // Add IE fallback (optional, untested)
+  @if ($legacy) {
+    @include sprite-ie($sprite-name);
+  }
+}
+
+// Sprite background position; use this with the hover pseudo class to change the sprite but leave everything else the same
+// Warning: width and height must match that of the base sprite for this to work!
+@mixin sprite-bg($sprite-name, $width: null, $height: null) {
+
+  // Retrieve sprite data
+  $sprite: sprite-props($sprite-name);
+
+  // Retrieve sprite coordinates
+  $x: map-get($sprite, x);
+  $y: map-get($sprite, y);
+
+  // Modify $x and $y if an explicit width or height is passed
+  @if ($width) {
+    $sprite-width-factor: $width / map-get($sprite, width);
+    $x: map-get($sprite, x) * $sprite-width-factor;
+  }
+  @if ($height) {
+    $sprite-height-factor: $height / map-get($sprite, height);
+    $y: map-get($sprite, y) * $sprite-height-factor;
+  }
+
+  @include rem("background-position", $x $y);
+}
+
+// Sprite sizing with optional arbitrary width and height
+@mixin sprite-size($sprite-name, $width: null, $height: null) {
+
+  // Retrieve sprite data
+  $sprite: sprite-props($sprite-name);
+
+  // Default width and height data
+  $sprite-width-factor: 1;
+  $sprite-width: map-get($sprite, width);
+  $sprite-height-factor: 1;
+  $sprite-height: map-get($sprite, height);
+
+  // Override default width and height data with whatever we've requested
+  @if $width {
+    $sprite-width-factor: $width / $sprite-width;
+    $sprite-width: $width;
+
+    // Lazy height for square sprites; use with caution
+    @if not $height and map-get($sprite, width) == map-get($sprite, height) {
+      $height: $width;
+    }
+  }
+  @if $height {
+    $sprite-height-factor: $height / $sprite-height;
+    $sprite-height: $height;
+  }
+
+  @include rem("width", $sprite-width);
+  @include rem("height", $sprite-height);
+  @include rem("background-size", map-get($sprite-map, width) * $sprite-width-factor map-get($sprite-map, height) * $sprite-height-factor);
+}
+
+// PNG fallback for use with IE 9 (not tested in this adaptation)
+@mixin sprite-ie($sprite-name, $type: all) {
   @if $sprite-ie {
     #{$sprite-ie} & {
-      @if $type == all {
-        @extend %sprite-ie; // Shares the PNG background
-      }
-      // Outputs dimensions of the icon
-      @if $type == all or $type == size {
-        width: map-get($iconMap, width);
-        height: map-get($iconMap, height);
-      }
-      // Outputs background position
-      @if $type == all or $type == bg {
-        background-position: (map-get($iconMap, x)) (map-get($iconMap, y));
-      }
+      @extend %sprite-ie; // Load the common PNG background
+      @include sprite-bg($sprite-name);
+      @include sprite-size($sprite-name);
     }
   }
 }
 
-// Sprite helper class
+// Sprite helper class (SVG version)
 @mixin sprite-helper {
-  display: inline-block;
-  background-image: url(map-get($sprite, svgPath));
-  @include rem("background-size", map-get($sprite, width) map-get($sprite, height));
+  background-image: url(map-get($sprite-map, svgPath));
 }
 
-// Sprite helper class (IE version)
+// Sprite helper class (PNG version for IE compatibility)
 @mixin sprite-helper-ie {
-  background-image: url(map-get($sprite, pngPath));
+  background-image: url(map-get($sprite-map, pngPath));
 }

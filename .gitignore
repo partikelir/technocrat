@@ -35,5 +35,6 @@ node_modules
 build
 dist/pendrell/modules/ubik-*
 dist/pendrell/modules/ubik/
+src/svg
 
 ## Project specific
