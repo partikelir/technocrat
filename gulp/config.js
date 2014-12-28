@@ -131,7 +131,7 @@ module.exports = {
       src: src+'svg/**/*.svg'
     , dest: build+'svg/' // Processed sprites end up here
     , options: { // Reference: https://github.com/shakyShane/gulp-svg-sprites
-        cssFile: '../../src/scss/lib/_svg_sprites_map.scss' // Relative path from svg.sprites.dest is required here
+        cssFile: '../../src/scss/lib/_svg_sprite_sheet.scss' // Relative path from svg.sprites.dest is required here
       , layout: 'diagonal'
       , preview: false
       , selector: '%f' // CSS selector to create; %f = filename
@@ -139,14 +139,27 @@ module.exports = {
           sprite: 'p-sprite.svg' // Filename for the sprite
         }
       , templates: {
-          css: require('fs').readFileSync(src+'scss/templates/_svg_sprites_map.scss', 'utf-8') // Relative to sprites.src
+          css: require('fs').readFileSync(src+'scss/templates/_svg_sprite_sheet.scss', 'utf-8') // Relative to sprites.src
         }
       , transformData: function(data, config) { // Relative path to the sprite files from the stylesheet
-          data.pngPath = 'svg/p-sprite.png';
-          data.svgPath = 'svg/p-sprite.svg';
+          data.pngPath = 'svg/sprites/p-sprite.png';
+          data.svgPath = 'svg/sprites/p-sprite.svg';
           data.padding = 5; // Needs to be set here when transforming data
           return data;
         },
+      }
+    }
+  , svgstore: {
+      src: src+'svg/**/*.svg'
+    , dest: build+'svg/'
+    , options: {
+        fileName: 'icons.svg'
+      , inlineSvg: true
+      , prefix: 'i-'
+      , transformSvg: function ($svg, done) {
+          $svg.attr('style', 'display:none');
+          done(null, $svg);
+        }
       }
     }
   },
