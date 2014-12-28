@@ -50,7 +50,6 @@
     "ubik-terms": "https://github.com/synapticism/ubik-terms.git",
     "ubik-time": "https://github.com/synapticism/ubik-time.git",
     "ubik-title": "https://github.com/synapticism/ubik-title.git",
-    "material-design-icons": "~1.0.1",
     "typicons": "https://github.com/synapticism/typicons.font.git"
   }
 }

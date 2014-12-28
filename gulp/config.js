@@ -23,11 +23,18 @@ module.exports = {
     , icons: [
         'pencil'
       , 'edit'
+      , 'link'
+      , 'location'
       , 'media-play'
       , 'media-pause'
       , 'media-fast-forward'
       , 'media-rewind'
-      , 'link'
+      , 'media-stop'
+      , 'rss'
+      , 'volume'
+      , 'volume-down'
+      , 'volume-mute'
+      , 'volume-up'
       ]
     }
   },
@@ -64,15 +71,6 @@ module.exports = {
   },
 
   scripts: {
-    chunks: { // Chunks are arrays of globs matching src files that provide specific functionality
-      core: [src+'js/navigation.js', src+'js/core.js']
-    , contact: [bower+'jquery-validation/dist/jquery.validate.js', src+'js/contact-form.js']
-    , html5shiv: [bower+'html5shiv/dist/html5shiv.js']
-    , pf: [bower+'picturefill/dist/picturefill.js']
-    , pg8: [bower+'html5-history-api/history.iegte8.js', bower+'spin.js/spin.js', bower+'spin.js/jquery.spin.js', src+'js/page-loader.js']
-    , prism: [src+'js/prism.js']
-    , xn8: [bower+'html5-history-api/history.iegte8.js', bower+'spin.js/spin.js', bower+'spin.js/jquery.spin.js', bower+'ajaxinate/src/ajaxinate.js', bower+'ajaxinate-wp/src/ajaxinate-wp.js', src+'js/ajaxinate.js']
-    },
     bundles: { // Bundles are defined by a name and an array of chunks to concatenate; warning: it's up to you to manage dependencies!
       core: ['core']
     , contact: ['contact']
@@ -84,8 +82,14 @@ module.exports = {
     , pg8_prism: ['pg8', 'prism', 'core']
     , pg8_pf_prism: ['pg8', 'pf', 'prism', 'core']
     , prism: ['prism', 'core']
-    , xn8: ['xn8', 'core']
-    , xn8_prism: ['xn8', 'prism', 'core']
+    }
+  , chunks: { // Chunks are arrays of globs matching src files that provide specific functionality
+      core: [src+'js/navigation.js', src+'js/core.js']
+    , contact: [bower+'jquery-validation/dist/jquery.validate.js', src+'js/contact-form.js']
+    , html5shiv: [bower+'html5shiv/dist/html5shiv.js']
+    , pf: [bower+'picturefill/dist/picturefill.js']
+    , pg8: [bower+'html5-history-api/history.iegte8.js', bower+'spin.js/spin.js', bower+'spin.js/jquery.spin.js', src+'js/page-loader.js']
+    , prism: [src+'js/prism.js']
     }
   , dest: build+'js/' // Where the scripts end up
   , lint: {

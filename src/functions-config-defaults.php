@@ -9,9 +9,6 @@ defined( 'PENDRELL_BASELINE' )            || define( 'PENDRELL_BASELINE', 30 );
 // Google web fonts to load; string false will load Open Sans as a fallback
 defined( 'PENDRELL_GOOGLE_FONTS' )        || define( 'PENDRELL_GOOGLE_FONTS', 'Raleway:200,300,600' );
 
-// Master switch for Ajaxinate page loading script
-defined( 'PENDRELL_SCRIPTS_AJAXINATE' )   || define( 'PENDRELL_SCRIPTS_AJAXINATE', false );
-
 // Master switch for page load module
 defined( 'PENDRELL_SCRIPTS_PAGELOAD' )    || define( 'PENDRELL_SCRIPTS_PAGELOAD', true );
 
