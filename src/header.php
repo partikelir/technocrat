@@ -18,6 +18,7 @@
 <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
+	<?php do_action( 'pendrell_body_before' ); ?>
 	<a name="top"></a>
 	<div id="page" class="hfeed site">
 		<div id="wrap-header" class="wrap-header">

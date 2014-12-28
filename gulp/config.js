@@ -21,7 +21,9 @@ module.exports = {
       src: bower+'typicons.font/src/svg/' // Trailing slash
     , dest: src+'svg/'
     , icons: [
-        'media-play'
+        'pencil'
+      , 'edit'
+      , 'media-play'
       , 'media-pause'
       , 'media-fast-forward'
       , 'media-rewind'
@@ -123,33 +125,11 @@ module.exports = {
   },
 
   svg: {
-    images: {
+    images: { // @TODO: refine optimization and fallback
       src: build+'svg/**/*.svg'
     , dest: build+'svg/'
     }
-  , sprites: {
-      src: src+'svg/**/*.svg'
-    , dest: build+'svg/' // Processed sprites end up here
-    , options: { // Reference: https://github.com/shakyShane/gulp-svg-sprites
-        cssFile: '../../src/scss/lib/_svg_sprite_sheet.scss' // Relative path from svg.sprites.dest is required here
-      , layout: 'diagonal'
-      , preview: false
-      , selector: '%f' // CSS selector to create; %f = filename
-      , svg: {
-          sprite: 'p-sprite.svg' // Filename for the sprite
-        }
-      , templates: {
-          css: require('fs').readFileSync(src+'scss/templates/_svg_sprite_sheet.scss', 'utf-8') // Relative to sprites.src
-        }
-      , transformData: function(data, config) { // Relative path to the sprite files from the stylesheet
-          data.pngPath = 'svg/sprites/p-sprite.png';
-          data.svgPath = 'svg/sprites/p-sprite.svg';
-          data.padding = 5; // Needs to be set here when transforming data
-          return data;
-        },
-      }
-    }
-  , svgstore: {
+  , svgstore: { // Reference: https://github.com/w0rm/gulp-svgstore
       src: src+'svg/**/*.svg'
     , dest: build+'svg/'
     , options: {
@@ -157,8 +137,8 @@ module.exports = {
       , inlineSvg: true
       , prefix: 'i-'
       , transformSvg: function ($svg, done) {
-          $svg.attr('style', 'display:none');
-          done(null, $svg);
+          $svg.attr('style', 'display:none')
+          done(null, $svg)
         }
       }
     }

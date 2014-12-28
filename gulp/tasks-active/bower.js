@@ -12,7 +12,7 @@ gulp.task('bower', ['bower-normalize', 'bower-typicons']);
 // Used to get around Sass's inability to properly @import vanilla CSS; see: https://github.com/sass/sass/issues/556
 gulp.task('bower-normalize', function() {
   return gulp.src(config.normalize.src)
-  .pipe(plugins.changed())
+  .pipe(plugins.changed(config.normalize.dest))
   .pipe(plugins.rename(config.normalize.rename))
   .pipe(gulp.dest(config.normalize.dest));
 });
@@ -24,9 +24,7 @@ gulp.task('bower-typicons', function() {
   config.typicons.icons.forEach(function(icon, i, icons) {
     icons[i] = config.typicons.src+icon+'.svg';
   });
-
-  // Ready to roll
   return gulp.src(config.typicons.icons)
-  .pipe(plugins.changed())
+  .pipe(plugins.changed(config.typicons.dest))
   .pipe(gulp.dest(config.typicons.dest));
 });

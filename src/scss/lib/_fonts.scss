@@ -3,16 +3,7 @@
 // Font size mixin; $size (integer): pixel value of desired font size; $offset (integer); pixel value offset to account for borders and other things that disrupt line-height
 @mixin font-size($size: $s-text, $offset: 0) {
   @include rem("font-size", $size+0px);
-
-  // Buffer for font sizes larger than the baseline; simply doubles or triples baseline size as needed
-  $buffer: 1;
-  @if $size >= $baseline * 2 {
-    $buffer: 2.5;
-  }
-  @elseif $size >= $baseline {
-    $buffer: 1.5;
-  }
-  line-height: ( ( ($baseline - $offset) * $buffer) / $size );
+  @include line-height($size, $offset);
 }
 
 // Full-width font sizes; not to be used when offsets are required
@@ -26,4 +17,18 @@
 // Letterpress effect
 @mixin letterpress($colour: $c-body-bg) {
   text-shadow: 0px 1px $colour;
+}
+
+// Line-height mixin; calculates the target line-height for an object of (int) $size given the global $baseline
+@mixin line-height($size: $s-text, $offset: 0) {
+
+  // Buffer for font sizes larger than the baseline; simply doubles or triples baseline size as needed
+  $buffer: 1;
+  @if $size >= $baseline * 2 {
+    $buffer: 2.5;
+  }
+  @elseif $size >= $baseline {
+    $buffer: 1.5;
+  }
+  line-height: ( ( ($baseline - $offset) * $buffer) / $size );
 }

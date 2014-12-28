@@ -16,6 +16,31 @@ input[type="reset"],
 
 
 
+// == ICONS == //
+
+// Typicon defaults
+svg.icon {
+  @include rem("height", 24px);
+  @include rem("width", 24px);
+  display: inline-block;
+  fill: currentColor; // Inherit color
+  vertical-align: sub;
+
+  .button & {
+    @include rem("height", 18px);
+    @include rem("width", 18px);
+    @include rem("margin", 4px 2px 0 -3px);
+    filter: drop-shadow( 0 1px $c-body-bg ); // Matches letterpress effect
+    float: left;
+  }
+}
+// Fix jQuery bug: http://bugs.jquery.com/ticket/11352
+svg use {
+  pointer-events: none;
+}
+
+
+
 // == RESPONSIVE MENU == //
 
 // Site interface: the toolbar/menu at top right

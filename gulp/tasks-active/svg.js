@@ -7,20 +7,20 @@ var gulp        = require('gulp')
   , config      = require('../config').svg
 ;
 
-// Optimize SVG files and create the SVG sprite; this approach presumes you only have so many SVG files to turn into a sprite
-gulp.task('svg-sprites', function() {
-  return gulp.src(config.sprites.src)
+// Generate an optimized icons file from individual SVG source icons
+gulp.task('svg-store', ['bower-typicons'], function() {
+  return gulp.src(config.svgstore.src)
   .pipe(plugins.svgo())
-  .pipe(plugins.svgSprites(config.sprites.options))
-  .pipe(gulp.dest(config.sprites.dest));
+  .pipe(plugins.svgstore(config.svgstore.options))
+  .pipe(gulp.dest(config.svgstore.dest));
 });
 
-// Generate a PNG fallback image for IE9
-gulp.task('svg-sprites-png', ['svg-sprites'], function() {
-  return gulp.src(config.images.src)
+// PNG fallbacks are required for external SVG maps; see https://github.com/jonathantneal/svg4everybody
+gulp.task('svg-store-png', function() {
+  return gulp.src(config.svgstore.src)
   .pipe(plugins.svg2png())
-  .pipe(gulp.dest(config.images.dest));
+  .pipe(gulp.dest(config.svgstore.dest));
 });
 
-// Master SVG sprite task: svg-sprite -> svg-sprite-png
-gulp.task('svg', ['svg-sprites-png']);
+// Master SVG sprite task
+gulp.task('svg', ['svg-store']);

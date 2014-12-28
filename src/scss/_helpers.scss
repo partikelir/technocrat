@@ -102,11 +102,3 @@
   float: right;
   height: $spacer;
 }
-
-// Sets background image and size with IE fallback
-%sprite {
-  @include sprite-helper;
-}
-%sprite-ie {
-  @include sprite-helper-ie;
-}

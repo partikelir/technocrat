@@ -27,7 +27,7 @@ if ( !function_exists( 'pendrell_content_class' ) ) : function pendrell_content_
 if ( !function_exists( 'pendrell_entry_meta_buttons' ) ) : function pendrell_entry_meta_buttons() {
   ?><div class="entry-meta-buttons">
     <?php
-      edit_post_link( __( 'Edit', 'pendrell' ), ' <span class="edit-link button">', '</span>' );
+      edit_post_link( pendrell_icon( 'pencil', __( 'Edit', 'pendrell' ) ) . __( 'Edit', 'pendrell' ), ' <span class="edit-link button">', '</span>' );
       if ( !is_singular() && !post_password_required() && ( comments_open() || get_comments_number() != '0' ) ) {
         ?>&nbsp;<span class="leave-reply button"><?php comments_popup_link( __( 'Respond', 'pendrell' ), __( '1 Response', 'pendrell' ), __( '% Responses', 'pendrell' ) ); ?></span><?php
       }

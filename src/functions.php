@@ -43,9 +43,12 @@ require_once( trailingslashit( get_stylesheet_directory() ) . 'core/various.php'
 
 // == MODULES == //
 
+// Modules provide non-standard features that don't generally ship with WordPress
+
 // Required *
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/contact-form.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/footer-info.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/icons.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik.php' );
 
 // Optional
