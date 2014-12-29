@@ -47,7 +47,7 @@ if ( !function_exists( 'pendrell_archive_description' ) ) : function pendrell_ar
     // Author edit link for users with the appropriate capabilities
     $edit_author_link = get_edit_user_link();
     if ( !empty( $edit_author_link ) )
-      echo '<div class="entry-meta-buttons"><span class="edit-link button"><a href="' . $edit_author_link . '">' . __( 'Edit', 'pendrell' ) . '</a></span></div>';
+      echo '<div class="entry-meta-buttons"><span class="edit-link button"><a href="' . $edit_author_link . '">' . pendrell_icon( 'typ-pencil', __( 'Edit', 'pendrell' ) ) . __( 'Edit', 'pendrell' ) . '</a></span></div>';
 
     if ( get_the_author_meta( 'description' ) ) {
       ?><div class="archive-content">

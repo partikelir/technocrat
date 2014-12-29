@@ -8,26 +8,34 @@ Pendrell is built with [Ubik](https://github.com/synapticism/ubik), my suite of 
 
 You can see Pendrell in action on my personal blog, [Synapticism](http://synapticism.com).
 
-*Please note that Pendrell is still in the 0.x branch of development; things can (and will) change!*
+*Please note that Pendrell is still in the 0.x branch of development; things can (and will) change! If anyone out there would like to actually use this theme in production (or as a foundation for further customization) please feel welcome to contact me and I'll be less indiscriminate with my commits. Currently I am moving fast and occasionally breaking things as if nobody else is using this repo for anything.*
 
 
 
 ## FEATURES
 
-* HTML5-compliant markup; clean and efficient CSS3 styling.
+This is an incomplete list in no particular order:
+
+* HTML5-compliant markup; clean and efficient CSS3 styling based on Sass.
+* Automated CSS/JS minification via Gulp/Bower build system and intelligent asset loading. This theme is *highly* optimized. (For reference: the CSS and custom JS payloads average about 45kb and 25kb respectively!)
 * Big, beautiful typesetting for [easy reading](http://ia.net/blog/100e2r/).
 * Consistent vertical rhythm (excluding images; that's just too much trouble).
-* Improved post format styling and support for asides, images (really just a thin wrapper for attachments), links, quotations, and status updates.
-* Smart context-dependent search form.
 * Full-width view for images and galleries. Great for photo-blogging.
+* Truly responsive images with [Ubik Imagery](https://github.com/synapticism/ubik-imagery) and [Picturefill](https://github.com/scottjehl/picturefill). Visitors on mobile will load smaller images than those on bigger screens!
 * Built-in AJAX Page Loader script (click "next" and more content will appear). Not unlike Infinite Scroll but custom-coded for high performance.
 * Built-in AJAX contact form page template; no need for a wasteful plugin.
-* Truly responsive images with [Ubik Imagery](https://github.com/synapticism/ubik-imagery) and [Picturefill](https://github.com/scottjehl/picturefill).
+* Improved post format styling and support for asides, images (really just a thin wrapper for attachments), links, quotations, and status updates.
+* Custom template swapping; display posts in a gallery of thumbnails, a list, or as the original posts. Great for portfolios.
+* Smart context-dependent search form and search redirects (singletons and blank queries).
 * Google web font support; configure in `functions-config.php`.
+* Image metadata module; a bit like what can be seen on Flickr.
+* Footer info module; customize the copyright blurb at the bottom of each page.
+* Weighted related posts.
+* SVG icon sheet support.
 * Code highlighting with [Prism](http://prismjs.com).
-* Automated CSS/JS minification via Gulp build system. This theme is *highly* optimized.
 * A zillion little optimizations via [Ubik](https://github.com/synapticism/ubik).
-* Highly commented source code to walk you through everything that Pendrell can do.
+* Absolutely no options screen bloat; everything is set in text files.
+* Verbosely commented source code to walk you through everything that Pendrell can do.
 
 
 
@@ -51,7 +59,7 @@ To use the theme: WordPress 3.9+ and PHP 5.2. For development and customization:
 
 I develop Pendrell on a local OS X development environment provisioned with Sass, Bower, and Gulp. (See [this post on my blog](http://synapticism.com/wordpress-theme-development-with-gulp-bower-and-sass/) for more details about this workflow.) Presumably you are working with a similar setup. To get started you'll need to have Sass installed: `gem install sass`. After that, `npm install` should get you up and running. (Bower is automatically called using npm's `scripts.postinstall` feature.)
 
-At this point you can build Pendrell with the `gulp` command. This also starts up a watch process and a [LiveReload](http://livereload.com/) server (for use with the relevant [browser extension](http://feedback.livereload.com/knowledgebase/articles/86242-how-do-i-install-and-use-the-browser-extensions-)).
+At this point you can build Pendrell with the `gulp` command. This also starts up a watch process and a [BrowserSync](http://www.browsersync.io/) or [LiveReload](http://livereload.com/) server (for use with the relevant [browser extension](http://feedback.livereload.com/knowledgebase/articles/86242-how-do-i-install-and-use-the-browser-extensions-)).
 
 When making modifications in development be sure to alter files in the `src` folder and *nowhere else* (unless you know what you're doing). Local development can be facilitated by creating a symbolic link from `build` and/or `dist` to your WordPress `wp-content/themes` folder *e.g.* `ln -s ~/dev/work/pendrell/build ~/dev/localhost/wordpress/wp-content/themes/pendrell` (modified to suit your environment, of course).
 

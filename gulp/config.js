@@ -17,25 +17,39 @@ module.exports = {
     , dest: src+'scss/lib'
     , rename: '_normalize.scss'
     }
-  , typicons: {
-      src: bower+'typicons.font/src/svg/' // Trailing slash
-    , dest: src+'svg/'
-    , icons: [
-        'pencil'
-      , 'edit'
-      , 'link'
-      , 'location'
-      , 'media-play'
-      , 'media-pause'
-      , 'media-fast-forward'
-      , 'media-rewind'
-      , 'media-stop'
-      , 'rss'
-      , 'volume'
-      , 'volume-down'
-      , 'volume-mute'
-      , 'volume-up'
-      ]
+  , iconsets: { // Icons from each set will be copied to the theme folder and combined to make a master icon sheet
+      ionicons: {
+        src: bower+'ionicons/src/' // Trailing slash
+      , dest: src+'svg/'
+      , prefix: 'ion-'
+      , icons: [
+          'edit'
+        , 'chatbubble'
+        , 'image'
+        , 'images'
+        ]
+      }
+    , typicons: {
+        src: bower+'typicons.font/src/svg/' // Trailing slash
+      , dest: src+'svg/'
+      , prefix: 'typ-'
+      , icons: [
+          'pencil'
+        , 'edit'
+        , 'link'
+        , 'location'
+        , 'media-play'
+        , 'media-pause'
+        , 'media-fast-forward'
+        , 'media-rewind'
+        , 'media-stop'
+        , 'rss'
+        , 'volume'
+        , 'volume-down'
+        , 'volume-mute'
+        , 'volume-up'
+        ]
+      }
     }
   },
 

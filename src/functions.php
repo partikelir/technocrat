@@ -19,7 +19,7 @@ define( 'PENDRELL_DESCRIPTION', get_bloginfo( 'description' ) );
 define( 'PENDRELL_HOME', home_url() );
 define( 'PENDRELL_THEME_NAME', 'Pendrell' );
 define( 'PENDRELL_THEME_URL', 'http://github.com/synapticism/pendrell' );
-define( 'PENDRELL_THEME_VERSION', '0.16' );
+define( 'PENDRELL_THEME_VERSION', '0.17.0' );
 
 
 
@@ -29,7 +29,7 @@ define( 'PENDRELL_THEME_VERSION', '0.16' );
 if ( is_admin() )
   require_once( trailingslashit( get_stylesheet_directory() ) . 'core/admin.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'core/archive.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . 'core/assets.php' ); // Scripts, styles, and fonts
+require_once( trailingslashit( get_stylesheet_directory() ) . 'core/assets.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'core/author.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'core/comments.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'core/content.php' );
