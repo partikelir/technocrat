@@ -48,7 +48,7 @@ get_header(); ?>
                   </div>
 
                   <?php wp_nonce_field( 'contact_form', '_contact_form_nonce' ); ?>
-                  <input id="submit" name="submit" type="submit" value="<?php esc_attr_e( 'Send message', 'pendrell' ); ?>" />
+                  <button id="submit" name="submit" type="submit"><?php esc_attr_e( 'Send message', 'pendrell' ); ?></button>
                 </form>
               </div>
             </article>

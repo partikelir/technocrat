@@ -1,13 +1,14 @@
 <?php // ==== ARCHIVES ==== //
 
 // A simple wrapper for archive titles using Ubik Title; active in 404, archive, and search templates
+// @filter: pendrell_archive_title
 if ( !function_exists( 'pendrell_archive_title' ) ) : function pendrell_archive_title() {
   if ( function_exists( 'ubik_title' ) ) {
     $title = ubik_title();
   } else {
     $title = get_the_archive_title(); // Requires WP 4.1
   }
-  echo '<h1 class="archive-title">' . $title . '</h1>';
+  echo apply_filters( 'pendrell_archive_title', '<h1 class="archive-title">' . $title . '</h1>' );
 } endif;
 
 

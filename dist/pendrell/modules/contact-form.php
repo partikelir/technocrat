@@ -101,8 +101,34 @@ function pendrell_contact_form() {
   die();
 }
 
+
+
 // Checks for admin but works on the front-end as per http://codex.wordpress.org/AJAX_in_Plugins
 if ( is_admin() ) {
   add_action( 'wp_ajax_contact_form', 'pendrell_contact_form' );
   add_action( 'wp_ajax_nopriv_contact_form', 'pendrell_contact_form' );
 }
+
+
+
+// Provision the front-end with the appropriate script variables
+function pendrell_contact_form_script_vars( $script_vars = array() ) {
+
+  // Non-destructively merge the script variables array and namespace custom variables specific to the contact form
+  if ( is_page_template( 'page-templates/contact-form.php' ) ) {
+    $script_vars = array_merge( $script_vars, array(
+      'ajaxUrl'       => admin_url( 'admin-ajax.php' ),
+      'CF1'           => array(
+        'from'          => __( 'Please enter your name.', 'pendrell' ),
+        'email'         => __( 'Enter your email.', 'pendrell' ),
+        'invalidEmail'  => __( 'Enter a valid email address.', 'pendrell' ),
+        'message'       => __( 'Please enter a message.', 'pendrell' ),
+        'messageLength' => __( 'This message is too short.', 'pendrell' ),
+        'formSent'      => __( 'Your request has been received.', 'pendrell' ),
+        'formError'     => __( 'There was an error submitting your request: ', 'pendrell' )
+    ) ) );
+  }
+
+  return $script_vars;
+}
+add_filter( 'pendrell_script_vars', 'pendrell_contact_form_script_vars' );

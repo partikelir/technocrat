@@ -37,7 +37,6 @@ require_once( trailingslashit( get_stylesheet_directory() ) . 'core/full-width.p
 require_once( trailingslashit( get_stylesheet_directory() ) . 'core/image.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'core/navigation.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'core/templates.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . 'core/various.php' );
 
 
 
@@ -48,10 +47,11 @@ require_once( trailingslashit( get_stylesheet_directory() ) . 'core/various.php'
 // Required *
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/contact-form.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/footer-info.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/icons.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik.php' );
 
 // Optional
+if ( PENDRELL_MODULE_ICONS )
+  require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/icons.php' );
 if ( PENDRELL_MODULE_IMAGE_META )
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/image-metadata.php' );
 if ( PENDRELL_MODULE_POST_FORMATS )
@@ -63,6 +63,8 @@ if ( PENDRELL_MODULE_VIEWS ) {
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/view-posts-shortcode.php' );
 }
 
+// Fallback functionality is loaded last
+require_once( trailingslashit( get_stylesheet_directory() ) . 'core/fallback.php' );
 
 
 // == SETUP == //

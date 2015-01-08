@@ -6,7 +6,7 @@
 
 if ( !function_exists( 'pendrell_icon' ) ) : function pendrell_icon() {
   return;
-}
+} endif;
 
 
 

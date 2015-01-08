@@ -13,6 +13,19 @@ if ( !function_exists( 'pendrell_entry_title' ) ) : function pendrell_entry_titl
 
 
 
+// Body class filter
+if ( !function_exists( 'pendrell_body_class' ) ) : function pendrell_body_class( $classes ) {
+  if ( is_multi_author() ) {
+    $classes[] = 'group-blog';
+  } else {
+    $classes[] = 'single-author';
+  }
+  return $classes;
+} endif;
+add_filter( 'body_class', 'pendrell_body_class' );
+
+
+
 // Content class; applies a filter to the content wrapper to allow other functions to alter the look and feel of posts, pages, etc.
 // @filter: pendrell_content_class
 if ( !function_exists( 'pendrell_content_class' ) ) : function pendrell_content_class() {

@@ -27,6 +27,7 @@ module.exports = {
         , 'chatbubble'
         , 'image'
         , 'images'
+        , 'search'
         ]
       }
     , typicons: {
@@ -38,12 +39,12 @@ module.exports = {
         , 'edit'
         , 'link'
         , 'location'
+        , 'rss'
         , 'media-play'
         , 'media-pause'
         , 'media-fast-forward'
         , 'media-rewind'
         , 'media-stop'
-        , 'rss'
         , 'volume'
         , 'volume-down'
         , 'volume-mute'
@@ -97,8 +98,9 @@ module.exports = {
     , prism: ['prism', 'core']
     }
   , chunks: { // Chunks are arrays of globs matching src files that provide specific functionality
-      core: [bower+'svg4everybody/svg4everybody.js', src+'js/navigation.js', src+'js/core.js']
+      core: [bower+'svg4everybody/svg4everybody.js', src+'js/iconize.js', src+'js/navigation.js', src+'js/core.js']
     , contact: [bower+'jquery-validation/dist/jquery.validate.js', src+'js/contact-form.js']
+    , icons: [] // @TODO: split icons scripts out of core
     , pf: [bower+'picturefill/dist/picturefill.js']
     , pg8: [bower+'html5-history-api/history.iegte8.js', bower+'spin.js/spin.js', bower+'spin.js/jquery.spin.js', src+'js/page-loader.js']
     , prism: [src+'js/prism.js']

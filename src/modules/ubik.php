@@ -41,11 +41,9 @@ if ( PENDRELL_UBIK_COMMENTS )
 if ( PENDRELL_UBIK_EXCLUDER )
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-excluder/ubik-excluder.php' );
 if ( PENDRELL_UBIK_FEED )
-  require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-feed/ubik-feed.php' );
-// @TODO: manage image sizes in feeds
+  require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-feed/ubik-feed.php' ); // @TODO: image size management in feeds
 if ( PENDRELL_UBIK_LINGUAL ) {
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-lingual/ubik-lingual.php' );
-  //add_filter( 'pendrell_entry_title', 'ubik_lingual_unpinyin' );
   add_filter( 'ubik_title', 'ubik_lingual_unpinyin' );
   if ( PENDRELL_UBIK_PLACES )
     add_filter( 'ubik_places_title', 'ubik_lingual_unpinyin' ); // Small header in the faux widget
@@ -124,6 +122,16 @@ if ( !function_exists( 'pendrell_related_taxonomies_extended' ) ) : function pen
 } endif;
 if ( PENDRELL_UBIK_RELATED )
   add_filter( 'ubik_related_taxonomies_extended', 'pendrell_related_taxonomies_extended' );
+
+
+
+// == SEARCH == //
+
+// Add an icon to the search button
+if ( !function_exists( 'pendrell_search_button' ) ) : function pendrell_search_button( $contents ) {
+  return pendrell_icon( 'ion-search' ) . $contents;
+} endif;
+add_filter( 'ubik_search_button', 'pendrell_search_button' );
 
 
 

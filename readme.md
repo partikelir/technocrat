@@ -31,7 +31,7 @@ This is an incomplete list in no particular order:
 * Image metadata module; a bit like what can be seen on Flickr (date captured, focus, ISO, etc.).
 * Footer info module; customize the copyright blurb at the bottom of each page.
 * Related posts optionally weighted by taxonomy, number of comments, presence of post thumbnail/featured image, etc.
-* SVG icon sheet support.
+* SVG icon sheet support; seamlessly integrate SVG icons from any open source icon set.
 * Code highlighting with [Prism](http://prismjs.com).
 * A zillion little optimizations via [Ubik](https://github.com/synapticism/ubik).
 * Absolutely no options screen bloat; everything is set in text files.

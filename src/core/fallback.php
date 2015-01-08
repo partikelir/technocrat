@@ -1,17 +1,12 @@
-<?php // ==== VARIOUS ==== //
+<?php // ==== FALLBACK ==== //
 
-// == BODY CLASSES == //
+// All fallback code goes here; this file is loaded last
 
-// Body class filter
-if ( !function_exists( 'pendrell_body_class' ) ) : function pendrell_body_class( $classes ) {
-  if ( is_multi_author() ) {
-    $classes[] = 'group-blog';
-  } else {
-    $classes[] = 'single-author';
-  }
-  return $classes;
+// == ICONS == //
+
+if ( !function_exists( 'pendrell_icon' ) ) : function pendrell_icon() {
+  return;
 } endif;
-add_filter( 'body_class', 'pendrell_body_class' );
 
 
 

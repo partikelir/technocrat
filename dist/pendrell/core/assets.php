@@ -66,26 +66,9 @@ if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueu
   // The handle is the same for each bundle since we're only loading one script; if you load others be sure to provide a new handle
   wp_enqueue_script( $handle, get_stylesheet_directory_uri() . '/js/p' . $script_name . $suffix . '.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/p' . $script_name . $suffix . '.js' ), true );
 
-
-
-  // == ADDITIONAL SCRIPTS == //
-
-  // Contact form (CF1) variable setup
-  if ( is_page_template( 'page-templates/contact-form.php' ) ) {
+  // Contact form (CF1) setup
+  if ( is_page_template( 'page-templates/contact-form.php' ) )
     wp_enqueue_script( 'pendrell-contact-form', get_stylesheet_directory_uri() . '/js/p-contact' . $suffix . '.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/p-contact' . $suffix . '.js' ), true );
-
-    // Non-destructively merge array and namespace custom variables
-    $script_vars = array_merge( $script_vars, array(
-      'CF1' => array(
-        'from'          => __( 'Please enter your name.', 'pendrell' ),
-        'email'         => __( 'Enter your email.', 'pendrell' ),
-        'invalidEmail'  => __( 'Enter a valid email address.', 'pendrell' ),
-        'message'       => __( 'Please enter a message.', 'pendrell' ),
-        'messageLength' => __( 'This message is too short.', 'pendrell' ),
-        'formSent'      => __( 'Your request has been received.', 'pendrell' ),
-        'formError'     => __( 'There was an error submitting your request: ', 'pendrell' )
-    ) ) );
-  }
 
   // Adds JavaScript to pages with the comment form to support sites with threaded comments
   if ( is_singular() && comments_open() && get_option( 'thread_comments' ) )
@@ -95,17 +78,9 @@ if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueu
 
   // == SCRIPT VARIABLES == //
 
-  // This section sends variables to the front-end
-
-  // Currently we don't need any front-end variables without $script_vars being populated
-  if ( !empty( $script_vars ) ) {
-
-    // Pass variables to JavaScript at runtime; see: http://codex.wordpress.org/Function_Reference/wp_localize_script
-    wp_localize_script( $handle, 'pendrellVars', array_merge( array(
-        'ajaxUrl' => admin_url( 'admin-ajax.php' )
-      ), $script_vars )
-    );
-  }
+  // Pass variables to JavaScript at runtime; see: http://codex.wordpress.org/Function_Reference/wp_localize_script
+  // @filter: pendrell_script_vars; see `modules/contact-form.php` for an example of usage
+  wp_localize_script( $handle, 'pendrellVars', apply_filters( 'pendrell_script_vars', $script_vars ) );
 
 
 

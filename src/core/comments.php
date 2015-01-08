@@ -100,6 +100,7 @@ if ( !function_exists( 'pendrell_comments_form' ) ) : function pendrell_comments
   $notes = '<div class="comment-notes-after">' . $notes . '.</div>';
 
   // Reference: http://codex.wordpress.org/Function_Reference/comment_form
+  // @TODO: completely redo the comment form
   comment_form(
     array(
       'id_form'               => 'response-form',
