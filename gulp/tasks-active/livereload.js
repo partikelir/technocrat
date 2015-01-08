@@ -6,7 +6,7 @@ var gulp        = require('gulp')
 ;
 
 // Start the livereload server; not asynchronous
-gulp.task('lr-server', ['build'], function() {
+gulp.task('livereload', ['build'], function() {
   plugins.livereload.listen(config.port, function (err) {
     if (err) {
       return console.log(err);

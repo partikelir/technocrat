@@ -18,3 +18,4 @@ requireDir('./gulp/tasks-active');
 // @TODO: rtl support with https://github.com/jjlharrison/gulp-rtlcss
 // @TODO: combine media queries with https://github.com/frontendfriends/gulp-combine-mq
 // @TODO: integrate deployment and git updating?
+// @TODO: html5-history-api v4.2 (next release) switches the low and high compatibility files; we'll need to update to use history.js instead of ie8+

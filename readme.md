@@ -28,9 +28,9 @@ This is an incomplete list in no particular order:
 * Custom template swapping; display posts in a gallery of thumbnails, a list, or as the original posts. Great for portfolios.
 * Smart context-dependent search form and search redirects (singletons and blank queries).
 * Google web font support; configure in `functions-config.php`.
-* Image metadata module; a bit like what can be seen on Flickr.
+* Image metadata module; a bit like what can be seen on Flickr (date captured, focus, ISO, etc.).
 * Footer info module; customize the copyright blurb at the bottom of each page.
-* Weighted related posts.
+* Related posts optionally weighted by taxonomy, number of comments, presence of post thumbnail/featured image, etc.
 * SVG icon sheet support.
 * Code highlighting with [Prism](http://prismjs.com).
 * A zillion little optimizations via [Ubik](https://github.com/synapticism/ubik).
@@ -49,7 +49,7 @@ Drop the 'dist/pendrell' directory into `/wp-content/themes/` and activate it vi
 
 ### REQUIREMENTS
 
-To use the theme: WordPress 3.9+ and PHP 5.2. For development and customization: gem, npm, Sass, Bower, and Gulp.
+To use the theme: WordPress 3.9+ and PHP 5.2. For development and customization: gem, npm, Sass, Bower, and Gulp. Browser support: IE9+, latest 2 versions otherwise.
 
 ### CONFIGURATION
 
@@ -79,7 +79,7 @@ These plugins are recommended for use with Pendrell:
 * [WP-Super-Cache](http://ocaoimh.ie/wp-super-cache/) or some other caching plugin. *Cache you must!*
 * [Akismet](http://akismet.com/).
 
-Utilities:
+Utilities (as needed):
 
 * [Regenerate Thumbnails](http://wordpress.org/extend/plugins/regenerate-thumbnails/) since Pendrell uses custom image sizes.
 * [Un-attach and re-attach media attachments](http://wordpress.org/plugins/unattach-and-re-attach-attachments/) in case you get mixed up.

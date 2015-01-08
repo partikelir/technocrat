@@ -12,14 +12,14 @@ var project     = 'pendrell'
 module.exports = {
 
   bower: {
-    normalize: { // Copies normalize from `bower_components` to `src/scss` and renames it
+    normalize: { // Copies `normalize.css` from `bower_components` to `src/scss` and renames it to allow for it to imported as a Sass file
       src: bower+'normalize.css/normalize.css'
     , dest: src+'scss/lib'
     , rename: '_normalize.scss'
     }
   , iconsets: { // Icons from each set will be copied to the theme folder and combined to make a master icon sheet
       ionicons: {
-        src: bower+'ionicons/src/' // Trailing slash
+        src: bower+'ionicons/src/'
       , dest: src+'svg/'
       , prefix: 'ion-'
       , icons: [
@@ -30,7 +30,7 @@ module.exports = {
         ]
       }
     , typicons: {
-        src: bower+'typicons.font/src/svg/' // Trailing slash
+        src: bower+'typicons.font/src/svg/'
       , dest: src+'svg/'
       , prefix: 'typ-'
       , icons: [
@@ -70,7 +70,7 @@ module.exports = {
     , dest: build
     }
   , dist: {
-      src: [dist+'**/*.png', dist+'**/*.jpg', dist+'**/*.jpeg', dist+'**/*.gif', '!'+dist+'screenshot.png', '!'+dist+'svg/*.png'] // No need to compress the PNG fallback
+      src: [dist+'**/*(*.png|*.jpg|*.jpeg|*.gif)', '!'+dist+'screenshot.png', '!'+dist+'icons.*.png'] // No need to compress the PNG fallback
     , imagemin: {
         optimizationLevel: 7
       , progressive: true
@@ -88,7 +88,6 @@ module.exports = {
     bundles: { // Bundles are defined by a name and an array of chunks to concatenate; warning: it's up to you to manage dependencies!
       core: ['core']
     , contact: ['contact']
-    , html5shiv: ['html5shiv']
     , pf: ['pf', 'core']
     , pf_prism: ['pf', 'prism', 'core']
     , pg8: ['pg8', 'core']
@@ -98,9 +97,8 @@ module.exports = {
     , prism: ['prism', 'core']
     }
   , chunks: { // Chunks are arrays of globs matching src files that provide specific functionality
-      core: [src+'js/navigation.js', src+'js/core.js']
+      core: [bower+'svg4everybody/svg4everybody.js', src+'js/navigation.js', src+'js/core.js']
     , contact: [bower+'jquery-validation/dist/jquery.validate.js', src+'js/contact-form.js']
-    , html5shiv: [bower+'html5shiv/dist/html5shiv.js']
     , pf: [bower+'picturefill/dist/picturefill.js']
     , pg8: [bower+'html5-history-api/history.iegte8.js', bower+'spin.js/spin.js', bower+'spin.js/jquery.spin.js', src+'js/page-loader.js']
     , prism: [src+'js/prism.js']
@@ -143,22 +141,21 @@ module.exports = {
   },
 
   svg: {
-    images: { // @TODO: refine optimization and fallback
-      src: build+'svg/**/*.svg'
-    , dest: build+'svg/'
+    svg2png: { // PNG fallback generation; for use with SVG For Everybody; only needed if you support IE 8 and below
+      src: src+'svg/**/*.svg'
+    , dest: build+'img/'
     }
   , svgstore: { // Reference: https://github.com/w0rm/gulp-svgstore
       src: src+'svg/**/*.svg'
-    , dest: build+'svg/'
+    , dest: build+'img/'
     , options: {
         fileName: 'icons.svg'
-      , inlineSvg: true
+      //, inlineSvg: true // Uncomment if you are injecting the SVG file into the document
       , prefix: 'i-'
-      , transformSvg: function ($svg, done) {
-          $svg.attr('style', 'display:none')
-          done(null, $svg)
-        }
       }
+    }
+  , transform: function ($){
+      // Transform the SVG file here; e.g. `$('svg').attr('style', 'display:none');`
     }
   },
 
@@ -223,6 +220,6 @@ module.exports = {
     , theme:        src+'**/*.php'
     , livereload:   [build+'**/*']
     }
-  , watcher: 'browsersync' // Who watches the watcher? Easily switch between BrowserSync and Livereload (use 'livereload')
+  , watcher: 'livereload' // Who watches the watcher? Easily switch between BrowserSync ('browsersync') and Livereload ('livereload')
   }
 }

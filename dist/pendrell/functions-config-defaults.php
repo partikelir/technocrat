@@ -9,6 +9,12 @@ defined( 'PENDRELL_BASELINE' )            || define( 'PENDRELL_BASELINE', 30 );
 // Google web fonts to load; string false will load Open Sans as a fallback
 defined( 'PENDRELL_GOOGLE_FONTS' )        || define( 'PENDRELL_GOOGLE_FONTS', 'Raleway:200,300,600' );
 
+// Icons file path; this needs to be set if you are working with icons
+defined( 'PENDRELL_ICONS_PATH' )          || define( 'PENDRELL_ICONS_PATH', get_template_directory() . '/img/icons.svg' );
+
+// Icons file URL; false to default back to in-line SVG icons
+defined( 'PENDRELL_ICONS_URL' )           || define( 'PENDRELL_ICONS_URL', get_template_directory_uri() . '/img/icons.svg' );
+
 // Master switch for page load module
 defined( 'PENDRELL_SCRIPTS_PAGELOAD' )    || define( 'PENDRELL_SCRIPTS_PAGELOAD', true );
 

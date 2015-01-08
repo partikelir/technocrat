@@ -22,6 +22,7 @@ gulp.task('bower-ionicons', function() {
   return gulp.src(iconset.icons)
   .pipe(plugins.rename({ prefix: iconset.prefix }))
   .pipe(plugins.changed(iconset.dest))
+  .pipe(plugins.imagemin())
   .pipe(gulp.dest(iconset.dest));
 });
 
@@ -36,6 +37,7 @@ gulp.task('bower-typicons', function() {
   return gulp.src(iconset.icons)
   .pipe(plugins.rename({ prefix: iconset.prefix }))
   .pipe(plugins.changed(iconset.dest))
+  .pipe(plugins.imagemin())
   .pipe(gulp.dest(iconset.dest));
 });
 

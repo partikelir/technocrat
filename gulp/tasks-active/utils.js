@@ -6,8 +6,8 @@ var gulp        = require('gulp')
   , config      = require('../config').utils
 ;
 
-// Totally wipe the contents of the `dist` folder to prepare for a clean build
-gulp.task('utils-wipe', function(cb) {
+// Totally wipe the contents of the `dist` folder to prepare for a clean build; additionally trigger Bower-related tasks to ensure we have the latest source files
+gulp.task('utils-wipe', ['bower'], function(cb) {
   del(config.wipe, cb)
 });
 
