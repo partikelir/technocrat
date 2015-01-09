@@ -6,7 +6,7 @@
 if ( !function_exists( 'pendrell_icon' ) ) : function pendrell_icon( $icon = '', $title = '', $desc = '' ) {
 
   // Initialize variables
-  $output = $aria = $class = $url = '';
+  $output = $aria = $set = $url = '';
 
   // Check for title and description and wrap them both in the appropriate markup
   if ( !empty( $title ) )
@@ -25,14 +25,14 @@ if ( !function_exists( 'pendrell_icon' ) ) : function pendrell_icon( $icon = '',
 
   // Add a class matching the icon set prefix (anything before the hyphen)
   if ( strpos( $icon, '-' ) )
-    $class .= ' icon-' . current( explode( '-', $icon ) );
+    $set = ' icon-' . current( explode( '-', $icon ) );
 
   // Use an external icon sheet if a URL has been defined
   if ( PENDRELL_MODULE_ICONS_URL )
     $url = PENDRELL_MODULE_ICONS_URL;
 
   // Put it all together
-  $output = '<svg class="icon' . $class . ' icon-' . $icon . '" role="img"' . $aria . '>' . $title . $desc . '<use xlink:href="' . $url . '#i-' . $icon . '" /></use></svg>';
+  $output = '<svg class="icon' . $set . ' icon-' . $icon . '" role="img"' . $aria . '>' . $title . $desc . '<use xlink:href="' . $url . '#i-' . $icon . '" /></use></svg>';
 
   return apply_filters( 'pendrell_icon', $output );
 
