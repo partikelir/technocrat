@@ -7,16 +7,14 @@
 // Enqueue front-end scripts and styles; additional ideas to consider: https://github.com/roots/roots/blob/master/lib/scripts.php
 if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueue_scripts() {
 
-  $handle = 'pendrell-core';  // A generic script handle
+  $handle = 'pendrell-core';  // A generic script handle used by WordPress
   $script_name = '';          // Empty by default, may be populated by conditionals below
   $script_vars = array();     // An empty array that can be filled with variables to send to front-end scripts
+  $suffix = '.min';           // A suffix for minified scripts
 
   // Load minified scripts if debug mode is off
-  if ( WP_DEBUG === true ) {
+  if ( WP_DEBUG === true )
     $suffix = '';
-  } else {
-    $suffix = '.min';
-  }
 
 
 

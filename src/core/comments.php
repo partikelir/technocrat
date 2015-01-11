@@ -117,3 +117,27 @@ if ( !function_exists( 'pendrell_comments_form' ) ) : function pendrell_comments
     )
   );
 } endif;
+
+
+
+// Comments link wrapper; requires Ubik Comments to really shine
+if ( !function_exists( 'pendrell_comments_link' ) ) : function pendrell_comments_link() {
+
+  // Do we have good reason to display the link?
+  if ( !is_singular() && ( comments_open() || get_comments_number() !== 0 ) ) {
+
+    // Define text that appears in the link
+    $zero = __( 'Respond', 'pendrell' );
+    $one  = __( '1 Response', 'pendrell' );
+    $more = __( '% Responses', 'pendrell' );
+    $none = __( 'Comments off', 'pendrell' );
+
+    if ( function_exists( 'ubik_comments_link' ) ) {
+      $link = ubik_comments_link( $zero, $one, $more, '', $none );
+      if ( !empty( $link ) )
+        echo '<span class="button">' . $link . '</span>';
+    } else {
+      ?><span class="button"><?php comments_popup_link( $zero, $one, $more, 'comments-link', $none ); ?></span><?php
+    }
+  }
+} endif;

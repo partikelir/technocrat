@@ -96,9 +96,7 @@
   text-transform: uppercase;
 }
 
-// Right-aligned button container
+// UI elements
 %button-container {
-  @include rem("margin-left", $spacer/2);
-  float: right;
-  height: $spacer;
+  @include button-container;
 }

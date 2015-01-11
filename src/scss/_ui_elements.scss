@@ -6,12 +6,19 @@
 
 // Button styling adapted from Twenty Twelve
 button,
-.button a,
-input[type="submit"],
 input[type="button"],
 input[type="reset"],
+input[type="submit"],
+.button a,
 #cancel-comment-reply-link {
   @include button;
+}
+
+// Emulating `:disabled` functionality for regular anchor elements
+a.disabled {
+  cursor: default;
+  opacity: .5;
+  pointer-events: none;
 }
 
 

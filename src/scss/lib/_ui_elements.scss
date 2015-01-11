@@ -28,6 +28,20 @@
   &:focus {
     outline: none; // Blue border is rather distracting
   }
+  &:disabled {
+    opacity: .5; // Applies to `button` and `input` elements
+  }
+}
+
+// Button container
+@mixin button-container($float: "right", $margin: 8px) {
+  @include rem("margin-left", $spacer/2 - $margin);
+  float: unquote($float);
+  height: $spacer;
+  > * {
+    float: unquote(k-opposite($float));
+    @include rem("margin-left", $margin);
+  }
 }
 
 // Dropdown menu; for use with the main site navigation menu
