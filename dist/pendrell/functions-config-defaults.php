@@ -142,5 +142,4 @@ defined( 'PENDRELL_UBIK_RELATED' )        || define( 'PENDRELL_UBIK_RELATED', fa
 defined( 'PENDRELL_UBIK_SERIES' )         || define( 'PENDRELL_UBIK_SERIES', false );
 defined( 'PENDRELL_UBIK_SEO' )            || define( 'PENDRELL_UBIK_SEO', true ); // Active
 
-// Default configuration options for core Ubik components...
-define( 'UBIK_SEARCH_FORM_REVERSE', true ); // Reverses the order of search field and submit button; *required* for this theme
+// Additional configuration and customization options can be found within `src/modules/ubik.php`

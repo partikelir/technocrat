@@ -67,19 +67,16 @@ if ( PENDRELL_MODULE_VIEWS ) {
 require_once( trailingslashit( get_stylesheet_directory() ) . 'core/fallback.php' );
 
 
+
 // == SETUP == //
 
 // Includes some image size definitions and other things that belong here in the config file
 function pendrell_setup() {
 
-  // == LANGUAGES == //
+  // == THEME SUPPORT == //
 
   // Language loading
   load_theme_textdomain( 'pendrell', trailingslashit( get_template_directory() ) . 'languages' );
-
-
-
-  // == THEME SUPPORT == //
 
   // HTML5 theme options
   add_theme_support( 'html5', array(

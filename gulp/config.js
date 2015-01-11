@@ -23,11 +23,7 @@ module.exports = {
       , dest: src+'svg/'
       , prefix: 'ion-'
       , icons: [
-          'edit'
-        , 'chatbubble'
-        , 'image'
-        , 'images'
-        , 'search'
+          'search'
         ]
       }
     , typicons: {
@@ -35,20 +31,19 @@ module.exports = {
       , dest: src+'svg/'
       , prefix: 'typ-'
       , icons: [
-          'pencil'
-        , 'edit'
-        , 'link'
-        , 'location'
-        , 'rss'
-        , 'media-play'
-        , 'media-pause'
-        , 'media-fast-forward'
-        , 'media-rewind'
-        , 'media-stop'
-        , 'volume'
-        , 'volume-down'
-        , 'volume-mute'
-        , 'volume-up'
+          'edit'
+        //, 'link'
+        //, 'location'
+        //, 'rss'
+        //, 'media-play'
+        //, 'media-pause'
+        //, 'media-fast-forward'
+        //, 'media-rewind'
+        //, 'media-stop'
+        //, 'volume'
+        //, 'volume-down'
+        //, 'volume-mute'
+        //, 'volume-up'
         ]
       }
     }
@@ -100,10 +95,20 @@ module.exports = {
   , chunks: { // Chunks are arrays of globs matching src files that provide specific functionality
       core: [bower+'svg4everybody/svg4everybody.js', src+'js/iconize.js', src+'js/navigation.js', src+'js/core.js']
     , contact: [bower+'jquery-validation/dist/jquery.validate.js', src+'js/contact-form.js']
-    , icons: [] // @TODO: split icons scripts out of core
+    , icons: [bower+'svg4everybody/svg4everybody.js', src+'js/iconize.js'] // @TODO: split icons scripts out of core
     , pf: [bower+'picturefill/dist/picturefill.js']
     , pg8: [bower+'html5-history-api/history.iegte8.js', bower+'spin.js/spin.js', bower+'spin.js/jquery.spin.js', src+'js/page-loader.js']
-    , prism: [src+'js/prism.js']
+    , prism: [ // Prism components are on their own line to make it easy to define a custom build to suit whatever code you use on your blog
+        bower+'prism/components/prism-core.js'
+      , bower+'prism/components/prism-markup.js'
+      , bower+'prism/components/prism-css.js'
+      , bower+'prism/components/prism-css-extras.js'
+      , bower+'prism/components/prism-clike.js'
+      , bower+'prism/components/prism-javascript.js'
+      , bower+'prism/components/prism-scss.js'
+      , bower+'prism/components/prism-php.js'
+      , bower+'prism/components/prism-php-extras.js'
+      ]
     }
   , dest: build+'js/' // Where the scripts end up
   , lint: {

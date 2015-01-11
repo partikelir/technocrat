@@ -24,6 +24,7 @@
     "html5-history-api": "^4.1.15",
     "jquery-validation": "^1.13.1",
     "picturefill": "^2.2.0",
+    "prism": "git://github.com/LeaVerou/prism.git#gh-pages",
     "spin.js": "^2.0.2",
     "svg4everybody": "^1.0.0",
     "ubik": "https://github.com/synapticism/ubik.git",
