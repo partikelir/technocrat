@@ -8,7 +8,11 @@ if ( !function_exists( 'pendrell_archive_title' ) ) : function pendrell_archive_
   } else {
     $title = get_the_archive_title(); // Requires WP 4.1
   }
-  echo apply_filters( 'pendrell_archive_title', '<h1 class="archive-title">' . $title . '</h1>' );
+
+  // Filter the title
+  $title = apply_filters( 'pendrell_archive_title', $title );
+
+  echo '<h1 class="archive-title">' . $title . '</h1>';
 } endif;
 
 
@@ -41,6 +45,9 @@ if ( !function_exists( 'pendrell_archive_description' ) ) : function pendrell_ar
     if ( !empty( $desc ) ) {
       ?><div class="archive-content"><?php echo apply_filters( 'pendrell_archive_description', $desc ); ?></div><?php
     }
+
+    // After the archive description
+    do_action( 'pendrell_archive_description_after' );
 
   // Archive descriptions for individual authors
   } elseif ( is_author() ) {

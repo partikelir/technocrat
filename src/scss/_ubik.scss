@@ -1,5 +1,22 @@
 // ==== UBIK ==== //
 
+// == LINKS == //
+
+@if ($m-ubik-links) {
+  .tax-link_category {
+    .site-content article {
+      @extend %spacer-below;
+    }
+    .entry-title {
+      @include font-size($s-header);
+    }
+    .entry-content {
+      @include font-size($s-text-small);
+    }
+  }
+}
+
+
 // == PLACES == //
 
 @if ($m-ubik-places) {

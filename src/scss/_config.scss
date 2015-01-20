@@ -294,6 +294,7 @@ $m-gallery-shortcode: true; // WordPress core
 $m-image-metadata:    false; // Built-in to Pendrell
 $m-post-formats:      false; // Built-in
 $m-views:             false; // Built-in
+$m-ubik-links:        false;
 $m-ubik-places:       false;
 $m-ubik-recordpress:  false;
 $m-ubik-related:      false;
@@ -304,6 +305,7 @@ $m-ubik-series:       false;
   $m-image-metadata:    true; // Built-in to Pendrell
   $m-post-formats:      true; // Built-in
   $m-views:             true; // Built-in
+  $m-ubik-links:        true;
   $m-ubik-places:       true;
   $m-ubik-recordpress:  true;
   $m-ubik-related:      true;

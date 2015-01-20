@@ -82,6 +82,15 @@ if ( PENDRELL_UBIK_LINGUAL ) {
 
 
 
+// == LINKS == //
+
+if ( PENDRELL_UBIK_LINKS ) {
+  require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-links/ubik-links.php' );
+  add_filter( 'pendrell_archive_description_after', 'ubik_links_search_form_echo' );
+}
+
+
+
 // == MARKDOWN == //
 
 if ( PENDRELL_UBIK_MARKDOWN )

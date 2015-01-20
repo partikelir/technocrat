@@ -15,8 +15,7 @@
     "bower_components",
     "test",
     "tests",
-    "build",
-    "src/lib"
+    "build"
   ],
   "devDependencies": {
     "meyer-reset": "*",

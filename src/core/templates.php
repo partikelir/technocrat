@@ -13,7 +13,6 @@ if ( !function_exists( 'pendrell_sidebar' ) ) : function pendrell_sidebar( $side
   // Include the regular sidebar template if $sidebar has not been set to "false"
   if ( $sidebar )
     get_sidebar();
-
 } endif;
 
 

@@ -192,6 +192,7 @@ module.exports = {
       , 'feed'
       , 'imagery' // *
       , 'lingual'
+      , 'links'
       , 'markdown'
       , 'meta' // *
       , 'places'

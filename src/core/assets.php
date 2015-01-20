@@ -98,7 +98,7 @@ if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueu
     wp_enqueue_style( 'pendrell-fonts', esc_url_raw( $font_url ), array(), null );
   }
 
-} endif;
+} endif; // end pendrell_enqueue_scripts()
 if ( !is_admin() )
   add_action( 'wp_enqueue_scripts', 'pendrell_enqueue_scripts' );
 
