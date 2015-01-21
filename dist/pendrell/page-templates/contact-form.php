@@ -40,7 +40,7 @@ get_header(); ?>
                   <textarea id="message" name="message" rows="5" placeholder="<?php esc_attr_e( 'Your message&#x0085;', 'pendrell' ); ?>"></textarea>
 
                   <input type="checkbox" id="cc" name="cc" value="1" />
-                  <label for="cc" style="display: inline;"><?php _e( 'Send a copy to yourself', 'pendrell' ); ?></label>
+                  <label for="cc" class="checkbox-label"><?php _e( 'Send a copy to yourself', 'pendrell' ); ?></label>
 
                   <div style="display: none;">
                     <label for="text"><?php _e( 'Spam protection; don\'t fill this', 'pendrell' ); ?></label>

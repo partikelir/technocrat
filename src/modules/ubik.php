@@ -85,8 +85,46 @@ if ( PENDRELL_UBIK_LINGUAL ) {
 // == LINKS == //
 
 if ( PENDRELL_UBIK_LINKS ) {
+
+  // Reverses the order of search field and submit button; *required* for this theme
+  define( 'UBIK_LINKS_SEARCH_FORM_REVERSE', true );
+
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-links/ubik-links.php' );
-  add_filter( 'pendrell_archive_description_after', 'ubik_links_search_form_echo' );
+
+  // Display the Ubik Links sidebar
+  function pendrell_sidebar_links( $sidebar ) {
+    if ( is_tax( 'link_category' ) ) {
+
+      // Retrieve the list of all categories
+      $cats = ubik_links_categories();
+      $cats[] = '<strong><a class="link-category" href="' . home_url( '/' . UBIK_LINKS_SLUG . '/' ) . '">' . __( 'All links', 'ubik' ) . '</a></strong>';
+      $cats = ubik_links_categories_list( $cats );
+
+      // Output the links sidebar
+      ?><div id="wrap-sidebar" class="wrap-sidebar">
+        <div id="secondary" class="widget-area" role="complementary">
+          <aside id="ubik-links-search-widget" class="widget widget-links-search">
+            <h3 class="widget-title">Search links</h3>
+            <?php echo ubik_links_search_form(); ?>
+          </aside>
+          <?php if ( !empty( $cats ) ) { ?>
+          <aside id="ubik-links-categories-widget" class="widget widget-links-categories">
+            <h3 class="widget-title">Links categories</h3>
+            <?php echo $cats; ?>
+          </aside>
+          <?php } ?>
+        </div>
+      </div><?php
+
+      // Return false to prevent the display of the regular sidebar
+      $sidebar = false;
+    }
+    return $sidebar;
+  }
+  add_filter( 'pendrell_sidebar', 'pendrell_sidebar_links' );
+
+  // Filter page and document titles via Ubik Title (otherwise we'd need to construct page titles individually and filter `wp_title`)
+  add_filter( 'ubik_title', 'ubik_links_page_title' );
 }
 
 
@@ -110,10 +148,30 @@ if ( PENDRELL_UBIK_PLACES ) {
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-places/ubik-places.php' );
   add_action( 'pendrell_archive_description_before', 'ubik_places_breadcrumb' );
 
-  // Don't display regular sidebar on full-width items; this function appears here as the sidebar-switching filter is specific to Pendrell
+  // Display the Ubik Places sidebar
   function pendrell_sidebar_places( $sidebar ) {
     if ( is_tax( 'places' ) && !pendrell_is_full_width() ) {
-      ubik_places_widget(); // @TODO: turn this into a real widgetized sidebar
+
+      // Retrieve data from Ubik Places
+      $places = ubik_places_widget();
+
+      // Only output places widget markup if we have results; @TODO: turn this into a real widget
+      if ( !empty( $places ) ) {
+        ?><div id="wrap-sidebar" class="wrap-sidebar">
+          <div id="secondary" class="widget-area" role="complementary">
+            <aside id="ubik-places" class="widget">
+              <?php if ( !empty( $places ) ) {
+                foreach ( $places as $place ) {
+                  ?><h3 class="widget-title"><?php echo $place['title']; ?></a></h3>
+                  <ul class="place-list"><?php echo wp_list_categories( $place['args'] ); ?></ul><?php
+                }
+              } ?>
+            </aside>
+          </div>
+        </div><?php
+      }
+
+      // Return false to prevent the regular sidebar from displaying
       $sidebar = false;
     }
     return $sidebar;

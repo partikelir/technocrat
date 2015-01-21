@@ -290,7 +290,8 @@ $d-radius:        3px;
 
 // Styling for optional modules; reduce bloat by switching some of these off
 
-$m-gallery-shortcode: true; // WordPress core
+$m-gallery-shortcode: true;  // WordPress core
+$m-icons:             true;  // Built-in to Pendrell
 $m-image-metadata:    false; // Built-in to Pendrell
 $m-post-formats:      false; // Built-in
 $m-views:             false; // Built-in
@@ -302,6 +303,7 @@ $m-ubik-series:       false;
 
 @if ($dev) {
   $m-gallery-shortcode: true; // WordPress core
+  $m-icons:             true; // Built-in to Pendrell
   $m-image-metadata:    true; // Built-in to Pendrell
   $m-post-formats:      true; // Built-in
   $m-views:             true; // Built-in

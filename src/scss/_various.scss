@@ -27,39 +27,6 @@
 
 
 
-// Form entry; @TODO: expand on this section
-.alert {
-  color: $c-alert;
-  font-weight: $w-body-bold;
-}
-.notice {
-  font-style: italic;
-}
-.required {
-  color: $c-required;
-}
-.success {
-  color: $c-success;
-}
-.warning {
-  color: $c-alert;
-  font-style: italic;
-}
-
-// Form errors; specific to the contact form for the most part, but designed for reuse
-input.error,
-textarea.error {
-  box-shadow: 0 0 6px rgba($c-alert, .9);
-  border: 1px solid $c-alert;
-  outline: none;
-}
-label.error {
-  color: $c-alert;
-  font-weight: $w-body-bold;
-}
-
-
-
 // Footnotes; for use with Markdown Extra implementations e.g. JP Markdown
 .footnotes {
   @extend %text-small;

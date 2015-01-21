@@ -4,8 +4,13 @@
 
 @if ($m-ubik-links) {
   .tax-link_category {
-    .site-content article {
-      @extend %spacer-below;
+    .site-content {
+      .search-form {
+        @extend %spacer-below-double;
+      }
+      article {
+        @extend %spacer-below-double;
+      }
     }
     .entry-title {
       @include font-size($s-header);
