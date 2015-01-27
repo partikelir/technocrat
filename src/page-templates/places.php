@@ -14,16 +14,15 @@ get_header(); ?>
       <section id="primary" class="content-area">
         <header id="archive-header">
           <?php pendrell_entry_title(); ?>
-          <div class="archive-content">
-            <div class="archive-description">
-              <?php the_content(); ?>
-            </div>
+          <div class="archive-desc">
+            <?php the_content(); ?>
           </div>
         </header>
         <main id="main" class="site-main" role="main">
           <?php $places = ubik_places_top();
-          if ( !empty( $places ) ) {
-            foreach ( $places as $place ) {
+          if ( !empty( $places ) ) { ?>
+            <div class="gallery gallery-columns-3">
+            <?php foreach ( $places as $place ) {
               echo ubik_imagery_markup(
                 $html     = '',
                 $id       = pendrell_thumbnail_id( $place->thumb ),
@@ -34,10 +33,13 @@ get_header(); ?>
                 $size     = 'third-square',
                 $alt      = '',
                 $rel      = '',
-                $class    = '',
+                $class    = 'overlay-on',
                 $group    = 1
               );
+              // $place->count;
+              // a CSS switch to keep the overlay text ON.
             }
+            ?></div><?php
           } else {
             get_template_part( 'content', 'none' );
           } ?>

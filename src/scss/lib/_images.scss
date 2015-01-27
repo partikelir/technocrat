@@ -95,4 +95,9 @@
       transition: opacity .75s ease-out;
     }
   }
+  &.overlay-on {
+    #{$overlay} {
+      opacity: 1; // Always show overlays; apply the `overlay-on` class to the parent `figure` element
+    }
+  }
 }
