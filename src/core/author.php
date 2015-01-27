@@ -21,6 +21,7 @@ if ( PENDRELL_AUTHOR_META )
 // Author info box
 if ( !function_exists( 'pendrell_author_info' ) ) : function pendrell_author_info() {
   if ( get_the_author_meta( 'description' ) ) {
+    pendrell_author_edit_link();
     $author = '<span class="fn n">' . get_the_author() . '</span>'; ?>
     <div class="author-info author vcard">
       <div class="author-avatar">
@@ -58,5 +59,17 @@ if ( !function_exists( 'pendrell_author_avatar' ) ) : function pendrell_author_a
     ?></a><?php
   } else {
     echo get_avatar( get_the_author_meta( 'user_email' ), $size, $default, $alt );
+  }
+} endif;
+
+
+
+// Add an "edit this user" link to author archives
+if ( !function_exists( 'pendrell_author_edit_link' ) ) : function pendrell_author_edit_link() {
+  if ( is_author() ) {
+    // Author edit link for users with the appropriate capabilities
+    $edit_author_link = get_edit_user_link();
+    if ( !empty( $edit_author_link ) )
+      echo '<div class="entry-meta-buttons"><span class="edit-link button"><a href="' . $edit_author_link . '">' . pendrell_icon( 'typ-edit', __( 'Edit', 'pendrell' ) ) . __( 'Edit', 'pendrell' ) . '</a></span></div>';
   }
 } endif;

@@ -12,7 +12,7 @@
     }
   }
 }
-.archive-content {
+.archive-desc {
   @extend %clearfix-above;
   @extend %spacer-below-double;
   @include font-size($s-text-small);

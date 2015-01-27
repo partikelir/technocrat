@@ -3,12 +3,12 @@
 // Content title; displayed at the top of posts, pages, etc.
 // @filter: pendrell_entry_title
 // @action: pendrell_entry_title_after
-if ( !function_exists( 'pendrell_entry_title' ) ) : function pendrell_entry_title( $content = '' ) {
-  if ( empty( $content ) )
-    $content = get_the_title();
+if ( !function_exists( 'pendrell_entry_title' ) ) : function pendrell_entry_title( $title = '' ) {
+  if ( empty( $title ) )
+    $title = get_the_title();
   if ( !is_singular() )
-    $content = '<a href="' . get_permalink() . '" rel="bookmark">' . $content . '</a>';
-  echo apply_filters( 'pendrell_entry_title', '<h1 class="entry-title">' . $content . '</h1>' );
+    $title = '<a href="' . get_permalink() . '" rel="bookmark">' . $title . '</a>';
+  echo apply_filters( 'pendrell_entry_title', '<h1 class="entry-title">' . $title . '</h1>' );
   do_action( 'pendrell_entry_title_after' );
 } endif;
 

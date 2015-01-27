@@ -94,16 +94,6 @@ svg {
         filter: drop-shadow( 0 1px $c-body-bg ); // Matches letterpress effect
         float: right;
       }
-
-      #archive-header & {
-        @include rem("height", $spacer*3);
-        @include rem("width", $spacer*3);
-        color: $c-body-dark;
-        float: left;
-        margin-left: $spacer*-3.5;
-        //margin-top: $spacer*-1;
-        position: absolute;
-      }
     }
   }
 

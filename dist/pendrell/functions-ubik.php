@@ -97,19 +97,19 @@ if ( PENDRELL_UBIK_LINGUAL ) {
 // == LINKS == //
 
 if ( PENDRELL_UBIK_LINKS ) {
-
-  // Reverses the order of search field and submit button; *required* for this theme
+  define( 'UBIK_LINKS_PAGE_TEMPLATE', 'page-templates/links.php' );
   define( 'UBIK_LINKS_SEARCH_FORM_REVERSE', true );
-
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-links/ubik-links.php' );
 
   // Display the Ubik Links sidebar
   function pendrell_sidebar_links( $sidebar ) {
-    if ( is_tax( 'link_category' ) ) {
+    if ( is_page_template( UBIK_LINKS_PAGE_TEMPLATE ) ) {
 
       // Retrieve the list of all categories
       $cats = ubik_links_categories();
-      $cats[] = '<strong><a class="link-category" href="' . home_url( '/' . UBIK_LINKS_SLUG . '/' ) . '">' . __( 'All links', 'ubik' ) . '</a></strong>';
+
+      // Add the links page template to the bottom of the list (relies on `get_permalink`)
+      $cats[] = '<strong><a class="link-category" href="' . get_permalink() . '">' . __( 'All links', 'pendrell' ) . '</a></strong>';
       $cats = ubik_links_categories_list( $cats );
 
       // Output the links sidebar
@@ -134,9 +134,6 @@ if ( PENDRELL_UBIK_LINKS ) {
     return $sidebar;
   }
   add_filter( 'pendrell_sidebar', 'pendrell_sidebar_links' );
-
-  // Filter page and document titles via Ubik Title (otherwise we'd need to construct page titles individually and filter `wp_title`)
-  add_filter( 'ubik_title', 'ubik_links_page_title' );
 }
 
 
@@ -278,8 +275,8 @@ if ( PENDRELL_UBIK_SERIES ) {
 // == TERMS * == //
 
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-terms/ubik-terms.php' );
-add_filter( 'pendrell_archive_description', 'ubik_terms_edit_link' );
-add_filter( 'pendrell_term_archive_description', 'ubik_terms_edit_description_prompt' );
+add_filter( 'pendrell_archive_description_term', 'ubik_terms_edit_description_prompt' );
+add_filter( 'pendrell_archive_description_term', 'ubik_terms_edit_link' );
 
 
 

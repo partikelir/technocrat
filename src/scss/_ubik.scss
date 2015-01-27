@@ -3,7 +3,7 @@
 // == LINKS == //
 
 @if ($m-ubik-links) {
-  .tax-link_category {
+  .page-template-links {
     .site-content {
       .search-form {
         @extend %spacer-below-double;
