@@ -2,6 +2,14 @@
 
 // This file is an adapter for the Ubik suite of components; it contains all the little scraps of code to integrate Ubik into Pendrell
 
+// ==== CONFIGURATION ==== //
+
+// Nothing by default...
+
+
+
+// ==== COMPONENTS ==== //
+
 // Require Ubik core first...
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik/ubik.php' );
 
@@ -39,7 +47,7 @@ if ( PENDRELL_UBIK_COMMENTS )
 
 
 
-// == EXCERPTS == //
+// == EXCERPTS * == //
 
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-excerpt/ubik-excerpt.php' );
 
@@ -52,7 +60,7 @@ if ( PENDRELL_UBIK_EXCLUDER )
 
 
 
-// == FAVICONS == //
+// == FAVICONS * == //
 
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-favicons/ubik-favicons.php' );
 
@@ -65,7 +73,11 @@ if ( PENDRELL_UBIK_FEED )
 
 
 
-// == IMAGERY == //
+// == IMAGERY * == //
+
+// Enable `srcset` output only when Picturefill module is active
+if ( PENDRELL_MODULE_RESPONSIVE )
+  define( 'UBIK_IMAGERY_SRCSET', true );
 
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-imagery/ubik-imagery.php' );
 
@@ -136,7 +148,7 @@ if ( PENDRELL_UBIK_MARKDOWN )
 
 
 
-// == META == //
+// == META * == //
 
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-meta/ubik-meta.php' );
 
@@ -233,7 +245,7 @@ if ( PENDRELL_UBIK_SEO )
 
 
 
-// == SEARCH == //
+// == SEARCH * == //
 
 // Reverses the order of search field and submit button; *required* for this theme
 define( 'UBIK_SEARCH_FORM_REVERSE', true );
@@ -263,7 +275,7 @@ if ( PENDRELL_UBIK_SERIES ) {
 
 
 
-// == TERMS == //
+// == TERMS * == //
 
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-terms/ubik-terms.php' );
 add_filter( 'pendrell_archive_description', 'ubik_terms_edit_link' );
@@ -271,7 +283,7 @@ add_filter( 'pendrell_term_archive_description', 'ubik_terms_edit_description_pr
 
 
 
-// == TIME == //
+// == TIME * == //
 
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-time/ubik-time.php' );
 add_filter( 'ubik_meta_timestamp_published', 'ubik_time_human' ); // Humanize these times
@@ -279,6 +291,6 @@ add_filter( 'ubik_meta_timestamp_updated', 'ubik_time_human' );
 
 
 
-// == TITLE == //
+// == TITLE * == //
 
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-title/ubik-title.php' );

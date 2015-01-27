@@ -9,6 +9,10 @@ if ( is_readable( trailingslashit( get_stylesheet_directory() ) . 'functions-con
 // Load configuration defaults; anything not set in the custom configuration (above) will be set here
 require_once( trailingslashit( get_stylesheet_directory() ) . 'functions-config-defaults.php' );
 
+// Load the Ubik adapter file; everything related to Ubik is set here
+if ( is_readable( trailingslashit( get_stylesheet_directory() ) . 'functions-ubik.php' ) )
+  require_once( trailingslashit( get_stylesheet_directory() ) . 'functions-ubik.php' );
+
 
 
 // == CONSTANTS == //
@@ -47,7 +51,6 @@ require_once( trailingslashit( get_stylesheet_directory() ) . 'core/templates.ph
 // Required *
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/contact-form.php' );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/footer-info.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik.php' );
 
 // Optional
 if ( PENDRELL_MODULE_ICONS )
@@ -122,7 +125,8 @@ function pendrell_setup() {
   set_post_thumbnail_size( $main_width, $main_width );
 
   // Add a few additional image sizes for various other purposes
-  ubik_imagery_add_fractional_sizes( $margin = PENDRELL_BASELINE );
+  if ( function_exists( 'ubik_imagery_add_fractional_sizes' ) )
+    ubik_imagery_add_fractional_sizes( $margin = PENDRELL_BASELINE );
 
   // Forcing medium and large sizes to match $content_width and $main_width; explicitly setting thumbnail image size
   update_option( 'thumbnail_size_w', 150 );

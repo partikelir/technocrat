@@ -97,7 +97,7 @@ module.exports = {
     , contact: [bower+'jquery-validation/dist/jquery.validate.js', src+'js/contact-form.js']
     , icons: [bower+'svg4everybody/svg4everybody.js', src+'js/iconize.js'] // @TODO: split icons scripts out of core
     , pf: [bower+'picturefill/dist/picturefill.js']
-    , pg8: [bower+'html5-history-api/history.iegte8.js', bower+'spin.js/spin.js', bower+'spin.js/jquery.spin.js', src+'js/page-loader.js']
+    , pg8: [bower+'html5-history-api/history.iegte8.js', bower+'spin.js/spin.js', bower+'spin.js/jquery.spin.js', bower+'pg8-ajax-page-loader/pg8-loader.js']
     , prism: [ // Prism components are on their own line to make it easy to define a custom build to suit whatever code you use on your blog
         bower+'prism/components/prism-core.js'
       , bower+'prism/components/prism-markup.js'

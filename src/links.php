@@ -1,5 +1,7 @@
 <?php
 /**
+ * This template is for use with Ubik Links.
+ *
  * @package WordPress
  * @subpackage Pendrell
  * @since Pendrell 0.18

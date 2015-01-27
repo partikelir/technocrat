@@ -1,5 +1,32 @@
 <?php // ==== CONFIGURATION (DEFAULT) ==== //
 
+// For testing purposes only; switches everything on for development
+if ( WP_LOCAL_DEV ) {
+  defined( 'PENDRELL_MODULE_ICONS' )        || define( 'PENDRELL_MODULE_ICONS', true );
+  defined( 'PENDRELL_MODULE_IMAGE_META' )   || define( 'PENDRELL_MODULE_IMAGE_META', true );
+  defined( 'PENDRELL_MODULE_POST_FORMATS' ) || define( 'PENDRELL_MODULE_POST_FORMATS', true );
+  defined( 'PENDRELL_MODULE_RESPONSIVE' )   || define( 'PENDRELL_MODULE_RESPONSIVE', true );
+  defined( 'PENDRELL_MODULE_VIEWS' )        || define( 'PENDRELL_MODULE_VIEWS', true );
+  defined( 'PENDRELL_SCRIPTS_PAGELOAD' )    || define( 'PENDRELL_SCRIPTS_PAGELOAD', true );
+  defined( 'PENDRELL_SCRIPTS_PRISM' )       || define( 'PENDRELL_SCRIPTS_PRISM', true );
+  defined( 'PENDRELL_UBIK_ADMIN' )          || define( 'PENDRELL_UBIK_ADMIN', true );
+  defined( 'PENDRELL_UBIK_ANALYTICS' )      || define( 'PENDRELL_UBIK_ANALYTICS', true );
+  defined( 'PENDRELL_UBIK_CLEANER' )        || define( 'PENDRELL_UBIK_CLEANER', true );
+  defined( 'PENDRELL_UBIK_COMMENTS' )       || define( 'PENDRELL_UBIK_COMMENTS', true );
+  defined( 'PENDRELL_UBIK_EXCLUDER' )       || define( 'PENDRELL_UBIK_EXCLUDER', true );
+  defined( 'PENDRELL_UBIK_FEED' )           || define( 'PENDRELL_UBIK_FEED', true );
+  defined( 'PENDRELL_UBIK_LINGUAL' )        || define( 'PENDRELL_UBIK_LINGUAL', true );
+  defined( 'PENDRELL_UBIK_LINKS' )          || define( 'PENDRELL_UBIK_LINKS', true );
+  defined( 'PENDRELL_UBIK_MARKDOWN' )       || define( 'PENDRELL_UBIK_MARKDOWN', true );
+  defined( 'PENDRELL_UBIK_PLACES' )         || define( 'PENDRELL_UBIK_PLACES', true );
+  defined( 'PENDRELL_UBIK_POST_FORMATS' )   || define( 'PENDRELL_UBIK_POST_FORMATS', true );
+  defined( 'PENDRELL_UBIK_QUICK_TERMS' )    || define( 'PENDRELL_UBIK_QUICK_TERMS', true );
+  defined( 'PENDRELL_UBIK_RECORDPRESS' )    || define( 'PENDRELL_UBIK_RECORDPRESS', true );
+  defined( 'PENDRELL_UBIK_RELATED' )        || define( 'PENDRELL_UBIK_RELATED', true );
+  defined( 'PENDRELL_UBIK_SERIES' )         || define( 'PENDRELL_UBIK_SERIES', true );
+  defined( 'PENDRELL_UBIK_SEO' )            || define( 'PENDRELL_UBIK_SEO', true );
+}
+
 // Switch for author info boxes on single posts; true/false
 defined( 'PENDRELL_AUTHOR_META' )         || define( 'PENDRELL_AUTHOR_META', false );
 
@@ -94,10 +121,6 @@ defined( 'PENDRELL_MODULE_POST_FORMATS' ) || define( 'PENDRELL_MODULE_POST_FORMA
 // Master switch for responsive images with Ubik Imagery and Picturefill; see `src/modules/responsive-images.php` for more info
 defined( 'PENDRELL_MODULE_RESPONSIVE' )   || define( 'PENDRELL_MODULE_RESPONSIVE', false );
 
-// Enable `srcset` output only when Picturefill module is active
-if ( PENDRELL_MODULE_RESPONSIVE )
-  define( 'UBIK_IMAGERY_SRCSET', true );
-
 
 
 // == VIEWS == //
@@ -125,7 +148,7 @@ defined( 'PENDRELL_MODULE_VIEWS' )        || define( 'PENDRELL_MODULE_VIEWS', fa
 
 // == UBIK == //
 
-// Ubik is a collection of lightwight WordPress components; use the switches to turn these components on or off
+// Ubik is a collection of lightwight WordPress components; use these master switches to turn these components on or off
 defined( 'PENDRELL_UBIK_ADMIN' )          || define( 'PENDRELL_UBIK_ADMIN', false );
 defined( 'PENDRELL_UBIK_ANALYTICS' )      || define( 'PENDRELL_UBIK_ANALYTICS', false );
 defined( 'PENDRELL_UBIK_CLEANER' )        || define( 'PENDRELL_UBIK_CLEANER', true ); // Active
@@ -143,4 +166,4 @@ defined( 'PENDRELL_UBIK_RELATED' )        || define( 'PENDRELL_UBIK_RELATED', fa
 defined( 'PENDRELL_UBIK_SERIES' )         || define( 'PENDRELL_UBIK_SERIES', false );
 defined( 'PENDRELL_UBIK_SEO' )            || define( 'PENDRELL_UBIK_SEO', true ); // Active
 
-// Additional configuration and customization options can be found within `src/modules/ubik.php`
+// Additional configuration and customization options can be found within `src/functions-ubik.php`

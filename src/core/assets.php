@@ -24,22 +24,24 @@ if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueu
   // Note: bundles require less HTTP requests at the expense of addition caching hits when different scripts are requested
 
   // Page load (PG8)
+  $pg8_vars = '';
   if ( PENDRELL_SCRIPTS_PAGELOAD && ( is_archive() || is_home() || is_search() ) ) {
     $script_name .= '-pg8';
 
     global $wp_query;
 
-    // What page are we on? And what is the pages limit?
+    // What page are we on? And what is the page limit?
     $max = $wp_query->max_num_pages;
     $paged = ( get_query_var( 'paged' ) > 1 ) ? get_query_var( 'paged' ) : 1;
 
-    // Non-destructively merge array and namespace custom variables
-    $script_vars = array_merge( $script_vars, array(
-      'PG8' => array(
-        'startPage' => $paged,
-        'maxPages'  => $max,
-        'nextLink'  => next_posts($max, false)
-    ) ) );
+    // Prepare script variables; note that these are separate from the rest of the script variables
+    $pg8_vars = array(
+      'startPage'   => $paged,
+      'maxPages'    => $max,
+      'nextLink'    => next_posts( $max, false ),
+      'contentSel'  => 'main',
+      'nextSel'     => '.nav-next'
+    );
   } // end PG8
 
   // Picturefill (PF): responsive images
@@ -79,6 +81,8 @@ if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueu
   // Pass variables to JavaScript at runtime; see: http://codex.wordpress.org/Function_Reference/wp_localize_script
   // @filter: pendrell_script_vars; see `modules/contact-form.php` for an example of usage
   wp_localize_script( $handle, 'pendrellVars', apply_filters( 'pendrell_script_vars', $script_vars ) );
+  if ( !empty( $pg8_vars ) )
+    wp_localize_script( $handle, 'PG8Data', $pg8_vars );
 
 
 

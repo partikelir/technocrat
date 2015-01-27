@@ -19,6 +19,7 @@
     "globals": {
         "_": true,
         "jQuery": true,
-        "pendrellVars": true
+        "pendrellVars": true,
+        "PG8Data": true
     }
 }

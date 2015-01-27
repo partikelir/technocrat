@@ -22,6 +22,7 @@
     "normalize.css": "^3.0.2",
     "html5-history-api": "^4.1.15",
     "jquery-validation": "^1.13.1",
+    "pg8-ajax-page-loader": "^0.0.1",
     "picturefill": "^2.2.0",
     "prism": "git://github.com/LeaVerou/prism.git#gh-pages",
     "spin.js": "^2.0.2",
