@@ -104,11 +104,13 @@
   // Display data in either top corner of the overlay by reading out of the `data-overlay-left` and `data-overlay-right` attributes of the parent `figure` element
   &:before,
   &:after {
-    @include font-style("image-overlay-title");
-    @include rem("font-size", $s-text-big+0px);
+    @include font-style("image-overlay-caption");
+    @include k-media-below($b-medium) {
+      @include font-size($s-text-small);
+    }
     @include rem("padding", $spacer/4 $spacer/2);
     color: white();
-    max-width: 45%; // @TODO: make this more precise
+    max-width: 42.5%; // @TODO: make this more precise; currently this is just a best guess based on 300px width images
     pointer-events: none; // Allow clicks to pass through
     text-shadow: 0px 1px 2px black(.8);
     z-index: 999;
