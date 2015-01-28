@@ -32,7 +32,7 @@ if ( !function_exists( 'pendrell_related_posts' ) ) : function pendrell_related_
       <h3><?php _e( 'Related posts', 'pendrell' ); ?></h3>
       <div class="gallery gallery-columns-3">
       <?php foreach ( $related_posts as $related_post ) {
-        echo ubik_imagery_markup(
+        echo ubik_imagery(
           $html     = '',
           $id       = pendrell_thumbnail_id( $related_post ),
           $caption  = get_the_title( $related_post ),
@@ -43,7 +43,8 @@ if ( !function_exists( 'pendrell_related_posts' ) ) : function pendrell_related_
           $alt      = '',
           $rel      = '',
           $class    = '',
-          $group    = 1
+          $data     = '',
+          $group    = 3
         );
       } ?>
       </div>

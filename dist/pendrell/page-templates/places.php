@@ -14,17 +14,29 @@ get_header(); ?>
       <section id="primary" class="content-area">
         <header id="archive-header">
           <?php pendrell_entry_title(); ?>
-          <div class="archive-content">
-            <div class="archive-description">
-              <?php the_content(); ?>
-            </div>
+          <div class="archive-desc">
+            <?php the_content(); ?>
           </div>
         </header>
         <main id="main" class="site-main" role="main">
           <?php $places = ubik_places_top();
           if ( !empty( $places ) ) {
+
+            ?><div class="gallery gallery-columns-3"><?php
+
+            global $pendrell_places_thumbs;
+            if ( !is_array( $pendrell_places_thumbs ) )
+              $pendrell_places_thumbs = array();
+
+            // Loop through all the top-most places
             foreach ( $places as $place ) {
-              echo ubik_imagery_markup(
+
+              // This is a hack to manually assign thumbnails to specific places; @TODO: code this properly
+              if ( array_key_exists( $place->term_id, $pendrell_places_thumbs ) )
+                $place->thumb = $pendrell_places_thumbs[$place->term_id];
+
+              // Output a gallery of places
+              echo ubik_imagery(
                 $html     = '',
                 $id       = pendrell_thumbnail_id( $place->thumb ),
                 $caption  = $place->name,
@@ -34,17 +46,18 @@ get_header(); ?>
                 $size     = 'third-square',
                 $alt      = '',
                 $rel      = '',
-                $class    = '',
-                $group    = 1
+                $class    = 'no-fade',
+                $data     = array( 'overlay-right' => sprintf( __( '%s posts', 'pendrell' ), $place->count ) ),
+                $group    = 3
               );
             }
+
+            ?></div><?php
           } else {
             get_template_part( 'content', 'none' );
           } ?>
         </main>
-        <?php pendrell_nav_content( 'nav-below' ); ?>
       </section>
     </div>
   </div>
-<?php pendrell_sidebar(); ?>
 <?php get_footer(); ?>

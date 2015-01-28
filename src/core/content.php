@@ -16,11 +16,13 @@ if ( !function_exists( 'pendrell_entry_title' ) ) : function pendrell_entry_titl
 
 // Body class filter
 if ( !function_exists( 'pendrell_body_class' ) ) : function pendrell_body_class( $classes ) {
-  if ( is_multi_author() ) {
-    $classes[] = 'group-blog';
-  } else {
-    $classes[] = 'single-author';
+
+  // Remove duplicate 'page-templates' (note the 's'); for example 'page-template-page-templates' results from the directory structure
+  foreach ( $classes as $id => $class ) {
+    if ( strpos( $class, 'page-templates' ) )
+      unset( $classes[$id] );
   }
+
   return $classes;
 } endif;
 add_filter( 'body_class', 'pendrell_body_class' );

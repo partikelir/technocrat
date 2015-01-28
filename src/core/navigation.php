@@ -2,7 +2,7 @@
 
 // Site navigation; this outputs the header menu and search form
 if ( !function_exists( 'pendrell_nav_site' ) ) : function pendrell_nav_site() {
-  get_search_form();
+  get_search_form(); // Responsive search bar; hidden except on small screens
   wp_nav_menu( array( 'theme_location' => 'header', 'menu_class' => 'menu-header inline-menu' ) );
 } endif;
 add_action( 'pendrell_site_navigation', 'pendrell_nav_site' );

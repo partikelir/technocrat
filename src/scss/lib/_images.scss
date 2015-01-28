@@ -95,9 +95,34 @@
       transition: opacity .75s ease-out;
     }
   }
-  &.overlay-on {
+  &.no-fade {
     #{$overlay} {
-      opacity: 1; // Always show overlays; apply the `overlay-on` class to the parent `figure` element
+      opacity: 1; // Always show overlays; apply the `no-fade` class to the parent `figure` element
     }
+  }
+
+  // Display data in either top corner of the overlay by reading out of the `data-overlay-left` and `data-overlay-right` attributes of the parent `figure` element
+  &:before,
+  &:after {
+    @include font-style("image-overlay-title");
+    @include rem("font-size", $s-text-big+0px);
+    @include rem("padding", $spacer/4 $spacer/2);
+    color: white();
+    max-width: 45%; // @TODO: make this more precise
+    pointer-events: none; // Allow clicks to pass through
+    text-shadow: 0px 1px 2px black(.8);
+    z-index: 999;
+  }
+  &:before {
+    content: attr(data-overlay-left);
+    position: absolute;
+      top: 0;
+      left: 0;
+  }
+  &:after {
+    content: attr(data-overlay-right);
+    position: absolute;
+      top: 0;
+      right: 0;
   }
 }

@@ -186,6 +186,40 @@ if ( PENDRELL_UBIK_PLACES ) {
     return $sidebar;
   }
   add_filter( 'pendrell_sidebar', 'pendrell_sidebar_places' );
+
+  // Adds places to entry metadata right after other taxonomies; @DEPENDENCY: relies on popular terms function in Ubik core
+  function pendrell_places_meta( $meta ) {
+    global $post;
+    if ( has_term( '', 'places' ) )
+      $meta .= ubik_popular_terms_list( $post->ID, 'places', 'Places: ', ', ', '. ' );
+    return $meta;
+  }
+  add_filter( 'ubik_meta_taxonomies', 'pendrell_places_meta' );
+
+  // Body class filter
+  function pendrell_places_body_class( $classes ) {
+    if ( is_page_template( 'page-templates/places.php' ) )
+      $classes[] = 'gallery-view';
+    return $classes;
+  }
+  add_filter( 'body_class', 'pendrell_places_body_class' );
+
+  // Force places base template to be full-width
+  function pendrell_places_full_width( $test ) {
+    if ( is_page_template( 'page-templates/places.php' ) )
+      return true;
+    return $test;
+  }
+  add_filter( 'pendrell_full_width', 'pendrell_places_full_width' );
+
+  // Adds place descriptions to the quick edit box
+  if ( PENDRELL_UBIK_QUICK_TERMS ) {
+    function pendrell_places_quick_terms( $taxonomies ) {
+      $taxonomies[] = 'places';
+      return $taxonomies;
+    }
+    add_filter( 'ubik_quick_terms_taxonomies', 'pendrell_places_quick_terms' );
+  }
 }
 
 
@@ -231,6 +265,14 @@ if ( PENDRELL_UBIK_RELATED ) {
     return $taxonomies;
   }
   add_filter( 'ubik_related_taxonomies_extended', 'pendrell_related_taxonomies_extended' );
+
+  // Related posts display switch
+  function pendrell_related_display( $switch = true ) {
+    //if ( has_tag( array( 'this', 'that', 'the-other-thing' ) ) )
+      //return false;
+    return (bool) $switch;
+  }
+  add_filter( 'pendrell_related_display', 'pendrell_related_display' );
 }
 
 
@@ -246,7 +288,7 @@ if ( PENDRELL_UBIK_SEO )
 
 // Reverses the order of search field and submit button; *required* for this theme
 define( 'UBIK_SEARCH_FORM_REVERSE', true );
-
+define( 'UBIK_SEARCH_POSTS_PER_PAGE', 20 );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-search/ubik-search.php' );
 
 // Add an icon to the search button
@@ -274,6 +316,7 @@ if ( PENDRELL_UBIK_SERIES ) {
 
 // == TERMS * == //
 
+define( 'UBIK_TERMS_TAG_SHORTCODE', true );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-terms/ubik-terms.php' );
 add_filter( 'pendrell_archive_description_term', 'ubik_terms_edit_description_prompt' );
 add_filter( 'pendrell_archive_description_term', 'ubik_terms_edit_link' );

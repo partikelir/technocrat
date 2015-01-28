@@ -30,7 +30,7 @@ if ( !function_exists( 'pendrell_image_wrapper' ) ) : function pendrell_image_wr
   }
 
   // Generate image markup from ID, size, caption, and URL and append existing content
-  return ubik_imagery_markup( $html = '', $id, $caption, $title = '', $align = '', $url, $size ) . $content;
+  return ubik_imagery( $html = '', $id, $caption, $title = '', $align = '', $url, $size ) . $content;
 } endif;
 add_filter( 'the_content', 'pendrell_image_wrapper' );
 

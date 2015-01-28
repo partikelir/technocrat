@@ -8,7 +8,7 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<div class="entry-thumbnail">
-		<?php echo ubik_imagery_markup(
+		<?php echo ubik_imagery(
 	    $html 		= '',
 	    $id 			= pendrell_thumbnail_id(),
 	    $caption 	= '',
@@ -19,6 +19,7 @@
 	    $alt 			= '',
 	    $rel 			= '',
 	    $class 		= '',
+	    $data			=	'',
 	    $group    = 0
 	  ); ?>
 	</div>

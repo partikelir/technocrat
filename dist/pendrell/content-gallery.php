@@ -5,7 +5,7 @@
  * @since Pendrell 0.10
  */
 
-echo ubik_imagery_markup(
+echo ubik_imagery(
   $html     = '',
   $id       = pendrell_thumbnail_id(),
   $caption  = get_the_title(),
@@ -16,5 +16,6 @@ echo ubik_imagery_markup(
   $alt      = '',
   $rel      = '',
   $class    = get_post_class(),
-  $group    = 1
+  $data     = '',
+  $group    = 3
 );

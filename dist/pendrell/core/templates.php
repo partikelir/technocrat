@@ -8,10 +8,10 @@ if ( !function_exists( 'pendrell_sidebar' ) ) : function pendrell_sidebar( $side
 
   // Filter the $sidebar variable; this way we can set it to "false" by hooking into this function elsewhere
   // This way the regular sidebar can be disabled and you can output whatever you want
-  $sidebar = apply_filters( 'pendrell_sidebar', $sidebar );
+  $sidebar = (bool) apply_filters( 'pendrell_sidebar', $sidebar );
 
   // Include the regular sidebar template if $sidebar has not been set to "false"
-  if ( $sidebar )
+  if ( $sidebar !== false )
     get_sidebar();
 } endif;
 
@@ -24,8 +24,6 @@ if ( !function_exists( 'pendrell_sidebar' ) ) : function pendrell_sidebar( $side
 if ( !function_exists( 'pendrell_template_part' ) ) : function pendrell_template_part( $slug = 'content', $name = null ) {
   return get_template_part( $slug, apply_filters( 'pendrell_template_part', $name ) );
 } endif;
-
-
 
 // Force search results to display excerpts
 if ( !function_exists( 'pendrell_template_part_search' ) ) : function pendrell_template_part_search( $name ) {
