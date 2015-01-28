@@ -154,9 +154,23 @@ require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-meta
 // == PLACES == //
 
 if ( PENDRELL_UBIK_PLACES ) {
-  define( 'PENDRELL_PLACES_TEMPLATE_ID', false );
+  define( 'PENDRELL_PLACES_TEMPLATE_ID', 5951 );
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-places/ubik-places.php' );
   add_action( 'pendrell_archive_description_before', 'ubik_places_breadcrumb' );
+
+  // Hack to manually set thumbnails for the places page template
+  global $pendrell_places_thumbs;
+  $pendrell_places_thumbs = array(
+    '239' => '365', // Canada
+    '245' => '1670', // Hong Kong
+    '337' => '1983', // Japan
+    '243' => '3210', // Malaysia
+    '470' => '3591', // Singapore
+    '246' => '554', // South Korea
+    '180' => '5077', // Taiwan
+    '244' => '748', // Thailand
+    '561' => '4713' // U.S.A.
+  );
 
   // Display the Ubik Places sidebar
   function pendrell_sidebar_places( $sidebar ) {
