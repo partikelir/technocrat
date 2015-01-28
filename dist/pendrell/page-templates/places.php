@@ -47,7 +47,7 @@ get_header(); ?>
                 $alt      = '',
                 $rel      = '',
                 $class    = 'no-fade',
-                $data     = array( 'overlay-right' => sprintf( __( '%s posts', 'pendrell' ), $place->count ) ),
+                $data     = array( 'overlay-right' => sprintf( _n( '1 post', '%s posts', $place->count, 'pendrell' ), $place->count ) ),
                 $group    = 3
               );
             }
