@@ -154,6 +154,7 @@ require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-meta
 // == PLACES == //
 
 if ( PENDRELL_UBIK_PLACES ) {
+  define( 'PENDRELL_PLACES_TEMPLATE_ID', false );
   require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-places/ubik-places.php' );
   add_action( 'pendrell_archive_description_before', 'ubik_places_breadcrumb' );
 
@@ -162,7 +163,7 @@ if ( PENDRELL_UBIK_PLACES ) {
     if ( is_tax( 'places' ) && !pendrell_is_full_width() ) {
 
       // Retrieve data from Ubik Places
-      $places = ubik_places_widget();
+      $places = ubik_places_list();
 
       // Only output places widget markup if we have results; @TODO: turn this into a real widget
       if ( !empty( $places ) ) {
@@ -170,9 +171,14 @@ if ( PENDRELL_UBIK_PLACES ) {
           <div id="secondary" class="widget-area" role="complementary">
             <aside id="ubik-places" class="widget">
               <?php if ( !empty( $places ) ) {
-                foreach ( $places as $place ) {
-                  ?><h3 class="widget-title"><?php echo $place['title']; ?></a></h3>
-                  <ul class="place-list"><?php echo wp_list_categories( $place['args'] ); ?></ul><?php
+                foreach ( $places as $key => $place ) {
+                  $places_index = ''; // A simple hack to insert a link to the places index page
+                  if ( $key === ( count( $places ) - 1 ) && PENDRELL_PLACES_TEMPLATE_ID )
+                    $places_index = '<li class="cat-item"><strong><a href="' . get_permalink( PENDRELL_PLACES_TEMPLATE_ID ) . '">' . __( 'All places', 'pendrell' ) . '</a></strong></li>';
+                  ?><h3 class="widget-title"><?php echo $place['title']; ?></h3>
+                  <ul class="place-list">
+                    <?php echo $places_index; echo wp_list_categories( $place['args'] ); ?>
+                  </ul><?php
                 }
               } ?>
             </aside>
