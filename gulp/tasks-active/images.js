@@ -5,14 +5,14 @@ var gulp        = require('gulp')
   , config      = require('../config').images
 ;
 
-// Copy images from the source folder to `build`
+// Copy changed images from the source folder to `build` (fast)
 gulp.task('images', function() {
   return gulp.src(config.build.src)
   .pipe(plugins.changed(config.build.dest))
   .pipe(gulp.dest(config.build.dest));
 });
 
-// Optimize images in the `dist` folder
+// Optimize images in the `dist` folder (slow)
 gulp.task('images-dist', ['utils-dist'], function() {
   return gulp.src(config.dist.src)
   .pipe(plugins.imagemin(config.imagemin))

@@ -109,8 +109,8 @@ function pendrell_setup() {
   // $content_width limits the size of the largest image size available via the media uploader
   // It should be set once and left alone apart from that; don't do anything fancy with it; it is part of WordPress core
   global $content_width, $main_width;
-  if ( !isset( $content_width ) )
-    $content_width = 960;
+  if ( !isset( $content_width ) || !is_int( $content_width ) )
+    $content_width = (int) 960;
 
   // Width of the main content column; should correspond to equivalent values in the stylesheet; NOT a WordPress core thing
   // This variable is mainly used here in functions.php; it should match the variable defined in _base.scss

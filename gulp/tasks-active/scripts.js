@@ -45,8 +45,6 @@ gulp.task('scripts-bundle', ['scripts-lint'], function(){
 });
 
 // Minify scripts in place
-// @TODO: source maps
-// @TODO: https://github.com/sogko/gulp-recipes/blob/master/unnecessary-wrapper-gulp-plugins/uglify-js.js
 gulp.task('scripts-minify', ['scripts-bundle'], function(){
   return gulp.src(config.minify.src)
   .pipe(plugins.rename(config.minify.rename))

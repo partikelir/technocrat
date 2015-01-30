@@ -26,6 +26,7 @@ h6 {
 }
 h1 {
   @include font-size($s-header-bigger);
+  margin: 0; // Reset normalize.css
 }
 h2 {
   @include font-size($s-header-big);
@@ -273,6 +274,9 @@ th {
 
 
 // Multimedia
+figure {
+  margin: 0; // Reset normalize.css
+}
 img {
   height: auto; // Make sure images are scaled correctly
   max-width: 100%; // Adhere to container width

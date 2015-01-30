@@ -7,10 +7,10 @@
 // Enqueue front-end scripts and styles; additional ideas to consider: https://github.com/roots/roots/blob/master/lib/scripts.php
 if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueue_scripts() {
 
-  $handle = 'pendrell-core';  // A generic script handle used by WordPress
-  $script_name = '';          // Empty by default, may be populated by conditionals below
-  $script_vars = array();     // An empty array that can be filled with variables to send to front-end scripts
-  $suffix = '.min';           // A suffix for minified scripts
+  $script_name = '';                // Empty by default, may be populated by conditionals below
+  $script_vars = array();           // An empty array that can be filled with variables to send to front-end scripts
+  $script_handle = 'pendrell-core'; // A generic script handle used by WordPress
+  $suffix = '.min';                 // A suffix for minified scripts
 
   // Load minified scripts if debug mode is off
   if ( WP_DEBUG === true )
@@ -23,8 +23,8 @@ if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueu
   // Figure out which script bundle to load based on various options set in `src/functions-config-defaults.php`
   // Note: bundles require less HTTP requests at the expense of addition caching hits when different scripts are requested
 
-  // Page load (PG8)
-  $pg8_vars = '';
+  // WP AJAX Page Loader (PG8)
+  $script_vars_pg8 = '';
   if ( PENDRELL_SCRIPTS_PAGELOAD && ( is_archive() || is_home() || is_search() ) ) {
     $script_name .= '-pg8';
 
@@ -35,12 +35,10 @@ if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueu
     $paged = ( get_query_var( 'paged' ) > 1 ) ? get_query_var( 'paged' ) : 1;
 
     // Prepare script variables; note that these are separate from the rest of the script variables
-    $pg8_vars = array(
+    $script_vars_pg8 = array(
       'startPage'   => $paged,
       'maxPages'    => $max,
-      'nextLink'    => next_posts( $max, false ),
-      'contentSel'  => 'main',
-      'nextSel'     => '.nav-next'
+      'nextLink'    => next_posts( $max, false )
     );
   } // end PG8
 
@@ -64,7 +62,7 @@ if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueu
   // Load theme-specific JavaScript bundles with versioning based on last modified time; http://www.ericmmartin.com/5-tips-for-using-jquery-with-wordpress/
   // These bundles are created with Gulp; see `/gulpfile.js`
   // The handle is the same for each bundle since we're only loading one script; if you load others be sure to provide a new handle
-  wp_enqueue_script( $handle, get_stylesheet_directory_uri() . '/js/p' . $script_name . $suffix . '.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/p' . $script_name . $suffix . '.js' ), true );
+  wp_enqueue_script( $script_handle, get_stylesheet_directory_uri() . '/js/p' . $script_name . $suffix . '.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/p' . $script_name . $suffix . '.js' ), true );
 
   // Contact form (CF1) setup
   if ( is_page_template( 'page-templates/contact-form.php' ) )
@@ -80,9 +78,13 @@ if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueu
 
   // Pass variables to JavaScript at runtime; see: http://codex.wordpress.org/Function_Reference/wp_localize_script
   // @filter: pendrell_script_vars; see `modules/contact-form.php` for an example of usage
-  wp_localize_script( $handle, 'pendrellVars', apply_filters( 'pendrell_script_vars', $script_vars ) );
-  if ( !empty( $pg8_vars ) )
-    wp_localize_script( $handle, 'PG8Data', $pg8_vars );
+  $script_vars = apply_filters( 'pendrell_script_vars', $script_vars );
+  if ( !empty( $script_vars ) )
+    wp_localize_script( $script_handle, 'pendrellVars', $script_vars );
+
+  // Script variables for WP AJAX Page Loader (these are separate from the main theme script variables due to the naming requirement)
+  if ( !empty( $script_vars_pg8 ) )
+    wp_localize_script( $script_handle, 'PG8Data', $script_vars_pg8 );
 
 
 

@@ -1,7 +1,5 @@
 // ==== THEME ==== //
 
-// These tasks are specific to WordPress themes
-
 var gulp        = require('gulp')
   , plugins     = require('gulp-load-plugins')({ camelize: true })
   , config      = require('../config').theme

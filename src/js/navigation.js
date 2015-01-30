@@ -1,3 +1,5 @@
+// ==== NAVIGATION ==== //
+
 // Navigation.js adapted from _s; changed to toggled the entire site navigation element, not just the menu within it
 ;(function() {
 	var nav 			= document.getElementById('site-navigation'),

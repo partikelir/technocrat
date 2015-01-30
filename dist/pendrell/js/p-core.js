@@ -128,6 +128,8 @@
   };
 }(jQuery));
 
+// ==== NAVIGATION ==== //
+
 // Navigation.js adapted from _s; changed to toggled the entire site navigation element, not just the menu within it
 ;(function() {
 	var nav 			= document.getElementById('site-navigation'),
@@ -166,6 +168,8 @@
 // Anything entered here will end up at the top of `p-core.js`
 ;(function($){
   $(function(){ // Shortcut to $(document).ready(handler);
+
+    // Iconize: an example
     //$('#archive-header').iconize('ion-search', 'Testing', 'description');
   });
 }(jQuery));

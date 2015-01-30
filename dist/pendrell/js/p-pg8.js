@@ -1476,8 +1476,9 @@ $('#el').spin('flower', 'red');
 
 }));
 
-// ==== PG8 AJAX PAGE LOADER ==== //
+// ==== WP AJAX PAGE LOADER ==== //
 
+// WP AJAX Page Loader documentation: https://github.com/synapticism/wp-ajax-page-loader
 // Based on Ajaxinate: https://github.com/synapticism/ajaxinate
 // With some help from: http://www.problogdesign.com/wordpress/load-next-wordpress-posts-with-ajax/
 
@@ -1487,7 +1488,7 @@ var PG8 = {};
 ;(function($, document, window, undefined){
   'use strict';
 
-  // Exit early if WordPress didn't pass us anything
+  // Exit early if WordPress script variables aren't available
   if (typeof PG8Data === 'undefined') {
     return;
   }
@@ -1503,7 +1504,7 @@ var PG8 = {};
     this.nextLink = PG8Data.nextLink;
     this.maxPages = parseInt(PG8Data.maxPages);
     this.maxedOut = 0; // A flag to determine whether all pages have been loaded
-    this.opts     = $.extend({}, $.fn.pageloader.defaults, opts);
+    this.opts     = $.extend({}, $.fn.ajaxPageLoader.defaults, opts);
     this.content  = $(this.opts.contentSel);
 
     // Initialize page loader only if there are pages to load
@@ -1614,7 +1615,7 @@ var PG8 = {};
 
             // Trigger a click when the bottom of the window is just below the contents of the last page
             // But not the absolute bottom; we'd like to be able to reach the footer if we can!
-            if ( scrollPosition > scrollLastPage + self.opts.scrollOffset && scrollPosition <= scrollLastPage + self.opts.scrollOffset + self.opts.infinOffset && scrollDiff >= 1 ) {
+            if ( scrollPosition > scrollLastPage + self.opts.scrollOffset && scrollPosition <= scrollLastPage + self.opts.scrollOffset + self.opts.infinOffset && scrollDiff >= self.opts.infinFooter ) {
               $(self.opts.nextSel).trigger('click');
             }
           }, self.opts.infinDelay)); // end $.data()
@@ -1731,10 +1732,10 @@ var PG8 = {};
 
 
 
-  $.fn.pageloader = function (opts){
+  $.fn.ajaxPageLoader = function (opts){
     return this.each(function(){
-      if (!$.data(this, 'PG8_loader')) {
-        $.data(this, 'PG8_loader', new PageLoader(opts));
+      if (!$.data(this, 'ajaxPageLoader')) {
+        $.data(this, 'ajaxPageLoader', new PageLoader(opts));
       }
     });
   };
@@ -1742,14 +1743,15 @@ var PG8 = {};
 
 
   // Extensible default settings
-  $.fn.pageloader.defaults = {
-    contentSel:    PG8Data.contentSel   // The content selector
-  , nextSel:       PG8Data.nextSel      // Selector for the "next" navigation link
-  , scrollDelay:   300                  // Smooth scrolling delay
-  , scrollOffset:  30                   // To account for margins and such
-  , pushDelay:     250                  // How long to wait on scroll before trying to update history
-  , infinDelay:    600                  // How long to wait before pulling new content automatically
-  , infinOffset:   300                  // Height of the area below the last page in which infinite scrolling will be triggered
+  $.fn.ajaxPageLoader.defaults = {
+    contentSel:    'main'               // The content selector; this varies from theme to theme
+  , nextSel:       '.nav-next'          // Selector for the "next" navigation link; this is also theme-dependent
+  , scrollDelay:   300                  // Smooth scrolling delay; use a larger value for a smoother scroll (s)
+  , scrollOffset:  30                   // Scroll offset from the top of the new page to account for margins (px)
+  , pushDelay:     250                  // How long to wait before attempting to update history state (s)
+  , infinDelay:    600                  // How long to wait before requesting new content automatically (s)
+  , infinOffset:   300                  // Height of the area below the last page in which infinite scrolling will be triggered (px)
+  , infinFooter:   1                    // Height from the bottom of the page from which infinite scrolling *won't* be triggered (px)
   , spinOpts: {                         // spin.js options; reference: https://fgnass.github.io/spin.js/
       lines:  25
     , length: 0
@@ -1760,13 +1762,16 @@ var PG8 = {};
     , top:    '15px'
     }
   };
-
-
-
-  // Instantiate the plugin
-  $(document.body).pageloader();
-
 }).apply(PG8, [jQuery, document, window]);
+
+// ==== WP AJAX PAGE LOADER ==== //
+
+// Invoke the AJAX page loader; this is in its own file as we only load this script where it will be useful
+;(function($){
+  $(function(){
+    $(document.body).ajaxPageLoader();
+  });
+}(jQuery));
 
 /*! svg4everybody v1.0.0 | github.com/jonathantneal/svg4everybody */
 (function (document, uses, requestAnimationFrame, CACHE, IE9TO11) {
@@ -1898,6 +1903,8 @@ var PG8 = {};
   };
 }(jQuery));
 
+// ==== NAVIGATION ==== //
+
 // Navigation.js adapted from _s; changed to toggled the entire site navigation element, not just the menu within it
 ;(function() {
 	var nav 			= document.getElementById('site-navigation'),
@@ -1936,6 +1943,8 @@ var PG8 = {};
 // Anything entered here will end up at the top of `p-core.js`
 ;(function($){
   $(function(){ // Shortcut to $(document).ready(handler);
+
+    // Iconize: an example
     //$('#archive-header').iconize('ion-search', 'Testing', 'description');
   });
 }(jQuery));

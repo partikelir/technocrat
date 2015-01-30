@@ -82,22 +82,22 @@ module.exports = {
 
   scripts: {
     bundles: { // Bundles are defined by a name and an array of chunks to concatenate; warning: it's up to you to manage dependencies!
-      core: ['core']
+      core: ['icons', 'core']
     , contact: ['contact']
-    , pf: ['pf', 'core']
-    , pf_prism: ['pf', 'prism', 'core']
-    , pg8: ['pg8', 'core']
-    , pg8_pf: ['pg8', 'pf', 'core']
-    , pg8_prism: ['pg8', 'prism', 'core']
-    , pg8_pf_prism: ['pg8', 'pf', 'prism', 'core']
-    , prism: ['prism', 'core']
+    , pf: ['pf', 'icons', 'core']
+    , pf_prism: ['pf', 'prism', 'icons', 'core']
+    , pg8: ['pg8', 'icons', 'core']
+    , pg8_pf: ['pg8', 'pf', 'icons', 'core']
+    , pg8_prism: ['pg8', 'prism', 'icons', 'core']
+    , pg8_pf_prism: ['pg8', 'pf', 'prism', 'icons', 'core']
+    , prism: ['prism', 'icons', 'core']
     }
-  , chunks: { // Chunks are arrays of globs matching src files that provide specific functionality
-      core: [bower+'svg4everybody/svg4everybody.js', src+'js/iconize.js', src+'js/navigation.js', src+'js/core.js']
+  , chunks: { // Chunks are arrays of globs matching source files that combine to provide specific functionality
+      core: [src+'js/navigation.js', src+'js/core.js']
     , contact: [bower+'jquery-validation/dist/jquery.validate.js', src+'js/contact-form.js']
-    , icons: [bower+'svg4everybody/svg4everybody.js', src+'js/iconize.js'] // @TODO: split icons scripts out of core
+    , icons: [bower+'svg4everybody/svg4everybody.js', src+'js/iconize.js']
     , pf: [bower+'picturefill/dist/picturefill.js']
-    , pg8: [bower+'html5-history-api/history.iegte8.js', bower+'spin.js/spin.js', bower+'spin.js/jquery.spin.js', bower+'pg8-ajax-page-loader/pg8-loader.js']
+    , pg8: [bower+'html5-history-api/history.iegte8.js', bower+'spin.js/spin.js', bower+'spin.js/jquery.spin.js', bower+'wp-ajax-page-loader/wp-ajax-page-loader.js', src+'js/page-loader.js']
     , prism: [ // Prism components are on their own line to make it easy to define a custom build to suit whatever code you use on your blog
         bower+'prism/components/prism-core.js'
       , bower+'prism/components/prism-markup.js'
@@ -112,7 +112,7 @@ module.exports = {
     }
   , dest: build+'js/' // Where the scripts end up
   , lint: {
-      src: [src+'js/**/*.js', '!'+src+'js/prism.js'] // Only lint theme-specific scripts (but not our custom build of Prism); for everything else you're on your own
+      src: [src+'js/**/*.js'] // Lint core scripts (for everything else we're relying on the original authors)
     }
   , minify: {
       src: [build+'js/**/*.js', '!'+build+'js/**/*.min.js'] // Avoid recursive min.min.min.js
@@ -134,16 +134,16 @@ module.exports = {
     , dest: dist
     }
   , autoprefixer: { browsers: ['> 3%', 'last 2 versions', 'ie 9', 'ios 6', 'android 4'] }
-    , rename: { suffix: '.min' }
-    , minify: { keepSpecialComments: 1 }
-    , rubySass: { // Don't forget to run `gem install sass`; Compass is not included by default
-        loadPath: bower // Adds the `bower_components` directory to the load path so you can @import directly
-      , precision: 8
-      , 'sourcemap=none': true // Not yet ready for prime time! Sass 3.4 has srcmaps on by default but this causes some problems from the Gulp toolchain
-    }
-    , sass: {
-        includePaths: [bower]
-      , precision: 8
+  , rename: { suffix: '.min' }
+  , minify: { keepSpecialComments: 1 }
+  , rubySass: { // Don't forget to run `gem install sass`; Compass is not included by default
+      loadPath: bower // Adds the `bower_components` directory to the load path so you can @import directly
+    , precision: 8
+    , 'sourcemap=none': true // Not yet ready for prime time! Sass 3.4 has srcmaps on by default but this causes some problems from the Gulp toolchain
+  }
+  , sass: { // For future reference: settings for Libsass, a promising project that hasn't reached feature parity with Ruby Sass just yet
+      includePaths: [bower]
+    , precision: 8
     }
   },
 
@@ -168,7 +168,7 @@ module.exports = {
 
   theme: {
     lang: {
-      src: src+'languages/**/*'
+      src: src+'languages/**/*' // Glob matching any language files you'd like to copy over
     , dest: build+'languages/'
     }
   , php: {
