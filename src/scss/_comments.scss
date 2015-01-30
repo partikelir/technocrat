@@ -97,8 +97,8 @@
   }
 }
 .comment-meta {
+  @extend %links-meta-no-border;
   @include font-size($s-text-smaller);
-  @include link-stylist($c-meta-link, $c-meta-link-v, $c-meta-link-h, $c-meta-link-a, $c-meta-link-f, $link-border: false);
   color: $c-meta;
 }
 

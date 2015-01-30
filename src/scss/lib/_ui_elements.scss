@@ -26,7 +26,7 @@
     color: lighten($c-text-lightest, 10);
   }
   &:focus {
-    outline: none; // Blue border is rather distracting
+    outline-width: 0; // Blue border is rather distracting; @TODO: some kind of indicator would be nice
   }
   &:disabled {
     opacity: .5; // Applies to `button` and `input` elements

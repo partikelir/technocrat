@@ -4,7 +4,7 @@
 ;(function() {
 	var nav 			= document.getElementById('site-navigation'),
 			menu 			= nav.getElementsByTagName('ul')[0],
-			button 		= document.getElementById('responsive-menu-toggle');
+			button 		= document.getElementById('menu-toggle');
 
 	// Early exit if we're missing anything essential
 	if (!nav || typeof button === 'undefined') {

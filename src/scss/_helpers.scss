@@ -100,3 +100,15 @@
 %button-container {
   @include button-container;
 }
+%links-default {
+  @include link-stylist;
+}
+%links-default-no-border {
+  @include link-stylist($link-border: false);
+}
+%links-meta {
+  @include link-stylist($c-meta-link, false, $c-meta-link-h, false, false);
+}
+%links-meta-no-border {
+  @include link-stylist($c-meta-link, false, $c-meta-link-h, false, false, $link-border: false);
+}

@@ -77,6 +77,7 @@
 
 .site-header {
   @include k-center-block($content-width);
+  position: relative; // For use with the skip link and menu toggle
 }
 .site-branding {
   @include rem("padding-bottom", $spacer/2);
@@ -132,6 +133,9 @@
 .site-content {
   @extend %clearfix-below;
   max-width: $main-width; // Keeps content contained regardless of whether sidebar appears
+  &:focus {
+    outline: none; // Prevent weird blue glow when using the skip link
+  }
   .full-width & {
     max-width: $content-width;
   }
@@ -149,6 +153,7 @@ main {
 
 // == SIDEBAR == //
 
+// See also: `_widgets.scss`
 .widget-area {
   max-width: $main-width;
   @include k-media-between($b-small, $b-large) {
@@ -165,8 +170,8 @@ main {
 // == FOOTER == //
 
 .site-footer {
+  @extend %links-meta-no-border;
   @include k-center-block($content-width);
-  @include link-stylist($c-footer-link, $c-footer-link-v, $c-footer-link-h, $c-footer-link-a, $c-footer-link-f, $link-border: false);
   @include rem("padding-bottom", $spacer);
   color: $c-footer;
 }

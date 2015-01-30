@@ -19,7 +19,6 @@
     "build"
   ],
   "devDependencies": {
-    "meyer-reset": "*",
     "normalize.css": "^3.0.2",
     "html5-history-api": "^4.1.15",
     "jquery-validation": "^1.13.1",

@@ -1,6 +1,9 @@
 // ==== NAVIGATION ==== //
 
 // General navigation
+.site-content nav {
+  @extend %links-default-no-border;
+}
 .page-links,
 .nav-comments,
 .nav-content,
@@ -8,7 +11,6 @@
 .nav-post {
   @extend %clearfix;
   @extend %spacer-below;
-  @include link-stylist($link-color: false);
 }
 .nav-above {
   @include rem("margin-bottom", $spacer);

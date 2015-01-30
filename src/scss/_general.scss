@@ -49,34 +49,25 @@ code,
 kbd,
 pre,
 samp,
-tt,
 var {
   @include font-style("mono");
 }
 
-// Links
+// Links; simple site-wide definitions
 a {
-  color: $c-link;
+  color: inherit;
   text-decoration: none;
-  transition: color .8s ease-out, text-decoration .6s ease-out;
-  &:visited {
-    color: $c-link-v;
-  }
+  transition: color .8s ease-out;
   &:hover {
-    color: $c-link-h;
-    transition: color .4s ease, text-decoration .2s ease;
+    transition: color .4s ease;
   }
   &:active {
-    color: $c-link-a;
     outline: 0;
   }
   &:focus {
-    color: $c-link-f;
-    outline: thin dotted; // From Twenty Twelve
+    outline: thin dotted;
   }
 }
-
-
 
 // Reset-like things with variables or WordPress-specific styling
 abbr {
@@ -95,7 +86,7 @@ address {
 }
 b,
 strong {
-  font-weight: $w-body-bold;
+  font-weight: $w-body-bold; // Potentially superfluous; normalize.css sets both to font-weight: bold;
 }
 cite,
 em,
@@ -123,19 +114,14 @@ hr { // @TODO: space out hrs; paragraph tags presently overlap margins
   height: 1px;
 }
 mark {
-  background: transparent;
-  color: $c-highlight;
+  background: transparent; // Reset normalize.css
+  color: $c-highlight; // Reset normalize.css
   text-decoration: none;
 }
-small {
-  // Set to font-size: 80% in Normalize.css, wiped out be Eric Meyer's reset, reset to 16px here
-  @include rem("font-size", $s-text-small+0px);
-  color: lighten($c-text-lightest, 10);
-  line-height: inherit;
-}
-sub,
-sup {
-  font-size: 75%;
+small { // Set to font-size: 80% in Normalize.css; reset to $s-text-small here
+  @include font-size($s-text-small);
+  color: lighten($c-text-lightest, 7);
+  display: inline-block; // This is non-standard but HTML5 now defines this element as "fine print"
 }
 
 
@@ -152,6 +138,11 @@ blockquote {
   border-left: 9px solid $c-divider;
   box-shadow: inset 0px -2px 7px black(.04);
   color: rgba($c-text, .75); // Transparent so that blockquotes can be nested
+  quotes: none; // From the Meyer Reset
+  &:before, &:after { // From the Meyer Reset
+    content: "";
+    content: none;
+  }
   p {
     &:last-child {
       margin: 0;
@@ -225,7 +216,7 @@ code {
   strong > & {
     @include k-highlight(rgba($c-body-darker, .33), $d-radius);
     color: $c-text-lighter;
-    font-size: 80%; // Hack for fixing oversized monospace fonts
+    font-size: 80%; // Hack for fixing over-sized monospace fonts
   }
 }
 a code {

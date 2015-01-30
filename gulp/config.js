@@ -93,7 +93,7 @@ module.exports = {
     , prism: ['prism', 'icons', 'core']
     }
   , chunks: { // Chunks are arrays of globs matching source files that combine to provide specific functionality
-      core: [src+'js/navigation.js', src+'js/core.js']
+      core: [src+'js/navigation.js', src+'js/skip-link-focus-fix.js', src+'js/core.js']
     , contact: [bower+'jquery-validation/dist/jquery.validate.js', src+'js/contact-form.js']
     , icons: [bower+'svg4everybody/svg4everybody.js', src+'js/iconize.js']
     , pf: [bower+'picturefill/dist/picturefill.js']

@@ -1,47 +1,42 @@
 // ==== WIDGETS ==== //
 
-// Widget area is also defined in `layout.scss`
-.widget-area {
-  li,
-  p,
-  .textwidget {
-    @include font-size($s-text-smaller);
-    @include font-style("widget-text");
-    @include link-stylist($link-color: false);
-    color: $c-text-lighter;
-    word-wrap: break-word;
+// Widgets :D see also `wrap-sidebar` and related classes in `_layout.scss`
+.widget {
+  @extend %links-default;
+  @extend %spacer-below;
+  @include font-size($s-text-smaller);
+  @include font-style("widget-text");
+  color: $c-text-lighter;
+  word-wrap: break-word;
+
+  // Titles
+  h2 {
+    @include font-size($s-header-smallest);
+    @include font-style("widget-title");
+    color: $c-text-dark;
+  }
+
+  // Lists
+  ul ul {
+    @include rem("margin-left", $spacer/2); // Half length indentation since we don't have that much space to play with
   }
   li {
     list-style: none;
   }
+
+  // Text
   p {
     @extend %spacer-below;
   }
-}
-.widget-title {
-  @include font-size($s-header-smallest);
-  @include font-style("widget-title");
-  color: $c-text-dark;
-}
-.widget {
-  @extend %spacer-below;
-  &:last-child {
-    margin-bottom: 0; // Eliminate spacer on the very last widget
-  }
-  ul ul {
-    @include rem("margin-left", $spacer/2); // Half length indentation since we don't have that much space to play with
-  }
+
+  // Images
   img {
     @include border-radius;
-    max-width: 100%; // Responsive images for widgets
+    max-width: 100%;
   }
-}
-.textwidget { // @TODO: test whether these styles are still used and/or need to be isolated under .textwidget
-  ul {
-    @extend %spacer-below;
-    list-style: disc outside;
-  }
-  li {
-    @include rem("margin-left", $spacer);
+
+  // Eliminate margin on the very last widget
+  &:last-child {
+    margin-bottom: 0;
   }
 }

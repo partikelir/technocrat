@@ -17,6 +17,7 @@
 
 // Header menu; applied to a ul element
 .menu-header {
+  @extend %links-default-no-border;
   @include font-size($s-menu-header);
   @include k-list-nested;
   border-bottom: $d-divider; // Border for the whole menu
@@ -76,8 +77,8 @@
 
 // Footer menu
 .menu-footer {
+  // Links aren't styled differently here as they match the values for .site-footer in this theme
   @include font-size($s-menu-footer);
-  @include link-stylist($c-menu-link, $c-menu-link, $c-menu-link-h, $c-menu-link, $c-menu-link, $link-border: false);
   @include rem("padding-bottom", $spacer/2);
   @include rem("padding-top", $spacer/2, 1);
   border-top: $d-divider;

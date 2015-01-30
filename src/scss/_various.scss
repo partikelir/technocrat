@@ -56,24 +56,34 @@
 
 
 
-// Screen reader text adapted from Twenty Twelve
-// @TODO: fix the bug (below) and update the theme for greater accessibility
-// @TODO: this approach creates unnecessary white space on the right side of the document and in the search form
-.screen-reader-text {
-  @extend %hide;
-  //clip: rect(1px, 1px, 1px, 1px);
-  //position: absolute !important;
-  .menu-header &:focus {
-    @include border-radius;
-    background: transparent;
-    border: 2px solid #333;
+// Screen reader text adapted from Twenty Twelve and _s
+%off-screen {
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  overflow: hidden;
+  position: absolute !important;
+  width: 1px;
+  &:focus {
     clip: auto !important;
-    color: black();
     display: block;
-    padding: 12px;
-    position: absolute;
-    top: 5px;
+    height: auto;
     left: 5px;
-    z-index: 100000;
+    top: 5px;
+    width: auto;
+    z-index: 100000; // Above WP toolbar
+  }
+}
+.screen-reader-text {
+  @extend %off-screen;
+  &:focus {
+    @include border-radius;
+    background-color: transparent;
+    border-radius: 3px;
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+    color: black();
+    font-weight: bold;
+    line-height: normal;
+    padding: $spacer/2;
+    text-decoration: none;
   }
 }

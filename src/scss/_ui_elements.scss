@@ -105,27 +105,38 @@ svg {
 
 
 
-// == RESPONSIVE MENU == //
+// == SITE INTERFACE == //
 
 // Site interface: the toolbar/menu at top right
 .site-interface {
   display: block;
-  @include k-absolute(right $spacer top $spacer);
-  @include k-media-below($b-small) {
-    @include rem("right", $spacer/2);
-  }
-  @include k-media-above($b-medium) {
-    @include rem("right", $spacer*1.5);
-  }
+  position: absolute;
+    right: 0;
+    top: 0;
 }
 
 // Menu toggle for mobile phones and small screens
-.responsive-menu-toggle {
+.menu-toggle {
   @include k-media-above($b-medium) {
     display: none;
   }
   &.toggled {
     @extend button:active;
+  }
+}
+
+// Skip link
+.skip-link {
+  a {
+    opacity: 0;
+    position: fixed;
+      right: 99999%;
+  }
+  a:focus {
+    opacity: 1;
+    outline-width: 1px;
+    position: static;
+    transition: opacity .3s;
   }
 }
 

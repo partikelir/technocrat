@@ -25,8 +25,8 @@
 .entry-content,
 .comment-content {
   @extend %clearfix-below;
+  @extend %links-default;
   @include font-style("entry-content");
-  @include link-stylist($link-color: false);
   word-wrap: break-word;
 
   // Paragraph spacing
@@ -158,9 +158,6 @@
 
       // These are all usually $s-text-small; kick it up a notch
       aside,
-      code,
-      pre,
-      small,
       table caption,
       .entry-caption,
       .footnotes,
@@ -169,12 +166,6 @@
       }
       td {
         @include font-size($s-text, 1);
-      }
-
-      // Restore the sub/superscript reset
-      sub,
-      sup {
-        font-size: 75%;
       }
     }
   }
@@ -191,8 +182,8 @@
   @extend %button-container;
 }
 .entry-meta-main {
+  @extend %links-meta;
   @include font-size($s-text-smaller);
-  @include link-stylist($c-meta-link, $c-meta-link-v, $c-meta-link-h, $c-meta-link-a, $c-meta-link-f);
   color: $c-meta;
 }
 
