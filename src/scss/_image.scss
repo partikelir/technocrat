@@ -27,10 +27,13 @@
 .entry-caption,
 .wp-caption-text {
   @extend %clearfix-below;
-  @include font-sizes($s-text-smaller, $s-text-small);
+  @include font-size(text-smaller);
   @include k-reverse-italics;
-  color: lighten($c-text-lightest, 10);
+  color: lighten( colour(text-lightest), 10);
   max-width: 100%;
+  .full-width & {
+    @include font-size(text-small);
+  }
 }
 
 
@@ -43,15 +46,15 @@ figure.wp-caption,
   @extend %spacer-below;
   overflow: auto; // Without this the floats won't float
   &.alignleft {
-    margin-right: percentage($spacer / $main-width);
+    margin-right: percentage( spacer() / $width-main );
     .full-width & {
-      margin-right: percentage($spacer / $content-width);
+      margin-right: percentage( spacer() / $width-content );
     }
   }
   &.alignright {
-    margin-left: percentage($spacer / $main-width);
+    margin-left: percentage( spacer() / $width-main );
     .full-width & {
-      margin-left: percentage($spacer / $content-width);
+      margin-left: percentage( spacer() / $width-content );
     }
   }
   &.aligncenter {
@@ -77,9 +80,9 @@ figure.wp-caption,
   @extend %clearfix;
 
   // Nicer layout for successive galleries
-  @if $spacer != $d-image-spacer {
+  @if spacer() != $spacer-image {
     & + & {
-      @include rem("margin-top", -($spacer - $d-image-spacer) ); // Assumes $spacer > $d-image-spacer
+      @include rem( margin-top, - ( spacer() - $spacer-image ) ); // Assumes spacer() > $spacer-image
     }
   }
 }
@@ -88,10 +91,10 @@ figure.wp-caption,
 .gallery-item,
 .gallery figure.wp-caption {
   float: left;
-  margin: 0 percentage($d-image-spacer / $main-width) percentage($d-image-spacer / $main-width) 0;
+  margin: 0 percentage( $spacer-image / $width-main ) percentage( $spacer-image / $width-main ) 0;
   width: 100%; // Force images to fill the available space
   .full-width & {
-    margin: 0 percentage($d-image-spacer / $content-width) percentage($d-image-spacer / $content-width) 0;
+    margin: 0 percentage( $spacer-image / $width-content ) percentage( $spacer-image / $width-content ) 0;
   }
 }
 
@@ -100,7 +103,7 @@ figure.wp-caption,
   .gallery-columns-#{$i} {
     .gallery-item,
     figure.wp-caption {
-      max-width: percentage(1 / ($i) ) - percentage( ( ($d-image-spacer * ($i - 1) ) / $main-width) / $i);
+      max-width: percentage( 1 / ($i) ) - percentage( ( ( $spacer-image * ($i - 1) ) / $width-main ) / $i );
       &:nth-of-type(#{$i}n) {
         margin-right: 0;
       }
@@ -108,14 +111,14 @@ figure.wp-caption,
         clear: left;
       }
       .full-width & {
-        max-width: percentage(1 / ($i) ) - percentage( ( ($d-image-spacer * ($i - 1) ) / $content-width) / $i);
+        max-width: percentage( 1 / ($i) ) - percentage( ( ( $spacer-image * ($i - 1) ) / $width-content ) / $i );
       }
     }
   }
 }
 
 // Don't display captions on small thumbnails and try to be halfway smart about it
-@if ($m-gallery-shortcode) {
+@if module(gallery-shortcode) {
   .gallery-columns-4,
   .gallery-columns-5,
   .gallery-columns-6 {
@@ -130,59 +133,59 @@ figure.wp-caption,
 // == OVERLAYS == //
 
 // This class is specific to the output of the WordPress `[gallery]` shortcode; the classes can't change without a bunch of extra code to filter the output
-@if ($m-gallery-shortcode) {
+@if module(gallery-shortcode) {
   .gallery-item {
-    @include image-overlay(".gallery-caption", "caption");
+    @include image-overlay(".gallery-caption", caption);
   }
 }
 
 // These classes are specific to the Views module and Ubik Related
-@if ($m-views and $m-ubik-related) {
+@if module(views) and module(ubik-related) {
   .gallery-view,
   .related-posts {
     figure.wp-caption {
-      @include image-overlay(".wp-caption-text", "title");
+      @include image-overlay(".wp-caption-text", title);
     }
   }
   .related-posts {
     figure.wp-caption figcaption.wp-caption-text { // Specificity required to trump the default setting
-      @include k-media-below($b-medium) {
-        @include rem("font-size", $s-text-small+0px);
+      @include k-media-below( break(medium) ) {
+        @include rem( font-size, size(text-small) + 0px );
       }
     }
   }
   .full-width.gallery-view {
     figure.wp-caption figcaption {
-      @include k-media-above($b-medium) {
-        @include rem("font-size", $s-text-bigger+0px); // Line-height is managed independently
+      @include k-media-above( break(medium) ) {
+        @include rem( font-size, size(text-bigger) + 0px ); // Line-height is managed independently
         text-shadow: 1px 1px 5px black(.7);
       }
     }
   }
-} @elseif ($m-views) {
+} @elseif module(views) {
   .gallery-view {
     figure.wp-caption {
-      @include image-overlay(".wp-caption-text", "title");
+      @include image-overlay(".wp-caption-text", title);
     }
   }
   .full-width.gallery-view {
     figure.wp-caption figcaption {
-      @include k-media-above($b-medium) {
-        @include rem("font-size", $s-text-bigger+0px); // Line-height is managed independently
+      @include k-media-above( break(medium) ) {
+        @include rem( font-size, size(text-bigger) + 0px ); // Line-height is managed independently
         text-shadow: 1px 1px 5px black(.7);
       }
     }
   }
-} @elseif ($m-ubik-related) {
+} @elseif module(ubik-related) {
   .related-posts {
     figure.wp-caption {
-      @include image-overlay(".wp-caption-text", "title");
+      @include image-overlay(".wp-caption-text", title);
     }
   }
   .related-posts {
     figure.wp-caption figcaption.wp-caption-text { // Specificity required to trump the default setting
-      @include k-media-below($b-medium) {
-        @include rem("font-size", $s-text-small+0px);
+      @include k-media-below( break(medium) ) {
+        @include rem( font-size, size(text-small) + 0px );
       }
     }
   }
@@ -193,8 +196,8 @@ figure.wp-caption,
 // == IMAGE METADATA == //
 
 // Styling specific to the Image Metadata module for Pendrell
-@if ($m-image-metadata) {
+@if module(image-metadata) {
   .image-description {
-    @include font-size($s-text-small);
+    @include font-size(text-small);
   }
 }

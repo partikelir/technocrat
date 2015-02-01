@@ -1,0 +1,60 @@
+// ==== PRISM ==== //
+
+// Prism syntax highlighting by Lea Verou; based on http://dabblet.com
+// This is a stripped down version of the default Prism theme
+
+@mixin prism {
+  .token {
+    &.comment,
+    &.prolog,
+    &.doctype,
+    &.cdata {
+      color: colour(p-comment);
+    }
+    &.punctuation {
+      color: colour(p-punctuation);
+    }
+    &.property,
+    &.tag,
+    &.boolean,
+    &.number,
+    &.constant,
+    &.symbol {
+      color: colour(p-tag);
+    }
+    &.selector,
+    &.attr-name,
+    &.string,
+    &.builtin {
+      color: colour(p-selector);
+    }
+    &.atrule,
+    &.attr-value,
+    &.keyword {
+      color: colour(p-keyword);
+    }
+    &.regex,
+    &.important {
+      color: colour(p-regex);
+    }
+    &.important {
+      font-weight: $w-mono-bold;
+    }
+    &.entity {
+      cursor: help;
+    }
+  }
+
+  .token.operator,
+  .token.entity,
+  .token.url,
+  .language-css .token.string,
+  .style .token.string,
+  .token.variable {
+    color: colour(p-variable);
+  }
+
+  .namespace {
+    opacity: .7;
+  }
+}

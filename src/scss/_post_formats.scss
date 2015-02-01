@@ -17,7 +17,7 @@ body:not(.list-view) { // There's no way to isolate this, alas
 .entry-link { // Unique class; no need to nest it within article.format-link {}
   @extend %links-meta;
   @extend %spacer-below;
-  @include font-size($s-text-small);
+  @include font-size(text-small);
   @include k-text-truncate; // Stops long URLs from overflowing the article width
   &:before {
     content: "\00a0\27A5\00a0";
@@ -31,11 +31,11 @@ body:not(.list-view) {
   article.format-quote {
     blockquote {
       @include border-radius(6px);
-      @include font-size($s-text-bigger);
+      @include font-size(text-bigger);
       border: none;
-      box-shadow: $d-inset-box;
-      color: $c-text;
-      @include rem("padding", $spacer/2 $spacer);
+      box-shadow: inset 3px 3px 7px colour(shadow);
+      color: colour(text);
+      @include rem( padding, spacer(1/2) spacer() );
       footer {
         @extend %text-small;
       }
@@ -49,8 +49,8 @@ body:not(.list-view) {
 body:not(.list-view) {
   article.format-status {
     .entry-content {
-      @include font-size($s-text-bigger);
-      @include font-style("status");
+      @include font-size(text-bigger);
+      @include font-style(status);
     }
   }
 }

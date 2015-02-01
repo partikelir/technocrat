@@ -2,14 +2,14 @@
 
 // General comments area
 .comments-area { // See also .entry-after
-  max-width: $main-width; // Required to limit the width of the comments area when there is no sidebar displayed
+  max-width:  $width-main ; // Required to limit the width of the comments area when there is no sidebar displayed
   ol {
     list-style: none; // Reset list style from `_general.scss`
   }
 }
 .comments-title {
   @extend %spacer-below;
-  @include font-size($s-header);
+  @include font-size(head);
 }
 
 
@@ -18,15 +18,15 @@
 
 .comment-list {
   .children { // Threaded comments
-    @include k-media-above($b-medium) {
-      @include rem("margin-left", $spacer);
+    @include k-media-above( break(medium) ) {
+      @include rem( margin-left, spacer() );
     }
   }
 }
 
 // Pingbacks/trackbacks
 .comment-pingback {
-  @include font-size($s-header-smaller);
+  @include font-size(head-smaller);
   @include k-ghost;
 }
 
@@ -37,31 +37,31 @@
 
 // Specific to individual comments
 .comment article { // Needs to be written this way to override the specificity of the default `.site-content article` declaration
-  @include rem("margin", $spacer/-2 $spacer/-2 $spacer*2.5 $spacer/-2);
+  @include rem( margin, spacer(-1/2) spacer(-1/2) spacer(2.5) spacer(-1/2) );
 }
 .comment-article {
-  @include rem("padding", $spacer/2);
+  @include rem( padding, spacer(1/2) );
   .bypostauthor & { // Specific to the post author's comments
     @include border-radius(6px);
-    background: $c-body-dark;
-    box-shadow: $d-inset-box;
+    background:  colour(body-dark);
+    box-shadow: inset 3px 3px 7px colour(shadow);
   }
 }
 .comment-author { // Comment author's byline
   @extend %clearfix-below;
-  @include rem("margin-bottom", $spacer/2);
+  @include rem( margin-bottom, spacer(1/2) );
   h1 {
-    @include font-size($s-text-big);
-    @include font-style("comment-author");
+    @include font-size(text-big);
+    @include font-style(comment-author);
   }
 }
 .comment-avatar {
-  @include rem("margin-right", $spacer/2);
+  @include rem( margin-right, spacer(1/2) );
   display: inline-block;
   float: left;
   line-height: 0; // Keeps the container snug around the avatar image
   img.avatar {
-    @include border-radius($spacer/4);
+    @include border-radius( spacer(1/4) );
   }
 }
 .comment-content {
@@ -71,35 +71,35 @@
   }
 
   // Make comments a little smaller
-  @include font-size($s-text-small);
+  @include font-size(text-small);
   h1 {
-    @include font-size($s-header-big);
+    @include font-size(head-big);
   }
   h2 {
-    @include font-size($s-header);
+    @include font-size(head);
   }
   h3 {
-    @include font-size($s-header-small);
+    @include font-size(head-small);
   }
   h4,
   h5,
   h6 {
-    @include font-size($s-header-smallest);
+    @include font-size(head-smallest);
   }
   blockquote {
-    @include font-size($s-text-smaller);
+    @include font-size(text-smaller);
     footer {
-      @include font-size($s-text-smallest);
+      @include font-size(text-smallest);
     }
   }
   pre {
-    @include font-size($s-text-smaller);
+    @include font-size(text-smaller);
   }
 }
 .comment-meta {
   @extend %links-meta-no-border;
-  @include font-size($s-text-smaller);
-  color: $c-meta;
+  @include font-size(text-smaller);
+  color:  colour(meta);
 }
 
 
@@ -120,10 +120,10 @@
 // Formerly .form-allowed-tags; this is
 .comment-notes-after {
   @extend %spacer-below;
-  @include font-size($s-text-smaller);
-  color: $c-text-lighter;
+  @include font-size(text-smaller);
+  color:  colour(text-lighter);
   code {
-    @include font-size($s-text-smallest);
+    @include font-size(text-smallest);
     @include k-highlight-reset;
     display: inline;
   }

@@ -1,0 +1,117 @@
+// ==== COLOURS ==== //
+
+// Custom colours added to the standard library
+$k-colours: map-merge( $k-colours, (
+  norse-blue:     #5cb6cc,
+  suomi-blue:     #559dd1,
+  steel-sky:      #444547,
+  jove:           #24221E
+) );
+
+// A few colour shortcuts (since we can't use the colour() function within the map)
+$c-text:          grey(84);
+$c-body-bg:       white();
+$c-link:          k-colour(norse-blue);
+$c-highlight:     k-colour(burnt-sienna);
+$c-code:          k-colour(iron);
+
+// General
+$_colours: (
+  body-bg:        $c-body-bg
+, site-title:     grey(16)
+, site-desc:      grey(156)
+, highlight:      $c-highlight
+, interface:      grey(186)
+
+  // Text
+, text:           $c-text
+, text-darkest:   darken( $c-text, 23 )
+, text-darker:    darken( $c-text, 13 )
+, text-dark:      darken( $c-text, 7 )
+, text-light:     lighten( $c-text, 9 )
+, text-lighter:   lighten( $c-text, 19 )
+, text-lightest:  lighten( $c-text, 27 )
+
+  // Backgrounds
+, body-dark:      darken( $c-body-bg, 3 )
+, body-darker:    darken( $c-body-bg, 13 )
+, body-darkest:   darken( $c-body-bg, 27 )
+
+  // Links
+, link:           $c-link
+, link-v:         $c-link
+, link-h:         saturate( lighten( $c-link, 17 ), 7 )
+, link-a:         saturate( lighten( $c-link, 13 ), 13 )
+, link-f:         saturate( lighten( $c-link, 17 ), 7 )
+
+  // Menus
+, menu-link:      lighten( $c-text, 19 )
+, menu-link-h:    $c-highlight
+, menu-current:   lighten( $c-text, 33 )
+
+  // Submenus
+, sub:            lighten( $c-text, 17 )
+, sub-h:          white()
+, sub-bg:         darken( $c-body-bg, 13 )
+
+  // Meta
+, meta:           lighten( $c-text, 37 )
+, meta-link:      grey(84)
+, meta-link-v:    grey(84)
+, meta-link-h:    $c-highlight
+, meta-link-a:    grey(84)
+, meta-link-f:    grey(84)
+
+  // Footer
+, footer:         lighten( $c-text, 37 )
+, footer-link:    grey(84)
+, footer-link-v:  grey(84)
+, footer-link-h:  $c-highlight
+, footer-link-a:  grey(84)
+, footer-link-f:  grey(84)
+
+  // Forms
+, alert:          k-colour(milano-red)
+, required:       k-colour(pueblo)
+, success:        k-colour(atlantis)
+
+  // Code blocks
+, code-box:       $c-code
+, code-box-bg:    rgba( k-colour(shark), .9 )
+
+  // Various
+, divider:        rgba( $c-text, .09 ) // For use with <hr> etc.
+, shadow:         black(.07)
+, highlight-bg:   k-colour(lemon-chiffon)
+
+  // Prism (optional)
+, p-text:         $c-code
+, p-comment:      darken( $c-code, 17 )
+, p-punctuation:  darken( $c-code, 7 )
+, p-tag:          lighten( $c-code, 27 )
+, p-selector:     adjust-hue( $c-highlight, 60 )
+, p-variable:     lighten( $c-highlight, 7 )
+, p-keyword:      adjust-hue( $c-highlight, 90 )
+, p-regex:        adjust-hue( $c-highlight, 180 )
+);
+
+
+
+// == DESIGN PATTERNS == //
+
+// @TODO: clean this section up
+
+// Gradients
+$d-gradient-1:    darken( colour(body-bg), 4 );
+$d-gradient-2:    darken( colour(body-bg), 10 );
+
+// Interface border for buttons and submenus
+$d-interface:     1px solid colour(interface);
+
+// Mouseover border bottom
+$d-mouseover:     1px dotted rgba( colour(text), .4 );
+
+// Border radius default
+$d-radius:        3px;
+
+

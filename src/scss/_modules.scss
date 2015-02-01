@@ -2,7 +2,7 @@
 
 // == LINKS == //
 
-@if ($m-ubik-links) {
+@if module(ubik-links) {
   .page-template-links {
     .site-content {
       .search-form {
@@ -13,10 +13,10 @@
       }
     }
     .entry-title {
-      @include font-size($s-header);
+      @include font-size(head);
     }
     .entry-content {
-      @include font-size($s-text-small);
+      @include font-size(text-small);
     }
   }
 }
@@ -24,7 +24,7 @@
 
 // == PLACES == //
 
-@if ($m-ubik-places) {
+@if module(ubik-places) {
   .place-list {
     @extend %spacer-below;
   }
@@ -32,9 +32,17 @@
 
 
 
+// == PRISM == //
+
+@if module(prism) {
+  @include prism;
+}
+
+
+
 // == RECORDPRESS == //
 
-@if ($m-ubik-recordpress) {
+@if module(ubik-recordpress) {
   ul.discography-thumbnails {
     list-style: none;
     li {
@@ -48,7 +56,7 @@
 
 // == RELATED == //
 
-@if ($m-ubik-related) {
+@if module(ubik-related) {
   .related-posts {
     h3 {
       @extend %spacer-below; // Required to space out the title from the images below
@@ -60,10 +68,10 @@
 
 // == SERIES == //
 
-@if ($m-ubik-series) {
+@if module(ubik-series) {
   .series {
     ol {
-      @include font-size($s-text-small);
+      @include font-size(text-small);
     }
   }
 }

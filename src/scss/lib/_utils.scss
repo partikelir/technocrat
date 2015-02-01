@@ -1,49 +1,47 @@
 // ==== UTILS ==== //
 
-// Rem generator via Twenty Twelve; specify property, pixel values, and optional offset to account for borders and such
-@mixin rem($property, $px-values, $offset: 0) {
+// Margins and positioning helper function
+@function spacer($val: 1) {
+  @return $base-line * $val + 0px;
+}
 
-  // Convert the baseline into rems
-  $baseline-rem: $base+0px / 1rem;
+// Configuration object manipulation; adapted from: http://codepen.io/AdamBlum/blog/config-objects-with-sass-maps
+@function config($map, $key) {
+  @return unquote(map-get($map, $key));
+}
+@function metadata($key) {
+  @return config($_metadata, $key);
+}
+@function module($key) {
+  @return config($_modules, $key);
+}
+@function break($key) {
+  @return config($_breaks, $key);
+}
+@function size($key) {
+  @return config($_sizes, $key);
+}
+@function colour($key) {
+  @return config($_colours, $key);
+}
 
-  // Only print pixels when legacy browsers are supported
-  @if ($legacy) {
-    // Subtract the offset
-    @if type-of($px-values) == "number" {
-      $px-values: $px-values - $offset;
-    }
-
-    // Print the first line in pixel values
-    #{$property}: $px-values;
-  }
-
-  // If there is only one (numeric) value, return the property/value line for it in rems
-  @if type-of($px-values) == "number" {
-    #{$property}: $px-values / $baseline-rem;
-  }
-
-  // Create an empty list that we can dump values into
-  @else {
-    $rem-values: unquote("");
-    @each $value in $px-values {
-
-      // Return 0 when the value is either 0 or 0px
-      @if unit($value) == px {
-        @if $value == 0px {
-          $value: 0;
-        }
-      }
-      @if $value == 0 {
-        $rem-values: append($rem-values, $value);
-      }
-
-      // Return an actual rem value
-      @else {
-        $rem-values: append($rem-values, $value / $baseline-rem);
-      }
-    }
-
-    // Return the property and its list of converted values in rems
-    #{$property}: $rem-values;
-  }
+// The following mixins are not namespaced as they are designed for use in a single project
+// Apart from providing more user-friendly aliases for Kipple mixins this also allows project-specific defaults to be easily set
+@mixin border-radius($radius: $d-radius) {
+  @include k-border-radius($radius);
+}
+@mixin gradient-horizontal($begin: $d-gradient-1, $end: $d-gradient-2) {
+  @include k-gradient-horizontal($begin, $end);
+}
+@mixin gradient-vertical($begin: $d-gradient-1, $end: $d-gradient-2) {
+  @include k-gradient-vertical($begin, $end);
+}
+@mixin triangle(
+  $color: inherit
+, $direction: top
+, $size: 6px
+, $position: absolute
+, $offset: left 0
+) {
+  @include k-triangle($color, $direction, $size, $position, $offset);
 }

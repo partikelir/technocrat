@@ -1,0 +1,111 @@
+// ==== UI ELEMENTS ==== //
+
+// Button styling
+@mixin button {
+  @include border-radius;
+  @include font-size(text-smaller, 4);
+  @include font-style(button);
+  @include gradient-vertical( $d-gradient-1, $d-gradient-2 );
+  @include letterpress;
+  @include rem( padding, 0 spacer(1/4) );
+  border: $d-interface;
+  box-shadow: 0 1px 2px rgba(64, 64, 64, .1);
+  color: colour(text);
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  vertical-align: middle;
+  &:hover {
+    @include gradient-vertical( lighten( $d-gradient-1, 3 ), lighten( $d-gradient-2, 1 ) );
+    color: colour(text-lighter);
+  }
+  &:active {
+    @include gradient-vertical( darken( $d-gradient-1, 7 ), lighten( $d-gradient-2, 1 ) );
+    border-color: 1px solid darken( colour(body-bg), 8 );
+    box-shadow: inset 0 2px 3px 0 #c6c6c6, 0 1px 2px rgba(64, 64, 64, .1);
+    color: lighten( colour( text-lightest), 10 );
+  }
+  &:focus {
+    outline-width: 0; // Blue border is rather distracting; @TODO: some kind of indicator would be nice
+  }
+  &:disabled {
+    opacity: .5; // Applies to `button` and `input` elements
+  }
+}
+
+// Button container
+@mixin button-container($float: right, $margin: 8px) {
+  @include rem( margin-left, spacer(1/2) - $margin );
+  float: unquote($float);
+  height: spacer();
+  > * {
+    float: unquote( k-opposite($float) );
+    @include rem( margin-left, $margin );
+  }
+}
+
+// Dropdown menu; for use with the main site navigation menu
+@mixin dropdown-menu($wordpress-menu: true) {
+  @include k-dropdown(
+    $dropdown-background: colour(sub-bg) linear-gradient( white(.5), white(0) ) repeat-x
+  , $dropdown-border-color: colour(interface)
+  , $dropdown-border-radius: $d-radius
+  , $dropdown-border-size: 1px
+  , $dropdown-shadow-inside: 0 -2px 3px rgba(64, 64, 64, .08) inset
+  , $dropdown-shadow-outside: 1px 1px 4px black(.08)
+  );
+  @include font-size(sub);
+  li {
+    a {
+      color: colour(sub);
+      &:visited {
+        color: colour(sub);
+      }
+      &:hover {
+        background: darken( colour(sub-bg), 13 );
+        box-shadow: 0 -2px 4px black(.06) inset;
+        color: colour(sub-h);
+      }
+      &:active,
+      &:focus {
+        color: colour(sub-h);
+      }
+    }
+  }
+  @if $wordpress-menu {
+    .current-menu-item,
+    .current-menu-ancestor,
+    .current_page_item,
+    .current_page_ancestor {
+      > a {
+        background: darken( colour(sub-bg), 3 );
+        color: lighten( colour(sub), 23 );
+        &:visited {
+          color: lighten( colour(sub), 23 );
+        }
+        &:hover,
+        &:active,
+        &:focus {
+          color: lighten( colour(sub-h), 13 );
+        }
+      }
+    }
+  }
+}
+
+// Text input; for use with forms, textarea, etc.
+@mixin text-input($shadow: colour(shadow), $font-size: text-smaller) {
+  @include border-radius;
+  @include font-size( $font-size, 8 );
+  @include font-style(input);
+  @include letterpress;
+  @include rem( padding, 3px );
+  background: darken( colour(body-bg), 3 );
+  border: 1px solid colour(divider);
+  box-shadow: inset 2px 2px 4px $shadow;
+  color: lighten( colour(text), 23 );
+  &:focus {
+    color: colour(text);
+    background-color: darken( colour(body-bg), 7 );
+  }
+}

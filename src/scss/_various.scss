@@ -42,7 +42,7 @@
     list-style: none;
   }
   li {
-    @include k-hanging-indent($spacer);
+    @include k-hanging-indent( spacer() );
     margin: 0;
   }
 }
@@ -58,7 +58,7 @@
 
 // Screen reader text adapted from Twenty Twelve and _s
 %off-screen {
-  clip: rect(1px, 1px, 1px, 1px);
+  clip: rect( 1px, 1px, 1px, 1px );
   height: 1px;
   overflow: hidden;
   position: absolute !important;
@@ -83,7 +83,7 @@
     color: black();
     font-weight: bold;
     line-height: normal;
-    padding: $spacer/2;
+    padding: spacer(1/2);
     text-decoration: none;
   }
 }

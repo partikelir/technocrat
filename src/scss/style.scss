@@ -1,23 +1,26 @@
+// Load dependencies, library files, and configuration; nothing in this import chain should declare any styling
+@import "lib/loader";
+
 /*!
-Theme Name: Pendrell
-Theme URI: https://github.com/synapticism/pendrell
-GitHub Theme URI: https://github.com/synapticism/pendrell
-Author: Alexander Synaptic
-Author URI: http://www.alexandersynaptic.com
-Description: A minimal yet fully-featured WordPress theme for content-rich blogs.
-Version: 0.18.0
-License: GNU General Public Licence 2.0
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Tags: light, gray, white, one-column, two-columns, right-sidebar, fixed-layout, responsive-layout, custom-menu, featured-images, full-width-template, microformats, post-formats, theme-options, translation-ready
-Text Domain: pendrell
-Domain Path: /languages/
+Theme Name: #{metadata(theme-name)}
+Theme URI: #{metadata(theme-uri)}
+Author: #{metadata(theme-author)}
+Author URI: #{metadata(theme-author-uri)}
+Description: #{metadata(theme-description)}
+Version: #{metadata(theme-version)}
+License: #{metadata(theme-license)}
+License URI: #{metadata(theme-license-uri)}
+Tags: #{metadata(theme-tags)}
+Text Domain: #{metadata(theme-text-domain)}
+Domain Path: #{metadata(theme-text-domain-path)}
 */
 
 // These stylesheet partials are authored without regard for vendor prefixes; be sure to run the output through an autoprefixer e.g. https://github.com/ai/autoprefixer
-
-@import "lib/loader";     // Configuration, mixins, reset, and helper classes
+@import "reset";          // Reset (an abridged version)
+@import "normalize";      // Normalize
+@import "helpers";        // Helpers (silent selectors)
 @import "general";        // Basic elements for the most part
-@import "ui_elements";    // User interface elements
+@import "interface";      // User interface elements
 @import "navigation";     // Navigation elements
 @import "menu";           // Menus
 @import "layout";         // Layout of the main content areas
@@ -34,9 +37,8 @@ Domain Path: /languages/
 // == MODULES == //
 
 @import "post_formats";   // Post formats: aside, link, status, etc.
-@import "ubik";           // Ubik adapter
+@import "modules";        // Optional modules
 @import "views";          // Views module
-@import "prism";          // Prism syntax highlighting
 
 
 

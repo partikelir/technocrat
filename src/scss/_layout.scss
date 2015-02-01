@@ -8,41 +8,41 @@
 // A general wrapper for various site elements
 %wrap {
   box-sizing: border-box; // Makes life a little easier
-  @include k-media-below($b-small) {
-    @include rem("padding-left", $spacer/2);
-    @include rem("padding-right", $spacer/2);
+  @include k-media-below( break(small) ) {
+    @include rem( padding-left, spacer(1/2) );
+    @include rem( padding-right, spacer(1/2) );
   }
-  @include k-media-between($b-small, $b-medium) {
-    @include rem("padding-left", $spacer);
-    @include rem("padding-right", $spacer);
+  @include k-media-between( break(small), break(medium) ) {
+    @include rem( padding-left, spacer() );
+    @include rem( padding-right, spacer() );
   }
-  @include k-media-above($b-medium) {
-    @include rem("padding-left", $spacer*1.5);
-    @include rem("padding-right", $spacer*1.5);
+  @include k-media-above( break(medium) ) {
+    @include rem( padding-left, spacer(1.5) );
+    @include rem( padding-right, spacer(1.5) );
   }
 }
 .wrap-header {
   @extend %wrap;
-  @include rem("padding-top", $spacer);
+  @include rem( padding-top, spacer() );
   position: relative; // Contains #site-interface, which is absolutely positioned
 }
 .wrap-main { // Wrapper around content and sidebar
   @extend %clearfix;
-  @include k-media-above($b-large) {
-    @include k-center-block($content-width);
-    @include rem("padding-left", $spacer*1.5);
-    @include rem("padding-right", $spacer*1.5);
+  @include k-media-above( break(large) ) {
+    @include k-center-block( $width-content );
+    @include rem( padding-left, spacer(1.5) );
+    @include rem( padding-right, spacer(1.5) );
   }
 }
 .wrap-content {
   @extend %wrap;
-  @include rem("padding-top", $spacer);
-  @include rem("padding-bottom", $spacer);
-  @include k-media-above($b-large) {
-    @include rem("padding-right", $spacer);
+  @include rem( padding-top, spacer() );
+  @include rem( padding-bottom, spacer() );
+  @include k-media-above( break(large) ) {
+    @include rem( padding-right, spacer() );
     float: left;
     padding-left: 0;
-    width: percentage( ( $main-width + $spacer ) / $content-width );
+    width: percentage( ( $width-main + spacer() ) / $width-content );
     .full-width & {
       float: none;
       padding-right: 0;
@@ -52,13 +52,13 @@
 }
 .wrap-sidebar {
   @extend %wrap;
-  @include rem("padding-top", $spacer);
-  @include rem("padding-bottom", $spacer);
-  @include k-media-above($b-large) {
-    @include rem("padding-left", $spacer);
+  @include rem( padding-top, spacer() );
+  @include rem( padding-bottom, spacer() );
+  @include k-media-above( break(large) ) {
+    @include rem( padding-left, spacer() );
     float: right;
     padding-right: 0;
-    width: percentage( 1 - ( ( $main-width + $spacer ) / $content-width ) );
+    width: percentage( 1 - ( ( $width-main + spacer() ) / $width-content ) );
     .full-width & {
       float: none;
       padding-left: 0;
@@ -76,11 +76,11 @@
 // == HEADER == //
 
 .site-header {
-  @include k-center-block($content-width);
+  @include k-center-block( $width-content );
   position: relative; // For use with the skip link and menu toggle
 }
 .site-branding {
-  @include rem("padding-bottom", $spacer/2);
+  @include rem( padding-bottom, spacer(1/2) );
   &:hover .site-description { // Show site description on hover
     opacity: 1;
     transition: opacity .5s ease;
@@ -88,36 +88,36 @@
 }
 .site-title {
   @extend %clearfix-below;
-  @include font-size($s-header);
-  @include font-style("site-title");
-  @include k-media-above($b-medium) {
-    @include font-size($s-header-biggest);
+  @include font-size(head);
+  @include font-style(site-title);
+  @include k-media-above( break(medium) ) {
+    @include font-size(head-biggest);
   }
   a {
-    color: $c-site-title;
+    color: colour(site-title);
     display: inline-block;
     text-decoration: none;
     &:hover {
-      color: $c-link-h;
+      color: colour(link-h);
     }
   }
 }
 .site-description {
   @extend %clearfix-below;
-  @include font-size($s-text-smaller);
-  @include font-style("site-description");
-  color: $c-site-desc;
+  @include font-size(text-smaller);
+  @include font-style(site-description);
+  color: colour(site-desc);
   opacity: 0;
   transition: opacity .8s ease-out;
   @extend %hide-below-medium; // Hide the site description on smaller screens
 }
 .site-navigation {
-  @include k-media-below($b-medium) {
+  @include k-media-below( break(medium) ) {
     display: none;
   }
   .search-form {
-    @include rem("margin-bottom", $spacer/2);
-    @include k-media-above($b-medium) {
+    @include rem( margin-bottom, spacer(1/2) );
+    @include k-media-above( break(medium) ) {
       display: none;
     }
   }
@@ -132,12 +132,12 @@
 
 .site-content {
   @extend %clearfix-below;
-  max-width: $main-width; // Keeps content contained regardless of whether sidebar appears
+  max-width: $width-main; // Keeps content contained regardless of whether sidebar appears
   &:focus {
     outline: none; // Prevent weird blue glow when using the skip link
   }
   .full-width & {
-    max-width: $content-width;
+    max-width: $width-content;
   }
 
   // Individual articles within the content area
@@ -155,10 +155,10 @@ main {
 
 // See also: `_widgets.scss`
 .widget-area {
-  max-width: $main-width;
-  @include k-media-between($b-small, $b-large) {
+  max-width: $width-main;
+  @include k-media-between( break(small), break(large) ) {
     column-count: 2;
-    @include rem("column-gap", $spacer*2);
+    @include rem( column-gap, spacer(2) );
     .widget {
       break-inside: avoid;
     }
@@ -171,13 +171,13 @@ main {
 
 .site-footer {
   @extend %links-meta-no-border;
-  @include k-center-block($content-width);
-  @include rem("padding-bottom", $spacer);
-  color: $c-footer;
+  @include k-center-block( $width-content );
+  @include rem( padding-bottom, spacer() );
+  color: colour(footer);
 }
 .site-footer-buttons {
   @extend %button-container;
-  @include k-media-above($b-medium) {
+  @include k-media-above( break(medium) ) {
     @include k-hide-visually;
   }
 }

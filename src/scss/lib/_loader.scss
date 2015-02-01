@@ -1,21 +1,20 @@
 // ==== LOADER ==== //
 
+// Dependencies; presumes that `bower_components` is in the path
+@import "kipple/kipple";
+@import "sass-font-stacker/font_stacker";
+@import "sass-named-colors/named_colours";
+
 // Library
-@import "lib/kipple";
-@import "lib/fonts";
 @import "lib/images";
+@import "lib/interface";
 @import "lib/links";
-@import "lib/ui_elements";
+@import "lib/prism";
+@import "lib/rem";
+@import "lib/type";
 @import "lib/utils";
 
 // Configuration
-@import "../config";
-
-// Reset
-@import "reset";
-
-// Normalize
-@import "normalize";
-
-// Helpers
-@import "../helpers";
+@import "../config/settings";
+@import "../config/colours";
+@import "../config/fonts";

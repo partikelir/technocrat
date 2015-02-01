@@ -22,7 +22,7 @@ get_header(); ?>
           <?php $places = ubik_places_top();
           if ( !empty( $places ) ) {
 
-            ?><div class="gallery gallery-columns-3"><?php
+            ?><div class="gallery"><?php
 
             global $pendrell_places_thumbs;
             if ( !is_array( $pendrell_places_thumbs ) )

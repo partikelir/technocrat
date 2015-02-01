@@ -2,11 +2,12 @@
 
 // Entry title
 .entry-title {
+  @extend %links-no-border;
   @extend %spacer-below-half;
-  @include font-size($s-header-big);
-  @include font-style("entry-title");
-  @include k-media-above($b-medium) {
-    @include font-size($s-header-bigger); // This is the normal title size seen on the homepage and on singular posts
+  @include font-size(head-big);
+  @include font-style(entry-title);
+  @include k-media-above( break(medium) ) {
+    @include font-size(head-bigger); // This is the normal title size seen on the homepage and on singular posts
   }
 
   // Drop the size of entry titles on archives, 404 pages, and in search results
@@ -14,7 +15,7 @@
   .error404 &,
   .search-results &,
   .search-no-results & {
-    @include font-size($s-header-big);
+    @include font-size(head-big);
   }
 }
 
@@ -25,8 +26,8 @@
 .entry-content,
 .comment-content {
   @extend %clearfix-below;
-  @extend %links-default;
-  @include font-style("entry-content");
+  @extend %links;
+  @include font-style(entry-content);
   word-wrap: break-word;
 
   // Paragraph spacing
@@ -48,7 +49,7 @@
   h1,
   h2,
   h3 {
-    @include rem("margin-top", $spacer*1.5); // Spaces out headers within body copy
+    @include rem( margin-top, spacer(1.5) ); // Spaces out headers within body copy
   }
   h1 + h2,
   h1 + h3,
@@ -78,19 +79,19 @@
     }
   }
   li {
-    @include rem("margin", 0 0 0 $spacer);
+    @include rem( margin, 0 0 0 spacer() );
   }
   dd {
-    @include rem("margin", 0 $spacer $spacer);
+    @include rem( margin, 0 spacer() spacer() );
   }
   dl {
-    @include rem("margin", 0 $spacer);
+    @include rem( margin, 0 spacer() );
   }
 
   // Tables
   table {
-    @include rem("margin-bottom", $spacer, 1);
-    border-bottom: $d-divider;
+    @include rem( margin-bottom, spacer(), 1 );
+    border-bottom: 1px solid colour(divider);
     width: 100%;
     a,
     a:visited,
@@ -104,20 +105,20 @@
     }
   }
   th {
-    @include font-size($s-header-smaller);
-    @include font-style("table-head");
+    @include font-size(head-smaller);
+    @include font-style(table-head);
   }
   td {
-    @include font-size($s-text-smaller, 1);
-    border-top: $d-divider;
+    @include font-size( text-smaller, 1 );
+    border-top: 1px solid colour(divider);
   }
 
   // Asides; use this instead of <small> in post contents; does not appear in comments but the styling is kept here for ease of maintenance
   aside {
     @extend %spacer-below;
-    @include font-size($s-text-small);
+    @include font-size(text-small);
     @include k-reverse-italics;
-    color: lighten($c-text-lightest, 10);
+    color: lighten( colour(text-lightest), 10 );
   }
 
   // Images
@@ -133,39 +134,39 @@
 .entry-content {
 
   // Full-width styling adjustments on viewports larger than the medium breakpoint
-  @include k-media-above($b-medium) {
+  @include k-media-above( break(medium) ) {
     .full-width & {
-      @include font-size($s-text-bigger);
+      @include font-size(text-bigger);
 
       // Increase top header sizes (the rest remain the same)
       h1 {
-        @include font-size($s-header-biggest);
+        @include font-size(head-biggest);
       }
       h2 {
-        @include font-size($s-header-bigger);
+        @include font-size(head-bigger);
       }
       h3 {
-        @include font-size($s-header-big);
+        @include font-size(head-big);
       }
 
       // Give quotations a boost
       blockquote {
-        @include font-size($s-text-big);
+        @include font-size(text-big);
         footer {
-           @include font-size($s-text-small);
+           @include font-size(text-small);
         }
       }
 
-      // These are all usually $s-text-small; kick it up a notch
+      // These are all usually size(text-small; kick it up a notch
       aside,
       table caption,
       .entry-caption,
       .footnotes,
       .references {
-        @include font-size($s-text);
+        @include font-size(text);
       }
       td {
-        @include font-size($s-text, 1);
+        @include font-size(text, 1);
       }
     }
   }
@@ -176,20 +177,21 @@
 // Entry meta
 .entry-meta {
   @extend %clearfix;
-  @include font-style("entry-meta");
+  @include font-style(entry-meta);
 }
 .entry-meta-buttons {
   @extend %button-container;
 }
 .entry-meta-main {
   @extend %links-meta;
-  @include font-size($s-text-smaller);
-  color: $c-meta;
+  @include font-size(text-smaller);
+  color:  colour(meta);
 }
 
 
 
 // Entry after (comments template, related posts, etc.)
 .entry-after {
-  @include rem("margin-top", $spacer*3);
+  @extend %links;
+  @include rem( margin-top, spacer(3) );
 }

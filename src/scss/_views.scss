@@ -11,19 +11,19 @@
   // Custom breakpoints specifically for gallery view
   // Note there will be some minor quirks due to slight differences between these custom breakpoints and those of the rest of the site's interface
 
-  $b-gallery-small: 300 + $spacer; // Below this it's a single column layout
-  $b-gallery-medium: 600 + $d-image-spacer + $spacer*2; // Upper threshold for the two column layout; $d-image-spacer accounts for the inner margin
-  @include k-media-below($b-gallery-small) {
+  $b-gallery-small: 300 + spacer(); // Below this it's a single column layout
+  $b-gallery-medium: 600 + $spacer-image + spacer(2); // Upper threshold for the two column layout; $spacer-image accounts for the inner margin
+  @include k-media-below( $b-gallery-small ) {
     .gallery figure.wp-caption {
-      margin: 0 0 $d-image-spacer 0; // Only a bottom margin is needed
+      @include rem( margin, 0 0 $spacer-image 0 ); // Only a bottom margin is needed
       max-width: 100%;
     }
   }
-  @include k-media-between($b-gallery-small, $b-gallery-medium) {
-    $margin-width: $d-image-spacer / 600px;
+  @include k-media-between( $b-gallery-small, $b-gallery-medium ) {
+    $margin-width: $spacer-image / 600px;
     .gallery figure.wp-caption {
-      margin: 0 percentage($margin-width) percentage($margin-width) 0;
-      max-width: percentage(1/2) - percentage($margin-width/2);
+      margin: 0 percentage( $margin-width ) percentage( $margin-width ) 0;
+      max-width: percentage( 1 / 2 ) - percentage( $margin-width / 2 );
       &:nth-of-type(2n) {
         margin-right: 0;
       }
@@ -32,11 +32,12 @@
       }
     }
   }
-  @include k-media-above($b-gallery-medium) {
+  @include k-media-above( $b-gallery-medium ) {
     .gallery figure.wp-caption {
-      // The following calculations based on $content-width presume that gallery view is always full-width (which it should be)
-      margin: 0 percentage($d-image-spacer / $content-width) percentage($d-image-spacer / $content-width) 0;
-      max-width: percentage(1/3) - percentage( ( ($d-image-spacer * 2 ) / $content-width) / 3 );
+
+      // The following calculations based on content width presume that gallery view is always full-width (which it should be)
+      margin: 0 percentage( $spacer-image / $width-content ) percentage( $spacer-image / $width-content ) 0;
+      max-width: percentage( 1 / 3 ) - percentage( ( ( $spacer-image * 2 ) / $width-content ) / 3 );
       &:nth-of-type(3n) {
         margin-right: 0;
       }
@@ -64,7 +65,7 @@
 // This section is messy and disorganized mainly to prevent unnecessary nesting
 .list-view {
   .entry-title {
-    @include font-size($s-header);
+    @include font-size(head);
     margin: 0;
   }
   .site-content article {
@@ -74,15 +75,15 @@
 
   // Entry meta
   .entry-meta {
-    @include font-size($s-text-smallest);
+    @include font-size(text-smallest);
     @include k-clearfix-reset;
-    color: $c-text-lightest;
+    color: colour(text-lightest);
     text-transform: uppercase;
   }
 
-  // Entry content (with more below for full-width styling); @TODO: review the utility of this
+  // Entry content (with more below for full-width styling)
   .entry-content-wrapper {
-    margin-left: $thumbnail-size + $spacer;
+    margin-left: $width-thumb + spacer();
   }
   .entry-content p {
     @extend %text-small;
@@ -96,12 +97,12 @@
 
   // Full-width modifications
   &.full-width {
-    @include k-media-above($b-large) {
+    @include k-media-above( break(large) ) {
       .entry-title {
-        @include font-size($s-header);
+        @include font-size(head);
       }
       .entry-content p {
-        @include font-size($s-text);
+        @include font-size(text);
       }
     }
   }
@@ -118,9 +119,3 @@
     margin: 0;
   }
 }
-
-
-
-// == VIEW POSTS SHORTCODE == //
-
-// Nothing yet! @TODO: get to work on this

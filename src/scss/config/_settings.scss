@@ -1,0 +1,73 @@
+// ==== DEFAULT CONFIGURATION ==== //
+
+// Development mode; switches on a few things that are otherwise build-specific
+$dev: true;
+
+// Legacy mode; output styles for older browsers (usually pre-IE9)
+$legacy: false;
+
+// Base font size and line-height (unitless integers); base-size should be 16; set 'text' to alter body text font size
+$base-size:       16;
+$base-line:       30;
+
+// Site widths
+$width-content:   960px;
+$width-main:      624px;
+$width-thumb:     150px;
+
+// Image spacer; defines the space between gallery items and grouped images
+$spacer-image:    spacer();
+
+// Metadata; use metadata() to access
+$_metadata: (
+  theme-name:               "Pendrell"
+, theme-uri:                "https://github.com/synapticism/pendrell"
+, theme-author:             "Alexander Synaptic"
+, theme-author-uri:         "http://synapticism.com"
+, theme-description:        "Alexander Synaptic"
+, theme-version:            "0.19.0"
+, theme-license:            "GPLv3"
+, theme-license-uri:        "https://www.gnu.org/copyleft/gpl.txt"
+, theme-tags:               (light, gray, white, one-column, two-columns, right-sidebar, fixed-layout, responsive-layout, custom-menu, featured-images, full-width-template, microformats, post-formats, theme-options, translation-ready)
+, theme-text-domain:        "pendrell"
+, theme-text-domain-path:   "/languages/"
+);
+
+// Breakpoints; use break() to access
+$_breaks: (
+  small:              $width-main / 1.2
+, medium:             $width-main + spacer(3)
+, large:              $width-main + spacer(8) // Causes sidebar to slide below content
+, full:               $width-content
+);
+
+// Modules; reduce bloat by switching some of these off; test with module()
+$_modules: (
+  gallery-shortcode:  true // WordPress core
+, icons:              true // Built-in to Pendrell
+, image-metadata:     false // Built-in to Pendrell
+, post-formats:       false // Built-in
+, prism:              false
+, views:              false // Built-in
+, ubik-links:         false
+, ubik-places:        false
+, ubik-recordpress:   false
+, ubik-related:       false
+, ubik-series:        true
+);
+
+@if $dev {
+  $_modules: (
+    gallery-shortcode:  true // WordPress core
+  , icons:              true // Built-in to Pendrell
+  , image-metadata:     true // Built-in to Pendrell
+  , post-formats:       true // Built-in
+  , prism:              true
+  , views:              true // Built-in
+  , ubik-links:         true
+  , ubik-places:        true
+  , ubik-recordpress:   true
+  , ubik-related:       true
+  , ubik-series:        true
+  );
+}

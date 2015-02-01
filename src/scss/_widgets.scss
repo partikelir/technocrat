@@ -2,23 +2,23 @@
 
 // Widgets :D see also `wrap-sidebar` and related classes in `_layout.scss`
 .widget {
-  @extend %links-default;
+  @extend %links;
   @extend %spacer-below;
-  @include font-size($s-text-smaller);
-  @include font-style("widget-text");
-  color: $c-text-lighter;
+  @include font-size(text-smaller);
+  @include font-style(widget-text);
+  color: colour(text-lighter);
   word-wrap: break-word;
 
   // Titles
   h2 {
-    @include font-size($s-header-smallest);
-    @include font-style("widget-title");
-    color: $c-text-dark;
+    @include font-size(head-smallest);
+    @include font-style(widget-title);
+    color: colour(text-dark);
   }
 
   // Lists
   ul ul {
-    @include rem("margin-left", $spacer/2); // Half length indentation since we don't have that much space to play with
+    @include rem( margin-left, spacer(1/2) ); // Half length indentation since we don't have that much space to play with
   }
   li {
     list-style: none;

@@ -2,21 +2,21 @@
 
 .author-info {
   .entry-meta & {
-    @include rem("margin-top", $spacer, 1);
-    @include rem("padding-top", $spacer);
-    border-top: $d-divider;
+    @include rem( margin-top, spacer(), 1 );
+    @include rem( padding-top, spacer() );
+    border-top: 1px solid colour(divider);
   }
 }
 .author-avatar {
-  @include rem("margin", $spacer/2 $spacer/2 $spacer/2 0 );
+  @include rem( margin, spacer(1/2) spacer(1/2) spacer(1/2) 0 );
   float: left;
   line-height: 0; // Keeps the container snug around the avatar image
-  width: $spacer*4;
+  width: spacer(4);
   img {
     @include k-circle;
     width: 100%;
   }
-  @include k-media-below($b-medium) {
+  @include k-media-below( break(medium) ) {
     display: none; // Only display author avatar on larger screens
   }
 }

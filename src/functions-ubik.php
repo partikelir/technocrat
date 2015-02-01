@@ -116,12 +116,12 @@ if ( PENDRELL_UBIK_LINKS ) {
       ?><div id="wrap-sidebar" class="wrap-sidebar">
         <div id="secondary" class="widget-area" role="complementary">
           <aside id="ubik-links-search-widget" class="widget widget-links-search">
-            <h3 class="widget-title">Search links</h3>
+            <h2>Search links</h3>
             <?php echo ubik_links_search_form(); ?>
           </aside>
           <?php if ( !empty( $cats ) ) { ?>
           <aside id="ubik-links-categories-widget" class="widget widget-links-categories">
-            <h3 class="widget-title">Links categories</h3>
+            <h2>Links categories</h3>
             <?php echo $cats; ?>
           </aside>
           <?php } ?>
@@ -189,7 +189,7 @@ if ( PENDRELL_UBIK_PLACES ) {
                   $places_index = ''; // A simple hack to insert a link to the places index page
                   if ( $key === ( count( $places ) - 1 ) && PENDRELL_PLACES_TEMPLATE_ID )
                     $places_index = '<li class="cat-item"><strong><a href="' . get_permalink( PENDRELL_PLACES_TEMPLATE_ID ) . '">' . __( 'All places', 'pendrell' ) . '</a></strong></li>';
-                  ?><h3 class="widget-title"><?php echo $place['title']; ?></h3>
+                  ?><h2><?php echo $place['title']; ?></h3>
                   <ul class="place-list">
                     <?php echo $places_index; echo wp_list_categories( $place['args'] ); ?>
                   </ul><?php

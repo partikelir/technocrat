@@ -2,15 +2,15 @@
 
 // HTML
 html {
-  font-size: $base+0px;
+  font-size: $base-size + 0px;
 }
 
 // Body
 body {
-  @include font-size($s-text);
-  @include font-style("body");
-  color: $c-text;
-  background-color: $c-body-bg;
+  @include font-size(text);
+  @include font-style(body);
+  color: colour(text);
+  background-color: colour(body-bg);
   text-rendering: optimizeLegibility;
 }
 
@@ -21,27 +21,27 @@ h3,
 h4,
 h5,
 h6 {
-  @include font-style("head");
-  color: $c-text-dark;
+  @include font-style(head);
+  color: colour(text-dark);
 }
 h1 {
-  @include font-size($s-header-bigger);
+  @include font-size(head-bigger);
   margin: 0; // Reset normalize.css
 }
 h2 {
-  @include font-size($s-header-big);
+  @include font-size(head-big);
 }
 h3 {
-  @include font-size($s-header);
+  @include font-size(head);
 }
 h4 {
-  @include font-size($s-header-small);
+  @include font-size(head-small);
 }
 h5 {
-  @include font-size($s-header-smaller);
+  @include font-size(head-smaller);
 }
 h6 {
-  @include font-size($s-header-smallest);
+  @include font-size(head-smallest);
 }
 
 // Monospaced
@@ -50,7 +50,7 @@ kbd,
 pre,
 samp,
 var {
-  @include font-style("mono");
+  @include font-style(mono);
 }
 
 // Links; simple site-wide definitions
@@ -97,30 +97,30 @@ i {
 del,
 s,
 strike {
-  color: $c-text-lighter;
+  color: colour(text-lighter);
   opacity: .6;
   text-decoration: line-through;
 }
 ins {
-  @include k-highlight($c-highlight-bg, $d-radius);
+  @include k-highlight( colour(highlight-bg), $d-radius );
   text-decoration: none;
 }
 hr { // @TODO: space out hrs; paragraph tags presently overlap margins
   @extend %clearfix;
-  @include rem("margin-bottom", $spacer/2);
-  @include rem("margin-top", $spacer/2, 1);
-  background-color: $c-divider;
+  @include rem( margin-bottom, spacer(1/2) );
+  @include rem( margin-top, spacer(1/2), 1 );
+  background-color: colour(divider);
   border: 0;
   height: 1px;
 }
 mark {
   background: transparent; // Reset normalize.css
-  color: $c-highlight; // Reset normalize.css
+  color: colour(highlight); // Reset normalize.css
   text-decoration: none;
 }
-small { // Set to font-size: 80% in Normalize.css; reset to $s-text-small here
-  @include font-size($s-text-small);
-  color: lighten($c-text-lightest, 7);
+small { // Set to font-size: 80% in Normalize.css; reset to size(text-small here
+  @include font-size(text-small);
+  color: lighten( colour(text-lightest), 7);
   display: inline-block; // This is non-standard but HTML5 now defines this element as "fine print"
 }
 
@@ -129,15 +129,15 @@ small { // Set to font-size: 80% in Normalize.css; reset to $s-text-small here
 // Blockquotes
 blockquote {
   @extend %spacer-below;
-  @include font-style("quotation");
-  @include font-size($s-text-small);
+  @include font-style(quotation);
+  @include font-size(text-small);
   @include k-reverse-italics;
   @include letterpress;
-  @include rem("padding", $spacer/2 $spacer/2 $spacer/2 $spacer - 9px);
-  background: rgba($c-body-darker, .25); // Transparent so that blockquotes can be nested
-  border-left: 9px solid $c-divider;
+  @include rem( padding, spacer(1/2) spacer(1/2) spacer(1/2) spacer() - 9px );
+  background: rgba( colour(body-darker), .25); // Transparent so that blockquotes can be nested
+  border-left: 9px solid colour(divider);
   box-shadow: inset 0px -2px 7px black(.04);
-  color: rgba($c-text, .75); // Transparent so that blockquotes can be nested
+  color: rgba( colour(text), .75); // Transparent so that blockquotes can be nested
   quotes: none; // From the Meyer Reset
   &:before, &:after { // From the Meyer Reset
     content: "";
@@ -155,7 +155,7 @@ blockquote {
     }
   }
   footer { // The footer element of a blockquote adds information about the source of the quotation
-    @include font-size($s-text-smaller);
+    @include font-size(text-smaller);
     display: block;
     font-style: normal;
     text-align: right;
@@ -187,13 +187,13 @@ q {
 pre {
   @extend %spacer-below;
   @include border-radius;
-  @include font-size($s-text-small);
-  @include letterpress(black(.3));
-  @include rem("padding", $spacer/2);
-  background: $c-code-box-bg;
-  background-image: repeating-linear-gradient(45deg, transparent, transparent $spacer/2, black(.04) $spacer/2, black(.04) $spacer);
+  @include font-size(text-small);
+  @include letterpress( black(.3) );
+  @include rem( padding, spacer(1/2) );
+  background: colour(code-box-bg);
+  background-image: repeating-linear-gradient( 45deg, transparent, transparent spacer(1/2), black(.04) spacer(1/2), black(.04) spacer() );
   box-shadow: inset 3px 3px 7px black(.18);
-  color: $c-code-box;
+  color: colour(code-box);
   tab-size: 2;
   white-space: pre;
   word-wrap: normal; // Allows for horizontal scrollbars
@@ -214,13 +214,13 @@ code {
   li > &,
   p > &,
   strong > & {
-    @include k-highlight(rgba($c-body-darker, .33), $d-radius);
-    color: $c-text-lighter;
+    @include k-highlight( rgba( colour(body-darker), .33 ), $d-radius );
+    color: colour(text-lighter);
     font-size: 80%; // Hack for fixing over-sized monospace fonts
   }
 }
 a code {
-  color: $c-link;
+  color: colour(link);
 }
 
 
@@ -301,13 +301,13 @@ input[type="color"] {
 // Select dropdown; @TODO: fine-tune this
 select {
   @include border-radius;
-  @include font-size($s-text-smaller);
-  @include gradient-vertical($d-gradient-1, $d-gradient-2);
-  @include rem("height", $spacer - $spacer/4);
-  @include rem("margin-bottom", $spacer/4);
+  @include font-size(text-smaller);
+  @include gradient-vertical( $d-gradient-1, $d-gradient-2 );
+  @include rem( height, spacer() - spacer(1/4) );
+  @include rem( margin-bottom, spacer(1/4) );
   border: 1px solid #d2d2d2;
   box-shadow: 0 1px 2px rgba(64, 64, 64, .1);
-  color: $c-text-lighter;
+  color: colour(text-lighter);
   cursor: pointer;
   display: inline-block;
   font-weight: $w-body-normal;

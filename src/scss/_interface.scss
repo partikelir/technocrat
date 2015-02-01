@@ -2,6 +2,8 @@
 
 // This partial is meant to contain all user interface elements: buttons, forms, and so on...
 
+
+
 // == BUTTONS == //
 
 // Button styling adapted from Twenty Twelve
@@ -27,46 +29,46 @@ a.disabled {
 
 // Form entry; @TODO: expand on this section
 .alert {
-  color: $c-alert;
+  color: colour(alert);
   font-weight: $w-body-bold;
 }
 .notice {
   font-style: italic;
 }
 .required {
-  color: $c-required;
+  color: colour(required);
 }
 .success {
-  color: $c-success;
+  color: colour(success);
 }
 .warning {
-  color: $c-alert;
+  color: colour(alert);
   font-style: italic;
 }
 
 // Form errors; specific to the contact form for the most part, but designed for reuse
 input.error,
 textarea.error {
-  box-shadow: 0 0 6px rgba($c-alert, .9);
-  border: 1px solid $c-alert;
+  box-shadow: 0 0 6px rgba( colour(alert), .9 );
+  border: 1px solid colour(alert);
   outline: none;
 }
 
 // Labels
 label {
   &:not(.error):not(.checkbox-label) {
-    @include font-style("label");
-    @include rem("margin-top", $spacer/2);
+    @include font-style(label);
+    @include rem( margin-top, spacer(1/2) );
     display: block;
   }
   &.checkbox-label {
-    @include font-size($s-text-smaller);
-    @include rem("margin-left", $spacer/4);
+    @include font-size(text-smaller);
+    @include rem( margin-left, spacer(1/4) );
     display: inline;
   }
   &.error {
-    @include font-size($s-text-smaller);
-    color: $c-alert;
+    @include font-size(text-smaller);
+    color:  colour(alert);
     display: block; // Errors go below inputs
     font-weight: $w-body-bold;
   }
@@ -78,20 +80,20 @@ label {
 
 // SVG icon sets; style icons individually, by set, or as a group
 svg {
-  @if ($m-icons) {
+  @if module(icons) {
     &.icon {
-      @include rem("height", 24px);
-      @include rem("width", 24px);
+      @include rem( height, 24px );
+      @include rem( width, 24px );
       display: inline-block;
       fill: currentColor; // Inherit color
       vertical-align: sub;
 
       .button &,
       button & {
-        @include rem("height", 18px);
-        @include rem("width", 18px);
-        @include rem("margin", 4px -4px 0 4px);
-        filter: drop-shadow( 0 1px $c-body-bg ); // Matches letterpress effect
+        @include rem( height, 18px );
+        @include rem( width, 18px );
+        @include rem( margin, 4px -4px 0 4px );
+        filter: drop-shadow( 0 1px colour(body-bg) ); // Matches letterpress effect
         float: right;
       }
     }
@@ -117,7 +119,7 @@ svg {
 
 // Menu toggle for mobile phones and small screens
 .menu-toggle {
-  @include k-media-above($b-medium) {
+  @include k-media-above( break(medium) ) {
     display: none;
   }
   &.toggled {
@@ -147,16 +149,16 @@ svg {
 // Response form; used in comments and the contact form; @TODO: generalize label styling
 .comment-form,
 .contact-form {
-  @include font-size($s-header-smaller);
+  @include font-size(head-smaller);
   input[type="email"],
   input[type="text"],
   input[type="url"] {
     font-family: inherit; // Possibly redundant
-    width: percentage( ( ($main-width/2) - 8) / $main-width ); // Should yield a perfect 50% after accounting for borders and such
+    width: percentage( ( ( $width-main / 2 ) - 8) / $width-main ); // Should yield a perfect 50% after accounting for borders and such
   }
   textarea {
     font-family: inherit; // Possibly redundant
-    max-width: $main-width;
+    max-width: $width-main;
     width: 100%;
   }
   button[type="submit"],
@@ -186,7 +188,7 @@ svg {
 }
 .search-field-wrap {
   overflow: hidden;
-  padding-right: 15px;
+  padding-right: spacer(1/2);
 }
 .search-field {
   width: 100%;
@@ -196,7 +198,6 @@ svg {
 }
 .search-submit {
   float: right;
-  margin-top: 2px; // Hack to deal with button alignment issues; @TODO: fix
 }
 
 
@@ -207,13 +208,13 @@ svg {
 .tooltip,
 span[data-tooltip] {
   @include k-tooltip(
-    $offset: $spacer - 6px
-  , $tooltip-background: $c-highlight-bg
+    $offset: spacer() - 6px
+  , $tooltip-background: colour(highlight-bg)
   , $tooltip-border: $d-interface
   , $tooltip-border-radius: $d-radius
-  , $tooltip-color: $c-text
-  , $tooltip-font-size: $s-text-smaller
-  , $tooltip-triangle-color: $c-interface
+  , $tooltip-color: colour(text)
+  , $tooltip-font-size: size(text-smaller)
+  , $tooltip-triangle-color: colour(interface)
   );
   border-bottom: $d-mouseover;
   &:before {

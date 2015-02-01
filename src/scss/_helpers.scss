@@ -13,56 +13,45 @@
   @include k-clearfix;
 }
 
+// Spacing, to preserve a modicum of vertical rhythm
+%spacer-above {
+  @include rem( margin-top, spacer() );
+}
+%spacer-above-double {
+  @include rem( margin-top, spacer(2) );
+}
+%spacer-above-triple {
+  @include rem( margin-top, spacer(3) );
+}
+%spacer-above-half {
+  @include rem( margin-top, spacer(1/2) );
+}
+%spacer-below {
+  @include rem( margin-bottom, spacer() );
+}
+%spacer-below-double {
+  @include rem( margin-bottom, spacer(2) );
+}
+%spacer-below-triple {
+  @include rem( margin-bottom, spacer(3) );
+}
+%spacer-below-half {
+  @include rem( margin-bottom, spacer(1/2) );
+}
+
 // Hide
 %hide {
   @include k-hide-visually;
 }
 %hide-below-medium {
-  @include k-media-below($b-medium) {
+  @include k-media-below( break(medium) ) {
     @include k-hide-visually;
   }
 }
 %hide-below-large {
-  @include k-media-below($b-large) {
+  @include k-media-below( break(large) ) {
     @include k-hide-visually;
   }
-}
-
-// Spacing, to preserve a modicum of vertical rhythm
-%spacer-above {
-  @include rem("margin-top", $spacer);
-}
-%spacer-above-double {
-  @include rem("margin-top", $spacer*2);
-}
-%spacer-above-triple {
-  @include rem("margin-top", $spacer*3);
-}
-%spacer-above-half {
-  @include rem("margin-top", $spacer/2);
-}
-%spacer-below {
-  @include rem("margin-bottom", $spacer);
-}
-%spacer-below-double {
-  @include rem("margin-bottom", $spacer*2);
-}
-%spacer-below-triple {
-  @include rem("margin-bottom", $spacer*3);
-}
-%spacer-below-half {
-  @include rem("margin-bottom", $spacer/2);
-}
-
-// Font sizes
-%text-small {
-  @include font-size($s-text-small);
-}
-%text-smaller {
-  @include font-size($s-text-smaller);
-}
-%text-smallest {
-  @include font-size($s-text-smallest);
 }
 
 // Font styling
@@ -77,6 +66,28 @@
 %body-bold {
   font-family: $f-body;
   font-weight: $w-body-bold;
+}
+%body-bold-uppercase {
+  font-family: $f-body;
+  font-weight: $w-body-bold;
+  text-transform: uppercase;
+}
+%core-light {
+  font-family: $f-core;
+  font-weight: $w-core-light;
+}
+%core-normal {
+  font-family: $f-core;
+  font-weight: $w-core-normal;
+}
+%core-bold {
+  font-family: $f-core;
+  font-weight: $w-core-bold;
+}
+%core-bold-uppercase {
+  font-family: $f-core;
+  font-weight: $w-core-bold;
+  text-transform: uppercase;
 }
 %head-light {
   font-family: $f-head;
@@ -95,20 +106,37 @@
   font-weight: $w-head-bold;
   text-transform: uppercase;
 }
+%mono-normal {
+  font-family: $f-mono;
+  font-weight: $w-mono-normal;
+}
 
-// UI elements
-%button-container {
-  @include button-container;
+// Font sizes
+%text-small {
+  @include font-size(text-small);
 }
-%links-default {
-  @include link-stylist;
+%text-smaller {
+  @include font-size(text-smaller);
 }
-%links-default-no-border {
-  @include link-stylist($link-border: false);
+%text-smallest {
+  @include font-size(text-smallest);
+}
+
+// Links
+%links {
+  @include links;
+}
+%links-no-border {
+  @include links( $link-border: false );
 }
 %links-meta {
-  @include link-stylist($c-meta-link, false, $c-meta-link-h, false, false);
+  @include links( colour(meta-link), false, colour(meta-link-h), false, false);
 }
 %links-meta-no-border {
-  @include link-stylist($c-meta-link, false, $c-meta-link-h, false, false, $link-border: false);
+  @include links( colour(meta-link), false, colour(meta-link-h), false, false, $link-border: false);
+}
+
+// Interface
+%button-container {
+  @include button-container;
 }

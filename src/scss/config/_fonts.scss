@@ -1,0 +1,146 @@
+// ==== FONTS ==== //
+
+// Sizes; use size() to access
+$_sizes: (
+
+  // Text
+  text-biggest:     32
+, text-bigger:      24
+, text-big:         22
+, text:             20 // Default body text font size
+, text-small:       16
+, text-smaller:     14
+, text-smallest:    12
+
+  // Headers
+, head-biggest:     48
+, head-bigger:      36
+, head-big:         26 // Don't want this too close to the baseline, line-height gets weird
+, head:             24
+, head-small:       18
+, head-smaller:     16
+, head-smallest:    14
+
+  // Menus
+, menu-header:      20
+, menu-header-sm:   18 // Lower than 16 doesn't display well on mobile devices
+, menu-footer:      14
+
+  // Submenus
+, sub:              14
+);
+
+// Body fonts; these are applied universally throughout the theme
+$f-body:            k-font-stack(helvetica-light);
+$w-body-light:      300;
+$w-body-normal:     400;
+$w-body-bold:       600;
+
+// Core fonts; an alternative for entry content and such
+$f-core:            k-font-stack(helvetica-light);
+$w-core-light:      300;
+$w-core-normal:     400;
+$w-core-bold:       600;
+
+// Header and probably menu fonts too
+$f-head:            k-font-stack("Raleway", century);
+$w-head-light:      200;
+$w-head-normal:     300;
+$w-head-bold:       600;
+
+// Monospace fonts
+$f-mono:            k-font-stack(consolas);
+$w-mono-light:      300;
+$w-mono-normal:     400;
+$w-mono-bold:       700;
+
+// Font styles are wrapped in a mixin for ease of use and configuration; leave blank to inherit
+@mixin font-style($style: body) {
+  @if (type-of($style) != string) {
+    @warn "Warning: @mixin font-style failed; not a string.";
+  }
+
+  // Standard stuff
+  @if (head == $style) {
+    @extend %head-bold;
+  }
+  @if (body == $style) {
+    @extend %body-light;
+  }
+  @if (mono == $style) {
+    @extend %mono-normal;
+  }
+
+  // Masthead
+  @if (site-title == $style) {
+    @extend %head-light;
+    text-transform: uppercase;
+  }
+  @if (site-description == $style) {
+    @extend %body-normal;
+  }
+
+  // Menu
+  @if (menu == $style) {
+    @extend %head-normal;
+  }
+
+  // Archives
+  @if (archive-title == $style) {
+    @extend %head-normal;
+  }
+
+  // Content
+  @if (entry-title == $style) {
+    @extend %head-normal;
+  }
+  @if (entry-content == $style) {
+    @extend %body-light;
+  }
+  @if (entry-meta == $style) {
+    @extend %body-normal;
+  }
+
+  // Comments
+  @if (comment-author == $style) {
+    @extend %head-normal;
+  }
+
+  // Widgets
+  @if (widget-title == $style) {
+    @extend %head-bold-uppercase;
+  }
+  @if (widget-text == $style) {
+    @extend %body-normal;
+  }
+
+  // User interface
+  @if (table-head == $style) {
+    @extend %head-bold-uppercase;
+  }
+  @if (button == $style) {
+    @extend %body-bold;
+  }
+  @if (label == $style) {
+    @extend %head-bold-uppercase;
+  }
+  @if (input == $style) {
+    @extend %body-normal;
+  }
+
+  // Post formats
+  @if (quotation == $style) {
+    // Inherit
+  }
+  @if (status == $style) {
+    // Inherit
+  }
+
+  // Image overlays
+  @if (image-overlay-title == $style) {
+    @extend %body-light;
+  }
+  @if (image-overlay-caption == $style) {
+    @extend %body-normal;
+  }
+}

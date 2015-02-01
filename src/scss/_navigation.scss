@@ -2,7 +2,7 @@
 
 // General navigation
 .site-content nav {
-  @extend %links-default-no-border;
+  @extend %links-no-border;
 }
 .page-links,
 .nav-comments,
@@ -13,7 +13,7 @@
   @extend %spacer-below;
 }
 .nav-above {
-  @include rem("margin-bottom", $spacer);
+  @include rem( margin-bottom, spacer() );
 }
 .nav-below {
   @extend %spacer-below-triple;
@@ -22,13 +22,13 @@
   @extend %spacer-below-double;
 }
 .nav-previous {
-  @include rem("padding-right", $spacer/2);
+  @include rem( padding-right, spacer(1/2) );
   box-sizing: border-box;
   float: left;
   width: 50%;
 }
 .nav-next {
-  @include rem("padding-left", $spacer/2);
+  @include rem( padding-left, spacer(1/2) );
   box-sizing: border-box;
   float: right;
   text-align: right;
@@ -41,7 +41,7 @@
 %breadcrumbs-static {
   @extend %spacer-below;
   li {
-    @include font-size($s-text-smaller);
+    @include font-size(text-smaller);
     display: inline-block;
     margin-left: 0;
   }
@@ -54,10 +54,10 @@
 }
 
 // View switcher, as defined in `src/modules/views.php`
-@if ($m-views) {
+@if module(views) {
   .view-switcher {
     @extend %breadcrumbs-static;
-    @include rem("margin-right", $spacer);
+    @include rem( margin-right, spacer() );
     float: left;
     li + li:before {
       content: "\00a0\00b7\00a0"; // Middle dot: \00b7
