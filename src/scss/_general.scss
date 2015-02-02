@@ -105,10 +105,10 @@ ins {
   @include k-highlight( colour(highlight-bg), $d-radius );
   text-decoration: none;
 }
-hr { // @TODO: space out hrs; paragraph tags presently overlap margins
+hr {
   @extend %clearfix;
-  @include rem( margin-bottom, spacer(1/2) );
-  @include rem( margin-top, spacer(1/2), 1 );
+  @include rem( margin-bottom, spacer(), 1 );
+  @include rem( margin-top, spacer() );
   background-color: colour(divider);
   border: 0;
   height: 1px;

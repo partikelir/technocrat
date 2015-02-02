@@ -1,58 +1,25 @@
 // ==== PRINT ==== //
 
-// @TODO: test and finish this component; it's low-priority but should be taken care of at some point
 @media print {
 
-  // From H5BP: https://github.com/h5bp/html5-boilerplate/blob/master/css/main.css
+  // Some tips from H5BP: https://github.com/h5bp/html5-boilerplate/blob/master/css/main.css
   * {
     background: transparent !important;
-    color: #000 !important; /* Black prints faster: h5bp.com/s */
+    border: none !important;
+    border-radius: none !important;
     box-shadow: none !important;
+    color: #222 !important;
     text-shadow: none !important;
   }
 
   body {
-    font-size: 10pt;
+    @include font-size(text-small);
   }
 
   a,
   a:visited {
-    border-bottom: none;
-    text-decoration: underline;
-  }
-
-  a[href]:after {
-    content: " (" attr(href) ")";
-  }
-
-  abbr[title]:after {
-    content: " (" attr(title) ")";
-  }
-
-  // Don't show links for images, or javascript/internal links
-  a[href^="javascript:"]:after,
-  a[href^="#"]:after {
-    content: "";
-  }
-
-  pre,
-  blockquote {
-      border: 1px solid #999;
-      page-break-inside: avoid;
-  }
-
-  thead {
-    display: table-header-group; /* h5bp.com/t */
-  }
-
-  tr,
-  img {
-    page-break-inside: avoid;
-  }
-
-  img {
-    border-radius: 0;
-    max-width: 100% !important;
+    border-bottom: 1px dotted #BBB !important;
+    text-decoration: none;
   }
 
   p,
@@ -62,25 +29,48 @@
     widows: 3;
   }
 
+  // Headers
+  h1,
   h2,
   h3 {
     page-break-after: avoid;
   }
 
-  // Interactive elements to hide
-  nav,
-  .page-link,
-  .button,
-  .entry-meta-buttons,
-  .comment-meta-buttons,
-  .widget-area
-  .author-avatar,
-  #colophon,
-  #respond {
-    display: none;
+  pre,
+  blockquote {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    border-left: 3px solid #BBB !important;
+    padding: spacer(1/3);
+    page-break-inside: avoid;
   }
 
-  // Twenty Twelve cruft to sort through
+  code {
+    background: #EEE !important;
+    pre & {
+      background: transparent !important;
+      white-space: pre-wrap;
+    }
+  }
+
+  thead {
+    display: table-header-group; // h5bp.com/t
+  }
+
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+
+  figure {
+    overflow: hidden !important;
+  }
+
+  img {
+    border-radius: 0 !important;
+    max-width: 100% !important;
+  }
+
   .site {
     clear: both !important;
     display: block !important;
@@ -89,69 +79,53 @@
     position: relative !important;
   }
   .site-header {
-    margin-bottom: 72px;
-    margin-bottom: 5.142857143rem;
-    text-align: left;
+    margin: 0 0 spacer() 0;
+    h2 {
+      opacity: 1;
+    }
   }
-  .site-header h1 {
-    font-size: 21pt;
-    line-height: 1;
-    text-align: left;
-  }
-  .site-header h2 {
-    color: #000;
-    font-size: 10pt;
-    text-align: left;
-  }
-  .site-header h1 a,
-  .site-header h2 a {
-    color: #000;
-  }
-  .site-content {
+  .site-content,
+  .site-footer {
     margin: 0;
-    width: auto;
   }
-  .singular .entry-header .entry-meta {
-    position: static;
+  .site-content,
+  .comments-area {
+    max-width: 100%;
   }
-  .singular .site-content,
-  .singular .entry-header,
-  .singular .entry-content,
-  .singular footer.entry-meta,
-  .singular .comments-title {
+  .site-footer {
     margin: 0;
-    width: 100%;
   }
-  .entry-header .entry-title,
-  .entry-title,
-  .singular .entry-title {
-    font-size: 21pt;
-  }
-  footer.entry-meta,
-  footer.entry-meta a {
-    color: #444;
-    font-size: 10pt;
-  }
-  .author-description {
-    float: none;
-    width: auto;
+  .wrap-header,
+  .wrap-content {
+    padding: 0;
   }
 
-  /* Comments */
-  .comment-list > li.comment {
-    background: none;
-    position: relative;
-    width: auto;
+  // Show links in content but not for internal links, JavaScript, or footnotes
+  .entry-content {
+    a[href]:after {
+      content: " <" attr(href) ">";
+    }
+    a[href^="javascript:"],
+    a[href^="#"],
+    a[rel="footnote"] {
+      &:after {
+        content: "";
+      }
+    }
   }
-  .comment-list .avatar {
-    height: 39px;
-    left: 2.2em;
-    top: 2.2em;
-    width: 39px;
-  }
-  .comments-area article header cite,
-  .comments-area article header time {
-    margin-left: 50px;
-    margin-left: 3.57142857rem;
+
+  // Hide these elements
+  nav,
+  button,
+  .button,
+  .entry-meta-buttons,
+  .site-footer-buttons,
+  .comment-meta-buttons,
+  .site-interface,
+  .wrap-sidebar, // Instead of .widget-area,
+  .author-avatar,
+  .comment-avatar,
+  .comment-respond {
+    display: none;
   }
 }

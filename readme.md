@@ -33,6 +33,7 @@ This is an incomplete list in no particular order:
 * Related posts optionally weighted by taxonomy, number of comments, presence of post thumbnail/featured image, etc.
 * SVG icon sheet support; seamlessly integrate SVG icons from any open source icon set.
 * Code highlighting with [Prism](http://prismjs.com).
+* A halfway decent print media stylesheet.
 * A zillion little optimizations via [Ubik](https://github.com/synapticism/ubik).
 * Absolutely no options screen or database bloat.
 * Verbosely commented source code to walk you through everything that Pendrell can do.

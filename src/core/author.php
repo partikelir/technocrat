@@ -48,7 +48,7 @@ if ( !function_exists( 'pendrell_author_info' ) ) : function pendrell_author_inf
 if ( !function_exists( 'pendrell_author_avatar' ) ) : function pendrell_author_avatar( $url ) {
 
   // Size should be some multiple of the baseline
-  $size = PENDRELL_BASELINE * 3;
+  $size = 120;
   $default = '';
   $alt = get_the_author();
 

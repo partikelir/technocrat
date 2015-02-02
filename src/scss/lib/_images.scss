@@ -15,6 +15,7 @@
     img {
       filter: brightness(70%) opacity(80%) grayscale(100%);
       transition: all .4s ease;
+      -webkit-backface-visibility: hidden;
     }
   }
 }
@@ -72,6 +73,7 @@
       left: 0;
     transition: opacity .75s ease-out;
     width: 100%;
+    -webkit-backface-visibility: hidden;
     &:before {
       content: "";
       height: 100%;
