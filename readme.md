@@ -4,7 +4,7 @@ Pendrell is a minimal yet fully-featured WordPress theme. It features beautiful,
 
 Pendrell is built with [Ubik](https://github.com/synapticism/ubik), my suite of WordPress components. All necessary components are integrated into Pendrell during the build process; no extra plugins need to be installed.
 
-![Pendrell example screenshot](/dist/pendrell/screenshot.png "Pendrell example screenshot")
+![Pendrell example screenshot](/src/pendrell/screenshot.png "Pendrell example screenshot")
 
 You can see Pendrell in action on my personal blog, [Synapticism](http://synapticism.com).
 
