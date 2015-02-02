@@ -1,3 +1,0 @@
-<?php // ==== CONFIGURATION (CUSTOM) ==== //
-
-// Refer to `functions-config-defaults.php` for default values; set custom values for your site here...

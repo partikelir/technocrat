@@ -1,6 +1,6 @@
 {
   "name": "pendrell",
-  "version": "0.18.0",
+  "version": "0.19.0",
   "description": "A minimal yet fully-featured WordPress theme for content-rich blogs",
   "homepage": "https://github.com/synapticism/pendrell",
   "repository": {
@@ -11,7 +11,7 @@
     "wordpress"
   ],
   "author": "Alexander Synaptic",
-  "license": "GPLv3",
+  "license": "GPL-3.0",
   "main": "index.js",
   "private": true,
   "devDependencies": {
@@ -39,6 +39,6 @@
     "require-dir": "^0.1.0"
   },
   "scripts": {
-    "postinstall": "bower install"
+    "postinstall": "bower install && composer install"
   }
 }

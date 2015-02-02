@@ -1,0 +1,1006 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "bd78232e80fec174273595bc549d381b",
+    "packages": [
+        {
+            "name": "composer/installers",
+            "version": "v1.0.18",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/composer/installers.git",
+                "reference": "74fb0a7a1a23696d9c8cc2fba5903f6711cdd067"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/composer/installers/zipball/74fb0a7a1a23696d9c8cc2fba5903f6711cdd067",
+                "reference": "74fb0a7a1a23696d9c8cc2fba5903f6711cdd067",
+                "shasum": ""
+            },
+            "replace": {
+                "roundcube/plugin-installer": "*",
+                "shama/baton": "*"
+            },
+            "require-dev": {
+                "composer/composer": "1.0.*@dev",
+                "phpunit/phpunit": "4.1.*"
+            },
+            "type": "composer-installer",
+            "extra": {
+                "class": "Composer\\Installers\\Installer",
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Composer\\Installers\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kyle Robinson Young",
+                    "email": "kyle@dontkry.com",
+                    "homepage": "https://github.com/shama"
+                }
+            ],
+            "description": "A multi-framework Composer library installer",
+            "homepage": "http://composer.github.com/installers/",
+            "keywords": [
+                "Craft",
+                "Dolibarr",
+                "Hurad",
+                "MODX Evo",
+                "OXID",
+                "WolfCMS",
+                "agl",
+                "annotatecms",
+                "bitrix",
+                "cakephp",
+                "chef",
+                "codeigniter",
+                "concrete5",
+                "croogo",
+                "drupal",
+                "elgg",
+                "fuelphp",
+                "installer",
+                "joomla",
+                "kohana",
+                "laravel",
+                "lithium",
+                "magento",
+                "mako",
+                "mediawiki",
+                "modulework",
+                "moodle",
+                "phpbb",
+                "piwik",
+                "ppi",
+                "puppet",
+                "roundcube",
+                "shopware",
+                "silverstripe",
+                "symfony",
+                "typo3",
+                "wordpress",
+                "zend",
+                "zikula"
+            ],
+            "time": "2014-08-18 20:00:12"
+        },
+        {
+            "name": "synapticism/ubik",
+            "version": "v0.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/synapticism/ubik.git",
+                "reference": "0b194e4d84fe9eba472df4450977561583b71417"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/synapticism/ubik/zipball/0b194e4d84fe9eba472df4450977561583b71417",
+                "reference": "0b194e4d84fe9eba472df4450977561583b71417",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Synaptic",
+                    "email": "alexander@synapticism.com",
+                    "homepage": "http://alexandersynaptic.com"
+                }
+            ],
+            "description": "A modular library of WordPress components",
+            "homepage": "https://github.com/synapticism/ubik",
+            "keywords": [
+                "plugin",
+                "wordpress",
+                "wordpress-plugin"
+            ],
+            "time": "2015-02-02 11:23:22"
+        },
+        {
+            "name": "synapticism/ubik-admin",
+            "version": "v0.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/synapticism/ubik-admin.git",
+                "reference": "72e10ccf47f57a0ba5506e5b1105ec036610afc3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/synapticism/ubik-admin/zipball/72e10ccf47f57a0ba5506e5b1105ec036610afc3",
+                "reference": "72e10ccf47f57a0ba5506e5b1105ec036610afc3",
+                "shasum": ""
+            },
+            "require": {
+                "synapticism/ubik": "^0.0.2"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Synaptic",
+                    "email": "alexander@synapticism.com",
+                    "homepage": "http://alexandersynaptic.com"
+                }
+            ],
+            "description": "A library of hacks and snippets for the WordPress admin panel",
+            "homepage": "https://github.com/synapticism/ubik-admin",
+            "keywords": [
+                "plugin",
+                "wordpress",
+                "wordpress-plugin"
+            ],
+            "time": "2015-02-02 12:57:14"
+        },
+        {
+            "name": "synapticism/ubik-analytics",
+            "version": "v0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/synapticism/ubik-analytics.git",
+                "reference": "2b6abd626d1728a7bdc043638194691864571e40"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/synapticism/ubik-analytics/zipball/2b6abd626d1728a7bdc043638194691864571e40",
+                "reference": "2b6abd626d1728a7bdc043638194691864571e40",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Synaptic",
+                    "email": "alexander@synapticism.com",
+                    "homepage": "http://alexandersynaptic.com"
+                }
+            ],
+            "description": "Simple Google Analytics functions for WordPress",
+            "homepage": "https://github.com/synapticism/ubik-analytics",
+            "keywords": [
+                "plugin",
+                "wordpress",
+                "wordpress-plugin"
+            ],
+            "time": "2015-02-02 12:46:38"
+        },
+        {
+            "name": "synapticism/ubik-cleaner",
+            "version": "v0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/synapticism/ubik-cleaner.git",
+                "reference": "f1618f01eb704ec811c03009ccd21e1ccbad052a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/synapticism/ubik-cleaner/zipball/f1618f01eb704ec811c03009ccd21e1ccbad052a",
+                "reference": "f1618f01eb704ec811c03009ccd21e1ccbad052a",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Synaptic",
+                    "email": "alexander@synapticism.com",
+                    "homepage": "http://alexandersynaptic.com"
+                }
+            ],
+            "description": "Clean up default WordPress installations",
+            "homepage": "https://github.com/synapticism/ubik-cleaner",
+            "keywords": [
+                "plugin",
+                "wordpress",
+                "wordpress-plugin"
+            ],
+            "time": "2015-02-02 12:46:35"
+        },
+        {
+            "name": "synapticism/ubik-comments",
+            "version": "v0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/synapticism/ubik-comments.git",
+                "reference": "7446d32c231822c551e74f62e8b4cf519cd4f1ff"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/synapticism/ubik-comments/zipball/7446d32c231822c551e74f62e8b4cf519cd4f1ff",
+                "reference": "7446d32c231822c551e74f62e8b4cf519cd4f1ff",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Synaptic",
+                    "email": "alexander@synapticism.com",
+                    "homepage": "http://alexandersynaptic.com"
+                }
+            ],
+            "description": "A simple collection of comment-related functions for WordPress",
+            "homepage": "https://github.com/synapticism/ubik-comments",
+            "keywords": [
+                "plugin",
+                "wordpress",
+                "wordpress-plugin"
+            ],
+            "time": "2015-02-02 12:46:33"
+        },
+        {
+            "name": "synapticism/ubik-excerpt",
+            "version": "v0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/synapticism/ubik-excerpt.git",
+                "reference": "dd6d8b12ab5f9c8bc5335ed26f3352b622a03430"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/synapticism/ubik-excerpt/zipball/dd6d8b12ab5f9c8bc5335ed26f3352b622a03430",
+                "reference": "dd6d8b12ab5f9c8bc5335ed26f3352b622a03430",
+                "shasum": ""
+            },
+            "require": {
+                "synapticism/ubik": "^0.0.2"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Synaptic",
+                    "email": "alexander@synapticism.com",
+                    "homepage": "http://alexandersynaptic.com"
+                }
+            ],
+            "description": "Excerpt handling functions for WordPress",
+            "homepage": "https://github.com/synapticism/ubik-excerpt",
+            "keywords": [
+                "plugin",
+                "wordpress",
+                "wordpress-plugin"
+            ],
+            "time": "2015-02-02 12:46:29"
+        },
+        {
+            "name": "synapticism/ubik-excluder",
+            "version": "v0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/synapticism/ubik-excluder.git",
+                "reference": "c059d9c8174c1df9043f7057565a59a3f2e29ed7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/synapticism/ubik-excluder/zipball/c059d9c8174c1df9043f7057565a59a3f2e29ed7",
+                "reference": "c059d9c8174c1df9043f7057565a59a3f2e29ed7",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Synaptic",
+                    "email": "alexander@synapticism.com",
+                    "homepage": "http://alexandersynaptic.com"
+                }
+            ],
+            "description": "Arbitrarily exclude WordPress posts from the homepage",
+            "homepage": "https://github.com/synapticism/ubik-excluder",
+            "keywords": [
+                "plugin",
+                "wordpress",
+                "wordpress-plugin"
+            ],
+            "time": "2015-02-02 12:46:26"
+        },
+        {
+            "name": "synapticism/ubik-favicons",
+            "version": "v0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/synapticism/ubik-favicons.git",
+                "reference": "d9ab2bf2bcbe8c3644be3471b47d05899e93244e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/synapticism/ubik-favicons/zipball/d9ab2bf2bcbe8c3644be3471b47d05899e93244e",
+                "reference": "d9ab2bf2bcbe8c3644be3471b47d05899e93244e",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Synaptic",
+                    "email": "alexander@synapticism.com",
+                    "homepage": "http://alexandersynaptic.com"
+                }
+            ],
+            "description": "Favicon support for WordPress",
+            "homepage": "https://github.com/synapticism/ubik-favicons",
+            "keywords": [
+                "plugin",
+                "wordpress",
+                "wordpress-plugin"
+            ],
+            "time": "2015-02-02 12:46:23"
+        },
+        {
+            "name": "synapticism/ubik-feed",
+            "version": "v0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/synapticism/ubik-feed.git",
+                "reference": "78871cbe1f5705ebe85233ff858c7526c075a07e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/synapticism/ubik-feed/zipball/78871cbe1f5705ebe85233ff858c7526c075a07e",
+                "reference": "78871cbe1f5705ebe85233ff858c7526c075a07e",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Synaptic",
+                    "email": "alexander@synapticism.com",
+                    "homepage": "http://alexandersynaptic.com"
+                }
+            ],
+            "description": "A collection of feed-related functions for WordPress",
+            "homepage": "https://github.com/synapticism/ubik-feed",
+            "keywords": [
+                "plugin",
+                "wordpress",
+                "wordpress-plugin"
+            ],
+            "time": "2015-02-02 12:46:20"
+        },
+        {
+            "name": "synapticism/ubik-imagery",
+            "version": "v0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/synapticism/ubik-imagery.git",
+                "reference": "a2d722a6f92b2b8667eca765bfa6f64553140ffd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/synapticism/ubik-imagery/zipball/a2d722a6f92b2b8667eca765bfa6f64553140ffd",
+                "reference": "a2d722a6f92b2b8667eca765bfa6f64553140ffd",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "v1.0.18"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Synaptic",
+                    "email": "alexander@synapticism.com",
+                    "homepage": "http://alexandersynaptic.com"
+                }
+            ],
+            "description": "Minimalist image management for WordPress",
+            "homepage": "https://github.com/synapticism/ubik-imagery",
+            "keywords": [
+                "image",
+                "plugin",
+                "shortcode",
+                "wordpress",
+                "wordpress-plugin"
+            ],
+            "time": "2015-02-02 12:46:17"
+        },
+        {
+            "name": "synapticism/ubik-lingual",
+            "version": "v0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/synapticism/ubik-lingual.git",
+                "reference": "55490111ac1bdac1fc771c1d31620616c988dd20"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/synapticism/ubik-lingual/zipball/55490111ac1bdac1fc771c1d31620616c988dd20",
+                "reference": "55490111ac1bdac1fc771c1d31620616c988dd20",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Synaptic",
+                    "email": "alexander@synapticism.com",
+                    "homepage": "http://alexandersynaptic.com"
+                }
+            ],
+            "description": "Simple language-related functions for WordPress",
+            "homepage": "https://github.com/synapticism/ubik-lingual",
+            "keywords": [
+                "plugin",
+                "wordpress",
+                "wordpress-plugin"
+            ],
+            "time": "2015-02-02 12:46:14"
+        },
+        {
+            "name": "synapticism/ubik-links",
+            "version": "v0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/synapticism/ubik-links.git",
+                "reference": "91a2bb584dec6f9b14b871d78980d440be105b98"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/synapticism/ubik-links/zipball/91a2bb584dec6f9b14b871d78980d440be105b98",
+                "reference": "91a2bb584dec6f9b14b871d78980d440be105b98",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Synaptic",
+                    "email": "alexander@synapticism.com",
+                    "homepage": "http://alexandersynaptic.com"
+                }
+            ],
+            "description": "Expanded links management for WordPress",
+            "homepage": "https://github.com/synapticism/ubik-links",
+            "keywords": [
+                "plugin",
+                "wordpress",
+                "wordpress-plugin"
+            ],
+            "time": "2015-02-02 12:46:12"
+        },
+        {
+            "name": "synapticism/ubik-markdown",
+            "version": "v0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/synapticism/ubik-markdown.git",
+                "reference": "d3facd2a1839fe66e100d6514c68386943097a5c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/synapticism/ubik-markdown/zipball/d3facd2a1839fe66e100d6514c68386943097a5c",
+                "reference": "d3facd2a1839fe66e100d6514c68386943097a5c",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Synaptic",
+                    "email": "alexander@synapticism.com",
+                    "homepage": "http://alexandersynaptic.com"
+                }
+            ],
+            "description": "Markdown helper functions for WordPress",
+            "homepage": "https://github.com/synapticism/ubik-markdown",
+            "keywords": [
+                "plugin",
+                "wordpress",
+                "wordpress-plugin"
+            ],
+            "time": "2015-02-02 12:46:08"
+        },
+        {
+            "name": "synapticism/ubik-meta",
+            "version": "v0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/synapticism/ubik-meta.git",
+                "reference": "a30c2251f2226b3e2687db7c050e9f4f716024cd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/synapticism/ubik-meta/zipball/a30c2251f2226b3e2687db7c050e9f4f716024cd",
+                "reference": "a30c2251f2226b3e2687db7c050e9f4f716024cd",
+                "shasum": ""
+            },
+            "require": {
+                "synapticism/ubik": "^0.0.2"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Synaptic",
+                    "email": "alexander@synapticism.com",
+                    "homepage": "http://alexandersynaptic.com"
+                }
+            ],
+            "description": "Post metadata management for WordPress",
+            "homepage": "https://github.com/synapticism/ubik-meta",
+            "keywords": [
+                "plugin",
+                "wordpress",
+                "wordpress-plugin"
+            ],
+            "time": "2015-02-02 12:46:00"
+        },
+        {
+            "name": "synapticism/ubik-places",
+            "version": "v0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/synapticism/ubik-places.git",
+                "reference": "d14a5c2a01a002684f25dec964d8a749d8040630"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/synapticism/ubik-places/zipball/d14a5c2a01a002684f25dec964d8a749d8040630",
+                "reference": "d14a5c2a01a002684f25dec964d8a749d8040630",
+                "shasum": ""
+            },
+            "require": {
+                "synapticism/ubik": "^0.0.2"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Synaptic",
+                    "email": "alexander@synapticism.com",
+                    "homepage": "http://alexandersynaptic.com"
+                }
+            ],
+            "description": "A places taxonomy for WordPress",
+            "homepage": "https://github.com/synapticism/ubik-places",
+            "keywords": [
+                "plugin",
+                "wordpress",
+                "wordpress-plugin"
+            ],
+            "time": "2015-02-02 12:45:57"
+        },
+        {
+            "name": "synapticism/ubik-post-formats",
+            "version": "v0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/synapticism/ubik-post-formats.git",
+                "reference": "f5e9a2fab6bc0b27dc8078596f3f64cc0ad66c4f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/synapticism/ubik-post-formats/zipball/f5e9a2fab6bc0b27dc8078596f3f64cc0ad66c4f",
+                "reference": "f5e9a2fab6bc0b27dc8078596f3f64cc0ad66c4f",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Synaptic",
+                    "email": "alexander@synapticism.com",
+                    "homepage": "http://alexandersynaptic.com"
+                }
+            ],
+            "description": "WordPress post format hacks and snippets",
+            "homepage": "https://github.com/synapticism/ubik-post-formats",
+            "keywords": [
+                "plugin",
+                "wordpress",
+                "wordpress-plugin"
+            ],
+            "time": "2015-02-02 12:38:55"
+        },
+        {
+            "name": "synapticism/ubik-quick-terms",
+            "version": "v0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/synapticism/ubik-quick-terms.git",
+                "reference": "6c8498ca9d0a2e04b222445f56c6e61662931e5c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/synapticism/ubik-quick-terms/zipball/6c8498ca9d0a2e04b222445f56c6e61662931e5c",
+                "reference": "6c8498ca9d0a2e04b222445f56c6e61662931e5c",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Synaptic",
+                    "email": "alexander@synapticism.com",
+                    "homepage": "http://alexandersynaptic.com"
+                }
+            ],
+            "description": "Add term descriptions to the WordPress quick edit box",
+            "homepage": "https://github.com/synapticism/ubik-quick-terms",
+            "keywords": [
+                "plugin",
+                "wordpress",
+                "wordpress-plugin"
+            ],
+            "time": "2015-02-02 12:38:52"
+        },
+        {
+            "name": "synapticism/ubik-recordpress",
+            "version": "v0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/synapticism/ubik-recordpress.git",
+                "reference": "a9ddb639f708361f2e56838d7b73ecacd68d5c2c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/synapticism/ubik-recordpress/zipball/a9ddb639f708361f2e56838d7b73ecacd68d5c2c",
+                "reference": "a9ddb639f708361f2e56838d7b73ecacd68d5c2c",
+                "shasum": ""
+            },
+            "require": {
+                "synapticism/ubik": "^0.0.2"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Synaptic",
+                    "email": "alexander@synapticism.com",
+                    "homepage": "http://alexandersynaptic.com"
+                }
+            ],
+            "description": "A collection of functions and taxonomies for netlabels using WordPress",
+            "homepage": "https://github.com/synapticism/ubik-recordpress",
+            "keywords": [
+                "plugin",
+                "wordpress",
+                "wordpress-plugin"
+            ],
+            "time": "2015-02-02 12:45:49"
+        },
+        {
+            "name": "synapticism/ubik-related",
+            "version": "v0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/synapticism/ubik-related.git",
+                "reference": "28bd367467156f82d2bb7903bb123d4365afbf6d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/synapticism/ubik-related/zipball/28bd367467156f82d2bb7903bb123d4365afbf6d",
+                "reference": "28bd367467156f82d2bb7903bb123d4365afbf6d",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Synaptic",
+                    "email": "alexander@synapticism.com",
+                    "homepage": "http://alexandersynaptic.com"
+                }
+            ],
+            "description": "Lightweight related posts for WordPress",
+            "homepage": "https://github.com/synapticism/ubik-related",
+            "keywords": [
+                "plugin",
+                "wordpress",
+                "wordpress-plugin"
+            ],
+            "time": "2015-02-02 12:38:46"
+        },
+        {
+            "name": "synapticism/ubik-search",
+            "version": "v0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/synapticism/ubik-search.git",
+                "reference": "883ebf7801eff11917b2ca40d36ac8355842b4f1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/synapticism/ubik-search/zipball/883ebf7801eff11917b2ca40d36ac8355842b4f1",
+                "reference": "883ebf7801eff11917b2ca40d36ac8355842b4f1",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Synaptic",
+                    "email": "alexander@synapticism.com",
+                    "homepage": "http://alexandersynaptic.com"
+                }
+            ],
+            "description": "A small library of useful search-related functions for WordPress",
+            "homepage": "https://github.com/synapticism/ubik-search",
+            "keywords": [
+                "plugin",
+                "wordpress",
+                "wordpress-plugin"
+            ],
+            "time": "2015-02-02 12:38:40"
+        },
+        {
+            "name": "synapticism/ubik-seo",
+            "version": "v0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/synapticism/ubik-seo.git",
+                "reference": "d886d4525dabec6908277fa9996b32c49e923164"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/synapticism/ubik-seo/zipball/d886d4525dabec6908277fa9996b32c49e923164",
+                "reference": "d886d4525dabec6908277fa9996b32c49e923164",
+                "shasum": ""
+            },
+            "require": {
+                "synapticism/ubik": "^0.0.2"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Synaptic",
+                    "email": "alexander@synapticism.com",
+                    "homepage": "http://alexandersynaptic.com"
+                }
+            ],
+            "description": "A library of SEO-related functions for WordPress",
+            "homepage": "https://github.com/synapticism/ubik-seo",
+            "keywords": [
+                "plugin",
+                "wordpress",
+                "wordpress-plugin"
+            ],
+            "time": "2015-02-02 12:45:41"
+        },
+        {
+            "name": "synapticism/ubik-series",
+            "version": "v0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/synapticism/ubik-series.git",
+                "reference": "298e147a8d9d19477828f1022477c9ac19765ccc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/synapticism/ubik-series/zipball/298e147a8d9d19477828f1022477c9ac19765ccc",
+                "reference": "298e147a8d9d19477828f1022477c9ac19765ccc",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Synaptic",
+                    "email": "alexander@synapticism.com",
+                    "homepage": "http://alexandersynaptic.com"
+                }
+            ],
+            "description": "A lightweight post series taxonomy for WordPress",
+            "homepage": "https://github.com/synapticism/ubik-series",
+            "keywords": [
+                "plugin",
+                "wordpress",
+                "wordpress-plugin"
+            ],
+            "time": "2015-02-02 12:38:33"
+        },
+        {
+            "name": "synapticism/ubik-terms",
+            "version": "v0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/synapticism/ubik-terms.git",
+                "reference": "e04671aa943a2a16fca5af26fb38306bf35510f1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/synapticism/ubik-terms/zipball/e04671aa943a2a16fca5af26fb38306bf35510f1",
+                "reference": "e04671aa943a2a16fca5af26fb38306bf35510f1",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Synaptic",
+                    "email": "alexander@synapticism.com",
+                    "homepage": "http://alexandersynaptic.com"
+                }
+            ],
+            "description": "A collection of functions for working with WordPress categories, tags, and taxonomies",
+            "homepage": "https://github.com/synapticism/ubik-terms",
+            "keywords": [
+                "plugin",
+                "wordpress",
+                "wordpress-plugin"
+            ],
+            "time": "2015-02-02 12:38:30"
+        },
+        {
+            "name": "synapticism/ubik-time",
+            "version": "v0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/synapticism/ubik-time.git",
+                "reference": "e44a79b796ad767c378aac7aa9e9ad232f13fd69"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/synapticism/ubik-time/zipball/e44a79b796ad767c378aac7aa9e9ad232f13fd69",
+                "reference": "e44a79b796ad767c378aac7aa9e9ad232f13fd69",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Synaptic",
+                    "email": "alexander@synapticism.com",
+                    "homepage": "http://alexandersynaptic.com"
+                }
+            ],
+            "description": "Time and date functions for WordPress",
+            "homepage": "https://github.com/synapticism/ubik-time",
+            "keywords": [
+                "plugin",
+                "wordpress",
+                "wordpress-plugin"
+            ],
+            "time": "2015-02-02 12:38:25"
+        },
+        {
+            "name": "synapticism/ubik-title",
+            "version": "v0.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/synapticism/ubik-title.git",
+                "reference": "691cfbdd42bb8f520242f91a92c1aac36e805dbe"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/synapticism/ubik-title/zipball/691cfbdd42bb8f520242f91a92c1aac36e805dbe",
+                "reference": "691cfbdd42bb8f520242f91a92c1aac36e805dbe",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Synaptic",
+                    "email": "alexander@synapticism.com",
+                    "homepage": "http://alexandersynaptic.com"
+                }
+            ],
+            "description": "Generate document, archive, and entry titles for WordPress",
+            "homepage": "https://github.com/synapticism/ubik-title",
+            "keywords": [
+                "plugin",
+                "wordpress",
+                "wordpress-plugin"
+            ],
+            "time": "2015-02-02 12:47:27"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

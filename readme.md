@@ -17,47 +17,53 @@ You can see Pendrell in action on my personal blog, [Synapticism](http://synapti
 This is an incomplete list in no particular order:
 
 * HTML5-compliant markup; clean and efficient CSS3 styling based on Sass.
-* Automated CSS/JS minification via Gulp/Bower build system and intelligent asset loading. This theme is *highly* optimized. (For reference: the CSS and custom JS payloads average about 45kb and 25kb respectively!)
+* Automated CSS/JS minification via Gulp/Bower build system and intelligent asset loading. This theme is *highly* optimized.
 * Big, beautiful typesetting for [easy reading](http://ia.net/blog/100e2r/).
 * Consistent vertical rhythm (excluding images; that's just too much trouble).
 * Full-width view for images and galleries. Great for photo-blogging.
 * Truly responsive images with [Ubik Imagery](https://github.com/synapticism/ubik-imagery) and [Picturefill](https://github.com/scottjehl/picturefill). Visitors on mobile will load smaller images than those on bigger screens!
-* Built-in AJAX Page Loader script (click "next" and more content will appear). Not unlike Infinite Scroll but custom-coded for high performance.
+* Built-in [AJAX Page Loader](https://github.com/synapticism/wp-ajax-page-loader) script (click "next" and more content will appear). Not unlike Infinite Scroll but custom-coded for high performance.
 * Built-in AJAX contact form page template; no need for a wasteful plugin.
 * Improved post format styling and support for asides, images (really just a thin wrapper for attachments), links, quotations, and status updates.
 * Custom template swapping; display posts in a gallery of thumbnails, a list, or as the original posts. Great for portfolios.
 * Smart context-dependent search form and search redirects (singletons and blank queries).
-* Google web font support; configure in `functions-config.php`.
+* Google Web Font support; configure in `functions-config.php`.
 * Image metadata module; a bit like what can be seen on Flickr (date captured, focus, ISO, etc.).
 * Footer info module; customize the copyright blurb at the bottom of each page.
 * Related posts optionally weighted by taxonomy, number of comments, presence of post thumbnail/featured image, etc.
 * SVG icon sheet support; seamlessly integrate SVG icons from any open source icon set.
 * Code highlighting with [Prism](http://prismjs.com).
 * A zillion little optimizations via [Ubik](https://github.com/synapticism/ubik).
-* Absolutely no options screen bloat; everything is set in text files.
+* Absolutely no options screen or database bloat.
 * Verbosely commented source code to walk you through everything that Pendrell can do.
+
+
+
+## REQUIREMENTS
+
+To use the theme: WordPress 3.9+ and PHP 5.2. For development and customization: gem, npm, Sass, Bower, Composer, and Gulp. Browser support: IE9+, latest 2 versions otherwise.
 
 
 
 ## INSTALLATION
 
-Clone the repo and run `npm install` then `gulp dist` to build Pendrell for production.
+Download/clone the repo and run `npm install` and then `gulp dist` to build Pendrell for production.
 
 Drop the 'dist/pendrell' directory into `/wp-content/themes/` and activate it via the WordPress admin interface.
 
-*Note: the copy hosted on GitHub lacks many dependencies that you can only get by building the theme from scratch!*
+*Note: this theme must be built from scratch; there is no readily available distribution at this time!*
 
-### REQUIREMENTS
 
-To use the theme: WordPress 3.9+ and PHP 5.2. For development and customization: gem, npm, Sass, Bower, and Gulp. Browser support: IE9+, latest 2 versions otherwise.
 
-### CONFIGURATION
+## CONFIGURATION
 
 **This theme has no options page**; modify the `src/functions-config.php` file if you wish to change any of the default settings specified in `src/functions-config-defaults.php`. Refer to the comments and patterns in the source code for more information. In general, most options can be set by using `define( 'PENDRELL_CONSTANT', value );`.
 
-### DEVELOPMENT
 
-I develop Pendrell on a local OS X development environment provisioned with Sass, Bower, and Gulp. (See [this post on my blog](http://synapticism.com/wordpress-theme-development-with-gulp-bower-and-sass/) for more details about this workflow.) Presumably you are working with a similar setup. To get started you'll need to have Sass installed: `gem install sass`. After that, `npm install` should get you up and running. (Bower is automatically called using npm's `scripts.postinstall` feature.)
+
+## DEVELOPMENT
+
+I develop Pendrell on a local OS X development environment provisioned with Sass, Bower, Composer, and Gulp. (See [this post on my blog](http://synapticism.com/wordpress-theme-development-with-gulp-bower-and-sass/) for more details about this workflow.) Presumably you are working with a similar setup. To get started you'll need to have Sass installed: `gem install sass`. After that, `npm install` should get you up and running. (Bower and Composer are automatically called using npm's `scripts.postinstall` feature.)
 
 At this point you can build Pendrell with the `gulp` command. This also starts up a watch process and a [BrowserSync](http://www.browsersync.io/) or [LiveReload](http://livereload.com/) server (for use with the relevant [browser extension](http://feedback.livereload.com/knowledgebase/articles/86242-how-do-i-install-and-use-the-browser-extensions-)).
 
@@ -65,7 +71,7 @@ When making modifications in development be sure to alter files in the `src` fol
 
 To create a new production-ready distribution under `pendrell/dist/pendrell` use `gulp dist`. This can also be tested locally using a variation on the symbolic link command above.
 
-Pendrell uses vanilla Sass (no Compass) alongside [Kipple](https://github.com/synapticism/kipple), my zygotic library of Sass hacks, [Normalize.css](https://necolas.github.io/normalize.css/), and [Eric Meyer's reset](http://meyerweb.com/eric/tools/css/reset/).
+Pendrell uses vanilla Sass (no Compass) alongside [Kipple](https://github.com/synapticism/kipple), my zygotic library of Sass hacks, and [Normalize.css](https://necolas.github.io/normalize.css/).
 
 
 

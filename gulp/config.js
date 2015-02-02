@@ -6,6 +6,7 @@ var project     = 'pendrell'
   , build       = './build/'
   , dist        = './dist/'+project+'/'
   , bower       = './bower_components/'
+  , composer    = './vendor/'
 ;
 
 // Project settings
@@ -27,7 +28,7 @@ module.exports = {
         ]
       }
     , typicons: {
-        src: bower+'typicons.font/src/svg/'
+        src: bower+'typicons/src/svg/'
       , dest: src+'svg/'
       , prefix: 'typ-'
       , icons: [
@@ -176,7 +177,7 @@ module.exports = {
     , dest: build
     }
   , ubik: {
-      src: bower // Root folder for all Ubik components
+      src: composer+'synapticism/' // Root folder for all Ubik components
     , dest: build+'modules' // Location in the `build` folder Ubik components should be copied to
       // The following Ubik components will be copied into the theme's build folder
       // Items marked * are required for the theme to function
