@@ -2,7 +2,7 @@
 
 var gulp        = require('gulp')
   , plugins     = require('gulp-load-plugins')({ camelize: true })
-  , config      = require('../config').svg
+  , config      = require('../../gulpconfig').svg
 ;
 
 // Generate an optimized SVG sprite sheet file from individual SVG source icons

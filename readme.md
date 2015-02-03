@@ -1,6 +1,6 @@
 # PENDRELL
 
-Pendrell is a minimal yet fully-featured WordPress theme. It features beautiful, legible typesetting alongside big, bold imagery. Use it for long-form journalism, photo-blogging, and more--but be prepared to dive into the code! Pendrell is something of a hacker theme; there is no options page, theme customizer, or bloat, and you won't find it in the WordPress theme repository. Instead, what you get is a highly optimized and surprisingly powerful theme [built with the goodness of Sass, Bower, and Gulp](https://github.com/synapticism/wordpress-gulp-bower-sass).
+Pendrell is a minimal yet fully-featured WordPress theme. It features beautiful, legible typesetting alongside big, bold imagery. Use it for long-form journalism, photo-blogging, and more--but be prepared to dive into the code! Pendrell is something of a hacker theme; there is no options page, theme customizer, or bloat, and you won't find it in the WordPress theme repository. Instead, what you get is a highly optimized and surprisingly powerful theme [built with the goodness of Gulp, Bower, and Sass](https://github.com/synapticism/wordpress-gulp-bower-sass).
 
 Pendrell is built with [Ubik](https://github.com/synapticism/ubik), my suite of WordPress components. All necessary components are integrated into Pendrell during the build process; no extra plugins need to be installed.
 
@@ -64,7 +64,7 @@ Drop the 'dist/pendrell' directory into `/wp-content/themes/` and activate it vi
 
 ## DEVELOPMENT
 
-I develop Pendrell on a local OS X development environment provisioned with Sass, Bower, Composer, and Gulp. (See [this post on my blog](http://synapticism.com/wordpress-theme-development-with-gulp-bower-and-sass/) for more details about this workflow.) Presumably you are working with a similar setup. To get started you'll need to have Sass installed: `gem install sass`. After that, `npm install` should get you up and running. (Bower and Composer are automatically called using npm's `scripts.postinstall` feature.)
+I develop Pendrell on a local OS X development environment provisioned with Sass, Bower, Composer, and Gulp. (See [this repo](https://github.com/synapticism/wordpress-gulp-bower-sass) for more details about this workflow.) Presumably you are working with a similar setup. To get started you'll need to have Sass installed: `gem install sass`. After that, `npm install` should get you up and running. (Bower and Composer are automatically called using npm's `scripts.postinstall` feature.)
 
 At this point you can build Pendrell with the `gulp` command. This also starts up a watch process and a [BrowserSync](http://www.browsersync.io/) or [LiveReload](http://livereload.com/) server (for use with the relevant [browser extension](http://feedback.livereload.com/knowledgebase/articles/86242-how-do-i-install-and-use-the-browser-extensions-)).
 
@@ -72,7 +72,7 @@ When making modifications in development be sure to alter files in the `src` fol
 
 To create a new production-ready distribution under `pendrell/dist/pendrell` use `gulp dist`. This can also be tested locally using a variation on the symbolic link command above.
 
-Pendrell uses vanilla Sass (no Compass) alongside [Kipple](https://github.com/synapticism/kipple), my zygotic library of Sass hacks, and [Normalize.css](https://necolas.github.io/normalize.css/).
+Pendrell uses vanilla Sass (sans Compass) alongside [Kipple](https://github.com/synapticism/kipple), my zygotic library of Sass hacks, and [Normalize.css](https://necolas.github.io/normalize.css/), among other projects. Have a look at `bower.json` and `composer.json` for a full list.
 
 
 
