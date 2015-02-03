@@ -43,7 +43,7 @@ if ( !function_exists( 'pendrell_related_posts' ) ) : function pendrell_related_
           $alt      = '',
           $rel      = '',
           $class    = '',
-          $data     = '',
+          $footer   = '',
           $group    = 3
         );
       } ?>

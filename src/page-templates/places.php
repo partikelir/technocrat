@@ -35,6 +35,9 @@ get_header(); ?>
               if ( array_key_exists( $place->term_id, $pendrell_places_thumbs ) )
                 $place->thumb = $pendrell_places_thumbs[$place->term_id];
 
+              // Define a footer
+              $footer = '<footer class="overlay overlay-top-right" rel="presentation">' . sprintf( _n( '1 post', '%s posts', $place->count, 'pendrell' ), $place->count ) . '</footer>';
+
               // Output a gallery of places
               echo ubik_imagery(
                 $html     = '',
@@ -47,7 +50,7 @@ get_header(); ?>
                 $alt      = '',
                 $rel      = '',
                 $class    = 'no-fade',
-                $data     = array( 'overlay-right' => sprintf( _n( '1 post', '%s posts', $place->count, 'pendrell' ), $place->count ) ),
+                $footer     = $footer, //array( 'overlay-right' => sprintf( _n( '1 post', '%s posts', $place->count, 'pendrell' ), $place->count ) ),
                 $group    = 3
               );
             }

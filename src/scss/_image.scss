@@ -132,6 +132,40 @@ figure.wp-caption,
 
 // == OVERLAYS == //
 
+// General overlay helpers
+.overlay {
+  @include font-style(image-overlay-caption);
+  @include k-media-below( break(medium) ) {
+    @include font-size(text-small);
+  }
+  @include rem( padding, spacer(1/4) spacer(1/2) );
+  color: white();
+  max-width: 42.5%; // @TODO: make this more precise; currently this is just a best guess based on 300px width images
+  pointer-events: none; // Allow clicks to pass through
+  text-shadow: 0px 1px 2px black(.8);
+  z-index: 999;
+}
+.overlay-top-left {
+  position: absolute;
+    top: 0;
+    left: 0;
+}
+.overlay-top-right {
+  position: absolute;
+    top: 0;
+    right: 0;
+}
+.overlay-bottom-left {
+  position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.overlay-bottom-right {
+  position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
 // This class is specific to the output of the WordPress `[gallery]` shortcode; the classes can't change without a bunch of extra code to filter the output
 @if module(gallery-shortcode) {
   .gallery-item {

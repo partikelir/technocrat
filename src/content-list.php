@@ -15,12 +15,7 @@
 	    $title 		= '',
 	    $align 		= '',
 	    $url 			= get_permalink(),
-	    $size 		= 'thumbnail',
-	    $alt 			= '',
-	    $rel 			= '',
-	    $class 		= '',
-	    $data			=	'',
-	    $group    = 0
+	    $size 		= 'thumbnail'
 	  ); ?>
 	</div>
 	<div class="entry-content-wrapper">

@@ -16,6 +16,6 @@ echo ubik_imagery(
   $alt      = '',
   $rel      = '',
   $class    = get_post_class(),
-  $data     = '',
+  $footer   = '',
   $group    = 3
 );
