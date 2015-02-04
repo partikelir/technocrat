@@ -13,9 +13,9 @@
   &:hover {
     cursor: pointer;
     img {
+      backface-visibility: hidden;
       filter: brightness(70%) opacity(80%) grayscale(100%);
       transition: all .4s ease;
-      -webkit-backface-visibility: hidden;
     }
   }
 }
@@ -50,55 +50,58 @@
       text-shadow: 0px 1px 2px black(.8);
     }
     @if ($style == title) {
+      @include k-media-above( break(medium) ) {
+        .full-width & {
+          @include rem( font-size, size(text-big) + 0px ); // Boost the font size on full-width displays
+        }
+      }
       @include font-style(image-overlay-title);
-      @include rem( font-size, size(text-big) + 0px );
       text-align: center;
       text-shadow: 0px 1px 2px black(.8);
       // Note: bigger sizes and media queries have been moved to `_image.scss`
     }
     @include border-radius(0 0 $d-radius $d-radius);
+    @include k-absolute(bottom 0 left 0);
     @include k-regular-italics;
     @include rem( padding, spacer(1/4) spacer(1/4) );
+    backface-visibility: hidden;
     background-image: linear-gradient( black(0), black(.5) );
     background-repeat: repeat-x;
     box-sizing: border-box;
     color: white();
     line-height: 1.25; // No need for vertical rhythm here!
     margin: 0;
-    max-height: 100%;
+    max-height: 85%; // To leave a little room for the overlays at top left and right
     opacity: 0;
     pointer-events: none; // Allows click-through; not compatible with older versions of IE and such; see: http://caniuse.com/#search=pointer-events
-    position: absolute;
-      bottom: 0;
-      left: 0;
     transition: opacity .75s ease-out;
     width: 100%;
-    -webkit-backface-visibility: hidden;
     &:before {
+      @include k-absolute(left 0 top 0);
       content: "";
       height: 100%;
       min-height: spacer();
-      position: absolute;
-        left: 0;
-        top: 0;
       width: 100%;
     }
   }
   &:hover,
   &.no-id:hover {
-    #{$overlay} {
+    #{$overlay},
+    .overlay {
       opacity: 1;
       transition: opacity .4s ease;
     }
   }
   &.no-id {
-    #{$overlay} {
+    #{$overlay},
+    .overlay {
       opacity: .8; // This class is added when there is no image to display; on these occasions we'd like the title to be visible at all times
       transition: opacity .75s ease-out;
     }
   }
   &.no-fade {
-    #{$overlay} {
+    #{$overlay},
+    .overlay {
       opacity: 1; // Always show overlays; apply the `no-fade` class to the parent `figure` element
     }
   }

@@ -31,12 +31,15 @@ get_header(); ?>
             // Loop through all the top-most places
             foreach ( $places as $place ) {
 
+              $metadata = '';
+
               // This is a hack to manually assign thumbnails to specific places; @TODO: code this properly
               if ( array_key_exists( $place->term_id, $pendrell_places_thumbs ) )
                 $place->thumb = $pendrell_places_thumbs[$place->term_id];
 
-              // Define a footer
-              $footer = '<footer class="overlay overlay-top-right" rel="presentation">' . sprintf( _n( '1 post', '%s posts', $place->count, 'pendrell' ), $place->count ) . '</footer>';
+              // Additional metadata to pass to the image creation function; requires additional CSS styling for correct display
+              if ( !empty( $place->count ) )
+                $metadata = pendrell_image_overlay( sprintf( _n( '1 post', '%s posts', $place->count, 'pendrell' ), $place->count ) . ' ' .  pendrell_icon( 'typ-location', __( 'Places', 'pendrell' ) ) );
 
               // Output a gallery of places
               echo ubik_imagery(
@@ -50,7 +53,7 @@ get_header(); ?>
                 $alt      = '',
                 $rel      = '',
                 $class    = 'no-fade',
-                $footer     = $footer, //array( 'overlay-right' => sprintf( _n( '1 post', '%s posts', $place->count, 'pendrell' ), $place->count ) ),
+                $contents = $metadata,
                 $group    = 3
               );
             }

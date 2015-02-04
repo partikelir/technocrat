@@ -25,6 +25,8 @@ module.exports = {
       , prefix: 'ion-'
       , icons: [
           'search'
+        , 'chatbubble'
+        , 'location'
         ]
       }
     , typicons: {
@@ -33,18 +35,7 @@ module.exports = {
       , prefix: 'typ-'
       , icons: [
           'edit'
-        //, 'link'
-        //, 'location'
-        //, 'rss'
-        //, 'media-play'
-        //, 'media-pause'
-        //, 'media-fast-forward'
-        //, 'media-rewind'
-        //, 'media-stop'
-        //, 'volume'
-        //, 'volume-down'
-        //, 'volume-mute'
-        //, 'volume-up'
+        , 'location'
         ]
       }
     }

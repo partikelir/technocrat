@@ -46,7 +46,14 @@ add_filter( 'prepend_attachment', 'pendrell_image_prepend' );
 
 
 
-// == THUMBNAILS == //
+// Image overlay wrapper; for use with Ubik Imagery
+if ( !function_exists( 'pendrell_image_overlay' ) ) : function pendrell_image_overlay( $html = '', $position = 'top-right' ) {
+  if ( $html !== '' && in_array( $position, array( 'top-right', 'top-left', 'bottom-right', 'bottom-left' ) ) )
+    $html = '<footer class="overlay overlay-' . esc_attr( $position ) . '">' . (string) $html . '</footer>';
+  return $html;
+} endif;
+
+
 
 // Thumbnail ID fallback
 if ( !function_exists( 'pendrell_thumbnail_id' ) ) : function pendrell_thumbnail_id( $post_id = null, $fallback_id = null ) {

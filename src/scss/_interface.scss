@@ -16,7 +16,19 @@ input[type="submit"],
   @include button;
 }
 
-// Emulating `:disabled` functionality for regular anchor elements
+// Icon styling specific to buttons
+button,
+.button {
+  & .icon {
+    @include rem( height, 18px );
+    @include rem( width, 18px );
+    @include rem( margin, 4px -4px 0 4px );
+    filter: drop-shadow( 0 1px 1px colour(body-bg) ); // Matches letterpress effect
+    float: right;
+  }
+}
+
+// Emulating `:disabled` button functionality for regular anchor elements
 a.disabled {
   cursor: default;
   opacity: .5;
@@ -86,16 +98,7 @@ svg {
       @include rem( width, 24px );
       display: inline-block;
       fill: currentColor; // Inherit color
-      vertical-align: sub;
-
-      .button &,
-      button & {
-        @include rem( height, 18px );
-        @include rem( width, 18px );
-        @include rem( margin, 4px -4px 0 4px );
-        filter: drop-shadow( 0 1px colour(body-bg) ); // Matches letterpress effect
-        float: right;
-      }
+      vertical-align: baseline; // Options: baseline, sub, super, text-top, text-bottom, middle, top, bottom
     }
   }
 

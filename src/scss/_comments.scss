@@ -42,9 +42,11 @@
 .comment-article {
   @include rem( padding, spacer(1/2) );
   .bypostauthor & { // Specific to the post author's comments
-    @include border-radius(6px);
-    background:  colour(body-dark);
-    box-shadow: inset 3px 3px 7px colour(shadow);
+    @include k-media-above( break(small) ) {
+      @include border-radius(6px);
+      background: colour(body-dark);
+      box-shadow: inset 3px 3px 7px colour(shadow);
+    }
   }
 }
 .comment-author { // Comment author's byline
