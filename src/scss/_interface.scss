@@ -114,10 +114,8 @@ svg {
 
 // Site interface: the toolbar/menu at top right
 .site-interface {
+  @include k-absolute(right 0 top 0);
   display: block;
-  position: absolute;
-    right: 0;
-    top: 0;
 }
 
 // Menu toggle for mobile phones and small screens

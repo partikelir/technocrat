@@ -101,7 +101,7 @@
 .comment-meta {
   @extend %links-meta-no-border;
   @include font-size(text-smaller);
-  color:  colour(meta);
+  color: colour(meta);
 }
 
 

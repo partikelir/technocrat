@@ -73,15 +73,3 @@ if ( !function_exists( 'pendrell_icon_script_vars' ) ) : function pendrell_icon_
   return $script_vars;
 } endif;
 add_filter( 'pendrell_script_vars', 'pendrell_icon_script_vars' );
-
-
-
-// Add some icons to archive titles; @TODO: remove when testing complete
-if ( !function_exists( 'pendrell_icon_archive_title' ) ) : function pendrell_icon_archive_title( $contents ) {
-  if ( is_tax( 'post_format', 'post-format-image' ) )
-    $contents = pendrell_icon( 'ion-image' ) . $contents;
-  if ( is_tax( 'post_format', 'post-format-gallery' ) )
-    $contents = pendrell_icon( 'ion-images' ) . $contents;
-  return $contents;
-} endif;
-//add_filter( 'pendrell_archive_title', 'pendrell_icon_archive_title' );

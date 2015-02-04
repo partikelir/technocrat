@@ -57,8 +57,7 @@
   float: left;
   width: 150px;
   figure.wp-caption {
-    @include image-fade;
-    margin: 0;
+    @extend %spacer-reset
   }
 }
 
@@ -75,8 +74,8 @@
 
   // Entry meta
   .entry-meta {
+    @extend %clearfix-reset;
     @include font-size(text-smallest);
-    @include k-clearfix-reset;
     color: colour(text-lightest);
     text-transform: uppercase;
   }
@@ -87,7 +86,7 @@
   }
   .entry-content p {
     @extend %text-small;
-    margin: 0;
+    @extend %spacer-reset;
   }
 
   // Link post format
@@ -116,6 +115,6 @@
     border-bottom: none;
   }
   p {
-    margin: 0;
+    @extend %spacer-reset;
   }
 }

@@ -42,8 +42,8 @@ if ( !function_exists( 'pendrell_related_posts' ) ) : function pendrell_related_
           $size     = 'third-square',
           $alt      = '',
           $rel      = '',
-          $class    = 'related-post',
-          $contents = pendrell_image_overlay( get_comments_number( $related_post ) . ' ' . pendrell_icon( 'ion-chatbubble', __( 'Comments', 'pendrell' ) ) ),
+          $class    = 'related-post overlay',
+          $contents = pendrell_image_overlay_metadata( get_comments_number( $related_post ) . ' ' . pendrell_icon( 'ion-chatbubble', __( 'Comments', 'pendrell' ) ) ),
           $group    = 3
         );
       } ?>

@@ -1,4 +1,14 @@
-// ==== UBIK ==== //
+// ==== MODULES ==== //
+
+// == IMAGE METADATA == //
+
+@if module(image-metadata) {
+  .image-description {
+    @include font-size(text-small);
+  }
+}
+
+
 
 // == LINKS == //
 
@@ -20,6 +30,7 @@
     }
   }
 }
+
 
 
 // == PLACES == //
@@ -72,6 +83,7 @@
   .series {
     ol {
       @include font-size(text-small);
+      @include rem( margin-left, spacer() );
     }
   }
 }

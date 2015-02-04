@@ -266,7 +266,7 @@ th {
 
 // Multimedia
 figure {
-  margin: 0; // Reset normalize.css
+  @extend %spacer-reset; // Reset normalize.css
 }
 img {
   height: auto; // Make sure images are scaled correctly

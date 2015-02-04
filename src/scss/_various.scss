@@ -1,38 +1,42 @@
 // ==== VARIOUS ==== //
 
-// Alignment
-.alignleft {
-  float: left;
-}
-.alignright {
-  float: right;
-}
-.aligncenter {
-  @extend %clearfix-below;
-  @include k-center-block;
-  text-align: center; // Presumably we might be applying this to elements that contain text
-}
-.alignnone {
-  @extend %clearfix;
-  margin-left: 0;
-  margin-right: 0;
-}
-
-
-
 // Clearing helper class; still in use
 .clear {
   @extend %clearfix-below;
 }
 
+// Alignment
+.alignleft {
+  @extend %align-left;
+}
+.alignright {
+  @extend %align-right;
+}
+.aligncenter {
+  @extend %align-center;
+}
+.alignnone {
+  @extend %align-none;
+}
 
+// Positioning
+.bottom-left {
+  @extend %bottom-left;
+}
+.bottom-right {
+  @extend %bottom-right;
+}
+.top-left {
+  @extend %top-left;
+}
+.top-right {
+  @extend %top-right;
+}
 
 // Footnotes; for use with Markdown Extra implementations e.g. JP Markdown
 .footnotes {
   @extend %text-small;
 }
-
-
 
 // References list; for use with scholarly works
 .references {
@@ -47,14 +51,10 @@
   }
 }
 
-
-
 // WordPress theme guidelines requires some classes even if they aren't used
 .sticky {
-  margin: 0;
+  @extend %spacer-reset;
 }
-
-
 
 // Screen reader text adapted from Twenty Twelve and _s
 %off-screen {

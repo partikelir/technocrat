@@ -15,7 +15,10 @@
 	    $title 		= '',
 	    $align 		= '',
 	    $url 			= get_permalink(),
-	    $size 		= 'thumbnail'
+	    $size 		= 'thumbnail',
+	    $alt      = '',
+  		$rel      = '',
+  		$class    = array_merge( get_post_class(), array( 'overlay ' ) )
 	  ); ?>
 	</div>
 	<div class="entry-content-wrapper">

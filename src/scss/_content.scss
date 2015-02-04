@@ -185,7 +185,7 @@
 .entry-meta-main {
   @extend %links-meta;
   @include font-size(text-smaller);
-  color:  colour(meta);
+  color: colour(meta);
 }
 
 

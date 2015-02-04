@@ -15,7 +15,7 @@ echo ubik_imagery(
   $size     = 'third-square',
   $alt      = '',
   $rel      = '',
-  $class    = get_post_class(),
-  $contents = pendrell_image_overlay( get_comments_number() . ' ' . pendrell_icon( 'ion-chatbubble', __( 'Comments', 'pendrell' ) ) ),
+  $class    = array_merge( get_post_class(), array( 'overlay ' ) ),
+  $contents = pendrell_image_overlay_metadata( get_comments_number() . ' ' . pendrell_icon( 'ion-chatbubble', __( 'Comments', 'pendrell' ) ) ),
   $group    = 3
 );

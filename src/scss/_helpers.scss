@@ -12,6 +12,9 @@
 %clearfix {
   @include k-clearfix;
 }
+%clearfix-reset {
+  @include k-clearfix-reset;
+}
 
 // Spacing, to preserve a modicum of vertical rhythm
 %spacer-above {
@@ -38,6 +41,10 @@
 %spacer-below-half {
   @include rem( margin-bottom, spacer(1/2) );
 }
+%spacer-reset {
+  margin: 0;
+}
+
 
 // Hide
 %hide {
@@ -139,4 +146,36 @@
 // Interface
 %button-container {
   @include button-container;
+}
+
+// Positioning
+%bottom-left {
+  @include k-absolute(bottom 0 left 0);
+}
+%bottom-right {
+  @include k-absolute(bottom 0 right 0);
+}
+%top-left {
+  @include k-absolute(top 0 left 0);
+}
+%top-right {
+  @include k-absolute(top 0 right 0);
+}
+
+// Alignment
+%align-left {
+  float: left;
+}
+%align-right {
+  float: right;
+}
+%align-center {
+  @extend %clearfix-below;
+  @include k-center-block;
+  text-align: center; // Presumably we might be applying this to elements that contain text
+}
+%align-none {
+  @extend %clearfix;
+  margin-left: 0;
+  margin-right: 0;
 }

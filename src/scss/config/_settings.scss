@@ -43,7 +43,7 @@ $_breaks: (
 
 // Modules; reduce bloat by switching some of these off; test with module()
 $_modules: (
-  gallery-shortcode:  true // WordPress core
+  gallery-shortcode:  false // WordPress core; activation creates some useless duplicate styles
 , icons:              true // Built-in to Pendrell
 , image-metadata:     false // Built-in
 , post-formats:       false // Built-in
@@ -58,7 +58,7 @@ $_modules: (
 
 @if $dev {
   $_modules: (
-    gallery-shortcode:  true // WordPress core
+    gallery-shortcode:  false // WordPress core; activation creates some useless duplicate styles
   , icons:              true // Built-in to Pendrell
   , image-metadata:     true // Built-in to Pendrell
   , post-formats:       true // Built-in

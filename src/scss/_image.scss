@@ -1,40 +1,10 @@
 // ==== IMAGE ==== //
 
-// - Placeholder
-// - Captions
 // - Layout
+// - Captions
 // - Gallery
-// - Image Metadata
-
-
-
-// == PLACEHOLDER == //
-
-// Image placeholder hack; fills out the space when a requested image isn't found
-.no-image {
-  @include image-fallback;
-  padding-bottom: 100%;
-}
-
-
-
-// == CAPTIONS == //
-
-:not(figure).wp-caption {
-  @extend %spacer-below;
-  max-width: 100%; // Keep wide captions from overflowing their containers
-}
-.entry-caption,
-.wp-caption-text {
-  @extend %clearfix-below;
-  @include font-size(text-smaller);
-  @include k-reverse-italics;
-  color: lighten( colour(text-lightest), 10);
-  max-width: 100%;
-  .full-width & {
-    @include font-size(text-small);
-  }
-}
+// - Overlays
+// - Placeholder
 
 
 
@@ -62,6 +32,38 @@ figure.wp-caption,
     img { // Applies centering to the image within the figure, not the figure element itself
       @include k-center-block;
     }
+  }
+}
+figure.wp-caption {
+  a,
+  a:visited,
+  a:hover,
+  a:focus,
+  a:active {
+    border: none;
+    outline: none;
+  }
+}
+
+
+
+// == CAPTIONS == //
+
+// These classes apply to regular captions in entry content
+:not(figure).wp-caption {
+  @extend %spacer-below;
+  max-width: 100%; // Keep wide captions from overflowing their containers
+}
+// Caption styling; be careful, anything declared here must be superseded by children of the overlay class (below)
+.entry-caption,
+.wp-caption-text {
+  @extend %clearfix-below;
+  @include font-size(text-smaller);
+  @include k-reverse-italics;
+  color: lighten( colour(text-lightest), 10);
+  max-width: 100%;
+  .full-width & {
+    @include font-size(text-small);
   }
 }
 
@@ -129,109 +131,60 @@ figure.wp-caption,
   }
 }
 
+// This class is specific to the output of the WordPress `[gallery]` shortcode and cannot be filtered
+// If you don't use the built-in gallery shortcode be sure to switch this feature off; it wastefully duplicates a bunch of styles from the generalized overlay class
+@if module(gallery-shortcode) {
+  .gallery-item {
+    @include image-overlay(".gallery-caption"); // Will output some wasteful metadata classes but that can't be helped
+    .gallery-caption {
+      @include rem( font-size, size(text-small) + 0px );
+      line-height: 1.25; // No need for vertical rhythm here!
+    }
+  }
+}
+
 
 
 // == OVERLAYS == //
 
-// General overlay helpers; @TODO: integrate into `lib/_images.scss`
+// Image overlay class; apply this to any image container (likely a `figure` element)
 .overlay {
-  @include font-size(text-small);
-  @include font-style(image-overlay-caption);
-  @include rem( padding, spacer(1/4) spacer(1/3) );
-  color: white();
-  max-width: 42.5%; // @TODO: make this more precise; currently this is just a best guess based on 300px width images
-  opacity: 0;
-  pointer-events: none; // Allow clicks to pass through
+  @include image-overlay;
   text-shadow: 0px 1px 2px black(.8);
-  transition: opacity .75s ease-out;
-  z-index: 999;
+
+  // Using a class instead of `figcaption` to combat the specificity of caption styles defined above
+  .wp-caption-text {
+    @include font-style(image-overlay-title);
+    @include rem( font-size, size(text) + 0px );
+    line-height: 1.25; // No need for vertical rhythm here!
+    text-align: center;
+    @include k-media-above( break(medium) ) {
+      .full-width & {
+        @include rem( font-size, size(text-bigger) + 0px );
+        text-shadow: 1px 1px 5px black(.7);
+      }
+    }
+  }
+  footer {
+    @include rem( font-size, size(text-small) + 0px );
+    line-height: 1.4; // No need for vertical rhythm here!
+    @include k-media-above( break(medium) ) {
+      .full-width & {
+        @include rem( font-size, size(text) + 0px );
+      }
+    }
+  }
+
+  // Optional icon sizing and drop-shadowing
   @if module(icons) {
     & .icon {
       @include rem( height, 14px );
       @include rem( width, 14px );
       filter: drop-shadow( 0px 1px 1px black(.6) );
-    }
-  }
-  @include k-media-above( break(medium) ) {
-    .full-width & {
-      @include font-size(text);
-      @if module(icons) {
-        & .icon {
-          @include rem( height, 20px );
-          @include rem( width, 20px );
-          vertical-align: -2px;
-        }
-      }
-    }
-  }
-}
-.overlay-bottom-left {
-  @include k-absolute(bottom 0 left 0);
-}
-.overlay-bottom-right {
-  @include k-absolute(bottom 0 right 0);
-}
-.overlay-top-left {
-  @include k-absolute(top 0 left 0);
-}
-.overlay-top-right {
-  @include k-absolute(top 0 right 0);
-}
-
-// This class is specific to the output of the WordPress `[gallery]` shortcode; the classes can't change without a bunch of extra code to filter the output
-@if module(gallery-shortcode) {
-  .gallery-item {
-    @include image-overlay(".gallery-caption", caption);
-  }
-}
-
-// These classes are specific to the Views module and Ubik Related
-@if module(views) and module(ubik-related) {
-  .gallery-view,
-  .related-posts {
-    figure.wp-caption {
-      @include image-overlay(".wp-caption-text", title);
-    }
-  }
-  .related-posts {
-    figure.wp-caption figcaption.wp-caption-text { // Specificity required to trump the default setting
-      @include k-media-below( break(medium) ) {
-        @include rem( font-size, size(text-small) + 0px );
-      }
-    }
-  }
-  .full-width.gallery-view {
-    figure.wp-caption figcaption {
       @include k-media-above( break(medium) ) {
-        @include rem( font-size, size(text-bigger) + 0px ); // Line-height is managed independently
-        text-shadow: 1px 1px 5px black(.7);
-      }
-    }
-  }
-} @elseif module(views) {
-  .gallery-view {
-    figure.wp-caption {
-      @include image-overlay(".wp-caption-text", title);
-    }
-  }
-  .full-width.gallery-view {
-    figure.wp-caption figcaption {
-      @include k-media-above( break(medium) ) {
-        @include rem( font-size, size(text-bigger) + 0px ); // Line-height is managed independently
-        text-shadow: 1px 1px 5px black(.7);
-      }
-    }
-  }
-} @elseif module(ubik-related) {
-  .related-posts {
-    figure.wp-caption {
-      @include image-overlay(".wp-caption-text", title);
-    }
-  }
-  .related-posts {
-    figure.wp-caption figcaption.wp-caption-text { // Specificity required to trump the default setting
-      @include k-media-below( break(medium) ) {
-        @include rem( font-size, size(text-small) + 0px );
+        @include rem( height, 20px );
+        @include rem( width, 20px );
+        vertical-align: -2px;
       }
     }
   }
@@ -239,11 +192,20 @@ figure.wp-caption,
 
 
 
-// == IMAGE METADATA == //
+// == PLACEHOLDER == //
 
-// Styling specific to the Image Metadata module for Pendrell
-@if module(image-metadata) {
-  .image-description {
-    @include font-size(text-small);
+// Image placeholder hack; fills out the space when a requested image isn't found
+.no-image {
+  @include image-placeholder;
+  @if module(icons) {
+    .icon {
+      @include k-absolute(top 0 left 0 bottom 0 right 0);
+      color: white();
+      filter: drop-shadow( 2px 2px 4px black(.3) );
+      margin: auto;
+      opacity: .5;
+      height: 75%;
+      width: 75%;
+    }
   }
 }

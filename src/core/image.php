@@ -36,6 +36,15 @@ add_filter( 'the_content', 'pendrell_image_wrapper' );
 
 
 
+// Image overlay metadata wrapper; for use with Ubik Imagery
+if ( !function_exists( 'pendrell_image_overlay_metadata' ) ) : function pendrell_image_overlay_metadata( $html = '', $position = 'top-right' ) {
+  if ( $html !== '' && in_array( $position, array( 'top-right', 'top-left', 'bottom-right', 'bottom-left' ) ) )
+    $html = '<footer class="' . esc_attr( $position ) . '">' . (string) $html . '</footer>';
+  return $html;
+} endif;
+
+
+
 // Clear out WordPress default markup for image attachments
 if ( !function_exists( 'pendrell_image_prepend' ) ) : function pendrell_image_prepend( $content = '' ) {
   if ( wp_attachment_is_image() )
@@ -43,15 +52,6 @@ if ( !function_exists( 'pendrell_image_prepend' ) ) : function pendrell_image_pr
   return $content;
 } endif;
 add_filter( 'prepend_attachment', 'pendrell_image_prepend' );
-
-
-
-// Image overlay wrapper; for use with Ubik Imagery
-if ( !function_exists( 'pendrell_image_overlay' ) ) : function pendrell_image_overlay( $html = '', $position = 'top-right' ) {
-  if ( $html !== '' && in_array( $position, array( 'top-right', 'top-left', 'bottom-right', 'bottom-left' ) ) )
-    $html = '<footer class="overlay overlay-' . esc_attr( $position ) . '">' . (string) $html . '</footer>';
-  return $html;
-} endif;
 
 
 
