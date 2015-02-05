@@ -10,7 +10,7 @@
 	<div class="entry-thumbnail">
 		<?php echo ubik_imagery(
 	    $html 		= '',
-	    $id 			= pendrell_thumbnail_id(),
+	    $id 			= get_the_id(),
 	    $caption 	= '',
 	    $title 		= '',
 	    $align 		= '',
@@ -18,7 +18,7 @@
 	    $size 		= 'thumbnail',
 	    $alt      = '',
   		$rel      = '',
-  		$class    = array_merge( get_post_class(), array( 'overlay ' ) )
+  		$class    = array_merge( get_post_class(), array( 'overlay' ) )
 	  ); ?>
 	</div>
 	<div class="entry-content-wrapper">

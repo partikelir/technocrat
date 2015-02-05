@@ -96,6 +96,7 @@
   background-image: repeating-linear-gradient( 45deg, transparent, transparent spacer(1/4), black(.04) spacer(1/4), black(.04) spacer(1/2) );
   box-shadow: 0 0 spacer(2) black(.1) inset;
   padding-bottom: 100%;
+  overflow: hidden; // No scrollbars
   transition: background-color .8s ease-out, box-shadow 1.1s ease-in;
   &:hover {
     background-color: lighten( colour(body-darker), 7 );

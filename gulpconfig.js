@@ -26,7 +26,6 @@ module.exports = {
       , icons: [
           'search'
         , 'chatbubble'
-        , 'location'
         ]
       }
     , typicons: {

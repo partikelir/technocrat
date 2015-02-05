@@ -57,7 +57,10 @@
   float: left;
   width: 150px;
   figure.wp-caption {
-    @extend %spacer-reset
+    @extend %spacer-reset;
+    figcaption {
+      background-image: none; // Reset; no text here, all we want is the hover effect
+    }
   }
 }
 

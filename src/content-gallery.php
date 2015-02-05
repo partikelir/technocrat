@@ -7,7 +7,7 @@
 
 echo ubik_imagery(
   $html     = '',
-  $id       = pendrell_thumbnail_id(),
+  $id       = get_the_id(),
   $caption  = get_the_title(),
   $title    = '',
   $align    = '',

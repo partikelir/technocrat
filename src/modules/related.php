@@ -34,7 +34,7 @@ if ( !function_exists( 'pendrell_related_posts' ) ) : function pendrell_related_
       <?php foreach ( $related_posts as $related_post ) {
         echo ubik_imagery(
           $html     = '',
-          $id       = pendrell_thumbnail_id( $related_post ),
+          $id       = $related_post,
           $caption  = get_the_title( $related_post ),
           $title    = '',
           $align    = '',

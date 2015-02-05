@@ -51,6 +51,11 @@
   }
 }
 
+// Post password form
+.post-password-form {
+  @extend %spacer-below;
+}
+
 // WordPress theme guidelines requires some classes even if they aren't used
 .sticky {
   @extend %spacer-reset;

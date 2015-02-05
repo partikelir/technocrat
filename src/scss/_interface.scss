@@ -19,7 +19,7 @@ input[type="submit"],
 // Icon styling specific to buttons
 button,
 .button {
-  & .icon {
+  & svg.icon {
     @include rem( height, 18px );
     @include rem( width, 18px );
     @include rem( margin, 4px -4px 0 4px );
@@ -80,7 +80,7 @@ label {
   }
   &.error {
     @include font-size(text-smaller);
-    color:  colour(alert);
+    color: colour(alert);
     display: block; // Errors go below inputs
     font-weight: $w-body-bold;
   }

@@ -67,3 +67,37 @@ if ( !function_exists( 'pendrell_entry_meta' ) ) : function pendrell_entry_meta(
   do_action( 'pendrell_entry_meta_after' );
 
 } endif;
+
+
+
+// Better password form based on WordPress core function; @TODO: spin this off into Ubik
+if ( !function_exists( 'pendrell_password_form' ) ) : function pendrell_password_form( $output = '' ) {
+
+  // Work with the global post object
+  global $post;
+
+  // Exit early if something goes wrong
+  if ( empty( $post ) )
+    return $output;
+
+  // Generate an ID
+  $id = 'password-input-' . ( empty($post->ID) ? rand() : $post->ID );
+
+  // Descriptive prompt
+  $prompt = '<p>' . __( 'This content is protected. Please enter the password:', 'pendrell' ) . '</p>';
+
+  // Label for the form input field
+  $label = '<label for="' . $id . '" class="screen-reader-text">' . __( 'Password', 'pendrell' ) . '</label>';
+
+  // The actual input field itself
+  $input = '<input name="post_password" id="' . $id . '" type="password" size="20" /> ';
+
+  // Submit button
+  $submit = '<input type="submit" name="Submit" value="' . __( 'Submit', 'pendrell' ) . '" />';
+
+  // Form wrapper
+  $output = $prompt . '<form action="' . esc_url( site_url( 'wp-login.php?action=postpass', 'login_post' ) ) . '" class="post-password-form" method="post">' . $label . $input . $submit . '</form>';
+
+  return $output;
+} endif;
+add_filter( 'the_password_form', 'pendrell_password_form' );
