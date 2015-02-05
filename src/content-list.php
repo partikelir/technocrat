@@ -10,7 +10,7 @@
 	<div class="entry-thumbnail">
 		<?php echo ubik_imagery(
 	    $html 		= '',
-	    $id 			= get_the_id(),
+	    $id 			= pendrell_thumbnail_id(),
 	    $caption 	= '',
 	    $title 		= '',
 	    $align 		= '',

@@ -152,8 +152,14 @@ module.exports = {
       , prefix: 'i-'
       }
     }
-  , transform: function ($){
-      // Transform the SVG file here; e.g. `$('svg').attr('style', 'display:none');`
+  , transform: {
+      before: {
+        run: function ($) {
+          $('[fill]').removeAttr('fill'); // Remove fill attribute to allow total CSS control
+        },
+        parserOptions: { xmlMode: true }
+      }
+    , after: {}
     }
   },
 

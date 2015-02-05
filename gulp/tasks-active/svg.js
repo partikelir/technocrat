@@ -9,8 +9,9 @@ var gulp        = require('gulp')
 // See also: `bower.js` for the task that copies icons into the project source folder
 gulp.task('svg-store', function() {
   return gulp.src(config.svgstore.src)
+  .pipe(plugins.cheerio(config.transform.before))
   .pipe(plugins.svgstore(config.svgstore.options))
-  .pipe(plugins.cheerio(config.transform))
+  .pipe(plugins.cheerio(config.transform.after))
   .pipe(gulp.dest(config.svgstore.dest));
 });
 

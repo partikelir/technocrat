@@ -32,10 +32,16 @@ if ( !function_exists( 'pendrell_related_posts' ) ) : function pendrell_related_
       <h3><?php _e( 'Related posts', 'pendrell' ); ?></h3>
       <div class="gallery gallery-columns-3">
       <?php foreach ( $related_posts as $related_post ) {
+
+        // Long title handler
+        $related_title = get_the_title( $related_post );
+        if ( str_word_count( $related_title ) > 10 )
+          $related_title = ubik_text_truncate( $related_title, 8, '&hellip;', '' );
+
         echo ubik_imagery(
           $html     = '',
-          $id       = $related_post,
-          $caption  = get_the_title( $related_post ),
+          $id       = pendrell_thumbnail_id( $related_post ),
+          $caption  = $related_title,
           $title    = '',
           $align    = '',
           $url      = get_permalink( $related_post ),

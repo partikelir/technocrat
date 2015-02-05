@@ -81,6 +81,21 @@ if ( PENDRELL_MODULE_RESPONSIVE )
 
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-imagery/ubik-imagery.php' );
 
+// Placeholder icons
+function pendrell_image_placeholder( $html = '' ) {
+
+  global $post;
+
+  // Post ID is set; let's use this for some conditional checks rather than relying on $post
+  if ( !empty( $post ) ) {
+    //if ( has_tag( 'wordpress', $post ) ) {
+    //  $html = pendrell_icon( 'ion-social-wordpress', __( 'WordPress placeholder', 'pendrell' ) );
+    //}
+  }
+  return $html;
+}
+add_filter( 'ubik_imagery_placeholder', 'pendrell_image_placeholder' );
+
 
 
 // == LINGUAL == //
@@ -293,6 +308,12 @@ if ( PENDRELL_UBIK_RELATED ) {
     return (bool) $switch;
   }
   add_filter( 'pendrell_related_display', 'pendrell_related_display' );
+
+  // Testing out scores
+  function pendrell_related_score_comments( $score = 1 ) {
+    return 2;
+  }
+  add_filter( 'ubik_related_score_comments', 'pendrell_related_score_comments' );
 }
 
 
