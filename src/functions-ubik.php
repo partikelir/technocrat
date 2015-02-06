@@ -309,11 +309,23 @@ if ( PENDRELL_UBIK_RELATED ) {
   }
   add_filter( 'pendrell_related_display', 'pendrell_related_display' );
 
-  // Testing out scores
+  // Comment score
   function pendrell_related_score_comments( $score = 1 ) {
-    return 2;
+    return $score;
   }
-  add_filter( 'ubik_related_score_comments', 'pendrell_related_score_comments' );
+  //add_filter( 'ubik_related_score_comments', 'pendrell_related_score_comments' );
+
+  // Comment threshold
+  function pendrell_related_score_comments_threshold( $score = 1 ) {
+    return $score;
+  }
+  //add_filter( 'ubik_related_score_comments_threshold', 'pendrell_related_score_comments_threshold' );
+
+  // Thumbnail score
+  function pendrell_related_score_thumbnail( $score = 1 ) {
+    return $score;
+  }
+  //add_filter( 'ubik_related_score_thumbnail', 'pendrell_related_score_thumbnail' );
 }
 
 

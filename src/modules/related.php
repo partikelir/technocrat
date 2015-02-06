@@ -20,8 +20,6 @@ if ( !function_exists( 'pendrell_related_posts' ) ) : function pendrell_related_
   // Format: array( 'taxonomy' => (int) weight )
   $related_posts = ubik_related_posts( null, apply_filters( 'pendrell_related_taxonomies', array( 'post_tag' => 1 ) ) );
 
-  // @TODO: check for private/protected posts in the results; there shouldn't be any
-
   // Only proceed if related posts were found
   if ( !empty( $related_posts ) ) {
 
@@ -56,6 +54,5 @@ if ( !function_exists( 'pendrell_related_posts' ) ) : function pendrell_related_
       </div>
     </section>
   <?php }
-
 } endif;
 add_action( 'pendrell_comment_template_before', 'pendrell_related_posts' );
