@@ -21,8 +21,8 @@
   "devDependencies": {
     "kipple": "https://github.com/synapticism/kipple.git",
     "normalize.css": "^3.0.2",
-    "sass-font-stacker": "^0.1.2",
-    "sass-named-colors": "^0.0.2",
+    "sass-font-stacker": "^0.2.0",
+    "sass-named-colors": "^0.2.0",
     "html5-history-api": "^4.1.15",
     "jquery-validation": "^1.13.1",
     "picturefill": "^2.2.0",

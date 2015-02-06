@@ -36,7 +36,7 @@ Domain Path: #{metadata(theme-text-domain-path)}
 
 // == MODULES == //
 
-@import "post_formats";   // Post formats: aside, link, status, etc.
+@import "formats";        // Post formats: aside, link, status, etc.
 @import "modules";        // Optional modules
 @import "views";          // Views module
 
