@@ -2,72 +2,41 @@
 
 // == CONFIGURATION == //
 
+$path = trailingslashit( get_stylesheet_directory() );
+
 // Load the configuration file for this theme; all options are set here
-if ( is_readable( trailingslashit( get_stylesheet_directory() ) . 'functions-config.php' ) )
-  require_once( trailingslashit( get_stylesheet_directory() ) . 'functions-config.php' );
+if ( is_readable( $path . 'functions-config.php' ) )
+  require_once( $path . 'functions-config.php' );
 
 // Load configuration defaults; anything not set in the custom configuration (above) will be set here
-require_once( trailingslashit( get_stylesheet_directory() ) . 'functions-config-defaults.php' );
+require_once( $path . 'functions-config-defaults.php' );
 
-// Load the Ubik adapter file; everything related to Ubik is set here
-if ( is_readable( trailingslashit( get_stylesheet_directory() ) . 'functions-ubik.php' ) )
-  require_once( trailingslashit( get_stylesheet_directory() ) . 'functions-ubik.php' );
-
-
-
-// == CONSTANTS == //
-
-// There should be no need to edit any of these
-define( 'PENDRELL_NAME', get_bloginfo( 'name' ) );
-define( 'PENDRELL_DESCRIPTION', get_bloginfo( 'description' ) );
-define( 'PENDRELL_HOME', home_url() );
-define( 'PENDRELL_THEME_NAME', 'Pendrell' );
-define( 'PENDRELL_THEME_URL', 'http://github.com/synapticism/pendrell' );
-define( 'PENDRELL_THEME_VERSION', '0.18.0' );
+// Load the modules file; everything related to Ubik is set here
+if ( is_readable( $path . 'functions-modules.php' ) )
+  require_once( $path . 'functions-modules.php' );
 
 
 
-// == CORE == //
+// == LOADER == //
 
-// Pendrell is abstracted into the `pendrell/core` directory
+// Pendrell core functions are abstracted into the `pendrell/core` directory
 if ( is_admin() )
-  require_once( trailingslashit( get_stylesheet_directory() ) . 'core/admin.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . 'core/archive.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . 'core/assets.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . 'core/author.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . 'core/comments.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . 'core/content.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . 'core/full-width.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . 'core/image.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . 'core/navigation.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . 'core/templates.php' );
-
-
-
-// == MODULES == //
-
-// Modules provide non-standard features that don't generally ship with WordPress
-
-// Required *
-require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/contact-form.php' );
-require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/footer-info.php' );
-
-// Optional
-if ( PENDRELL_MODULE_ICONS )
-  require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/icons.php' );
-if ( PENDRELL_MODULE_IMAGE_META )
-  require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/image-metadata.php' );
-if ( PENDRELL_MODULE_POST_FORMATS )
-  require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/post-formats.php' );
-if ( PENDRELL_MODULE_RESPONSIVE )
-  require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/responsive-images.php' );
-if ( PENDRELL_MODULE_VIEWS ) {
-  require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/views.php' );
-  require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/view-posts-shortcode.php' );
-}
+  require_once( $path . 'core/admin.php' );
+require_once( $path . 'core/archive.php' );
+require_once( $path . 'core/assets.php' );
+require_once( $path . 'core/author.php' );
+require_once( $path . 'core/comments.php' );
+require_once( $path . 'core/contact-form.php' );
+require_once( $path . 'core/content.php' );
+require_once( $path . 'core/full-width.php' );
+require_once( $path . 'core/image.php' );
+require_once( $path . 'core/post-formats.php' );
+require_once( $path . 'core/navigation.php' );
+require_once( $path . 'core/templates.php' );
+require_once( $path . 'core/view-posts-shortcode.php' ); // @TODO: remove this
 
 // Fallback functionality is loaded last
-require_once( trailingslashit( get_stylesheet_directory() ) . 'core/fallback.php' );
+require_once( $path . 'core/fallback.php' );
 
 
 
@@ -93,13 +62,8 @@ function pendrell_setup() {
   // Adds RSS feed links to <head> for posts and comments.
   add_theme_support( 'automatic-feed-links' );
 
-  // No need for this as long as we're managing our own titles: http://codex.wordpress.org/Function_Reference/add_theme_support#Title_Tag
-  // In WP 4.1 this doesn't actually do anything; it merely enables forward-compatibility with future title generating functions in core
-  // Additional reference: https://make.wordpress.org/core/2014/10/29/title-tags-in-4-1/
-  //add_theme_support( 'title-tag' );
-
   // Conditionally add post format support
-  if ( PENDRELL_MODULE_POST_FORMATS )
+  if ( PENDRELL_POST_FORMATS )
     add_theme_support( 'post-formats', array( 'aside', 'gallery', 'image', 'link', 'quote', 'status' ) );
 
 

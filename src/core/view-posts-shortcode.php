@@ -1,6 +1,6 @@
 <?php // ==== VIEW POSTS SHORTCODE ==== //
 
-// View posts shortcode; outputs content from within posts and pages using view template functionality
+// View posts shortcode; outputs content from within posts and pages by using the same templates used by Ubik Views (to be clear this component is not required for this kludge to work)
 // Use cases: list children of current page; show artist discographies; etc.
 // Example: [view-posts view="gallery" mode="children" title="Profiles"]Here are some profiles related to this page...[/view-posts]
 // Example: [view-posts mode="tagged" title="Releases"]The full discography of artist X.[/view-posts]

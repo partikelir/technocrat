@@ -92,7 +92,7 @@ label {
 
 // SVG icon sets; style icons individually, by set, or as a group
 svg {
-  @if module(icons) {
+  @if module(ubik-svg-icons) {
     &.icon {
       @include rem( height, 24px );
       @include rem( width, 24px );

@@ -1,15 +1,5 @@
 // ==== MODULES ==== //
 
-// == IMAGE METADATA == //
-
-@if module(image-metadata) {
-  .image-description {
-    @include font-size(text-small);
-  }
-}
-
-
-
 // == LINKS == //
 
 @if module(ubik-links) {
@@ -28,6 +18,17 @@
     .entry-content {
       @include font-size(text-small);
     }
+  }
+}
+
+
+
+// == PHOTO META == //
+
+@if module(ubik-photo-meta) {
+  .photo-meta ul {
+    @include font-size(text-small);
+    list-style: none;
   }
 }
 

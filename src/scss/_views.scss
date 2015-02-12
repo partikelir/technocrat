@@ -52,72 +52,76 @@
 
 // == LIST VIEW == //
 
-// This class only appears in list-view so it is safe to declare it without nesting
-.entry-thumbnail {
-  float: left;
-  width: 150px;
-  figure.wp-caption {
-    @extend %spacer-reset;
-    figcaption {
-      background-image: none; // Reset; no text here, all we want is the hover effect
+// Whereas the gallery view styling is used throughout Pendrell the list view section is exclusive to the views module
+@if module(views) {
+
+  // This class only appears in list-view so it is safe to declare it without nesting
+  .entry-thumbnail {
+    float: left;
+    width: 150px;
+    figure.wp-caption {
+      @extend %spacer-reset;
+      figcaption {
+        background-image: none; // Reset; no text here, all we want is the hover effect
+      }
     }
   }
-}
 
-// This section is messy and disorganized mainly to prevent unnecessary nesting
-.list-view {
-  .entry-title {
-    @include font-size(head);
-    margin: 0;
+  // This section is messy and disorganized mainly to prevent unnecessary nesting
+  .list-view {
+    .entry-title {
+      @include font-size(head);
+      margin: 0;
+    }
+    .site-content article {
+      @extend %spacer-below;
+      @extend %text-small;
+    }
+
+    // Entry meta
+    .entry-meta {
+      @extend %clearfix-reset;
+      @include font-size(text-smallest);
+      color: colour(text-lightest);
+      text-transform: uppercase;
+    }
+
+    // Entry content (with more below for full-width styling)
+    .entry-content-wrapper {
+      margin-left: $width-thumb + spacer();
+    }
+    .entry-content p {
+      @extend %text-small;
+      @extend %spacer-reset;
+    }
+
+    // Link post format
+    .entry-link {
+      @extend %hide;
+    }
+
+    // Full-width modifications
+    &.full-width {
+      @include k-media-above( break(large) ) {
+        .entry-title {
+          @include font-size(head);
+        }
+        .entry-content p {
+          @include font-size(text);
+        }
+      }
+    }
   }
-  .site-content article {
+
+  // Reset a few things when a list appears within a post or page
+  .entry-content .list-view article {
     @extend %spacer-below;
-    @extend %text-small;
-  }
-
-  // Entry meta
-  .entry-meta {
-    @extend %clearfix-reset;
-    @include font-size(text-smallest);
-    color: colour(text-lightest);
-    text-transform: uppercase;
-  }
-
-  // Entry content (with more below for full-width styling)
-  .entry-content-wrapper {
-    margin-left: $width-thumb + spacer();
-  }
-  .entry-content p {
-    @extend %text-small;
-    @extend %spacer-reset;
-  }
-
-  // Link post format
-  .entry-link {
-    @extend %hide;
-  }
-
-  // Full-width modifications
-  &.full-width {
-    @include k-media-above( break(large) ) {
-      .entry-title {
-        @include font-size(head);
-      }
-      .entry-content p {
-        @include font-size(text);
-      }
+    a,
+    a:visited {
+      border-bottom: none;
     }
-  }
-}
-
-// Reset a few things when a list appears within a post or page
-.entry-content .list-view article {
-  @extend %spacer-below;
-  a,
-  a:visited {
-    border-bottom: none;
-  }
-  p {
-    @extend %spacer-reset;
+    p {
+      @extend %spacer-reset;
+    }
   }
 }

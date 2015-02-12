@@ -70,6 +70,6 @@ if ( !function_exists( 'pendrell_author_edit_link' ) ) : function pendrell_autho
     // Author edit link for users with the appropriate capabilities
     $edit_author_link = get_edit_user_link();
     if ( !empty( $edit_author_link ) )
-      echo '<div class="entry-meta-buttons"><span class="edit-link button"><a href="' . $edit_author_link . '">' . pendrell_icon( 'typ-edit', __( 'Edit', 'pendrell' ) ) . __( 'Edit', 'pendrell' ) . '</a></span></div>';
+      echo '<div class="entry-meta-buttons"><span class="edit-link button"><a href="' . $edit_author_link . '">' . ubik_svg_icon( 'typ-edit', __( 'Edit', 'pendrell' ) ) . __( 'Edit', 'pendrell' ) . '</a></span></div>';
   }
 } endif;

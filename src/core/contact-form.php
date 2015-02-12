@@ -1,6 +1,6 @@
 <?php // ==== CONTACT FORM ==== //
 
-// This is the back-end component for the contact form module; see `src/page-templates/contact-form.php` for the front-end
+// This is the back-end component for the contact form page template; see `src/page-templates/contact-form.php` for the front-end
 
 // AJAX request handler
 function pendrell_contact_form() {

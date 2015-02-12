@@ -73,20 +73,19 @@ module.exports = {
 
   scripts: {
     bundles: { // Bundles are defined by a name and an array of chunks to concatenate; warning: it's up to you to manage dependencies!
-      core: ['icons', 'core']
+      core: ['core']
     , contact: ['contact']
-    , pf: ['pf', 'icons', 'core']
-    , pf_prism: ['pf', 'prism', 'icons', 'core']
-    , pg8: ['pg8', 'icons', 'core']
-    , pg8_pf: ['pg8', 'pf', 'icons', 'core']
-    , pg8_prism: ['pg8', 'prism', 'icons', 'core']
-    , pg8_pf_prism: ['pg8', 'pf', 'prism', 'icons', 'core']
-    , prism: ['prism', 'icons', 'core']
+    , pf: ['pf', 'core']
+    , pf_prism: ['pf', 'prism', 'core']
+    , pg8: ['pg8', 'core']
+    , pg8_pf: ['pg8', 'pf', 'core']
+    , pg8_prism: ['pg8', 'prism', 'core']
+    , pg8_pf_prism: ['pg8', 'pf', 'prism', 'core']
+    , prism: ['prism', 'core']
     }
   , chunks: { // Chunks are arrays of globs matching source files that combine to provide specific functionality
-      core: [src+'js/navigation.js', src+'js/skip-link-focus-fix.js', src+'js/core.js']
+      core: [bower+'svg4everybody/svg4everybody.js', src+'js/navigation.js', src+'js/skip-link-focus-fix.js', src+'js/core.js']
     , contact: [bower+'jquery-validation/dist/jquery.validate.js', src+'js/contact-form.js']
-    , icons: [bower+'svg4everybody/svg4everybody.js', src+'js/iconize.js']
     , pf: [bower+'picturefill/dist/picturefill.js']
     , pg8: [bower+'html5-history-api/history.iegte8.js', bower+'spin.js/spin.js', bower+'spin.js/jquery.spin.js', bower+'wp-ajax-page-loader/wp-ajax-page-loader.js', src+'js/page-loader.js']
     , prism: [ // Prism components are on their own line to make it easy to define a custom build to suit whatever code you use on your blog
@@ -182,6 +181,7 @@ module.exports = {
         'admin'
       , 'analytics'
       , 'cleaner'
+      , 'colophon' // *
       , 'comments'
       , 'excerpt' // *
       , 'excluder'
@@ -193,6 +193,7 @@ module.exports = {
       , 'markdown'
       , 'meta' // *
       , 'places'
+      , 'photo-meta'
       , 'post-formats'
       , 'quick-terms'
       , 'recordpress'
@@ -200,9 +201,11 @@ module.exports = {
       , 'search' // *
       , 'series'
       , 'seo'
+      , 'svg-icons' // *
       , 'terms' // *
       , 'time' // *
       , 'title' // *
+      , 'views' // *
       ]
     , ignore: ['!'+bower+'ubik*/**/*.json', '!'+bower+'ubik*/**/readme.*'] // Glob(s) matching files to ignore when copying from Bower
     }

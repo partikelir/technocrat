@@ -176,7 +176,7 @@ figure.wp-caption {
   }
 
   // Optional icon sizing and drop-shadowing
-  @if module(icons) {
+  @if module(ubik-svg-icons) {
     & .icon {
       @include rem( height, 14px );
       @include rem( width, 14px );
@@ -197,7 +197,7 @@ figure.wp-caption {
 // Image placeholder hack; fills out the space when a requested image isn't found
 .no-image {
   @include image-placeholder;
-  @if module(icons) {
+  @if module(ubik-svg-icons) {
     .icon {
       @include k-absolute(top 0 left 0 bottom 0 right 0);
       color: grey(120);

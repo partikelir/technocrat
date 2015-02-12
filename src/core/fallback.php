@@ -4,8 +4,8 @@
 
 // == ICONS == //
 
-// Used when the icons module is disabled
-if ( !function_exists( 'pendrell_icon' ) ) : function pendrell_icon() {
+// Used when the icons module is disabled for some reason
+if ( !function_exists( 'ubik_svg_icon' ) ) : function ubik_svg_icon() {
   return;
 } endif;
 

@@ -1,9 +1,62 @@
-<?php // ==== RELATED ==== //
+<?php // ==== UBIK RELATED ==== //
+
+// Load component
+require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-related/ubik-related.php' );
+
+// Add various custom taxonomies to the related posts feature
+function pendrell_related_taxonomies( $taxonomies = array() ) {
+  if ( PENDRELL_UBIK_PLACES )
+    $taxonomies['places'] = 2; // This taxonomy is also extended (below)
+  if ( PENDRELL_UBIK_RECORDPRESS ) {
+    $taxonomies['artists'] = 3;
+    $taxonomies['styles'] = 2;
+  }
+  if ( PENDRELL_UBIK_SERIES )
+    $taxonomies['series'] = 2;
+  return $taxonomies;
+}
+add_filter( 'pendrell_related_taxonomies', 'pendrell_related_taxonomies' );
+
+// Extended taxonomies: a broader search for related posts using sibling terms
+function pendrell_related_taxonomies_extended( $taxonomies = array() ) {
+  if ( PENDRELL_UBIK_PLACES )
+    $taxonomies[] = 'places';
+  return $taxonomies;
+}
+add_filter( 'ubik_related_taxonomies_extended', 'pendrell_related_taxonomies_extended' );
+
+// Related posts display switch
+function pendrell_related_display( $switch = true ) {
+  //if ( has_tag( array( 'this', 'that', 'the-other-thing' ) ) )
+    //return false;
+  return (bool) $switch;
+}
+add_filter( 'pendrell_related_display', 'pendrell_related_display' );
+
+// Comment score
+function pendrell_related_score_comments( $score = 1 ) {
+  return $score;
+}
+//add_filter( 'ubik_related_score_comments', 'pendrell_related_score_comments' );
+
+// Comment threshold
+function pendrell_related_score_comments_threshold( $score = 1 ) {
+  return $score;
+}
+//add_filter( 'ubik_related_score_comments_threshold', 'pendrell_related_score_comments_threshold' );
+
+// Thumbnail score
+function pendrell_related_score_thumbnail( $score = 1 ) {
+  return $score;
+}
+//add_filter( 'ubik_related_score_thumbnail', 'pendrell_related_score_thumbnail' );
+
+
 
 // Display a list of related posts as thumbnails
 // @filter: pendrell_related_display
 // @filter: pendrell_related_taxonomies
-if ( !function_exists( 'pendrell_related_posts' ) ) : function pendrell_related_posts() {
+function pendrell_related_posts() {
 
   // Check if this is singular content
   if ( !is_singular() )
@@ -47,12 +100,12 @@ if ( !function_exists( 'pendrell_related_posts' ) ) : function pendrell_related_
           $alt      = '',
           $rel      = '',
           $class    = 'related-post overlay',
-          $contents = pendrell_image_overlay_metadata( get_comments_number( $related_post ) . ' ' . pendrell_icon( 'ion-chatbubble', __( 'Comments', 'pendrell' ) ) ),
+          $contents = pendrell_image_overlay_metadata( get_comments_number( $related_post ) . ' ' . ubik_svg_icon( 'ion-chatbubble', __( 'Comments', 'pendrell' ) ) ),
           $group    = 3
         );
       } ?>
       </div>
     </section>
   <?php }
-} endif;
+}
 add_action( 'pendrell_comment_template_before', 'pendrell_related_posts' );

@@ -1,12 +1,15 @@
 <?php // ==== POST FORMATS ==== //
 
+// == SIDEBAR == //
+
 // Sidebar filter; removes sidebar for certain post formats
 if ( !function_exists( 'pendrell_post_formats_sidebar' ) ) : function pendrell_post_formats_sidebar( $sidebar ) {
   if ( ( is_singular() && has_post_format( array( 'aside', 'gallery', 'image', 'link', 'quote', 'status' ) ) ) )
     $sidebar = false;
   return $sidebar;
 } endif;
-add_filter( 'pendrell_sidebar', 'pendrell_post_formats_sidebar' );
+if ( PENDRELL_POST_FORMATS )
+	add_filter( 'pendrell_sidebar', 'pendrell_post_formats_sidebar' );
 
 
 
@@ -25,7 +28,8 @@ if ( !function_exists( 'pendrell_link_metadata' ) ) : function pendrell_link_met
 	if ( !empty( $link_url ) )
 		echo '<footer class="entry-link"><a href="' . $link_url . '" rel="bookmark">' . $link_url . '</a></footer>';
 } endif;
-add_action( 'pendrell_entry_title_after', 'pendrell_link_metadata' );
+if ( PENDRELL_POST_FORMATS )
+	add_action( 'pendrell_entry_title_after', 'pendrell_link_metadata' );
 
 
 
@@ -100,4 +104,5 @@ if ( !function_exists( 'pendrell_quotation_markup' ) ) : function pendrell_quota
 	return $before . $content . $after;
 
 } endif;
-add_filter( 'the_content', 'pendrell_quotation_markup' );
+if ( PENDRELL_POST_FORMATS )
+	add_filter( 'the_content', 'pendrell_quotation_markup' );

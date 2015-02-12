@@ -54,7 +54,7 @@
 }
 
 // View switcher, as defined in `src/modules/views.php`
-@if module(views) {
+@if module(ubik-views) {
   .view-switcher {
     @extend %breadcrumbs-static;
     @include rem( margin-right, spacer() );

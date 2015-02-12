@@ -43,7 +43,7 @@ if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueu
   } // end PG8
 
   // Picturefill (PF): responsive images
-  if ( PENDRELL_MODULE_RESPONSIVE ) {
+  if ( PENDRELL_SCRIPTS_PICTUREFILL ) {
     if ( is_404() || ( is_attachment() && !wp_attachment_is_image() ) ) { // Could also add certain post formats guaranteed not to have images
       // Nothing
     } else {

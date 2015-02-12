@@ -25,7 +25,7 @@ $_metadata: (
 , theme-author:             "Alexander Synaptic"
 , theme-author-uri:         "http://synapticism.com"
 , theme-description:        "Alexander Synaptic"
-, theme-version:            "0.19.0"
+, theme-version:            "0.20.0"
 , theme-license:            "GPLv3"
 , theme-license-uri:        "https://www.gnu.org/copyleft/gpl.txt"
 , theme-tags:               (light, gray, white, one-column, two-columns, right-sidebar, fixed-layout, responsive-layout, custom-menu, featured-images, full-width-template, microformats, post-formats, theme-options, translation-ready)
@@ -41,33 +41,33 @@ $_breaks: (
 , full:               $width-content
 );
 
-// Modules; reduce bloat by switching some of these off; test with module()
+// Modules; reduce bloat by switching some of these off; test with @if module(name) {}
 $_modules: (
-  gallery-shortcode:  false // WordPress core; activation creates some useless duplicate styles
-, icons:              true // Built-in to Pendrell
-, image-metadata:     false // Built-in
-, post-formats:       false // Built-in
+  gallery-shortcode:  false // WordPress core; activation creates some useless duplicate styles; disable if you don't use [gallery]
+, post-formats:       false
 , prism:              false
-, views:              false // Built-in
 , ubik-links:         false
+, ubik-photo-meta:    false
 , ubik-places:        false
 , ubik-recordpress:   false
 , ubik-related:       false
-, ubik-series:        true
+, ubik-series:        false
+, ubik-svg-icons:     true // *
+, ubik-views:         true // *
 );
 
 @if $dev {
   $_modules: (
     gallery-shortcode:  false // WordPress core; activation creates some useless duplicate styles
-  , icons:              true // Built-in to Pendrell
-  , image-metadata:     true // Built-in to Pendrell
   , post-formats:       true // Built-in
   , prism:              true
-  , views:              true // Built-in
   , ubik-links:         true
+  , ubik-photo-meta:    true
   , ubik-places:        true
   , ubik-recordpress:   true
   , ubik-related:       true
   , ubik-series:        true
+  , ubik-svg-icons:     true // *
+  , ubik-views:         true // *
   );
 }

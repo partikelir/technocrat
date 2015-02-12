@@ -43,7 +43,7 @@ if ( !function_exists( 'pendrell_content_class' ) ) : function pendrell_content_
 if ( !function_exists( 'pendrell_entry_meta_buttons' ) ) : function pendrell_entry_meta_buttons() {
   ?><div class="entry-meta-buttons">
     <?php
-      edit_post_link( pendrell_icon( 'typ-edit', __( 'Edit', 'pendrell' ) ) . __( 'Edit', 'pendrell' ), '<span class="button edit-link">', '</span>' );
+      edit_post_link( ubik_svg_icon( 'typ-edit', __( 'Edit', 'pendrell' ) ) . __( 'Edit', 'pendrell' ), '<span class="button edit-link">', '</span>' );
       pendrell_comments_link();
     ?>
   </div><?php
