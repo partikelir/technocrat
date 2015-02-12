@@ -16,14 +16,6 @@
 
 // @TODO: investigate Firefox scrollbar inconsistencies; it may be necessary to add another fudge factor to ensure browsers choose the optimal image
 
-
-
-// == SETUP == //
-
-// Enable `srcset` output only when Picturefill module is active
-if ( PENDRELL_SCRIPTS_PICTUREFILL )
-  define( 'UBIK_IMAGERY_SRCSET', true );
-
 // Load plugin core
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-imagery/ubik-imagery.php' );
 
@@ -264,3 +256,28 @@ function pendrell_sizes_margin() {
 function pendrell_sizes_margin_inner() {
   return (int) apply_filters( 'pendrell_sizes_margin_inner', PENDRELL_BASELINE );
 }
+
+
+
+// == PLACEHOLDERS == //
+
+// Placeholder icons
+function pendrell_image_placeholder( $html = '' ) {
+
+  global $post;
+
+  // Post ID is set; let's use this for some conditional checks rather than relying on $post
+  if ( !empty( $post ) ) {
+    if ( has_tag( 'wordpress', $post->ID ) ) {
+      $html = ubik_svg_icon( 'ion-social-wordpress', __( 'WordPress placeholder', 'pendrell' ) );
+    } elseif ( has_tag( 'sass', $post->ID ) ) {
+      $html = ubik_svg_icon( 'ion-social-sass', __( 'Sass placeholder', 'pendrell' ) );
+    } elseif ( has_tag( 'development', $post->ID ) ) {
+      $html = ubik_svg_icon( 'typ-spanner', __( 'Development placeholder', 'pendrell' ) );
+    } elseif ( is_object_in_term( $post->ID, 'places' ) ) {
+      $html = ubik_svg_icon( 'typ-location', __( 'Places placeholder', 'pendrell' ) );
+    }
+  }
+  return $html;
+}
+//add_filter( 'ubik_imagery_placeholder', 'pendrell_image_placeholder' );

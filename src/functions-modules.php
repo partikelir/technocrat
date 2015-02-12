@@ -81,16 +81,6 @@ if ( PENDRELL_UBIK_CLEANER )
 
 require_once( $pendrell_modules . 'ubik-colophon/ubik-colophon.php' );
 
-function pendrell_colophon_copyright_from() {
-  return '2010';
-}
-//add_filter( 'ubik_colophon_copyright_from', 'pendrell_colophon_copyright_from' );
-
-function pendrell_colophon_credit_author() {
-  return 1;
-}
-//add_filter( 'ubik_colophon_credit_author', 'pendrell_colophon_credit_author' );
-
 // Output the colophon
 function pendrell_colophon() {
   $colophon = ubik_colophon();
@@ -139,22 +129,10 @@ if ( PENDRELL_UBIK_FEED )
 
 // == IMAGERY * == //
 
+// Enable `srcset` output only when Picturefill module is active
+if ( PENDRELL_SCRIPTS_PICTUREFILL )
+  define( 'UBIK_IMAGERY_SRCSET', true );
 require_once( $pendrell_modules . 'ubik-imagery.php' );
-
-// Placeholder icons
-function pendrell_image_placeholder( $html = '' ) {
-
-  global $post;
-
-  // Post ID is set; let's use this for some conditional checks rather than relying on $post
-  if ( !empty( $post ) ) {
-    //if ( has_tag( 'wordpress', $post ) ) {
-    //  $html = ubik_svg_icon( 'ion-social-wordpress', __( 'WordPress placeholder', 'pendrell' ) );
-    //}
-  }
-  return $html;
-}
-add_filter( 'ubik_imagery_placeholder', 'pendrell_image_placeholder' );
 
 
 
