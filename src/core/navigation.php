@@ -58,7 +58,7 @@ if ( !function_exists( 'pendrell_nav_page' ) ) : function pendrell_nav_page( $id
   if ( !empty( $ancestors ) ) {
     $parent = $ancestors[0];
     if ( !empty( $parent ) ) {
-      $parent = '<div class="nav-previous"><a href="' . get_permalink( $parent ) . '"><span class="nav-arrow">&larr;</span> ' . get_the_title( $parent ) . '</a></div>';
+      $parent = '<div class="nav-previous"><a href="' . get_permalink( $parent ) . '"><span class="nav-arrow">&larr;</span>&nbsp;' . get_the_title( $parent ) . '</a></div>';
     }
   }
 
@@ -67,7 +67,7 @@ if ( !function_exists( 'pendrell_nav_page' ) ) : function pendrell_nav_page( $id
   if ( !empty( $children ) ) {
     $child = $children[0]->ID;
     if ( !empty( $child ) ) {
-      $child = '<div class="nav-next"><a href="' . get_permalink( $child ) . '">' . get_the_title( $child ) . ' <span class="nav-arrow">&rarr;</span></a></div>';
+      $child = '<div class="nav-next"><a href="' . get_permalink( $child ) . '">' . get_the_title( $child ) . '&nbsp;<span class="nav-arrow">&rarr;</span></a></div>';
     }
   }
 
@@ -100,8 +100,8 @@ if ( !function_exists( 'pendrell_nav_post' ) ) : function pendrell_nav_post( $id
   }
 
   // @TODO: use $post_tax; this seems to be very buggy in the current version of WP as per https://core.trac.wordpress.org/ticket/26937
-  $prev = get_previous_post_link( '<div class="nav-previous">%link</div>', _x( '<span class="nav-arrow">&larr;</span> %title', 'Previous post link', 'pendrell' ) );
-  $next = get_next_post_link( '<div class="nav-next">%link</div>', _x( '%title <span class="nav-arrow">&rarr;</span>', 'Next post link', 'pendrell' ) );
+  $prev = get_previous_post_link( '<div class="nav-previous">%link</div>', _x( '<span class="nav-arrow">&larr;</span>&nbsp;%title', 'Previous post link', 'pendrell' ) );
+  $next = get_next_post_link( '<div class="nav-next">%link</div>', _x( '%title&nbsp;<span class="nav-arrow">&rarr;</span>', 'Next post link', 'pendrell' ) );
 
   // Output markup if we've got a match
   if ( !empty( $next ) || !empty( $prev ) ) {
