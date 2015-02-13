@@ -27,11 +27,9 @@ add_filter( 'ubik_related_taxonomies_extended', 'pendrell_related_taxonomies_ext
 
 // Related posts display switch
 function pendrell_related_display( $switch = true ) {
-  //if ( has_tag( array( 'this', 'that', 'the-other-thing' ) ) )
-    //return false;
-  return (bool) $switch;
+  return $switch;
 }
-add_filter( 'pendrell_related_display', 'pendrell_related_display' );
+//add_filter( 'pendrell_related_display', 'pendrell_related_display' );
 
 // Comment score
 function pendrell_related_score_comments( $score = 1 ) {

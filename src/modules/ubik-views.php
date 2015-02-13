@@ -7,7 +7,7 @@ require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-view
 
 // Taxonomies to apply rewrite rules to (this way <website.com/category/kittens/list> works as you would expect)
 function pendrell_views_taxonomies( $taxonomies = array() ) {
-  return array( 'category', 'post_tag', 'post_format', 'places' );
+  return array( 'category', 'post_tag', 'post_format' );
 }
 add_filter( 'ubik_views_taxonomies', 'pendrell_views_taxonomies' );
 
@@ -16,19 +16,12 @@ add_filter( 'ubik_views_taxonomies', 'pendrell_views_taxonomies' );
 // Set default views for different taxonomies; format is 'taxonomy' => array( 'term' => 'view' )
 function pendrell_views_defaults( $defaults = array() ) {
   return array(
-    'category'    => array(
-      'photography'         => 'gallery' // Not live on s.com; only here as an example
-    ),
+    'category'    => array(),
     'post_format' => array(
       'post-format-gallery' => 'gallery',
       'post-format-image'   => 'gallery'
     ),
-    'post_tag'    => array(
-      'design'              => 'gallery',
-      'photography'         => 'gallery',
-      'eframe'              => 'gallery',
-      'highlights'          => 'list'
-    )
+    'post_tag'    => array()
   );
 }
 add_filter( 'ubik_views_defaults', 'pendrell_views_defaults' );
@@ -63,8 +56,6 @@ add_action( 'pendrell_archive_description_before', 'pendrell_views_navigation', 
 
 // Do not display views navigation on certain terms
 function pendrell_views_navigation_display( $switch ) {
-  if ( is_tag( array( 'culture-log', 'development', 'development-log', 'photography-log' ) ) )
-    $switch = false;
   return $switch;
 }
 add_filter( 'ubik_views_navigation_display', 'pendrell_views_navigation_display' );
