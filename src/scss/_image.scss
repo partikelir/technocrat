@@ -60,7 +60,7 @@ figure.wp-caption {
   @extend %clearfix-below;
   @include font-size(text-smaller);
   @include k-reverse-italics;
-  color: lighten( colour(text-lightest), 10);
+  color: colour(text-lightest);
   max-width: 100%;
   .full-width & {
     @include font-size(text-small);
