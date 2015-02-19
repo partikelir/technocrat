@@ -192,6 +192,5 @@
 
 // Entry after (comments template, related posts, etc.)
 .entry-after {
-  @extend %links;
   @include rem( margin-top, spacer(2) );
 }

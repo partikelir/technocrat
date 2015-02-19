@@ -21,7 +21,7 @@
     @include rem( margin-left, spacer(1/2) ); // Half length indentation since we don't have that much space to play with
   }
   li {
-    list-style: none;
+    @extend %list-style-none;
   }
 
   // Text
@@ -32,7 +32,6 @@
   // Images
   img {
     @include border-radius;
-    max-width: 100%;
   }
 
   // Eliminate margin on the very last widget

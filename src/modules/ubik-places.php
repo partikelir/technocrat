@@ -1,6 +1,6 @@
 <?php // ==== UBIK PLACES ==== //
 
-//define( 'PENDRELL_PLACES_TEMPLATE_ID', 5951 );
+define( 'PENDRELL_PLACES_TEMPLATE_ID', false );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-places/ubik-places.php' );
 add_action( 'pendrell_archive_description_before', 'ubik_places_breadcrumb' );
 
@@ -19,7 +19,7 @@ function pendrell_sidebar_places( $sidebar ) {
             <?php if ( !empty( $places ) ) {
               foreach ( $places as $key => $place ) {
                 $places_index = ''; // A simple hack to insert a link to the places index page
-                if ( $key === ( count( $places ) - 1 ) && PENDRELL_PLACES_TEMPLATE_ID )
+                if ( $key === ( count( $places ) - 1 ) && PENDRELL_PLACES_TEMPLATE_ID !== false )
                   $places_index = '<li class="cat-item"><strong><a href="' . get_permalink( PENDRELL_PLACES_TEMPLATE_ID ) . '">' . __( 'All places', 'pendrell' ) . '</a></strong></li>';
                 ?><h2><?php echo $place['title']; ?></h2>
                 <ul class="place-list">

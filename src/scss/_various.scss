@@ -43,7 +43,7 @@
   @extend %text-smaller;
   ol,
   ul {
-    list-style: none;
+    @extend %list-style-none;
   }
   li {
     @include k-hanging-indent( spacer() );

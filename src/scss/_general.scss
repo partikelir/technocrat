@@ -247,7 +247,7 @@ ol {
   }
 }
 dl {
-  list-style: none;
+  @extend %list-style-none;
   dt {
     font-weight: $w-body-bold;
   }
@@ -277,7 +277,7 @@ embed,
 iframe,
 object,
 video {
-  max-width: 100%; // Make sure embeds and iframes fit their containers
+  @extend %max-width-100; // Make sure embeds and iframes fit their containers
 }
 
 

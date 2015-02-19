@@ -22,7 +22,7 @@ get_header(); ?>
           <?php $places = ubik_places_top();
           if ( !empty( $places ) ) {
 
-            ?><div class="gallery"><?php
+            ?><div class="gallery gallery-flex"><?php
 
             global $pendrell_places_thumbs;
             if ( !is_array( $pendrell_places_thumbs ) )
@@ -54,7 +54,7 @@ get_header(); ?>
                 $rel      = '',
                 $class    = 'overlay no-fade',
                 $contents = $metadata,
-                $group    = 3
+                $context  = array( 'group', 'responsive' )
               );
             }
 

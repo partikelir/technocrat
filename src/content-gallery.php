@@ -17,5 +17,5 @@ echo ubik_imagery(
   $rel      = '',
   $class    = array_merge( get_post_class(), array( 'overlay ' ) ),
   $contents = pendrell_image_overlay_metadata( get_comments_number() . ' ' . ubik_svg_icon( 'ion-chatbubble', __( 'Comments', 'pendrell' ) ) ),
-  $group    = 3
+  $context  = array( 'group', 'responsive' )
 );

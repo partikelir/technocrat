@@ -1,6 +1,6 @@
 // ==== HELPERS ==== //
 
-// These silent selectors should be used for common styling patterns
+// These silent selectors should be used for common styling patterns but don't overdo it; only use extends frivolously when a declaration has a single property
 
 // Clearfix
 %clearfix-above {
@@ -45,6 +45,37 @@
   margin: 0;
 }
 
+// Alignment
+%align-left {
+  float: left;
+}
+%align-right {
+  float: right;
+}
+%align-center {
+  @extend %clearfix-below;
+  @include k-center-block;
+  text-align: center; // Presumably we might be applying this to elements that contain text
+}
+%align-none {
+  @extend %clearfix;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+// Positioning
+%bottom-left {
+  @include k-absolute(bottom 0 left 0);
+}
+%bottom-right {
+  @include k-absolute(bottom 0 right 0);
+}
+%top-left {
+  @include k-absolute(top 0 left 0);
+}
+%top-right {
+  @include k-absolute(top 0 right 0);
+}
 
 // Hide
 %hide {
@@ -148,34 +179,10 @@
   @include button-container;
 }
 
-// Positioning
-%bottom-left {
-  @include k-absolute(bottom 0 left 0);
+// Various shortcuts
+%list-style-none {
+  list-style: none;
 }
-%bottom-right {
-  @include k-absolute(bottom 0 right 0);
-}
-%top-left {
-  @include k-absolute(top 0 left 0);
-}
-%top-right {
-  @include k-absolute(top 0 right 0);
-}
-
-// Alignment
-%align-left {
-  float: left;
-}
-%align-right {
-  float: right;
-}
-%align-center {
-  @extend %clearfix-below;
-  @include k-center-block;
-  text-align: center; // Presumably we might be applying this to elements that contain text
-}
-%align-none {
-  @extend %clearfix;
-  margin-left: 0;
-  margin-right: 0;
+%max-width-100 {
+  max-width: 100%;
 }

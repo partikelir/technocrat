@@ -65,7 +65,7 @@ add_filter( 'ubik_views_navigation_display', 'pendrell_views_navigation_display'
 // View content class filter; adds classes to the main content element rather than body class (for compatibility with the full-width module)
 function pendrell_views_content_class( $classes ) {
   if ( ubik_is_view( 'gallery' ) )
-    $classes[] = 'gallery';
+    $classes[] = 'gallery gallery-flex';
   return $classes;
 }
 add_filter( 'pendrell_content_class', 'pendrell_views_content_class' );

@@ -158,6 +158,7 @@ svg {
     width: percentage( ( ( $width-main / 2 ) - 8) / $width-main ); // Should yield a perfect 50% after accounting for borders and such
   }
   textarea {
+    box-sizing: border-box; // To account for padding and such
     font-family: inherit; // Possibly redundant
     max-width: $width-main;
     width: 100%;

@@ -25,7 +25,7 @@ $_metadata: (
 , theme-author:             "Alexander Synaptic"
 , theme-author-uri:         "http://synapticism.com"
 , theme-description:        "Alexander Synaptic"
-, theme-version:            "0.20.0"
+, theme-version:            "0.21.0"
 , theme-license:            "GPLv3"
 , theme-license-uri:        "https://www.gnu.org/copyleft/gpl.txt"
 , theme-tags:               (light, gray, white, one-column, two-columns, right-sidebar, fixed-layout, responsive-layout, custom-menu, featured-images, full-width-template, microformats, post-formats, theme-options, translation-ready)
@@ -33,12 +33,13 @@ $_metadata: (
 , theme-text-domain-path:   "/languages/"
 );
 
-// Breakpoints; use break() to access
+// Breakpoints; use break() to access; pixel values (in the comments) are defaults but assume nothing else has changed
 $_breaks: (
-  small:              $width-main / 1.2
-, medium:             $width-main + spacer(3)
-, large:              $width-main + spacer(8) // Causes sidebar to slide below content
-, full:               $width-content
+  tiny:               ceil( $width-main / 1.5 )       // 416
+, small:              ceil( $width-main / 1.2 )       // 520
+, medium:             ceil( $width-main + spacer(3) ) // 714
+, large:              ceil( $width-main + spacer(8) ) // 864
+, full:               ceil( $width-content )          // 960
 );
 
 // Modules; reduce bloat by switching some of these off; test with @if module(name) {}
@@ -58,7 +59,7 @@ $_modules: (
 
 @if $dev {
   $_modules: (
-    gallery-shortcode:  false // WordPress core; activation creates some useless duplicate styles
+    gallery-shortcode:  true // WordPress core; activation creates some useless duplicate styles
   , post-formats:       true // Built-in
   , prism:              true
   , ubik-links:         true

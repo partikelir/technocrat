@@ -2,13 +2,13 @@
 
 Pendrell is a minimal yet fully-featured WordPress theme. It features beautiful, legible typesetting alongside big, bold imagery. Use it for long-form journalism, photo-blogging, and more--but be prepared to dive into the code! Pendrell is something of a hacker theme; there is no options page, theme customizer, or bloat, and you won't find it in the WordPress theme repository. Instead, what you get is a highly optimized and surprisingly powerful theme [built with the goodness of Gulp, Bower, and Sass](https://github.com/synapticism/wordpress-gulp-bower-sass).
 
-Pendrell is built with [Ubik](https://github.com/synapticism/ubik), my suite of WordPress components. All necessary components are integrated into Pendrell during the build process; no extra plugins need to be installed.
+Pendrell is built with [Ubik](https://github.com/synapticism/ubik), my suite of WordPress components. All necessary components are integrated into Pendrell during the build process; no extra plugins need to be installed *but you do need to build this theme from source files yourself*.
 
 ![Pendrell example screenshot](/src/screenshot.png "Pendrell example screenshot")
 
-You can see Pendrell in action on my personal blog, [Synapticism](http://synapticism.com).
-
 *Please note that Pendrell is still in the 0.x branch of development; things can (and will) change! If anyone out there would like to actually use this theme in production (or as a foundation for further customization) please feel welcome to contact me and I'll be less indiscriminate with my commits. Currently I am moving fast and occasionally breaking things as if nobody else is using this repo for anything.*
+
+You can see Pendrell in action on my personal blog, [Synapticism](http://synapticism.com).
 
 
 
@@ -21,14 +21,13 @@ This is an incomplete list in no particular order:
 * Big, beautiful typesetting for [easy reading](http://ia.net/blog/100e2r/).
 * Consistent vertical rhythm (excluding images; that's just too much trouble).
 * Full-width view for images and galleries. Great for photo-blogging.
-* Truly responsive images with [Ubik Imagery](https://github.com/synapticism/ubik-imagery) and [Picturefill](https://github.com/scottjehl/picturefill). Visitors on mobile will load smaller images than those on bigger screens!
+* Truly responsive images and complex layouts with [Ubik Imagery](https://github.com/synapticism/ubik-imagery) and [Picturefill](https://github.com/scottjehl/picturefill). Visitors on mobile will load smaller images than those on bigger screens!
 * Built-in [AJAX Page Loader](https://github.com/synapticism/wp-ajax-page-loader) script (click "next" and more content will appear). Not unlike Infinite Scroll but custom-coded for high performance.
 * Built-in AJAX contact form page template; no need for a wasteful plugin.
 * Improved post format styling and support for asides, images (really just a thin wrapper for attachments), links, quotations, and status updates.
 * Custom template swapping; display posts in a gallery of thumbnails, a list, or as the original posts. Great for portfolios.
 * Smart context-dependent search form and search redirects (singletons and blank queries).
 * Google Web Font support; configure in `functions-config.php`.
-* Image metadata module; a bit like what can be seen on Flickr (date captured, focus, ISO, etc.).
 * Footer info module; customize the copyright blurb at the bottom of each page.
 * Related posts optionally weighted by taxonomy, number of comments, presence of post thumbnail/featured image, etc.
 * SVG icon sheet support; seamlessly integrate SVG icons from any open source icon set.

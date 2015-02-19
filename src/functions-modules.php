@@ -132,6 +132,7 @@ if ( PENDRELL_UBIK_FEED )
 // Enable `srcset` output only when Picturefill module is active
 if ( PENDRELL_SCRIPTS_PICTUREFILL )
   define( 'UBIK_IMAGERY_SRCSET', true );
+define( 'UBIK_IMAGERY_DIMENSIONS', false );
 require_once( $pendrell_modules . 'ubik-imagery.php' );
 
 

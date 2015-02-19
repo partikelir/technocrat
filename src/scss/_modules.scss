@@ -26,9 +26,18 @@
 // == PHOTO META == //
 
 @if module(ubik-photo-meta) {
-  .photo-meta ul {
-    @include font-size(text-small);
-    list-style: none;
+  .photo-meta {
+    @extend %links-no-border;
+    table,
+    ul {
+      @include font-size(text-small);
+    }
+    td + td {
+      @include rem( padding-left, spacer() );
+    }
+    ul {
+      @extend %list-style-none;
+    }
   }
 }
 
@@ -56,7 +65,7 @@
 
 @if module(ubik-recordpress) {
   ul.discography-thumbnails {
-    list-style: none;
+    @extend %list-style-none;
     li {
       @extend %spacer-below;
       margin-left: 0;
@@ -82,6 +91,7 @@
 
 @if module(ubik-series) {
   .series {
+    @extend %links-no-border;
     ol {
       @include font-size(text-small);
       @include rem( margin-left, spacer() );

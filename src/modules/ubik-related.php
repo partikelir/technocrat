@@ -74,12 +74,20 @@ function pendrell_related_posts() {
   // Only proceed if related posts were found
   if ( !empty( $related_posts ) ) {
 
+    // Show more related posts on full size posts
+    $count = 3;
+    $size = 'third-square';
+    if ( pendrell_is_full_width() ) {
+      $count = 4;
+      $size = 'quarter-square';
+    }
+
     // We only want the first three results for this theme
-    $related_posts = array_slice( $related_posts, 0, 3 );
+    $related_posts = array_slice( $related_posts, 0, $count );
 
     ?><section class="entry-after related-posts">
       <h3><?php _e( 'Related posts', 'pendrell' ); ?></h3>
-      <div class="gallery gallery-columns-3">
+      <div class="gallery gallery-static gallery-columns-<?php echo $count; ?>">
       <?php foreach ( $related_posts as $related_post ) {
 
         // Long title handler
@@ -94,12 +102,12 @@ function pendrell_related_posts() {
           $title    = '',
           $align    = '',
           $url      = get_permalink( $related_post ),
-          $size     = 'third-square',
+          $size     = $size,
           $alt      = '',
           $rel      = '',
           $class    = 'related-post overlay',
           $contents = pendrell_image_overlay_metadata( get_comments_number( $related_post ) . ' ' . ubik_svg_icon( 'ion-chatbubble', __( 'Comments', 'pendrell' ) ) ),
-          $group    = 3
+          $context  = array( 'group', 'static' )
         );
       } ?>
       </div>

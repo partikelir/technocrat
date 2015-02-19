@@ -4,7 +4,7 @@
 .comments-area { // See also .entry-after
   max-width:  $width-main ; // Required to limit the width of the comments area when there is no sidebar displayed
   ol {
-    list-style: none; // Reset list style from `_general.scss`
+    @extend %list-style-none; // Reset list style from `_general.scss`
   }
 }
 .comments-title {

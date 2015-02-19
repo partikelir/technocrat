@@ -1,58 +1,7 @@
 // ==== VIEWS ==== //
 
-// == GALLERY VIEW == //
-
-.gallery-view {
-  // Assumes `float: left` is set elsewhere
-
-  // Responsive gallery view; not especially DRY but it has the advantage of being targetted and precise; no wasted CSS here
-  // Won't produce neat 30px margins between images on Firefox because of cross-browser scrollbar inconsistencies; not important enough to fix with JavaScript hackery
-
-  // Custom breakpoints specifically for gallery view
-  // Note there will be some minor quirks due to slight differences between these custom breakpoints and those of the rest of the site's interface
-
-  $b-gallery-small: 300 + spacer(); // Below this it's a single column layout
-  $b-gallery-medium: 600 + $spacer-image + spacer(2); // Upper threshold for the two column layout; $spacer-image accounts for the inner margin
-  @include k-media-below( $b-gallery-small ) {
-    .gallery figure.wp-caption {
-      @include rem( margin, 0 0 $spacer-image 0 ); // Only a bottom margin is needed
-      max-width: 100%;
-    }
-  }
-  @include k-media-between( $b-gallery-small, $b-gallery-medium ) {
-    $margin-width: $spacer-image / 600px;
-    .gallery figure.wp-caption {
-      margin: 0 percentage( $margin-width ) percentage( $margin-width ) 0;
-      max-width: percentage( 1 / 2 ) - percentage( $margin-width / 2 );
-      &:nth-of-type(2n) {
-        margin-right: 0;
-      }
-      &:nth-of-type(2n+1) {
-        clear: left;
-      }
-    }
-  }
-  @include k-media-above( $b-gallery-medium ) {
-    .gallery figure.wp-caption {
-
-      // The following calculations based on content width presume that gallery view is always full-width (which it should be)
-      margin: 0 percentage( $spacer-image / $width-content ) percentage( $spacer-image / $width-content ) 0;
-      max-width: percentage( 1 / 3 ) - percentage( ( ( $spacer-image * 2 ) / $width-content ) / 3 );
-      &:nth-of-type(3n) {
-        margin-right: 0;
-      }
-      &:nth-of-type(3n+1) {
-        clear: left;
-      }
-    }
-  }
-}
-
-
-
 // == LIST VIEW == //
 
-// Whereas the gallery view styling is used throughout Pendrell the list view section is exclusive to the views module
 @if module(ubik-views) {
 
   // This class only appears in list-view so it is safe to declare it without nesting
