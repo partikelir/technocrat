@@ -139,6 +139,7 @@ figure.wp-caption {
   }
   @include k-media-below( break(tiny) ) {
     @include rem( margin, 0 0 spacer() 0 );
+    float: none;
   }
 }
 
@@ -277,6 +278,15 @@ figure.wp-caption {
     .gallery-caption {
       @include rem( font-size, size(text-small) + 0px );
       line-height: 1.25; // No need for vertical rhythm here!
+    }
+    // This theme does not support a column count greater than 4
+    .gallery-columns-5 &,
+    .gallery-columns-6 &,
+    .gallery-columns-7 &,
+    .gallery-columns-8 &,
+    .gallery-columns-9 & {
+      @include rem( margin, 0 0 spacer() 0 );
+      float: none;
     }
   }
 }
