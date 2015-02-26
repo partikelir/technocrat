@@ -1,6 +1,6 @@
 # PENDRELL
 
-Pendrell is a minimal yet fully-featured WordPress theme. It features beautiful, legible typesetting alongside big, bold imagery. Use it for long-form journalism, photo-blogging, and more--but be prepared to dive into the code! Pendrell is something of a hacker theme; there is no options page, theme customizer, or bloat, and you won't find it in the WordPress theme repository. Instead, what you get is a highly optimized and surprisingly powerful theme [built with the goodness of Gulp, Bower, and Sass](https://github.com/synapticism/wordpress-gulp-bower-sass).
+Pendrell is a minimal yet powerful WordPress theme for multimedia blogs. It features beautiful, legible typesetting alongside big, bold imagery. Use it for long-form journalism, photo-blogging, and more--but be prepared to dive into the code! Pendrell is something of a hacker theme; there is no options page, theme customizer, or bloat, and you won't find it in the WordPress theme repository. Instead, what you get is a highly optimized and surprisingly powerful theme [built with the goodness of Gulp, Bower, and Sass](https://github.com/synapticism/wordpress-gulp-bower-sass).
 
 Pendrell is built with [Ubik](https://github.com/synapticism/ubik), my suite of WordPress components. All necessary components are integrated into Pendrell during the build process; no extra plugins need to be installed *but you do need to build this theme from source files yourself*.
 
@@ -14,7 +14,7 @@ You can see Pendrell in action on my personal blog, [Synapticism](http://synapti
 
 ## FEATURES
 
-This is an incomplete list in no particular order:
+An incomplete list in no particular order:
 
 * HTML5-compliant markup; clean and efficient CSS3 styling based on Sass.
 * Automated CSS/JS minification via Gulp/Bower build system and intelligent asset loading. This theme is *highly* optimized.
@@ -30,8 +30,9 @@ This is an incomplete list in no particular order:
 * Google Web Font support; configure in `functions-config.php`.
 * Footer info module; customize the copyright blurb at the bottom of each page.
 * Related posts optionally weighted by taxonomy, number of comments, presence of post thumbnail/featured image, etc.
-* SVG icon sheet support; seamlessly integrate SVG icons from any open source icon set.
+* SVG icon sheet support; seamlessly integrate SVG icons from any open source icon set; IE9+ support with [SVG 4 Everybody](https://github.com/jonathantneal/svg4everybody).
 * Code highlighting with [Prism](http://prismjs.com).
+* [Autosize](https://github.com/jackmoore/autosize) `textarea` elements.
 * A halfway decent print media stylesheet.
 * A zillion little optimizations via [Ubik](https://github.com/synapticism/ubik).
 * Absolutely no options screen or database bloat.
@@ -41,7 +42,7 @@ This is an incomplete list in no particular order:
 
 ## REQUIREMENTS
 
-To use the theme: WordPress 3.9+ and PHP 5.2. For development and customization: gem, npm, Sass, Bower, Composer, and Gulp. Browser support: IE9+, latest 2 versions otherwise.
+To use the theme: WordPress 3.9+ and PHP 5.2. For development and customization: gem, npm, Sass, Bower, Composer, and Gulp. Browser support: IE9+ intended, latest 2 versions otherwise.
 
 
 
@@ -95,6 +96,6 @@ Utilities (as needed):
 
 ## LICENSE
 
-Copyright 2012-2014 [Alexander Synaptic](http://alexandersynaptic.com). The `master` branch is licensed under the [GPLv3](http://www.gnu.org/licenses/gpl.txt); all branches specific to my own personal projects are *not* released under a FOSS license.
+Copyright 2012-2015 [Alexander Synaptic](http://alexandersynaptic.com). The `master` branch is licensed under the [GPLv3](http://www.gnu.org/licenses/gpl.txt); all branches specific to my own personal projects are *not* released under a FOSS license.
 
 Please link back to [my web site](http://synapticism.com) and/or [this GitHub repository](https://github.com/synapticism/pendrell) if you make use of this theme!
