@@ -27,22 +27,22 @@ if ( WP_LOCAL_DEV ) {
 // Ubik is a collection of lightwight WordPress components; use these master switches to turn these optional components on or off
 defined( 'PENDRELL_UBIK_ADMIN' )          || define( 'PENDRELL_UBIK_ADMIN', false );
 defined( 'PENDRELL_UBIK_ANALYTICS' )      || define( 'PENDRELL_UBIK_ANALYTICS', false );
-defined( 'PENDRELL_UBIK_CLEANER' )        || define( 'PENDRELL_UBIK_CLEANER', true ); // Active
-defined( 'PENDRELL_UBIK_COMMENTS' )       || define( 'PENDRELL_UBIK_COMMENTS', true ); // Active
+defined( 'PENDRELL_UBIK_CLEANER' )        || define( 'PENDRELL_UBIK_CLEANER', true );
+defined( 'PENDRELL_UBIK_COMMENTS' )       || define( 'PENDRELL_UBIK_COMMENTS', true );
 defined( 'PENDRELL_UBIK_EXCLUDER' )       || define( 'PENDRELL_UBIK_EXCLUDER', false );
-defined( 'PENDRELL_UBIK_FEED' )           || define( 'PENDRELL_UBIK_FEED', true ); // Active
+defined( 'PENDRELL_UBIK_FEED' )           || define( 'PENDRELL_UBIK_FEED', true );
 defined( 'PENDRELL_UBIK_LINGUAL' )        || define( 'PENDRELL_UBIK_LINGUAL', false );
 defined( 'PENDRELL_UBIK_LINKS' )          || define( 'PENDRELL_UBIK_LINKS', false );
 defined( 'PENDRELL_UBIK_MARKDOWN' )       || define( 'PENDRELL_UBIK_MARKDOWN', false );
 defined( 'PENDRELL_UBIK_PHOTO_META' )     || define( 'PENDRELL_UBIK_PHOTO_META', false );
 defined( 'PENDRELL_UBIK_PLACES' )         || define( 'PENDRELL_UBIK_PLACES', false );
-defined( 'PENDRELL_UBIK_POST_FORMATS' )   || define( 'PENDRELL_UBIK_POST_FORMATS', true ); // Active
+defined( 'PENDRELL_UBIK_POST_FORMATS' )   || define( 'PENDRELL_UBIK_POST_FORMATS', true );
 defined( 'PENDRELL_UBIK_QUICK_TERMS' )    || define( 'PENDRELL_UBIK_QUICK_TERMS', false );
 defined( 'PENDRELL_UBIK_RECORDPRESS' )    || define( 'PENDRELL_UBIK_RECORDPRESS', false );
 defined( 'PENDRELL_UBIK_RELATED' )        || define( 'PENDRELL_UBIK_RELATED', false );
 defined( 'PENDRELL_UBIK_SERIES' )         || define( 'PENDRELL_UBIK_SERIES', false );
-defined( 'PENDRELL_UBIK_SEO' )            || define( 'PENDRELL_UBIK_SEO', true ); // Active
-defined( 'PENDRELL_UBIK_VIEWS' )          || define( 'PENDRELL_UBIK_VIEWS', true ); // Active
+defined( 'PENDRELL_UBIK_SEO' )            || define( 'PENDRELL_UBIK_SEO', true );
+defined( 'PENDRELL_UBIK_VIEWS' )          || define( 'PENDRELL_UBIK_VIEWS', true );
 
 // Modules path
 $path_modules = trailingslashit( get_stylesheet_directory() ) . 'modules/';
@@ -230,16 +230,8 @@ add_filter( 'ubik_search_button', 'pendrell_search_button' );
 
 // == SERIES == //
 
-if ( PENDRELL_UBIK_SERIES ) {
+if ( PENDRELL_UBIK_SERIES )
   require_once( $path_modules . 'ubik-series.php' );
-  /*add_action( 'pendrell_comment_template_before', 'ubik_series', 15 );
-
-  // Add a custom class to series list output
-  function pendrell_series_list_class( $class ) {
-    return 'entry-after series';
-  }
-  add_filter( 'ubik_series_list_class', 'pendrell_series_list_class' );*/
-}
 
 
 

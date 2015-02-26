@@ -19,11 +19,10 @@ function pendrell_series() {
   // Display the list of posts in the series only if there is more than one post in that series
   if ( !empty( $series ) ) { ?>
     <div class="entry-after series">
-      <h3><?php _e( 'Series', 'pendrell' ); ?></h3>
       <?php foreach ( $series as $series_id => $series_list ) {
         $term = get_term( $series_id, 'series' );
         if ( !empty( $term ) ) {
-          ?><p><a href="<?php echo esc_url( get_term_link( $term ) ); ?>"><?php echo $term->name; ?></a></p><?php
+          ?><h3><?php printf( __( 'Part of a series: %s', 'pendrell' ), '<a href="' . esc_url( get_term_link( $term ) ) . '">' . $term->name . '</a>' ); ?></h3><?php
         }
         echo $series_list;
       } ?>

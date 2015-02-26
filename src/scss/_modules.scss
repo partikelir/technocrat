@@ -80,7 +80,7 @@
 @if module(ubik-related) {
   .related-posts {
     h3 {
-      @extend %spacer-below;
+      @extend %spacer-below-half;
     }
   }
 }
@@ -91,12 +91,8 @@
 
 @if module(ubik-series) {
   .series {
-
-    h3 {
-      //@extend %spacer-below;
-    }
+    @extend %links-no-border;
     ol {
-      @extend %links-no-border;
       @extend %spacer-below;
       @include font-size(text-smaller);
       //@include rem( margin-left, spacer() );
