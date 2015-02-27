@@ -43,23 +43,6 @@
       @extend %text-small;
       @extend %spacer-reset;
     }
-
-    // Link post format
-    .entry-link {
-      @extend %hide;
-    }
-
-    // Full-width modifications
-    &.full-width {
-      @include k-media-above( break(large) ) {
-        .entry-title {
-          @include font-size(head);
-        }
-        .entry-content p {
-          @include font-size(text);
-        }
-      }
-    }
   }
 
   // Reset a few things when a list appears within a post or page

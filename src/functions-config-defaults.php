@@ -28,20 +28,3 @@ defined( 'PENDRELL_SCRIPTS_PICTUREFILL' ) || define( 'PENDRELL_SCRIPTS_PICTUREFI
 
 // Master switch for Prism syntax highlighting script
 defined( 'PENDRELL_SCRIPTS_PRISM' )       || define( 'PENDRELL_SCRIPTS_PRISM', false );
-
-
-
-// ==== MODULES ==== //
-
-// This section outlines configuration options for each module
-// So, for instance, if you want to activate the "footer info" module, place this in your `functions-config.php`:
-// define( 'PENDRELL_MODULE_FOOTER_INFO', true );
-// Next, create and popular a global array $pendrell_footer_info according to the specifications in the example below
-
-
-
-// == FULL WIDTH == //
-
-// Optional: force full-width categories and tags; just enter an array of IDs, names, or slugs below; matches in_category() and has_tag()
-// $pendrell_full_width_cats = array();
-// $pendrell_full_width_tags = array();

@@ -184,22 +184,22 @@ module.exports = {
       , 'colophon' // *
       , 'comments'
       , 'excerpt' // *
-      , 'excluder'
+      //, 'excluder'
       , 'favicons'
       , 'feed'
       , 'imagery' // *
-      , 'lingual'
+      //, 'lingual'
       , 'links'
       , 'markdown'
       , 'meta' // *
-      , 'places'
-      , 'photo-meta'
-      , 'post-formats'
+      //, 'places'
+      //, 'photo-meta'
+      //, 'post-formats'
       , 'quick-terms'
-      , 'recordpress'
-      , 'related'
+      //, 'recordpress'
+      //, 'related'
       , 'search' // *
-      , 'series'
+      //, 'series'
       , 'seo'
       , 'svg-icons' // *
       , 'terms' // *

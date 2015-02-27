@@ -6,22 +6,12 @@
 .archive-title {
   @extend %spacer-below-half;
   @include font-style(archive-title);
-  @include k-media-above( break(large) ) {
-    .full-width & {
-      @include font-size(head-biggest);
-    }
-  }
 }
 .archive-desc {
   @extend %clearfix-above;
   @extend %links;
   @extend %spacer-below-double;
   @include font-size(text-small);
-  @include k-media-above( break(large) ) {
-    .full-width & {
-      @include font-size(text-bigger);
-    }
-  }
   p {
     @extend %spacer-below;
   }

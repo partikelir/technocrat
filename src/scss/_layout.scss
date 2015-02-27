@@ -23,19 +23,23 @@
 }
 .wrap-header {
   @extend %wrap;
+  background: #999;
   @include rem( padding-top, spacer() );
+  float: right;
   position: relative; // Contains #site-interface, which is absolutely positioned
+  width: percentage( 1 - ( ( $width-main + spacer() ) / $width-content ) );
 }
 .wrap-main { // Wrapper around content and sidebar
   @extend %clearfix;
   @include k-media-above( break(large) ) {
-    @include k-center-block( $width-content );
-    @include rem( padding-left, spacer(1.5) );
-    @include rem( padding-right, spacer(1.5) );
+    //@include k-center-block( $width-content );
+    //@include rem( padding-left, spacer(1.5) );
+    //@include rem( padding-right, spacer(1.5) );
   }
 }
 .wrap-content {
   @extend %wrap;
+  background: #9F9;
   @include rem( padding-top, spacer() );
   @include rem( padding-bottom, spacer() );
   @include k-media-above( break(large) ) {
@@ -43,14 +47,10 @@
     float: left;
     padding-left: 0;
     width: percentage( ( $width-main + spacer() ) / $width-content );
-    .full-width & {
-      float: none;
-      padding-right: 0;
-      width: 100%;
-    }
   }
 }
 .wrap-sidebar {
+  background: #F99;
   @extend %wrap;
   @include rem( padding-top, spacer() );
   @include rem( padding-bottom, spacer() );
@@ -59,14 +59,10 @@
     float: right;
     padding-right: 0;
     width: percentage( 1 - ( ( $width-main + spacer() ) / $width-content ) );
-    .full-width & {
-      float: none;
-      padding-left: 0;
-      width: 100%;
-    }
   }
 }
 .wrap-footer {
+  background: #99F;
   @extend %wrap;
   position: relative; // For use with the "Back to top" button
 }
@@ -135,9 +131,6 @@
   max-width: $width-main; // Keeps content contained regardless of whether sidebar appears
   &:focus {
     outline: none; // Prevent weird blue glow when using the skip link
-  }
-  .full-width & {
-    max-width: $width-content;
   }
 
   // Individual articles within the content area

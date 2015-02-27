@@ -31,10 +31,10 @@ $_sizes: (
 );
 
 // Body fonts; these are applied universally throughout the theme
-$f-body:            k-font-stack(helvetica-light);
+$f-body:            k-font-stack(Oxygen, helvetica-light);
 $w-body-light:      300;
 $w-body-normal:     400;
-$w-body-bold:       600;
+$w-body-bold:       700;
 
 // Core fonts; an alternative for entry content and such
 $f-core:            k-font-stack(helvetica-light);
@@ -43,13 +43,13 @@ $w-core-normal:     400;
 $w-core-bold:       600;
 
 // Header and probably menu fonts too
-$f-head:            k-font-stack("Raleway", century);
-$w-head-light:      200;
-$w-head-normal:     300;
-$w-head-bold:       600;
+$f-head:            k-font-stack(Ubuntu, calibri);
+$w-head-light:      300;
+$w-head-normal:     400;
+$w-head-bold:       700;
 
 // Monospace fonts
-$f-mono:            k-font-stack(consolas);
+$f-mono:            k-font-stack("Source Code Pro", consolas);
 $w-mono-light:      300;
 $w-mono-normal:     400;
 $w-mono-bold:       700;
@@ -65,7 +65,7 @@ $w-mono-bold:       700;
     @extend %head-bold;
   }
   @if (body == $style) {
-    @extend %body-light;
+    @extend %body-normal;
   }
   @if (mono == $style) {
     @extend %mono-normal;
@@ -73,7 +73,7 @@ $w-mono-bold:       700;
 
   // Masthead
   @if (site-title == $style) {
-    @extend %head-light;
+    @extend %head-normal;
     text-transform: uppercase;
   }
   @if (site-description == $style) {
@@ -82,7 +82,7 @@ $w-mono-bold:       700;
 
   // Menu
   @if (menu == $style) {
-    @extend %head-normal;
+    @extend %head-light;
   }
 
   // Archives
@@ -95,7 +95,7 @@ $w-mono-bold:       700;
     @extend %head-normal;
   }
   @if (entry-content == $style) {
-    @extend %body-light;
+    @extend %body-normal;
   }
   @if (entry-meta == $style) {
     @extend %body-normal;

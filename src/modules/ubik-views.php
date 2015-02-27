@@ -72,16 +72,6 @@ add_filter( 'pendrell_content_class', 'pendrell_views_content_class' );
 
 
 
-// Force certain views to be full-width
-function pendrell_views_full_width( $full_width_test ) {
-  if ( ubik_is_view( 'gallery' ) )
-    return true;
-  return $full_width_test;
-}
-add_filter( 'pendrell_full_width', 'pendrell_views_full_width' );
-
-
-
 // Modify how many posts per page are displayed for different views; adapted from: http://wordpress.stackexchange.com/questions/21/show-a-different-number-of-posts-per-page-depending-on-context-e-g-homepage
 function pendrell_views_pre_get_posts( $query ) {
   if ( ubik_is_view( 'gallery' ) ) {

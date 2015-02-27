@@ -130,50 +130,6 @@
 
 
 
-// Exclusive to post contents
-.entry-content {
-
-  // Full-width styling adjustments on viewports larger than the medium breakpoint
-  @include k-media-above( break(medium) ) {
-    .full-width & {
-      @include font-size(text-bigger);
-
-      // Increase top header sizes (the rest remain the same)
-      h1 {
-        @include font-size(head-biggest);
-      }
-      h2 {
-        @include font-size(head-bigger);
-      }
-      h3 {
-        @include font-size(head-big);
-      }
-
-      // Give quotations a boost
-      blockquote {
-        @include font-size(text-big);
-        footer {
-           @include font-size(text-small);
-        }
-      }
-
-      // These are all usually size(text-small; kick it up a notch
-      aside,
-      table caption,
-      .entry-caption,
-      .footnotes,
-      .references {
-        @include font-size(text);
-      }
-      td {
-        @include font-size(text, 1);
-      }
-    }
-  }
-}
-
-
-
 // Entry meta
 .entry-meta {
   @extend %clearfix;

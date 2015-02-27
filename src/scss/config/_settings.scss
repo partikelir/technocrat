@@ -1,7 +1,7 @@
 // ==== DEFAULT CONFIGURATION ==== //
 
 // Development mode; switches on a few things that are otherwise build-specific
-$dev: true;
+$dev: false;
 
 // Legacy mode; output styles for older browsers (usually pre-IE9)
 $legacy: false;
@@ -11,8 +11,8 @@ $base-size:       16;
 $base-line:       30;
 
 // Site widths
-$width-content:   960px;
-$width-main:      624px;
+$width-content:   1000px;
+$width-main:      680px;
 $width-thumb:     150px;
 
 // Image spacer; defines the space between gallery items and grouped images
@@ -28,7 +28,7 @@ $_metadata: (
 , theme-version:            "0.21.0"
 , theme-license:            "GPLv3"
 , theme-license-uri:        "https://www.gnu.org/copyleft/gpl.txt"
-, theme-tags:               (light, gray, white, one-column, two-columns, right-sidebar, fixed-layout, responsive-layout, custom-menu, featured-images, full-width-template, microformats, post-formats, theme-options, translation-ready)
+, theme-tags:               (light, gray, white, one-column, two-columns, right-sidebar, fixed-layout, responsive-layout, custom-menu, featured-images, microformats, post-formats, theme-options, translation-ready)
 , theme-text-domain:        "pendrell"
 , theme-text-domain-path:   "/languages/"
 );
@@ -46,15 +46,15 @@ $_breaks: (
 $_modules: (
   gallery-shortcode:  false // WordPress core; activation creates some useless duplicate styles; disable if you don't use [gallery]
 , post-formats:       false
-, prism:              false
-, ubik-links:         false
+, prism:              true
+, ubik-links:         true
 , ubik-photo-meta:    false
 , ubik-places:        false
 , ubik-recordpress:   false
 , ubik-related:       false
 , ubik-series:        false
-, ubik-svg-icons:     true // *
-, ubik-views:         true // *
+, ubik-svg-icons:     true
+, ubik-views:         true
 );
 
 @if $dev {

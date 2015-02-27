@@ -84,10 +84,6 @@ function pendrell_related_posts() {
     // Show more related posts on full size posts
     $count = 3;
     $size = 'third-square';
-    if ( pendrell_is_full_width() ) {
-      $count = 4;
-      $size = 'quarter-square';
-    }
 
     // We only want the first three results for this theme
     $related_posts = array_slice( $related_posts, 0, $count );
