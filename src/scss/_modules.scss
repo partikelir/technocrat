@@ -95,7 +95,6 @@
     ol {
       @extend %spacer-below;
       @include font-size(text-smaller);
-      //@include rem( margin-left, spacer() );
     }
   }
 }

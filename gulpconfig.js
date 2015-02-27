@@ -168,13 +168,14 @@ module.exports = {
     , components: [
         'admin'
       , 'analytics'
-      , 'cleaner'
+      , 'cleaner' // *
       , 'colophon' // *
       , 'comments'
       , 'excerpt' // *
       , 'excluder'
       , 'favicons'
       , 'feed'
+      , 'fonts' // *
       , 'imagery' // *
       , 'lingual'
       , 'links'

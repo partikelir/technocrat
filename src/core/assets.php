@@ -94,39 +94,22 @@ if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueu
   wp_register_style( 'pendrell-style', get_stylesheet_uri(), $dependencies = array(), filemtime( get_template_directory() . '/style.css' ) );
   wp_enqueue_style( 'pendrell-style' );
 
-
-
-  // == FONTS == //
-
-  // Google Web Fonts loader
-  $font_url = pendrell_get_font_url();
-  if ( !empty( $font_url ) ) {
-    wp_enqueue_style( 'pendrell-fonts', esc_url_raw( $font_url ), array(), null );
-  }
-
 } endif; // end pendrell_enqueue_scripts()
-if ( !is_admin() )
-  add_action( 'wp_enqueue_scripts', 'pendrell_enqueue_scripts' );
+add_action( 'wp_enqueue_scripts', 'pendrell_enqueue_scripts' );
 
 
 
-// == GOOGLE FONTS == //
+// Load additional stylesheets for the admin panel
+function pendrell_admin_enqueue_scripts() {
+  wp_register_style( 'pendrell-style-admin', get_template_directory_uri() . '/style-admin.css', $dependencies = array(), filemtime( get_template_directory() . '/style-admin.css' ) );
+  wp_enqueue_style( 'pendrell-style-admin' );
+}
+add_action( 'admin_enqueue_scripts', 'pendrell_admin_enqueue_scripts' );
 
-// Hack: simplify and customize Google font loading; reference Twenty Twelve for more advanced options
-if ( !function_exists( 'pendrell_get_font_url' ) ) : function pendrell_get_font_url( $fonts = '' ) {
-  $font_url = '';
 
-  // Allows us to pass a Google web font declaration as needed
-  if ( empty( $fonts ) )
-    $fonts = PENDRELL_GOOGLE_FONTS ? PENDRELL_GOOGLE_FONTS : 'Open+Sans:400italic,700italic,400,700'; // Default back to Open Sans
 
-  // Encode commas and pipe characters; explanation: http://www.designfordigital.com/2014/04/07/google-fonts-bad-value-css-validate/
-  $fonts = str_replace( ',', '%2C', $fonts );
-  $fonts = str_replace( '|', '%7C', $fonts );
-
-  $protocol = is_ssl() ? 'https' : 'http';
-
-  $font_url = "$protocol://fonts.googleapis.com/css?family=" . $fonts;
-
-  return $font_url;
-} endif;
+// Load an extra stylesheet for use with the visual editor
+function pendrell_admin_editor_style() {
+  add_editor_style( get_template_directory_uri() . '/style-editor.css?version=' . filemtime( get_template_directory() . '/style-editor.css' ) );
+}
+add_action( 'after_setup_theme', 'pendrell_admin_editor_style' );

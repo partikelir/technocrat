@@ -20,8 +20,6 @@ if ( is_readable( $path . 'functions-modules.php' ) )
 // == LOADER == //
 
 // Pendrell core functions are abstracted into the `pendrell/core` directory
-if ( is_admin() )
-  require_once( $path . 'core/admin.php' );
 require_once( $path . 'core/archive.php' );
 require_once( $path . 'core/assets.php' );
 require_once( $path . 'core/author.php' );

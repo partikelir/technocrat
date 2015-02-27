@@ -6,7 +6,6 @@
 if ( WP_LOCAL_DEV ) {
   defined( 'PENDRELL_UBIK_ADMIN' )          || define( 'PENDRELL_UBIK_ADMIN', true );
   defined( 'PENDRELL_UBIK_ANALYTICS' )      || define( 'PENDRELL_UBIK_ANALYTICS', true );
-  defined( 'PENDRELL_UBIK_CLEANER' )        || define( 'PENDRELL_UBIK_CLEANER', true );
   defined( 'PENDRELL_UBIK_COMMENTS' )       || define( 'PENDRELL_UBIK_COMMENTS', true );
   defined( 'PENDRELL_UBIK_EXCLUDER' )       || define( 'PENDRELL_UBIK_EXCLUDER', true );
   defined( 'PENDRELL_UBIK_FEED' )           || define( 'PENDRELL_UBIK_FEED', true );
@@ -19,15 +18,13 @@ if ( WP_LOCAL_DEV ) {
   defined( 'PENDRELL_UBIK_QUICK_TERMS' )    || define( 'PENDRELL_UBIK_QUICK_TERMS', true );
   defined( 'PENDRELL_UBIK_RECORDPRESS' )    || define( 'PENDRELL_UBIK_RECORDPRESS', true );
   defined( 'PENDRELL_UBIK_RELATED' )        || define( 'PENDRELL_UBIK_RELATED', true );
-  defined( 'PENDRELL_UBIK_SERIES' )         || define( 'PENDRELL_UBIK_SERIES', true );
   defined( 'PENDRELL_UBIK_SEO' )            || define( 'PENDRELL_UBIK_SEO', true );
-  defined( 'PENDRELL_UBIK_VIEWS' )          || define( 'PENDRELL_UBIK_VIEWS', true );
+  defined( 'PENDRELL_UBIK_SERIES' )         || define( 'PENDRELL_UBIK_SERIES', true );
 }
 
 // Ubik is a collection of lightwight WordPress components; use these master switches to turn these optional components on or off
 defined( 'PENDRELL_UBIK_ADMIN' )          || define( 'PENDRELL_UBIK_ADMIN', false );
 defined( 'PENDRELL_UBIK_ANALYTICS' )      || define( 'PENDRELL_UBIK_ANALYTICS', false );
-defined( 'PENDRELL_UBIK_CLEANER' )        || define( 'PENDRELL_UBIK_CLEANER', true );
 defined( 'PENDRELL_UBIK_COMMENTS' )       || define( 'PENDRELL_UBIK_COMMENTS', true );
 defined( 'PENDRELL_UBIK_EXCLUDER' )       || define( 'PENDRELL_UBIK_EXCLUDER', false );
 defined( 'PENDRELL_UBIK_FEED' )           || define( 'PENDRELL_UBIK_FEED', true );
@@ -40,9 +37,8 @@ defined( 'PENDRELL_UBIK_POST_FORMATS' )   || define( 'PENDRELL_UBIK_POST_FORMATS
 defined( 'PENDRELL_UBIK_QUICK_TERMS' )    || define( 'PENDRELL_UBIK_QUICK_TERMS', false );
 defined( 'PENDRELL_UBIK_RECORDPRESS' )    || define( 'PENDRELL_UBIK_RECORDPRESS', false );
 defined( 'PENDRELL_UBIK_RELATED' )        || define( 'PENDRELL_UBIK_RELATED', false );
-defined( 'PENDRELL_UBIK_SERIES' )         || define( 'PENDRELL_UBIK_SERIES', false );
 defined( 'PENDRELL_UBIK_SEO' )            || define( 'PENDRELL_UBIK_SEO', true );
-defined( 'PENDRELL_UBIK_VIEWS' )          || define( 'PENDRELL_UBIK_VIEWS', true );
+defined( 'PENDRELL_UBIK_SERIES' )         || define( 'PENDRELL_UBIK_SERIES', false );
 
 // Modules path
 $path_modules = trailingslashit( get_stylesheet_directory() ) . 'modules/';
@@ -70,10 +66,11 @@ if ( PENDRELL_UBIK_ANALYTICS )
 
 
 
-// == CLEANER == //
+// == CLEANER * == //
 
-if ( PENDRELL_UBIK_CLEANER )
-  require_once( $path_modules . 'ubik-cleaner/ubik-cleaner.php' );
+define( 'UBIK_CLEANER_REMOVE_MIGRATE', true );
+define( 'UBIK_CLEANER_REMOVE_OPEN_SANS', true );
+require_once( $path_modules . 'ubik-cleaner/ubik-cleaner.php' );
 
 
 
@@ -124,6 +121,14 @@ require_once( $path_modules . 'ubik-favicons/ubik-favicons.php' );
 
 if ( PENDRELL_UBIK_FEED )
   require_once( $path_modules . 'ubik-feed/ubik-feed.php' ); // @TODO: image size management in feeds
+
+
+
+// == FONTS == * //
+
+define( 'UBIK_FONTS_GOOGLE', 'Raleway:200,300,600' );
+define( 'UBIK_FONTS_GOOGLE_ADMIN', 'Noto+Serif:400' );
+require_once( $path_modules . 'ubik-fonts/ubik-fonts.php' );
 
 
 
@@ -266,11 +271,11 @@ add_filter( 'ubik_meta_timestamp_updated', 'ubik_time_human' );
 
 // == TITLE * == //
 
+define( 'UBIK_TITLE_STRIP_ARCHIVES', true );
 require_once( $path_modules . 'ubik-title/ubik-title.php' );
 
 
 
-// == VIEWS == //
+// == VIEWS * == //
 
-if ( PENDRELL_UBIK_VIEWS )
-  require_once( $path_modules . 'ubik-views.php' );
+require_once( $path_modules . 'ubik-views.php' );

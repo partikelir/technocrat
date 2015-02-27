@@ -27,7 +27,7 @@ An incomplete list in no particular order:
 * Improved post format styling and support for asides, images (really just a thin wrapper for attachments), links, quotations, and status updates.
 * Custom template swapping; display posts in a gallery of thumbnails, a list, or as the original posts. Great for portfolios.
 * Smart context-dependent search form and search redirects (singletons and blank queries).
-* Google Web Font support; configure in `functions-config.php`.
+* Google font support for both the front-end and admin panel. Includes nicer type-setting for the non-visual editor.
 * Footer info module; customize the copyright blurb at the bottom of each page.
 * Related posts optionally weighted by taxonomy, number of comments, presence of post thumbnail/featured image, etc.
 * SVG icon sheet support; seamlessly integrate SVG icons from any open source icon set; IE9+ support with [SVG 4 Everybody](https://github.com/jonathantneal/svg4everybody).
