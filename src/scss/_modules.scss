@@ -80,7 +80,7 @@
 @if module(ubik-related) {
   .related-posts {
     h3 {
-      @extend %spacer-below; // Required to space out the title from the images below
+      @extend %spacer-below-half;
     }
   }
 }
@@ -93,8 +93,8 @@
   .series {
     @extend %links-no-border;
     ol {
-      @include font-size(text-small);
-      @include rem( margin-left, spacer() );
+      @extend %spacer-below;
+      @include font-size(text-smaller);
     }
   }
 }

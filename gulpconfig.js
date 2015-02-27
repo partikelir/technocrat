@@ -21,7 +21,7 @@ module.exports = {
   , iconsets: { // Icons from each set will be copied to the theme folder and combined to make a master icon sheet
       ionicons: {
         src: bower+'ionicons/src/'
-      , dest: src+'svg/'
+      , dest: src+'icons/'
       , prefix: 'ion-'
       , icons: [
           'search'
@@ -30,7 +30,7 @@ module.exports = {
       }
     , typicons: {
         src: bower+'typicons/src/svg/'
-      , dest: src+'svg/'
+      , dest: src+'icons/'
       , prefix: 'typ-'
       , icons: [
           'edit'
@@ -84,7 +84,7 @@ module.exports = {
     , prism: ['prism', 'core']
     }
   , chunks: { // Chunks are arrays of globs matching source files that combine to provide specific functionality
-      core: [bower+'svg4everybody/svg4everybody.js', src+'js/navigation.js', src+'js/skip-link-focus-fix.js', src+'js/core.js']
+      core: [bower+'svg4everybody/svg4everybody.js', bower+'autosize/dest/autosize.js', src+'js/navigation.js', src+'js/skip-link-focus-fix.js', src+'js/core.js']
     , contact: [bower+'jquery-validation/dist/jquery.validate.js', src+'js/contact-form.js']
     , pf: [bower+'picturefill/dist/picturefill.js']
     , pg8: [bower+'html5-history-api/history.iegte8.js', bower+'spin.js/spin.js', bower+'spin.js/jquery.spin.js', bower+'wp-ajax-page-loader/wp-ajax-page-loader.js', src+'js/page-loader.js']
@@ -120,12 +120,12 @@ module.exports = {
     }
   , dist: {
       src: [dist+'**/*.css', '!'+dist+'**/*.min.css']
-    , minify: { keepSpecialComments: 1 }
+    , minify: { keepSpecialComments: 1, roundingPrecision: 5 }
     , dest: dist
     }
   , autoprefixer: { browsers: ['> 3%', 'last 2 versions', 'ie 9', 'ios 6', 'android 4'] }
   , rename: { suffix: '.min' }
-  , minify: { keepSpecialComments: 1 }
+  , minify: { keepSpecialComments: 1, roundingPrecision: 5 }
   , rubySass: { // Don't forget to run `gem install sass`; Compass is not included by default
       loadPath: bower // Adds the `bower_components` directory to the load path so you can @import directly
     , precision: 8
@@ -138,19 +138,8 @@ module.exports = {
   },
 
   svg: {
-    svg2png: { // PNG fallback generation; for use with SVG For Everybody; only needed if you support IE 8 and below
-      src: src+'svg/**/*.svg'
-    , dest: build+'img/'
-    }
-  , svgstore: { // Reference: https://github.com/w0rm/gulp-svgstore
-      src: src+'svg/**/*.svg'
-    , dest: build+'img/'
-    , options: {
-        fileName: 'icons.svg'
-      //, inlineSvg: true // Uncomment if you are injecting the SVG file into the document
-      , prefix: 'i-'
-      }
-    }
+    src: src+'icons/**/*.svg'
+  , dest: build+'img/'
   , transform: {
       before: {
         run: function ($) {
@@ -158,7 +147,6 @@ module.exports = {
         },
         parserOptions: { xmlMode: true }
       }
-    , after: {}
     }
   },
 
@@ -180,13 +168,14 @@ module.exports = {
     , components: [
         'admin'
       , 'analytics'
-      , 'cleaner'
+      , 'cleaner' // *
       , 'colophon' // *
       , 'comments'
       , 'excerpt' // *
       //, 'excluder'
       , 'favicons'
       , 'feed'
+      , 'fonts' // *
       , 'imagery' // *
       //, 'lingual'
       , 'links'

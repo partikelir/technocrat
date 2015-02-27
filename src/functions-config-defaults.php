@@ -14,9 +14,6 @@ defined( 'PENDRELL_AUTHOR_META' )         || define( 'PENDRELL_AUTHOR_META', fal
 // Baseline for the vertical rhythm; should match whatever is set in _base_config.scss; integer, required
 defined( 'PENDRELL_BASELINE' )            || define( 'PENDRELL_BASELINE', 30 );
 
-// Google web fonts to load; string false will load Open Sans as a fallback
-defined( 'PENDRELL_GOOGLE_FONTS' )        || define( 'PENDRELL_GOOGLE_FONTS', 'Raleway:200,300,600' );
-
 // Master switch for post formats
 defined( 'PENDRELL_POST_FORMATS' )        || define( 'PENDRELL_POST_FORMATS', false );
 

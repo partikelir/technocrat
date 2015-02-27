@@ -4,5 +4,6 @@
 ;(function($){
   $(function(){ // Shortcut to $(document).ready(handler);
     // Insert code here
+    autosize(document.querySelectorAll('textarea'));
   });
 }(jQuery));

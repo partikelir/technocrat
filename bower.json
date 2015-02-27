@@ -2,7 +2,11 @@
   "name": "pendrell",
   "homepage": "https://github.com/synapticism/pendrell",
   "authors": [
-    { "name": "Alexander Synaptic", "email": "alexander@synapticism.com", "homepage": "http://synapticism.com" }
+    {
+      "name": "Alexander Synaptic",
+      "email": "alexander@synapticism.com",
+      "homepage": "http://synapticism.com"
+    }
   ],
   "keywords": [
     "wordpress",
@@ -34,6 +38,7 @@
     "ionicons": "^2.0.0",
     "octicons": "^2.1.2",
     "open-iconic": "^1.1.1",
-    "typicons": "^2.0.7"
+    "typicons": "^2.0.7",
+    "autosize": "~2.0.0"
   }
 }
