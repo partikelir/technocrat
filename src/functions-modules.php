@@ -211,13 +211,6 @@ if ( PENDRELL_UBIK_RELATED )
 
 
 
-// == SEO == //
-
-if ( PENDRELL_UBIK_SEO )
-  require_once( $path_modules . 'ubik-seo/ubik-seo.php' );
-
-
-
 // == SEARCH * == //
 
 // Reverses the order of search field and submit button; *required* for this theme
@@ -230,6 +223,21 @@ function pendrell_search_button( $contents ) {
   return ubik_svg_icon( 'ion-search' ) . $contents;
 }
 add_filter( 'ubik_search_button', 'pendrell_search_button' );
+
+
+
+// == SEO == //
+
+if ( PENDRELL_UBIK_SEO ) {
+  define( 'UBIK_SEO_YOAST_DEFAULT_DESC', true );
+  define( 'UBIK_SEO_YOAST_IMAGE_EXTRAS', true );
+  define( 'UBIK_SEO_YOAST_IMAGE_MORE', true );
+  define( 'UBIK_SEO_YOAST_NO_ADMIN_BAR', true );
+  define( 'UBIK_SEO_YOAST_NO_POST_FILTER', true );
+  define( 'UBIK_SEO_YOAST_PINTEREST_AUTH', true );
+  define( 'UBIK_SEO_YOAST_TWITTER_CARDS', true );
+  require_once( $path_modules . 'ubik-seo/ubik-seo.php' );
+}
 
 
 
