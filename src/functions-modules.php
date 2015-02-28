@@ -158,7 +158,7 @@ if ( PENDRELL_UBIK_FEED )
 
 // == FONTS == * //
 
-define( 'UBIK_FONTS_GOOGLE', 'Raleway:200,300,600' );
+define( 'UBIK_FONTS_GOOGLE', 'Oxygen:300,300italic,400,400italic,700,700italic|Ubuntu:300,400,700|Source+Code+Pro:400' );
 define( 'UBIK_FONTS_GOOGLE_ADMIN', 'Noto+Serif:400' );
 require_once( $path_modules . 'ubik-fonts/ubik-fonts.php' );
 
@@ -227,20 +227,6 @@ if ( PENDRELL_UBIK_RELATED )
 
 if ( PENDRELL_UBIK_PLACES )
   require_once( $path_modules . 'ubik-places.php' );
-
-
-
-// == POST FORMATS == //
-
-if ( PENDRELL_UBIK_POST_FORMATS )
-  require_once( $path_modules . 'ubik-post-formats/ubik-post-formats.php' );
-
-
-
-// == RECORDPRESS == //
-
-if ( PENDRELL_UBIK_RECORDPRESS )
-  require_once( $path_modules . 'ubik-recordpress/ubik-recordpress.php' );
 
 
 
@@ -326,4 +312,4 @@ require_once( $path_modules . 'ubik-title/ubik-title.php' );
 
 // == VIEWS * == //
 
-require_once( $path_modules . 'ubik-views.php' );
+//require_once( $path_modules . 'ubik-views.php' );

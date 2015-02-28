@@ -186,7 +186,7 @@ module.exports = {
       //, 'post-formats'
       , 'quick-terms'
       //, 'recordpress'
-      //, 'related'
+      , 'related'
       , 'search' // *
       //, 'series'
       , 'seo'

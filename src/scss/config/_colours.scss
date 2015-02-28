@@ -11,7 +11,8 @@ $k-colours: map-merge( $k-colours, (
 // A few colour shortcuts (since we can't use the colour() function within the map)
 $c-text:          grey(84);
 $c-body-bg:       white();
-$c-link:          k-colour(norse-blue);
+$c-link:          k-colour(royal-purple);
+$c-menu:          k-colour(emerald);
 $c-highlight:     k-colour(burnt-sienna);
 $c-code:          k-colour(iron);
 
@@ -21,6 +22,7 @@ $_colours: (
 , site-title:     grey(16)
 , site-desc:      grey(156)
 , highlight:      $c-highlight
+, menu:           $c-menu
 , interface:      grey(186)
 
   // Text

@@ -74,7 +74,7 @@ $w-mono-bold:       700;
   // Masthead
   @if (site-title == $style) {
     @extend %head-normal;
-    text-transform: uppercase;
+    text-transform: lowercase;
   }
   @if (site-description == $style) {
     @extend %body-normal;

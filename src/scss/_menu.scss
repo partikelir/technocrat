@@ -17,7 +17,7 @@
 
 // Header menu; applied to a ul element
 .menu-header {
-  @extend %links-no-border;
+  @extend %links-menu;
   @include font-size(menu-header);
   @include k-list-nested;
   border-bottom: 1px solid colour(divider); // Border for the whole menu
@@ -34,9 +34,9 @@
   > .current_page_item,
   > .current_page_ancestor {
     > a {
-      color: lighten( colour(link), 23 );
+      color: lighten( colour(menu), 23 );
       &:hover {
-        color: lighten( colour(link), 33 );
+        color: lighten( colour(menu), 33 );
       }
     }
   }

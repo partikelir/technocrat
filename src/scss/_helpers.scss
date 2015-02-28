@@ -167,6 +167,9 @@
 %links-no-border {
   @include links( $link-border: false );
 }
+%links-menu {
+  @include links( colour(menu), false, colour(menu), false, false, false);
+}
 %links-meta {
   @include links( colour(meta-link), false, colour(meta-link-h), false, false);
 }

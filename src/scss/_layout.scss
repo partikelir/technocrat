@@ -23,23 +23,19 @@
 }
 .wrap-header {
   @extend %wrap;
-  background: #999;
   @include rem( padding-top, spacer() );
-  float: right;
   position: relative; // Contains #site-interface, which is absolutely positioned
-  width: percentage( 1 - ( ( $width-main + spacer() ) / $width-content ) );
 }
 .wrap-main { // Wrapper around content and sidebar
   @extend %clearfix;
   @include k-media-above( break(large) ) {
-    //@include k-center-block( $width-content );
-    //@include rem( padding-left, spacer(1.5) );
-    //@include rem( padding-right, spacer(1.5) );
+    @include k-center-block( $width-content );
+    @include rem( padding-left, spacer(1.5) );
+    @include rem( padding-right, spacer(1.5) );
   }
 }
 .wrap-content {
   @extend %wrap;
-  background: #9F9;
   @include rem( padding-top, spacer() );
   @include rem( padding-bottom, spacer() );
   @include k-media-above( break(large) ) {
@@ -50,7 +46,6 @@
   }
 }
 .wrap-sidebar {
-  background: #F99;
   @extend %wrap;
   @include rem( padding-top, spacer() );
   @include rem( padding-bottom, spacer() );
@@ -62,7 +57,6 @@
   }
 }
 .wrap-footer {
-  background: #99F;
   @extend %wrap;
   position: relative; // For use with the "Back to top" button
 }

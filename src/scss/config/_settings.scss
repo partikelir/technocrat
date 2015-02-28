@@ -11,8 +11,8 @@ $base-size:       16;
 $base-line:       30;
 
 // Site widths
-$width-content:   1000px;
-$width-main:      680px;
+$width-content:   960px;
+$width-main:      624px;
 $width-thumb:     150px;
 
 // Image spacer; defines the space between gallery items and grouped images
@@ -54,7 +54,7 @@ $_modules: (
 , ubik-related:       false
 , ubik-series:        false
 , ubik-svg-icons:     true
-, ubik-views:         true
+, ubik-views:         false
 );
 
 @if $dev {
