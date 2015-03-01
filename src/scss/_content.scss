@@ -28,12 +28,8 @@
   @extend %clearfix-below;
   @extend %links;
   @include font-style(entry-content);
+  letter-spacing: 0.01rem;
   word-wrap: break-word;
-
-  // Paragraph spacing
-  p {
-    @extend %spacer-below;
-  }
 
   // Header spacing
   h1,
@@ -62,9 +58,15 @@
     text-transform: uppercase; // The sizing of these headers is below that of the body copy; let's give them some punch
   }
 
-  // Paragraph spacing
+  // Links
+  a {
+    outline: none;
+  }
+
+  // Paragraph
   p {
     @extend %spacer-below;
+    hanging-punctuation: first; // Not supported by any browser yet
   }
 
   // Lists and definitions
@@ -88,18 +90,19 @@
     @include rem( margin, 0 spacer() );
   }
 
+  // Superscript
+  sup {
+    @extend %links-reset-border;
+    margin-left: .06em; // Makes superscript text a little more visible, particularly footnotes
+    outline: none;
+  }
+
   // Tables
   table {
+    @extend %links-reset-border;
     @include rem( margin-bottom, spacer(), 1 );
     border-bottom: 1px solid colour(divider);
     width: 100%;
-    a,
-    a:visited,
-    a:hover,
-    a:focus,
-    a:active {
-      border-bottom: none;
-    }
     caption {
       @extend %text-small;
     }

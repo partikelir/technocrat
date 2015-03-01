@@ -74,6 +74,7 @@ $w-mono-bold:       700;
   // Masthead
   @if (site-title == $style) {
     @extend %head-light;
+    font-feature-settings: 'lnum'; // To go with all uppercase letters
     text-transform: uppercase;
   }
   @if (site-description == $style) {

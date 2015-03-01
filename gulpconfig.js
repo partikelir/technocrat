@@ -192,6 +192,7 @@ module.exports = {
       , 'seo'
       , 'svg-icons' // *
       , 'terms' // *
+      , 'text' // *
       , 'time' // *
       , 'title' // *
       , 'views' // *
