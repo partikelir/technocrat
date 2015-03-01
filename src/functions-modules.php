@@ -129,7 +129,6 @@ if ( PENDRELL_UBIK_COMMENTS ) {
 // == EXCERPTS * == //
 
 define( 'UBIK_EXCERPT_PAGES', true );
-define( 'UBIK_EXCERPT_SHORTCODES', true );
 require_once( $path_modules . 'ubik-excerpt/ubik-excerpt.php' );
 
 
@@ -292,6 +291,15 @@ define( 'UBIK_TERMS_TAG_SHORTCODE', true );
 require_once( $path_modules . 'ubik-terms/ubik-terms.php' );
 add_filter( 'pendrell_archive_description_term', 'ubik_terms_edit_description_prompt' );
 add_filter( 'pendrell_archive_description_term', 'ubik_terms_edit_link' );
+
+
+
+// == TEXT * == //
+
+require_once( $path_modules . 'ubik-text/ubik-text.php' );
+add_filter( 'the_content', 'ubik_text_replacement', 99 );
+add_filter( 'the_excerpt', 'ubik_text_replacement', 99 );
+add_filter( 'comment_text', 'ubik_text_replacement', 99 );
 
 
 

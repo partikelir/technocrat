@@ -11,19 +11,11 @@ body {
   @include font-style(body);
   color: colour(text);
   background-color: colour(body-bg);
+  font-feature-settings: 'liga', 'opbd', 'size', 'init', 'fina'; // Ligatures; optical bounds; optical size; initial and final forms; via: http://www.microsoft.com/typography/otspec/featurelist.htm
   text-rendering: optimizeLegibility;
 }
 
 // Headers
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  @include font-style(head);
-  color: colour(text-dark);
-}
 h1 {
   @include font-size(head-bigger);
   margin: 0; // Reset normalize.css
@@ -42,6 +34,17 @@ h5 {
 }
 h6 {
   @include font-size(head-smallest);
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @include font-style(head);
+  color: colour(text-dark);
+  font-feature-settings: 'lnum';
+  margin-left: -0.04em;
 }
 
 // Monospaced
@@ -260,6 +263,9 @@ caption,
 td,
 th {
   text-align: left;
+}
+table {
+  font-feature-settings: 'tnum'; // This might just be wishful thinking depending on the font in use
 }
 
 

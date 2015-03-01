@@ -35,7 +35,11 @@
 
 // Footnotes; for use with Markdown Extra implementations e.g. JP Markdown
 .footnotes {
+  @extend %links-reset-border;
   @extend %text-small;
+  & li {
+    outline: none;
+  }
 }
 
 // References list; for use with scholarly works

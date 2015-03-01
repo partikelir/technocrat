@@ -108,6 +108,7 @@
 %body-bold-uppercase {
   font-family: $f-body;
   font-weight: $w-body-bold;
+  font-feature-settings: 'lnum'; // To go with all uppercase letters
   text-transform: uppercase;
 }
 %core-light {
@@ -125,6 +126,7 @@
 %core-bold-uppercase {
   font-family: $f-core;
   font-weight: $w-core-bold;
+  font-feature-settings: 'lnum';
   text-transform: uppercase;
 }
 %head-light {
@@ -142,6 +144,7 @@
 %head-bold-uppercase {
   font-family: $f-head;
   font-weight: $w-head-bold;
+  font-feature-settings: 'lnum';
   text-transform: uppercase;
 }
 %mono-normal {
@@ -175,6 +178,15 @@
 }
 %links-meta-no-border {
   @include links( colour(meta-link), false, colour(meta-link-h), false, false, $link-border: false);
+}
+%links-reset-border {
+  a,
+  a:visited,
+  a:hover,
+  a:focus,
+  a:active {
+    border-bottom: none;
+  }
 }
 
 // Interface
