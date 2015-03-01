@@ -158,7 +158,7 @@ if ( PENDRELL_UBIK_FEED )
 
 // == FONTS == * //
 
-define( 'UBIK_FONTS_GOOGLE', 'Oxygen:300,300italic,400,400italic,700,700italic|Ubuntu:300,400,700|Source+Code+Pro:400' );
+define( 'UBIK_FONTS_GOOGLE', 'Oxygen:300,300italic,400,400italic,700,700italic|Ubuntu:300,400,700' );
 define( 'UBIK_FONTS_GOOGLE_ADMIN', 'Noto+Serif:400' );
 require_once( $path_modules . 'ubik-fonts/ubik-fonts.php' );
 
