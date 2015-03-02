@@ -144,10 +144,10 @@ main {
 .widget-area {
   max-width: $width-main;
   @include k-media-between( break(small), break(large) ) {
-    column-count: 2;
     @include rem( column-gap, spacer(2) );
+    column-count: 2;
     .widget {
-      break-inside: avoid;
+      //break-inside: avoid; // Weird bug in Chrome
     }
   }
 }
