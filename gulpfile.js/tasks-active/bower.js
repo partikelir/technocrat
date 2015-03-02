@@ -9,7 +9,22 @@ var gulp        = require('gulp')
 gulp.task('bower', ['bower-icons', 'bower-normalize']);
 
 // Support for multiple icon sources; use one task per set to handle different prefixes and source locations
-gulp.task('bower-icons', ['bower-ionicons', 'bower-typicons']);
+gulp.task('bower-icons', ['bower-awesomeicons', 'bower-ionicons', 'bower-typicons']);
+
+// Font Awesome; copy specified SVG icon source files to the theme for assembly into a master icon sheet
+gulp.task('bower-awesomeicons', function() {
+  var iconset = config.iconsets.awesome;
+
+  // Iterate through the icon set array and set the full path of the source file
+  iconset.icons.forEach(function(icon, i, icons) {
+    icons[i] = iconset.src+icon+'.svg';
+  });
+  return gulp.src(iconset.icons)
+  .pipe(plugins.rename({ prefix: iconset.prefix }))
+  .pipe(plugins.changed(iconset.dest))
+  .pipe(plugins.imagemin())
+  .pipe(gulp.dest(iconset.dest));
+});
 
 // Ionicons; copy specified SVG icon source files to the theme for assembly into a master icon sheet
 gulp.task('bower-ionicons', function() {

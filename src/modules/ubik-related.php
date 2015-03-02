@@ -113,7 +113,7 @@ function pendrell_related_posts() {
           $alt      = '',
           $rel      = '',
           $class    = 'related-post overlay',
-          $contents = pendrell_image_overlay_metadata( get_comments_number( $related_post ) . ' ' . ubik_svg_icon( 'ion-chatbubble', __( 'Comments', 'pendrell' ) ) ),
+          $contents = pendrell_image_overlay_metadata( get_comments_number( $related_post ) . ' ' . ubik_svg_icon( 'awe-comment', __( 'Comments', 'pendrell' ) ) ),
           $context  = array( 'group', 'static' )
         );
       } ?>

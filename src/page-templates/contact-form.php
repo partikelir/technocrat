@@ -39,16 +39,16 @@ get_header(); ?>
                   <label for="text"><?php _e( 'Message', 'pendrell' ); ?></label>
                   <textarea id="message" name="message" rows="5" placeholder="<?php esc_attr_e( 'Your message&#x0085;', 'pendrell' ); ?>"></textarea>
 
-                  <input type="checkbox" id="cc" name="cc" value="1" />
+                  <input id="cc" name="cc" type="checkbox" value="1" />
                   <label for="cc" class="checkbox-label"><?php _e( 'Send a copy to yourself', 'pendrell' ); ?></label>
 
-                  <div style="display: none;">
-                    <label for="text"><?php _e( 'Spam protection; don\'t fill this', 'pendrell' ); ?></label>
-                    <input name="hades" type="text" />
-                  </div>
+                  <button id="submit" name="submit" type="submit"><?php echo pendrell_icon( 'typ-arrow-right-thick', __( 'Send message', 'pendrell' ) ); ?></button>
 
-                  <?php wp_nonce_field( 'contact_form', '_contact_form_nonce' ); ?>
-                  <button id="submit" name="submit" type="submit"><?php esc_attr_e( 'Send message', 'pendrell' ); ?></button>
+                  <div style="display: none;">
+                    <label for="text"><?php _e( 'Spam protection; do not fill this', 'pendrell' ); ?></label>
+                    <input name="hades" type="text" />
+                    <?php wp_nonce_field( 'contact_form', '_contact_form_nonce' ); ?>
+                  </div>
                 </form>
               </div>
             </article>

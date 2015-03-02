@@ -6,7 +6,6 @@
 if ( WP_LOCAL_DEV ) {
   defined( 'PENDRELL_UBIK_ADMIN' )          || define( 'PENDRELL_UBIK_ADMIN', true );
   defined( 'PENDRELL_UBIK_ANALYTICS' )      || define( 'PENDRELL_UBIK_ANALYTICS', true );
-  defined( 'PENDRELL_UBIK_COMMENTS' )       || define( 'PENDRELL_UBIK_COMMENTS', true );
   defined( 'PENDRELL_UBIK_EXCLUDER' )       || define( 'PENDRELL_UBIK_EXCLUDER', true );
   defined( 'PENDRELL_UBIK_FEED' )           || define( 'PENDRELL_UBIK_FEED', true );
   defined( 'PENDRELL_UBIK_LINGUAL' )        || define( 'PENDRELL_UBIK_LINGUAL', true );
@@ -25,7 +24,6 @@ if ( WP_LOCAL_DEV ) {
 // Ubik is a collection of lightwight WordPress components; use these master switches to turn these optional components on or off
 defined( 'PENDRELL_UBIK_ADMIN' )          || define( 'PENDRELL_UBIK_ADMIN', false );
 defined( 'PENDRELL_UBIK_ANALYTICS' )      || define( 'PENDRELL_UBIK_ANALYTICS', false );
-defined( 'PENDRELL_UBIK_COMMENTS' )       || define( 'PENDRELL_UBIK_COMMENTS', true );
 defined( 'PENDRELL_UBIK_EXCLUDER' )       || define( 'PENDRELL_UBIK_EXCLUDER', false );
 defined( 'PENDRELL_UBIK_FEED' )           || define( 'PENDRELL_UBIK_FEED', true );
 defined( 'PENDRELL_UBIK_LINGUAL' )        || define( 'PENDRELL_UBIK_LINGUAL', false );
@@ -91,10 +89,13 @@ add_action( 'pendrell_footer', 'pendrell_colophon' );
 
 
 
-// == COMMENTS == //
+// == COMMENTS * == //
 
-if ( PENDRELL_UBIK_COMMENTS )
-  require_once( $path_modules . 'ubik-comments/ubik-comments.php' );
+define( 'UBIK_COMMENTS_ALLOWED_TAGS', true );
+define( 'UBIK_COMMENTS_ATTACHMENTS_OFF', true );
+//define( 'UBIK_COMMENTS_LINK_SHOW_NONE', true );
+define( 'UBIK_COMMENTS_PINGBACKS_OFF', true );
+require_once( $path_modules . 'ubik-comments/ubik-comments.php' );
 
 
 
@@ -128,7 +129,7 @@ if ( PENDRELL_UBIK_FEED )
 // == FONTS == * //
 
 define( 'UBIK_FONTS_GOOGLE', 'Raleway:200,300,600' );
-define( 'UBIK_FONTS_GOOGLE_ADMIN', 'Noto+Serif:400' );
+//define( 'UBIK_FONTS_GOOGLE_ADMIN', 'Noto+Serif:400' );
 require_once( $path_modules . 'ubik-fonts/ubik-fonts.php' );
 
 
@@ -193,7 +194,7 @@ if ( PENDRELL_UBIK_PLACES )
 
 // == POST FORMATS == //
 
-if ( PENDRELL_UBIK_POST_FORMATS )
+if ( PENDRELL_UBIK_POST_FORMATS && PENDRELL_POST_FORMATS )
   require_once( $path_modules . 'ubik-post-formats/ubik-post-formats.php' );
 
 
@@ -221,7 +222,7 @@ require_once( $path_modules . 'ubik-search/ubik-search.php' );
 
 // Add an icon to the search button
 function pendrell_search_button( $contents ) {
-  return ubik_svg_icon( 'ion-search' ) . $contents;
+  return pendrell_icon( 'ion-search', $contents );
 }
 add_filter( 'ubik_search_button', 'pendrell_search_button' );
 
@@ -265,8 +266,20 @@ if ( UBIK_SVG_ICONS_PATH && UBIK_SVG_ICONS_URL === false )
 
 define( 'UBIK_TERMS_TAG_SHORTCODE', true );
 require_once( $path_modules . 'ubik-terms/ubik-terms.php' );
-add_filter( 'pendrell_archive_description_term', 'ubik_terms_edit_description_prompt' );
-add_filter( 'pendrell_archive_description_term', 'ubik_terms_edit_link' );
+
+function pendrell_terms_edit_description_prompt( $content ) {
+  if ( empty( $content ) )
+    return '<span class="warning">' . ubik_terms_edit_description_prompt( __( 'This term description is empty.', 'pendrell' ) ) . '</span>';
+  return $content;
+}
+add_filter( 'pendrell_archive_description_term', 'pendrell_terms_edit_description_prompt' );
+
+function pendrell_terms_edit_link() {
+  $edit_link = ubik_terms_edit_link( pendrell_icon( 'typ-edit', __( 'Edit', 'pendrell' ) ), 'button edit-link' );
+  if ( !empty( $edit_link ) )
+    echo '<div class="entry-meta-buttons">' . $edit_link . '</div>';
+}
+add_action( 'pendrell_archive_header_before', 'pendrell_terms_edit_link' );
 
 
 

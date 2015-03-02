@@ -16,7 +16,7 @@
 if ( post_password_required() )
 	return; ?>
 
-  <section class="entry-after comments-area">
+  <section class="entry-after comments-area" id="comments">
   	<?php if ( have_comments() ) : ?>
   		<h2 class="comments-title">
   			<?php printf( _n( 'One comment on &lsquo;%2$s&rsquo;', '%1$s comments on &lsquo;%2$s&rsquo;', get_comments_number(), 'pendrell' ),
