@@ -243,7 +243,7 @@ function pendrell_sizes_context( $context = '', $test = '' ) {
 
 // == PLACEHOLDERS == //
 
-// Placeholder icons
+// Placeholder icons; @TODO: update this section
 function pendrell_image_placeholder( $html = '' ) {
 
   global $post;

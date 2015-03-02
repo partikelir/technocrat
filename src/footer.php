@@ -17,7 +17,7 @@
             <?php wp_nav_menu( array( 'theme_location' => 'footer', 'menu_class' => 'menu-footer inline-menu' ) ); ?>
           </nav>
           <div class="site-footer-buttons">
-            <span class="button"><a href="#top"><?php _e( 'Back to top', 'pendrell' ); ?></a></span>
+            <a href="#top" class="button" rel="nofollow"><?php _e( 'Back to top', 'pendrell' ); ?></a>
           </div>
           <?php do_action( 'pendrell_footer' ); ?>
       	</footer>

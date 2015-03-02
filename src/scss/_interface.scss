@@ -6,33 +6,33 @@
 
 // == BUTTONS == //
 
+%button {
+  @include button-default;
+}
+
 // Button styling adapted from Twenty Twelve
 button,
-input[type="button"],
+.button,
+input[type="button"], // @TODO: eliminate every instance of these errant input types; use `button` instead
 input[type="reset"],
-input[type="submit"],
-.button a,
-#cancel-comment-reply-link {
-  @include button;
+input[type="submit"] {
+  @extend %button;
 }
 
-// Icon styling specific to buttons
-button,
-.button {
-  & svg.icon {
-    @include rem( height, 18px );
-    @include rem( width, 18px );
-    @include rem( margin, 4px -4px 0 4px );
-    filter: drop-shadow( 0 1px 1px colour(body-bg) ); // Matches letterpress effect
-    float: right;
-  }
+// Submit buttons
+button[type="submit"],
+input[type="submit"] {
+  @include button-submit;
 }
 
-// Emulating `:disabled` button functionality for regular anchor elements
-a.disabled {
-  cursor: default;
-  opacity: .5;
-  pointer-events: none;
+// Reset; not presently used anywhere in this theme, left here for easy reactivation
+input[type="reset"] {
+  //@include button-reset;
+}
+
+// Cool but wasteful; keeping it here for testing purposes
+.comment-buttons {
+  //@include button-group;
 }
 
 
@@ -99,6 +99,15 @@ svg {
       display: inline-block;
       fill: currentColor; // Inherit color
       vertical-align: baseline; // Options: baseline, sub, super, text-top, text-bottom, middle, top, bottom
+
+      button &,
+      .button & {
+        @include rem( height, 18px );
+        @include rem( width, 18px );
+        @include rem( margin, 4px -4px 0 4px );
+        filter: drop-shadow( 0 1px 1px rgba( colour(body-bg), .9 ) ); // Matches letterpress effect
+        float: right;
+      }
     }
   }
 
@@ -123,19 +132,14 @@ svg {
   @include k-media-above( break(medium) ) {
     display: none;
   }
-  &.toggled {
-    @extend button:active;
-  }
 }
 
 // Skip link
 .skip-link {
-  a {
-    opacity: 0;
-    position: fixed;
-      right: 99999%;
-  }
-  a:focus {
+  opacity: 0;
+  position: fixed;
+  right: 99999%;
+  &:focus {
     opacity: 1;
     outline-width: 1px;
     position: static;

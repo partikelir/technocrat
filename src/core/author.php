@@ -67,9 +67,8 @@ if ( !function_exists( 'pendrell_author_avatar' ) ) : function pendrell_author_a
 // Add an "edit this user" link to author archives
 if ( !function_exists( 'pendrell_author_edit_link' ) ) : function pendrell_author_edit_link() {
   if ( is_author() ) {
-    // Author edit link for users with the appropriate capabilities
-    $edit_author_link = get_edit_user_link();
+    $edit_author_link = get_edit_user_link(); // Author edit link for users with the appropriate capabilities
     if ( !empty( $edit_author_link ) )
-      echo '<div class="entry-meta-buttons"><span class="edit-link button"><a href="' . $edit_author_link . '">' . ubik_svg_icon( 'typ-edit', __( 'Edit', 'pendrell' ) ) . __( 'Edit', 'pendrell' ) . '</a></span></div>';
+      echo '<div class="entry-meta-buttons"><a href="' . $edit_author_link . '" class="edit-link button">' . pendrell_icon( 'typ-edit', __( 'Edit', 'pendrell' ) ) . '</a></div>';
   }
 } endif;

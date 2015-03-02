@@ -2,7 +2,7 @@
 
 // General comments area
 .comments-area { // See also .entry-after
-  max-width:  $width-main ; // Required to limit the width of the comments area when there is no sidebar displayed
+  max-width: $width-main ; // Required to limit the width of the comments area when there is no sidebar displayed
   ol {
     @extend %list-style-none; // Reset list style from `_general.scss`
   }
@@ -67,9 +67,8 @@
   }
 }
 .comment-content {
-  // Remove margin on the last element for a snug fit
   :last-child {
-    margin-bottom: 0;
+    margin-bottom: 0; // Remove margin on the last element for a snug fit
   }
 
   // Make comments a little smaller
@@ -135,7 +134,4 @@
 .comment-buttons,
 .comment-reply-title small {
   @extend %button-container;
-}
-#cancel-comment-reply-link { // Only appears when replying to individual comments
-  @include button;
 }

@@ -2,15 +2,6 @@
 
 // All fallback code goes here; this file is loaded last
 
-// == ICONS == //
-
-// Used when the icons module is disabled for some reason
-if ( !function_exists( 'ubik_svg_icon' ) ) : function ubik_svg_icon() {
-  return;
-} endif;
-
-
-
 // == SHORTCODES == //
 
 // Shortcode fallback; in case Ubik or other plugins are disabled

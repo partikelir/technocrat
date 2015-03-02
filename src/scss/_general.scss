@@ -259,13 +259,13 @@ dl {
 
 
 // Tables
+table {
+  font-feature-settings: 'tnum'; // This might just be wishful thinking depending on the font in use
+}
 caption,
 td,
 th {
   text-align: left;
-}
-table {
-  font-feature-settings: 'tnum'; // This might just be wishful thinking depending on the font in use
 }
 
 
@@ -289,18 +289,29 @@ video {
 
 
 // Text input
-input,
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="text"],
+input[type="url"],
 textarea {
   @include text-input;
+  vertical-align: top;
+}
+
+// Textarea is not reset in the Eric Meyer reset; let's do that here
+textarea {
+  font-size: 100%;
+  margin: 0;
 }
 
 // Reset input corners
 input[type="checkbox"],
-input[type="radio"],
+input[type="color"],
 input[type="file"],
 input[type="hidden"],
 input[type="image"],
-input[type="color"] {
+input[type="radio"] {
   border-radius: 0;
 }
 
@@ -318,13 +329,6 @@ select {
   display: inline-block;
   font-weight: $w-body-normal;
   outline: none;
-}
-
-// Textarea is not reset in the Eric Meyer reset; let's do that here
-textarea {
-  font-size: 100%;
-  margin: 0;
-  vertical-align: top;
 }
 
 

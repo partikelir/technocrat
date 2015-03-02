@@ -14,6 +14,55 @@ if ( !function_exists( 'pendrell_entry_title' ) ) : function pendrell_entry_titl
 
 
 
+// Entry meta wrapper
+// @action: pendrell_entry_meta_before
+// @action: pendrell_entry_meta_after
+if ( !function_exists( 'pendrell_entry_meta' ) ) : function pendrell_entry_meta() {
+
+  do_action( 'pendrell_entry_meta_before' );
+
+  pendrell_entry_meta_buttons();
+
+  ?><div class="entry-meta-main">
+    <?php echo ubik_meta(); ?>
+  </div><?php
+
+  do_action( 'pendrell_entry_meta_after' );
+
+} endif;
+
+
+
+// Entry meta buttons: edit post link (for users with the appropriate capabilities) and the response count (where available)
+if ( !function_exists( 'pendrell_entry_meta_buttons' ) ) : function pendrell_entry_meta_buttons() {
+  ?><div class="entry-meta-buttons">
+    <?php
+      echo pendrell_content_edit_link();
+      pendrell_comments_link();
+    ?>
+  </div><?php
+} endif;
+
+
+
+// Return the edit post link; adapted from WordPress core
+if ( !function_exists( 'pendrell_content_edit_link' ) ) : function pendrell_content_edit_link() {
+  if ( ! $post = get_post() )
+    return;
+  if ( ! $url = get_edit_post_link( $post->ID ) )
+    return;
+  return '<a class="button post-edit-link" href="' . $url . '" rel="nofollow">' . pendrell_icon( 'typ-edit', __( 'Edit', 'pendrell' ) ) . '</a>';
+} endif;
+
+
+
+// Icon shortcut
+if ( !function_exists( 'pendrell_icon' ) ) : function pendrell_icon( $icon, $text = '', $description = '' ) {
+  return ubik_svg_icon( $icon, $text, $description ) . $text;
+} endif;
+
+
+
 // Body class filter
 if ( !function_exists( 'pendrell_body_class' ) ) : function pendrell_body_class( $classes ) {
 
@@ -39,37 +88,6 @@ if ( !function_exists( 'pendrell_content_class' ) ) : function pendrell_content_
 
 
 
-// Entry meta buttons: edit post link (for users with the appropriate capabilities) and the response count (where available)
-if ( !function_exists( 'pendrell_entry_meta_buttons' ) ) : function pendrell_entry_meta_buttons() {
-  ?><div class="entry-meta-buttons">
-    <?php
-      edit_post_link( ubik_svg_icon( 'typ-edit', __( 'Edit', 'pendrell' ) ) . __( 'Edit', 'pendrell' ), '<span class="button edit-link">', '</span>' );
-      pendrell_comments_link();
-    ?>
-  </div><?php
-} endif;
-
-
-
-// Entry meta wrapper
-// @action: pendrell_entry_meta_before
-// @action: pendrell_entry_meta_after
-if ( !function_exists( 'pendrell_entry_meta' ) ) : function pendrell_entry_meta() {
-
-  do_action( 'pendrell_entry_meta_before' );
-
-  pendrell_entry_meta_buttons();
-
-  ?><div class="entry-meta-main">
-    <?php echo ubik_meta(); ?>
-  </div><?php
-
-  do_action( 'pendrell_entry_meta_after' );
-
-} endif;
-
-
-
 // Better password form based on WordPress core function; @TODO: spin this off into Ubik
 if ( !function_exists( 'pendrell_password_form' ) ) : function pendrell_password_form( $output = '' ) {
 
@@ -81,7 +99,7 @@ if ( !function_exists( 'pendrell_password_form' ) ) : function pendrell_password
     return $output;
 
   // Generate an ID
-  $id = 'password-input-' . ( empty($post->ID) ? rand() : $post->ID );
+  $id = 'password-input-' . ( empty( $post->ID ) ? rand() : $post->ID );
 
   // Descriptive prompt
   $prompt = '<p>' . __( 'This content is protected. Please enter the password:', 'pendrell' ) . '</p>';
@@ -93,7 +111,7 @@ if ( !function_exists( 'pendrell_password_form' ) ) : function pendrell_password
   $input = '<input name="post_password" id="' . $id . '" type="password" size="20" /> ';
 
   // Submit button
-  $submit = '<input type="submit" name="Submit" value="' . __( 'Submit', 'pendrell' ) . '" />';
+  $submit = '<button type="submit" name="Submit">' . pendrell_icon( 'typ-key', __( 'Access', 'pendrell' ) ) . '</button>';
 
   // Form wrapper
   $output = $prompt . '<form action="' . esc_url( site_url( 'wp-login.php?action=postpass', 'login_post' ) ) . '" class="post-password-form" method="post">' . $label . $input . $submit . '</form>';

@@ -21,7 +21,7 @@ if ( !function_exists( 'pendrell_comments_template' ) ) : function pendrell_comm
 
 
 
-// Load comments; extracted from `src/comments.php`
+// Load comments
 if ( !function_exists( 'pendrell_comments' ) ) : function pendrell_comments( $comment, $args, $depth ) {
   $GLOBALS['comment'] = $comment;
 
@@ -52,8 +52,7 @@ if ( !function_exists( 'pendrell_comments' ) ) : function pendrell_comments( $co
               <?php echo get_avatar( $comment, 60 ); ?>
             </div>
             <div class="comment-buttons">
-              <?php edit_comment_link( __( 'Edit', 'pendrell' ), ' <span class="edit-link button">', '</span>' ); ?>
-              <?php comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply', 'pendrell' ), 'before' => ' <span class="leave-reply button">', 'after' => '</span>', 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+              <?php echo pendrell_comments_edit_link(); comment_reply_link( array_merge( $args, array( 'reply_text' => pendrell_icon( 'typ-arrow-right-thick', __( 'Reply', 'pendrell' ) ), 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
             </div>
             <div class="comment-meta">
               <h1><?php comment_author_link(); ?></h1>
@@ -86,6 +85,8 @@ if ( !function_exists( 'pendrell_comments' ) ) : function pendrell_comments( $co
 // Comments form wrapper; tidier display of commenting markup options among other things
 if ( !function_exists( 'pendrell_comments_form' ) ) : function pendrell_comments_form() {
 
+  $notes = '';
+
   if ( get_option( 'wpcom_publish_comments_with_markdown' ) == true ) {
     $notes = sprintf( __( '<a href="https://daringfireball.net/projects/markdown/syntax" target="_blank"><span data-tooltip="%1$s">Markdown</span></a> and <span data-tooltip="%2$s">HTML</span> enabled in comments', 'pendrell' ),
       __( 'Markdown is an awesome plain text formatting syntax. Click below for more info!', 'pendrell' ),
@@ -97,7 +98,8 @@ if ( !function_exists( 'pendrell_comments_form' ) ) : function pendrell_comments
     );
   }
 
-  $notes = '<div class="comment-notes-after">' . $notes . '.</div>';
+  if ( !empty( $notes ) )
+    $notes = '<div class="comment-notes-after">' . $notes . '.</div>';
 
   // Reference: http://codex.wordpress.org/Function_Reference/comment_form
   // @TODO: completely redo the comment form
@@ -127,17 +129,44 @@ if ( !function_exists( 'pendrell_comments_link' ) ) : function pendrell_comments
   if ( !is_singular() && ( comments_open() || get_comments_number() !== 0 ) ) {
 
     // Define text that appears in the link
-    $zero = __( 'Respond', 'pendrell' );
-    $one  = __( '1 Response', 'pendrell' );
-    $more = __( '% Responses', 'pendrell' );
-    $none = __( 'Comments off', 'pendrell' );
+    $zero = pendrell_icon( 'awe-comment', __( 'Respond', 'pendrell' ) );
+    $one  = pendrell_icon( 'awe-comment', __( '1 Response', 'pendrell' ) );
+    $more = pendrell_icon( 'awe-comment', __( '% Responses', 'pendrell' ) );
+    $none = pendrell_icon( 'awe-comment', __( 'Comments off', 'pendrell' ) );
 
+    // Attempt to get the best link we can
     if ( function_exists( 'ubik_comments_link' ) ) {
-      $link = ubik_comments_link( $zero, $one, $more, '', $none );
+      $link = ubik_comments_link( $zero, $one, $more, 'button comments-link', $none );
       if ( !empty( $link ) )
-        echo '<span class="button">' . $link . '</span>';
+        echo $link;
     } else {
-      ?><span class="button"><?php comments_popup_link( $zero, $one, $more, 'comments-link', $none ); ?></span><?php
+      ?><?php comments_popup_link( $zero, $one, $more, 'button comments-link', $none ); ?><?php
     }
   }
 } endif;
+
+
+
+// == HACKS == //
+
+// Add the button class to the comment edit link
+function pendrell_comments_edit_link() {
+  global $comment;
+  if ( ! current_user_can( 'edit_comment', $comment->comment_ID ) )
+    return;
+  return '<a href="' . get_edit_comment_link( $comment->comment_ID ) . '" class="button comment-edit-link">' . pendrell_icon( 'typ-edit', __( 'Edit', 'pendrell' ) ) . '</a>';
+}
+add_filter( 'cancel_comment_reply_link', 'pendrell_comments_link_cancel_reply', 10, 3 );
+
+// Filter the comment reply link; P.S. this sort of thing is why people use Disqus
+function pendrell_comments_reply_link( $html, $args, $comment, $post ) {
+  return str_replace( 'comment-reply', 'button leave-reply comment-reply', $html );
+}
+add_filter( 'comment_reply_link', 'pendrell_comments_reply_link', 10, 4 );
+
+// A slightly more semantic comment cancel reply link
+function pendrell_comments_link_cancel_reply( $formatted_link, $link, $text ) {
+  $style = isset( $_GET['replytocom'] ) ? '' : ' style="display: none;"';
+  return '<a href="' . $link . '" class="button button-cancel" id="cancel-comment-reply-link"' . $style . ' rel="nofollow">' . pendrell_icon( 'typ-cancel', $text ) . '</a>';
+}
+add_filter( 'cancel_comment_reply_link', 'pendrell_comments_link_cancel_reply', 10, 3 );

@@ -1,0 +1,148 @@
+// ==== BUTTONS ==== //
+
+// == LIBRARY == //
+
+// These mixins might one day become a separate library
+
+// General button styling; applies to all buttons
+@mixin button-common {
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  transition: all .7s ease-out, background-position .49s ease;
+  vertical-align: top;
+  &:hover {
+    transition: all .23s ease, background-position .17s ease;
+  }
+  &:focus {
+    @include button-focus;
+  }
+  &.disabled, // Emulating `:disabled` button functionality for regular anchor elements
+  &:disabled {
+    @include button-disabled;
+  }
+}
+
+// Focus button styling
+@mixin button-focus {
+  outline-width: 0; // Blue border is rather distracting but some sort of indicator might be nice here
+}
+
+// Disabled button styling
+@mixin button-disabled {
+  cursor: not-allowed;
+  opacity: .5; // Applies to `button` and `input` elements
+  pointer-events: none;
+}
+
+
+
+// == SHORTCUTS == //
+
+// Round the edges of a button by an arbitrary value
+// This will accept a single pixel value or a quoted string e.g. "33%/100%" for a capsule-like rounding effect
+@mixin button-rounded( $value: 5px ) {
+  border-radius: unquote( $value );
+}
+
+// A capsule-like button
+@mixin button-capsule {
+  @include button-rounded( "35%/100%" );
+}
+
+// A simple fade from
+@mixin button-gradient( $begin: #000, $end: #fff ) {
+  background: $begin;
+  background-image: linear-gradient(to top, $begin, $end);
+  background-size: 100% 150%;
+  &:hover {
+    background-image: linear-gradient( to top, lighten( $begin, 3 ), lighten( $end, 1 ) );
+    background-position: 0 100%;
+  }
+  &:active,
+  &.toggled {
+    background-image: linear-gradient( to top, darken( $begin, 7 ), lighten( $end, 1 ) );
+    background-position: 100% 0;
+  }
+}
+
+// This isn't extensible but it's easy enough to rewrite
+@mixin button-shadow( $shadow: #000, $inset: #000 ) {
+  box-shadow: 0 1px 2px $shadow;
+  &:active,
+  &.toggled {
+    box-shadow: inset 0 1px 3px 0 $inset, 0 1px 1px lighten( $shadow, 9 );
+  }
+}
+
+
+
+// == THEME-SPECIFIC == //
+
+// Theme-specific button defaults
+@mixin button-default {
+  @include button-common;
+  @include button-gradient( $d-gradient-1, $d-gradient-2 );
+  @include button-rounded( "#{spacer(2/3)}/100%" );
+  @include button-shadow( rgba( grey(128), .18), rgba( grey(128), .35) );
+  @include font-size(text-smaller, 2);
+  @include font-style(button);
+  @include letterpress;
+  @include rem( padding, 0 spacer(1/3) );
+
+  border: 1px solid colour(interface);
+  color: colour(text);
+  &:hover {
+    color: colour(text-lighter);
+  }
+  &:active,
+  &.toggled {
+    border-color: 1px solid darken( colour(body-bg), 8 );
+    color: colour(text-lightest);
+  }
+}
+
+@mixin button-submit {
+  // Alternate gradient here
+}
+
+@mixin button-reset {
+  // Alternate gradient here
+}
+
+
+
+// == LAYOUT == //
+
+// Button container
+@mixin button-container( $float: right, $margin: 8px ) {
+  @include rem( margin-left, spacer(1/2) - $margin );
+  float: unquote( $float );
+  //height: spacer();
+  > * {
+    //float: unquote( k-opposite( $float ) );
+    @include rem( margin-left, $margin );
+  }
+}
+
+// Button grouping; apply to a container with only buttons as immediate children
+@mixin button-group {
+  > :not(:first-child):not(:last-child) {
+    border-radius: 0;
+  }
+  > :first-child:not(:only-of-type) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  > :last-child:not(:only-of-type) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  > :not(:last-child):not(:only-of-type) {
+    border-right: 0;
+  }
+  > * + * {
+    margin-left: 0;
+  }
+}

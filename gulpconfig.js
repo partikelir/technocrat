@@ -19,13 +19,20 @@ module.exports = {
     , rename: '_normalize.scss'
     }
   , iconsets: { // Icons from each set will be copied to the theme folder and combined to make a master icon sheet
-      ionicons: {
+      awesome: {
+        src: bower+'font-awesome-svg-png/black/svg/' // Doesn't matter whether you're black or white
+      , dest: src+'icons/'
+      , prefix: 'awe-'
+      , icons: [
+          'comment'
+        ]
+      }
+    , ionicons: {
         src: bower+'ionicons/src/'
       , dest: src+'icons/'
       , prefix: 'ion-'
       , icons: [
           'search'
-        , 'chatbubble'
         ]
       }
     , typicons: {
@@ -33,8 +40,12 @@ module.exports = {
       , dest: src+'icons/'
       , prefix: 'typ-'
       , icons: [
-          'edit'
+          'arrow-right-thick'
+        , 'cancel'
+        , 'edit'
+        , 'key'
         , 'location'
+        , 'th-menu'
         ]
       }
     }

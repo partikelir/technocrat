@@ -21,7 +21,7 @@ defined( 'PENDRELL_POST_FORMATS' )        || define( 'PENDRELL_POST_FORMATS', fa
 defined( 'PENDRELL_SCRIPTS_PAGELOAD' )    || define( 'PENDRELL_SCRIPTS_PAGELOAD', true );
 
 // Master switch for Picturefill script
-defined( 'PENDRELL_SCRIPTS_PICTUREFILL' ) || define( 'PENDRELL_SCRIPTS_PICTUREFILL', true );
+defined( 'PENDRELL_SCRIPTS_PICTUREFILL' ) || define( 'PENDRELL_SCRIPTS_PICTUREFILL', false );
 
 // Master switch for Prism syntax highlighting script
 defined( 'PENDRELL_SCRIPTS_PRISM' )       || define( 'PENDRELL_SCRIPTS_PRISM', false );
