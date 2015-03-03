@@ -243,23 +243,30 @@ function pendrell_sizes_context( $context = '', $test = '' ) {
 
 // == PLACEHOLDERS == //
 
-// Placeholder icons; @TODO: update this section
-function pendrell_image_placeholder( $html = '' ) {
+// Placeholder icons; not used in the master branch but likely used in specific implementations
+function pendrell_image_placeholder( $html = '', $id = '' ) {
 
   global $post;
 
   // Post ID is set; let's use this for some conditional checks rather than relying on $post
   if ( !empty( $post ) ) {
     if ( has_tag( 'wordpress', $post->ID ) ) {
-      $html = ubik_svg_icon( 'ion-social-wordpress', __( 'WordPress placeholder', 'pendrell' ) );
+      return ubik_svg_icon( 'ion-social-wordpress', 'WordPress' );
     } elseif ( has_tag( 'sass', $post->ID ) ) {
-      $html = ubik_svg_icon( 'ion-social-sass', __( 'Sass placeholder', 'pendrell' ) );
-    } elseif ( has_tag( 'development', $post->ID ) ) {
-      $html = ubik_svg_icon( 'typ-spanner', __( 'Development placeholder', 'pendrell' ) );
-    } elseif ( is_object_in_term( $post->ID, 'places' ) ) {
-      $html = ubik_svg_icon( 'typ-location', __( 'Places placeholder', 'pendrell' ) );
+      return ubik_svg_icon( 'ion-social-sass', 'Sass' );
+    } elseif ( has_tag( 'nodejs', $post->ID ) ) {
+      return ubik_svg_icon( 'ion-social-nodejs', 'JavaScript' );
+    } elseif ( has_tag( 'javascript', $post->ID ) ) {
+      return ubik_svg_icon( 'ion-social-javascript', 'JavaScript' );
+    } elseif ( has_tag( 'html5', $post->ID ) ) {
+      return ubik_svg_icon( 'ion-social-html5', 'HTML5' );
+    } elseif ( has_tag( 'javascript', $post->ID ) ) {
+      return ubik_svg_icon( 'ion-social-css3', 'CSS3' );
+    } elseif ( has_tag( 'javascript', $post->ID ) ) {
+      return ubik_svg_icon( 'ion-social-javascript', 'JavaScript' );
     }
   }
   return $html;
 }
-//add_filter( 'ubik_imagery_placeholder', 'pendrell_image_placeholder' );
+// Note: this doesn't work in the context of related posts as we don't have a working ID to check against
+//add_filter( 'ubik_imagery_placeholder', 'pendrell_image_placeholder', 10, 2 );

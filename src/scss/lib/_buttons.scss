@@ -18,6 +18,9 @@
   &:focus {
     @include button-focus;
   }
+  &:active {
+    transform: translateY(1px); // Not applied to the active class; this is meant to be a transient effect only when clicked
+  }
   &.disabled, // Emulating `:disabled` button functionality for regular anchor elements
   &:disabled {
     @include button-disabled;
@@ -54,24 +57,23 @@
 // A simple fade from
 @mixin button-gradient( $begin: #000, $end: #fff ) {
   background: $begin;
-  background-image: linear-gradient(to top, $begin, $end);
+  background-image: linear-gradient( to top, $begin, $end );
   background-size: 100% 150%;
   &:hover {
     background-image: linear-gradient( to top, lighten( $begin, 3 ), lighten( $end, 1 ) );
     background-position: 0 100%;
   }
-  &:active,
-  &.toggled {
-    background-image: linear-gradient( to top, darken( $begin, 7 ), lighten( $end, 1 ) );
-    background-position: 100% 0;
+  &.active,
+  &:active {
+    background-image: linear-gradient( to top, $end, darken( $begin, 7 ) );
   }
 }
 
 // This isn't extensible but it's easy enough to rewrite
 @mixin button-shadow( $shadow: #000, $inset: #000 ) {
   box-shadow: 0 1px 2px $shadow;
-  &:active,
-  &.toggled {
+  &.active,
+  &:active {
     box-shadow: inset 0 1px 3px 0 $inset, 0 1px 1px lighten( $shadow, 9 );
   }
 }
@@ -83,7 +85,7 @@
 // Theme-specific button defaults
 @mixin button-default {
   @include button-common;
-  @include button-gradient( $d-gradient-1, $d-gradient-2 );
+  @include button-gradient( colour(button-bottom), colour(button-top) );
   @include button-rounded( "#{spacer(2/3)}/100%" );
   @include button-shadow( rgba( grey(128), .18), rgba( grey(128), .35) );
   @include font-size(text-smaller, 2);
@@ -96,8 +98,8 @@
   &:hover {
     color: colour(text-lighter);
   }
-  &:active,
-  &.toggled {
+  &.active,
+  &:active {
     border-color: 1px solid darken( colour(body-bg), 8 );
     color: colour(text-lightest);
   }

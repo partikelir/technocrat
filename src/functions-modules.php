@@ -241,7 +241,7 @@ require_once( $path_modules . 'ubik-search/ubik-search.php' );
 
 // Add an icon to the search button
 function pendrell_search_button( $contents ) {
-  return pendrell_icon( 'ion-search', $contents );
+  return pendrell_icon( 'search', $contents );
 }
 add_filter( 'ubik_search_button', 'pendrell_search_button' );
 
@@ -294,7 +294,7 @@ function pendrell_terms_edit_description_prompt( $content ) {
 add_filter( 'pendrell_archive_description_term', 'pendrell_terms_edit_description_prompt' );
 
 function pendrell_terms_edit_link() {
-  $edit_link = ubik_terms_edit_link( pendrell_icon( 'typ-edit', __( 'Edit', 'pendrell' ) ), 'button edit-link' );
+  $edit_link = ubik_terms_edit_link( pendrell_icon( 'term-edit', __( 'Edit', 'pendrell' ) ), 'button edit-link' );
   if ( !empty( $edit_link ) )
     echo '<div class="entry-meta-buttons">' . $edit_link . '</div>';
 }

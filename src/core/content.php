@@ -51,14 +51,7 @@ if ( !function_exists( 'pendrell_content_edit_link' ) ) : function pendrell_cont
     return;
   if ( ! $url = get_edit_post_link( $post->ID ) )
     return;
-  return '<a class="button post-edit-link" href="' . $url . '" rel="nofollow">' . pendrell_icon( 'typ-edit', __( 'Edit', 'pendrell' ) ) . '</a>';
-} endif;
-
-
-
-// Icon shortcut
-if ( !function_exists( 'pendrell_icon' ) ) : function pendrell_icon( $icon, $text = '', $description = '' ) {
-  return ubik_svg_icon( $icon, $text, $description ) . $text;
+  return '<a class="button post-edit-link" href="' . $url . '" rel="nofollow">' . pendrell_icon( 'content-edit', __( 'Edit', 'pendrell' ) ) . '</a>';
 } endif;
 
 
@@ -111,7 +104,7 @@ if ( !function_exists( 'pendrell_password_form' ) ) : function pendrell_password
   $input = '<input name="post_password" id="' . $id . '" type="password" size="20" /> ';
 
   // Submit button
-  $submit = '<button type="submit" name="Submit">' . pendrell_icon( 'typ-key', __( 'Access', 'pendrell' ) ) . '</button>';
+  $submit = '<button type="submit" name="Submit">' . pendrell_icon( 'content-protected', __( 'Access', 'pendrell' ) ) . '</button>';
 
   // Form wrapper
   $output = $prompt . '<form action="' . esc_url( site_url( 'wp-login.php?action=postpass', 'login_post' ) ) . '" class="post-password-form" method="post">' . $label . $input . $submit . '</form>';
