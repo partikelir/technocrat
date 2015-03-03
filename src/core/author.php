@@ -21,12 +21,11 @@ if ( PENDRELL_AUTHOR_META )
 // Author info box
 if ( !function_exists( 'pendrell_author_info' ) ) : function pendrell_author_info() {
   if ( get_the_author_meta( 'description' ) ) {
-    pendrell_author_edit_link();
     $author = '<span class="fn n">' . get_the_author() . '</span>'; ?>
     <div class="author-info author vcard">
       <div class="author-avatar">
         <?php pendrell_author_avatar( get_the_author_meta( 'user_url' ) ); ?>
-      </div><!-- .author-avatar -->
+      </div>
       <div class="author-description">
         <?php if ( !is_archive() ) { ?><h3><?php printf( __( 'About %s', 'pendrell' ), $author ); ?></h3><?php } ?>
         <p><?php the_author_meta( 'description' ); ?></p>
@@ -35,10 +34,10 @@ if ( !function_exists( 'pendrell_author_info' ) ) : function pendrell_author_inf
           <a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>" rel="author">
             <?php printf( __( 'View all posts by %s<span class="nav-arrow"> &rarr;</span>', 'pendrell' ), $author ); ?>
           </a>
-        </div><!-- .author-link -->
+        </div>
         <?php } ?>
-      </div><!-- .author-description -->
-    </div><!-- .author-info -->
+      </div>
+    </div>
   <?php }
 } endif;
 
@@ -54,9 +53,7 @@ if ( !function_exists( 'pendrell_author_avatar' ) ) : function pendrell_author_a
 
   // Optionally wrap avatar in a link
   if ( !empty( $url ) ) {
-    ?><a href="<?php echo $url; ?>" rel="author"><?php
-    echo get_avatar( get_the_author_meta( 'user_email' ), $size, $default, $alt );
-    ?></a><?php
+    echo '<a href="' . $url . '" rel="author">' . get_avatar( get_the_author_meta( 'user_email' ), $size, $default, $alt ) . '</a>';
   } else {
     echo get_avatar( get_the_author_meta( 'user_email' ), $size, $default, $alt );
   }
@@ -69,6 +66,7 @@ if ( !function_exists( 'pendrell_author_edit_link' ) ) : function pendrell_autho
   if ( is_author() ) {
     $edit_author_link = get_edit_user_link(); // Author edit link for users with the appropriate capabilities
     if ( !empty( $edit_author_link ) )
-      echo '<div class="entry-meta-buttons"><a href="' . $edit_author_link . '" class="edit-link button">' . pendrell_icon( 'typ-edit', __( 'Edit', 'pendrell' ) ) . '</a></div>';
+      echo '<div class="entry-meta-buttons"><a href="' . $edit_author_link . '" class="button edit-link">' . pendrell_icon( 'author-edit', __( 'Edit', 'pendrell' ) ) . '</a></div>';
   }
 } endif;
+add_action( 'pendrell_archive_description_before', 'pendrell_author_edit_link' );

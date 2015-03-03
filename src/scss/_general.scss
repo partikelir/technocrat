@@ -187,6 +187,10 @@ q {
 
 
 // Pre and code blocks (but really just code blocks)
+pre,
+code {
+  font-feature-settings: 'liga' 0; // Explicitly switch off ligatures for monospaced fonts
+}
 pre {
   @extend %spacer-below;
   @include border-radius;
@@ -319,9 +323,10 @@ input[type="radio"] {
 select {
   @include border-radius;
   @include font-size(text-smaller);
-  @include gradient-vertical( $d-gradient-1, $d-gradient-2 );
   @include rem( height, spacer() - spacer(1/4) );
   @include rem( margin-bottom, spacer(1/4) );
+  background: colour(select-bottom);
+  background-image: linear-gradient( to top, colour(select-bottom), colour(select-top) );
   border: 1px solid #d2d2d2;
   box-shadow: 0 1px 2px rgba(64, 64, 64, .1);
   color: colour(text-lighter);

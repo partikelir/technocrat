@@ -20,8 +20,8 @@
 					<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
 				</div>
 				<div id="site-interface" class="site-interface">
-					<button id="menu-toggle" class="menu-toggle" role="button"><?php echo pendrell_icon( 'th-menu', __( 'Menu', 'pendrell' ) ); ?></button>
-					<a href="#content" class="button skip-link" role="button" rel="nofollow"><?php _e( 'Skip to content', 'pendrell' ); ?></a>
+					<button id="menu-toggle" class="menu-toggle" role="button"><?php echo pendrell_icon( 'menu-toggle', __( 'Menu', 'pendrell' ) ); ?></button>
+					<a href="#content" class="button skip-link" role="button" rel="nofollow"><?php echo __( 'Skip to content', 'pendrell' ); ?></a>
 				</div>
 				<nav id="site-navigation" class="site-navigation" role="navigation">
 					<?php do_action( 'pendrell_site_navigation' ); ?>

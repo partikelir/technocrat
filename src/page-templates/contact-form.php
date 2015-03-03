@@ -42,7 +42,7 @@ get_header(); ?>
                   <input id="cc" name="cc" type="checkbox" value="1" />
                   <label for="cc" class="checkbox-label"><?php _e( 'Send a copy to yourself', 'pendrell' ); ?></label>
 
-                  <button id="submit" name="submit" type="submit"><?php echo pendrell_icon( 'typ-arrow-right-thick', __( 'Send message', 'pendrell' ) ); ?></button>
+                  <button id="submit" name="submit" type="submit"><?php echo pendrell_icon( 'contact-form-send', __( 'Send message', 'pendrell' ) ); ?></button>
 
                   <div style="display: none;">
                     <label for="text"><?php _e( 'Spam protection; do not fill this', 'pendrell' ); ?></label>

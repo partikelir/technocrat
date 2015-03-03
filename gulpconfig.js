@@ -24,7 +24,8 @@ module.exports = {
       , dest: src+'icons/'
       , prefix: 'awe-'
       , icons: [
-          'comment'
+          'caret-down'
+        , 'comment'
         ]
       }
     , ionicons: {
@@ -40,12 +41,12 @@ module.exports = {
       , dest: src+'icons/'
       , prefix: 'typ-'
       , icons: [
-          'arrow-right-thick'
+          'arrow-right'
+        , 'arrow-up-thick'
         , 'cancel'
-        , 'edit'
         , 'key'
         , 'location'
-        , 'th-menu'
+        , 'spanner'
         ]
       }
     }

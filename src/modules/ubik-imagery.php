@@ -261,21 +261,17 @@ function pendrell_sizes_context( $context = '', $test = '' ) {
 
 // == PLACEHOLDERS == //
 
-// Placeholder icons; @TODO: update this section
+// Placeholder icons; not used in the master branch but likely used in specific implementations
 function pendrell_image_placeholder( $html = '' ) {
 
   global $post;
 
   // Post ID is set; let's use this for some conditional checks rather than relying on $post
   if ( !empty( $post ) ) {
-    if ( has_tag( 'wordpress', $post->ID ) ) {
-      $html = ubik_svg_icon( 'ion-social-wordpress', __( 'WordPress placeholder', 'pendrell' ) );
-    } elseif ( has_tag( 'sass', $post->ID ) ) {
-      $html = ubik_svg_icon( 'ion-social-sass', __( 'Sass placeholder', 'pendrell' ) );
-    } elseif ( has_tag( 'development', $post->ID ) ) {
-      $html = ubik_svg_icon( 'typ-spanner', __( 'Development placeholder', 'pendrell' ) );
+    if ( has_tag( 'x', $post->ID ) ) {
+      $html = ubik_svg_icon( pendrell_icon( 'x' ), __( 'X placeholder', 'pendrell' ) );
     } elseif ( is_object_in_term( $post->ID, 'places' ) ) {
-      $html = ubik_svg_icon( 'typ-location', __( 'Places placeholder', 'pendrell' ) );
+      $html = ubik_svg_icon( pendrell_icon( 'places' ), __( 'Places placeholder', 'pendrell' ) );
     }
   }
   return $html;

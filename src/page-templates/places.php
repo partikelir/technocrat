@@ -39,7 +39,7 @@ get_header(); ?>
 
               // Additional metadata to pass to the image creation function; requires additional CSS styling for correct display
               if ( !empty( $place->count ) )
-                $metadata = pendrell_image_overlay_metadata( sprintf( _n( '1 post', '%s posts', $place->count, 'pendrell' ), $place->count ) . ' ' .  ubik_svg_icon( 'typ-location', __( 'Places', 'pendrell' ) ) );
+                $metadata = pendrell_image_overlay_metadata( sprintf( _n( '1 post', '%s posts', $place->count, 'pendrell' ), $place->count ) . ' ' .  ubik_svg_icon( pendrell_icon( 'places' ), __( 'Places', 'pendrell' ) ) );
 
               // Output a gallery of places
               echo ubik_imagery(

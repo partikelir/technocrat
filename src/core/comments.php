@@ -52,7 +52,7 @@ if ( !function_exists( 'pendrell_comments' ) ) : function pendrell_comments( $co
               <?php echo get_avatar( $comment, 60 ); ?>
             </div>
             <div class="comment-buttons">
-              <?php echo pendrell_comments_edit_link(); comment_reply_link( array_merge( $args, array( 'reply_text' => pendrell_icon( 'typ-arrow-right-thick', __( 'Reply', 'pendrell' ) ), 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+              <?php echo pendrell_comments_edit_link(); comment_reply_link( array_merge( $args, array( 'reply_text' => pendrell_icon( 'comment-reply', __( 'Reply', 'pendrell' ) ), 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
             </div>
             <div class="comment-meta">
               <h1><?php comment_author_link(); ?></h1>
@@ -129,10 +129,10 @@ if ( !function_exists( 'pendrell_comments_link' ) ) : function pendrell_comments
   if ( !is_singular() && ( comments_open() || get_comments_number() !== 0 ) ) {
 
     // Define text that appears in the link
-    $zero = pendrell_icon( 'awe-comment', __( 'Respond', 'pendrell' ) );
-    $one  = pendrell_icon( 'awe-comment', __( '1 Response', 'pendrell' ) );
-    $more = pendrell_icon( 'awe-comment', __( '% Responses', 'pendrell' ) );
-    $none = pendrell_icon( 'awe-comment', __( 'Comments off', 'pendrell' ) );
+    $zero = pendrell_icon( 'comment-link', __( 'Respond', 'pendrell' ) );
+    $one  = pendrell_icon( 'comment-link', __( '1 Response', 'pendrell' ) );
+    $more = pendrell_icon( 'comment-link', __( '% Responses', 'pendrell' ) );
+    $none = pendrell_icon( 'comment-link', __( 'Comments off', 'pendrell' ) );
 
     // Attempt to get the best link we can
     if ( function_exists( 'ubik_comments_link' ) ) {
@@ -154,7 +154,7 @@ function pendrell_comments_edit_link() {
   global $comment;
   if ( ! current_user_can( 'edit_comment', $comment->comment_ID ) )
     return;
-  return '<a href="' . get_edit_comment_link( $comment->comment_ID ) . '" class="button comment-edit-link">' . pendrell_icon( 'typ-edit', __( 'Edit', 'pendrell' ) ) . '</a>';
+  return '<a href="' . get_edit_comment_link( $comment->comment_ID ) . '" class="button comment-edit-link">' . pendrell_icon( 'comment-edit', __( 'Edit', 'pendrell' ) ) . '</a>';
 }
 add_filter( 'cancel_comment_reply_link', 'pendrell_comments_link_cancel_reply', 10, 3 );
 
@@ -167,6 +167,6 @@ add_filter( 'comment_reply_link', 'pendrell_comments_reply_link', 10, 4 );
 // A slightly more semantic comment cancel reply link
 function pendrell_comments_link_cancel_reply( $formatted_link, $link, $text ) {
   $style = isset( $_GET['replytocom'] ) ? '' : ' style="display: none;"';
-  return '<a href="' . $link . '" class="button button-cancel" id="cancel-comment-reply-link"' . $style . ' rel="nofollow">' . pendrell_icon( 'typ-cancel', $text ) . '</a>';
+  return '<a href="' . $link . '" class="button button-cancel" id="cancel-comment-reply-link"' . $style . ' rel="nofollow">' . pendrell_icon( 'comment-reply-cancel', $text ) . '</a>';
 }
 add_filter( 'cancel_comment_reply_link', 'pendrell_comments_link_cancel_reply', 10, 3 );
