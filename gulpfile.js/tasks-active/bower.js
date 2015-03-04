@@ -14,7 +14,7 @@ gulp.task('bower-icons', ['bower-awesomeicons', 'bower-ionicons', 'bower-typicon
 
 // Utility function to clean out the icons folder prior to building a new sprite sheet (use this anytime you change icons)
 gulp.task('bower-clean', function(cb) {
-  del(config.iconsets.typicons.dest, cb)
+  del(config.iconsets.dest, cb)
 });
 
 // Font Awesome; copy specified SVG icon source files to the theme for assembly into a master icon sheet
@@ -27,9 +27,9 @@ gulp.task('bower-awesomeicons', function() {
   });
   return gulp.src(iconset.icons)
   .pipe(plugins.rename({ prefix: iconset.prefix }))
-  .pipe(plugins.changed(iconset.dest))
+  .pipe(plugins.changed(config.iconsets.dest))
   .pipe(plugins.imagemin())
-  .pipe(gulp.dest(iconset.dest));
+  .pipe(gulp.dest(config.iconsets.dest));
 });
 
 // Ionicons; copy specified SVG icon source files to the theme for assembly into a master icon sheet
@@ -42,9 +42,9 @@ gulp.task('bower-ionicons', function() {
   });
   return gulp.src(iconset.icons)
   .pipe(plugins.rename({ prefix: iconset.prefix }))
-  .pipe(plugins.changed(iconset.dest))
+  .pipe(plugins.changed(config.iconsets.dest))
   .pipe(plugins.imagemin())
-  .pipe(gulp.dest(iconset.dest));
+  .pipe(gulp.dest(config.iconsets.dest));
 });
 
 // Typicons; copy specified SVG icon source files to the theme for assembly into a master icon sheet
@@ -57,9 +57,9 @@ gulp.task('bower-typicons', function() {
   });
   return gulp.src(iconset.icons)
   .pipe(plugins.rename({ prefix: iconset.prefix }))
-  .pipe(plugins.changed(iconset.dest))
+  .pipe(plugins.changed(config.iconsets.dest))
   .pipe(plugins.imagemin())
-  .pipe(gulp.dest(iconset.dest));
+  .pipe(gulp.dest(config.iconsets.dest));
 });
 
 // Used to get around Sass's inability to properly @import vanilla CSS; see: https://github.com/sass/sass/issues/556

@@ -19,9 +19,9 @@ module.exports = {
     , rename: '_normalize.scss'
     }
   , iconsets: { // Icons from each set will be copied to the theme folder and combined to make a master icon sheet
-      awesome: {
+      dest: src+'icons/'
+    , awesome: {
         src: bower+'font-awesome-svg-png/black/svg/' // Doesn't matter whether you're black or white
-      , dest: src+'icons/'
       , prefix: 'awe-'
       , icons: [
           'caret-down'
@@ -31,7 +31,6 @@ module.exports = {
       }
     , ionicons: {
         src: bower+'ionicons/src/'
-      , dest: src+'icons/'
       , prefix: 'ion-'
       , icons: [
           'search'
@@ -39,7 +38,6 @@ module.exports = {
       }
     , typicons: {
         src: bower+'typicons/src/svg/'
-      , dest: src+'icons/'
       , prefix: 'typ-'
       , icons: [
           'arrow-right'
