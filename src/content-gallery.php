@@ -16,6 +16,6 @@ echo ubik_imagery(
   $alt      = '',
   $rel      = '',
   $class    = array_merge( get_post_class(), array( 'overlay ' ) ),
-  $contents = pendrell_image_overlay_metadata( get_comments_number() . ' ' . pendrell_icon( 'gallery-comments', __( 'Comments', 'pendrell' ) ) ),
+  $contents = pendrell_image_overlay_metadata( get_comments_number() . ' ' . ubik_svg_icon( pendrell_icon( 'gallery-comments' ), __( 'Comments', 'pendrell' ) ) ),
   $context  = array( 'group', 'responsive' )
 );
