@@ -25,6 +25,7 @@ module.exports = {
       , prefix: 'awe-'
       , icons: [
           'caret-down'
+        , 'caret-down'
         , 'comment'
         ]
       }
@@ -216,6 +217,7 @@ module.exports = {
   utils: {
     clean: [build+'**/.DS_Store'] // A glob matching junk files to clean out of `build`
   , wipe: [dist] // Clear things out before packaging; @TODO: also clear out the `build` folder
+  , icons: src+'icons/'
   , dist: {
       src: [build+'**/*', '!'+build+'**/*.min.css']
     , dest: dist

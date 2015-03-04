@@ -12,7 +12,7 @@ gulp.task('bower', ['bower-icons', 'bower-normalize']);
 gulp.task('bower-icons', ['bower-awesomeicons', 'bower-ionicons', 'bower-typicons']);
 
 // Font Awesome; copy specified SVG icon source files to the theme for assembly into a master icon sheet
-gulp.task('bower-awesomeicons', function() {
+gulp.task('bower-awesomeicons', ['utils-bower-icons'], function() {
   var iconset = config.iconsets.awesome;
 
   // Iterate through the icon set array and set the full path of the source file
@@ -27,7 +27,7 @@ gulp.task('bower-awesomeicons', function() {
 });
 
 // Ionicons; copy specified SVG icon source files to the theme for assembly into a master icon sheet
-gulp.task('bower-ionicons', function() {
+gulp.task('bower-ionicons', ['utils-bower-icons'], function() {
   var iconset = config.iconsets.ionicons;
 
   // Iterate through the icon set array and set the full path of the source file
@@ -42,7 +42,7 @@ gulp.task('bower-ionicons', function() {
 });
 
 // Typicons; copy specified SVG icon source files to the theme for assembly into a master icon sheet
-gulp.task('bower-typicons', function() {
+gulp.task('bower-typicons', ['utils-bower-icons'], function() {
   var iconset = config.iconsets.typicons;
 
   // Iterate through the icon set array and set the full path of the source file
