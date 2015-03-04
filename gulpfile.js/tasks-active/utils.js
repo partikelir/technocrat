@@ -16,6 +16,11 @@ gulp.task('utils-clean', ['build', 'utils-wipe'], function(cb) {
   del(config.clean, cb)
 });
 
+// Refresh the contents of the icons folder
+gulp.task('utils-bower-icons', function(cb) {
+  del(config.icons, cb)
+});
+
 // Copy everything in the `build` folder (except previously minified stylesheets) to the `dist/project` folder
 gulp.task('utils-dist', ['utils-clean'], function() {
   return gulp.src(config.dist.src)
