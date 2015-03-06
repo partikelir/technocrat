@@ -88,7 +88,7 @@
     @include border-radius;
     background-color: transparent;
     border-radius: 3px;
-    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 2px 2px black(.6);
     color: black();
     font-weight: bold;
     line-height: normal;

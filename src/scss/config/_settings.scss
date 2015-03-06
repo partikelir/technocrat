@@ -18,6 +18,9 @@ $width-thumb:     150px;
 // Image spacer; defines the space between gallery items and grouped images
 $spacer-image:    spacer();
 
+// Default border radius
+$radius:          3px;
+
 // Metadata; use metadata() to access
 $_metadata: (
   theme-name:               "Pendrell"

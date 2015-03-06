@@ -217,13 +217,13 @@ span[data-tooltip] {
   @include k-tooltip(
     $offset: spacer() - 6px
   , $tooltip-background: colour(highlight-bg)
-  , $tooltip-border: $d-interface
-  , $tooltip-border-radius: $d-radius
+  , $tooltip-border: 1px solid colour(interface)
+  , $tooltip-border-radius: $radius
   , $tooltip-color: colour(text)
   , $tooltip-font-size: size(text-smaller)
   , $tooltip-triangle-color: colour(interface)
   );
-  border-bottom: $d-mouseover;
+  border-bottom: 1px dotted rgba( colour(text), .4 );
   &:before {
     max-width: 600px;
     width: 50vw;

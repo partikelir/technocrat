@@ -5,7 +5,7 @@
   @include k-dropdown(
     $dropdown-background: colour(sub-bg) linear-gradient( white(.5), white(0) ) repeat-x
   , $dropdown-border-color: colour(interface)
-  , $dropdown-border-radius: $d-radius
+  , $dropdown-border-radius: $radius
   , $dropdown-border-size: 1px
   , $dropdown-shadow-inside: 0 -2px 3px rgba(64, 64, 64, .08) inset
   , $dropdown-shadow-outside: 1px 1px 4px black(.08)
@@ -50,7 +50,7 @@
 }
 
 // Text input; for use with forms, textarea, etc.
-@mixin text-input($shadow: colour(shadow), $font-size: text-smaller) {
+@mixin text-input($shadow: colour(shadow-light), $font-size: text-smaller) {
   @include border-radius;
   @include font-size( $font-size, 8 );
   @include font-style(input);
@@ -58,7 +58,7 @@
   @include rem( padding, 3px );
   background: darken( colour(body-bg), 3 );
   border: 1px solid colour(divider);
-  box-shadow: inset 2px 2px 4px $shadow;
+  box-shadow: inset 1px 1px 4px $shadow;
   color: lighten( colour(text), 23 );
   &:focus {
     color: colour(text);

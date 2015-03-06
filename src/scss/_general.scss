@@ -74,7 +74,7 @@ a {
 
 // Reset-like things with variables or WordPress-specific styling
 abbr {
-  border-bottom: $d-mouseover;
+  border-bottom: 1px dotted rgba( colour(text), .4 );
   line-height: 0;
   &:hover {
     cursor: help;
@@ -105,7 +105,7 @@ strike {
   text-decoration: line-through;
 }
 ins {
-  @include k-highlight( colour(highlight-bg), $d-radius );
+  @include k-highlight( colour(highlight-bg), $radius );
   text-decoration: none;
 }
 hr {
@@ -139,7 +139,7 @@ blockquote {
   @include rem( padding, spacer(1/2) spacer(1/2) spacer(1/2) spacer() - 9px );
   background: rgba( colour(body-darker), .25); // Transparent so that blockquotes can be nested
   border-left: 9px solid colour(divider);
-  box-shadow: inset 0px -2px 7px black(.04);
+  box-shadow: inset 0px -2px 7px colour(shadow-lighter);
   color: rgba( colour(text), .75); // Transparent so that blockquotes can be nested
   quotes: none; // From the Meyer Reset
   &:before, &:after { // From the Meyer Reset
@@ -199,7 +199,7 @@ pre {
   @include rem( padding, spacer(1/2) );
   background: colour(code-box-bg);
   background-image: repeating-linear-gradient( 45deg, transparent, transparent spacer(1/2), black(.04) spacer(1/2), black(.04) spacer() );
-  box-shadow: inset 3px 3px 7px black(.18);
+  box-shadow: inset 3px 3px 7px colour(shadow-darker);
   color: colour(code-box);
   tab-size: 2;
   white-space: pre;
@@ -221,7 +221,7 @@ code {
   li > &,
   p > &,
   strong > & {
-    @include k-highlight( rgba( colour(body-darker), .33 ), $d-radius );
+    @include k-highlight( rgba( colour(body-darker), .33 ), $radius );
     color: colour(text-lighter);
     font-size: 80%; // Hack for fixing over-sized monospace fonts
   }
@@ -317,23 +317,33 @@ input[type="hidden"],
 input[type="image"],
 input[type="radio"] {
   border-radius: 0;
+  &:focus,
+  &:active {
+    box-shadow: none;
+  }
 }
 
-// Select dropdown; @TODO: fine-tune this
+// Select dropdown; try something like Chosen or select-css if you need finer control: https://github.com/filamentgroup/select-css
 select {
   @include border-radius;
   @include font-size(text-smaller);
-  @include rem( height, spacer() - spacer(1/4) );
-  @include rem( margin-bottom, spacer(1/4) );
+  @include rem( height, spacer(4/5) );
+  @include rem( margin-bottom, spacer(1/5) );
   background: colour(select-bottom);
   background-image: linear-gradient( to top, colour(select-bottom), colour(select-top) );
-  border: 1px solid #d2d2d2;
-  box-shadow: 0 1px 2px rgba(64, 64, 64, .1);
-  color: colour(text-lighter);
+  border: 1px solid colour(interface);
+  border-radius: 0;
+  box-shadow: 0 1px 2px colour(shadow-light);
+  color: colour(text-light);
   cursor: pointer;
   display: inline-block;
   font-weight: $w-body-normal;
-  outline: none;
+  outline: 0;
+}
+
+// Remove default Firefox styling of invalid form input; via: https://developer.mozilla.org/en-US/docs/Web/CSS/:invalid
+:invalid {
+  box-shadow: none;
 }
 
 

@@ -21,6 +21,6 @@
 }
 
 // Letterpress effect
-@mixin letterpress( $colour: colour(body-bg), $opacity: .9 ) {
+@mixin letterpress( $colour: colour(body-bg), $opacity: .87 ) {
   text-shadow: 0px 1px rgba( $colour, $opacity );
 }
