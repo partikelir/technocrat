@@ -85,11 +85,15 @@ $_colours: (
 , button-top:     grey(251)
 , button-bottom:  grey(215)
 , divider:        rgba( $c-text, .09 ) // For use with <hr> etc.
-, select-top:     grey(250)
-, select-bottom:  grey(180)
+, select-top:     grey(251)
+, select-bottom:  grey(227)
+, shadow-darker:  grey(14, .18)
+, shadow-dark:    grey(96, .32)
+, shadow-light:   grey(113, .16)
+, shadow-lighter: grey(128, .07)
+
 
   // Various
-, shadow:         black(.07)
 , highlight-bg:   k-colour(lemon-chiffon)
 
   // Prism (optional)
@@ -102,24 +106,3 @@ $_colours: (
 , p-keyword:      adjust-hue( $c-highlight, 90 )
 , p-regex:        adjust-hue( $c-highlight, 180 )
 );
-
-
-
-// == DESIGN PATTERNS == //
-
-// @TODO: clean this section up
-
-// Gradients
-//$d-gradient-1:    darken( colour(body-bg), 4 );
-//$d-gradient-2:    darken( colour(body-bg), 10 );
-
-// Interface border for buttons and submenus
-$d-interface:     1px solid colour(interface);
-
-// Mouseover border bottom
-$d-mouseover:     1px dotted rgba( colour(text), .4 );
-
-// Border radius default
-$d-radius:        3px;
-
-

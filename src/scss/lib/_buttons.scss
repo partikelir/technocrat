@@ -9,9 +9,12 @@
   box-sizing: border-box;
   cursor: pointer;
   display: inline-block;
+  outline: 0;
+  overflow: visible;
   text-decoration: none;
   transition: all .7s ease-out, background-position .49s ease;
   vertical-align: top;
+  width: auto;
   &:hover {
     transition: all .23s ease, background-position .17s ease;
   }
@@ -24,6 +27,10 @@
   &.disabled, // Emulating `:disabled` button functionality for regular anchor elements
   &:disabled {
     @include button-disabled;
+  }
+  &::-moz-focus-inner { // Kill phantom spacing and dotted border that appears in Firefox; via Formalize: https://github.com/nathansmith/formalize
+    border: 0;
+    padding: 0;
   }
 }
 
@@ -87,7 +94,7 @@
   @include button-common;
   @include button-gradient( colour(button-bottom), colour(button-top) );
   @include button-rounded( "#{spacer(2/3)}/100%" );
-  @include button-shadow( rgba( grey(128), .18), rgba( grey(128), .35) );
+  @include button-shadow( colour(shadow-light), colour(shadow-dark) );
   @include font-size(text-smaller, 2);
   @include font-style(button);
   @include letterpress;

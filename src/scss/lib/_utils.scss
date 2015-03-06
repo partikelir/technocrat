@@ -27,7 +27,7 @@
 
 // The following mixins are not namespaced as they are designed for use in a single project
 // Apart from providing more user-friendly aliases for Kipple mixins this also allows project-specific defaults to be easily set
-@mixin border-radius($radius: $d-radius) {
+@mixin border-radius($radius: $radius) {
   @include k-border-radius($radius);
 }
 @mixin gradient-horizontal($begin: $d-gradient-1, $end: $d-gradient-2) {
