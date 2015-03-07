@@ -71,7 +71,7 @@ function pendrell_related_posts() {
   $display = (bool) apply_filters( 'pendrell_related_display', true );
 
   // Display mode; gallery or list
-  $mode = (string) apply_filters( 'pendrell_related_mode', 'list' );
+  $mode = (string) apply_filters( 'pendrell_related_mode', 'gallery' );
 
   // Additional constraints on displaying related posts: not on pages, attachments, password-protected posts, or certain post formats
   if ( $display === false || post_password_required() || is_page() || is_attachment() || has_post_format( array( 'aside', 'link', 'quote', 'status' ) ) )

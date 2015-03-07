@@ -210,5 +210,11 @@
   ul {
     @extend %spacer-below;
     @include font-size(text-smaller);
+    li:before {
+      @include font-size(text-smallest);
+      .full-width & {
+        @include font-size(text-smallest);
+      }
+    }
   }
 }

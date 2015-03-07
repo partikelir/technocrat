@@ -37,8 +37,14 @@
 .footnotes {
   @extend %links-reset-border;
   @extend %text-small;
-  & li {
+  li {
     outline: none;
+    &:before {
+      @include font-size(text-smallest);
+      .full-width & {
+        @include font-size(text-smaller);
+      }
+    }
   }
 }
 
