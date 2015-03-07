@@ -32,11 +32,15 @@ if ( !function_exists( 'pendrell_comments' ) ) : function pendrell_comments( $co
     case 'pingback':
     case 'trackback':
 
-      ?>
-      <li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
-        <article class="pingback comment-pingback"><?php _e( 'Pingback:', 'pendrell' ); ?> <?php comment_author_link(); ?> <?php edit_comment_link( __( 'Edit', 'pendrell' ), '<div class="comment-buttons"><span class="edit-link button">', '</span></div>' ); ?></article>
-      </li>
-      <?php
+      ?><li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
+        <article class="pingback comment-pingback"><?php
+          _e( 'Pingback: ', 'pendrell' );
+          comment_author_link();
+          $pingback_edit_link = pendrell_comments_edit_link();
+          if ( !empty( $pingback_edit_link ) )
+            echo '<div class="comment-buttons">' . $pingback_edit_link . '</div>';
+        ?></article>
+      </li><?php
       break;
 
     // Normal comments
@@ -44,8 +48,7 @@ if ( !function_exists( 'pendrell_comments' ) ) : function pendrell_comments( $co
 
       global $post;
 
-      ?>
-      <li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
+      ?><li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
         <article id="comment-<?php comment_ID(); ?>" class="comment-article">
           <header class="comment-author vcard">
             <div class="comment-avatar">

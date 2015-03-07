@@ -20,9 +20,6 @@
   ul ul {
     @include rem( margin-left, spacer(1/2) ); // Half length indentation since we don't have that much space to play with
   }
-  li {
-    @extend %list-style-none;
-  }
 
   // Text
   p {

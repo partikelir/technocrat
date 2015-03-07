@@ -11,7 +11,7 @@ function pendrell_photo_meta() {
 
   $photo_meta = ubik_photo_meta_table();
   if ( !empty( $photo_meta ) ) {
-    ?><section class="entry-after photo-meta">
+    ?><section class="entry-extras photo-meta">
       <h3><?php _e( 'Image metadata', 'pendrell' ); ?></h3>
       <?php echo $photo_meta; ?>
     </section><?php

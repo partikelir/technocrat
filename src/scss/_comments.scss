@@ -1,11 +1,9 @@
 // ==== COMMENTS ==== //
 
 // General comments area
-.comments-area { // See also .entry-after
+.comments-area {
+  @extend %spacer-above-double;
   max-width: $width-main ; // Required to limit the width of the comments area when there is no sidebar displayed
-  ol {
-    @extend %list-style-none; // Reset list style from `_general.scss`
-  }
 }
 .comments-title {
   @extend %spacer-below;

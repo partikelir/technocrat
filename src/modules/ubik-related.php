@@ -70,7 +70,7 @@ function pendrell_related_posts() {
   // Display related posts; true/false
   $display = (bool) apply_filters( 'pendrell_related_display', true );
 
-  // Display mode; gallery or list
+  // Display mode; gallery or list (note that these do not have anything to do with Ubik Views)
   $mode = (string) apply_filters( 'pendrell_related_mode', 'gallery' );
 
   // Additional constraints on displaying related posts: not on pages, attachments, password-protected posts, or certain post formats
@@ -111,12 +111,8 @@ function pendrell_related_posts_gallery( $related_posts = '' ) {
   // We only want the first three results for this theme
   $related_posts = array_slice( $related_posts, 0, $count );
 
-  // Begin markup
-  $output = '<section class="entry-after related-posts related-posts-gallery">';
-  $output .= '<h3>' . __( 'Related posts', 'pendrell' ) . '</h3>';
-  $output .= '<div class="gallery gallery-static gallery-columns-' . $count . '">';
-
-  // Iterate through each related post
+  // Iterate through each related post and populate the gallery
+  $gallery = '';
   foreach ( $related_posts as $related_post ) {
 
     // Long title handler
@@ -125,7 +121,7 @@ function pendrell_related_posts_gallery( $related_posts = '' ) {
       $related_title = ubik_text_truncate( $related_title, 8, '&hellip;', '' );
 
     // Output the gallery item
-    $output .= ubik_imagery(
+    $gallery .= ubik_imagery(
       $html     = '',
       $id       = pendrell_thumbnail_id( $related_post ),
       $caption  = $related_title,
@@ -141,7 +137,10 @@ function pendrell_related_posts_gallery( $related_posts = '' ) {
     );
   }
 
-  $output .= '</div></section>';
+  // Generate markup
+  $output = '<section class="entry-extras related-posts related-posts-gallery">';
+  $output .= '<h3>' . __( 'Related posts', 'pendrell' ) . '</h3>';
+  $output .= '<div class="gallery gallery-static gallery-columns-' . $count . '">' . $gallery . '</div></section>';
 
   return $output;
 }
@@ -158,17 +157,16 @@ function pendrell_related_posts_list( $related_posts ) {
   // How many results would you like? These should already be ordered in priority sequence
   $related_posts = array_slice( $related_posts, 0, apply_filters( 'pendrell_related_posts_list_count', 5 ) );
 
-  // Begin markup
-  $output = '<section class="entry-after related-posts related-posts-list">';
-  $output .= '<h3>' . __( 'Related posts', 'pendrell' ) . '</h3>';
-  $output .= '<ul>';
-
   // Iterate through each related post
+  $list = '';
   foreach ( $related_posts as $related_post ) {
-    $output .= '<li><a href="' . get_permalink( $related_post ) . '">' . get_the_title( $related_post ) . '</a></li>';
+    $list .= '<li><a href="' . get_permalink( $related_post ) . '">' . get_the_title( $related_post ) . '</a></li>';
   }
 
-  $output .= '</ul></section>';
+  // Generate markup
+  $output = '<section class="entry-extras related-posts related-posts-list">';
+  $output .= '<h3>' . __( 'Related posts', 'pendrell' ) . '</h3>';
+  $output .= '<ul>' . $list . '</ul></section>';
 
   return $output;
 }

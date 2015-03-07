@@ -80,7 +80,17 @@
 @if module(ubik-related) {
   .related-posts-gallery {
     h3 {
-      @extend %spacer-below-half;
+      @extend %spacer-below-half; // Only images below; no need for full spacing
     }
+  }
+}
+
+
+
+// == SERIES == //
+
+@if module(ubik-series) {
+  .series {
+    @extend %links-no-border;
   }
 }
