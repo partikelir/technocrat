@@ -122,8 +122,8 @@
     @include font-size(text-small);
     @include k-reverse-italics;
     color: lighten( colour(text-lightest), 10 );
-    &:first-child p {
-      // Style opening asides here
+    &:first-child p { // Style opening asides here
+      color: colour(text-lightest);
     }
   }
 
@@ -131,6 +131,12 @@
   img {
     @include border-radius;
     display: block;
+  }
+
+  // Typographic styling via Ubik Text
+  .divider {
+    color: colour(text-dark);
+    text-align: center;
   }
 }
 

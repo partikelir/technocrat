@@ -29,7 +29,7 @@
     "synapticism/ubik-feed": "^0.0.1",
     "synapticism/ubik-fonts": "^0.0.1",
     "synapticism/ubik-imagery": "^0.1.2",
-    "synapticism/ubik-lingual": "^0.0.1",
+    "synapticism/ubik-lingual": "^0.1.0",
     "synapticism/ubik-links": "^0.0.1",
     "synapticism/ubik-markdown": "^0.0.1",
     "synapticism/ubik-meta": "^0.0.1",
@@ -44,7 +44,7 @@
     "synapticism/ubik-series": "^0.0.2",
     "synapticism/ubik-svg-icons": "^0.0.3",
     "synapticism/ubik-terms": "^0.0.4",
-    "synapticism/ubik-text": "^0.0.1",
+    "synapticism/ubik-text": "^0.0.2",
     "synapticism/ubik-time": "^0.0.1",
     "synapticism/ubik-title": "^0.0.2",
     "synapticism/ubik-views": "^0.0.1"

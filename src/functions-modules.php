@@ -309,6 +309,13 @@ add_filter( 'the_content', 'ubik_text_replacement', 99 );
 add_filter( 'the_excerpt', 'ubik_text_replacement', 99 );
 add_filter( 'comment_text', 'ubik_text_replacement', 99 );
 
+// An example showing how to filter the text replacement array
+function pendrell_text_replacement( $array ) {
+  $array['dividers']['<p>*</p>'] = '<p class="divider floral-heart">&#x2766;</p>'; // Floral hearts are rad
+  return $array;
+}
+add_filter( 'ubik_text_replacement', 'pendrell_text_replacement' );
+
 
 
 // == TIME * == //
