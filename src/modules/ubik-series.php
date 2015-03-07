@@ -18,7 +18,7 @@ function pendrell_series() {
 
   // Display the list of posts in the series only if there is more than one post in that series
   if ( !empty( $series ) ) { ?>
-    <div class="entry-after series">
+    <div class="entry-extras series series-list">
       <?php foreach ( $series as $series_id => $series_list ) {
         $term = get_term( $series_id, 'series' );
         if ( !empty( $term ) ) {

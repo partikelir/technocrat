@@ -78,9 +78,9 @@
 // == RELATED == //
 
 @if module(ubik-related) {
-  .related-posts {
+  .related-posts-gallery {
     h3 {
-      @extend %spacer-below-half;
+      @extend %spacer-below-half; // Only images below; no need for full spacing
     }
   }
 }
@@ -92,9 +92,5 @@
 @if module(ubik-series) {
   .series {
     @extend %links-no-border;
-    ol {
-      @extend %spacer-below;
-      @include font-size(text-smaller);
-    }
   }
 }

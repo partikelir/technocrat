@@ -163,6 +163,12 @@
   @include font-size(text-smallest);
 }
 
+// Lists
+%lists {
+  @include list-ordered;
+  @include list-unordered;
+}
+
 // Links
 %links {
   @include links;

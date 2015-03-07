@@ -87,7 +87,8 @@ $_colours: (
 , divider:        rgba( $c-text, .09 ) // For use with <hr> etc.
 , select-top:     grey(251)
 , select-bottom:  grey(227)
-, shadow-darker:  grey(14, .18)
+, shadow-darkest: grey(8, .29)
+, shadow-darker:  grey(24, .18)
 , shadow-dark:    grey(96, .32)
 , shadow-light:   grey(113, .16)
 , shadow-lighter: grey(128, .07)

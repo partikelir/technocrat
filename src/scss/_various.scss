@@ -33,12 +33,24 @@
   @extend %top-right;
 }
 
+// Dividers; fleurons and asterisms via Ubik Text, activate by making a single asterisk (*) its own paragraph
+.divider {
+  color: colour(text-dark);
+  text-align: center;
+}
+
 // Footnotes; for use with Markdown Extra implementations e.g. JP Markdown
 .footnotes {
   @extend %links-reset-border;
   @extend %text-small;
-  & li {
-    outline: none;
+  li {
+    outline: none; // Remove blue border when clicking on footnotes
+    &:before {
+      @include font-size(text-smallest);
+      .full-width & {
+        @include font-size(text-smaller);
+      }
+    }
   }
 }
 
@@ -47,7 +59,9 @@
   @extend %text-smaller;
   ol,
   ul {
-    @extend %list-style-none;
+    li:before {
+      content: "";
+    }
   }
   li {
     @include k-hanging-indent( spacer() );

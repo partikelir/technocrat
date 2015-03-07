@@ -70,6 +70,7 @@
   }
 
   // Lists and definitions
+  @extend %lists;
   ol,
   ul,
   dl {
@@ -81,13 +82,13 @@
     }
   }
   li {
-    @include rem( margin, 0 0 0 spacer() );
+    @include rem( margin, 0 0 0 spacer(2/3) );
   }
   dd {
-    @include rem( margin, 0 spacer() spacer() );
+    @include rem( margin, 0 spacer(2/3) spacer(2/3) );
   }
   dl {
-    @include rem( margin, 0 spacer() );
+    @include rem( margin, 0 spacer(2/3) );
   }
 
   // Superscript
@@ -132,12 +133,6 @@
     @include border-radius;
     display: block;
   }
-
-  // Typographic styling via Ubik Text
-  .divider {
-    color: colour(text-dark);
-    text-align: center;
-  }
 }
 
 
@@ -158,7 +153,20 @@
 
 
 
-// Entry after (comments template, related posts, etc.)
-.entry-after {
-  @include rem( margin-top, spacer(2) );
+// Entry extras (related posts, series, etc.)
+.entry-extras {
+  @extend %links-no-border;
+  @extend %lists;
+  @extend %spacer-above-double;
+  ol,
+  ul {
+    @extend %spacer-below;
+    @include font-size(text-smaller);
+    li:before {
+      @include font-size(text-smallest);
+      .full-width & {
+        @include font-size(text-smallest);
+      }
+    }
+  }
 }

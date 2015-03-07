@@ -172,12 +172,8 @@ require_once( $path_modules . 'ubik-imagery.php' );
 
 // == LINGUAL == //
 
-if ( PENDRELL_UBIK_LINGUAL ) {
+if ( PENDRELL_UBIK_LINGUAL )
   require_once( $path_modules . 'ubik-lingual/ubik-lingual.php' );
-  add_filter( 'ubik_title', 'ubik_lingual_unpinyin' );
-  if ( PENDRELL_UBIK_PLACES )
-    add_filter( 'ubik_places_title', 'ubik_lingual_unpinyin' ); // Small header in the faux widget
-}
 
 
 

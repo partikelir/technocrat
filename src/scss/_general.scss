@@ -96,7 +96,7 @@ em,
 i {
   font-style: italic;
 }
-// Both s and strike are deprecated but still in use in some places; let's style them the same way we style del
+// Both s and strike are deprecated but still in use in some places; let's style them the same way we style `del`
 del,
 s,
 strike {
@@ -129,7 +129,7 @@ small { // Set to font-size: 80% in Normalize.css; reset to size(text-small here
 
 
 
-// Blockquotes
+// Blockquotes and in-line quotations
 blockquote {
   @extend %spacer-below;
   @include font-style(quotation);
@@ -170,10 +170,6 @@ blockquote {
     }
   }
 }
-
-
-
-// Inline quotations
 q {
   quotes: none;
   &:before {
@@ -199,7 +195,7 @@ pre {
   @include rem( padding, spacer(1/2) );
   background: colour(code-box-bg);
   background-image: repeating-linear-gradient( 45deg, transparent, transparent spacer(1/2), black(.04) spacer(1/2), black(.04) spacer() );
-  box-shadow: inset 3px 3px 7px colour(shadow-darker);
+  box-shadow: inset 3px 3px 7px colour(shadow-darkest);
   color: colour(code-box);
   tab-size: 2;
   white-space: pre;
@@ -238,20 +234,9 @@ ol,
 dl {
   font-style: normal;
 }
+ol,
 ul {
-  list-style: disc outside;
-  ul {
-    list-style: circle;
-  }
-}
-ol {
-  list-style: decimal outside;
-  ol {
-    list-style: lower-alpha;
-    ol {
-      list-style: lower-roman;
-    }
-  }
+  @extend %list-style-none;
 }
 dl {
   @extend %list-style-none;
