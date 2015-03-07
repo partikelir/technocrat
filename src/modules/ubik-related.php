@@ -67,8 +67,11 @@ function pendrell_related_posts() {
   if ( !is_singular() )
     return;
 
-  // Allow this function to be filtered
-  $display = apply_filters( 'pendrell_related_display', true );
+  // Display related posts; true/false
+  $display = (bool) apply_filters( 'pendrell_related_display', true );
+
+  // Display mode; gallery or list
+  $mode = (string) apply_filters( 'pendrell_related_mode', 'list' );
 
   // Additional constraints on displaying related posts: not on pages, attachments, password-protected posts, or certain post formats
   if ( $display === false || post_password_required() || is_page() || is_attachment() || has_post_format( array( 'aside', 'link', 'quote', 'status' ) ) )
@@ -80,45 +83,92 @@ function pendrell_related_posts() {
 
   // Only proceed if related posts were found
   if ( !empty( $related_posts ) ) {
-
-    // Show more related posts on full size posts
-    $count = 3;
-    $size = 'third-square';
-    if ( pendrell_is_full_width() ) {
-      $count = 4;
-      $size = 'quarter-square';
-    }
-
-    // We only want the first three results for this theme
-    $related_posts = array_slice( $related_posts, 0, $count );
-
-    ?><section class="entry-after related-posts">
-      <h3><?php _e( 'Related posts', 'pendrell' ); ?></h3>
-      <div class="gallery gallery-static gallery-columns-<?php echo $count; ?>">
-      <?php foreach ( $related_posts as $related_post ) {
-
-        // Long title handler
-        $related_title = get_the_title( $related_post );
-        if ( str_word_count( $related_title ) > 10 )
-          $related_title = ubik_text_truncate( $related_title, 8, '&hellip;', '' );
-
-        echo ubik_imagery(
-          $html     = '',
-          $id       = pendrell_thumbnail_id( $related_post ),
-          $caption  = $related_title,
-          $title    = '',
-          $align    = '',
-          $url      = get_permalink( $related_post ),
-          $size     = $size,
-          $alt      = '',
-          $rel      = '',
-          $class    = 'related-post overlay',
-          $contents = pendrell_image_overlay_metadata( get_comments_number( $related_post ) . ' ' . ubik_svg_icon( pendrell_icon( 'related-comments' ), __( 'Comments', 'pendrell' ) ) ),
-          $context  = array( 'group', 'static' )
-        );
-      } ?>
-      </div>
-    </section>
-  <?php }
+    if ( $mode === 'gallery' )
+      echo pendrell_related_posts_gallery( $related_posts );
+    if ( $mode === 'list' )
+      echo pendrell_related_posts_list( $related_posts );
+  }
 }
 add_action( 'pendrell_comment_template_before', 'pendrell_related_posts' );
+
+
+
+// Output related posts as a gallery
+function pendrell_related_posts_gallery( $related_posts = '' ) {
+
+  // Exit early if we don't have what we need
+  if ( empty( $related_posts ) )
+    return;
+
+  // Show more related posts on full size posts
+  $count = 3;
+  $size = 'third-square';
+  if ( pendrell_is_full_width() ) {
+    $count = 4;
+    $size = 'quarter-square';
+  }
+
+  // We only want the first three results for this theme
+  $related_posts = array_slice( $related_posts, 0, $count );
+
+  // Begin markup
+  $output = '<section class="entry-after related-posts related-posts-gallery">';
+  $output .= '<h3>' . __( 'Related posts', 'pendrell' ) . '</h3>';
+  $output .= '<div class="gallery gallery-static gallery-columns-' . $count . '">';
+
+  // Iterate through each related post
+  foreach ( $related_posts as $related_post ) {
+
+    // Long title handler
+    $related_title = get_the_title( $related_post );
+    if ( str_word_count( $related_title ) > 10 )
+      $related_title = ubik_text_truncate( $related_title, 8, '&hellip;', '' );
+
+    // Output the gallery item
+    $output .= ubik_imagery(
+      $html     = '',
+      $id       = pendrell_thumbnail_id( $related_post ),
+      $caption  = $related_title,
+      $title    = '',
+      $align    = '',
+      $url      = get_permalink( $related_post ),
+      $size     = $size,
+      $alt      = '',
+      $rel      = '',
+      $class    = 'related-post overlay',
+      $contents = pendrell_image_overlay_metadata( get_comments_number( $related_post ) . ' ' . ubik_svg_icon( pendrell_icon( 'related-comments' ), __( 'Comments', 'pendrell' ) ) ),
+      $context  = array( 'group', 'static' )
+    );
+  }
+
+  $output .= '</div></section>';
+
+  return $output;
+}
+
+
+
+// Output related posts as a list
+function pendrell_related_posts_list( $related_posts ) {
+
+  // Exit early if we don't have what we need
+  if ( empty( $related_posts ) )
+    return;
+
+  // How many results would you like? These should already be ordered in priority sequence
+  $related_posts = array_slice( $related_posts, 0, apply_filters( 'pendrell_related_posts_list_count', 5 ) );
+
+  // Begin markup
+  $output = '<section class="entry-after related-posts related-posts-list">';
+  $output .= '<h3>' . __( 'Related posts', 'pendrell' ) . '</h3>';
+  $output .= '<ul>';
+
+  // Iterate through each related post
+  foreach ( $related_posts as $related_post ) {
+    $output .= '<li><a href="' . get_permalink( $related_post ) . '">' . get_the_title( $related_post ) . '</a></li>';
+  }
+
+  $output .= '</ul></section>';
+
+  return $output;
+}

@@ -205,4 +205,10 @@
 // Entry after (comments template, related posts, etc.)
 .entry-after {
   @include rem( margin-top, spacer(2) );
+  @extend %links-no-border;
+  ol,
+  ul {
+    @extend %spacer-below;
+    @include font-size(text-smaller);
+  }
 }
