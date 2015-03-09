@@ -1,31 +1,51 @@
 // ==== MENU ==== //
 
 // Inline menu; used in header and footer navigation; should be applied to ol or ul elements
-.inline-menu {
-  @include k-list-floated( spacer() );
-  margin-bottom: 0;
+.inline-menu {}
+
+// Header menu; applied to a ul element
+.menu-header {
+  @include font-size(menu-header);
+  @include rem( margin, spacer(1/2) 0 );
+  width: 100%;
   li {
     @include font-style(menu);
     white-space: nowrap;
   }
-  > li:hover > ul {
-    @extend %hide-below-medium; // Don't bother displaying submenus on small screens
+  > li {
+    a {
+      color: colour(menu-sub);
+      &:hover {
+        color: colour(menu-sub-h);
+      }
+    }
+    > a {
+      @include rem( padding, 3px 6px );
+      background: black();
+      color: colour(menu-link);
+      &:hover {
+        background: black(.7);
+        color: colour(menu-link-h);
+      }
+    }
+    > ul {
+      @include rem( margin-left, 6px );
+    }
+    ul {
+      @include font-size(menu-header-sm);
+      ul li {
+        @include rem( margin-left, spacer(1/2) );
+      }
+    }
   }
-}
-
-
-
-// Header menu; applied to a ul element
-.menu-header {
-  @extend %links-menu;
-  @include font-size(menu-header);
-  @include k-list-nested;
-  border-bottom: 1px solid colour(divider); // Border for the whole menu
-  width: 100%;
-
-  // Link styling
-  a:hover {
-    color: colour(highlight);
+  @include k-media-below( break(large) ) {
+    @include k-list-floated( spacer(1/2) );
+    > li ul {
+      @include k-hide-visually; // This theme doesn't support submenus on smaller screens
+    }
+  }
+  @include k-media-above( break(large) ) {
+    @include k-list-accordion;
   }
 
   // Immediate children link styling
@@ -34,57 +54,32 @@
   > .current_page_item,
   > .current_page_ancestor {
     > a {
-      color: lighten( colour(menu), 23 );
+      background: k-colour(shark);
+      color: colour(highlight);
       &:hover {
-        color: lighten( colour(menu), 33 );
+        background: black();
       }
-    }
-  }
-
-  // Submenu styling; placed here to avoid unnecessary nesting
-  > li {
-    @include rem( padding-bottom, spacer(1/2), 1 ); // Padding list items rather than the whole list so submenus display properly
-
-    // Styling specific to the first submenu
-    > ul {
-      display: none; // Only display submenus on larger screens
-      margin-top: spacer(-1/4); // Breaks vertical rhythm but gives a more natural look
-      > li:first-child > a {
-        @include triangle; // Pseudo triangle on first submenu only
-        border-color: colour(interface);
-        &:hover {
-          border-color: darken( colour(sub-bg), 13); // Must match value below
-        }
-      }
-    }
-
-    // Styling for all submenus
-    ul {
-      @include dropdown-menu;
-    }
-  }
-
-  // Media query to enable all menu features on larger screens
-  @include k-media-above( break(medium) ) {
-    display: block;
-    > li > ul {
-      display: block;
     }
   }
 }
 
 
 
-// Footer menu
 .menu-footer {
-  // Links aren't styled differently here as they match the values for .site-footer in this theme
   @include font-size(menu-footer);
+  @include k-list-floated( spacer() );
   @include rem( padding-bottom, spacer(1/2) );
-  @include rem( padding-top, spacer(1/2), 1 );
-  border-top: 1px solid colour(divider);
+  @include rem( padding-top, spacer(1/2) );
 
   // No submenus in the footer
   ul {
     @extend %hide;
+  }
+  li {
+    @include font-style(menu);
+    white-space: nowrap;
+  }
+  > li:hover > ul {
+    @extend %hide-below-medium; // Don't bother displaying submenus on small screens
   }
 }

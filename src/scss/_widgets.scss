@@ -2,18 +2,18 @@
 
 // Widgets :D see also `wrap-sidebar` and related classes in `_layout.scss`
 .widget {
-  @extend %links;
   @extend %spacer-below;
   @include font-size(text-smaller);
   @include font-style(widget-text);
-  color: colour(text-lighter);
+  @include links( colour(sidebar-link), false, lighten( colour(sidebar-link), 7), false, false, false );
+  color: colour(sidebar);
   word-wrap: break-word;
 
   // Titles
   h2 {
-    @include font-size(head-smallest);
+    @include font-size(head-small);
     @include font-style(widget-title);
-    color: colour(text-dark);
+    color: colour(sidebar-head);
   }
 
   // Lists

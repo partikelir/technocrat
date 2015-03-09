@@ -12,7 +12,7 @@ if ( WP_LOCAL_DEV ) {
 defined( 'PENDRELL_AUTHOR_META' )         || define( 'PENDRELL_AUTHOR_META', false );
 
 // Baseline for the vertical rhythm; should match whatever is set in _base_config.scss; integer, required
-defined( 'PENDRELL_BASELINE' )            || define( 'PENDRELL_BASELINE', 30 );
+defined( 'PENDRELL_BASELINE' )            || define( 'PENDRELL_BASELINE', 28 );
 
 // Master switch for post formats
 defined( 'PENDRELL_POST_FORMATS' )        || define( 'PENDRELL_POST_FORMATS', false );

@@ -177,7 +177,7 @@
   @include links( $link-border: false );
 }
 %links-menu {
-  @include links( colour(menu), false, colour(menu), false, false, false);
+  @include links( colour(menu-link), false, colour(menu-link-h), false, false, false);
 }
 %links-meta {
   @include links( colour(meta-link), false, colour(meta-link-h), false, false);

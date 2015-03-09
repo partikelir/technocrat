@@ -105,7 +105,7 @@ svg {
         @include rem( height, 18px );
         @include rem( width, 18px );
         @include rem( margin, 4px -4px 0 4px );
-        filter: drop-shadow( 0 1px 1px rgba( colour(body-bg), .9 ) ); // Matches letterpress effect
+        //filter: drop-shadow( 0 1px 1px rgba( colour(body-bg), .9 ) ); // Matches letterpress effect
         float: right;
       }
     }
@@ -191,6 +191,11 @@ svg {
   .site-navigation &,
   .widget & {
     width: 100%; // Search form in the sidebar stretches to fill
+  }
+  .site-navigation & {
+    @include k-media-below( break(large) ) {
+      width: 33%;
+    }
   }
 }
 .search-field-wrap {

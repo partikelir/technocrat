@@ -8,27 +8,27 @@ $legacy: false;
 
 // Base font size and line-height (unitless integers); base-size should be 16; set 'text' to alter body text font size
 $base-size:       16;
-$base-line:       30;
+$base-line:       28;
 
 // Site widths
-$width-content:   960px;
-$width-main:      624px;
+$width-content:   1020px;
+$width-main:      720px;
 $width-thumb:     150px;
 
 // Image spacer; defines the space between gallery items and grouped images
 $spacer-image:    spacer();
 
 // Default border radius
-$radius:          3px;
+$radius:          0px;
 
 // Metadata; use metadata() to access
 $_metadata: (
-  theme-name:               "Pendrell"
-, theme-uri:                "https://github.com/synapticism/pendrell"
+  theme-name:               "Technocrat"
+, theme-uri:                "https://github.com/synapticism/technocrat"
 , theme-author:             "Alexander Synaptic"
 , theme-author-uri:         "http://synapticism.com"
 , theme-description:        "Alexander Synaptic"
-, theme-version:            "0.24.0"
+, theme-version:            "0.0.1"
 , theme-license:            "GPLv3"
 , theme-license-uri:        "https://www.gnu.org/copyleft/gpl.txt"
 , theme-tags:               (light, gray, white, one-column, two-columns, right-sidebar, fixed-layout, responsive-layout, custom-menu, featured-images, microformats, post-formats, theme-options, translation-ready)
@@ -40,8 +40,8 @@ $_metadata: (
 $_breaks: (
   tiny:               ceil( $width-main / 1.5 )       // 416
 , small:              ceil( $width-main / 1.2 )       // 520
-, medium:             ceil( $width-main + spacer(3) ) // 714
-, large:              ceil( $width-main + spacer(8) ) // 864
+, medium:             ceil( $width-main + spacer() )  // 714
+, large:              ceil( $width-main + spacer(5) ) // 870
 , full:               ceil( $width-content )          // 960
 );
 

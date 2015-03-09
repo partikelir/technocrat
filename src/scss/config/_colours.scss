@@ -11,15 +11,16 @@ $k-colours: map-merge( $k-colours, (
 // A few colour shortcuts (since we can't use the colour() function within the map)
 $c-text:          grey(84);
 $c-body-bg:       white();
-$c-link:          k-colour(royal-purple);
+$c-link:          k-colour(affair); // Purple
 $c-menu:          k-colour(emerald);
 $c-highlight:     k-colour(burnt-sienna);
+$c-offset:        k-colour(emerald);
 $c-code:          k-colour(iron);
 
-// General
+// General; @TODO: clean this up, there are many unused colours
 $_colours: (
   body-bg:        $c-body-bg
-, site-title:     grey(16)
+, site-title:     white()
 , site-desc:      grey(156)
 , highlight:      $c-highlight
 , menu:           $c-menu
@@ -47,14 +48,21 @@ $_colours: (
 , link-f:         saturate( lighten( $c-link, 17 ), 7 )
 
   // Menus
-, menu-link:      lighten( $c-text, 19 )
+, menu-link:      white()
 , menu-link-h:    $c-highlight
-, menu-current:   lighten( $c-text, 33 )
+, menu-current:   white(.9)
+, menu-sub:       lighten( k-colour(raven), 23 )
+, menu-sub-h:     k-colour(raven)
 
   // Submenus
 , sub:            lighten( $c-text, 17 )
 , sub-h:          white()
 , sub-bg:         darken( $c-body-bg, 13 )
+
+  // Sidebar
+, sidebar:        darken( k-colour(raven), 13 )
+, sidebar-head:   k-colour(burnt-sienna)
+, sidebar-link:   saturate( lighten( k-colour(raven), 3 ), 3% )
 
   // Meta
 , meta:           lighten( $c-text, 37 )
@@ -82,17 +90,16 @@ $_colours: (
 , code-box-bg:    rgba( k-colour(shark), .9 )
 
   // Interface
-, button-top:     grey(251)
-, button-bottom:  grey(215)
+, button:         k-colour(java)
+, button-h:       k-colour(eastern-blue)
 , divider:        rgba( $c-text, .09 ) // For use with <hr> etc.
 , select-top:     grey(251)
 , select-bottom:  grey(227)
 , shadow-darkest: grey(8, .29)
 , shadow-darker:  grey(24, .18)
 , shadow-dark:    grey(96, .32)
-, shadow-light:   grey(113, .16)
+, shadow-light:   grey(121, .12)
 , shadow-lighter: grey(128, .07)
-
 
   // Various
 , highlight-bg:   k-colour(lemon-chiffon)

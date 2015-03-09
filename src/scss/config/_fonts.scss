@@ -22,9 +22,9 @@ $_sizes: (
 , head-smallest:    14
 
   // Menus
-, menu-header:      20
-, menu-header-sm:   18 // Lower than 16 doesn't display well on mobile devices
-, menu-footer:      14
+, menu-header:      18
+, menu-header-sm:   15 // Lower than 16 doesn't display well on mobile devices
+, menu-footer:      15
 
   // Submenus
 , sub:              14
@@ -73,7 +73,7 @@ $w-mono-bold:       700;
 
   // Masthead
   @if (site-title == $style) {
-    @extend %head-normal;
+    @extend %head-light;
     text-transform: lowercase;
   }
   @if (site-description == $style) {
@@ -108,7 +108,7 @@ $w-mono-bold:       700;
 
   // Widgets
   @if (widget-title == $style) {
-    @extend %head-bold-uppercase;
+    @extend %head-light;
   }
   @if (widget-text == $style) {
     @extend %body-normal;
@@ -119,7 +119,7 @@ $w-mono-bold:       700;
     @extend %head-bold-uppercase;
   }
   @if (button == $style) {
-    @extend %body-bold;
+    @extend %body-normal;
   }
   @if (label == $style) {
     @extend %head-bold-uppercase;

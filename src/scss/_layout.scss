@@ -5,6 +5,12 @@
 // These wrappers allow for backgrounds and layout options to be defined for each of the four sections (header, content, sidebar, and footer)
 // There is also a fifth meta-wrapper to bind content and sidebar on large screens
 
+body {
+  @include k-media-above( break(large) ) {
+    background: k-colour(shark);
+  }
+}
+
 // A general wrapper for various site elements
 %wrap {
   box-sizing: border-box; // Makes life a little easier
@@ -21,43 +27,42 @@
     @include rem( padding-right, spacer(1.5) );
   }
 }
+.wrap-header,
+.wrap-sidebar {
+  @include k-media-above( break(large) ) {
+    @include rem( padding-left, spacer() );
+    float: right;
+    width: 33%;
+  }
+}
 .wrap-header {
   @extend %wrap;
   @include rem( padding-top, spacer() );
+  background: k-colour(mako);
   position: relative; // Contains #site-interface, which is absolutely positioned
 }
-.wrap-main { // Wrapper around content and sidebar
-  @extend %clearfix;
-  @include k-media-above( break(large) ) {
-    @include k-center-block( $width-content );
-    @include rem( padding-left, spacer(1.5) );
-    @include rem( padding-right, spacer(1.5) );
-  }
-}
-.wrap-content {
-  @extend %wrap;
-  @include rem( padding-top, spacer() );
-  @include rem( padding-bottom, spacer() );
-  @include k-media-above( break(large) ) {
-    @include rem( padding-right, spacer() );
-    float: left;
-    padding-left: 0;
-    width: percentage( ( $width-main + spacer() ) / $width-content );
-  }
+.wrap-main {
+  @extend %clearfix-below;
 }
 .wrap-sidebar {
   @extend %wrap;
   @include rem( padding-top, spacer() );
   @include rem( padding-bottom, spacer() );
+}
+.wrap-content {
+  @extend %wrap;
+  @include rem( padding-top, spacer() );
+  @include rem( padding-bottom, spacer() );
+  background: colour(body-bg);
   @include k-media-above( break(large) ) {
-    @include rem( padding-left, spacer() );
-    float: right;
-    padding-right: 0;
-    width: percentage( 1 - ( ( $width-main + spacer() ) / $width-content ) );
+    @include rem( padding-right, spacer() );
+    float: left;
+    width: 67%;
   }
 }
 .wrap-footer {
   @extend %wrap;
+  background: k-colour(athens-gray);
   position: relative; // For use with the "Back to top" button
 }
 
@@ -66,11 +71,14 @@
 // == HEADER == //
 
 .site-header {
-  @include k-center-block( $width-content );
   position: relative; // For use with the skip link and menu toggle
+  @include k-media-above( break(large) ) {
+    max-width: $width-content - $width-main;
+  }
 }
 .site-branding {
-  @include rem( padding-bottom, spacer(1/2) );
+  @include rem( padding-bottom, spacer(1.5) );
+  position: relative;
   &:hover .site-description { // Show site description on hover
     opacity: 1;
     transition: opacity .5s ease;
@@ -88,7 +96,7 @@
     display: inline-block;
     text-decoration: none;
     &:hover {
-      color: colour(link-h);
+      color: colour(highlight);
     }
   }
 }
@@ -99,7 +107,8 @@
   color: colour(site-desc);
   opacity: 0;
   transition: opacity .8s ease-out;
-  @extend %hide-below-medium; // Hide the site description on smaller screens
+  //@extend %hide-below-medium; // Hide the site description on smaller screens
+  @include k-hide-visually;
 }
 .site-navigation {
   @include k-media-below( break(medium) ) {
@@ -108,7 +117,7 @@
   .search-form {
     @include rem( margin-bottom, spacer(1/2) );
     @include k-media-above( break(medium) ) {
-      display: none;
+      //display: none;
     }
   }
   &.active {
@@ -125,6 +134,10 @@
   max-width: $width-main; // Keeps content contained regardless of whether sidebar appears
   &:focus {
     outline: none; // Prevent weird blue glow when using the skip link
+  }
+
+  @include k-media-above( break(large) ) {
+    margin-left: auto;
   }
 
   // Individual articles within the content area
@@ -150,6 +163,9 @@ main {
       //break-inside: avoid; // Weird bug in Chrome
     }
   }
+  @include k-media-above( break(large) ) {
+    max-width: $width-content - $width-main;
+  }
 }
 
 
@@ -158,7 +174,7 @@ main {
 
 .site-footer {
   @extend %links-meta-no-border;
-  @include k-center-block( $width-content );
+  //@include k-center-block( $width-content );
   @include rem( padding-bottom, spacer() );
   color: colour(footer);
 }
