@@ -1,17 +1,9 @@
 // ==== MENU ==== //
 
-// Inline menu; used in header and footer navigation; should be applied to ol or ul elements
-.inline-menu {}
-
-// Header menu; applied to a ul element
-.menu-header {
-  @include font-size(menu-header);
-  @include rem( margin, spacer(1/2) 0 );
+// Common
+.menu-header,
+.menu-footer {
   width: 100%;
-  li {
-    @include font-style(menu);
-    white-space: nowrap;
-  }
   > li {
     a {
       color: colour(menu-sub);
@@ -28,6 +20,32 @@
         color: colour(menu-link-h);
       }
     }
+  }
+
+  // Immediate children link styling
+  > .current-menu-item,
+  > .current-menu-ancestor,
+  > .current_page_item,
+  > .current_page_ancestor {
+    > a {
+      background: k-colour(shark);
+      color: colour(highlight);
+      &:hover {
+        background: black();
+      }
+    }
+  }
+}
+
+// Header menu; applied to a ul element
+.menu-header {
+  @include font-size(menu-header);
+  @include rem( margin, spacer(1/2) 0 );
+  li {
+    @include font-style(menu);
+    white-space: nowrap;
+  }
+  > li {
     > ul {
       @include rem( margin-left, 6px );
     }
@@ -47,39 +65,19 @@
   @include k-media-above( break(large) ) {
     @include k-list-accordion;
   }
-
-  // Immediate children link styling
-  > .current-menu-item,
-  > .current-menu-ancestor,
-  > .current_page_item,
-  > .current_page_ancestor {
-    > a {
-      background: k-colour(shark);
-      color: colour(highlight);
-      &:hover {
-        background: black();
-      }
-    }
-  }
 }
 
-
-
+// Footer menu
 .menu-footer {
-  @include font-size(menu-footer);
-  @include k-list-floated( spacer() );
-  @include rem( padding-bottom, spacer(1/2) );
-  @include rem( padding-top, spacer(1/2) );
-
-  // No submenus in the footer
+  @include font-size( menu-footer );
+  @include k-list-floated( spacer(1/2) );
+  @include rem( padding, spacer(1/2) 0 );
+  //@include rem( padding-top, spacer(1/2) );
   ul {
-    @extend %hide;
+    @extend %hide; // No submenus in the footer
   }
-  li {
+  > li {
     @include font-style(menu);
     white-space: nowrap;
-  }
-  > li:hover > ul {
-    @extend %hide-below-medium; // Don't bother displaying submenus on small screens
   }
 }

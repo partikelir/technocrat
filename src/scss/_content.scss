@@ -2,7 +2,7 @@
 
 // Entry title
 .entry-title {
-  @extend %links-no-border;
+  @extend %links-title;
   @extend %spacer-below-half;
   @include font-size(head-big);
   @include font-style(entry-title);

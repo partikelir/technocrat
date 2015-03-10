@@ -9,18 +9,18 @@ $k-colours: map-merge( $k-colours, (
 ) );
 
 // A few colour shortcuts (since we can't use the colour() function within the map)
-$c-text:          grey(84);
-$c-body-bg:       white();
-$c-link:          k-colour(affair); // Purple
+$c-text:          k-colour(mako);//grey(84);
+$c-body-bg:       grey(252);//#FAF9FC;
+$c-link:          k-colour(java);//affair); // Purple
 $c-menu:          k-colour(emerald);
-$c-highlight:     k-colour(burnt-sienna);
+$c-highlight:     k-colour(jaffa);
 $c-offset:        k-colour(emerald);
-$c-code:          k-colour(iron);
+$c-code:          k-colour(loblolly);//iron);
 
 // General; @TODO: clean this up, there are many unused colours
 $_colours: (
   body-bg:        $c-body-bg
-, site-title:     white()
+, site-title:     $c-body-bg
 , site-desc:      grey(156)
 , highlight:      $c-highlight
 , menu:           $c-menu
@@ -36,14 +36,14 @@ $_colours: (
 , text-lightest:  lighten( $c-text, 27 )
 
   // Backgrounds
-, body-dark:      darken( $c-body-bg, 3 )
-, body-darker:    darken( $c-body-bg, 13 )
-, body-darkest:   darken( $c-body-bg, 27 )
+, body-dark:      darken( white(), 3 )
+, body-darker:    darken( white(), 13 )
+, body-darkest:   darken( white(), 27 )
 
   // Links
 , link:           $c-link
 , link-v:         $c-link
-, link-h:         saturate( lighten( $c-link, 17 ), 7 )
+, link-h:         $c-highlight //saturate( lighten( $c-link, 17 ), 7 )
 , link-a:         saturate( lighten( $c-link, 13 ), 13 )
 , link-f:         saturate( lighten( $c-link, 17 ), 7 )
 
@@ -61,20 +61,21 @@ $_colours: (
 
   // Sidebar
 , sidebar:        darken( k-colour(raven), 13 )
-, sidebar-head:   k-colour(burnt-sienna)
+, sidebar-h:      $c-highlight
 , sidebar-link:   saturate( lighten( k-colour(raven), 3 ), 3% )
 
   // Meta
-, meta:           lighten( $c-text, 37 )
-, meta-link:      grey(84)
+, meta:           lighten( $c-text, 9 )
+, meta-link:      saturate( lighten( k-colour(raven), 9 ), 3% )
 , meta-link-v:    grey(84)
 , meta-link-h:    $c-highlight
 , meta-link-a:    grey(84)
 , meta-link-f:    grey(84)
 
   // Footer
-, footer:         lighten( $c-text, 37 )
-, footer-link:    grey(84)
+, footer:         lighten( k-colour(raven), 23 )
+, footer-bg:      k-colour(mako)//$c-body-bg
+, footer-link:    $c-body-bg//k-colour(raven)
 , footer-link-v:  grey(84)
 , footer-link-h:  $c-highlight
 , footer-link-a:  grey(84)
@@ -87,7 +88,7 @@ $_colours: (
 
   // Code blocks
 , code-box:       $c-code
-, code-box-bg:    rgba( k-colour(shark), .9 )
+, code-box-bg:    k-colour(shark)
 
   // Interface
 , button:         k-colour(java)
@@ -100,6 +101,8 @@ $_colours: (
 , shadow-dark:    grey(96, .32)
 , shadow-light:   grey(121, .12)
 , shadow-lighter: grey(128, .07)
+, text-input:     k-colour(mako)
+, text-input-bg:  $c-body-bg
 
   // Various
 , highlight-bg:   k-colour(lemon-chiffon)

@@ -5,12 +5,6 @@
 // These wrappers allow for backgrounds and layout options to be defined for each of the four sections (header, content, sidebar, and footer)
 // There is also a fifth meta-wrapper to bind content and sidebar on large screens
 
-body {
-  @include k-media-above( break(large) ) {
-    background: k-colour(shark);
-  }
-}
-
 // A general wrapper for various site elements
 %wrap {
   box-sizing: border-box; // Makes life a little easier
@@ -37,9 +31,11 @@ body {
 }
 .wrap-header {
   @extend %wrap;
-  @include rem( padding-top, spacer() );
+  @include rem( padding-top, spacer(1/2) );
   background: k-colour(mako);
-  position: relative; // Contains #site-interface, which is absolutely positioned
+  @include k-media-above( break(medium) ) {
+    @include rem( padding-top, spacer() );
+  }
 }
 .wrap-main {
   @extend %clearfix-below;
@@ -48,12 +44,13 @@ body {
   @extend %wrap;
   @include rem( padding-top, spacer() );
   @include rem( padding-bottom, spacer() );
+  background: k-colour(shark);
 }
 .wrap-content {
   @extend %wrap;
   @include rem( padding-top, spacer() );
   @include rem( padding-bottom, spacer() );
-  background: colour(body-bg);
+  background: white();
   @include k-media-above( break(large) ) {
     @include rem( padding-right, spacer() );
     float: left;
@@ -62,7 +59,7 @@ body {
 }
 .wrap-footer {
   @extend %wrap;
-  background: k-colour(athens-gray);
+  background: colour(footer-bg);
   position: relative; // For use with the "Back to top" button
 }
 
@@ -77,8 +74,10 @@ body {
   }
 }
 .site-branding {
-  @include rem( padding-bottom, spacer(1.5) );
-  position: relative;
+  @extend %spacer-below-half;
+  @include k-media-above( break(large) ) {
+    @include rem( padding-bottom, spacer() );
+  }
   &:hover .site-description { // Show site description on hover
     opacity: 1;
     transition: opacity .5s ease;
@@ -89,7 +88,7 @@ body {
   @include font-size(head);
   @include font-style(site-title);
   @include k-media-above( break(medium) ) {
-    @include font-size(head-biggest);
+    @include font-size(head-bigger);
   }
   a {
     color: colour(site-title);
@@ -107,18 +106,11 @@ body {
   color: colour(site-desc);
   opacity: 0;
   transition: opacity .8s ease-out;
-  //@extend %hide-below-medium; // Hide the site description on smaller screens
-  @include k-hide-visually;
+  @include k-hide-visually; // No description in this theme
 }
 .site-navigation {
   @include k-media-below( break(medium) ) {
     display: none;
-  }
-  .search-form {
-    @include rem( margin-bottom, spacer(1/2) );
-    @include k-media-above( break(medium) ) {
-      //display: none;
-    }
   }
   &.active {
     display: block;
@@ -142,7 +134,7 @@ body {
 
   // Individual articles within the content area
   article {
-    @extend %spacer-below-triple;
+    @extend %spacer-below-double;
   }
 }
 main {
@@ -173,8 +165,7 @@ main {
 // == FOOTER == //
 
 .site-footer {
-  @extend %links-meta-no-border;
-  //@include k-center-block( $width-content );
+  @include links( colour(footer-link), false, colour(highlight), $link-border: false );
   @include rem( padding-bottom, spacer() );
   color: colour(footer);
 }

@@ -10,7 +10,7 @@ body {
   @include font-size(text);
   @include font-style(body);
   color: colour(text);
-  background-color: colour(body-bg);
+  background-color: k-colour(shark);//colour(body-bg);
   font-feature-settings: 'liga', 'opbd', 'size', 'init', 'fina'; // Ligatures; optical bounds; optical size; initial and final forms; via: http://www.microsoft.com/typography/otspec/featurelist.htm
   text-rendering: optimizeLegibility;
 }
@@ -136,12 +136,14 @@ blockquote {
   @include font-size(text-small);
   @include k-reverse-italics;
   @include letterpress;
-  @include rem( padding, spacer(1/2) spacer(1/2) spacer(1/2) spacer() - 9px );
-  background: rgba( colour(body-darker), .25); // Transparent so that blockquotes can be nested
-  border-left: 9px solid colour(divider);
-  box-shadow: inset 0px -2px 7px colour(shadow-lighter);
+  @include rem( padding, spacer(1/2) spacer(1/2) spacer(1/2) spacer() - 3px );
+  background: colour(body-bg);
+  border-left: 3px solid k-colour(affair);
   color: rgba( colour(text), .75); // Transparent so that blockquotes can be nested
   quotes: none; // From the Meyer Reset
+  blockquote {
+    background: rgba( darken( colour(body-bg), 5), .3 );
+  }
   &:before, &:after { // From the Meyer Reset
     content: "";
     content: none;
@@ -191,11 +193,11 @@ pre {
   @extend %spacer-below;
   @include border-radius;
   @include font-size(text-small);
-  //@include letterpress( black(.3) );
+  @include letterpress( black(.3) );
   @include rem( padding, spacer(1/2) );
   background: colour(code-box-bg);
-  background-image: repeating-linear-gradient( 45deg, transparent, transparent spacer(1/2), black(.04) spacer(1/2), black(.04) spacer() );
-  box-shadow: inset 3px 3px 7px colour(shadow-darkest);
+  //background-image: repeating-linear-gradient( 45deg, transparent, transparent spacer(1/2), black(.04) spacer(1/2), black(.04) spacer() );
+  //box-shadow: inset 3px 3px 7px colour(shadow-darkest);
   color: colour(code-box);
   tab-size: 2;
   white-space: pre;
@@ -217,8 +219,8 @@ code {
   li > &,
   p > &,
   strong > & {
-    @include k-highlight( rgba( colour(body-darker), .33 ), $radius );
-    color: colour(text-lighter);
+    @include k-highlight( rgba( #FAF9FC, .73 ), 2px );
+    color: k-colour(raven);
     font-size: 80%; // Hack for fixing over-sized monospace fonts
   }
 }

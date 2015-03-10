@@ -11,9 +11,9 @@
 
   // Titles
   h2 {
-    @include font-size(head-small);
+    @include font-size(head-small, 6);
     @include font-style(widget-title);
-    color: colour(sidebar-head);
+    color: colour(sidebar-h);
   }
 
   // Lists

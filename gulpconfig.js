@@ -1,7 +1,7 @@
 // ==== CONFIGURATION ==== //
 
 // Project paths
-var project     = 'pendrell'
+var project     = 'technocrat'
   , src         = './src/'
   , build       = './build/'
   , dist        = './dist/'+project+'/'
@@ -34,14 +34,14 @@ module.exports = {
       , prefix: 'ion-'
       , icons: [
           'search'
-        //, 'social-apple'
-        //, 'social-css3'
-        //, 'social-github'
-        //, 'social-html5'
-        //, 'social-javascript'
-        //, 'social-nodejs'
-        //, 'social-sass'
-        //, 'social-wordpress'
+        , 'social-apple'
+        , 'social-css3'
+        , 'social-github'
+        , 'social-html5'
+        , 'social-javascript'
+        , 'social-nodejs'
+        , 'social-sass'
+        , 'social-wordpress'
         ]
       }
     , typicons: {

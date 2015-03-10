@@ -56,11 +56,11 @@
   @include font-style(input);
   @include letterpress;
   @include rem( padding, 3px 6px );
-  background: darken( colour(body-bg), 3 );
+  background: colour(text-input-bg);
   border: none;
-  color: lighten( colour(text), 23 );
+  color: colour(text-input);
   &:focus {
-    color: colour(text);
-    background-color: darken( colour(body-bg), 7 );
+    color: darken( colour(text-input), 7 );
+    background-color: darken( colour(text-input-bg), 3 );
   }
 }

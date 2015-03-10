@@ -41,9 +41,9 @@
   @include rem( padding, spacer(1/2) );
   .bypostauthor & { // Specific to the post author's comments
     @include k-media-above( break(small) ) {
-      @include border-radius;
-      background: colour(body-dark);
-      box-shadow: inset 3px 3px 7px colour(shadow-light);
+      //@include border-radius;
+      //background: colour(body-dark);
+      //box-shadow: inset 3px 3px 7px colour(shadow-light);
     }
   }
 }
@@ -96,9 +96,12 @@
   }
 }
 .comment-meta {
-  @extend %links-meta-no-border;
+  @include links( k-colour(raven), false, colour(highlight), $link-border: false );
   @include font-size(text-smaller);
   color: colour(meta);
+  h1 {
+    @include links( k-colour(jaffa), false, k-colour(eastern-blue) );
+  }
 }
 
 
