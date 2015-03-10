@@ -1,12 +1,12 @@
 {
-  "name": "synapticism/pendrell",
-  "description": "A minimal yet powerful WordPress theme for multimedia blogs",
+  "name": "synapticism/technocrat",
+  "description": "A minimal WordPress theme for technical writing",
   "keywords": [
     "wordpress",
     "wordpress-theme",
     "theme"
   ],
-  "homepage": "https://github.com/synapticism/pendrell",
+  "homepage": "https://github.com/synapticism/technocrat",
   "license": "GPL-3.0",
   "authors": [
     {
