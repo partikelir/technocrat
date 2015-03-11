@@ -133,11 +133,11 @@ $_colours: (
 
   // Prism (optional)
 , p-text:         $c-code
-, p-comment:      darken( $c-code, 17 )
-, p-punctuation:  darken( $c-code, 7 )
-, p-tag:          lighten( $c-code, 27 )
-, p-selector:     adjust-hue( $c-highlight, 60 )
-, p-variable:     lighten( $c-highlight, 7 )
-, p-keyword:      adjust-hue( $c-highlight, 90 )
-, p-regex:        adjust-hue( $c-highlight, 180 )
+, p-comment:      k-colour(eastern-blue)
+, p-punctuation:  k-colour(raven)
+, p-tag:          grey(252)
+, p-selector:     k-colour(jaffa)
+, p-variable:     k-colour(java)
+, p-keyword:      $c-offset
+, p-regex:        k-colour(atlantis)
 );
