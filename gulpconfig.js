@@ -39,8 +39,10 @@ module.exports = {
         , 'social-github'
         , 'social-html5'
         , 'social-javascript'
+        //, 'social-instagram-outline'
         , 'social-nodejs'
         , 'social-sass'
+        //, 'social-twitter'
         , 'social-wordpress'
         ]
       }
@@ -54,6 +56,11 @@ module.exports = {
         , 'key'
         , 'location'
         , 'spanner'
+        , 'social-at-circular'
+        , 'social-flickr-circular'
+        , 'social-github-circular'
+        , 'social-instagram-circular'
+        , 'social-twitter-circular'
         ]
       }
     }

@@ -32,7 +32,7 @@
 .wrap-header {
   @extend %wrap;
   @include rem( padding-top, spacer(1/2) );
-  background: k-colour(mako);
+  background: colour(bg-header);
   @include k-media-above( break(medium) ) {
     @include rem( padding-top, spacer() );
   }
@@ -44,23 +44,35 @@
   @extend %wrap;
   @include rem( padding-top, spacer() );
   @include rem( padding-bottom, spacer() );
-  background: k-colour(shark);
+  background: colour(bg-sidebar);
 }
 .wrap-content {
   @extend %wrap;
   @include rem( padding-top, spacer() );
   @include rem( padding-bottom, spacer() );
-  background: white();
+  background: colour(bg-content);
   @include k-media-above( break(large) ) {
     @include rem( padding-right, spacer() );
     float: left;
     width: 67%;
   }
 }
+.wrap-social {
+  @extend %wrap;
+  @include k-media-above( break(large) ) {
+    @include rem( padding-left, spacer() );
+    float: right;
+    width: 33%;
+  }
+}
 .wrap-footer {
   @extend %wrap;
-  background: colour(footer-bg);
-  position: relative; // For use with the "Back to top" button
+  background: colour(bg-footer);
+  @include k-media-above( break(large) ) {
+    @include rem( padding-right, spacer() );
+    float: left;
+    width: 67%;
+  }
 }
 
 
@@ -162,19 +174,36 @@ main {
 
 
 
+// == SOCIAL == //
+
+.social {
+  @include rem( padding-bottom, spacer() );
+  max-width: $width-main;
+  @include k-media-above( break(large) ) {
+    max-width: $width-content - $width-main;
+  }
+}
+
+
+
 // == FOOTER == //
 
 .site-footer {
-  @include links( colour(footer-link), false, colour(highlight), $link-border: false );
   @include rem( padding-bottom, spacer() );
-  color: colour(footer);
+  position: relative; // For use with the "Back to top" button
+  @include k-media-above( break(large) ) {
+    margin-left: auto;
+    max-width: $width-main;
+  }
 }
-.site-footer-buttons {
+.site-footer-interface {
   @extend %button-container;
   @include k-media-above( break(medium) ) {
     @include k-hide-visually;
   }
 }
-.site-footer-info {
+.site-colophon {
   @extend %text-smallest;
+  @include links( colour(footer-link), false, colour(highlight), $link-border: false );
+  color: colour(footer);
 }

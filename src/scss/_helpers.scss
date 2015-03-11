@@ -186,7 +186,7 @@
   @include links( colour(meta-link), false, colour(meta-link-h), $link-border: false );
 }
 %links-title {
-  @include links( k-colour(jaffa), false, k-colour(eastern-blue), $link-border: false );
+  @include links( colour(entry-title), false, colour(entry-title-h), $link-border: false );
 }
 %links-reset-border {
   a,

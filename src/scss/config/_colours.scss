@@ -9,13 +9,13 @@ $k-colours: map-merge( $k-colours, (
 ) );
 
 // A few colour shortcuts (since we can't use the colour() function within the map)
-$c-text:          k-colour(mako);//grey(84);
-$c-body-bg:       grey(252);//#FAF9FC;
-$c-link:          k-colour(java);//affair); // Purple
+$c-text:          k-colour(mako);
+$c-body-bg:       grey(252);
+$c-link:          k-colour(java);
 $c-menu:          k-colour(emerald);
 $c-highlight:     k-colour(jaffa);
 $c-offset:        k-colour(emerald);
-$c-code:          k-colour(loblolly);//iron);
+$c-code:          k-colour(loblolly);
 
 // General; @TODO: clean this up, there are many unused colours
 $_colours: (
@@ -39,6 +39,12 @@ $_colours: (
 , body-dark:      darken( white(), 3 )
 , body-darker:    darken( white(), 13 )
 , body-darkest:   darken( white(), 27 )
+, bg-body:        k-colour(shark)
+, bg-header:      k-colour(mako)
+, bg-sidebar:     k-colour(shark)
+, bg-content:     white()
+, bg-social:      k-colour(shark)
+, bg-footer:      k-colour(mako)
 
   // Links
 , link:           $c-link
@@ -50,7 +56,7 @@ $_colours: (
   // Menus
 , menu-link:      white()
 , menu-link-h:    $c-highlight
-, menu-current:   white(.9)
+, menu-current:   k-colour(shark)
 , menu-sub:       lighten( k-colour(raven), 23 )
 , menu-sub-h:     k-colour(raven)
 
@@ -60,9 +66,10 @@ $_colours: (
 , sub-bg:         darken( $c-body-bg, 13 )
 
   // Sidebar
-, sidebar:        darken( k-colour(raven), 13 )
+, sidebar:        k-colour(mako)
 , sidebar-h:      $c-highlight
-, sidebar-link:   saturate( lighten( k-colour(raven), 3 ), 3% )
+, sidebar-link:   k-colour(raven)//saturate( lighten( k-colour(raven), 3 ), 3% )
+, sidebar-link-h: k-colour(java)
 
   // Meta
 , meta:           lighten( $c-text, 9 )
@@ -72,14 +79,27 @@ $_colours: (
 , meta-link-a:    grey(84)
 , meta-link-f:    grey(84)
 
+  // Social
+, social:         k-colour(java)
+, social-h:       k-colour(jaffa)
+
   // Footer
 , footer:         lighten( k-colour(raven), 23 )
-, footer-bg:      k-colour(mako)//$c-body-bg
-, footer-link:    $c-body-bg//k-colour(raven)
+, footer-link:    $c-body-bg
 , footer-link-v:  grey(84)
 , footer-link-h:  $c-highlight
 , footer-link-a:  grey(84)
 , footer-link-f:  grey(84)
+
+  // Titles
+, entry-title:    k-colour(jaffa)
+, entry-title-h:  k-colour(eastern-blue)
+
+  // Comments
+, comment-link:   k-colour(raven)
+, comment-link-h: $c-highlight
+, comment-auth:   k-colour(jaffa)
+, comment-auth-h: k-colour(eastern-blue)
 
   // Forms
 , alert:          k-colour(milano-red)
@@ -87,12 +107,15 @@ $_colours: (
 , success:        k-colour(atlantis)
 
   // Code blocks
+, code:           k-colour(raven)
+, code-bg:        rgba( #FAF9FC, .73 )
 , code-box:       $c-code
 , code-box-bg:    k-colour(shark)
 
   // Interface
 , button:         k-colour(java)
 , button-h:       k-colour(eastern-blue)
+, button-alt:     k-colour(jaffa)
 , divider:        rgba( $c-text, .09 ) // For use with <hr> etc.
 , select-top:     grey(251)
 , select-bottom:  grey(227)
@@ -105,6 +128,7 @@ $_colours: (
 , text-input-bg:  $c-body-bg
 
   // Various
+, blockquote:     k-colour(raven)
 , highlight-bg:   k-colour(lemon-chiffon)
 
   // Prism (optional)

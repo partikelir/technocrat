@@ -10,7 +10,7 @@ body {
   @include font-size(text);
   @include font-style(body);
   color: colour(text);
-  background-color: k-colour(shark);//colour(body-bg);
+  background-color: colour(bg-body);
   font-feature-settings: 'liga', 'opbd', 'size', 'init', 'fina'; // Ligatures; optical bounds; optical size; initial and final forms; via: http://www.microsoft.com/typography/otspec/featurelist.htm
   text-rendering: optimizeLegibility;
 }
@@ -138,7 +138,7 @@ blockquote {
   @include letterpress;
   @include rem( padding, spacer(1/2) spacer(1/2) spacer(1/2) spacer() - 3px );
   background: colour(body-bg);
-  border-left: 3px solid k-colour(affair);
+  border-left: 3px solid colour(blockquote);
   color: rgba( colour(text), .75); // Transparent so that blockquotes can be nested
   quotes: none; // From the Meyer Reset
   blockquote {
@@ -219,8 +219,8 @@ code {
   li > &,
   p > &,
   strong > & {
-    @include k-highlight( rgba( #FAF9FC, .73 ), 2px );
-    color: k-colour(raven);
+    @include k-highlight( colour(code-bg), 2px );
+    color: colour(code);
     font-size: 80%; // Hack for fixing over-sized monospace fonts
   }
 }

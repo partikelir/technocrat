@@ -28,7 +28,7 @@
   > .current_page_item,
   > .current_page_ancestor {
     > a {
-      background: k-colour(shark);
+      background: colour(menu-current);
       color: colour(highlight);
       &:hover {
         background: black();

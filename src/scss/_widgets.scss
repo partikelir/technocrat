@@ -5,7 +5,7 @@
   @extend %spacer-below;
   @include font-size(text-smaller);
   @include font-style(widget-text);
-  @include links( colour(sidebar-link), false, lighten( colour(sidebar-link), 7), false, false, false );
+  @include links( colour(sidebar-link), false, colour(sidebar-link-h), false, false, false );
   color: colour(sidebar);
   word-wrap: break-word;
 
