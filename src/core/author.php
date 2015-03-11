@@ -90,15 +90,15 @@ if ( !function_exists( 'pendrell_author_social' ) ) : function pendrell_author_s
   $twitter    = $meta['twitter'][0];
 
   // Prepend URLs as needed; this allows for usernames OR full URLs to be entered into the admin panel
-  if ( !empty( $facebook ) && strpos( $facebook, 'facebook.com' ) !== false )
+  if ( !empty( $facebook ) && strpos( $facebook, 'facebook.com' ) === false )
     $facebook = 'https://www.facebook.com' . $facebook;
-  if ( !empty( $flickr ) && strpos( $flickr, 'flickr.com' ) !== false )
+  if ( !empty( $flickr ) && strpos( $flickr, 'flickr.com' ) === false )
     $flickr = 'https://www.flickr.com/photos/' . $flickr;
-  if ( !empty( $github ) && strpos( $github, 'github.com' ) !== false )
+  if ( !empty( $github ) && strpos( $github, 'github.com' ) === false )
     $github = 'https://github.com/' . $github;
-  if ( !empty( $instagram ) && strpos( $instagram, 'instagram.com' ) !== false )
+  if ( !empty( $instagram ) && strpos( $instagram, 'instagram.com' ) === false )
     $instagram = 'https://instagram.com/' . $instagram;
-  if ( !empty( $twitter ) && strpos( $twitter, 'twitter.com' ) !== false )
+  if ( !empty( $twitter ) && strpos( $twitter, 'twitter.com' ) === false )
     $twitter = 'https://twitter.com/' . $twitter;
 
   // Initialize output
