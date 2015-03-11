@@ -18,6 +18,12 @@ function pendrell_icon( $name = '', $text = '' ) {
   , 'places'                  => 'typ-location'
   , 'related-comments'        => 'awe-comment'
   , 'search'                  => 'ion-search'
+  , 'social-home'             => 'typ-social-at-circular'
+  , 'social-facebook'         => 'typ-social-facebook-circular'
+  , 'social-flickr'           => 'typ-social-flickr-circular'
+  , 'social-github'           => 'typ-social-github-circular'
+  , 'social-instagram'        => 'typ-social-instagram-circular'
+  , 'social-twitter'          => 'typ-social-twitter-circular'
   , 'term-edit'               => 'typ-spanner'
   , 'top-link'                => 'typ-arrow-up-thick'
   ) );
