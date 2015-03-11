@@ -161,11 +161,7 @@ function pendrell_sizes_default( $default = '', $size = '', $width = '', $contex
   global $content_width, $main_width;
 
   // Set the bounding width (the maximum size for rendered images)
-  if ( pendrell_is_full_width() ) {
-    $bounding_width = $content_width;
-  } else {
-    $bounding_width = $main_width;
-  }
+  $bounding_width = $main_width;
 
   // Default viewport width (integer)
   $viewport     = 100;

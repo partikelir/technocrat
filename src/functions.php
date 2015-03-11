@@ -58,10 +58,6 @@ function pendrell_setup() {
   // Adds RSS feed links to <head> for posts and comments.
   add_theme_support( 'automatic-feed-links' );
 
-  // Conditionally add post format support
-  if ( PENDRELL_POST_FORMATS )
-    add_theme_support( 'post-formats', array( 'aside', 'gallery', 'image', 'link', 'quote', 'status' ) );
-
 
 
   // == LAYOUT == //
@@ -70,11 +66,11 @@ function pendrell_setup() {
   // It should be set once and left alone apart from that; don't do anything fancy with it; it is part of WordPress core
   global $content_width, $main_width;
   if ( !isset( $content_width ) || !is_int( $content_width ) )
-    $content_width = (int) 960;
+    $content_width = 720;
 
   // Width of the main content column; should correspond to equivalent values in the stylesheet; NOT a WordPress core thing
   // This variable is mainly used here in functions.php; it should match the variable defined in _base.scss
-  $main_width = round( $content_width * 0.65 ); // = 624
+  $main_width = $content_width * 0.75; // 540
 
 
 
