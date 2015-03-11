@@ -112,17 +112,21 @@ svg {
 }
 .social-icons {
   a {
-    margin: 0;
-    padding: 0;
+    outline: none;
   }
   svg.icon {
-    @include rem( height, spacer(2) );
-    @include rem( width, spacer(2) );
+    @include rem( height, spacer(1.5) );
+    @include rem( width, spacer(1.5) );
+    @include rem( margin, 0 4px 0 -6px );
     fill: colour(social);
     transition: all .7s ease-out, background-position .49s ease;
     &:hover {
       fill: colour(social-h);
       transition: all .23s ease, background-position .17s ease;
+      transform: rotate(360deg);
+    }
+    &:active {
+      transform: translateY(1px);
     }
   }
 }

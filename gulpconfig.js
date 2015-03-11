@@ -57,6 +57,7 @@ module.exports = {
         , 'location'
         , 'spanner'
         , 'social-at-circular'
+        , 'social-facebook-circular'
         , 'social-flickr-circular'
         , 'social-github-circular'
         , 'social-instagram-circular'

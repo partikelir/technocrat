@@ -174,18 +174,6 @@ main {
 
 
 
-// == SOCIAL == //
-
-.social {
-  @include rem( padding-bottom, spacer() );
-  max-width: $width-main;
-  @include k-media-above( break(large) ) {
-    max-width: $width-content - $width-main;
-  }
-}
-
-
-
 // == FOOTER == //
 
 .site-footer {

@@ -11,9 +11,6 @@
  */
 ?>
       </div>
-      <div id="wrap-social" class="wrap-social">
-        <div class="social"><?php echo pendrell_author_social(); ?></div>
-      </div>
       <div id="wrap-footer" class="wrap-footer">
         <div class="site-footer">
         	<nav id="site-footer-navigation" role="navigation">

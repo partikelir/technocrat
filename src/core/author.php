@@ -70,3 +70,57 @@ if ( !function_exists( 'pendrell_author_edit_link' ) ) : function pendrell_autho
   }
 } endif;
 add_action( 'pendrell_archive_description_before', 'pendrell_author_edit_link' );
+
+
+
+// Output social icons associated with the specified account holder
+if ( !function_exists( 'pendrell_author_social' ) ) : function pendrell_author_social( $id = 1 ) {
+
+  // Get user info
+  $meta = get_user_meta( $id );
+  if ( empty( $meta ) )
+    return;
+
+  // Line everything up
+  $url        = get_the_author_meta( 'user_url', $id );
+  $facebook   = $meta['facebook'][0];
+  $flickr     = $meta['flickr'][0];
+  $github     = $meta['github'][0];
+  $instagram  = $meta['instagram'][0];
+  $twitter    = $meta['twitter'][0];
+
+  // Prepend URLs as needed; this allows for usernames OR full URLs to be entered into the admin panel
+  if ( !empty( $facebook ) && strpos( $facebook, 'facebook.com' ) !== false )
+    $facebook = 'https://www.facebook.com' . $facebook;
+  if ( !empty( $flickr ) && strpos( $flickr, 'flickr.com' ) !== false )
+    $flickr = 'https://www.flickr.com/photos/' . $flickr;
+  if ( !empty( $github ) && strpos( $github, 'github.com' ) !== false )
+    $github = 'https://github.com/' . $github;
+  if ( !empty( $instagram ) && strpos( $instagram, 'instagram.com' ) !== false )
+    $instagram = 'https://instagram.com/' . $instagram;
+  if ( !empty( $twitter ) && strpos( $twitter, 'twitter.com' ) !== false )
+    $twitter = 'https://twitter.com/' . $twitter;
+
+  // Initialize output
+  $social = '';
+
+  // Loop through the social icons we might want to display
+  if ( !empty( $url ) )
+    $social .= '<a href="' . $url . '">' . ubik_svg_icon( pendrell_icon( 'social-home' ), 'Homepage' ) . '</a>';
+  if ( !empty( $facebook ) )
+    $social .= '<a href="' . $facebook . '">' . ubik_svg_icon( pendrell_icon( 'social-facebook' ), 'Facebook' ) . '</a>';
+  if ( !empty( $flickr ) )
+    $social .= '<a href="' . $flickr . '">' . ubik_svg_icon( pendrell_icon( 'social-flickr' ), 'Flickr' ) . '</a>';
+  if ( !empty( $github ) )
+    $social .= '<a href="' . $github . '">' . ubik_svg_icon( pendrell_icon( 'social-github' ), 'GitHub' ) . '</a>';
+  if ( !empty( $instagram ) )
+    $social .= '<a href="' . $instagram . '">' . ubik_svg_icon( pendrell_icon( 'social-instagram' ), 'Instagram' ) . '</a>';
+  if ( !empty( $twitter ) )
+    $social .= '<a href="' . $twitter . '">' . ubik_svg_icon( pendrell_icon( 'social-twitter' ), 'Twitter' ) . '</a>';
+
+  // Wrap it
+  if ( !empty( $social ) )
+    $social = '<div class="social-icons">' . $social . '</div>';
+
+  return apply_filters( 'pendrell_author_social', $social );
+} endif;
