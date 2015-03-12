@@ -41,9 +41,6 @@ defined( 'PENDRELL_UBIK_SERIES' )         || define( 'PENDRELL_UBIK_SERIES', fal
 // Modules path
 $path_modules = trailingslashit( get_stylesheet_directory() ) . 'modules/';
 
-// Require Ubik core first...
-require_once( $path_modules . 'ubik/ubik.php' );
-
 
 
 // == ADMIN == //
@@ -279,6 +276,7 @@ if ( UBIK_SVG_ICONS_PATH && UBIK_SVG_ICONS_URL === false )
 
 // == TERMS * == //
 
+define( 'UBIK_TERMS_CATEGORIZED', true ); // This blog has categories
 define( 'UBIK_TERMS_TAG_SHORTCODE', true );
 require_once( $path_modules . 'ubik-terms/ubik-terms.php' );
 
@@ -295,6 +293,11 @@ function pendrell_terms_edit_link() {
     echo '<div class="entry-meta-buttons">' . $edit_link . '</div>';
 }
 add_action( 'pendrell_archive_header_before', 'pendrell_terms_edit_link' );
+
+// An alias for ubik_terms_categorized()
+function is_categorized() {
+  return ubik_terms_categorized();
+}
 
 
 

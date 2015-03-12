@@ -99,6 +99,7 @@
   @extend %clearfix-below;
   @include font-size(head);
   @include font-style(site-title);
+  white-space: nowrap;
   @include k-media-above( break(medium) ) {
     @include font-size(head-bigger);
   }
@@ -147,7 +148,7 @@
 
   // Individual articles within the content area
   article {
-    @extend %spacer-below-double;
+    @extend %spacer-below-triple;
   }
 }
 main {

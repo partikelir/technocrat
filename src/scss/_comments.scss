@@ -2,7 +2,7 @@
 
 // General comments area
 .comments-area {
-  @extend %spacer-above-double;
+  @extend %spacer-above-triple;
   max-width: $width-main ; // Required to limit the width of the comments area when there is no sidebar displayed
 }
 .comments-title {

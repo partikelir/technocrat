@@ -11,8 +11,9 @@
 
   // Titles
   h2 {
-    @include font-size(head-small, 6);
+    @include font-size(head-small);
     @include font-style(widget-title);
+    @include rem( margin-bottom, spacer(1/4) );
     color: colour(sidebar-h);
   }
 
@@ -21,23 +22,16 @@
     @include rem( margin-left, spacer(1/2) ); // Half length indentation since we don't have that much space to play with
   }
 
-  // Recent posts and the like; let's try abandoning the rhythm for this part
-  ul {
-    margin-top: .5em;
-  }
+  // Abandoned the vertical rhythm to gain some breathing room
+  p,
   li {
+    @include rem( margin-bottom, spacer(1/3) );
     line-height: 1.6;
-    margin-bottom: 1em;
   }
 
   // Text
   p {
-    @extend %spacer-below;
-  }
-
-  // Images
-  img {
-    @include border-radius;
+    //@extend %spacer-below;
   }
 
   // Eliminate margin on the very last widget

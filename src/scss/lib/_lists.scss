@@ -20,9 +20,6 @@
       counter-increment: list;
       content: counter(list) ".";
       font-style: italic;
-      .full-width & {
-        @include font-size(text-small);
-      }
     }
     > li ol {
       counter-reset: list2;
@@ -48,9 +45,6 @@
       @include font-size(text-smaller);
       @include rem( margin-left, spacer(-3/5) );
       content: '\002022'; // Bullet: http://codepoints.net/U+2022
-      .full-width & {
-        @include font-size(text-small);
-      }
     }
     > li ul {
       > li:before {

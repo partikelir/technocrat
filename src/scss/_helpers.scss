@@ -164,8 +164,10 @@
 }
 
 // Lists
-%lists {
+%lists-ordered {
   @include list-ordered;
+}
+%lists-unordered {
   @include list-unordered;
 }
 

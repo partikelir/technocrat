@@ -43,7 +43,6 @@
   .tags a {
     transition: all .78s ease-out;
     &:hover {
-      opacity: .84;
       transition: all .35s ease;
     }
   }
@@ -54,9 +53,15 @@
   }
   .cats a {
     background: colour(bg-cats);
+    &:hover {
+      background: colour(bg-cats-h);
+    }
   }
   .tags a {
     background: colour(bg-tags);
+    &:hover {
+      background: colour(bg-tags-h);
+    }
   }
   .author {
     @extend %links;
@@ -124,7 +129,8 @@
   }
 
   // Lists and definitions
-  @extend %lists;
+  @extend %lists-ordered;
+  @extend %lists-unordered;
   ol,
   ul,
   dl {
@@ -134,6 +140,10 @@
     dl {
       margin-bottom: 0; // Remove spacing for sub-lists
     }
+  }
+  ul li:before {
+    @include rem( padding-top, 2px );
+    color: colour(text-muted);
   }
   li {
     @include rem( margin, 0 0 0 spacer(2/3) );
@@ -211,7 +221,8 @@
 // Entry extras (related posts, series, etc.)
 .entry-extras {
   @extend %links-no-border;
-  @extend %lists;
+  @extend %lists-ordered;
+  @extend %lists-unordered;
   @extend %spacer-above-double;
   ol,
   ul {

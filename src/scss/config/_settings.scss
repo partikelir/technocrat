@@ -28,7 +28,7 @@ $_metadata: (
 , theme-author:             "Alexander Synaptic"
 , theme-author-uri:         "http://synapticism.com"
 , theme-description:        "Alexander Synaptic"
-, theme-version:            "0.0.3"
+, theme-version:            "0.0.4"
 , theme-license:            "GPLv3"
 , theme-license-uri:        "https://www.gnu.org/copyleft/gpl.txt"
 , theme-tags:               (light, gray, white, one-column, two-columns, right-sidebar, fixed-layout, responsive-layout, custom-menu, featured-images, microformats, post-formats, theme-options, translation-ready)
@@ -38,11 +38,11 @@ $_metadata: (
 
 // Breakpoints; use break() to access; pixel values (in the comments) are defaults but assume nothing else has changed
 $_breaks: (
-  tiny:               ceil( $width-main / 1.5 )       // 416
-, small:              ceil( $width-main / 1.2 )       // 520
-, medium:             ceil( $width-main + spacer() )  // 714
-, large:              ceil( $width-main + spacer(5) ) // 870
-, full:               ceil( $width-content )          // 960
+  tiny:               ceil( $width-main / 1.8 )       // 400
+, small:              ceil( $width-main / 1.5 )       // 480
+, medium:             ceil( $width-main + spacer(2) ) // 780
+, large:              ceil( $width-main + spacer(7) ) // 930
+, full:               ceil( $width-content )          // 1020
 );
 
 // Modules; reduce bloat by switching some of these off; test with @if module(name) {}

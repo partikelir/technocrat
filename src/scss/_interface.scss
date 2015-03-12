@@ -137,6 +137,7 @@ svg {
     @include rem( height, 35px );
     @include rem( width, 35px );
     color: k-colour(raven);
+    transform: scale(-1,1) rotate(180deg);
     transition: all .56s ease-out;
     vertical-align: bottom;
     @include k-media-below( break(medium) ) {
@@ -148,7 +149,7 @@ svg {
   &:hover {
     svg.icon {
       transition: all 1.4s ease;
-      transform: rotate(360deg);
+      transform: scale(-1,1) rotate(-180deg);
     }
   }
 }
