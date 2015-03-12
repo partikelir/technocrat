@@ -94,10 +94,8 @@ if ( !function_exists( 'pendrell_nav_post' ) ) : function pendrell_nav_post( $id
   $post_tax = 'category';
 
   // If this blog isn't big on categories let's use tags instead; @DEPENDENCY: relies on the is_categorized conditional from Ubik core
-  if ( function_exists( 'is_categorized' ) ) {
-    if ( !is_categorized() )
-      $post_tax = 'post_tags';
-  }
+  if ( !is_categorized() )
+    $post_tax = 'post_tags';
 
   // @TODO: use $post_tax; this seems to be very buggy in the current version of WP as per https://core.trac.wordpress.org/ticket/26937
   $prev = get_previous_post_link( '<div class="nav-previous">%link</div>', _x( '<span class="nav-arrow">&larr;</span>&nbsp;%title', 'Previous post link', 'pendrell' ) );

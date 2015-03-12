@@ -28,7 +28,7 @@ gulp.task('theme-ubik', function() {
   });
 
   // Combine the list of components with the ignore glob; this allows us to copy only the files we need without anything extra from the original GitHub repos
-  config.ubik.components = config.ubik.components.concat(config.ubik.src+'ubik/**/*', config.ubik.ignore);
+  config.ubik.components = config.ubik.components.concat(config.ubik.ignore);
 
   // Let's go!
   return gulp.src(config.ubik.components)

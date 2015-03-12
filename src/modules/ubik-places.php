@@ -41,9 +41,8 @@ add_filter( 'pendrell_sidebar', 'pendrell_sidebar_places' );
 
 // Adds places to entry metadata right after other taxonomies; @DEPENDENCY: relies on popular terms function in Ubik core
 function pendrell_places_meta( $meta ) {
-  global $post;
   if ( has_term( '', 'places' ) )
-    $meta .= ubik_popular_terms_list( $post->ID, 'places', 'Places: ', ', ', '. ' );
+    $meta .= ubik_terms_popular_list( get_the_ID(), 'places', 'Places: ', ', ', '. ' );
   return $meta;
 }
 add_filter( 'ubik_meta_taxonomies', 'pendrell_places_meta' );
