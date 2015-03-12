@@ -95,9 +95,7 @@ $w-mono-bold:       700;
     @extend %head-normal;
   }
   @if (entry-title-meta == $style) {
-    //@extend %body-normal;
     @extend %head-light;
-    letter-spacing: 0.02rem;
     text-transform: uppercase;
   }
   @if (entry-content == $style) {

@@ -47,9 +47,9 @@ $_colours: (
 , bg-content:     white()
 , bg-social:      k-colour(shark)
 , bg-footer:      k-colour(mako)
-, bg-date:        k-colour(emerald)
-, bg-cats:        k-colour(raven)
-, bg-tags:        k-colour(mako)
+, bg-date:        $c-code
+, bg-cats:        k-colour(mako)
+, bg-tags:        k-colour(raven)
 
   // Links
 , link:           $c-link
@@ -77,7 +77,8 @@ $_colours: (
 , sidebar-link-h: k-colour(java)
 
   // Meta
-, meta:           k-colour(loblolly)
+, meta:           $c-code
+, meta-date:      k-colour(mako)
 , meta-link:      saturate( lighten( k-colour(raven), 9 ), 3% ) // Possibly unused
 , meta-link-v:    grey(84)
 , meta-link-h:    $c-highlight

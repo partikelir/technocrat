@@ -16,14 +16,16 @@ if ( !function_exists( 'pendrell_entry_title' ) ) : function pendrell_entry_titl
 
 // Entry title footer
 if ( !function_exists( 'pendrell_entry_title_meta' ) ) : function pendrell_entry_title_meta() {
-  $date = '<time class="date" datetime="' . date( 'c', get_the_time( 'U' ) ) . '">' . get_the_time( 'M j Y' ) . '</time>';
-  $cats = get_the_category_list( '</span> <span class="cats">' );
+  if ( is_page() || is_attachment() )
+    return;
+  $date = '<div class="date"><time datetime="' . date( 'c', get_the_time( 'U' ) ) . '">' . get_the_time( 'M j Y' ) . '</time></div>';
+  $cats = get_the_category_list( '</div> <div class="cats">' );
   if ( !empty( $cats ) )
-    $cats = ' <span class="cats">' . $cats . '</span>';
-  $tags = ubik_terms_popular_list( get_the_ID(), 'post_tag', ' <span class="tags">', '</span> <span class="tags">', '</span>' );
+    $cats = ' <div class="cats">' . $cats . '</div>';
+  $tags = ubik_terms_popular_list( get_the_ID(), 'post_tag', ' <div class="tags">', '</div> <div class="tags">', '</div>' );
   $author = ubik_meta_author();
   if ( !empty( $author ) )
-    $author = ' <span class="author">' . sprintf( __( '<span class="by">by</span> %s', 'pendrell' ), $author ) . '</span>';
+    $author = ' <div class="author">' . sprintf( __( '<div class="by">by</div> %s', 'pendrell' ), $author ) . '</div>';
   echo '<footer class="entry-title-meta">' . $date . $cats . $tags . $author . '</footer>';
 } endif;
 add_action( 'pendrell_entry_title_after', 'pendrell_entry_title_meta' );

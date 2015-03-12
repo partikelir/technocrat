@@ -27,39 +27,46 @@
 .entry-title-meta {
   @include font-size(text-smaller);
   overflow: hidden;
-  .date,
-  .cats,
-  .tags {
+  > * {
+    display: inline-block;
+  }
+  .date time,
+  .cats a,
+  .tags a {
     @include font-style(entry-title-meta);
     @include rem( padding, 3px 6px );
     color: white();
     text-transform: uppercase;
     white-space: prewrap;
   }
-  .cats,
-  .tags {
+  .cats a,
+  .tags a {
     transition: all .78s ease-out;
     &:hover {
       opacity: .84;
       transition: all .35s ease;
     }
   }
-  .date {
+  .date time {
     background: colour(bg-date);
+    color: colour(meta-date);
+    font-weight: $w-head-bold;
   }
-  .cats {
+  .cats a {
     background: colour(bg-cats);
   }
-  .tags {
+  .tags a {
     background: colour(bg-tags);
   }
   .author {
     @extend %links;
-    white-space: nowrap;
+    white-space: prewrap;
   }
   .by {
     @include font-size(text-smallest);
+    @include rem( margin-left, 1px );
     color: colour(text-muted);
+    display: inline;
     font-style: italic;
     text-transform: lowercase;
   }
