@@ -36,13 +36,10 @@ module.exports = {
           'search'
         , 'social-apple'
         , 'social-css3'
-        , 'social-github'
         , 'social-html5'
         , 'social-javascript'
-        //, 'social-instagram-outline'
         , 'social-nodejs'
         , 'social-sass'
-        //, 'social-twitter'
         , 'social-wordpress'
         ]
       }
@@ -56,6 +53,7 @@ module.exports = {
         , 'key'
         , 'location'
         , 'spanner'
+        , 'spiral'
         , 'social-at-circular'
         , 'social-facebook-circular'
         , 'social-flickr-circular'

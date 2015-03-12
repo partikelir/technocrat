@@ -1,5 +1,10 @@
 // ==== CONTENT ==== //
 
+// Entry header
+.entry-header {
+  @extend %spacer-below;
+}
+
 // Entry title
 .entry-title {
   @extend %links-title;
@@ -18,6 +23,48 @@
     @include font-size(head-big);
   }
 }
+
+.entry-title-meta {
+  @include font-size(text-smaller);
+  overflow: hidden;
+  .date,
+  .cats,
+  .tags {
+    @include font-style(entry-title-meta);
+    @include rem( padding, 3px 6px );
+    color: white();
+    text-transform: uppercase;
+    white-space: prewrap;
+  }
+  .cats,
+  .tags {
+    transition: all .78s ease-out;
+    &:hover {
+      opacity: .84;
+      transition: all .35s ease;
+    }
+  }
+  .date {
+    background: colour(bg-date);
+  }
+  .cats {
+    background: colour(bg-cats);
+  }
+  .tags {
+    background: colour(bg-tags);
+  }
+  .author {
+    @extend %links;
+    white-space: nowrap;
+  }
+  .by {
+    @include font-size(text-smallest);
+    color: colour(text-muted);
+    font-style: italic;
+    text-transform: lowercase;
+  }
+}
+
 
 
 
@@ -122,9 +169,10 @@
     @extend %spacer-below;
     @include font-size(text-small);
     @include k-reverse-italics;
-    color: lighten( colour(text-lightest), 10 );
+    color: colour(text-muted);
     &:first-child p { // Style opening asides here
-      color: colour(text-lightest);
+      color: colour(text-muted);
+      font-weight: $w-body-bold;
     }
   }
 

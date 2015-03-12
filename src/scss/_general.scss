@@ -196,8 +196,11 @@ pre {
   @include letterpress( black(.3) );
   @include rem( padding, spacer(1/2) );
   background: colour(code-box-bg);
+  border-left: 6px solid colour(code-box);
+
   //background-image: repeating-linear-gradient( 45deg, transparent, transparent spacer(1/2), black(.04) spacer(1/2), black(.04) spacer() );
   color: colour(code-box);
+  margin-left: -6px;
   tab-size: 2;
   white-space: pre;
   word-wrap: normal; // Allows for horizontal scrollbars

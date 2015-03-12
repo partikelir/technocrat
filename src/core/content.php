@@ -14,6 +14,22 @@ if ( !function_exists( 'pendrell_entry_title' ) ) : function pendrell_entry_titl
 
 
 
+// Entry title footer
+if ( !function_exists( 'pendrell_entry_title_meta' ) ) : function pendrell_entry_title_meta() {
+  $date = '<time class="date" datetime="' . date( 'c', get_the_time( 'U' ) ) . '">' . get_the_time( 'M j Y' ) . '</time>';
+  $cats = get_the_category_list( '</span> <span class="cats">' );
+  if ( !empty( $cats ) )
+    $cats = ' <span class="cats">' . $cats . '</span>';
+  $tags = ubik_terms_popular_list( get_the_ID(), 'post_tag', ' <span class="tags">', '</span> <span class="tags">', '</span>' );
+  $author = ubik_meta_author();
+  if ( !empty( $author ) )
+    $author = ' <span class="author">' . sprintf( __( '<span class="by">by</span> %s', 'pendrell' ), $author ) . '</span>';
+  echo '<footer class="entry-title-meta">' . $date . $cats . $tags . $author . '</footer>';
+} endif;
+add_action( 'pendrell_entry_title_after', 'pendrell_entry_title_meta' );
+
+
+
 // Entry meta wrapper
 // @action: pendrell_entry_meta_before
 // @action: pendrell_entry_meta_after
@@ -23,9 +39,17 @@ if ( !function_exists( 'pendrell_entry_meta' ) ) : function pendrell_entry_meta(
 
   pendrell_entry_meta_buttons();
 
-  ?><div class="entry-meta-main">
-    <?php echo ubik_meta(); ?>
-  </div><?php
+  // Get metadata
+  $data = ubik_meta_data();
+
+  // Setup entry meta data; the only information we have for sure is type, date, and author
+  if ( !empty( $data['date_updated'] ) ) {
+    $meta = sprintf( __( 'Published %1$s<span class="last-updated"> and updated %2$s</span>. ', 'ubik' ), $data['date_published'], $data['date_updated'] );
+  } else {
+    $meta = sprintf( __( 'Published %s. ', 'ubik' ), $data['date_published'] );
+  }
+
+  echo '<div class="entry-meta-main">' . $meta . '</div>';
 
   do_action( 'pendrell_entry_meta_after' );
 

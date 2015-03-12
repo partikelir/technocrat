@@ -14,8 +14,9 @@ $c-body-bg:       grey(252);
 $c-link:          k-colour(java);
 $c-menu:          k-colour(emerald);
 $c-highlight:     k-colour(jaffa);
-$c-offset:        k-colour(emerald);
+$c-alternate:     k-colour(emerald);
 $c-code:          k-colour(loblolly);
+$c-muted:         k-colour(raven);
 
 // General; @TODO: clean this up, there are many unused colours
 $_colours: (
@@ -34,6 +35,7 @@ $_colours: (
 , text-light:     lighten( $c-text, 9 )
 , text-lighter:   lighten( $c-text, 19 )
 , text-lightest:  lighten( $c-text, 27 )
+, text-muted:     $c-muted
 
   // Backgrounds
 , body-dark:      darken( white(), 3 )
@@ -45,6 +47,9 @@ $_colours: (
 , bg-content:     white()
 , bg-social:      k-colour(shark)
 , bg-footer:      k-colour(mako)
+, bg-date:        k-colour(emerald)
+, bg-cats:        k-colour(raven)
+, bg-tags:        k-colour(mako)
 
   // Links
 , link:           $c-link
@@ -68,12 +73,12 @@ $_colours: (
   // Sidebar
 , sidebar:        k-colour(mako)
 , sidebar-h:      $c-highlight
-, sidebar-link:   k-colour(raven)//saturate( lighten( k-colour(raven), 3 ), 3% )
+, sidebar-link:   k-colour(raven)
 , sidebar-link-h: k-colour(java)
 
   // Meta
-, meta:           lighten( $c-text, 9 )
-, meta-link:      saturate( lighten( k-colour(raven), 9 ), 3% )
+, meta:           k-colour(loblolly)
+, meta-link:      saturate( lighten( k-colour(raven), 9 ), 3% ) // Possibly unused
 , meta-link-v:    grey(84)
 , meta-link-h:    $c-highlight
 , meta-link-a:    grey(84)
@@ -125,7 +130,7 @@ $_colours: (
 , shadow-light:   grey(121, .12)
 , shadow-lighter: grey(128, .07)
 , text-input:     k-colour(mako)
-, text-input-bg:  $c-body-bg
+, text-input-bg:  grey(248)
 
   // Various
 , blockquote:     k-colour(raven)
@@ -138,6 +143,6 @@ $_colours: (
 , p-tag:          grey(252)
 , p-selector:     k-colour(jaffa)
 , p-variable:     k-colour(java)
-, p-keyword:      $c-offset
+, p-keyword:      $c-alternate
 , p-regex:        k-colour(atlantis)
 );

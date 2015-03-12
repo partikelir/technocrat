@@ -52,7 +52,7 @@
   @include rem( padding-bottom, spacer() );
   background: colour(bg-content);
   @include k-media-above( break(large) ) {
-    @include rem( padding-right, spacer() );
+    @include rem( padding-right, spacer(2) );
     float: left;
     width: 67%;
   }
@@ -69,7 +69,7 @@
   @extend %wrap;
   background: colour(bg-footer);
   @include k-media-above( break(large) ) {
-    @include rem( padding-right, spacer() );
+    @include rem( padding-right, spacer(2) );
     float: left;
     width: 67%;
   }
@@ -141,6 +141,7 @@
   }
 
   @include k-media-above( break(large) ) {
+    @include rem( margin-top, spacer(2.5) );
     margin-left: auto;
   }
 

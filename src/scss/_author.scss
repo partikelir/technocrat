@@ -8,10 +8,11 @@
   }
 }
 .author-avatar {
-  @include rem( margin, spacer(1/2) spacer(1/2) spacer(1/2) 0 );
-  float: left;
+  @extend %links-reset-border;
+  @include rem( margin, 0 0 0 spacer(1/2) );
+  float: right;
   line-height: 0; // Keeps the container snug around the avatar image
-  width: 120px;
+  width: spacer(4);
   img {
     @include k-circle;
     @include k-greyscale;

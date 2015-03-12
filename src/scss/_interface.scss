@@ -111,6 +111,7 @@ svg {
   }
 }
 .social-icons {
+  @extend %spacer-below-half;
   a {
     outline: none;
   }
@@ -119,14 +120,35 @@ svg {
     @include rem( width, spacer(1.5) );
     @include rem( margin, 0 4px 0 -6px );
     fill: colour(social);
-    transition: all .7s ease-out, background-position .49s ease;
+    transition: all .7s ease-out;
     &:hover {
       fill: colour(social-h);
-      transition: all .23s ease, background-position .17s ease;
+      transition: all .23s ease;
       transform: rotate(360deg);
     }
     &:active {
       transform: translateY(1px);
+    }
+  }
+}
+.site-title {
+  svg.icon {
+    @include rem( margin, 0 4px 0 -3px );
+    @include rem( height, 35px );
+    @include rem( width, 35px );
+    color: k-colour(raven);
+    transition: all .56s ease-out;
+    vertical-align: bottom;
+    @include k-media-below( break(medium) ) {
+      @include rem( margin, 0 2px 0 -3px );
+      @include rem( height, 24px );
+      @include rem( width, 24px );
+    }
+  }
+  &:hover {
+    svg.icon {
+      transition: all 1.4s ease;
+      transform: rotate(360deg);
     }
   }
 }

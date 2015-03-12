@@ -94,6 +94,12 @@ $w-mono-bold:       700;
   @if (entry-title == $style) {
     @extend %head-normal;
   }
+  @if (entry-title-meta == $style) {
+    //@extend %body-normal;
+    @extend %head-light;
+    letter-spacing: 0.02rem;
+    text-transform: uppercase;
+  }
   @if (entry-content == $style) {
     @extend %body-normal;
   }
@@ -122,7 +128,8 @@ $w-mono-bold:       700;
     @extend %body-normal;
   }
   @if (label == $style) {
-    @extend %head-bold-uppercase;
+    @extend %head-normal;
+    text-transform: uppercase;
   }
   @if (input == $style) {
     @extend %body-normal;

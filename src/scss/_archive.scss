@@ -14,5 +14,6 @@
   @include font-size(text-small);
   p {
     @extend %spacer-below;
+    color: colour(text-muted);
   }
 }

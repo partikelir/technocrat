@@ -21,6 +21,15 @@
     @include rem( margin-left, spacer(1/2) ); // Half length indentation since we don't have that much space to play with
   }
 
+  // Recent posts and the like; let's try abandoning the rhythm for this part
+  ul {
+    margin-top: .5em;
+  }
+  li {
+    line-height: 1.6;
+    margin-bottom: 1em;
+  }
+
   // Text
   p {
     @extend %spacer-below;
