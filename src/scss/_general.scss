@@ -11,6 +11,7 @@ body {
   @include font-style(body);
   color: colour(text);
   background-color: colour(bg-body);
+  background-image: linear-gradient( to bottom, colour(bg-body) 30%, colour(bg-footer) 90%, colour(bg-footer) );
   font-feature-settings: 'liga', 'opbd', 'size', 'init', 'fina'; // Ligatures; optical bounds; optical size; initial and final forms; via: http://www.microsoft.com/typography/otspec/featurelist.htm
   text-rendering: optimizeLegibility;
 }

@@ -5,7 +5,8 @@ function pendrell_icon( $name = '', $text = '' ) {
 
   // Icon assignments
   $pendrell_icons = apply_filters( 'pendrell_icons', array(
-    'author-edit'             => 'typ-spanner'
+    'anchor'                  => 'typ-anchor'
+  , 'author-edit'             => 'typ-spanner'
   , 'comment-link'            => 'awe-comment'
   , 'comment-edit'            => 'typ-spanner'
   , 'comment-reply'           => 'typ-arrow-right-thick'

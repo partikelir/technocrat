@@ -63,6 +63,7 @@ if ( !function_exists( 'pendrell_entry_meta' ) ) : function pendrell_entry_meta(
 if ( !function_exists( 'pendrell_entry_meta_buttons' ) ) : function pendrell_entry_meta_buttons() {
   ?><div class="entry-meta-buttons">
     <?php
+      echo '<a class="button" href="' . get_permalink() . '" rel="bookmark">' . pendrell_icon( 'anchor', __( 'Link', 'pendrell' ) ) . '</a>';
       echo pendrell_content_edit_link();
       pendrell_comments_link();
     ?>

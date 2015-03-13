@@ -44,17 +44,19 @@
   @extend %wrap;
   @include rem( padding-top, spacer() );
   @include rem( padding-bottom, spacer() );
-  background: colour(bg-sidebar);
+  @include k-media-below( break(large) ) {
+    background: colour(bg-sidebar);
+  }
 }
 .wrap-content {
   @extend %wrap;
-  @include rem( padding-top, spacer() );
-  @include rem( padding-bottom, spacer() );
-  background: colour(bg-content);
   @include k-media-above( break(large) ) {
-    @include rem( padding-right, spacer(2) );
     float: left;
+    padding: 0;
     width: 67%;
+  }
+  @include k-media-below( break(large) ) {
+    background: colour(bg-content);
   }
 }
 .wrap-social {
@@ -69,8 +71,8 @@
   @extend %wrap;
   background: colour(bg-footer);
   @include k-media-above( break(large) ) {
-    @include rem( padding-right, spacer(2) );
     float: left;
+    padding: 0;
     width: 67%;
   }
 }
@@ -136,13 +138,17 @@
 
 .site-content {
   @extend %clearfix-below;
+  @include rem( padding-top, spacer() );
+  @include rem( padding-bottom, spacer() );
+  background: colour(bg-content);
   max-width: $width-main; // Keeps content contained regardless of whether sidebar appears
   &:focus {
     outline: none; // Prevent weird blue glow when using the skip link
   }
 
   @include k-media-above( break(large) ) {
-    @include rem( margin-top, spacer(2.5) );
+    @include rem( padding, spacer(3.5) spacer(2) spacer() spacer(2) );
+    @include rem( padding-right, spacer(2) );
     margin-left: auto;
   }
 
@@ -182,6 +188,8 @@ main {
   @include rem( padding-bottom, spacer() );
   position: relative; // For use with the "Back to top" button
   @include k-media-above( break(large) ) {
+    @include rem( padding-left, spacer(2) );
+    @include rem( padding-right, spacer(2) );
     margin-left: auto;
     max-width: $width-main;
   }

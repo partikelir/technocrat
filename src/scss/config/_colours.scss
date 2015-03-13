@@ -12,19 +12,22 @@ $k-colours: map-merge( $k-colours, (
 $c-text:          k-colour(mako);
 $c-body-bg:       grey(252);
 $c-link:          k-colour(java);
-$c-menu:          k-colour(emerald);
+$c-offset:        k-colour(eastern-blue);
 $c-highlight:     k-colour(jaffa);
-$c-alternate:     k-colour(emerald);
-$c-code:          k-colour(loblolly);
-$c-muted:         k-colour(raven);
+$c-darkest:       k-colour(shark);
+$c-darker:        k-colour(mako);
+$c-dark:          k-colour(raven);
+$c-light:         k-colour(loblolly);
+$c-lighter:       grey(247);
+$c-lightest:      grey(252);
 
 // General; @TODO: clean this up, there are many unused colours
 $_colours: (
-  body-bg:        $c-body-bg
-, site-title:     $c-body-bg
-, site-desc:      grey(156)
+  body-bg:        $c-lightest
+, site-title:     $c-lightest
+, site-desc:      grey(156) // Unused
 , highlight:      $c-highlight
-, menu:           $c-menu
+, menu:           $c-offset
 , interface:      grey(186)
 
   // Text
@@ -35,23 +38,23 @@ $_colours: (
 , text-light:     lighten( $c-text, 9 )
 , text-lighter:   lighten( $c-text, 19 )
 , text-lightest:  lighten( $c-text, 27 )
-, text-muted:     $c-muted
+, text-muted:     $c-dark
 
   // Backgrounds
 , body-dark:      darken( white(), 3 )
 , body-darker:    darken( white(), 13 )
 , body-darkest:   darken( white(), 27 )
-, bg-body:        k-colour(shark)
-, bg-header:      k-colour(mako)
-, bg-sidebar:     k-colour(shark)
+, bg-body:        $c-darkest
+, bg-header:      $c-darker
+, bg-sidebar:     $c-darkest
 , bg-content:     white()
-, bg-social:      k-colour(shark)
-, bg-footer:      k-colour(mako)
-, bg-date:        $c-code
-, bg-cats:        k-colour(mako)
-, bg-cats-h:      k-colour(java)
-, bg-tags:        k-colour(raven)
-, bg-tags-h:      k-colour(jaffa)
+, bg-social:      $c-darkest
+, bg-footer:      $c-darker
+, bg-date:        $c-light
+, bg-cats:        $c-darker
+, bg-cats-h:      $c-link
+, bg-tags:        $c-dark
+, bg-tags-h:      $c-highlight
 
   // Links
 , link:           $c-link
@@ -63,9 +66,9 @@ $_colours: (
   // Menus
 , menu-link:      white()
 , menu-link-h:    $c-highlight
-, menu-current:   k-colour(shark)
-, menu-sub:       lighten( k-colour(raven), 23 )
-, menu-sub-h:     k-colour(raven)
+, menu-current:   $c-darkest
+, menu-sub:       lighten( $c-dark, 23 )
+, menu-sub-h:     $c-dark
 
   // Submenus
 , sub:            lighten( $c-text, 17 )
@@ -73,41 +76,41 @@ $_colours: (
 , sub-bg:         darken( $c-body-bg, 13 )
 
   // Sidebar
-, sidebar:        k-colour(mako)
+, sidebar:        darken( $c-dark, 13 )
 , sidebar-h:      $c-highlight
-, sidebar-link:   k-colour(raven)
-, sidebar-link-h: k-colour(java)
+, sidebar-link:   $c-dark
+, sidebar-link-h: $c-link
 
   // Meta
-, meta:           $c-code
-, meta-date:      k-colour(mako)
-, meta-link:      saturate( lighten( k-colour(raven), 9 ), 3% ) // Possibly unused
+, meta:           $c-light
+, meta-date:      $c-darker
+, meta-link:      saturate( lighten( $c-dark, 9 ), 3% ) // Possibly unused
 , meta-link-v:    grey(84)
 , meta-link-h:    $c-highlight
 , meta-link-a:    grey(84)
 , meta-link-f:    grey(84)
 
   // Social
-, social:         k-colour(java)
-, social-h:       k-colour(jaffa)
+, social:         $c-link
+, social-h:       $c-highlight
 
   // Footer
-, footer:         lighten( k-colour(raven), 23 )
-, footer-link:    $c-body-bg
+, footer:         lighten( $c-dark, 23 )
+, footer-link:    $c-lightest
 , footer-link-v:  grey(84)
 , footer-link-h:  $c-highlight
 , footer-link-a:  grey(84)
 , footer-link-f:  grey(84)
 
   // Titles
-, entry-title:    k-colour(jaffa)
-, entry-title-h:  k-colour(eastern-blue)
+, entry-title:    $c-highlight
+, entry-title-h:  $c-offset
 
   // Comments
-, comment-link:   k-colour(raven)
+, comment-link:   $c-dark
 , comment-link-h: $c-highlight
-, comment-auth:   k-colour(jaffa)
-, comment-auth-h: k-colour(eastern-blue)
+, comment-auth:   $c-highlight
+, comment-auth-h: $c-offset
 
   // Forms
 , alert:          k-colour(milano-red)
@@ -115,15 +118,15 @@ $_colours: (
 , success:        k-colour(atlantis)
 
   // Code blocks
-, code:           k-colour(raven)
-, code-bg:        rgba( #FAF9FC, .73 )
-, code-box:       $c-code
-, code-box-bg:    k-colour(shark)
+, code:           $c-dark
+, code-bg:        rgba( $c-lighter, .73 ) // #FAF9FC
+, code-box:       $c-light
+, code-box-bg:    $c-darkest
 
   // Interface
-, button:         k-colour(java)
-, button-h:       k-colour(eastern-blue)
-, button-alt:     k-colour(jaffa)
+, button:         $c-link
+, button-h:       $c-offset
+, button-alt:     $c-highlight
 , divider:        rgba( $c-text, .09 ) // For use with <hr> etc.
 , select-top:     grey(251)
 , select-bottom:  grey(227)
@@ -132,20 +135,21 @@ $_colours: (
 , shadow-dark:    grey(96, .32)
 , shadow-light:   grey(121, .12)
 , shadow-lighter: grey(128, .07)
-, text-input:     k-colour(mako)
-, text-input-bg:  grey(248)
+, text-input:     $c-darker
+, text-input-bg:  $c-lighter
 
   // Various
-, blockquote:     k-colour(raven)
+, blockquote:     $c-dark
+, headers:        $c-darker
 , highlight-bg:   k-colour(lemon-chiffon)
 
   // Prism (optional)
-, p-text:         $c-code
-, p-comment:      k-colour(eastern-blue)
-, p-punctuation:  k-colour(raven)
-, p-tag:          grey(252)
-, p-selector:     k-colour(jaffa)
-, p-variable:     k-colour(java)
-, p-keyword:      $c-alternate
+, p-text:         $c-light
+, p-comment:      $c-offset
+, p-punctuation:  $c-dark
+, p-tag:          $c-lightest
+, p-selector:     $c-highlight
+, p-variable:     $c-link
+, p-keyword:      white()
 , p-regex:        k-colour(atlantis)
 );
