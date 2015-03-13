@@ -164,9 +164,23 @@
 }
 
 // Lists
-%lists {
-  @include list-ordered;
-  @include list-unordered;
+%list-ordered {
+  @include k-list-ordered;
+  ol {
+    li:before {
+      @include rem( margin-left, spacer(-1) - 6px );
+      @include rem( width, spacer() ); // An explicit width allows numbers to align to the right
+    }
+  }
+}
+%list-unordered {
+  @include k-list-unordered;
+  ul {
+    li:before {
+      @include rem( margin-left, spacer(-1) - 8px );
+      @include rem( width, spacer() );
+    }
+  }
 }
 
 // Links

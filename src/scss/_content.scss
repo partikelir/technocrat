@@ -70,7 +70,16 @@
   }
 
   // Lists and definitions
-  @extend %lists;
+  @extend %list-ordered;
+  @extend %list-unordered;
+  ol,
+  ul {
+    li:before {
+      @include rem( margin-top, 1px );
+      @include font-size(text-smaller);
+      color: colour(text-muted);
+    }
+  }
   ol,
   ul,
   dl {
@@ -200,17 +209,23 @@
 // Entry extras (related posts, series, etc.)
 .entry-extras {
   @extend %links-no-border;
-  @extend %lists;
+  @extend %list-ordered;
+  @extend %list-unordered;
   @extend %spacer-above-double;
   ol,
   ul {
     @extend %spacer-below;
     @include font-size(text-smaller);
     li:before {
+      @include rem( margin-top, 1px );
       @include font-size(text-smallest);
+      color: colour(text-muted);
       .full-width & {
         @include font-size(text-smallest);
       }
     }
+  }
+  li {
+    @include rem( margin, 0 0 0 spacer(2/3) );
   }
 }
