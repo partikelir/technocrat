@@ -126,7 +126,7 @@ if ( !function_exists( 'pendrell_comments_form' ) ) : function pendrell_comments
 
 
 // Comments link wrapper; requires Ubik Comments to really shine
-if ( !function_exists( 'pendrell_comments_link' ) ) : function pendrell_comments_link() {
+if ( !function_exists( 'pendrell_comments_link' ) ) : function pendrell_comments_link( $buttons ) {
 
   // Do we have good reason to display the link?
   if ( !is_singular() && ( comments_open() || get_comments_number() !== 0 ) ) {
@@ -138,15 +138,14 @@ if ( !function_exists( 'pendrell_comments_link' ) ) : function pendrell_comments
     $none = pendrell_icon( 'comment-link', __( 'Comments off', 'pendrell' ) );
 
     // Attempt to get the best link we can
-    if ( function_exists( 'ubik_comments_link' ) ) {
-      $link = ubik_comments_link( $zero, $one, $more, 'button comments-link', $none );
-      if ( !empty( $link ) )
-        echo $link;
-    } else {
-      ?><?php comments_popup_link( $zero, $one, $more, 'button comments-link', $none ); ?><?php
-    }
+    $link = ubik_comments_link( $zero, $one, $more, 'button comments-link', $none );
+    if ( !empty( $link ) )
+      $buttons .= $link;
   }
+
+  return $buttons;
 } endif;
+add_filter( 'pendrell_entry_buttons', 'pendrell_comments_link', 20 );
 
 
 
@@ -157,7 +156,7 @@ function pendrell_comments_edit_link() {
   global $comment;
   if ( ! current_user_can( 'edit_comment', $comment->comment_ID ) )
     return;
-  return '<a href="' . get_edit_comment_link( $comment->comment_ID ) . '" class="button comment-edit-link">' . pendrell_icon( 'comment-edit', __( 'Edit', 'pendrell' ) ) . '</a>';
+  return '<a class="button comment-edit-link" href="' . get_edit_comment_link( $comment->comment_ID ) . '" rel="nofollow" role="button">' . pendrell_icon( 'comment-edit', __( 'Edit', 'pendrell' ) ) . '</a>';
 }
 add_filter( 'cancel_comment_reply_link', 'pendrell_comments_link_cancel_reply', 10, 3 );
 
@@ -170,6 +169,6 @@ add_filter( 'comment_reply_link', 'pendrell_comments_reply_link', 10, 4 );
 // A slightly more semantic comment cancel reply link
 function pendrell_comments_link_cancel_reply( $formatted_link, $link, $text ) {
   $style = isset( $_GET['replytocom'] ) ? '' : ' style="display: none;"';
-  return '<a href="' . $link . '" class="button button-cancel" id="cancel-comment-reply-link"' . $style . ' rel="nofollow">' . pendrell_icon( 'comment-reply-cancel', $text ) . '</a>';
+  return '<a class="button button-cancel" id="cancel-comment-reply-link"' . $style . ' href="' . $link . '" rel="nofollow" role="button">' . pendrell_icon( 'comment-reply-cancel', $text ) . '</a>';
 }
 add_filter( 'cancel_comment_reply_link', 'pendrell_comments_link_cancel_reply', 10, 3 );

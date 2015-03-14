@@ -206,9 +206,12 @@
   }
 }
 
-// Interface
+// Interface elements
 %button-container {
   @include button-container;
+}
+%button-group {
+  @include button-group;
 }
 
 // Various shortcuts

@@ -1,57 +1,61 @@
 // ==== POST FORMATS ==== //
 
-// Hiding aside, quotation, and status titles to preserve structured data and visual flow
-body:not(.list-view) { // There's no way to isolate this, alas
-  article.format-aside,
-  article.format-quote,
-  article.format-status {
-    header {
-      @extend %hide;
-    }
-  }
-}
+// Allows for all of these styles to be switched on or off from the main configuration file
+@if module(post-formats) {
 
-
-
-// Link
-.entry-link { // Unique class; no need to nest it within article.format-link {}
-  @extend %links-meta;
-  @extend %spacer-below;
-  @include font-size(text-small);
-  @include k-text-truncate; // Stops long URLs from overflowing the article width
-  margin-top: spacer(-1/2);
-  &:before {
-    content: "\00a0\27A5\00a0";
-  }
-}
-
-
-
-// Quotation; a slight modification of the basic blockquote style defines in general.scss
-body:not(.list-view) {
-  article.format-quote {
-    blockquote {
-      @include border-radius(6px);
-      @include font-size(text-bigger);
-      border: none;
-      box-shadow: inset 3px 3px 7px colour(shadow-light);
-      color: colour(text);
-      @include rem( padding, spacer(1/2) spacer() );
-      footer {
-        @extend %text-small;
+  // Hiding aside, quotation, and status titles to preserve structured data and visual flow
+  body:not(.list-view) { // There's no way to isolate this, alas
+    article.format-aside,
+    article.format-quote,
+    article.format-status {
+      header {
+        @extend %hide;
       }
     }
   }
-}
 
 
 
-// Status
-body:not(.list-view) {
-  article.format-status {
-    .entry-content {
-      @include font-size(text-bigger);
-      @include font-style(status);
+  // Link
+  .entry-link { // Unique class; no need to nest it within article.format-link {}
+    @extend %links-meta;
+    @extend %spacer-below;
+    @include font-size(text-small);
+    @include k-text-truncate; // Stops long URLs from overflowing the article width
+    margin-top: spacer(-1/2);
+    &:before {
+      content: "\00a0\27A5\00a0";
     }
   }
-}
+
+
+
+  // Quotation; a slight modification of the basic blockquote style defines in general.scss
+  body:not(.list-view) {
+    article.format-quote {
+      blockquote {
+        @include border-radius(6px);
+        @include font-size(text-bigger);
+        border: none;
+        box-shadow: inset 3px 3px 7px colour(shadow-light);
+        color: colour(text);
+        @include rem( padding, spacer(1/2) spacer() );
+        footer {
+          @extend %text-small;
+        }
+      }
+    }
+  }
+
+
+
+  // Status
+  body:not(.list-view) {
+    article.format-status {
+      .entry-content {
+        @include font-size(text-bigger);
+        @include font-style(status);
+      }
+    }
+  }
+} // end @if

@@ -25,7 +25,6 @@ module.exports = {
       , prefix: 'awe-'
       , icons: [
           'caret-down'
-        , 'caret-down'
         , 'comment'
         ]
       }
@@ -33,7 +32,8 @@ module.exports = {
         src: bower+'ionicons/src/'
       , prefix: 'ion-'
       , icons: [
-          'search'
+          'image'
+        , 'search'
         ]
       }
     , typicons: {
@@ -43,9 +43,11 @@ module.exports = {
           'arrow-right-thick'
         , 'arrow-up-thick'
         , 'cancel'
+        , 'document-text'
         , 'key'
         , 'location'
         , 'spanner'
+        , 'th-list'
         ]
       }
     }

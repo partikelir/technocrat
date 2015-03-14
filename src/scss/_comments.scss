@@ -127,9 +127,3 @@
     display: inline;
   }
 }
-
-// These classes contain right-aligned buttons
-.comment-buttons,
-.comment-reply-title small {
-  @extend %button-container;
-}

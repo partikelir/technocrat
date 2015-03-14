@@ -1,5 +1,16 @@
 <?php // ==== ARCHIVES ==== //
 
+// Archive buttons; a hook for interactive elements like edit links
+// @filter: pendrell_archive_buttons
+if ( !function_exists( 'pendrell_archive_buttons' ) ) : function pendrell_archive_buttons() {
+  $buttons = apply_filters( 'pendrell_archive_buttons', '' );
+  if ( !empty( $buttons ) )
+    echo '<div class="archive-buttons">' . $buttons . '</div>';
+} endif;
+add_action( 'pendrell_archive_before', 'pendrell_archive_buttons' );
+
+
+
 // A simple wrapper for archive titles using Ubik Title; active in 404, archive, and search templates
 // @filter: pendrell_archive_title
 if ( !function_exists( 'pendrell_archive_title' ) ) : function pendrell_archive_title( $title = '' ) {
@@ -10,8 +21,6 @@ if ( !function_exists( 'pendrell_archive_title' ) ) : function pendrell_archive_
       $title = get_the_archive_title(); // Requires WP 4.1
     }
   }
-
-  // Filter the title
   echo '<h1 class="archive-title">' . apply_filters( 'pendrell_archive_title', $title ) . '</h1>';
 } endif;
 

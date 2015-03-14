@@ -30,9 +30,17 @@ input[type="reset"] {
   //@include button-reset;
 }
 
-// Cool but wasteful; keeping it here for testing purposes
+// Containers and groups by functionality
+.archive-buttons,
+.entry-meta-buttons,
+.comment-buttons,
+.comment-reply-title small {
+  @extend %button-container;
+}
+.archive-buttons,
+.entry-meta-buttons,
 .comment-buttons {
-  //@include button-group;
+  @extend %button-group;
 }
 
 
@@ -107,6 +115,13 @@ svg {
         @include rem( margin, 4px -4px 0 4px );
         filter: drop-shadow( 0 1px 1px rgba( colour(body-bg), .9 ) ); // Matches letterpress effect
         float: right;
+      }
+
+      button &.icon-typ-th-list,
+      .button &.icon-typ-th-list {
+        @include rem( height, 16px );
+        @include rem( width, 16px );
+        @include rem( margin, 5px -4px 0 5px );
       }
     }
   }
