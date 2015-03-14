@@ -194,7 +194,7 @@ main {
     max-width: $width-main;
   }
 }
-.site-footer-interface {
+.site-footer-buttons {
   @extend %button-container;
   @include k-media-above( break(medium) ) {
     @include k-hide-visually;

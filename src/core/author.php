@@ -1,14 +1,12 @@
 <?php // ==== AUTHOR ==== //
 
-// Author info on posts
+// Author info on posts (optional); not shown on certain post formats or pages
 if ( !function_exists( 'pendrell_author_meta' ) ) : function pendrell_author_meta() {
-  // Show a bio if a user has filled out their description... but not on certain post formats or the contact form page
   if (
     is_singular()
     && get_the_author_meta( 'description' ) // Only if there is a description
     && !has_post_format( array( 'aside', 'image', 'link', 'quote', 'status' ) ) // Not for small content
-    && !is_page( array( 'about', 'about-me', 'bio', 'biography' ) ) // No sense in duplicating info
-    && !is_page_template( 'page-templates/contact-form.php' ) // Not on the contact form either
+    && !is_page() // Not on pages
   ) {
     pendrell_author_info();
   }
@@ -62,14 +60,15 @@ if ( !function_exists( 'pendrell_author_avatar' ) ) : function pendrell_author_a
 
 
 // Add an "edit this user" link to author archives
-if ( !function_exists( 'pendrell_author_edit_link' ) ) : function pendrell_author_edit_link() {
+if ( !function_exists( 'pendrell_author_edit_link' ) ) : function pendrell_author_edit_link( $buttons ) {
   if ( is_author() ) {
     $edit_author_link = get_edit_user_link(); // Author edit link for users with the appropriate capabilities
     if ( !empty( $edit_author_link ) )
-      echo '<div class="entry-meta-buttons"><a href="' . $edit_author_link . '" class="button edit-link">' . pendrell_icon( 'author-edit', __( 'Edit', 'pendrell' ) ) . '</a></div>';
+      $buttons .= '<a href="' . $edit_author_link . '" class="button edit-link">' . pendrell_icon( 'author-edit', __( 'Edit', 'pendrell' ) ) . '</a></div>';
   }
+  return $buttons;
 } endif;
-add_action( 'pendrell_archive_description_before', 'pendrell_author_edit_link' );
+add_filter( 'pendrell_archive_buttons', 'pendrell_author_edit_link' );
 
 
 

@@ -29,28 +29,24 @@ add_filter( 'ubik_views_defaults', 'pendrell_views_defaults' );
 
 
 // A user interface element for switching between views
-function pendrell_views_navigation() {
+function pendrell_views_navigation( $buttons ) {
+
+  // Only on archives?
+  if ( !is_archive() || is_search() )
+    return $buttons;
 
   // Get links
-  $nav_data = ubik_views_navigation();
-
-  // Initialize output
-  $output = '';
+  $views = ubik_views_navigation();
 
   // Loop through the views and construct the list
-  if ( !empty( $nav_data ) ) {
-    foreach ( $nav_data as $view => $data ) {
-      $output .= '<li><a href="' . $data['link'] . '">' . $data['name'] . '</a></li>';
+  if ( !empty( $views ) ) {
+    foreach ( $views as $view => $data ) {
+      $buttons .= '<a class="button view-link" href="' . $data['link'] . '" rel="nofollow" role="button">' . pendrell_icon( 'view-' . $view, $data['name'] ) . '</a>';
     }
-
-    // Output wrapper
-    $output = '<nav class="view-switcher">' . "\n" . '<ul>' . "\n" . $output . '</ul>' . "\n" . '</nav>' . "\n";
   }
-
-  // Show what you got
-  echo $output;
+  return $buttons;
 }
-add_action( 'pendrell_archive_description_before', 'pendrell_views_navigation', 9 );
+add_filter( 'pendrell_archive_buttons', 'pendrell_views_navigation', 5 );
 
 
 
@@ -115,7 +111,6 @@ function pendrell_views_template_part( $name ) {
     if ( $view !== 'posts' )
       $name = $view;
   }
-
   return $name;
 }
 add_filter( 'pendrell_template_part', 'pendrell_views_template_part' );

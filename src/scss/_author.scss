@@ -10,9 +10,9 @@
 .author-avatar {
   @extend %links-reset-border;
   @include rem( margin, 0 0 0 spacer(1/2) );
+  @include rem( width, spacer(4) );
   float: right;
   line-height: 0; // Keeps the container snug around the avatar image
-  width: spacer(4);
   img {
     @include k-circle;
     @include k-greyscale;

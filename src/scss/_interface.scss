@@ -30,6 +30,14 @@ input[type="reset"] {
   //@include button-reset;
 }
 
+// Containers and groups by functionality
+.archive-buttons,
+.entry-meta-buttons,
+.comment-buttons,
+.comment-reply-title small {
+  @extend %button-container;
+}
+
 
 
 // == FORM ELEMENTS == //
@@ -101,6 +109,13 @@ svg {
         @include rem( width, 18px );
         @include rem( margin, 4px -4px 0 4px );
         float: right;
+      }
+
+      button &.icon-typ-th-list,
+      .button &.icon-typ-th-list {
+        @include rem( height, 16px );
+        @include rem( width, 16px );
+        @include rem( margin, 5px -4px 0 5px );
       }
     }
   }

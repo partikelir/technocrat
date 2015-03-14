@@ -16,11 +16,9 @@ if ( !function_exists( 'pendrell_image_wrapper' ) ) : function pendrell_image_wr
   if ( has_post_format( 'image' ) && has_post_thumbnail() ) {
     $id = get_post_thumbnail_id();
     $caption = get_post( $id )->post_excerpt;
-    if ( !is_singular() ) {
+    $url = ''; // Let Ubik Imagery figure it out
+    if ( !is_singular() )
       $url = get_permalink(); // Link to the post itself, not the attachment, in category archives and such
-    } else {
-      $url = ''; // Let Ubik Imagery figure it out
-    }
 
   // Attachments: load post data from the attachment itself
   } elseif ( wp_attachment_is_image() ) {

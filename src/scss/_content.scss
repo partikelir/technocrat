@@ -212,9 +212,6 @@
   @extend %clearfix;
   @include font-style(entry-meta);
 }
-.entry-meta-buttons {
-  @extend %button-container;
-}
 .entry-meta-main {
   @extend %links-meta;
   @include font-size(text-smaller);

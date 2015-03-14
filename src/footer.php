@@ -16,7 +16,7 @@
         	<nav id="site-footer-navigation" role="navigation">
             <?php wp_nav_menu( array( 'theme_location' => 'footer', 'menu_class' => 'menu-footer inline-menu' ) ); ?>
           </nav>
-          <div class="site-footer-interface">
+          <div class="site-footer-buttons">
             <a href="#top" class="button" rel="nofollow"><?php echo pendrell_icon( 'top-link', __( 'Top', 'pendrell' ) ); ?></a>
           </div>
           <footer id="colophon" class="site-colophon" role="contentinfo">

@@ -78,6 +78,7 @@ if ( PENDRELL_UBIK_ANALYTICS ) {
 
 define( 'UBIK_CLEANER_REMOVE_MIGRATE', true );
 define( 'UBIK_CLEANER_REMOVE_OPEN_SANS', true );
+define( 'UBIK_CLEANER_STYLE_TEMPLATES', true );
 require_once( $path_modules . 'ubik-cleaner/ubik-cleaner.php' );
 
 
@@ -264,8 +265,9 @@ if ( PENDRELL_UBIK_SERIES )
 
 // == SVG ICONS * == //
 
-define( 'UBIK_SVG_ICONS_PATH', get_template_directory() . '/img/icons.svg' );
-define( 'UBIK_SVG_ICONS_URL', get_template_directory_uri() . '/img/icons.svg' );
+$icons_path = '/img/icons.svg?v=' . filemtime( get_template_directory() . '/img/icons.svg' ); // Cache busting icons!
+define( 'UBIK_SVG_ICONS_PATH', get_template_directory() . $icons_path );
+define( 'UBIK_SVG_ICONS_URL', get_template_directory_uri() . $icons_path );
 require_once( $path_modules . 'ubik-svg-icons/ubik-svg-icons.php' );
 
 // If we have a path and no URL we probably mean to inject the SVG icon file
@@ -287,12 +289,13 @@ function pendrell_terms_edit_description_prompt( $content ) {
 }
 add_filter( 'pendrell_archive_description_term', 'pendrell_terms_edit_description_prompt' );
 
-function pendrell_terms_edit_link() {
+function pendrell_terms_edit_link( $buttons ) {
   $edit_link = ubik_terms_edit_link( pendrell_icon( 'term-edit', __( 'Edit', 'pendrell' ) ), 'button edit-link' );
   if ( !empty( $edit_link ) )
-    echo '<div class="entry-meta-buttons">' . $edit_link . '</div>';
+    $buttons .= $edit_link;
+  return $buttons;
 }
-add_action( 'pendrell_archive_header_before', 'pendrell_terms_edit_link' );
+add_action( 'pendrell_archive_buttons', 'pendrell_terms_edit_link' );
 
 // An alias for ubik_terms_categorized()
 function is_categorized() {

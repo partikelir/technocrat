@@ -27,6 +27,9 @@ function pendrell_icon( $name = '', $text = '' ) {
   , 'social-twitter'          => 'typ-social-twitter-circular'
   , 'term-edit'               => 'typ-spanner'
   , 'top-link'                => 'typ-arrow-up-thick'
+  , 'view-gallery'            => 'ion-image'
+  , 'view-list'               => 'typ-th-list'
+  , 'view-posts'              => 'typ-document-text'
   ) );
 
   if ( !empty( $name ) && array_key_exists( $name, $pendrell_icons ) ) {

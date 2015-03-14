@@ -1,16 +1,23 @@
-<?php // ==== TEMPLATES ==== //
+<?php // ==== GENERAL ==== //
+
+// == CONTENT == //
+
+// Content class; applies a filter to the content wrapper to allow other functions to alter the look and feel of posts, pages, etc.
+// @filter: pendrell_content_class
+if ( !function_exists( 'pendrell_content_class' ) ) : function pendrell_content_class() {
+  $classes = apply_filters( 'pendrell_content_class', array() );
+  if ( !empty( $classes ) )
+    echo ' ' . join( ' ', $classes );
+} endif;
+
+
 
 // == SIDEBAR == //
 
-// Sidebar handler; since WordPress hasn't really made things easy in this department
+// Sidebar handler; a filter hook to allow for other functions to disable the sidebar (since WordPress core ships with no such thing)
 // @filter: pendrell_sidebar
 if ( !function_exists( 'pendrell_sidebar' ) ) : function pendrell_sidebar( $sidebar = true ) {
-
-  // Filter the $sidebar variable; this way we can set it to "false" by hooking into this function elsewhere
-  // This way the regular sidebar can be disabled and you can output whatever you want
   $sidebar = (bool) apply_filters( 'pendrell_sidebar', $sidebar );
-
-  // Include the regular sidebar template if $sidebar has not been set to "false"
   if ( $sidebar !== false )
     get_sidebar();
 } endif;

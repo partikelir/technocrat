@@ -25,7 +25,6 @@ module.exports = {
       , prefix: 'awe-'
       , icons: [
           'caret-down'
-        , 'caret-down'
         , 'comment'
         ]
       }
@@ -33,7 +32,8 @@ module.exports = {
         src: bower+'ionicons/src/'
       , prefix: 'ion-'
       , icons: [
-          'search'
+          'image'
+        , 'search'
         , 'social-apple'
         , 'social-css3'
         , 'social-html5'
@@ -51,6 +51,7 @@ module.exports = {
         , 'arrow-right-thick'
         , 'arrow-up-thick'
         , 'cancel'
+        , 'document-text'
         , 'key'
         , 'location'
         , 'spanner'
@@ -61,6 +62,7 @@ module.exports = {
         , 'social-github-circular'
         , 'social-instagram-circular'
         , 'social-twitter-circular'
+        , 'th-list'
         ]
       }
     }
