@@ -80,8 +80,11 @@ $_colours: (
 , code-box-bg:    rgba( k-colour(shark), .9 )
 
   // Interface
-, button-top:     grey(251)
-, button-bottom:  grey(215)
+, button:         $c-text
+, button-h:       lighten( $c-text, 19 )
+, button-a:       lighten( $c-text, 27 )
+, button-bg-1:    grey(251)
+, button-bg-2:    grey(215)
 , divider:        rgba( $c-text, .09 ) // For use with <hr> etc.
 , select-top:     grey(251)
 , select-bottom:  grey(227)

@@ -7,27 +7,27 @@
 // == BUTTONS == //
 
 %button {
-  @include button-default;
+  @include button-capsule;
 }
-
-// Button styling adapted from Twenty Twelve
+%button-container {
+  @include button-container;
+}
+%button-group {
+  @include button-group;
+}
 button,
 .button,
-input[type="button"], // @TODO: eliminate every instance of these errant input types; use `button` instead
+input[type="button"], // @TODO: eliminate `input`, introduce `button` elements instead
 input[type="reset"],
 input[type="submit"] {
   @extend %button;
 }
-
-// Submit buttons
 button[type="submit"],
 input[type="submit"] {
-  @include button-submit;
+  // Nothing special
 }
-
-// Reset; not presently used anywhere in this theme, left here for easy reactivation
 input[type="reset"] {
-  //@include button-reset;
+  // Nothing special
 }
 
 // Containers and groups by functionality
