@@ -38,7 +38,7 @@ if ( !function_exists( 'pendrell_comments' ) ) : function pendrell_comments( $co
           comment_author_link();
           $pingback_edit_link = pendrell_comments_edit_link();
           if ( !empty( $pingback_edit_link ) )
-            echo '<div class="comment-buttons">' . $pingback_edit_link . '</div>';
+            echo '<div class="buttons buttons-merge">' . $pingback_edit_link . '</div>';
         ?></article>
       </li><?php
       break;

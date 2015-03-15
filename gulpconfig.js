@@ -18,39 +18,6 @@ module.exports = {
     , dest: src+'scss/lib'
     , rename: '_normalize.scss'
     }
-  , iconsets: { // Icons from each set will be copied to the theme folder and combined to make a master icon sheet
-      dest: src+'icons/'
-    , awesome: {
-        src: bower+'font-awesome-svg-png/black/svg/' // Doesn't matter whether you're black or white
-      , prefix: 'awe-'
-      , icons: [
-          'caret-down'
-        , 'comment'
-        ]
-      }
-    , ionicons: {
-        src: bower+'ionicons/src/'
-      , prefix: 'ion-'
-      , icons: [
-          'image'
-        , 'search'
-        ]
-      }
-    , typicons: {
-        src: bower+'typicons/src/svg/'
-      , prefix: 'typ-'
-      , icons: [
-          'arrow-right-thick'
-        , 'arrow-up-thick'
-        , 'cancel'
-        , 'document-text'
-        , 'key'
-        , 'location'
-        , 'spanner'
-        , 'th-list'
-        ]
-      }
-    }
   },
 
   browsersync: {
@@ -61,6 +28,63 @@ module.exports = {
   , proxy: 'synaptic.dev:8080' // Using a proxy instead of the built-in server as we have server-side rendering to do via WordPress
   , watchOptions: {
       debounceDelay: 2000 // Delay for events called in succession for the same file/event
+    }
+  },
+
+  // Icons from each set will be copied to the theme folder and combined to make a master icon sheet
+  icons: {
+    dest: src+'icons/'
+  , awesome: {
+      src: bower+'font-awesome-svg-png/black/svg/' // Doesn't matter whether you're black or white
+    , prefix: 'awe-'
+    , icons: [
+        'caret-down'
+      , 'comment'
+      ]
+    }
+  , elusive: {
+      src: bower+'elusive-iconfont/dev/icons-svg/'
+    , prefix: 'elu-'
+    , icons: []
+    }
+  , foundation: {
+      src: bower+'foundation-icon-fonts/svgs/'
+    , prefix: '' // All files are already namespaced 'fi-'
+    , icons: []
+    }
+  , ionicons: {
+      src: bower+'ionicons/src/'
+    , prefix: 'ion-'
+    , icons: [
+        'image'
+      , 'search'
+      ]
+    }
+  , material: {
+      src: bower+'material-design-icons/'
+    , prefix: 'gmd-'
+    , icons: [
+        //[ 'action', 'ic_description_48px' ]
+      ]
+    }
+  , open: {
+      src: bower+'open-iconic/svg/'
+    , prefix: 'open-'
+    , icons: []
+    }
+  , typicons: {
+      src: bower+'typicons/src/svg/'
+    , prefix: 'typ-'
+    , icons: [
+        'arrow-right-thick'
+      , 'arrow-up-thick'
+      , 'cancel'
+      , 'document-text'
+      , 'key'
+      , 'location'
+      , 'spanner'
+      , 'th-list'
+      ]
     }
   },
 
@@ -157,6 +181,7 @@ module.exports = {
       before: {
         run: function ($) {
           $('[fill]').removeAttr('fill'); // Remove fill attribute to allow total CSS control
+          //$('svg').attr( 'viewBox', '0 0 1800 1800' );
         },
         parserOptions: { xmlMode: true }
       }

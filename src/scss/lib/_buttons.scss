@@ -129,19 +129,18 @@
 
 // == LAYOUT == //
 
-// Button container
-@mixin button-container( $float: right, $margin: 8px ) {
+// Button group; apply to an element with only buttons as immediate children
+@mixin button-group( $float: right, $margin: 8px ) {
   @include rem( margin-left, spacer(1/2) - $margin );
   float: unquote( $float );
-  //height: spacer();
   > * {
-    //float: unquote( k-opposite( $float ) );
     @include rem( margin-left, $margin );
+    float: unquote( k-opposite( $float ) );
   }
 }
 
-// Button grouping; apply to a container with only buttons as immediate children
-@mixin button-group {
+// Button merge; apply to a button group to cause buttons to stick together
+@mixin button-merge {
   > :not(:first-child):not(:last-child) {
     border-radius: 0;
   }

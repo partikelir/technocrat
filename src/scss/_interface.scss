@@ -9,12 +9,6 @@
 %button {
   @include button-capsule;
 }
-%button-container {
-  @include button-container;
-}
-%button-group {
-  @include button-group;
-}
 button,
 .button,
 input[type="button"], // @TODO: eliminate `input`, introduce `button` elements instead
@@ -31,16 +25,12 @@ input[type="reset"] {
 }
 
 // Containers and groups by functionality
-.archive-buttons,
-.entry-meta-buttons,
-.comment-buttons,
-.comment-reply-title small {
-  @extend %button-container;
+.comment-reply-title small, // Special case: can be eliminated by re-implementing core comments markup
+.buttons {
+  @include button-group;
 }
-.archive-buttons,
-.entry-meta-buttons,
-.comment-buttons {
-  @extend %button-group;
+.buttons-merge {
+  @include button-merge;
 }
 
 
@@ -91,44 +81,6 @@ label {
     color: colour(alert);
     display: block; // Errors go below inputs
     font-weight: $w-body-bold;
-  }
-}
-
-
-
-// == ICONS == //
-
-// SVG icon sets; style icons individually, by set, or as a group
-svg {
-  @if module(ubik-svg-icons) {
-    &.icon {
-      @include rem( height, 24px );
-      @include rem( width, 24px );
-      display: inline-block;
-      fill: currentColor; // Inherit color
-      vertical-align: baseline; // Options: baseline, sub, super, text-top, text-bottom, middle, top, bottom
-
-      button &,
-      .button & {
-        @include rem( height, 18px );
-        @include rem( width, 18px );
-        @include rem( margin, 4px -4px 0 4px );
-        filter: drop-shadow( 0 1px 1px rgba( colour(body-bg), .9 ) ); // Matches letterpress effect
-        float: right;
-      }
-
-      button &.icon-typ-th-list,
-      .button &.icon-typ-th-list {
-        @include rem( height, 16px );
-        @include rem( width, 16px );
-        @include rem( margin, 5px -4px 0 5px );
-      }
-    }
-  }
-
-  // Fix jQuery bug: http://bugs.jquery.com/ticket/11352
-  use {
-    pointer-events: none;
   }
 }
 

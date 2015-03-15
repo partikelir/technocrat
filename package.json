@@ -1,6 +1,6 @@
 {
   "name": "pendrell",
-  "version": "0.25.0",
+  "version": "0.26.0",
   "description": "A minimal yet powerful WordPress theme for multimedia blogs",
   "homepage": "https://github.com/synapticism/pendrell",
   "repository": {
@@ -23,6 +23,7 @@
     "gulp-changed": "^1.1.1",
     "gulp-cheerio": "^0.6.2",
     "gulp-concat": "^2.5.2",
+    "gulp-flatten": "0.0.4",
     "gulp-imagemin": "^2.2.1",
     "gulp-jshint": "^1.9.2",
     "gulp-livereload": "^3.8.0",

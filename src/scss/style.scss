@@ -21,6 +21,7 @@ Domain Path: #{metadata(theme-text-domain-path)}
 @import "helpers";        // Helpers (silent selectors)
 @import "general";        // Basic elements for the most part
 @import "interface";      // User interface elements
+@import "icons";          // Icons
 @import "navigation";     // Navigation elements
 @import "menu";           // Menus
 @import "layout";         // Layout of the main content areas

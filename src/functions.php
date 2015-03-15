@@ -25,7 +25,7 @@ require_once( $path . 'core/assets.php' );
 require_once( $path . 'core/author.php' );
 require_once( $path . 'core/comments.php' );
 require_once( $path . 'core/contact-form.php' );
-require_once( $path . 'core/content.php' );
+require_once( $path . 'core/entry-content.php' );
 require_once( $path . 'core/full-width.php' );
 require_once( $path . 'core/general.php' );
 require_once( $path . 'core/icons.php' );

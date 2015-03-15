@@ -174,11 +174,10 @@ main {
   @include k-center-block( $width-content );
   @include rem( padding-bottom, spacer() );
   color: colour(footer);
-}
-.site-footer-buttons {
-  @extend %button-container;
-  @include k-media-above( break(medium) ) {
-    @include k-hide-visually;
+  .buttons {
+    @include k-media-above( break(medium) ) {
+      @include k-hide-visually;
+    }
   }
 }
 .site-footer-info {

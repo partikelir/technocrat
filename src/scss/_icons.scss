@@ -1,0 +1,54 @@
+// ==== ICONS ==== //
+
+// SVG icon sets; style icons individually, by set, or as a group
+svg {
+  &.icon {
+    @include rem( height, 24px );
+    @include rem( width, 24px );
+    display: inline-block;
+    fill: currentColor; // Inherit color
+    vertical-align: baseline; // Options: baseline, sub, super, text-top, text-bottom, middle, top, bottom
+
+    button &,
+    .button & {
+      @include rem( height, 18px );
+      @include rem( width, 18px );
+      @include rem( margin, 4px -4px 0 4px );
+      filter: drop-shadow( 0 1px 1px rgba( colour(body-bg), .9 ) ); // Matches letterpress effect
+      float: right;
+    }
+
+    button &.icon-typ-th-list,
+    .button &.icon-typ-th-list {
+      @include rem( height, 12px );
+      @include rem( width, 12px );
+      @include rem( margin, 8px -4px 0 4px );
+    }
+
+    .overlay & {
+      @include rem( height, 14px );
+      @include rem( width, 14px );
+      filter: drop-shadow( 0px 1px 1px black(.6) );
+      @include k-media-above( break(medium) ) {
+        @include rem( height, 20px );
+        @include rem( width, 20px );
+        vertical-align: -2px;
+      }
+    }
+
+    .no-image & {
+      @include k-absolute(top 0 left 0 bottom 0 right 0);
+      color: grey(120);
+      filter: drop-shadow( 2px 2px 4px black(.3) );
+      margin: auto;
+      opacity: .5;
+      height: 75%;
+      width: 75%;
+    }
+  }
+
+  // Fix jQuery bug: http://bugs.jquery.com/ticket/11352
+  use {
+    pointer-events: none;
+  }
+}
