@@ -1,6 +1,6 @@
 {
   "name": "technocrat",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A minimal WordPress theme for technical writing",
   "homepage": "https://github.com/synapticism/technocract",
   "repository": {
@@ -23,6 +23,7 @@
     "gulp-changed": "^1.1.1",
     "gulp-cheerio": "^0.6.2",
     "gulp-concat": "^2.5.2",
+    "gulp-flatten": "0.0.4",
     "gulp-imagemin": "^1.2.0",
     "gulp-jshint": "^1.9.2",
     "gulp-livereload": "^3.8.0",

@@ -113,6 +113,26 @@
       color: colour(highlight);
     }
   }
+  svg.icon {
+    @include rem( margin, 0 4px 0 -3px );
+    @include rem( height, 35px );
+    @include rem( width, 35px );
+    color: k-colour(raven);
+    transform: scale(-1,1) rotate(180deg);
+    transition: all .56s ease-out;
+    vertical-align: bottom;
+    @include k-media-below( break(medium) ) {
+      @include rem( margin, 0 2px 0 -3px );
+      @include rem( height, 24px );
+      @include rem( width, 24px );
+    }
+  }
+  &:hover {
+    svg.icon {
+      transition: all 1.4s ease;
+      transform: scale(-1,1) rotate(-180deg);
+    }
+  }
 }
 .site-description {
   @extend %clearfix-below;
@@ -193,11 +213,11 @@ main {
     margin-left: auto;
     max-width: $width-main;
   }
-}
-.site-footer-buttons {
-  @extend %button-container;
-  @include k-media-above( break(medium) ) {
-    @include k-hide-visually;
+  color: colour(footer);
+  .buttons {
+    @include k-media-above( break(medium) ) {
+      @include k-hide-visually;
+    }
   }
 }
 .site-colophon {

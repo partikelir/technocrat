@@ -5,7 +5,7 @@
 if ( !function_exists( 'pendrell_archive_buttons' ) ) : function pendrell_archive_buttons() {
   $buttons = apply_filters( 'pendrell_archive_buttons', '' );
   if ( !empty( $buttons ) )
-    echo '<div class="archive-buttons">' . $buttons . '</div>';
+    echo '<div class="buttons">' . $buttons . '</div>';
 } endif;
 add_action( 'pendrell_archive_before', 'pendrell_archive_buttons' );
 

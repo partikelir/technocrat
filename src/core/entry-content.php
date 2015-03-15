@@ -1,4 +1,4 @@
-<?php // ==== CONTENT ==== //
+<?php // ==== ENTRY CONTENT ==== //
 
 // Content title; displayed at the top of posts, pages, etc.
 // @filter: pendrell_entry_title
@@ -60,7 +60,7 @@ if ( !function_exists( 'pendrell_entry_meta' ) ) : function pendrell_entry_meta(
 if ( !function_exists( 'pendrell_entry_buttons' ) ) : function pendrell_entry_buttons() {
   $buttons = apply_filters( 'pendrell_entry_buttons', '' );
   if ( !empty( $buttons ) )
-    echo '<div class="entry-meta-buttons">' . $buttons . '</div>';
+    echo '<div class="buttons">' . $buttons . '</div>';
 } endif;
 add_action( 'pendrell_entry_meta_before', 'pendrell_entry_buttons' );
 

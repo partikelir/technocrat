@@ -2,65 +2,11 @@
 
 var gulp        = require('gulp')
   , plugins     = require('gulp-load-plugins')({ camelize: true })
-  , del         = require('del')
   , config      = require('../../gulpconfig').bower
 ;
 
 // This task is executed on `bower update` which is in turn triggered by `npm update`; use this to copy and transform source files from `bower_components`
-gulp.task('bower', ['bower-icons', 'bower-normalize']);
-
-// Support for multiple icon sources; use one task per set to handle different prefixes and source locations
-gulp.task('bower-icons', ['bower-awesomeicons', 'bower-ionicons', 'bower-typicons']);
-
-// Utility function to clean out the icons folder prior to building a new sprite sheet (use this anytime you change icons)
-gulp.task('bower-clean', function(cb) {
-  del(config.iconsets.dest, cb)
-});
-
-// Font Awesome; copy specified SVG icon source files to the theme for assembly into a master icon sheet
-gulp.task('bower-awesomeicons', function() {
-  var iconset = config.iconsets.awesome;
-
-  // Iterate through the icon set array and set the full path of the source file
-  iconset.icons.forEach(function(icon, i, icons) {
-    icons[i] = iconset.src+icon+'.svg';
-  });
-  return gulp.src(iconset.icons)
-  .pipe(plugins.rename({ prefix: iconset.prefix }))
-  .pipe(plugins.changed(config.iconsets.dest))
-  .pipe(plugins.imagemin())
-  .pipe(gulp.dest(config.iconsets.dest));
-});
-
-// Ionicons; copy specified SVG icon source files to the theme for assembly into a master icon sheet
-gulp.task('bower-ionicons', function() {
-  var iconset = config.iconsets.ionicons;
-
-  // Iterate through the icon set array and set the full path of the source file
-  iconset.icons.forEach(function(icon, i, icons) {
-    icons[i] = iconset.src+icon+'.svg';
-  });
-  return gulp.src(iconset.icons)
-  .pipe(plugins.rename({ prefix: iconset.prefix }))
-  .pipe(plugins.changed(config.iconsets.dest))
-  .pipe(plugins.imagemin())
-  .pipe(gulp.dest(config.iconsets.dest));
-});
-
-// Typicons; copy specified SVG icon source files to the theme for assembly into a master icon sheet
-gulp.task('bower-typicons', function() {
-  var iconset = config.iconsets.typicons;
-
-  // Iterate through the icon set array and set the full path of the source file
-  iconset.icons.forEach(function(icon, i, icons) {
-    icons[i] = iconset.src+icon+'.svg';
-  });
-  return gulp.src(iconset.icons)
-  .pipe(plugins.rename({ prefix: iconset.prefix }))
-  .pipe(plugins.changed(config.iconsets.dest))
-  .pipe(plugins.imagemin())
-  .pipe(gulp.dest(config.iconsets.dest));
-});
+gulp.task('bower', ['bower-normalize']);
 
 // Used to get around Sass's inability to properly @import vanilla CSS; see: https://github.com/sass/sass/issues/556
 gulp.task('bower-normalize', function() {
