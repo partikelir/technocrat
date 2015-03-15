@@ -115,6 +115,7 @@
   h4,
   h5,
   h6 {
+    color: colour(headers);
     text-transform: uppercase; // The sizing of these headers is below that of the body copy; let's give them some punch
   }
 
