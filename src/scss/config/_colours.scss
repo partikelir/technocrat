@@ -119,14 +119,17 @@ $_colours: (
 
   // Code blocks
 , code:           $c-dark
-, code-bg:        rgba( $c-lighter, .73 ) // #FAF9FC
+, code-bg:        rgba( $c-lighter, .73 )
 , code-box:       $c-light
 , code-box-bg:    $c-darkest
 
   // Interface
-, button:         $c-link
-, button-h:       $c-offset
-, button-alt:     $c-highlight
+, button:         white()
+, button-h:       white(.9)
+, button-a:       white(.8)
+, button-bg-1:    $c-link
+, button-bg-2:    $c-offset
+, button-alt:     $c-highlight // Unused?
 , divider:        rgba( $c-text, .09 ) // For use with <hr> etc.
 , select-top:     grey(251)
 , select-bottom:  grey(227)
