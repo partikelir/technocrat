@@ -18,8 +18,12 @@
   }
 
   // Lists
-  ul ul {
-    @include rem( margin-left, spacer(1/2) ); // Half length indentation since we don't have that much space to play with
+  ul {
+    @include rem( margin-bottom, spacer(1/4) );
+    ul {
+      @include rem( margin-left, spacer(1/2) ); // Half length indentation since we don't have that much space to play with
+      //@include rem( margin-top, spacer(1/4) );
+    }
   }
 
   // Content
@@ -35,6 +39,6 @@
 
   // Eliminate margin on the very last widget
   &:last-child {
-    margin-bottom: 0;
+    @extend %spacer-below-reset;
   }
 }

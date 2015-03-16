@@ -38,7 +38,7 @@ if ( !function_exists( 'pendrell_comments' ) ) : function pendrell_comments( $co
           comment_author_link();
           $pingback_edit_link = pendrell_comments_edit_link();
           if ( !empty( $pingback_edit_link ) )
-            echo '<div class="buttons">' . $pingback_edit_link . '</div>';
+            echo '<div class="comments-buttons buttons">' . $pingback_edit_link . '</div>';
         ?></article>
       </li><?php
       break;
@@ -54,7 +54,7 @@ if ( !function_exists( 'pendrell_comments' ) ) : function pendrell_comments( $co
             <div class="comment-avatar">
               <?php echo get_avatar( $comment, 60 ); ?>
             </div>
-            <div class="comment-buttons">
+            <div class="comment-buttons buttons">
               <?php echo pendrell_comments_edit_link(); comment_reply_link( array_merge( $args, array( 'reply_text' => pendrell_icon( 'comment-reply', __( 'Reply', 'pendrell' ) ), 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
             </div>
             <div class="comment-meta">

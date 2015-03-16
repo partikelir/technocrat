@@ -41,6 +41,9 @@
 %spacer-below-half {
   @include rem( margin-bottom, spacer(1/2) );
 }
+%spacer-below-reset {
+  margin-bottom: 0;
+}
 %spacer-reset {
   margin: 0;
 }
