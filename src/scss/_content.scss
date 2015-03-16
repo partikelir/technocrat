@@ -87,7 +87,7 @@
     ol,
     ul,
     dl {
-      margin-bottom: 0; // Remove spacing for sub-lists
+      @extend %spacer-below-reset; // Remove spacing for sub-lists
     }
   }
   li {
