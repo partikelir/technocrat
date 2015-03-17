@@ -144,15 +144,17 @@ require_once( $path_modules . 'ubik-favicons/ubik-favicons.php' );
 
 // == FEED == //
 
-if ( PENDRELL_UBIK_FEED )
-  require_once( $path_modules . 'ubik-feed/ubik-feed.php' ); // @TODO: image size management in feeds
+if ( PENDRELL_UBIK_FEED ) {
+  if ( PENDRELL_POST_FORMATS )
+    define( 'UBIK_FEED_EXCLUDE_FORMATS', true );
+  require_once( $path_modules . 'ubik-feed/ubik-feed.php' );
+}
 
 
 
 // == FONTS == * //
 
 define( 'UBIK_FONTS_GOOGLE', 'Oxygen:300,300italic,400,400italic,700,700italic|Ubuntu:300,400,700' );
-//define( 'UBIK_FONTS_GOOGLE_ADMIN', 'Noto+Serif:400' );
 require_once( $path_modules . 'ubik-fonts/ubik-fonts.php' );
 
 
@@ -310,6 +312,8 @@ require_once( $path_modules . 'ubik-text/ubik-text.php' );
 add_filter( 'the_content', 'ubik_text_replacement', 99 );
 add_filter( 'the_excerpt', 'ubik_text_replacement', 99 );
 add_filter( 'comment_text', 'ubik_text_replacement', 99 );
+add_filter ( 'the_content_feed' , 'ubik_text_strip_asides' );
+add_filter ( 'the_excerpt_rss' , 'ubik_text_strip_asides' );
 
 
 
