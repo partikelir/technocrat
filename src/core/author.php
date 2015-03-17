@@ -12,7 +12,7 @@ if ( !function_exists( 'pendrell_author_meta' ) ) : function pendrell_author_met
   }
 } endif;
 if ( PENDRELL_AUTHOR_META )
-  add_filter( 'pendrell_entry_meta_after', 'pendrell_author_meta', 12 );
+  add_filter( 'pendrell_entry_footer_after', 'pendrell_author_meta', 12 );
 
 
 
@@ -64,7 +64,7 @@ if ( !function_exists( 'pendrell_author_edit_link' ) ) : function pendrell_autho
   if ( is_author() ) {
     $edit_author_link = get_edit_user_link(); // Author edit link for users with the appropriate capabilities
     if ( !empty( $edit_author_link ) )
-      $buttons .= '<a href="' . $edit_author_link . '" class="button edit-link">' . pendrell_icon( 'author-edit', __( 'Edit', 'pendrell' ) ) . '</a></div>';
+      $buttons .= '<a href="' . $edit_author_link . '" class="button edit-link">' . pendrell_icon( 'author-edit', __( 'Edit', 'pendrell' ) ) . '</a>';
   }
   return $buttons;
 } endif;

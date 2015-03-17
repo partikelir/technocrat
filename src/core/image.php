@@ -34,10 +34,12 @@ add_filter( 'the_content', 'pendrell_image_wrapper' );
 
 
 
-// Image overlay metadata wrapper; for use with Ubik Imagery
-if ( !function_exists( 'pendrell_image_overlay_metadata' ) ) : function pendrell_image_overlay_metadata( $html = '', $position = 'top-right' ) {
+// Image overlay metadata wrapper
+if ( !function_exists( 'pendrell_image_overlay_metadata' ) ) : function pendrell_image_overlay_metadata( $html = '', $position = 'top-right', $class = '' ) {
+  if ( !empty( $class ) )
+    $class = ' ' . $class;
   if ( $html !== '' && in_array( $position, array( 'top-right', 'top-left', 'bottom-right', 'bottom-left' ) ) )
-    $html = '<footer class="' . esc_attr( $position ) . '">' . (string) $html . '</footer>';
+    $html = '<footer class="' . esc_attr( $position . $class ) . '">' . (string) $html . '</footer>';
   return $html;
 } endif;
 

@@ -88,17 +88,37 @@ figure.wp-caption {
 
   // The footer contains additional data e.g. comment count
   footer {
-    @include rem( font-size, size(text-small) + 0px );
-    line-height: 1.25; // No need for vertical rhythm here!
-    .full-width & {
-      @include k-media-above( break(medium) ) {
-        @include rem( font-size, size(text) + 0px );
+    &.comments {
+      @include rem( font-size, size(text-small) + 0px );
+      line-height: 1.25; // No need for vertical rhythm here!
+      .full-width & {
+        @include k-media-above( break(medium) ) {
+          @include rem( font-size, size(text) + 0px );
+        }
+      }
+      .gallery-static & {
+        @include k-media-below( break(small) ) {
+          @include rem( font-size, size(text-smaller) + 0px );
+        }
       }
     }
-    .gallery-static & {
-      @include k-media-below( break(small) ) {
-        @include rem( font-size, size(text-smaller) + 0px );
+    &.date {
+      @extend %hide;
+      /*@include border-radius;
+      @include rem( margin, 3px );
+      background: black(.1);
+      text-transform: uppercase;
+      @include rem( font-size, size(text-smallest) + 0px );
+      .full-width & {
+        @include k-media-above( break(medium) ) {
+          @include rem( font-size, size(text-small) + 0px );
+        }
       }
+      .gallery-static & {
+        @include k-media-below( break(small) ) {
+          //@include rem( font-size, size(text-smaller) + 0px );
+        }
+      }*/
     }
   }
 }

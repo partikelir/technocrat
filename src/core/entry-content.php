@@ -1,7 +1,8 @@
 <?php // ==== ENTRY CONTENT ==== //
 
-// Content title; displayed at the top of posts, pages, etc.
+// Entry title; displayed at the top of posts, pages, etc.
 // @filter: pendrell_entry_title
+// @action: pendrell_entry_title_before
 // @action: pendrell_entry_title_after
 if ( !function_exists( 'pendrell_entry_title' ) ) : function pendrell_entry_title( $title = '' ) {
   if ( empty( $title ) )
@@ -9,34 +10,66 @@ if ( !function_exists( 'pendrell_entry_title' ) ) : function pendrell_entry_titl
   if ( !is_singular() )
     $title = '<a href="' . get_permalink() . '" rel="bookmark">' . $title . '</a>';
   echo apply_filters( 'pendrell_entry_title', '<h1 class="entry-title">' . $title . '</h1>' );
-  do_action( 'pendrell_entry_title_after' );
 } endif;
+add_action( 'pendrell_entry_header', 'pendrell_entry_title' );
 
 
 
-// Entry meta wrapper
-// @action: pendrell_entry_meta_before
-// @action: pendrell_entry_meta_after
-if ( !function_exists( 'pendrell_entry_meta' ) ) : function pendrell_entry_meta() {
-  do_action( 'pendrell_entry_meta_before' );
 
-  ?><div class="entry-meta-main">
-    <?php echo ubik_meta(); ?>
-  </div><?php
-
-  do_action( 'pendrell_entry_meta_after' );
+// Entry title meta
+if ( !function_exists( 'pendrell_entry_title_meta' ) ) : function pendrell_entry_title_meta() {
+  if ( is_page() || is_attachment() )
+    return;
+  $date = '<div class="date"><time datetime="' . date( 'c', get_the_time( 'U' ) ) . '">' . get_the_time( 'M j Y' ) . '</time></div>';
+  $cats = get_the_category_list( '</div> <div class="cats">' );
+  if ( !empty( $cats ) )
+    $cats = ' <div class="cats">' . $cats . '</div>';
+  $tags = ubik_terms_popular_list( get_the_ID(), 'post_tag', ' <div class="tags">', '</div> <div class="tags">', '</div>' );
+  $author = ubik_meta_author();
+  if ( !empty( $author ) )
+    $author = ' <div class="author">' . sprintf( __( '<div class="by">by</div> %s', 'pendrell' ), $author ) . '</div>';
+  echo '<footer class="entry-title-meta">' . apply_filters( 'pendrell_entry_title_meta', $date . $cats . $tags . $author ) . '</footer>';
 } endif;
+//add_action( 'pendrell_entry_header', 'pendrell_entry_title_meta', 20 );
 
 
 
-// Entry buttons
-// @filter: pendrell_entry_buttons
-if ( !function_exists( 'pendrell_entry_buttons' ) ) : function pendrell_entry_buttons() {
-  $buttons = apply_filters( 'pendrell_entry_buttons', '' );
+// Entry footer; displayed below posts; a good place for buttons and metadata
+if ( !function_exists( 'pendrell_entry_footer_meta_original' ) ) : function pendrell_entry_footer_meta_original() {
+  echo '<div class="entry-meta-main">' . ubik_meta() . '</div>';
+} endif;
+add_action( 'pendrell_entry_footer', 'pendrell_entry_footer_meta_original', 10 );
+
+
+
+// Entry footer meta
+if ( !function_exists( 'pendrell_entry_footer_meta' ) ) : function pendrell_entry_footer_meta() {
+
+  // Get metadata
+  $data = ubik_meta_data();
+
+  // Setup entry meta data; the only information we have for sure is type, date, and author
+  if ( !empty( $data['date_updated'] ) ) {
+    $meta = sprintf( __( 'Published %1$s<span class="last-updated"> and updated %2$s</span>. ', 'ubik' ), $data['date_published'], $data['date_updated'] );
+  } else {
+    $meta = sprintf( __( 'Published %s. ', 'ubik' ), $data['date_published'] );
+  }
+
+  echo '<div class="entry-meta-main">' . $meta . '</div>';
+
+} endif;
+//add_action( 'pendrell_entry_footer', 'pendrell_entry_footer_meta', 10 );
+
+
+
+// Entry footer buttons
+// @filter: pendrell_entry_footer_buttons
+if ( !function_exists( 'pendrell_entry_footer_buttons' ) ) : function pendrell_entry_footer_buttons() {
+  $buttons = apply_filters( 'pendrell_entry_footer_buttons', '' );
   if ( !empty( $buttons ) )
     echo '<div class="buttons buttons-merge">' . $buttons . '</div>';
 } endif;
-add_action( 'pendrell_entry_meta_before', 'pendrell_entry_buttons' );
+add_action( 'pendrell_entry_footer', 'pendrell_entry_footer_buttons', 5 );
 
 
 
@@ -49,7 +82,7 @@ if ( !function_exists( 'pendrell_entry_edit_link' ) ) : function pendrell_entry_
   $buttons .= '<a class="button post-edit-link" href="' . $url . '" rel="nofollow" role="button">' . pendrell_icon( 'content-edit', __( 'Edit', 'pendrell' ) ) . '</a>';
   return $buttons;
 } endif;
-add_filter( 'pendrell_entry_buttons', 'pendrell_entry_edit_link', 9 );
+add_filter( 'pendrell_entry_footer_buttons', 'pendrell_entry_edit_link', 9 );
 
 
 

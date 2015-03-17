@@ -2,7 +2,7 @@
 
 define( 'PENDRELL_PLACES_TEMPLATE_ID', false );
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-places/ubik-places.php' );
-add_action( 'pendrell_archive_description_before', 'ubik_places_breadcrumb' );
+add_action( 'pendrell_archive_header', 'ubik_places_breadcrumb', 15 );
 
 // Display the Ubik Places sidebar
 function pendrell_sidebar_places( $sidebar ) {
@@ -50,7 +50,7 @@ add_filter( 'ubik_meta_taxonomies', 'pendrell_places_meta' );
 // Body class filter
 function pendrell_places_body_class( $classes ) {
   if ( is_page_template( 'page-templates/places.php' ) )
-    $classes[] = 'gallery-view';
+    $classes[] = 'gallery-flex';
   return $classes;
 }
 add_filter( 'body_class', 'pendrell_places_body_class' );

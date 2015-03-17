@@ -99,6 +99,7 @@ require_once( $path_modules . 'ubik-comments/ubik-comments.php' );
 
 // == EXCERPTS * == //
 
+define( 'UBIK_EXCERPT_MORE_LINK', true );
 define( 'UBIK_EXCERPT_PAGES', true );
 require_once( $path_modules . 'ubik-excerpt/ubik-excerpt.php' );
 
@@ -270,7 +271,7 @@ function pendrell_terms_edit_description_prompt( $content ) {
     return '<span class="warning">' . ubik_terms_edit_description_prompt( __( 'This term description is empty.', 'pendrell' ) ) . '</span>';
   return $content;
 }
-add_filter( 'pendrell_archive_description_term', 'pendrell_terms_edit_description_prompt' );
+add_filter( 'get_the_archive_description', 'pendrell_terms_edit_description_prompt' );
 
 function pendrell_terms_edit_link( $buttons ) {
   $edit_link = ubik_terms_edit_link( pendrell_icon( 'term-edit', __( 'Edit', 'pendrell' ) ), 'button edit-link' );

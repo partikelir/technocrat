@@ -137,7 +137,7 @@ blockquote {
   @include rem( padding, spacer(1/2) spacer(1/2) spacer(1/2) spacer() - 9px );
   background: rgba( colour(body-darker), .25); // Transparent so that blockquotes can be nested
   border-left: 9px solid colour(divider);
-  box-shadow: inset 0px -2px 7px colour(shadow-lighter);
+  //box-shadow: inset 0px -2px 7px colour(shadow-lighter);
   color: rgba( colour(text), .75); // Transparent so that blockquotes can be nested
   quotes: none; // From the Meyer Reset
   &:before, &:after { // From the Meyer Reset

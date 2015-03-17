@@ -28,7 +28,7 @@
     }
 
     // Entry meta
-    .entry-meta {
+    .entry-title-meta {
       @extend %clearfix-reset;
       @include font-size(text-smallest);
       color: colour(text-lightest);

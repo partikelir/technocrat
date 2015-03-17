@@ -1,17 +1,6 @@
 <?php // ==== ARCHIVES ==== //
 
-// Archive buttons; a hook for interactive elements like edit links
-// @filter: pendrell_archive_buttons
-if ( !function_exists( 'pendrell_archive_buttons' ) ) : function pendrell_archive_buttons() {
-  $buttons = apply_filters( 'pendrell_archive_buttons', '' );
-  if ( !empty( $buttons ) )
-    echo '<div class="buttons buttons-merge">' . $buttons . '</div>';
-} endif;
-add_action( 'pendrell_archive_before', 'pendrell_archive_buttons' );
-
-
-
-// A simple wrapper for archive titles using Ubik Title; active in 404, archive, and search templates
+// A simple wrapper for archive titles using Ubik Title; active in 404, search, and the links page template
 // @filter: pendrell_archive_title
 if ( !function_exists( 'pendrell_archive_title' ) ) : function pendrell_archive_title( $title = '' ) {
   if ( empty( $title ) ) {
@@ -23,26 +12,31 @@ if ( !function_exists( 'pendrell_archive_title' ) ) : function pendrell_archive_
   }
   echo '<h1 class="archive-title">' . apply_filters( 'pendrell_archive_title', $title ) . '</h1>';
 } endif;
+add_action( 'pendrell_archive_header', 'pendrell_archive_title', 10 );
+
+
+
+// Archive buttons; a hook for interactive elements like edit links
+// @filter: pendrell_archive_buttons
+if ( !function_exists( 'pendrell_archive_buttons' ) ) : function pendrell_archive_buttons() {
+  $buttons = apply_filters( 'pendrell_archive_buttons', '' );
+  if ( !empty( $buttons ) )
+    echo '<div class="buttons buttons-merge">' . $buttons . '</div>';
+} endif;
+add_action( 'pendrell_archive_header', 'pendrell_archive_buttons', 5 );
 
 
 
 // Archive descriptions
-// @filter: pendrell_archive_description_term
 // @filter: pendrell_archive_description
-// @action: pendrell_archive_description_before
-// @action: pendrell_archive_description_after
-// @TODO: hook into new WordPress core archive description template tags: https://make.wordpress.org/core/2014/12/04/new-template-tags-in-4-1/
 if ( !function_exists( 'pendrell_archive_description' ) ) : function pendrell_archive_description( $desc = '' ) {
-
-  // Before the archive description (e.g. for breadcrumbs)
-  do_action( 'pendrell_archive_description_before' );
 
   // Archive descriptions for categories, tags, taxonomies
   if ( is_category() || is_tag() || is_tax() ) {
 
     // Check to see if we have a description for this category, tag, or taxonomy and filter the results
     if ( empty( $desc ) )
-      $desc = apply_filters( 'pendrell_archive_description_term', term_description() );
+      $desc = get_the_archive_description();
   }
 
   // Archive descriptions for individual authors (direct output; must skip conditional description output)
@@ -57,8 +51,5 @@ if ( !function_exists( 'pendrell_archive_description' ) ) : function pendrell_ar
   } elseif ( !empty( $desc ) ) {
     echo '<div class="archive-desc">' . apply_filters( 'pendrell_archive_description', $desc ) . '</div>';
   }
-
-  // After the archive description
-  do_action( 'pendrell_archive_description_after' );
-
 } endif;
+add_action( 'pendrell_archive_header', 'pendrell_archive_description', 20 );
