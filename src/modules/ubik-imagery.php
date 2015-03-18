@@ -194,12 +194,13 @@ function pendrell_sizes_default( $default = '', $size = '', $width = '', $contex
   $margin_inner = pendrell_sizes_margin_inner();
 
   // Test the context object for various scenarios
+  $content      = pendrell_sizes_context( $context, 'content' ); // Defaults back to 100vw as images fill the viewport
   $group        = pendrell_sizes_context( $context, 'group' );
   $static       = pendrell_sizes_context( $context, 'static' );
 
   // Static galleries are a special case; for everything else we can safely default back to the full viewport minus basic page margins
   // This presumes that Ubik Imagery's sizing conventions are being followed; see: https://github.com/synapticism/ubik-imagery
-  if ( $group === true && $static === true ) {
+  if ( $group === true && $static === true && $content === false ) {
     $factor = 2; // $group is true so we expect two images in a row by default
     if ( in_array( $size, array( 'third', 'third-square' ) ) )
       $factor = 3;
@@ -212,7 +213,7 @@ function pendrell_sizes_default( $default = '', $size = '', $width = '', $contex
   }
 
   // Margins in this theme vary according to viewport size; what we want here is the smallest possible margin (since this is the default media query we are returning)
-  if ( !empty( $margin ) ) {
+  if ( !empty( $margin ) && $content === false ) {
     $default = 'calc(' . $viewport . 'vw - ' . $margin . 'px)'; // `calc()` support: http://caniuse.com/#search=calc
   } else {
     $default = $viewport . 'vw'; // Without a pre-defined margin we'll just assume that images take up the full viewport on smaller screens

@@ -88,3 +88,15 @@
     @extend %hide;
   }
 }
+
+
+
+// Responsive menu toggle
+.menu-toggle { // Menu toggle for mobile phones and small screens
+  @include k-media-above( break(medium) ) {
+    display: none;
+  }
+  &.active svg.icon {
+    filter: drop-shadow( 0 -1px 1px rgba( colour(body-bg), .9 ) ); // Reverses letterpress effect
+  }
+}

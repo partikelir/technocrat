@@ -1,19 +1,9 @@
 // ==== COMMENTS ==== //
 
-// General comments area
-.comments-area {
-  @extend %spacer-above-double;
-  max-width: $width-main ; // Required to limit the width of the comments area when there is no sidebar displayed
-}
 .comments-title {
   @extend %spacer-below;
   @include font-size(head);
 }
-
-
-
-// == COMMENT LIST == //
-
 .comment-list {
   .children { // Threaded comments
     @include k-media-above( break(medium) ) {
@@ -21,23 +11,7 @@
     }
   }
 }
-
-// Pingbacks/trackbacks
-.comment-pingback {
-  @include font-size(head-smaller);
-  @include k-ghost;
-}
-
-// Comment awaiting moderation
-.comment-warning {
-  @extend %text-smaller;
-}
-
-// Specific to individual comments
-.comment article { // Needs to be written this way to override the specificity of the default `.site-content article` declaration
-  @include rem( margin, spacer(-1/2) spacer(-1/2) spacer(2.5) spacer(-1/2) );
-}
-.comment-article {
+.comment-article { // Specific to individual comments
   @include rem( padding, spacer(1/2) );
   .bypostauthor & { // Specific to the post author's comments
     @include k-media-above( break(small) ) {
@@ -46,6 +20,9 @@
       box-shadow: inset 3px 3px 7px colour(shadow-light);
     }
   }
+}
+.comment article { // Written this way to override the specificity of the default `.site-content article` declaration
+  @include rem( margin, spacer(-1/2) spacer(-1/2) spacer(2.5) spacer(-1/2) );
 }
 .comment-author { // Comment author's byline
   @extend %clearfix-below;
@@ -100,30 +77,10 @@
   @include font-size(text-smaller);
   color: colour(meta);
 }
-
-
-
-// == RESPONSE FORM == //
-
-// Specific to comment form; see `_ui_elements.scss` for general declarations
-.comment-form {
-  .logged-in-as,
-  .comment-form-url {
-    @extend %spacer-below;
-  }
-  #submit {
-    @extend %spacer-below-double; // Needed for when the comment form moves around
-  }
+.comment-pingback { // Pingbacks/trackbacks
+  @include font-size(head-smaller);
+  @include k-ghost;
 }
-
-// Formerly .form-allowed-tags; this is
-.comment-notes-after {
-  @extend %spacer-below;
-  @include font-size(text-smaller);
-  color:  colour(text-lighter);
-  code {
-    @include font-size(text-smallest);
-    @include k-highlight-reset;
-    display: inline;
-  }
+.comment-warning { // Comment awaiting moderation
+  @extend %text-smaller;
 }

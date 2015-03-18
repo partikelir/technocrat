@@ -26,11 +26,12 @@ Domain Path: #{metadata(theme-text-domain-path)}
 @import "menu";           // Menus
 @import "layout";         // Layout of the main content areas
 @import "content";        // Content (entry header, content, and meta)
-@import "image";          // Captions, gallery, layout, and organization of images
+@import "images";         // Captions, gallery, layout, and organization of images
 @import "archive";        // Archives (categories, tags, taxonomies and more)
 @import "author";         // Author box
 @import "comments";       // Comments
 @import "widgets";        // Widgets
+@import "accessibility";  // Accessibility
 @import "various";        // Various stuff that doesn't fit anywhere else
 
 

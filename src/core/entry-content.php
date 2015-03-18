@@ -17,10 +17,10 @@ add_action( 'pendrell_entry_header', 'pendrell_entry_title' );
 
 
 // Entry title meta
-if ( !function_exists( 'pendrell_entry_title_meta' ) ) : function pendrell_entry_title_meta() {
+if ( !function_exists( 'pendrell_entry_header_meta' ) ) : function pendrell_entry_header_meta() {
   if ( is_page() || is_attachment() )
     return;
-  $date = '<div class="date"><time datetime="' . date( 'c', get_the_time( 'U' ) ) . '">' . get_the_time( 'M j Y' ) . '</time></div>';
+  $date = '<div class="date"><time datetime="' . date( 'c', get_the_time( 'U' ) ) . '">' . get_the_date( 'M j Y' ) . '</time></div>';
   $cats = get_the_category_list( '</div> <div class="cats">' );
   if ( !empty( $cats ) )
     $cats = ' <div class="cats">' . $cats . '</div>';
@@ -28,15 +28,15 @@ if ( !function_exists( 'pendrell_entry_title_meta' ) ) : function pendrell_entry
   $author = ubik_meta_author();
   if ( !empty( $author ) )
     $author = ' <div class="author">' . sprintf( __( '<div class="by">by</div> %s', 'pendrell' ), $author ) . '</div>';
-  echo '<footer class="entry-title-meta">' . apply_filters( 'pendrell_entry_title_meta', $date . $cats . $tags . $author ) . '</footer>';
+  echo '<footer class="meta">' . apply_filters( 'pendrell_entry_header_meta', $date . $cats . $tags . $author ) . '</footer>';
 } endif;
-//add_action( 'pendrell_entry_header', 'pendrell_entry_title_meta', 20 );
+//add_action( 'pendrell_entry_header', 'pendrell_entry_header_meta', 9 );
 
 
 
 // Entry footer; displayed below posts; a good place for buttons and metadata
 if ( !function_exists( 'pendrell_entry_footer_meta_original' ) ) : function pendrell_entry_footer_meta_original() {
-  echo '<div class="entry-meta-main">' . ubik_meta() . '</div>';
+  echo '<div class="meta">' . ubik_meta() . '</div>';
 } endif;
 add_action( 'pendrell_entry_footer', 'pendrell_entry_footer_meta_original', 10 );
 
@@ -55,7 +55,7 @@ if ( !function_exists( 'pendrell_entry_footer_meta' ) ) : function pendrell_entr
     $meta = sprintf( __( 'Published %s. ', 'ubik' ), $data['date_published'] );
   }
 
-  echo '<div class="entry-meta-main">' . $meta . '</div>';
+  echo '<div class="meta">' . $meta . '</div>';
 
 } endif;
 //add_action( 'pendrell_entry_footer', 'pendrell_entry_footer_meta', 10 );
@@ -106,13 +106,13 @@ if ( !function_exists( 'pendrell_entry_password_form' ) ) : function pendrell_en
   $label = '<label for="' . $id . '" class="screen-reader-text">' . __( 'Password', 'pendrell' ) . '</label>';
 
   // The actual input field itself
-  $input = '<input name="post_password" id="' . $id . '" type="password" size="20" /> ';
+  $input = '<input name="post_password" id="' . $id . '" type="password" size="20" required="" />';
 
   // Submit button
-  $submit = '<button type="submit" name="Submit">' . pendrell_icon( 'content-protected', __( 'Access', 'pendrell' ) ) . '</button>';
+  $submit = '<button id="submit" type="submit" name="submit">' . pendrell_icon( 'content-protected', __( 'Enter password', 'pendrell' ) ) . '</button>';
 
   // Form wrapper
-  $output = $prompt . '<form action="' . esc_url( site_url( 'wp-login.php?action=postpass', 'login_post' ) ) . '" class="post-password-form" method="post">' . $label . $input . $submit . '</form>';
+  $output = $prompt . '<form action="' . esc_url( site_url( 'wp-login.php?action=postpass', 'login_post' ) ) . '" class="form-post-password" method="post">' . $label . $input . $submit . '</form>';
 
   return $output;
 } endif;

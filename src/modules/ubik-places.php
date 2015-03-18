@@ -14,7 +14,7 @@ function pendrell_sidebar_places( $sidebar ) {
     // Only output places widget markup if we have results; @TODO: turn this into a real widget
     if ( !empty( $places ) ) {
       ?><div id="wrap-sidebar" class="wrap-sidebar">
-        <div id="secondary" class="widget-area" role="complementary">
+        <div id="secondary" class="site-sidebar" role="complementary">
           <aside id="ubik-places" class="widget">
             <?php if ( !empty( $places ) ) {
               foreach ( $places as $key => $place ) {

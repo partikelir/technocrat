@@ -6,8 +6,8 @@
 
   // This class only appears in list-view so it is safe to declare it without nesting
   .entry-thumbnail {
+    @include rem( width, $width-thumb );
     float: left;
-    width: 150px;
     figure.wp-caption {
       @extend %spacer-reset;
       figcaption {
@@ -37,7 +37,10 @@
 
     // Entry content (with more below for full-width styling)
     .entry-content-wrapper {
-      margin-left: $width-thumb + spacer();
+      @include rem( margin-left, $width-thumb + spacer() );
+      @include k-media-below( break(small) ) {
+        @include rem( margin-left, $width-thumb + spacer(1/2) );
+      }
     }
     .entry-content p {
       @extend %text-small;

@@ -210,6 +210,9 @@
 }
 
 // Various shortcuts
+%box-shadow-reset {
+  box-shadow: none;
+}
 %list-style-none {
   list-style: none;
 }

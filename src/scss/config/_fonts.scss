@@ -95,10 +95,13 @@ $w-mono-bold:       700;
   @if (entry-title == $style) {
     @extend %head-normal;
   }
+  @if (entry-header-meta == $style) {
+    @extend %body-normal;
+  }
   @if (entry-content == $style) {
     @extend %body-light;
   }
-  @if (entry-meta == $style) {
+  @if (entry-footer-meta == $style) {
     @extend %body-normal;
   }
 

@@ -86,15 +86,15 @@ function pendrell_contact_form() {
     }
 
     if ( $has_error === true )
-      echo '<p class="alert" role="alert">' . __( 'Something went wrong. Please try again!', 'pendrell' ) . '</p>';
+      echo '<div class="alert error" role="alert">' . __( 'Something went wrong. Please try again!', 'pendrell' ) . '</div>';
 
     if ( $email_sent === true )
-      echo '<p class="success" role="status">' . __( 'Your message has been sent! Thank you for making contact.', 'pendrell' ) . '</p>';
+      echo '<div class="alert success" role="status">' . __( 'Your message has been sent! Thank you for making contact.', 'pendrell' ) . '</div>';
 
   } else {
 
     // Unspecified error
-    echo '<p class="alert" role="alert">' . __( 'Something went wrong. Please try again!', 'pendrell' ) . '</p>';
+    echo '<div class="alert warning" role="alert">' . __( 'Something went wrong. Please try again!', 'pendrell' ) . '</div>';
   }
 
   // Complete the request and return whatever we've got

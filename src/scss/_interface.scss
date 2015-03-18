@@ -2,8 +2,6 @@
 
 // This partial is meant to contain all user interface elements: buttons, forms, and so on...
 
-
-
 // == BUTTONS == //
 
 %button {
@@ -25,7 +23,6 @@ input[type="reset"] {
 }
 
 // Containers and groups by functionality
-.comment-reply-title small, // Special case: can be eliminated by re-implementing core comments markup
 .buttons {
   @include button-group;
 }
@@ -35,11 +32,63 @@ input[type="reset"] {
 
 
 
-// == FORM ELEMENTS == //
+// == FORMS == //
 
-// Form entry; @TODO: expand on this section
+// General form styling rules; applies to contact, comments, password, and search forms in the site content area
+.site-content form {
+  @extend %links-no-border;
+  @include font-size(head-smaller);
+  input[type="email"],
+  input[type="text"],
+  input[type="url"] {
+    width: percentage( ( ( $width-main / 2 ) - 8 ) / $width-main ); // Should yield a perfect 50% after accounting for borders and such
+  }
+  button[type="submit"],
+  input[type="submit"] {
+    //display: block;
+  }
+  textarea {
+    max-width: $width-main;
+    width: 100%;
+  }
+  div { // Presumably explanatory text; let's give it some space to breathe
+    @extend %spacer-below-half;
+  }
+}
+
+// Form errors; specific to the contact form for the most part, but designed for reuse
+input.error,
+textarea.error {
+  box-shadow: 0 0 6px rgba( colour(error), .9 );
+  border: 1px solid colour(error);
+  outline: none;
+}
+
+// Labels
+label {
+  &:not(.error):not(.checkbox-label) {
+    @include font-style(label);
+    display: block;
+  }
+  &.checkbox-label {
+    @include font-size(text-smaller);
+    @include rem( margin-left, 6px );
+    display: inline;
+  }
+  &.error {
+    @include font-size(text-smaller);
+    color: colour(error);
+    display: block; // Errors go below inputs
+    font-weight: $w-body-bold;
+  }
+}
+
+// General form classes
 .alert {
-  color: colour(alert);
+  @extend %spacer-below-half;
+}
+.error {
+  color: colour(error);
   font-weight: $w-body-bold;
 }
 .notice {
@@ -52,99 +101,34 @@ input[type="reset"] {
   color: colour(success);
 }
 .warning {
-  color: colour(alert);
+  color: colour(error);
   font-style: italic;
 }
 
-// Form errors; specific to the contact form for the most part, but designed for reuse
-input.error,
-textarea.error {
-  box-shadow: 0 0 6px rgba( colour(alert), .9 );
-  border: 1px solid colour(alert);
-  outline: none;
+// Specific to the comments form
+.comment-form-wrap {
+  @extend %spacer-below-double; // Needed for when the comment form moves around
 }
-
-// Labels
-label {
-  &:not(.error):not(.checkbox-label) {
-    @include font-style(label);
-    @include rem( margin-top, spacer(1/2) );
-    display: block;
-  }
-  &.checkbox-label {
-    @include font-size(text-smaller);
-    @include rem( margin-left, spacer(1/4) );
+.comment-notes-after {
+  @extend %spacer-below-half;
+  @include font-size(text-smaller);
+  color: colour(text-lighter);
+  code {
+    @include font-size(text-smallest);
+    @include k-highlight-reset;
     display: inline;
   }
-  &.error {
-    @include font-size(text-smaller);
-    color: colour(alert);
-    display: block; // Errors go below inputs
-    font-weight: $w-body-bold;
+}
+
+// Post password form
+.form-post-password {
+  @extend %spacer-below;
+  button {
+    margin: 0 0 0 6px;
   }
 }
 
-
-
-// == SITE INTERFACE == //
-
-// Site interface: the toolbar/menu at top right
-.site-interface {
-  @include k-absolute(right 0 top 0);
-  display: block;
-}
-
-// Menu toggle for mobile phones and small screens
-.menu-toggle {
-  @include k-media-above( break(medium) ) {
-    display: none;
-  }
-  &.active svg.icon {
-    filter: drop-shadow( 0 -1px 1px rgba( colour(body-bg), .9 ) ); // Reverses letterpress effect
-  }
-}
-
-// Skip link
-.skip-link {
-  opacity: 0;
-  position: fixed;
-  right: 99999%;
-  &:focus {
-    opacity: 1;
-    outline-width: 1px;
-    position: static;
-    transition: opacity .3s;
-  }
-}
-
-
-
-// == RESPONSE FORM == //
-
-// Response form; used in comments and the contact form; @TODO: generalize label styling
-.comment-form,
-.contact-form {
-  @include font-size(head-smaller);
-  input[type="email"],
-  input[type="text"],
-  input[type="url"] {
-    font-family: inherit; // Possibly redundant
-    width: percentage( ( ( $width-main / 2 ) - 8) / $width-main ); // Should yield a perfect 50% after accounting for borders and such
-  }
-  textarea {
-    box-sizing: border-box; // To account for padding and such
-    font-family: inherit; // Possibly redundant
-    max-width: $width-main;
-    width: 100%;
-  }
-  button[type="submit"],
-  input[type="submit"] {
-    @extend %spacer-above;
-    display: block;
-  }
-}
-
-// Specific to the contact form (CF1), which inherits from #response-form
+// Specific to the contact form (CF1)
 .contact-form-spinner,
 .contact-form-status {
   @extend %spacer-above;
@@ -157,10 +141,10 @@ label {
 // Search form input field stretches to the width of the contain; adapted from: http://boulderinformationservices.wordpress.com/2011/02/02/input-field-and-submit-button-on-the-same-line-full-width/
 .search-form {
   @include font-size(text-smallest); // Keeps the search button from getting too large for some reason; @TODO: puzzle this bug out
-  width: 50%; // Width of the search form in most contexts
+  width: 50%;
   .site-navigation &,
   .widget & {
-    width: 100%; // Search form in the sidebar stretches to fill
+    width: 100%; // Search form in the navigation and sidebar stretches to fill
   }
 }
 .search-field-wrap {
@@ -175,7 +159,7 @@ label {
 }
 .search-submit {
   float: right;
-  margin-left: 6px;
+  margin: 0 0 0 6px;
 }
 
 

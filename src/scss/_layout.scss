@@ -125,6 +125,10 @@
     display: block;
   }
 }
+.site-interface { // Site interface: the toolbar/menu at top right
+  @include k-absolute(right 0 top 0);
+  display: block;
+}
 
 
 
@@ -133,6 +137,7 @@
 .site-content {
   @extend %clearfix-below;
   max-width: $width-main; // Keeps content contained regardless of whether sidebar appears
+  word-wrap: break-word; // Keep text content from overflowing
   &:focus {
     outline: none; // Prevent weird blue glow when using the skip link
   }
@@ -154,7 +159,7 @@ main {
 // == SIDEBAR == //
 
 // See also: `_widgets.scss`
-.widget-area {
+.site-sidebar {
   max-width: $width-main;
   @include k-media-between( break(small), break(large) ) {
     @include rem( column-gap, spacer(2) );

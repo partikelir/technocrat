@@ -291,18 +291,19 @@ function is_categorized() {
 // == TEXT * == //
 
 require_once( $path_modules . 'ubik-text/ubik-text.php' );
-add_filter( 'the_content', 'ubik_text_replacement', 99 );
-add_filter( 'the_excerpt', 'ubik_text_replacement', 99 );
-add_filter( 'comment_text', 'ubik_text_replacement', 99 );
+add_filter( 'the_content', 'ubik_text_replace', 99 );
+add_filter( 'the_excerpt', 'ubik_text_replace', 99 );
+add_filter( 'comment_text', 'ubik_text_replace', 99 );
 add_filter ( 'the_content_feed' , 'ubik_text_strip_asides' );
 add_filter ( 'the_excerpt_rss' , 'ubik_text_strip_asides' );
+add_filter( 'the_content', 'ubik_text_strip_more_orphan', 99 ); // Strip paragraph tags from orphaned more tags
 
 // An example showing how to filter the text replacement array
-function pendrell_text_replacement( $array ) {
+function pendrell_text_replace( $array ) {
   $array['dividers']['<p>*</p>'] = '<p class="divider floral-heart">&#x2766;</p>'; // Floral hearts are rad
   return $array;
 }
-add_filter( 'ubik_text_replacement', 'pendrell_text_replacement' );
+add_filter( 'ubik_text_replace_simple', 'pendrell_text_replace' );
 
 
 

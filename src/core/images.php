@@ -27,8 +27,11 @@ if ( !function_exists( 'pendrell_image_wrapper' ) ) : function pendrell_image_wr
     $url = get_permalink( $post->post_parent ); // Click on the attachment and return to the parent post
   }
 
+  // Set blank variables
+  $html = $title = $align = $alt = $rel = $class = $contents = '';
+
   // Generate image markup from ID, size, caption, and URL and append existing content
-  return ubik_imagery( $html = '', $id, $caption, $title = '', $align = '', $url, $size ) . $content;
+  return ubik_imagery( $html, $id, $caption, $title, $align, $url, $size, $alt, $rel, $class, $contents, $context = 'content' ) . $content;
 } endif;
 add_filter( 'the_content', 'pendrell_image_wrapper' );
 

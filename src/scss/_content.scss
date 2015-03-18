@@ -1,9 +1,19 @@
 // ==== CONTENT ==== //
 
-// Entry title
-.entry-title {
+// Entry header
+.entry-header {
   @extend %links-no-border;
   @extend %spacer-below-half;
+  .meta {
+    @include font-size(text-smaller);
+    @include font-style(entry-header-meta);
+    opacity: .5;
+  }
+  &:hover .meta {
+    opacity: 1;
+  }
+}
+.entry-title {
   @include font-size(head-big);
   @include font-style(entry-title);
   @include k-media-above( break(medium) ) {
@@ -141,6 +151,17 @@
   img {
     @include border-radius;
     display: block;
+    @include k-media-below( break(tiny) ) { // Full-width images on mobile
+      border-radius: 0;
+      @include rem( margin-left, spacer(-1/2) );
+      max-width: calc( 100% + #{spacer(1)} );
+      width: 100vw;
+    }
+  }
+  figure.wp-caption {
+    @include k-media-below( break(tiny) ) {
+      margin-right: 0 !important; // Shame
+    }
   }
 }
 
@@ -191,14 +212,14 @@
 
 
 // Entry meta
-.entry-meta {
+.entry-footer {
   @extend %clearfix;
-  @include font-style(entry-meta);
-}
-.entry-meta-main {
-  @extend %links-meta;
-  @include font-size(text-smaller);
-  color: colour(meta);
+  @include font-style(entry-footer-meta);
+  .meta {
+    @extend %links-meta;
+    @include font-size(text-smaller);
+    color: colour(meta);
+  }
 }
 
 
@@ -225,4 +246,12 @@
   li {
     @include rem( margin, 0 0 0 spacer(2/3) );
   }
+}
+
+
+
+// Comments layout and styling
+.entry-comments {
+  @extend %spacer-above-double;
+  max-width: $width-main; // Required to limit the width of the comments area when there is no sidebar displayed
 }

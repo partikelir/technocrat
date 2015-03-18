@@ -22,7 +22,7 @@ svg {
     .button &.icon-typ-th-list {
       @include rem( height, 12px );
       @include rem( width, 12px );
-      @include rem( margin, 8px -4px 0 4px );
+      @include rem( margin, 8px -2px 0 4px );
     }
 
     .overlay & {

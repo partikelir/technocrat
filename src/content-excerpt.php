@@ -13,7 +13,7 @@
   <div class="entry-content">
     <?php the_excerpt(); ?>
   </div>
-  <footer class="entry-meta">
+  <footer class="entry-footer">
     <?php do_action( 'pendrell_entry_footer' ); ?>
   </footer>
 </article>

@@ -54,6 +54,17 @@ var {
   @include font-style(mono);
 }
 
+// Hyphenation explicitly off for certain elements
+abbr,
+code,
+kbd,
+pre,
+q,
+samp,
+var {
+  hyphens: none;
+}
+
 // Links; simple site-wide definitions
 a {
   color: inherit;
@@ -127,7 +138,8 @@ small { // Set to font-size: 80% in Normalize.css; reset to size(text-small here
 
 
 
-// Blockquotes and in-line quotations
+// == QUOTATIONS == //
+
 blockquote {
   @extend %spacer-below;
   @include font-style(quotation);
@@ -137,7 +149,6 @@ blockquote {
   @include rem( padding, spacer(1/2) spacer(1/2) spacer(1/2) spacer() - 9px );
   background: rgba( colour(body-darker), .25); // Transparent so that blockquotes can be nested
   border-left: 9px solid colour(divider);
-  //box-shadow: inset 0px -2px 7px colour(shadow-lighter);
   color: rgba( colour(text), .75); // Transparent so that blockquotes can be nested
   quotes: none; // From the Meyer Reset
   &:before, &:after { // From the Meyer Reset
@@ -180,7 +191,8 @@ q {
 
 
 
-// Pre and code blocks (but really just code blocks)
+// == CODE == //
+
 pre,
 code {
   font-feature-settings: 'liga' 0; // Explicitly switch off ligatures for monospaced fonts
@@ -226,7 +238,8 @@ a code {
 
 
 
-// Lists and definitions
+// == LISTS == //
+
 ul,
 ol,
 dl {
@@ -245,7 +258,8 @@ dl {
 
 
 
-// Tables
+// == TABLES == //
+
 table {
   font-feature-settings: 'tnum'; // This might just be wishful thinking depending on the font in use
 }
@@ -257,7 +271,8 @@ th {
 
 
 
-// Multimedia
+// == MEDIA == //
+
 figure {
   @extend %spacer-reset; // Reset normalize.css
 }
@@ -274,7 +289,20 @@ video {
 
 
 
+// == FORMS == //
+
+// Textarea is not reset in the Eric Meyer reset; let's do that here
+textarea {
+  font-size: 100%;
+  margin: 0;
+}
+
 // Text input
+input,
+textarea {
+  box-sizing: border-box; // To account for padding and such
+  font-family: inherit; // Possibly redundant
+}
 input[type="email"],
 input[type="password"],
 input[type="search"],
@@ -285,13 +313,7 @@ textarea {
   vertical-align: top;
 }
 
-// Textarea is not reset in the Eric Meyer reset; let's do that here
-textarea {
-  font-size: 100%;
-  margin: 0;
-}
-
-// Reset input corners
+// Reset rounded corners and shadows on certain form elements
 input[type="checkbox"],
 input[type="color"],
 input[type="file"],
@@ -301,7 +323,7 @@ input[type="radio"] {
   border-radius: 0;
   &:focus,
   &:active {
-    box-shadow: none;
+    @extend %box-shadow-reset;
   }
 }
 
@@ -323,20 +345,14 @@ select {
   outline: 0;
 }
 
-// Remove default Firefox styling of invalid form input; via: https://developer.mozilla.org/en-US/docs/Web/CSS/:invalid
-:invalid {
-  box-shadow: none;
+// Fieldset; resets styling imposted by normalize.css
+fieldset {
+  @include rem( margin, 0 0 spacer(1/2) 0 );
+  border: none;
+  padding: 0;
 }
 
-
-
-// Hyphenation off for certain elements
-abbr,
-code,
-kbd,
-pre,
-q,
-samp,
-var {
-  hyphens: none;
+// Remove default Firefox styling of invalid form input; via: https://developer.mozilla.org/en-US/docs/Web/CSS/:invalid
+:invalid {
+  @extend %box-shadow-reset;
 }

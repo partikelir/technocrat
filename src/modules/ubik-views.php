@@ -109,7 +109,7 @@ function pendrell_views_list_meta() {
   $date = ubik_meta_date( _x( 'F j, Y', 'list view date format', 'pendrell' ) );
   return strip_tags( $date[0], '<span><time>' ); // Publication date with any potential links stripped
 }
-add_filter( 'pendrell_entry_title_meta', 'pendrell_views_list_meta' );
+add_filter( 'pendrell_entry_header_meta', 'pendrell_views_list_meta' );
 
 
 // List content; @DEPENDENCY: Ubik Excerpt
