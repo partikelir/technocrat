@@ -103,7 +103,7 @@ function pendrell_related_posts_gallery( $related_posts = '' ) {
   // Show more related posts on full size posts
   $count = 3;
   $size = 'third-square';
-  if ( pendrell_is_full_width() ) {
+  if ( pendrell_full_width() ) {
     $count = 4;
     $size = 'quarter-square';
   }

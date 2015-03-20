@@ -113,6 +113,8 @@ add_filter( 'pendrell_entry_header_meta', 'pendrell_views_list_meta' );
 
 
 // List content; @DEPENDENCY: Ubik Excerpt
-function pendrell_views_list_content() {
-  echo ubik_excerpt( '', 10 );
+function pendrell_views_list_content( $words = 15 ) {
+  if ( pendrell_full_width() )
+    $words = 30;
+  echo ubik_excerpt( '', $words );
 }

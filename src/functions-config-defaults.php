@@ -25,7 +25,3 @@ defined( 'PENDRELL_SCRIPTS_PICTUREFILL' ) || define( 'PENDRELL_SCRIPTS_PICTUREFI
 
 // Master switch for Prism syntax highlighting script
 defined( 'PENDRELL_SCRIPTS_PRISM' )       || define( 'PENDRELL_SCRIPTS_PRISM', false );
-
-// Full-width categories and tags (optional); just enter an array of IDs, names, or slugs below; matches in_category() and has_tag()
-// $pendrell_full_width_cats = array();
-// $pendrell_full_width_tags = array();

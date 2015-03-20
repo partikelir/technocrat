@@ -37,7 +37,7 @@ function pendrell_sizes_media_queries( $queries = array(), $size = '', $width = 
   global $content_width, $main_width;
 
   // Set the bounding width (the maximum size for rendered images)
-  if ( pendrell_is_full_width() ) {
+  if ( pendrell_full_width() ) {
     $bounding_width = $content_width;
   } else {
     $bounding_width = $main_width;
@@ -85,7 +85,7 @@ function pendrell_sizes_media_queries( $queries = array(), $size = '', $width = 
     // We lead with a media query specifying the minimum pixel width at which an image is *fixed* in size (not fluid)
     // In this theme only images displayed in full-width mode will render at the requested width ($width); everything else will be fixed but downsized
     // As such we test whether this is a full-width view and, if not, attempt to calculate the downsized width given a smaller $bounding_width
-    if ( !pendrell_is_full_width() )
+    if ( !pendrell_full_width() )
       $width = round( ( $bounding_width - ( $margin_inner * ( $factor - 1 ) ) ) / $factor, 5 );
     $queries[] = '(min-width: ' . $full . 'px) ' . $width . 'px';
 
@@ -129,7 +129,7 @@ function pendrell_sizes_media_queries( $queries = array(), $size = '', $width = 
     // As before, the first media query must specify the minimum width at which an image is rendered at the *requested* width
     // Page margins also introduce some ambiguity at the small and medium breakpoints
     // Note: viewport calculations will *not* add up to 100 due to the presence of margins around the content area
-    if ( pendrell_is_full_width() ) {
+    if ( pendrell_full_width() ) {
       if ( ( $width + ( $margin * 2 ) ) > $medium ) {
         $queries[] = '(min-width: ' . ( $width + ( $margin * 3 ) ) . 'px) ' . $width . 'px';
         $queries[] = '(min-width: ' . $medium . 'px) calc(100vw - ' . ( $margin * 3 ) . 'px)';
@@ -179,7 +179,7 @@ function pendrell_sizes_default( $default = '', $size = '', $width = '', $contex
   global $content_width, $main_width;
 
   // Set the bounding width (the maximum size for rendered images)
-  if ( pendrell_is_full_width() ) {
+  if ( pendrell_full_width() ) {
     $bounding_width = $content_width;
   } else {
     $bounding_width = $main_width;

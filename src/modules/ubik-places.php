@@ -6,7 +6,7 @@ add_action( 'pendrell_archive_header', 'ubik_places_breadcrumb', 15 );
 
 // Display the Ubik Places sidebar
 function pendrell_sidebar_places( $sidebar ) {
-  if ( is_tax( 'places' ) && !pendrell_is_full_width() ) {
+  if ( is_tax( 'places' ) && !pendrell_full_width() ) {
 
     // Retrieve data from Ubik Places
     $widgets = ubik_places_list();

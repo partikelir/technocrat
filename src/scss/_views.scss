@@ -22,17 +22,19 @@
       @include font-size(head);
       margin: 0;
     }
+    .entry-header {
+      @extend %spacer-below-reset;
+      .entry-meta {
+        @extend %clearfix-reset;
+        @include font-size(text-smallest);
+        color: colour(text-lightest);
+        text-transform: uppercase;
+      }
+    }
+
     .site-content article {
       @extend %spacer-below;
       @extend %text-small;
-    }
-
-    // Entry meta
-    .entry-title-meta {
-      @extend %clearfix-reset;
-      @include font-size(text-smallest);
-      color: colour(text-lightest);
-      text-transform: uppercase;
     }
 
     // Entry content (with more below for full-width styling)
@@ -58,8 +60,8 @@
         .entry-title {
           @include font-size(head);
         }
-        .entry-content p {
-          @include font-size(text);
+        .entry-content {
+          @include font-size(text-small);
         }
       }
     }

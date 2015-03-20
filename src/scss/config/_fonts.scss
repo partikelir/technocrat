@@ -97,6 +97,7 @@ $w-mono-bold:       700;
   }
   @if (entry-header-meta == $style) {
     @extend %body-normal;
+    text-transform: uppercase;
   }
   @if (entry-content == $style) {
     @extend %body-light;

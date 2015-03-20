@@ -19,7 +19,7 @@ add_action( 'pendrell_entry_header', 'pendrell_entry_title' );
 
 // Display a date above the title
 if ( !function_exists( 'pendrell_entry_header_meta' ) ) : function pendrell_entry_header_meta() {
-  echo '<footer class="entry-meta">' . ubik_meta_date_published() . '</footer>';
+  echo '<footer class="entry-meta">' . ubik_meta_date_published( 'M j, Y' ) . '</footer>';
 } endif;
 add_action( 'pendrell_entry_header', 'pendrell_entry_header_meta', 12 );
 

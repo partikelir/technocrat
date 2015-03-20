@@ -7,12 +7,7 @@
   .entry-meta {
     @include font-size(text-smaller);
     @include font-style(entry-header-meta);
-    opacity: .27;
-    transition: opacity 1.45s ease-out;
-  }
-  &:hover .entry-meta {
-    opacity: .73;
-    transition: opacity .58s ease;
+    color: colour(text-lightest);
   }
 }
 .entry-title {
