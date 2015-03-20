@@ -31,7 +31,7 @@ get_header(); ?>
 								</div><?php }
 								if ( !empty( $link['cats_html'] ) ) {
 								?><footer class="entry-meta">
-									<div class="entry-meta-main">
+									<div class="entry-meta">
 										<?php printf( __( 'Tags: %s. ', 'pendrell' ), $link['cats_html'] );
 										printf( __( 'Domain: %s. ', 'pendrell'), '<a href="' . esc_url( $link['url'] ) . '" rel="bookmark">' . $link['domain'] . '</a>' ); ?>
 									</div>

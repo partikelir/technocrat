@@ -11,7 +11,7 @@
     var CF1 = pendrellVars.CF1;
 
     // Validate the contact form; see jQuery validation plugin docs for more info: http://jqueryvalidation.org/documentation/
-    $('#response-form').validate({
+    $('#contact-form').validate({
 
       // Define the various rules by which the form will be validated
       rules: {
@@ -43,7 +43,7 @@
       // Things to do when the user hits submit
       submitHandler: function(form) {
         var
-          $contactForm = $('#response-form'),
+          $contactForm = $('#contact-form'),
           formData = $(form).serialize();
 
         // @TODO: invoke spinner
@@ -51,8 +51,8 @@
 
         $('#cf1-submit').hide();
 
-        // Response placeholder
-        $contactForm.append('<div id="cf1-status" class="contact-form-status"></div>');
+        // Placeholder
+        $contactForm.append('<div id="cf1-status" class="alert contact-form-status"></div>');
 
         // Send the form data
         $.ajax({
@@ -61,9 +61,10 @@
           data: formData+'&action=contact_form',
           success: function(data) {
             $('#cf1-status').hide().html(data).fadeIn('slow');
+            $('#contact-form #submit').prop('disabled', true); // Disallow repeat form submission
           },
           error: function(jqXHR,textStatus,errorThrown){
-            $('#cf1-status').hide().html('<p class="alert" role="alert">'+CF1.formError+textStatus+'.</p>').fadeIn('slow');
+            $('#cf1-status').hide().html('<div class="alert error" role="alert">'+CF1.formError+textStatus+'.</div>').fadeIn('slow');
           },
           complete: function(jqXHR,textStatus){
             // @TODO: hide spinner

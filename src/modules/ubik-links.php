@@ -15,7 +15,7 @@ function pendrell_sidebar_links( $sidebar ) {
 
     // Output the links sidebar
     ?><div id="wrap-sidebar" class="wrap-sidebar">
-      <div id="secondary" class="widget-area" role="complementary">
+      <div id="secondary" class="site-sidebar" role="complementary">
         <aside id="ubik-links-search-widget" class="widget widget-links-search">
           <h2>Search links</h2>
           <?php echo ubik_links_search_form(); ?>

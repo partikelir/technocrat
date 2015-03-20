@@ -9,6 +9,7 @@ function pendrell_icon( $name = '', $text = '' ) {
   , 'author-edit'             => 'typ-spanner'
   , 'comment-link'            => 'awe-comment'
   , 'comment-edit'            => 'typ-spanner'
+  , 'comment-post'            => 'awe-comment'
   , 'comment-reply'           => 'typ-arrow-right-thick'
   , 'comment-reply-cancel'    => 'typ-cancel'
   , 'contact-form-send'       => 'typ-arrow-right-thick'
@@ -37,4 +38,5 @@ function pendrell_icon( $name = '', $text = '' ) {
       return ubik_svg_icon_text( $pendrell_icons[$name], $text );
     return $pendrell_icons[$name];
   }
+  return false;
 }

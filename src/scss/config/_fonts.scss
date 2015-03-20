@@ -94,14 +94,14 @@ $w-mono-bold:       700;
   @if (entry-title == $style) {
     @extend %head-normal;
   }
-  @if (entry-title-meta == $style) {
+  @if (entry-header-meta == $style) {
     @extend %head-light;
     text-transform: uppercase;
   }
   @if (entry-content == $style) {
     @extend %body-normal;
   }
-  @if (entry-meta == $style) {
+  @if (entry-footer-meta == $style) {
     @extend %body-normal;
   }
 

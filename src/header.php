@@ -16,7 +16,7 @@
 		<div id="wrap-header" class="wrap-header">
 			<header id="masthead" class="site-header" role="banner">
 				<div class="site-branding">
-					<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php echo ubik_svg_icon_text( 'typ-spiral', get_bloginfo( 'name' ) ); ?></a></h1>
+					<h1 class="site-title"><a href="<?php echo esc_url( site_url( '/' ) ); ?>" rel="home"><?php echo ubik_svg_icon_text( 'typ-spiral', get_bloginfo( 'name' ) ); ?></a></h1>
 					<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
 				</div>
 				<div id="site-interface" class="site-interface">

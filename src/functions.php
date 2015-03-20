@@ -26,9 +26,10 @@ require_once( $path . 'core/author.php' );
 require_once( $path . 'core/comments.php' );
 require_once( $path . 'core/contact-form.php' );
 require_once( $path . 'core/entry-content.php' );
+require_once( $path . 'core/full-width.php' );
 require_once( $path . 'core/general.php' );
 require_once( $path . 'core/icons.php' );
-require_once( $path . 'core/image.php' );
+require_once( $path . 'core/images.php' );
 require_once( $path . 'core/navigation.php' );
 
 // Fallback functionality is loaded last

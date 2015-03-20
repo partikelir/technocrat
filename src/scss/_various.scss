@@ -1,8 +1,44 @@
 // ==== VARIOUS ==== //
 
+// Footnotes; for use with Markdown Extra implementations e.g. JP Markdown
+.footnotes {
+  @extend %links-reset-border;
+  @extend %text-small;
+  li {
+    outline: none; // Remove blue border when clicking on footnotes
+    &:before {
+      @include font-size(text-smallest);
+    }
+  }
+}
+
+// References list; for use with scholarly works
+.references {
+  @extend %text-smaller;
+  ol,
+  ul {
+    li:before {
+      content: "";
+    }
+  }
+  li {
+    @include k-hanging-indent( spacer() );
+    margin: 0;
+  }
+}
+
+// Dividers; fleurons and asterisms via Ubik Text, activate by making a single asterisk (*) its own paragraph
+.divider {
+  color: colour(text-dark);
+  text-align: center;
+}
+
 // Clearing helper class; still in use
 .clear {
   @extend %clearfix-below;
+}
+.hide {
+  @extend %hide;
 }
 
 // Alignment
@@ -33,77 +69,7 @@
   @extend %top-right;
 }
 
-// Dividers; fleurons and asterisms via Ubik Text, activate by making a single asterisk (*) its own paragraph
-.divider {
-  color: colour(text-dark);
-  text-align: center;
-}
-
-// Footnotes; for use with Markdown Extra implementations e.g. JP Markdown
-.footnotes {
-  @extend %links-reset-border;
-  @extend %text-small;
-  li {
-    outline: none; // Remove blue border when clicking on footnotes
-    &:before {
-      @include font-size(text-smallest);
-    }
-  }
-}
-
-// References list; for use with scholarly works
-.references {
-  @extend %text-smaller;
-  ol,
-  ul {
-    li:before {
-      content: "";
-    }
-  }
-  li {
-    @include k-hanging-indent( spacer() );
-    margin: 0;
-  }
-}
-
-// Post password form
-.post-password-form {
-  @extend %spacer-below;
-}
-
 // WordPress theme guidelines requires some classes even if they aren't used
 .sticky {
   @extend %spacer-reset;
-}
-
-// Screen reader text adapted from Twenty Twelve and _s
-%off-screen {
-  clip: rect( 1px, 1px, 1px, 1px );
-  height: 1px;
-  overflow: hidden;
-  position: absolute !important;
-  width: 1px;
-  &:focus {
-    clip: auto !important;
-    display: block;
-    height: auto;
-    left: 5px;
-    top: 5px;
-    width: auto;
-    z-index: 100000; // Above WP toolbar
-  }
-}
-.screen-reader-text {
-  @extend %off-screen;
-  &:focus {
-    @include border-radius;
-    background-color: transparent;
-    border-radius: 3px;
-    box-shadow: 0 0 2px 2px black(.6);
-    color: black();
-    font-weight: bold;
-    line-height: normal;
-    padding: spacer(1/2);
-    text-decoration: none;
-  }
 }

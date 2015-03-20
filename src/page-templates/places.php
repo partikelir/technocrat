@@ -19,18 +19,20 @@ get_header(); ?>
           </div>
         </header>
         <main id="main" class="site-main" role="main">
-          <?php $places = ubik_places_top();
-          if ( !empty( $places ) ) {
-
-            ?><div class="gallery gallery-flex"><?php
+          <?php $ancestors = ubik_places_ancestors();
+          if ( !empty( $ancestors ) ) {
 
             global $pendrell_places_thumbs;
             if ( !is_array( $pendrell_places_thumbs ) )
               $pendrell_places_thumbs = array();
 
-            // Loop through all the top-most places
-            foreach ( $places as $place ) {
+            // Initialize thumbs
+            $places = array();
 
+            // Loop through all the top-most places
+            foreach ( $ancestors as $place ) {
+
+              // Clear metadata
               $metadata = '';
 
               // This is a hack to manually assign thumbnails to specific places; @TODO: code this properly
@@ -42,7 +44,7 @@ get_header(); ?>
                 $metadata = pendrell_image_overlay_metadata( sprintf( _n( '1 post', '%s posts', $place->count, 'pendrell' ), $place->count ) . ' ' .  ubik_svg_icon( pendrell_icon( 'places' ), __( 'Places', 'pendrell' ) ) );
 
               // Output a gallery of places
-              echo ubik_imagery(
+              $places[] = ubik_imagery(
                 $html     = '',
                 $id       = pendrell_thumbnail_id( $place->thumb ),
                 $caption  = $place->name,
@@ -58,7 +60,10 @@ get_header(); ?>
               );
             }
 
-            ?></div><?php
+            // Output places thumbnails and metadata
+            if ( !empty( $places ) )
+              echo '<div class="gallery gallery-flex">' . join( $places ) . '</div>';
+
           } else {
             get_template_part( 'content', 'none' );
           } ?>

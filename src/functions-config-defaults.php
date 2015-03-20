@@ -6,6 +6,9 @@ defined( 'PENDRELL_AUTHOR_META' )         || define( 'PENDRELL_AUTHOR_META', fal
 // Baseline for the vertical rhythm; should match whatever is set in _base_config.scss; integer, required
 defined( 'PENDRELL_BASELINE' )            || define( 'PENDRELL_BASELINE', 28 );
 
+// Disabled in this theme
+defined( 'PENDRELL_POST_FORMATS' )        || define( 'PENDRELL_POST_FORMATS', false );
+
 // Master switch for WP AJAX Page Load script
 defined( 'PENDRELL_SCRIPTS_PAGELOAD' )    || define( 'PENDRELL_SCRIPTS_PAGELOAD', true );
 

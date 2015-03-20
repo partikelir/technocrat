@@ -49,6 +49,13 @@ function pendrell_related_score_thumbnail( $score = 1 ) {
 }
 //add_filter( 'ubik_related_score_thumbnail', 'pendrell_related_score_thumbnail' );
 
+// Post formats exclusion; accepts an array of port format slugs e.g. link, quote, etc.
+function pendrell_related_score_formats_exclude( $formats = array() ) {
+  return array( 'aside', 'chat', 'link', 'quote', 'status' );
+}
+if ( PENDRELL_POST_FORMATS )
+  add_filter( 'ubik_related_score_formats_exclude', 'pendrell_related_score_formats_exclude' );
+
 
 
 // Display a list of related posts as thumbnails
@@ -96,6 +103,10 @@ function pendrell_related_posts_gallery( $related_posts = '' ) {
   // Show more related posts on full size posts
   $count = 3;
   $size = 'third-square';
+  if ( pendrell_full_width() ) {
+    $count = 4;
+    $size = 'quarter-square';
+  }
 
   // We only want the first three results for this theme
   $related_posts = array_slice( $related_posts, 0, $count );

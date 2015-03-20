@@ -1,0 +1,47 @@
+// ==== ACCESSIBILITY ==== //
+
+// Screen reader text adapted from Twenty Twelve and _s
+%off-screen {
+  clip: rect( 1px, 1px, 1px, 1px );
+  height: 1px;
+  overflow: hidden;
+  position: absolute !important;
+  width: 1px;
+  &:focus {
+    clip: auto !important;
+    display: block;
+    height: auto;
+    left: 5px;
+    top: 5px;
+    width: auto;
+    z-index: 100000; // Above WP toolbar
+  }
+}
+.screen-reader-text {
+  @extend %off-screen;
+  &:focus {
+    @include border-radius;
+    background-color: transparent;
+    border-radius: 3px;
+    box-shadow: 0 0 2px 2px black(.6);
+    color: black();
+    font-weight: bold;
+    line-height: normal;
+    padding: spacer(1/2);
+    text-decoration: none;
+  }
+}
+.skip-link {
+  opacity: 0;
+  position: fixed;
+  right: 99999%;
+  &:focus {
+    @include rem( margin-right, spacer(1/4) );
+    background: colour(button-alt);
+    float: left;
+    opacity: 1;
+    outline-width: 1px;
+    position: static;
+    transition: opacity .3s;
+  }
+}

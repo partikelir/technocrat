@@ -29,11 +29,7 @@ add_filter( 'ubik_views_defaults', 'pendrell_views_defaults' );
 
 
 // A user interface element for switching between views
-function pendrell_views_navigation( $buttons ) {
-
-  // Only on archives?
-  if ( !is_archive() || is_search() )
-    return $buttons;
+function pendrell_views_buttons( $buttons ) {
 
   // Get links
   $views = ubik_views_navigation();
@@ -46,15 +42,17 @@ function pendrell_views_navigation( $buttons ) {
   }
   return $buttons;
 }
-add_filter( 'pendrell_archive_buttons', 'pendrell_views_navigation', 5 );
+add_filter( 'pendrell_archive_buttons', 'pendrell_views_buttons', 5 );
 
 
 
 // Do not display views navigation on certain terms
-function pendrell_views_navigation_display( $switch ) {
+function pendrell_views_buttons_display( $switch ) {
+  if ( is_tag( array( 'culture-log', 'development-log', 'photography-log' ) ) )
+    $switch = false;
   return $switch;
 }
-add_filter( 'ubik_views_navigation_display', 'pendrell_views_navigation_display' );
+add_filter( 'ubik_views_navigation_display', 'pendrell_views_buttons_display' );
 
 
 
@@ -79,27 +77,6 @@ add_action( 'pre_get_posts', 'pendrell_views_pre_get_posts' );
 
 
 
-// Modify entry meta format on list view
-function pendrell_views_date_format( $format ) {
-  if ( ubik_is_view( 'gallery' ) )
-    $format = _x( 'M Y', 'gallery view date format', 'pendrell' );
-  if ( ubik_is_view( 'list' ) )
-    $format = _x( 'F jS, Y', 'list view date format', 'pendrell' );
-  return $format;
-}
-add_filter( 'ubik_time_human_format', 'pendrell_views_date_format' );
-add_filter( 'ubik_meta_full_format', 'pendrell_views_date_format' );
-
-
-
-// Entry meta for list view, called directly from the template
-function pendrell_entry_meta_list_view() {
-  $date = ubik_meta_date();
-  echo strip_tags( $date[0], '<span><time>' ); // Publication date with any potential links stripped
-}
-
-
-
 // Template selector based on current view
 function pendrell_views_template_part( $name ) {
 
@@ -114,3 +91,20 @@ function pendrell_views_template_part( $name ) {
   return $name;
 }
 add_filter( 'pendrell_template_part', 'pendrell_views_template_part' );
+
+
+
+// Entry meta for list view, called directly from the template
+function pendrell_views_list_meta() {
+  $date = ubik_meta_date( _x( 'F j, Y', 'list view date format', 'pendrell' ) );
+  return strip_tags( $date[0], '<span><time>' ); // Publication date with any potential links stripped
+}
+add_filter( 'pendrell_entry_header_meta', 'pendrell_views_list_meta' );
+
+
+// List content; @DEPENDENCY: Ubik Excerpt
+function pendrell_views_list_content( $words = 15 ) {
+  if ( pendrell_full_width() )
+    $words = 30;
+  echo ubik_excerpt( '', $words );
+}

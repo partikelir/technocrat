@@ -100,11 +100,8 @@ add_filter( 'ubik_colophon_credit_author', 'pendrell_colophon_credit_author' );
 // Output the colophon
 function pendrell_colophon() {
   $colophon = ubik_colophon();
-  if ( !empty( $colophon ) ) {
-    ?><div class="site-footer-info">
-      <?php echo $colophon; ?>
-    </div><?php
-  }
+  if ( !empty( $colophon ) )
+    echo '<div class="site-footer-info">' . $colophon . '</div>';
 }
 add_action( 'pendrell_footer', 'pendrell_colophon' );
 
@@ -122,6 +119,7 @@ require_once( $path_modules . 'ubik-comments/ubik-comments.php' );
 
 // == EXCERPTS * == //
 
+define( 'UBIK_EXCERPT_MORE_LINK', true );
 define( 'UBIK_EXCERPT_PAGES', true );
 require_once( $path_modules . 'ubik-excerpt/ubik-excerpt.php' );
 
@@ -156,6 +154,22 @@ if ( PENDRELL_UBIK_FEED ) {
 
 define( 'UBIK_FONTS_GOOGLE', 'Oxygen:300,300italic,400,400italic,700,700italic|Ubuntu:300,400,700' );
 require_once( $path_modules . 'ubik-fonts/ubik-fonts.php' );
+
+
+
+// == FULL-WIDTH * == //
+
+// Unused in this theme
+
+// Force full-width categories and/or tags (or anything else you can dream up, really)
+function pendrell_full_width_content( $full_width ) {
+  if ( $full_width === true )
+    return $full_width;
+
+  // Insert conditional checks here! Test for category archives, the presence of specific tags, etc.
+
+  return $full_width;
+}
 
 
 
@@ -197,6 +211,8 @@ if ( PENDRELL_UBIK_MARKDOWN )
 // == META * == //
 
 require_once( $path_modules . 'ubik-meta/ubik-meta.php' );
+add_filter( 'ubik_meta_date_grace_period', '__return_true' );
+add_filter( 'ubik_meta_microformats', '__return_true' );
 
 
 
@@ -289,7 +305,7 @@ function pendrell_terms_edit_description_prompt( $content ) {
     return '<span class="warning">' . ubik_terms_edit_description_prompt( __( 'This term description is empty.', 'pendrell' ) ) . '</span>';
   return $content;
 }
-add_filter( 'pendrell_archive_description_term', 'pendrell_terms_edit_description_prompt' );
+add_filter( 'get_the_archive_description', 'pendrell_terms_edit_description_prompt' );
 
 function pendrell_terms_edit_link( $buttons ) {
   $edit_link = ubik_terms_edit_link( pendrell_icon( 'term-edit', __( 'Edit', 'pendrell' ) ), 'button edit-link' );
@@ -309,19 +325,12 @@ function is_categorized() {
 // == TEXT * == //
 
 require_once( $path_modules . 'ubik-text/ubik-text.php' );
-add_filter( 'the_content', 'ubik_text_replacement', 99 );
-add_filter( 'the_excerpt', 'ubik_text_replacement', 99 );
-add_filter( 'comment_text', 'ubik_text_replacement', 99 );
+add_filter( 'the_content', 'ubik_text_replace', 99 );
+add_filter( 'the_excerpt', 'ubik_text_replace', 99 );
+add_filter( 'comment_text', 'ubik_text_replace', 99 );
 add_filter ( 'the_content_feed' , 'ubik_text_strip_asides' );
 add_filter ( 'the_excerpt_rss' , 'ubik_text_strip_asides' );
-
-
-
-// == TIME * == //
-
-require_once( $path_modules . 'ubik-time/ubik-time.php' );
-add_filter( 'ubik_meta_timestamp_published', 'ubik_time_human' ); // Humanize these times
-add_filter( 'ubik_meta_timestamp_updated', 'ubik_time_human' );
+add_filter( 'the_content', 'ubik_text_strip_more_orphan', 99 ); // Strip paragraph tags from orphaned more tags
 
 
 

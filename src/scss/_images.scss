@@ -5,7 +5,7 @@ figure.wp-caption,
 .entry-content p img {
   @extend %spacer-below;
   backface-visibility: hidden;
-  overflow: auto; // Without this the floats won't float
+  overflow: auto; // Without this the floats won't float, but we'll reset it in a media query (below)
   &.alignleft {
     margin-right: percentage( spacer() / $width-main );
   }
@@ -16,6 +16,9 @@ figure.wp-caption,
     img { // Applies centering to the image within the figure, not the figure element itself
       @include k-center-block;
     }
+  }
+  @include k-media-below( break(small) ) {
+    overflow: visible;
   }
 }
 
@@ -37,8 +40,8 @@ figure.wp-caption {
 
 // These classes apply to regular captions in entry content; anything attached to a `figure` element is defined elsewhere
 :not(figure).wp-caption {
-  @extend %spacer-below;
   @extend %max-width-100; // Keep wide captions from overflowing their containers
+  @extend %spacer-below;
 }
 
 // Caption styling; be careful, anything declared here *must* be superseded by children of the overlay classes as needed
@@ -71,12 +74,27 @@ figure.wp-caption {
 
   // The footer contains additional data e.g. comment count
   footer {
-    @include rem( font-size, size(text-small) + 0px );
-    line-height: 1.25; // No need for vertical rhythm here!
-    .gallery-static & {
-      @include k-media-below( break(small) ) {
-        @include rem( font-size, size(text-smaller) + 0px );
+    &.comments {
+      @include rem( font-size, size(text-small) + 0px );
+      line-height: 1.25; // No need for vertical rhythm here!
+      .gallery-static & {
+        @include k-media-below( break(small) ) {
+          @include rem( font-size, size(text-smaller) + 0px );
+        }
       }
+    }
+    &.date {
+      @extend %hide;
+      /*@include border-radius;
+      @include rem( margin, 3px );
+      background: black(.1);
+      text-transform: uppercase;
+      @include rem( font-size, size(text-smallest) + 0px );
+      .gallery-static & {
+        @include k-media-below( break(small) ) {
+          //@include rem( font-size, size(text-smaller) + 0px );
+        }
+      }*/
     }
   }
 }
@@ -88,8 +106,8 @@ figure.wp-caption {
 // This section is a bit complicated, partly out of an interest in maintaining basic support for the core WordPress `[gallery]` shortcode, the output of which cannot be filtered
 // The `gallery` class in Pendrell is used anywhere you'd like to group images together; the `gallery-item` class is only used by the gallery shortcode itself
 // Apart from the `gallery` class there are two special classes:
-// - `gallery-flex`:
-// - `gallery-static`: make a gallery non-responsive
+// - `gallery-flex`, a responsive gallery that decreases the column count according to viewport width
+// - `gallery-static`, a non-responsive gallery that maintains the same layout at all viewport widths
 
 // Basic styling for a gallery item; used twice, once for the base styling and again if core `[gallery]` shortcode compatibility is switched on
 @mixin gallery-item {
@@ -99,7 +117,7 @@ figure.wp-caption {
     margin: 0 percentage( $spacer-image / $width-main ) percentage( $spacer-image / $width-main ) 0;
   }
   @include k-media-below( break(tiny) ) {
-    @include rem( margin, 0 0 spacer() 0 );
+    @include rem( margin, 0 0 spacer(1/2) 0 );
     float: none;
   }
 }
@@ -130,11 +148,11 @@ figure.wp-caption {
   .gallery-columns-#{$i} {
     .gallery-item,
     figure.wp-caption {
-      img {
-        width: 100%; // Force images to fill the available space
-      }
       @include k-media-above( break(tiny) ) {
         @include gallery-max-width( $i, $width-main );
+        img {
+          width: 100%; // Force images to fill the available space
+        }
         &:nth-of-type(#{$i}n) {
           margin-right: 0;
         }
@@ -162,6 +180,23 @@ figure.wp-caption {
   }
 }
 
+// Static layout helpers; this allows for metadata to be progressive hidden for static galleries of different sizes
+%gallery-static-overlay-footer-2 {
+  @include k-media-below( break(tiny) ) {
+    display: none;
+  }
+}
+%gallery-static-overlay-footer-3 {
+  @include k-media-below( break(small) ) {
+    display: none;
+  }
+}
+%gallery-static-overlay-footer-4 {
+  @include k-media-below( break(medium) ) {
+    display: none;
+  }
+}
+
 // A static image layout: displays however many columns of images without changing at any breakpoint
 .gallery-static {
 
@@ -174,6 +209,9 @@ figure.wp-caption {
     &.gallery-columns-#{$i} {
       figure.wp-caption {
         @include gallery-max-width( $i, $width-main );
+        footer {
+          @extend %gallery-static-overlay-footer-#{$i};
+        }
         &:nth-of-type(#{$i}n) {
           margin-right: 0;
         }

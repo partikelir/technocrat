@@ -12,15 +12,15 @@ if ( !function_exists( 'pendrell_author_meta' ) ) : function pendrell_author_met
   }
 } endif;
 if ( PENDRELL_AUTHOR_META )
-  add_filter( 'pendrell_entry_meta_after', 'pendrell_author_meta', 12 );
+  add_filter( 'pendrell_entry_footer_after', 'pendrell_author_meta', 12 );
 
 
 
 // Author info box
 if ( !function_exists( 'pendrell_author_info' ) ) : function pendrell_author_info() {
   if ( get_the_author_meta( 'description' ) ) {
-    $author = '<span class="fn n">' . get_the_author() . '</span>'; ?>
-    <div class="author-info author vcard">
+    $author = '<span class="p-name p-author">' . get_the_author() . '</span>'; ?>
+    <div class="author author-info h-card">
       <div class="author-avatar">
         <?php pendrell_author_avatar( get_the_author_meta( 'user_url' ) ); ?>
       </div>
@@ -30,7 +30,7 @@ if ( !function_exists( 'pendrell_author_info' ) ) : function pendrell_author_inf
         <?php if ( is_multi_author() ) { ?>
         <div class="author-link">
           <a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>" rel="author">
-            <?php printf( __( 'View all posts by %s<span class="nav-arrow"> &rarr;</span>', 'pendrell' ), $author ); ?>
+            <?php printf( __( 'View all posts by %s<span class="nav-arrow">&nbsp;&rarr;</span>', 'pendrell' ), $author ); ?>
           </a>
         </div>
         <?php } ?>
@@ -64,7 +64,7 @@ if ( !function_exists( 'pendrell_author_edit_link' ) ) : function pendrell_autho
   if ( is_author() ) {
     $edit_author_link = get_edit_user_link(); // Author edit link for users with the appropriate capabilities
     if ( !empty( $edit_author_link ) )
-      $buttons .= '<a href="' . $edit_author_link . '" class="button edit-link">' . pendrell_icon( 'author-edit', __( 'Edit', 'pendrell' ) ) . '</a></div>';
+      $buttons .= '<a href="' . $edit_author_link . '" class="button edit-link">' . pendrell_icon( 'author-edit', __( 'Edit', 'pendrell' ) ) . '</a>';
   }
   return $buttons;
 } endif;

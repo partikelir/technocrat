@@ -37,7 +37,11 @@ function pendrell_sizes_media_queries( $queries = array(), $size = '', $width = 
   global $content_width, $main_width;
 
   // Set the bounding width (the maximum size for rendered images)
-  $bounding_width = $main_width;
+  if ( pendrell_full_width() ) {
+    $bounding_width = $content_width;
+  } else {
+    $bounding_width = $main_width;
+  }
 
   // Limit width by the bounding width; what we're interested in here is the *rendered size* of an image which won't be larger than the container
   $width = min( $width, $bounding_width );
@@ -81,7 +85,8 @@ function pendrell_sizes_media_queries( $queries = array(), $size = '', $width = 
     // We lead with a media query specifying the minimum pixel width at which an image is *fixed* in size (not fluid)
     // In this theme only images displayed in full-width mode will render at the requested width ($width); everything else will be fixed but downsized
     // As such we test whether this is a full-width view and, if not, attempt to calculate the downsized width given a smaller $bounding_width
-    $width = round( ( $bounding_width - ( $margin_inner * ( $factor - 1 ) ) ) / $factor, 5 );
+    if ( !pendrell_full_width() )
+      $width = round( ( $bounding_width - ( $margin_inner * ( $factor - 1 ) ) ) / $factor, 5 );
     $queries[] = '(min-width: ' . $full . 'px) ' . $width . 'px';
 
     // A regular grouped gallery; a helper class like `gallery-columns-3` and the corresponding image size (e.g. `third-square`) must be passed to Ubik Imagery
@@ -119,12 +124,6 @@ function pendrell_sizes_media_queries( $queries = array(), $size = '', $width = 
     }
   } else {
 
-    // This block handles the most basic responsive images scenario: single images without any specific layout
-    // Regular and full-width display require slightly different approaches
-    // As before, the first media query must specify the minimum width at which an image is rendered at the *requested* width
-    // Page margins also introduce some ambiguity at the small and medium breakpoints
-    // Note: viewport calculations will *not* add up to 100 due to the presence of margins around the content area
-
     // Calculate the usable space on the cusp of the large breakpoint in when not in full-width mode
     // This will determine whether we add a couple of extra media queries to the top of the stack
     // These extra queries handle things when the main content and sidebar are starting to squish together and the sidebar hasn't yet dropped down to the bottom
@@ -161,7 +160,11 @@ function pendrell_sizes_default( $default = '', $size = '', $width = '', $contex
   global $content_width, $main_width;
 
   // Set the bounding width (the maximum size for rendered images)
-  $bounding_width = $main_width;
+  if ( pendrell_full_width() ) {
+    $bounding_width = $content_width;
+  } else {
+    $bounding_width = $main_width;
+  }
 
   // Default viewport width (integer)
   $viewport     = 100;
@@ -172,12 +175,13 @@ function pendrell_sizes_default( $default = '', $size = '', $width = '', $contex
   $margin_inner = pendrell_sizes_margin_inner();
 
   // Test the context object for various scenarios
+  $content      = pendrell_sizes_context( $context, 'content' ); // Defaults back to 100vw as images fill the viewport
   $group        = pendrell_sizes_context( $context, 'group' );
   $static       = pendrell_sizes_context( $context, 'static' );
 
   // Static galleries are a special case; for everything else we can safely default back to the full viewport minus basic page margins
   // This presumes that Ubik Imagery's sizing conventions are being followed; see: https://github.com/synapticism/ubik-imagery
-  if ( $group === true && $static === true ) {
+  if ( $group === true && $static === true && $content === false ) {
     $factor = 2; // $group is true so we expect two images in a row by default
     if ( in_array( $size, array( 'third', 'third-square' ) ) )
       $factor = 3;
@@ -190,7 +194,7 @@ function pendrell_sizes_default( $default = '', $size = '', $width = '', $contex
   }
 
   // Margins in this theme vary according to viewport size; what we want here is the smallest possible margin (since this is the default media query we are returning)
-  if ( !empty( $margin ) ) {
+  if ( !empty( $margin ) && $content === false ) {
     $default = 'calc(' . $viewport . 'vw - ' . $margin . 'px)'; // `calc()` support: http://caniuse.com/#search=calc
   } else {
     $default = $viewport . 'vw'; // Without a pre-defined margin we'll just assume that images take up the full viewport on smaller screens

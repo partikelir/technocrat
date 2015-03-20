@@ -43,16 +43,6 @@
 
 
 
-// == PLACES == //
-
-@if module(ubik-places) {
-  .place-list {
-    @extend %spacer-below;
-  }
-}
-
-
-
 // == PRISM == //
 
 @if module(prism) {
@@ -65,10 +55,12 @@
 
 @if module(ubik-recordpress) {
   ul.discography-thumbnails {
-    @extend %list-style-none;
     li {
       @extend %spacer-below;
       margin-left: 0;
+      &:before {
+        content: "";
+      }
     }
   }
 }

@@ -81,3 +81,13 @@
     white-space: nowrap;
   }
 }
+
+
+
+// Menu toggle for mobile phones and small screens
+.menu-toggle {
+  @include k-absolute( right 0 top 0 );
+  @include k-media-above( break(medium) ) {
+    display: none;
+  }
+}

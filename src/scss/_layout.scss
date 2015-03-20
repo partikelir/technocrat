@@ -151,6 +151,14 @@
     display: block;
   }
 }
+.site-interface { // Site interface: the toolbar/menu at top right
+  @extend %clearfix-below;
+  > * {
+    @include k-media-below( break(large) ) {
+      @include rem( margin-bottom, spacer(1/2) );
+    }
+  }
+}
 
 
 
@@ -162,6 +170,7 @@
   @include rem( padding-bottom, spacer() );
   background: colour(bg-content);
   max-width: $width-main; // Keeps content contained regardless of whether sidebar appears
+  word-wrap: break-word; // Keep text content from overflowing
   &:focus {
     outline: none; // Prevent weird blue glow when using the skip link
   }
@@ -186,7 +195,7 @@ main {
 // == SIDEBAR == //
 
 // See also: `_widgets.scss`
-.widget-area {
+.site-sidebar {
   max-width: $width-main;
   @include k-media-between( break(small), break(large) ) {
     @include rem( column-gap, spacer(2) );
