@@ -134,14 +134,13 @@ require_once( $path_modules . 'ubik-fonts/ubik-fonts.php' );
 
 // == FULL-WIDTH * == //
 
-// Force full-width categories and/or tags; not exactly the right place for this but hey, why not?
+// Force full-width categories and/or tags (or anything else you can dream up, really)
 function pendrell_full_width_content( $full_width ) {
   if ( $full_width === true )
     return $full_width;
-  if ( is_tag( 'design', 'photography' ) )
-    return true;
-  if ( is_singular() && has_tag( 'design', 'photography' ) )
-    return true;
+
+  // Insert conditional checks here! Test for category archives, the presence of specific tags, etc.
+
   return $full_width;
 }
 add_filter( 'pendrell_full_width', 'pendrell_full_width_content' );
