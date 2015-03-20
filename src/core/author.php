@@ -19,8 +19,8 @@ if ( PENDRELL_AUTHOR_META )
 // Author info box
 if ( !function_exists( 'pendrell_author_info' ) ) : function pendrell_author_info() {
   if ( get_the_author_meta( 'description' ) ) {
-    $author = '<span class="fn n">' . get_the_author() . '</span>'; ?>
-    <div class="author-info author vcard">
+    $author = '<span class="p-name p-author">' . get_the_author() . '</span>'; ?>
+    <div class="author author-info h-card">
       <div class="author-avatar">
         <?php pendrell_author_avatar( get_the_author_meta( 'user_url' ) ); ?>
       </div>
@@ -30,7 +30,7 @@ if ( !function_exists( 'pendrell_author_info' ) ) : function pendrell_author_inf
         <?php if ( is_multi_author() ) { ?>
         <div class="author-link">
           <a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>" rel="author">
-            <?php printf( __( 'View all posts by %s<span class="nav-arrow"> &rarr;</span>', 'pendrell' ), $author ); ?>
+            <?php printf( __( 'View all posts by %s<span class="nav-arrow">&nbsp;&rarr;</span>', 'pendrell' ), $author ); ?>
           </a>
         </div>
         <?php } ?>
@@ -45,7 +45,7 @@ if ( !function_exists( 'pendrell_author_info' ) ) : function pendrell_author_inf
 if ( !function_exists( 'pendrell_author_avatar' ) ) : function pendrell_author_avatar( $url ) {
 
   // Size should be some multiple of the baseline
-  $size = 120;
+  $size = PENDRELL_BASELINE * 4;
   $default = '';
   $alt = get_the_author();
 

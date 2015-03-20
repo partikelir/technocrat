@@ -37,4 +37,5 @@ function pendrell_icon( $name = '', $text = '' ) {
       return ubik_svg_icon_text( $pendrell_icons[$name], $text );
     return $pendrell_icons[$name];
   }
+  return false;
 }

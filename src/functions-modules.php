@@ -77,11 +77,8 @@ require_once( $path_modules . 'ubik-colophon/ubik-colophon.php' );
 // Output the colophon
 function pendrell_colophon() {
   $colophon = ubik_colophon();
-  if ( !empty( $colophon ) ) {
-    ?><div class="site-footer-info">
-      <?php echo $colophon; ?>
-    </div><?php
-  }
+  if ( !empty( $colophon ) )
+    echo '<div class="site-footer-info">' . $colophon . '</div>';
 }
 add_action( 'pendrell_footer', 'pendrell_colophon' );
 
@@ -172,6 +169,8 @@ if ( PENDRELL_UBIK_MARKDOWN )
 // == META * == //
 
 require_once( $path_modules . 'ubik-meta/ubik-meta.php' );
+add_filter( 'ubik_meta_date_grace_period', '__return_true' );
+add_filter( 'ubik_meta_microformats', '__return_true' );
 
 
 
@@ -304,14 +303,6 @@ function pendrell_text_replace( $array ) {
   return $array;
 }
 add_filter( 'ubik_text_replace_simple', 'pendrell_text_replace' );
-
-
-
-// == TIME * == //
-
-require_once( $path_modules . 'ubik-time/ubik-time.php' );
-add_filter( 'ubik_meta_timestamp_published', 'ubik_time_human' ); // Humanize these times
-add_filter( 'ubik_meta_timestamp_updated', 'ubik_time_human' );
 
 
 

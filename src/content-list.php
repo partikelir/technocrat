@@ -18,7 +18,7 @@
       $size     = 'thumbnail',
       $alt      = '',
       $rel      = '',
-      $class    = array_merge( get_post_class(), array( 'overlay ' ) )
+      $class    = array_merge( get_post_class(), array( 'overlay ' ) ),
       $contents = '',
       $context  = 'list'
     ); ?>

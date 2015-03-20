@@ -1,5 +1,7 @@
 <?php // ==== ENTRY CONTENT ==== //
 
+// == HEADER == //
+
 // Entry title; displayed at the top of posts, pages, etc.
 // @filter: pendrell_entry_title
 // @action: pendrell_entry_title_before
@@ -9,56 +11,27 @@ if ( !function_exists( 'pendrell_entry_title' ) ) : function pendrell_entry_titl
     $title = get_the_title();
   if ( !is_singular() )
     $title = '<a href="' . get_permalink() . '" rel="bookmark">' . $title . '</a>';
-  echo apply_filters( 'pendrell_entry_title', '<h1 class="entry-title">' . $title . '</h1>' );
+  echo apply_filters( 'pendrell_entry_title', '<h1 class="entry-title p-name">' . $title . '</h1>' );
 } endif;
 add_action( 'pendrell_entry_header', 'pendrell_entry_title' );
 
 
 
-
-// Entry title meta
+// Display a date above the title
 if ( !function_exists( 'pendrell_entry_header_meta' ) ) : function pendrell_entry_header_meta() {
-  if ( is_page() || is_attachment() )
-    return;
-  $date = '<div class="date"><time datetime="' . date( 'c', get_the_time( 'U' ) ) . '">' . get_the_date( 'M j Y' ) . '</time></div>';
-  $cats = get_the_category_list( '</div> <div class="cats">' );
-  if ( !empty( $cats ) )
-    $cats = ' <div class="cats">' . $cats . '</div>';
-  $tags = ubik_terms_popular_list( get_the_ID(), 'post_tag', ' <div class="tags">', '</div> <div class="tags">', '</div>' );
-  $author = ubik_meta_author();
-  if ( !empty( $author ) )
-    $author = ' <div class="author">' . sprintf( __( '<div class="by">by</div> %s', 'pendrell' ), $author ) . '</div>';
-  echo '<footer class="meta">' . apply_filters( 'pendrell_entry_header_meta', $date . $cats . $tags . $author ) . '</footer>';
+  echo '<footer class="entry-meta">' . ubik_meta_date_published() . '</footer>';
 } endif;
-//add_action( 'pendrell_entry_header', 'pendrell_entry_header_meta', 9 );
+add_action( 'pendrell_entry_header', 'pendrell_entry_header_meta', 12 );
 
 
 
-// Entry footer; displayed below posts; a good place for buttons and metadata
-if ( !function_exists( 'pendrell_entry_footer_meta_original' ) ) : function pendrell_entry_footer_meta_original() {
-  echo '<div class="meta">' . ubik_meta() . '</div>';
-} endif;
-add_action( 'pendrell_entry_footer', 'pendrell_entry_footer_meta_original', 10 );
-
-
+// == FOOTER == //
 
 // Entry footer meta
 if ( !function_exists( 'pendrell_entry_footer_meta' ) ) : function pendrell_entry_footer_meta() {
-
-  // Get metadata
-  $data = ubik_meta_data();
-
-  // Setup entry meta data; the only information we have for sure is type, date, and author
-  if ( !empty( $data['date_updated'] ) ) {
-    $meta = sprintf( __( 'Published %1$s<span class="last-updated"> and updated %2$s</span>. ', 'ubik' ), $data['date_published'], $data['date_updated'] );
-  } else {
-    $meta = sprintf( __( 'Published %s. ', 'ubik' ), $data['date_published'] );
-  }
-
-  echo '<div class="meta">' . $meta . '</div>';
-
+  echo '<div class="entry-meta">' . ubik_meta() . '</div>';
 } endif;
-//add_action( 'pendrell_entry_footer', 'pendrell_entry_footer_meta', 10 );
+add_action( 'pendrell_entry_footer', 'pendrell_entry_footer_meta', 10 );
 
 
 
@@ -85,6 +58,8 @@ if ( !function_exists( 'pendrell_entry_edit_link' ) ) : function pendrell_entry_
 add_filter( 'pendrell_entry_footer_buttons', 'pendrell_entry_edit_link', 9 );
 
 
+
+// == VARIOUS == //
 
 // Better password form based on WordPress core function; @TODO: spin this off into Ubik
 if ( !function_exists( 'pendrell_entry_password_form' ) ) : function pendrell_entry_password_form( $output = '' ) {
@@ -117,3 +92,12 @@ if ( !function_exists( 'pendrell_entry_password_form' ) ) : function pendrell_en
   return $output;
 } endif;
 add_filter( 'the_password_form', 'pendrell_entry_password_form' );
+
+
+
+// Microformats2 compatibility
+if ( !function_exists( 'pendrell_entry_post_class' ) ) : function pendrell_entry_post_class( $classes ) {
+  $classes[] = 'h-entry';
+  return $classes;
+} endif;
+add_filter( 'post_class', 'pendrell_entry_post_class' );

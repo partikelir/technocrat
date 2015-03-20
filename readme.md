@@ -1,6 +1,6 @@
 # PENDRELL
 
-Pendrell is a minimal yet powerful WordPress theme for multimedia blogs. It features beautiful, legible typesetting alongside big, bold imagery. Use it for long-form journalism, photo-blogging, and more--but be prepared to dive into the code! Pendrell is something of a hacker theme; there is no options page, theme customizer, or bloat, and you won't find it in the WordPress theme repository. Instead, what you get is a highly optimized and surprisingly powerful theme [built with the goodness of Gulp, Bower, and Sass](https://github.com/synapticism/wordpress-gulp-bower-sass).
+Pendrell is a minimal yet powerful WordPress theme for multimedia blogs. It emphasizes beautiful typesetting alongside advanced image-handling. Use it for long-form journalism, photo-blogging, and more--but be prepared to dive into the code! Pendrell is something of a hacker theme; there is no options page, theme customizer, or bloat, and you won't find it in the WordPress theme repository. Instead, what you get is a highly optimized and fully featured theme [built with the goodness of Gulp, Bower, and Sass](https://github.com/synapticism/wordpress-gulp-bower-sass).
 
 Pendrell is built with [Ubik](https://github.com/synapticism/ubik), my suite of WordPress components. All necessary components are integrated into Pendrell during the build process; no extra plugins need to be installed *but you do need to build this theme from source files yourself*.
 
@@ -8,7 +8,7 @@ Pendrell is built with [Ubik](https://github.com/synapticism/ubik), my suite of 
 
 *Please note that Pendrell is still in the 0.x branch of development; things can (and will) change! If anyone out there would like to actually use this theme in production (or as a foundation for further customization) please feel welcome to contact me and I'll be less indiscriminate with my commits. Currently I am moving fast and occasionally breaking things as if nobody else is using this repo for anything.*
 
-You can see Pendrell in action on my personal blog, [Synapticism](http://synapticism.com).
+You can see Pendrell in action on my personal blog, [Synapticism](http://synapticism.com). Pendrell also forms the basis of [Technocrat](https://github.com/synapticism/technocrat), the theme visible on [Synaptic/Dev](http://synapticism.com/dev).
 
 
 
@@ -19,24 +19,24 @@ An incomplete list in no particular order:
 * HTML5-compliant markup; clean and efficient CSS3 styling based on Sass.
 * Automated CSS/JS minification via Gulp/Bower build system and intelligent asset loading. This theme is *highly* optimized.
 * Big, beautiful typesetting for [easy reading](http://ia.net/blog/100e2r/).
-* Consistent vertical rhythm (excluding images; that's just too much trouble).
+* Consistent vertical rhythm (excluding images and parts of the sidebar; that's just too much trouble).
 * Full-width view for images and galleries. Great for photo-blogging.
 * Truly responsive images and complex layouts with [Ubik Imagery](https://github.com/synapticism/ubik-imagery) and [Picturefill](https://github.com/scottjehl/picturefill). Visitors on mobile will load smaller images than those on bigger screens!
 * Built-in [AJAX Page Loader](https://github.com/synapticism/wp-ajax-page-loader) script (click "next" and more content will appear). Not unlike Infinite Scroll but custom-coded for high performance.
-* Built-in AJAX contact form page template; no need for a wasteful plugin.
+* Built-in AJAX contact form page template with form validation; no need for a wasteful plugin.
 * Improved post format styling and support for asides, images (really just a thin wrapper for attachments), links, quotations, and status updates.
-* Custom template swapping; display posts in a gallery of thumbnails, a list, or as the original posts. Great for portfolios.
-* Smart context-dependent search form and search redirects (singletons and blank queries).
-* Google font support for both the front-end and admin panel. Includes nicer type-setting for the non-visual editor.
-* Footer info module; customize the copyright blurb at the bottom of each page.
-* Related posts optionally weighted by taxonomy, number of comments, presence of post thumbnail/featured image, etc.
-* SVG icon sheet support; seamlessly integrate SVG icons from any open source icon set; IE9+ support with [SVG 4 Everybody](https://github.com/jonathantneal/svg4everybody).
+* Custom template swapping; display posts in a gallery of thumbnails, a list, or as the original posts. Great for portfolios. Built with [Ubik Views](https://github.com/synapticism/ubik-views).
+* Smart context-dependent search form and search redirects (singletons and blank queries) with [Ubik Search](https://github.com/synapticism/ubik-search).
+* Google font support for both the front-end and admin panel. Includes nicer type-setting for the non-visual editor. See [Ubik Fonts](https://github.com/synapticism/ubik).
+* Footer info module; customize the copyright blurb at the bottom of each page with [Ubik Colophon](https://github.com/synapticism/ubik-colophon).
+* Related posts optionally weighted by taxonomy, number of comments, presence of post thumbnail/featured image, etc. See [Ubik Related](https://github.com/synapticism/ubik) for more.
+* SVG icon sheet support with [Ubik SVG Icons](https://github.com/synapticism/ubik); seamlessly integrate SVG icons from any open source icon set; IE9+ support with [SVG 4 Everybody](https://github.com/jonathantneal/svg4everybody).
 * Code highlighting with [Prism](http://prismjs.com).
 * [Autosize](https://github.com/jackmoore/autosize) `textarea` elements.
-* A halfway decent print media stylesheet.
-* A zillion little optimizations via [Ubik](https://github.com/synapticism/ubik).
 * Absolutely no options screen or database bloat.
+* A halfway decent print media stylesheet.
 * Verbosely commented source code to walk you through everything that Pendrell can do.
+* A zillion other little things from the [Ubik](https://github.com/synapticism/ubik) family of WordPress components.
 
 
 
@@ -58,7 +58,7 @@ Drop the 'dist/pendrell' directory into `/wp-content/themes/` and activate it vi
 
 ## CONFIGURATION
 
-**This theme has no options page**; modify the `src/functions-config.php` file if you wish to change any of the default settings specified in `src/functions-config-defaults.php`. Refer to the comments and patterns in the source code for more information. In general, most options can be set by using `define( 'PENDRELL_CONSTANT', value );`.
+**This theme has no options page**; modify the `src/functions-config.php` file if you wish to change any of the default settings specified in `src/functions-config-defaults.php`. Refer to the comments and patterns in the source code for more information. In general, most options can be set by using `define( 'PENDRELL_CONSTANT', value );`. [Ubik](https://github.com/synapticism/ubik) and other modules are configured in `src/functions-modules.php`.
 
 
 

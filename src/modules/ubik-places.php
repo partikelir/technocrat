@@ -9,25 +9,18 @@ function pendrell_sidebar_places( $sidebar ) {
   if ( is_tax( 'places' ) && !pendrell_is_full_width() ) {
 
     // Retrieve data from Ubik Places
-    $places = ubik_places_list();
+    $widgets = ubik_places_list();
 
     // Only output places widget markup if we have results; @TODO: turn this into a real widget
-    if ( !empty( $places ) ) {
+    if ( !empty( $widgets ) ) {
       ?><div id="wrap-sidebar" class="wrap-sidebar">
         <div id="secondary" class="site-sidebar" role="complementary">
-          <aside id="ubik-places" class="widget">
-            <?php if ( !empty( $places ) ) {
-              foreach ( $places as $key => $place ) {
-                $places_index = ''; // A simple hack to insert a link to the places index page
-                if ( $key === ( count( $places ) - 1 ) && PENDRELL_PLACES_TEMPLATE_ID !== false )
-                  $places_index = '<li class="cat-item"><strong><a href="' . get_permalink( PENDRELL_PLACES_TEMPLATE_ID ) . '">' . __( 'All places', 'pendrell' ) . '</a></strong></li>';
-                ?><h2><?php echo $place['title']; ?></h2>
-                <ul class="place-list">
-                  <?php echo $places_index; echo wp_list_categories( $place['args'] ); ?>
-                </ul><?php
-              }
-            } ?>
-          </aside>
+          <?php foreach ( $widgets as $key => $widget ) {
+            $index = ''; // A simple hack to insert a link to the places index page
+            if ( $key === ( count( $widgets ) - 1 ) && PENDRELL_PLACES_TEMPLATE_ID !== false )
+              $index = '<li class="cat-item"><strong><a href="' . get_permalink( PENDRELL_PLACES_TEMPLATE_ID ) . '">' . __( 'All places', 'pendrell' ) . '</a></strong></li>';
+            echo '<aside id="ubik-places" class="widget places-' . strtolower( $widget['name'] ) . '"><h2>' . $widget['title'] . '</h2><ul class="place-list">' . $index . wp_list_categories( $widget['args'] ) . '</ul></aside>';
+          } ?>
         </div>
       </div><?php
     }
@@ -39,10 +32,10 @@ function pendrell_sidebar_places( $sidebar ) {
 }
 add_filter( 'pendrell_sidebar', 'pendrell_sidebar_places' );
 
-// Adds places to entry metadata right after other taxonomies; @DEPENDENCY: relies on popular terms function in Ubik core
+// Adds places to entry metadata right after other taxonomies; @DEPENDENCY: Ubik Terms
 function pendrell_places_meta( $meta ) {
   if ( has_term( '', 'places' ) )
-    $meta .= ubik_terms_popular_list( get_the_ID(), 'places', 'Places: ', ', ', '. ' );
+    $meta .= sprintf( __( 'Places: %s.', 'pendrell' ), ubik_meta_terms( 'places', '', ', ', '', 1 ) ); // ubik_svg_icon( pendrell_icon( 'places' ), __( 'Places', 'pendrell' ) ) .
   return $meta;
 }
 add_filter( 'ubik_meta_taxonomies', 'pendrell_places_meta' );

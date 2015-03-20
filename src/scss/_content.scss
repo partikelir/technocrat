@@ -4,13 +4,15 @@
 .entry-header {
   @extend %links-no-border;
   @extend %spacer-below-half;
-  .meta {
+  .entry-meta {
     @include font-size(text-smaller);
     @include font-style(entry-header-meta);
-    opacity: .5;
+    opacity: .27;
+    transition: opacity 1.45s ease-out;
   }
-  &:hover .meta {
-    opacity: 1;
+  &:hover .entry-meta {
+    opacity: .73;
+    transition: opacity .58s ease;
   }
 }
 .entry-title {
@@ -215,7 +217,7 @@
 .entry-footer {
   @extend %clearfix;
   @include font-style(entry-footer-meta);
-  .meta {
+  .entry-meta {
     @extend %links-meta;
     @include font-size(text-smaller);
     color: colour(meta);

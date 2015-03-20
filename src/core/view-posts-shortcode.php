@@ -98,7 +98,7 @@ if ( !function_exists( 'pendrell_view_posts' ) ) : function pendrell_view_posts(
   // HTML scaffolding specific to each view
   if ( !empty( $html ) ) {
     if ( $view == 'gallery' ) {
-      $html_before = '<section class="' . $view . '-view view-posts gallery gallery-columns-3">';
+      $html_before = '<section class="' . $view . '-view view-posts gallery gallery-flex">';
     } else {
       $html_before = '<section class="' . $view . '-view view-posts">';
     }

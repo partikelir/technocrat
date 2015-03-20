@@ -23,7 +23,7 @@ module.exports = {
   browsersync: {
     files: [build+'/**', '!'+build+'/**.map'] // Exclude map files
   , notify: false // In-line notifications (the blocks of text saying whether you are connected to the BrowserSync server or not)
-  , open: true // Set to false if you don't like the browser window opening automatically
+  , open: false // Set to false if you don't like the browser window opening automatically
   , port: 3000 // Port number for the live version of the site; default: 3000
   , proxy: 'synaptic.dev:8080' // Using a proxy instead of the built-in server as we have server-side rendering to do via WordPress
   , watchOptions: {
@@ -231,7 +231,6 @@ module.exports = {
       , 'svg-icons' // *
       , 'terms' // *
       , 'text' // *
-      , 'time' // *
       , 'title' // *
       , 'views' // *
       ]

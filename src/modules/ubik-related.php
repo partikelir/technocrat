@@ -51,7 +51,7 @@ function pendrell_related_score_thumbnail( $score = 1 ) {
 
 // Post formats exclusion; accepts an array of port format slugs e.g. link, quote, etc.
 function pendrell_related_score_formats_exclude( $formats = array() ) {
-  return array( 'aside', 'link', 'quote', 'status' );
+  return array( 'aside', 'chat', 'link', 'quote', 'status' );
 }
 if ( PENDRELL_POST_FORMATS )
   add_filter( 'ubik_related_score_formats_exclude', 'pendrell_related_score_formats_exclude' );
