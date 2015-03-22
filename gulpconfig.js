@@ -86,6 +86,10 @@ module.exports = {
       , 'th-list'
       ]
     }
+  , custom: {
+      src: src+'icons-custom/*.svg'
+    , prefix: 'ico-'
+    }
   },
 
   images: {
@@ -180,8 +184,10 @@ module.exports = {
   , transform: {
       before: {
         run: function ($) {
-          $('[fill]').removeAttr('fill'); // Remove fill attribute to allow total CSS control
-          //$('svg').attr( 'viewBox', '0 0 1800 1800' );
+          // Remove various attributes to allow for greater control via CSS
+          $('[fill]').removeAttr('fill');
+          $('[fill-rule]').removeAttr('fill-rule');
+          $('[clip-rule]').removeAttr('clip-rule');
         },
         parserOptions: { xmlMode: true }
       }

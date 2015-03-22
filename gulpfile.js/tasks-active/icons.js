@@ -85,10 +85,19 @@ gulp.task('icons-typ', function() {
   .pipe(gulp.dest(config.dest));
 });
 
+// Custom icons
+gulp.task('icons-custom', function() {
+  return gulp.src(config.custom.src)
+  .pipe(plugins.rename({ prefix: config.custom.prefix }))
+  .pipe(plugins.changed(config.dest))
+  .pipe(plugins.imagemin())
+  .pipe(gulp.dest(config.dest));
+});
+
 // Utility function to clean out the icons folder prior to building a new sprite sheet (use this anytime you change icons)
 gulp.task('icons-clean', function(cb) {
   del(config.dest, cb)
 });
 
 // Support for multiple icon sources; use one task per set to handle different prefixes and source locations
-gulp.task('icons', ['icons-awesome', 'icons-foundation', 'icons-ion', 'icons-material', 'icons-typ']);
+gulp.task('icons', ['icons-awesome', 'icons-foundation', 'icons-ion', 'icons-material', 'icons-typ', 'icons-custom']);
