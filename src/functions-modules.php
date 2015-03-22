@@ -300,6 +300,10 @@ function is_categorized() {
   return ubik_terms_categorized();
 }
 
+// Don't display categories if the blog isn't categorized
+if ( !is_categorized() )
+  add_filter( 'ubik_meta_categories', '__return_empty_string' );
+
 
 
 // == TEXT * == //
