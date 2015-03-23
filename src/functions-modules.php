@@ -327,6 +327,12 @@ add_filter( 'ubik_text_replace_simple', 'pendrell_text_replace' );
 
 // == TITLE * == //
 
+require_once( $path_modules . 'ubik-time/ubik-time.php' );
+
+
+
+// == TITLE * == //
+
 define( 'UBIK_TITLE_STRIP_ARCHIVES', true );
 require_once( $path_modules . 'ubik-title/ubik-title.php' );
 

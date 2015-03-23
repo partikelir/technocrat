@@ -237,6 +237,7 @@ module.exports = {
       , 'svg-icons' // *
       , 'terms' // *
       , 'text' // *
+      , 'time' // *
       , 'title' // *
       , 'views' // *
       ]
