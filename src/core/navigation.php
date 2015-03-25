@@ -18,7 +18,7 @@ if ( !function_exists( 'pendrell_nav_content' ) ) : function pendrell_nav_conten
   $max = $wp_query->max_num_pages;
 
   // Exit early under certain conditions (no pages to display; top navigation on page one of results)
-  if ( is_single() || $max <= 1 || ( $id === 'nav-above' && !is_paged() ) )
+  if ( is_single() || $max <= 1 || ( $id === 'nav-above' && ( !is_paged() || ubik_is_view( 'gallery' ) ) ) || apply_filters( 'pendrell_nav_content_switch', true, $id ) === false )
     return;
 
   // Initialize
@@ -38,9 +38,9 @@ if ( !function_exists( 'pendrell_nav_content' ) ) : function pendrell_nav_conten
 
   // Conditional output of previous and next links followed by the actual output
   if ( !empty( $prev_link ) )
-    $output .= '<div class="nav-previous"><a class="button" href="' . $prev_link . '" role="button">' . pendrell_icon( 'nav-previous', __( 'Previous', 'pendrell' ) ) . '</a></div>';
+    $output .= '<div class="nav-previous"><a class="button prev-page" href="' . $prev_link . '" role="button">' . pendrell_icon( 'nav-previous', __( 'Previous', 'pendrell' ) ) . '</a></div>';
   if ( !empty( $next_link ) )
-    $output .= '<div class="nav-next"><a class="button" href="' . $next_link . '" role="button">' . pendrell_icon( 'nav-next', __( 'Next', 'pendrell' ) ) . '</a></div>';
+    $output .= '<div class="nav-next"><a class="button next-page" href="' . $next_link . '" role="button">' . pendrell_icon( 'nav-next', __( 'Next', 'pendrell' ) ) . '</a></div>';
   if ( !empty( $output ) )
     $output = '<nav id="' . $id . '" class="nav-content" role="navigation"><h2 class="screen-reader-text">' . __( 'Content navigation', 'pendrell' ) . '</h2>' . $output  . '</nav>';
 
