@@ -12,7 +12,7 @@
 <body <?php body_class(); ?>>
 	<?php do_action( 'pendrell_body_before' ); ?>
 	<a name="top"></a>
-	<div id="page" class="hfeed site">
+	<div id="page" class="site hfeed h-feed">
 		<div id="wrap-header" class="wrap-header">
 			<header id="masthead" class="site-header" role="banner">
 				<div class="site-branding">

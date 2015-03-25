@@ -19,7 +19,26 @@ add_action( 'pendrell_entry_header', 'pendrell_entry_title' );
 
 // Display a date above the title
 if ( !function_exists( 'pendrell_entry_header_meta' ) ) : function pendrell_entry_header_meta() {
-  echo '<footer class="entry-meta">' . ubik_meta_date_published( 'F j, Y' ) . '</footer>';
+
+  // Initialize
+  $output = '';
+
+  // Special handling for pages and attachments
+  if ( is_page() || is_attachment() ) {
+
+    // Get the parent (might be empty in the case of pages)
+    $parent = ubik_meta_parent();
+    if ( !empty( $parent ) )
+      $output = '<span class="parent">' . sprintf( __( 'Return to %s', 'pendrell' ), $parent ) . '&nbsp;&larrhk;</span>';
+
+  // Everything else should have a date of publication
+  } else {
+    $output = '<span class="date">' . ubik_meta_date_published( 'F j, Y' ) . '</span>';
+  }
+
+  // Only add the footer if we have something to output
+  if ( !empty( $output ) )
+    echo '<footer class="entry-meta">' . $output . '</footer>';
 } endif;
 add_action( 'pendrell_entry_header', 'pendrell_entry_header_meta', 12 );
 

@@ -16,6 +16,8 @@ function pendrell_icon( $name = '', $text = '' ) {
   , 'content-protected'       => 'typ-key'
   , 'gallery-comments'        => 'awe-comment'
   , 'menu-toggle'             => 'awe-caret-down'
+  , 'nav-next'                => 'typ-arrow-right-thick'
+  , 'nav-previous'            => 'typ-arrow-left-thick'
   , 'places'                  => 'typ-location'
   , 'related-comments'        => 'awe-comment'
   , 'search'                  => 'ion-search'
@@ -38,4 +40,11 @@ function pendrell_icon( $name = '', $text = '' ) {
     return $pendrell_icons[$name];
   }
   return false;
+}
+
+
+
+// Add an icon to an Ubik search button
+function pendrell_icon_search_button( $contents ) {
+  return pendrell_icon( 'search', $contents );
 }

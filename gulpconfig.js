@@ -76,7 +76,8 @@ module.exports = {
       src: bower+'typicons/src/svg/'
     , prefix: 'typ-'
     , icons: [
-        'arrow-right-thick'
+        'arrow-left-thick'
+      , 'arrow-right-thick'
       , 'arrow-up-thick'
       , 'cancel'
       , 'document-text'

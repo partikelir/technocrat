@@ -170,6 +170,7 @@ if ( PENDRELL_UBIK_LINKS ) {
   define( 'UBIK_LINKS_PAGE_TEMPLATE', 'page-templates/links.php' );
   define( 'UBIK_LINKS_SEARCH_FORM_REVERSE', true );
   require_once( $path_modules . 'ubik-links.php' );
+  add_filter( 'ubik_links_search_button', 'pendrell_icon_search_button' );
 }
 
 
@@ -230,12 +231,7 @@ if ( PENDRELL_UBIK_RELATED )
 define( 'UBIK_SEARCH_FORM_REVERSE', true );
 define( 'UBIK_SEARCH_POSTS_PER_PAGE', 20 );
 require_once( $path_modules . 'ubik-search/ubik-search.php' );
-
-// Add an icon to the search button
-function pendrell_search_button( $contents ) {
-  return pendrell_icon( 'search', $contents );
-}
-add_filter( 'ubik_search_button', 'pendrell_search_button' );
+add_filter( 'ubik_search_button', 'pendrell_icon_search_button' );
 
 
 
@@ -312,8 +308,8 @@ require_once( $path_modules . 'ubik-text/ubik-text.php' );
 add_filter( 'the_content', 'ubik_text_replace', 99 );
 add_filter( 'the_excerpt', 'ubik_text_replace', 99 );
 add_filter( 'comment_text', 'ubik_text_replace', 99 );
-add_filter ( 'the_content_feed' , 'ubik_text_strip_asides' );
-add_filter ( 'the_excerpt_rss' , 'ubik_text_strip_asides' );
+add_filter( 'the_content_feed', 'ubik_text_strip_asides' );
+add_filter( 'the_excerpt_rss', 'ubik_text_strip_asides' );
 add_filter( 'the_content', 'ubik_text_strip_more_orphan', 99 ); // Strip paragraph tags from orphaned more tags
 
 // An example showing how to filter the text replacement array

@@ -1,5 +1,14 @@
 // ==== LAYOUT ==== //
 
+// Overall site layout
+.site {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
 // == WRAPPERS == //
 
 // These wrappers allow for backgrounds and layout options to be defined for each of the four sections (header, content, sidebar, and footer)
@@ -28,23 +37,28 @@
 }
 .wrap-main { // Wrapper around content and sidebar
   @extend %clearfix;
+  flex: 1;
   @include k-media-above( break(large) ) {
-    @include k-center-block( $width-content );
     @include rem( padding-left, spacer(1.5) );
     @include rem( padding-right, spacer(1.5) );
+    display: flex;
+    justify-content: center;
   }
 }
 .wrap-content {
   @extend %wrap;
+  flex: 1;
   @include rem( padding-top, spacer() );
   @include rem( padding-bottom, spacer() );
   @include k-media-above( break(large) ) {
     @include rem( padding-right, spacer() );
     float: left;
+    max-width: $width-main;
     padding-left: 0;
-    width: percentage( ( $width-main + spacer() ) / $width-content );
+    width: percentage( $width-main / $width-content );
     .full-width & {
       float: none;
+      max-width: $width-content;
       padding-right: 0;
       width: 100%;
     }
@@ -57,8 +71,9 @@
   @include k-media-above( break(large) ) {
     @include rem( padding-left, spacer() );
     float: right;
+    max-width: $width-content - $width-main;
     padding-right: 0;
-    width: percentage( 1 - ( ( $width-main + spacer() ) / $width-content ) );
+    width: percentage( 1 - ( $width-main / $width-content ) );
     .full-width & {
       float: none;
       padding-left: 0;
@@ -83,7 +98,7 @@
   @include rem( padding-bottom, spacer(1/2) );
   &:hover .site-description { // Show site description on hover
     opacity: 1;
-    transition: opacity .5s ease;
+    transition: opacity .6s ease;
   }
 }
 .site-title {
