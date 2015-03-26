@@ -34,7 +34,7 @@
     "prism": "git://github.com/LeaVerou/prism.git#gh-pages",
     "spin.js": "^2.0.2",
     "svg4everybody": "^1.0.0",
-    "wp-ajax-page-loader": "^0.0.2",
+    "wp-ajax-page-loader": "^0.1.0",
     "wp-iconize": "^0.0.1",
     "font-awesome-svg-png": "~1.1.2",
     "ionicons": "^2.0.0",

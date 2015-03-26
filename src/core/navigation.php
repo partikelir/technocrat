@@ -18,7 +18,7 @@ if ( !function_exists( 'pendrell_nav_content' ) ) : function pendrell_nav_conten
   $max = $wp_query->max_num_pages;
 
   // Exit early under certain conditions (no pages to display; top navigation on page one of results)
-  if ( is_single() || $max <= 1 || ( $id === 'nav-above' && ( !is_paged() || ubik_is_view( 'gallery' ) ) ) || apply_filters( 'pendrell_nav_content_switch', true, $id ) === false )
+  if ( is_single() || $max <= 1 || ( $id === 'nav-above' && !is_paged() ) || apply_filters( 'pendrell_nav_content_switch', true, $id ) === false )
     return;
 
   // Initialize
