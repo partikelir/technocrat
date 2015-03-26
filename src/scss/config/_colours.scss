@@ -123,13 +123,33 @@ $_colours: (
 , code-box:       $c-light
 , code-box-bg:    $c-darkest
 
+  // Buttons
+, button1:        white()    // Normal text
+, button1-h:      white(.9)  // Hover text
+, button1-a:      white(.8)  // Active text
+, button1-b:      rgba( grey(133), .5 )   // Border
+, button1-s:      rgba( white(), .85 )   // Shadow
+, button1-bg-1:   $c-link
+, button1-bg-2:   $c-offset
+, button1-bg-3:   $c-highlight
+, button2:        lighten( k-colour(mako), 7 )
+, button2-h:      lighten( k-colour(mako), 11 )
+, button2-a:      k-colour(shark)
+, button2-b:      rgba( $c-link, .67 )
+, button2-s:      rgba( white(), .85 )   // Shadow
+, button2-bg-1:   lighten( $c-link, 33 )
+, button2-bg-2:   darken( $c-link, 3 )
+, button2-bg-3:   darken( $c-link, 17 )
+, button3:        darken( $c-text, 3 )
+, button3-h:      lighten( $c-text, 17 )
+, button3-a:      lighten( $c-text, 23 )
+, button3-b:      rgba( grey(133), .5 )
+, button3-s:      rgba( white(), .85 )   // Shadow
+, button3-bg-1:   grey(251)
+, button3-bg-2:   grey(215)
+, button3-bg-3:   grey(192)
+
   // Interface
-, button:         white()
-, button-h:       white(.9)
-, button-a:       white(.8)
-, button-bg-1:    $c-link
-, button-bg-2:    $c-offset
-, button-alt:     $c-highlight // Unused?
 , divider:        rgba( $c-text, .09 ) // For use with <hr> etc.
 , select-top:     grey(251)
 , select-bottom:  grey(227)
@@ -140,6 +160,7 @@ $_colours: (
 , shadow-lighter: grey(128, .07)
 , text-input:     $c-darker
 , text-input-bg:  $c-lighter
+, text-input-b:   rgba( grey(179), .47 ) // Unused
 
   // Various
 , blockquote:     $c-dark

@@ -10,7 +10,6 @@ body {
   @include font-style(body);
   color: colour(text);
   background-color: black();//colour(bg-body);
-  //background-image: linear-gradient( to bottom, colour(bg-body) 30%, colour(bg-footer) 90%, colour(bg-footer) );
   font-feature-settings: 'liga', 'opbd', 'size', 'init', 'fina'; // Ligatures; optical bounds; optical size; initial and final forms; via: http://www.microsoft.com/typography/otspec/featurelist.htm
   text-rendering: optimizeLegibility;
 }
@@ -147,8 +146,8 @@ blockquote {
   @include font-style(quotation);
   @include font-size(text-small);
   @include k-reverse-italics;
-  @include letterpress;
   @include rem( padding, spacer(1/2) spacer(1/2) spacer(1/2) spacer() - 3px );
+  @include text-shadow;
   background: colour(body-bg);
   border-left: 3px solid colour(blockquote);
   color: rgba( colour(text), .75); // Transparent so that blockquotes can be nested
@@ -206,7 +205,7 @@ pre {
   @extend %spacer-below;
   @include border-radius;
   @include font-size(text-small);
-  @include letterpress( black(.3) );
+  @include text-shadow( black(.28) );
   @include rem( padding, spacer(1/2) );
   background: colour(code-box-bg);
   border-left: 6px solid colour(code-box);

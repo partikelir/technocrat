@@ -102,9 +102,20 @@ function pendrell_views_list_meta() {
 add_filter( 'pendrell_entry_header_meta', 'pendrell_views_list_meta' );
 
 
+
 // List content; @DEPENDENCY: Ubik Excerpt
 function pendrell_views_list_content( $words = 15 ) {
   if ( pendrell_full_width() )
     $words = 30;
   echo ubik_excerpt( '', $words );
 }
+
+
+
+// Switch for next and previous pages
+function pendrell_views_nav_content_switch( $switch, $id ) {
+  if ( $id === 'nav-above' && ubik_is_view( 'gallery' ) )
+    $switch = false;
+  return $switch;
+}
+add_filter( 'pendrell_nav_content_switch', 'pendrell_views_nav_content_switch', 10, 2 );
