@@ -19,17 +19,34 @@ add_action( 'pendrell_entry_header', 'pendrell_entry_title' );
 
 // Entry header meta
 if ( !function_exists( 'pendrell_entry_header_meta' ) ) : function pendrell_entry_header_meta() {
-  if ( is_page() || is_attachment() )
-    return;
-  $date = '<div class="date"><time datetime="' . date( 'c', get_the_time( 'U' ) ) . '">' . get_the_time( 'M j Y' ) . '</time></div>';
-  $cats = get_the_category_list( '</div> <div class="cats">' );
-  if ( !empty( $cats ) )
-    $cats = ' <div class="cats">' . $cats . '</div>';
-  $tags = ubik_terms_popular_list( get_the_ID(), 'post_tag', ' <div class="tags">', '</div> <div class="tags">', '</div>' );
-  $author = ubik_meta_author();
-  if ( !empty( $author ) )
-    $author = ' <div class="author">' . sprintf( __( '<div class="by">by</div> %s', 'pendrell' ), $author ) . '</div>';
-  echo '<footer class="entry-title-meta">' . $date . $cats . $tags . $author . '</footer>';
+
+  // Initialize
+  $output = '';
+
+  // Special handling for pages and attachments
+  if ( is_page() || is_attachment() ) {
+
+    // Get the parent (might be empty in the case of pages)
+    $parent = ubik_meta_parent();
+    if ( !empty( $parent ) )
+      $output = '<div class="parent">' . sprintf( __( 'Return to %s', 'pendrell' ), $parent ) . '</div>';
+
+  // Everything else
+  } else {
+    $date = '<div class="date"><time datetime="' . date( 'c', get_the_time( 'U' ) ) . '">' . get_the_time( 'M j Y' ) . '</time></div>';
+    $cats = get_the_category_list( '</div> <div class="cats">' );
+    if ( !empty( $cats ) )
+      $cats = ' <div class="cats">' . $cats . '</div>';
+    $tags = ubik_terms_popular_list( get_the_ID(), 'post_tag', ' <div class="tags">', '</div> <div class="tags">', '</div>' );
+    $author = ubik_meta_author();
+    if ( !empty( $author ) )
+      $author = ' <div class="author">' . sprintf( __( '<div class="by">by</div> %s', 'pendrell' ), $author ) . '</div>';
+    $output = $date . $cats . $tags . $author;
+  }
+
+  // Only add the footer if we have something to output
+  if ( !empty( $output ) )
+    echo '<footer class="entry-header-meta">' . $output . '</footer>';
 } endif;
 add_action( 'pendrell_entry_header', 'pendrell_entry_header_meta', 12 );
 

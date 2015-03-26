@@ -1,9 +1,6 @@
 // ==== NAVIGATION ==== //
 
 // General navigation
-.site-content nav {
-  @extend %links-no-border;
-}
 .page-links,
 .nav-comments,
 .nav-content,
@@ -11,6 +8,11 @@
 .nav-post {
   @extend %clearfix;
   @extend %spacer-below;
+}
+.nav-comments,
+.nav-page,
+.nav-post {
+  @extend %links-no-border; // These are regular links, not buttons, and need styling
 }
 .nav-above {
   @include rem( margin-bottom, spacer() );

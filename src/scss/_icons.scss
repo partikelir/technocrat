@@ -13,8 +13,12 @@ svg {
     .button & {
       @include rem( height, 18px );
       @include rem( width, 18px );
-      @include rem( margin, 4px -4px 0 4px );
+      @include rem( margin, 4px -4px 0 3px );
       float: right;
+      .nav-previous & {
+        @include rem( margin, 4px 4px 0 -3px );
+        float: left;
+      }
     }
 
     button &.icon-typ-th-list,

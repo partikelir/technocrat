@@ -114,7 +114,7 @@ if ( !function_exists( 'pendrell_comments_form' ) ) : function pendrell_comments
 
     // Display the form
     } else {
-      echo '<form id="comment-form" class="comment-form" method="post" action="' . site_url( '/wp-comments-post.php' ) . '">';
+      echo '<form id="commentform" class="comment-form" method="post" action="' . site_url( '/wp-comments-post.php' ) . '">';
       do_action( 'comment_form_top' );
 
       // Display text for users who are already logged in
@@ -139,7 +139,7 @@ if ( !function_exists( 'pendrell_comments_form' ) ) : function pendrell_comments
         do_action( 'comment_form_after_fields' );
       }
 
-      echo '<fieldset><label for="comment">' . __( 'Comment', 'pendrell' ) . '</label><textarea id="comment" name="comment "rows="5" placeholder="' . esc_attr( __( '', 'pendrell' ) ) . '"' . $req_html . '></textarea>' . pendrell_comments_form_notes_after() . '</fieldset>';
+      echo '<fieldset><label for="comment">' . __( 'Comment', 'pendrell' ) . '</label><textarea id="comment" name="comment" rows="5" placeholder="' . esc_attr( __( '', 'pendrell' ) ) . '"' . $req_html . '></textarea>' . pendrell_comments_form_notes_after() . '</fieldset>';
 
       echo '<button id="submit" type="submit" name="submit">' . pendrell_icon( 'comment-post', __( 'Post comment', 'pendrell' ) ) . '</button>';
 

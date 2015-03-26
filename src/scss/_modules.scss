@@ -16,6 +16,7 @@
       @include font-size(head);
     }
     .entry-content {
+      @extend %spacer-below-half;
       @include font-size(text-small);
     }
   }

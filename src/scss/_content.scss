@@ -8,6 +8,9 @@
     @include font-size(text-smaller);
     @include font-style(entry-header-meta);
     color: colour(text-lightest);
+    .date {
+      text-transform: uppercase;
+    }
   }
 }
 .entry-title {
@@ -27,7 +30,7 @@
   }
 }
 
-.entry-title-meta {
+.entry-header-meta {
   @include font-size(text-smaller);
   overflow: hidden;
   > * {

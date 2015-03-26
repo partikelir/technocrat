@@ -1,5 +1,14 @@
 // ==== LAYOUT ==== //
 
+// Overall site layout
+.site {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
 // == WRAPPERS == //
 
 // These wrappers allow for backgrounds and layout options to be defined for each of the four sections (header, content, sidebar, and footer)
@@ -39,14 +48,15 @@
 }
 .wrap-main {
   @extend %clearfix-below;
+  background: colour(bg-sidebar); // Gutter colour
+  flex: 1; // Sticky footer
 }
 .wrap-sidebar {
   @extend %wrap;
   @include rem( padding-top, spacer() );
   @include rem( padding-bottom, spacer() );
-  @include k-media-below( break(large) ) {
-    background: colour(bg-sidebar);
-  }
+  background: colour(bg-sidebar);
+  height: auto;
 }
 .wrap-content {
   @extend %wrap;
@@ -59,21 +69,11 @@
     background: colour(bg-content);
   }
 }
-.wrap-social {
-  @extend %wrap;
-  @include k-media-above( break(large) ) {
-    @include rem( padding-left, spacer() );
-    float: right;
-    width: 33%;
-  }
-}
 .wrap-footer {
   @extend %wrap;
   background: colour(bg-footer);
   @include k-media-above( break(large) ) {
-    float: left;
     padding: 0;
-    width: 67%;
   }
 }
 
@@ -94,7 +94,7 @@
   }
   &:hover .site-description { // Show site description on hover
     opacity: 1;
-    transition: opacity .5s ease;
+    transition: opacity .6s ease;
   }
 }
 .site-title {
@@ -218,9 +218,10 @@ main {
   position: relative; // For use with the "Back to top" button
   @include k-media-above( break(large) ) {
     @include rem( padding-left, spacer(2) );
-    @include rem( padding-right, spacer(2) );
     margin-left: auto;
-    max-width: $width-main;
+    max-width: $width-main + spacer(2);
+    width: 67%;
+    padding-right: 33%;
   }
   color: colour(footer);
   .buttons {
