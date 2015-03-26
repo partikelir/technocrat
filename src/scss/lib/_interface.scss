@@ -54,10 +54,10 @@
   @include border-radius;
   @include font-size( $font-size, 8 );
   @include font-style(input);
-  @include letterpress;
   @include rem( padding, 3px 6px );
+  @include text-shadow;
   background: darken( colour(body-bg), 3 );
-  border: 1px solid colour(divider);
+  border: 1px solid colour(text-input-b);
   box-shadow: inset 1px 1px 4px $shadow;
   color: lighten( colour(text), 23 );
   &:focus {

@@ -99,6 +99,7 @@
   &:hover .site-description { // Show site description on hover
     opacity: 1;
     transition: opacity .6s ease;
+    transition-delay: .43s;
   }
 }
 .site-title {
@@ -135,9 +136,6 @@
     @include k-media-above( break(medium) ) {
       display: none;
     }
-  }
-  &.active {
-    display: block;
   }
 }
 .site-interface { // Site interface: the toolbar/menu at top right

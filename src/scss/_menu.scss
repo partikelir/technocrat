@@ -96,7 +96,7 @@
   @include k-media-above( break(medium) ) {
     display: none;
   }
-  &.active svg.icon {
-    filter: drop-shadow( 0 -1px 1px rgba( colour(body-bg), .9 ) ); // Reverses letterpress effect
+  &.active svg {
+    @include text-shadow-svg-icon( $y: -1px );
   }
 }

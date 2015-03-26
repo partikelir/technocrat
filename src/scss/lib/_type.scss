@@ -1,13 +1,13 @@
 // ==== TYPE ==== //
 
 // Font size mixin; $size (valid size from the size map); $offset (integer); pixel value offset to account for borders and other things that disrupt line-height
-@mixin font-size($size: text, $offset: 0) {
+@mixin font-size( $size: text, $offset: 0 ) {
   @include rem( font-size, size($size) + 0px );
   @include line-height( size($size), $offset );
 }
 
 // Line-height mixin; calculates the target line-height for an object of (int) $size given the global $baseline
-@mixin line-height($size: $base-size, $offset: 0, $buffer: 1) {
+@mixin line-height( $size: $base-size, $offset: 0, $buffer: 1 ) {
 
   // Buffer for font sizes larger than the baseline; simply doubles or triples baseline size as needed
   @if $size >= $base-line * 2 {
@@ -20,6 +20,15 @@
 }
 
 // Letterpress effect
-@mixin letterpress( $colour: colour(body-bg), $opacity: .87 ) {
-  text-shadow: 0px 1px rgba( $colour, $opacity );
+@mixin text-shadow( $c: rgba( colour(body-bg), .85 ) ) {
+  text-shadow: 0px 1px .5px $c;
+}
+@mixin text-shadow-svg( $c: rgba( colour(body-bg), .85 ) ) {
+  text-shadow: 0px 1px .5px $c;
+  svg {
+    @include text-shadow-svg-icon( $c );
+  }
+}
+@mixin text-shadow-svg-icon( $c: rgba( colour(body-bg), .85 ), $y: 1px ) {
+  filter: drop-shadow( 0 $y .5px $c );
 }

@@ -40,7 +40,7 @@ if ( !function_exists( 'pendrell_nav_content' ) ) : function pendrell_nav_conten
   if ( !empty( $prev_link ) )
     $output .= '<div class="nav-previous"><a class="button prev-page" href="' . $prev_link . '" role="button">' . pendrell_icon( 'nav-previous', __( 'Previous', 'pendrell' ) ) . '</a></div>';
   if ( !empty( $next_link ) )
-    $output .= '<div class="nav-next"><a class="button next-page" href="' . $next_link . '" role="button">' . pendrell_icon( 'nav-next', __( 'Next', 'pendrell' ) ) . '</a></div>';
+    $output .= '<div class="nav-next"><a class="button button-action next-page" href="' . $next_link . '" role="button">' . pendrell_icon( 'nav-next', __( 'Next', 'pendrell' ) ) . '</a></div>';
   if ( !empty( $output ) )
     $output = '<nav id="' . $id . '" class="nav-content" role="navigation"><h2 class="screen-reader-text">' . __( 'Content navigation', 'pendrell' ) . '</h2>' . $output  . '</nav>';
 

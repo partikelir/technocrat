@@ -7,12 +7,22 @@
 %button {
   @include button-capsule;
 }
+%button-capsule-theme-1 {
+  @include button-capsule-theme(1);
+}
+%button-capsule-theme-2 {
+  @include button-capsule-theme(2);
+}
+%button-capsule-theme-3 {
+  @include button-capsule-theme(3);
+}
 button,
 .button,
 input[type="button"], // @TODO: eliminate `input`, introduce `button` elements instead
 input[type="reset"],
 input[type="submit"] {
   @extend %button;
+  @extend %button-capsule-theme-1;
 }
 button[type="submit"],
 input[type="submit"] {
@@ -20,6 +30,9 @@ input[type="submit"] {
 }
 input[type="reset"] {
   // Nothing special
+}
+.button-action {
+  //@extend %button-capsule-theme-2;
 }
 
 // Containers and groups by functionality

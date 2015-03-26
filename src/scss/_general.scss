@@ -145,8 +145,8 @@ blockquote {
   @include font-style(quotation);
   @include font-size(text-small);
   @include k-reverse-italics;
-  @include letterpress;
   @include rem( padding, spacer(1/2) spacer(1/2) spacer(1/2) spacer() - 9px );
+  @include text-shadow;
   background: rgba( colour(body-darker), .25); // Transparent so that blockquotes can be nested
   border-left: 9px solid colour(divider);
   color: rgba( colour(text), .75); // Transparent so that blockquotes can be nested
@@ -201,7 +201,7 @@ pre {
   @extend %spacer-below;
   @include border-radius;
   @include font-size(text-small);
-  @include letterpress( black(.3) );
+  @include text-shadow( black(.28) );
   @include rem( padding, spacer(1/2) );
   background: colour(code-box-bg);
   background-image: repeating-linear-gradient( 45deg, transparent, transparent spacer(1/2), black(.04) spacer(1/2), black(.04) spacer() );

@@ -18,15 +18,14 @@
 		return;
 	}
 
-	// Toggle navigation; add or remove a class to both the button and the nav element itself; @TODO: swap icons or transform the shadow as well
+	// Toggle navigation; add or remove a class to both the button and the nav element itself
 	button.onclick = function() {
+		$(nav).toggle( 150 );
 		if (button.className.indexOf( 'active' ) !== -1) {
 			button.className = button.className.replace(' active', '');
-			nav.className = nav.className.replace(' active', '');
 			icon.style.transform = '';
 		} else {
 			button.className += ' active';
-			nav.className += ' active';
 			icon.style.transform = 'scaleY(-1)';
 		}
 	};

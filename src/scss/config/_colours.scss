@@ -79,12 +79,33 @@ $_colours: (
 , code-box:       $c-code
 , code-box-bg:    rgba( k-colour(shark), .9 )
 
+  // Buttons
+, button1:        darken( $c-text, 3 )    // Normal text
+, button1-h:      lighten( $c-text, 17 )  // Hover text
+, button1-a:      lighten( $c-text, 23 )  // Active text
+, button1-b:      rgba( grey(133), .5 )   // Border
+, button1-s:      rgba( white(), .85 )   // Shadow
+, button1-bg-1:   grey(252)
+, button1-bg-2:   grey(218)
+, button1-bg-3:   grey(192)
+, button2:        lighten( k-colour(mako), 7 )
+, button2-h:      lighten( k-colour(mako), 11 )
+, button2-a:      k-colour(shark)
+, button2-b:      rgba( $c-link, .67 )
+, button2-s:      rgba( white(), .85 )   // Shadow
+, button2-bg-1:   lighten( $c-link, 33 )
+, button2-bg-2:   darken( $c-link, 3 )
+, button2-bg-3:   darken( $c-link, 17 )
+, button3:        darken( $c-text, 3 )
+, button3-h:      lighten( $c-text, 17 )
+, button3-a:      lighten( $c-text, 23 )
+, button3-b:      rgba( grey(133), .5 )
+, button3-s:      rgba( white(), .85 )   // Shadow
+, button3-bg-1:   grey(251)
+, button3-bg-2:   grey(215)
+, button3-bg-3:   grey(192)
+
   // Interface
-, button:         $c-text
-, button-h:       lighten( $c-text, 19 )
-, button-a:       lighten( $c-text, 27 )
-, button-bg-1:    grey(251)
-, button-bg-2:    grey(215)
 , divider:        rgba( $c-text, .09 ) // For use with <hr> etc.
 , select-top:     grey(251)
 , select-bottom:  grey(227)
@@ -93,6 +114,7 @@ $_colours: (
 , shadow-dark:    grey(96, .32)
 , shadow-light:   grey(113, .16)
 , shadow-lighter: grey(128, .07)
+, text-input-b:   rgba( grey(179), .47 )
 
 
   // Various

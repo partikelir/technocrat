@@ -8,6 +8,7 @@
   }
 }
 .author-avatar {
+  @extend %links-reset-border;
   @include rem( margin, spacer(1/2) spacer(1/2) spacer(1/2) 0 );
   @include rem( width, spacer(4) );
   float: left;
