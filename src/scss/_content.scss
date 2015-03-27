@@ -6,10 +6,55 @@
   @extend %spacer-below;
   .entry-meta {
     @include font-size(text-smaller);
-    @include font-style(entry-header-meta);
-    color: colour(text-lightest);
-    .date {
+    color: colour(text-lighter);
+    overflow: hidden;
+    > * {
+      display: inline-block;
+    }
+    .date time,
+    .cats a,
+    .tags a {
+      @include font-style(entry-title-meta);
+      @include rem( padding, 3px 6px );
+      color: white();
       text-transform: uppercase;
+      white-space: prewrap;
+    }
+    .cats a,
+    .tags a {
+      transition: all .78s ease-out;
+      &:hover {
+        transition: all .35s ease;
+      }
+    }
+    .date time {
+      background: colour(bg-date);
+      color: colour(meta-date);
+      font-weight: $w-head-bold;
+    }
+    .cats a {
+      background: colour(bg-cats);
+      &:hover {
+        background: colour(bg-cats-h);
+      }
+    }
+    .tags a {
+      background: colour(bg-tags);
+      &:hover {
+        background: colour(bg-tags-h);
+      }
+    }
+    .author {
+      @extend %links;
+      white-space: prewrap;
+    }
+    .by {
+      @include font-size(text-smallest);
+      @include rem( margin-left, 1px );
+      color: colour(text-muted);
+      display: inline;
+      font-style: italic;
+      text-transform: lowercase;
     }
   }
 }
@@ -29,60 +74,6 @@
     @include font-size(head-big);
   }
 }
-
-.entry-header-meta {
-  @include font-size(text-smaller);
-  overflow: hidden;
-  > * {
-    display: inline-block;
-  }
-  .date time,
-  .cats a,
-  .tags a {
-    @include font-style(entry-title-meta);
-    @include rem( padding, 3px 6px );
-    color: white();
-    text-transform: uppercase;
-    white-space: prewrap;
-  }
-  .cats a,
-  .tags a {
-    transition: all .78s ease-out;
-    &:hover {
-      transition: all .35s ease;
-    }
-  }
-  .date time {
-    background: colour(bg-date);
-    color: colour(meta-date);
-    font-weight: $w-head-bold;
-  }
-  .cats a {
-    background: colour(bg-cats);
-    &:hover {
-      background: colour(bg-cats-h);
-    }
-  }
-  .tags a {
-    background: colour(bg-tags);
-    &:hover {
-      background: colour(bg-tags-h);
-    }
-  }
-  .author {
-    @extend %links;
-    white-space: prewrap;
-  }
-  .by {
-    @include font-size(text-smallest);
-    @include rem( margin-left, 1px );
-    color: colour(text-muted);
-    display: inline;
-    font-style: italic;
-    text-transform: lowercase;
-  }
-}
-
 
 
 

@@ -17,8 +17,18 @@ add_action( 'pendrell_entry_header', 'pendrell_entry_title' );
 
 
 
-// Entry header meta
+// Display metadata below the entry title
 if ( !function_exists( 'pendrell_entry_header_meta' ) ) : function pendrell_entry_header_meta() {
+  $output = apply_filters( 'pendrell_entry_header_meta', '' ); // Hook for other functions to add metadata
+  if ( !empty( $output ) )
+    echo '<footer class="entry-meta">' . $output . '</footer>';
+} endif;
+add_action( 'pendrell_entry_header', 'pendrell_entry_header_meta', 12 );
+
+
+
+// Default metadata to display in this theme
+if ( !function_exists( 'pendrell_entry_header_metadata' ) ) : function pendrell_entry_header_metadata( $contents ) {
 
   // Initialize
   $output = '';
@@ -29,7 +39,7 @@ if ( !function_exists( 'pendrell_entry_header_meta' ) ) : function pendrell_entr
     // Get the parent (might be empty in the case of pages)
     $parent = ubik_meta_parent();
     if ( !empty( $parent ) )
-      $output = '<div class="parent">' . sprintf( __( 'Return to %s', 'pendrell' ), $parent ) . '</div>';
+      $output = '<div class="parent">' . sprintf( __( 'Return to %s', 'pendrell' ), $parent ) . '&nbsp;&larrhk;</div>';
 
   // Everything else
   } else {
@@ -44,11 +54,9 @@ if ( !function_exists( 'pendrell_entry_header_meta' ) ) : function pendrell_entr
     $output = $date . $cats . $tags . $author;
   }
 
-  // Only add the footer if we have something to output
-  if ( !empty( $output ) )
-    echo '<footer class="entry-header-meta">' . $output . '</footer>';
+  return $contents . $output;
 } endif;
-add_action( 'pendrell_entry_header', 'pendrell_entry_header_meta', 12 );
+add_filter( 'pendrell_entry_header_meta', 'pendrell_entry_header_metadata' );
 
 
 

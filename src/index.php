@@ -23,5 +23,5 @@ get_header(); ?>
 			</section>
 		</div>
 	</div>
-<?php pendrell_sidebar(); ?>
+<?php get_sidebar(); ?>
 <?php get_footer(); ?>
