@@ -4,7 +4,7 @@
 
 // Sidebar filter; removes sidebar for certain post formats
 if ( !function_exists( 'pendrell_post_formats_sidebar' ) ) : function pendrell_post_formats_sidebar( $sidebar ) {
-  if ( ( is_singular() && has_post_format( array( 'aside', 'gallery', 'image', 'link', 'quote', 'status' ) ) ) )
+  if ( ( is_singular() && has_post_format( array( 'aside', 'link', 'quote', 'status' ) ) ) )
     $sidebar = false;
   return $sidebar;
 } endif;
@@ -13,23 +13,33 @@ if ( PENDRELL_POST_FORMATS )
 
 
 
+// == VIEWS == //
+
+// Add post formats to the views taxonomy
+function pendrell_post_formats_views( $taxonomies ) {
+  $taxonomies[] = 'post_format';
+  return $taxonomies;
+}
+if ( PENDRELL_POST_FORMATS )
+	add_filter( 'ubik_views_taxonomies', 'pendrell_post_formats_views' );
+
+
+
 // == LINKS == //
 
 // Get link metadata; assumes WP-Post-Formats or equivalent is in use
-if ( !function_exists( 'pendrell_link_metadata' ) ) : function pendrell_link_metadata() {
+if ( !function_exists( 'pendrell_link_metadata' ) ) : function pendrell_link_meta( $contents ) {
 
-	if ( !has_post_format( 'link' ) )
-		return;
-
-	global $post;
-
-	$link_url = get_post_meta( get_the_ID(), '_format_link_url', true );
-
-	if ( !empty( $link_url ) )
-		echo '<footer class="entry-link"><a href="' . $link_url . '" rel="bookmark">' . $link_url . '</a></footer>';
+  // Link post format handling
+  if ( has_post_format( 'link' ) ) {
+    $link = get_post_meta( get_the_ID(), '_format_link_url', true );
+    if ( !empty( $link ) )
+      $contents = '<div class="link"><a href="' . $link . '" rel="bookmark">' . str_replace( array( 'http://', 'https://' ), '', $link ) . '</a></div>';
+  }
+  return $contents;
 } endif;
 if ( PENDRELL_POST_FORMATS )
-	add_action( 'pendrell_entry_title_after', 'pendrell_link_metadata' );
+	add_action( 'pendrell_entry_header_meta', 'pendrell_link_meta', 99 );
 
 
 

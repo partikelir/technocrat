@@ -14,12 +14,19 @@ if ( !function_exists( 'pendrell_content_class' ) ) : function pendrell_content_
 
 // == SIDEBAR == //
 
-// Sidebar handler; a filter hook to allow for other functions to disable the sidebar (since WordPress core ships with no such thing)
-// @filter: pendrell_sidebar
-if ( !function_exists( 'pendrell_sidebar' ) ) : function pendrell_sidebar( $sidebar = true ) {
-  $sidebar = (bool) apply_filters( 'pendrell_sidebar', $sidebar );
-  if ( $sidebar !== false )
-    get_sidebar();
+// Allow for functions to hook into the sidebar and hijack the contents; can also be set to false to not display any sidebar at all
+// @filter: pendrell_sidebar (bool|string)
+if ( !function_exists( 'pendrell_sidebar' ) ) : function pendrell_sidebar() {
+  $sidebar = apply_filters( 'pendrell_sidebar', true );
+  if ( $sidebar !== false ) {
+    echo '<div id="wrap-sidebar" class="wrap-sidebar"><div id="secondary" class="site-sidebar" role="complementary">';
+    if ( is_string( $sidebar ) ) {
+      echo $sidebar; // Custom sidebar
+    } else {
+      dynamic_sidebar( 'sidebar-main' ); // Regular sidebar
+    }
+    echo '</div></div>';
+  }
 } endif;
 
 

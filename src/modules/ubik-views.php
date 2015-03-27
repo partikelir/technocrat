@@ -5,14 +5,6 @@ require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-view
 
 
 
-// Taxonomies to apply rewrite rules to (this way <website.com/category/kittens/list> works as you would expect)
-function pendrell_views_taxonomies( $taxonomies = array() ) {
-  return array( 'category', 'post_tag', 'post_format' );
-}
-add_filter( 'ubik_views_taxonomies', 'pendrell_views_taxonomies' );
-
-
-
 // Set default views for different taxonomies; format is 'taxonomy' => array( 'term' => 'view' )
 function pendrell_views_defaults( $defaults = array() ) {
   return array(
@@ -31,12 +23,10 @@ add_filter( 'ubik_views_defaults', 'pendrell_views_defaults' );
 // A user interface element for switching between views
 function pendrell_views_buttons( $buttons ) {
 
-  // Get links
-  $views = ubik_views_navigation();
-
   // Loop through the views and construct the list
-  if ( !empty( $views ) ) {
-    foreach ( $views as $view => $data ) {
+  $links = ubik_views_links();
+  if ( !empty( $links ) ) {
+    foreach ( $links as $view => $data ) {
       $buttons .= '<a class="button view-link" href="' . $data['link'] . '" rel="nofollow" role="button">' . pendrell_icon( 'view-' . $view, $data['name'] ) . '</a>';
     }
   }
@@ -52,7 +42,7 @@ function pendrell_views_buttons_display( $switch ) {
     $switch = false;
   return $switch;
 }
-add_filter( 'ubik_views_navigation_display', 'pendrell_views_buttons_display' );
+add_filter( 'ubik_views_links_display', 'pendrell_views_buttons_display' );
 
 
 
@@ -105,11 +95,12 @@ add_filter( 'pendrell_template_part', 'pendrell_views_template_part' );
 
 
 // Entry meta for list view, called directly from the template
-function pendrell_views_list_meta() {
-  $date = ubik_meta_date( _x( 'F j, Y', 'list view date format', 'pendrell' ) );
-  return strip_tags( $date[0], '<span><time>' ); // Publication date with any potential links stripped
+function pendrell_views_list_meta( $contents ) {
+  if ( ubik_is_view( 'list' ) )
+    $contents = ubik_meta_date_published( _x( 'F j, Y', 'list view date format', 'pendrell' ) ); //strip_tags( $date[0], '<span><time>' ); // Publication date with any potential links stripped
+  return $contents;
 }
-add_filter( 'pendrell_entry_header_meta', 'pendrell_views_list_meta' );
+add_filter( 'pendrell_entry_header_meta', 'pendrell_views_list_meta', 999 );
 
 
 

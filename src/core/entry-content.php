@@ -17,8 +17,18 @@ add_action( 'pendrell_entry_header', 'pendrell_entry_title' );
 
 
 
-// Display a date above the title
+// Display metadata below the entry title
 if ( !function_exists( 'pendrell_entry_header_meta' ) ) : function pendrell_entry_header_meta() {
+  $output = apply_filters( 'pendrell_entry_header_meta', '' ); // Hook for other functions to add metadata
+  if ( !empty( $output ) )
+    echo '<footer class="entry-meta">' . $output . '</footer>';
+} endif;
+add_action( 'pendrell_entry_header', 'pendrell_entry_header_meta', 12 );
+
+
+
+// Default metadata to display in this theme
+if ( !function_exists( 'pendrell_entry_header_metadata' ) ) : function pendrell_entry_header_metadata( $contents ) {
 
   // Initialize
   $output = '';
@@ -29,18 +39,16 @@ if ( !function_exists( 'pendrell_entry_header_meta' ) ) : function pendrell_entr
     // Get the parent (might be empty in the case of pages)
     $parent = ubik_meta_parent();
     if ( !empty( $parent ) )
-      $output = '<span class="parent">' . sprintf( __( 'Return to %s', 'pendrell' ), $parent ) . '&nbsp;&larrhk;</span>';
+      $output = '<div class="parent">' . sprintf( __( 'Return to %s', 'pendrell' ), $parent ) . '&nbsp;&larrhk;</div>';
 
   // Everything else should have a date of publication
   } else {
-    $output = '<span class="date">' . ubik_meta_date_published( 'F j, Y' ) . '</span>';
+    $output = '<div class="date">' . ubik_meta_date_published( 'F j, Y' ) . '</div>';
   }
 
-  // Only add the footer if we have something to output
-  if ( !empty( $output ) )
-    echo '<footer class="entry-meta">' . $output . '</footer>';
+  return $contents . $output;
 } endif;
-add_action( 'pendrell_entry_header', 'pendrell_entry_header_meta', 12 );
+add_filter( 'pendrell_entry_header_meta', 'pendrell_entry_header_metadata' );
 
 
 
