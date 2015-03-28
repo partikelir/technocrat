@@ -87,41 +87,54 @@ figure.wp-caption {
         @include rem( font-size, size(text-smaller) + 0px );
       }
     }
+    .gallery-static.gallery-columns-4 & {
+      @include k-media-below( break(medium) ) {
+        @include rem( font-size, size(text-smaller) + 0px );
+      }
+    }
   }
 
   // The footer contains additional data e.g. comment count
   footer {
     &.comments {
-      @include rem( font-size, size(text-small) + 0px );
-      line-height: 1.25; // No need for vertical rhythm here!
+      @include font-size( text-small, 0, 25 );
+      @include k-media-between( break(tiny), break(medium) ) {
+        @include font-size( text-smaller, 0, 25 );
+      }
       .full-width & {
-        @include k-media-above( break(medium) ) {
-          @include rem( font-size, size(text) + 0px );
+        @include font-size( text, 0, 25 );
+        @include k-media-between( break(tiny), break(medium) ) {
+          @include font-size( text-small, 0, 25 );
         }
       }
       .gallery-static & {
         @include k-media-below( break(small) ) {
-          @include rem( font-size, size(text-smaller) + 0px );
+          @include font-size( text-smaller, 0, 25 );
+        }
+      }
+      .gallery-static.gallery-columns-4 & {
+        @include k-media-below( break(medium) ) {
+          @include font-size( text-smaller, 0, 25 );
         }
       }
     }
     &.date {
-      @extend %hide;
-      /*@include border-radius;
-      @include rem( margin, 3px );
-      background: black(.1);
+      @include font-size( text-smaller, 0, 25 );
       text-transform: uppercase;
-      @include rem( font-size, size(text-smallest) + 0px );
+      @include k-media-between( break(tiny), break(medium) ) {
+        @include font-size( text-smallest, 0, 25 );
+      }
       .full-width & {
-        @include k-media-above( break(medium) ) {
-          @include rem( font-size, size(text-small) + 0px );
+        @include font-size( text-small, 0, 25 );
+        @include k-media-between( break(tiny), break(medium) ) {
+          @include font-size( text-smaller, 0, 25 );
         }
       }
       .gallery-static & {
-        @include k-media-below( break(small) ) {
-          //@include rem( font-size, size(text-smaller) + 0px );
+        @include k-media-below( break(medium) ) {
+          display: none;
         }
-      }*/
+      }
     }
   }
 }
