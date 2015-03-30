@@ -134,7 +134,7 @@ function pendrell_related_posts_gallery( $related_posts = '' ) {
       $alt      = '',
       $rel      = '',
       $class    = 'related-post overlay',
-      $contents = pendrell_image_overlay_metadata( get_comments_number( $related_post ) . ' ' . ubik_svg_icon( pendrell_icon( 'related-comments' ), __( 'Comments', 'pendrell' ) ) ),
+      $contents = pendrell_image_overlay_metadata( $related_post ),
       $context  = array( 'group', 'static' )
     );
   }

@@ -50,15 +50,15 @@
 }
 
 // Text input; for use with forms, textarea, etc.
-@mixin text-input($shadow: colour(shadow-light), $font-size: text-smaller) {
+@mixin text-input($font-size: text-smaller) {
   @include border-radius;
+  @include box-shadow-inner-small;
   @include font-size( $font-size, 8 );
   @include font-style(input);
   @include rem( padding, 3px 6px );
-  @include text-shadow;
+  @include text-shadow-small;
   background: darken( colour(body-bg), 3 );
   border: 1px solid colour(text-input-b);
-  box-shadow: inset 1px 1px 4px $shadow;
   color: lighten( colour(text), 23 );
   &:focus {
     color: colour(text);

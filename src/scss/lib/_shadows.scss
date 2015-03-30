@@ -1,0 +1,28 @@
+// ==== SHADOWS ==== //
+
+// Text input
+@mixin box-shadow-inner-small( $c: colour(shadow-light) ) {
+  box-shadow: inset 1px 1px 4px $c;
+}
+
+// Blockquote and such
+@mixin box-shadow-inner-big( $c: colour(shadow-light) ) {
+  box-shadow: inset 3px 3px 7px $c;
+}
+
+// Letterpress effect
+@mixin text-shadow-small( $c: rgba( colour(body-bg), .85 ) ) {
+  text-shadow: 0px 1px .5px $c;
+}
+
+// SVG equivalent to the above
+@mixin text-shadow-small-svg( $c: rgba( colour(body-bg), .85 ), $y: 1px ) {
+  svg {
+    filter: drop-shadow( 0 $y .5px $c );
+  }
+}
+
+// A bigger shadow intended for image overlays
+@mixin text-shadow-bigger( $c1: black(.76), $c2: black(.57) ) {
+  text-shadow: 0 0 2.5px $c1, 1px 2px 5px $c2;
+}

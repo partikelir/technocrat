@@ -97,6 +97,6 @@
     display: none;
   }
   &.active svg {
-    @include text-shadow-svg-icon( $y: -1px );
+    @include text-shadow-small-svg( $y: -1px );
   }
 }

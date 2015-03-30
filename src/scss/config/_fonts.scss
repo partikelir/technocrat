@@ -142,9 +142,17 @@ $w-mono-bold:       700;
 
   // Image overlays
   @if (image-overlay-title == $style) {
-    @extend %body-light;
+    //@extend %body-normal;
+    text-align: center;
   }
   @if (image-overlay-caption == $style) {
-    @extend %body-normal;
+    //@extend %body-normal;
+  }
+  @if (image-overlay-comments == $style) {
+    //@extend %body-normal;
+  }
+  @if (image-overlay-date == $style) {
+    //@extend %body-bold;
+    text-transform: uppercase;
   }
 }

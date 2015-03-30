@@ -18,17 +18,3 @@
   }
   line-height: ( ( ($height - $offset) * $buffer) / $size );
 }
-
-// Letterpress effect
-@mixin text-shadow( $c: rgba( colour(body-bg), .85 ) ) {
-  text-shadow: 0px 1px .5px $c;
-}
-@mixin text-shadow-svg( $c: rgba( colour(body-bg), .85 ) ) {
-  text-shadow: 0px 1px .5px $c;
-  svg {
-    @include text-shadow-svg-icon( $c );
-  }
-}
-@mixin text-shadow-svg-icon( $c: rgba( colour(body-bg), .85 ), $y: 1px ) {
-  filter: drop-shadow( 0 $y .5px $c );
-}

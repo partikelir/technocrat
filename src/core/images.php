@@ -38,12 +38,37 @@ add_filter( 'the_content', 'pendrell_image_wrapper' );
 
 
 // Image overlay metadata wrapper
-if ( !function_exists( 'pendrell_image_overlay_metadata' ) ) : function pendrell_image_overlay_metadata( $html = '', $position = 'top-right', $class = '' ) {
+if ( !function_exists( 'pendrell_image_overlay_wrapper' ) ) : function pendrell_image_overlay_wrapper( $html = '', $position = 'top-right', $class = '' ) {
   if ( !empty( $class ) )
     $class = ' ' . $class;
   if ( $html !== '' && in_array( $position, array( 'top-right', 'top-left', 'bottom-right', 'bottom-left' ) ) )
     $html = '<footer class="' . esc_attr( $position . $class ) . '">' . (string) $html . '</footer>';
   return $html;
+} endif;
+
+
+
+// Image overlay metadata; displays comment count and date by default
+if ( !function_exists( 'pendrell_image_overlay_metadata' ) ) : function pendrell_image_overlay_metadata( $id = '' ) {
+
+  // Try to guess the ID
+  if ( empty( $id ) )
+    $id = get_the_ID();
+
+  // Initialize
+  $output = '';
+
+  // Comments
+  $comments_count = get_comments_number( $id );
+  if ( $comments_count > 0 ) {
+    $comments_meta = $comments_count . ' ' . ubik_svg_icon( pendrell_icon( 'overlay-comments' ), __( 'Comments', 'pendrell' ) );
+    $output .= pendrell_image_overlay_wrapper( $comments_meta, 'top-right', 'comments' );
+  }
+
+  // Date
+  $output .= pendrell_image_overlay_wrapper( get_the_date( 'M Y', $id ), 'top-left', 'date' );
+
+  return $output;
 } endif;
 
 
