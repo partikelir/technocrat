@@ -279,14 +279,15 @@ if ( PENDRELL_UBIK_SERIES )
 
 // == SVG ICONS * == //
 
-$icons_path = '/img/icons.svg?v=' . filemtime( get_template_directory() . '/img/icons.svg' ); // Cache busting icons!
+$icons_path = '/img/icons.svg';
+$icons_url = $icons_path . '?v=' . filemtime( get_template_directory() . $icons_path ); // Cache busting icons!
 define( 'UBIK_SVG_ICONS_PATH', get_template_directory() . $icons_path );
-define( 'UBIK_SVG_ICONS_URL', get_template_directory_uri() . $icons_path );
+define( 'UBIK_SVG_ICONS_URL', get_template_directory_uri() . $icons_url );
 require_once( $path_modules . 'ubik-svg-icons/ubik-svg-icons.php' );
 
 // If we have a path and no URL we probably mean to inject the SVG icon file
 if ( UBIK_SVG_ICONS_PATH && UBIK_SVG_ICONS_URL === false )
-  add_action( 'pendrell_body_before', 'ubik_icon_sheet_inline' );
+  add_action( 'pendrell_body_before', 'ubik_svg_icon_sheet_inline' );
 
 
 

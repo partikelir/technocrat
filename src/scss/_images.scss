@@ -57,17 +57,20 @@ figure.wp-caption {
 // Image overlay class; apply this to any image container (likely a `figure` element)
 .overlay {
   @include image-overlay;
-  text-shadow: 0px 1px 2px black(.8);
+  @include text-shadow-small( black(.85) );
 
   // Using a class instead of `figcaption` to combat the specificity of caption styles defined above
   .wp-caption-text {
+    @include font-size( text, 0, 25 );
     @include font-style(image-overlay-title);
-    @include rem( font-size, size(text) + 0px );
-    line-height: 1.25; // No need for vertical rhythm here!
-    text-align: center;
     .gallery-static & {
       @include k-media-below( break(small) ) {
-        @include rem( font-size, size(text-smaller) + 0px );
+        @include font-size( text-smaller, 0, 25 );
+      }
+    }
+    .gallery-static.gallery-columns-4 & {
+      @include k-media-below( break(medium) ) {
+        @include font-size( text-smaller, 0, 25 );
       }
     }
   }
@@ -75,26 +78,35 @@ figure.wp-caption {
   // The footer contains additional data e.g. comment count
   footer {
     &.comments {
-      @include rem( font-size, size(text-small) + 0px );
-      line-height: 1.25; // No need for vertical rhythm here!
+      @include font-size( text-small, 0, 25 );
+      @include font-style(image-overlay-comments);
+      transition-delay: .23s;
+      @include k-media-between( break(tiny), break(medium) ) {
+        @include font-size( text-smaller, 0, 25 );
+      }
       .gallery-static & {
         @include k-media-below( break(small) ) {
-          @include rem( font-size, size(text-smaller) + 0px );
+          @include font-size( text-smaller, 0, 25 );
+        }
+      }
+      .gallery-static.gallery-columns-4 & {
+        @include k-media-below( break(medium) ) {
+          @include font-size( text-smaller, 0, 25 );
         }
       }
     }
     &.date {
-      @extend %hide;
-      /*@include border-radius;
-      @include rem( margin, 3px );
-      background: black(.1);
-      text-transform: uppercase;
-      @include rem( font-size, size(text-smallest) + 0px );
+      @include font-size( text-smaller, 0, 25 );
+      @include font-style(image-overlay-date);
+      transition-delay: .23s;
+      @include k-media-between( break(tiny), break(medium) ) {
+        @include font-size( text-smallest, 0, 25 );
+      }
       .gallery-static & {
-        @include k-media-below( break(small) ) {
-          //@include rem( font-size, size(text-smaller) + 0px );
+        @include k-media-below( break(medium) ) {
+          display: none;
         }
-      }*/
+      }
     }
   }
 }

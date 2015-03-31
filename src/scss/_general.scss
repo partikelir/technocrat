@@ -147,7 +147,7 @@ blockquote {
   @include font-size(text-small);
   @include k-reverse-italics;
   @include rem( padding, spacer(1/2) spacer(1/2) spacer(1/2) spacer() - 3px );
-  @include text-shadow;
+  @include text-shadow-small;
   background: colour(body-bg);
   border-left: 3px solid colour(blockquote);
   color: rgba( colour(text), .75); // Transparent so that blockquotes can be nested
@@ -204,13 +204,12 @@ code {
 pre {
   @extend %spacer-below;
   @include border-radius;
+  @include box-shadow-inner-big( colour(shadow-darkest) );
   @include font-size(text-small);
-  @include text-shadow( black(.28) );
+  @include text-shadow-small( black(.28) );
   @include rem( padding, spacer(1/2) );
   background: colour(code-box-bg);
   border-left: 6px solid colour(code-box);
-
-  //background-image: repeating-linear-gradient( 45deg, transparent, transparent spacer(1/2), black(.04) spacer(1/2), black(.04) spacer() );
   color: colour(code-box);
   margin-left: -6px;
   tab-size: 2;

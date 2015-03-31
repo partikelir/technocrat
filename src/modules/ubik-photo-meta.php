@@ -2,20 +2,16 @@
 
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-photo-meta/ubik-photo-meta.php' );
 
+
+
 // A simple wrapper for the photo meta function
 function pendrell_photo_meta() {
-
-  // Only display in the singular context; everything else is handled by the component
   if ( !is_singular() )
     return;
 
   $photo_meta = ubik_photo_meta_table();
-  if ( !empty( $photo_meta ) ) {
-    ?><section class="entry-extras photo-meta">
-      <h3><?php _e( 'Image metadata', 'pendrell' ); ?></h3>
-      <?php echo $photo_meta; ?>
-    </section><?php
-  }
+  if ( !empty( $photo_meta ) )
+    echo '<section class="entry-extras photo-meta"><h3>' . __( 'Image metadata', 'pendrell' ) . '</h3>' . $photo_meta . '</section>';
 }
 add_action( 'pendrell_comment_template_before', 'pendrell_photo_meta', 1 );
 

@@ -30,12 +30,6 @@
 @mixin border-radius($radius: $radius) {
   //@include k-border-radius($radius);
 }
-@mixin gradient-horizontal($begin: $d-gradient-1, $end: $d-gradient-2) {
-  @include k-gradient-horizontal($begin, $end);
-}
-@mixin gradient-vertical($begin: $d-gradient-1, $end: $d-gradient-2) {
-  @include k-gradient-vertical($begin, $end);
-}
 @mixin triangle(
   $color: inherit
 , $direction: top

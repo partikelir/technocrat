@@ -35,9 +35,9 @@
     article.format-quote {
       blockquote {
         @include border-radius(6px);
+        @include box-shadow-inner-big;
         @include font-size(text-bigger);
         border: none;
-        box-shadow: inset 3px 3px 7px colour(shadow-light);
         color: colour(text);
         @include rem( padding, spacer(1/2) spacer() );
         footer {

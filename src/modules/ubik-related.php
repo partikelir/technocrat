@@ -3,6 +3,8 @@
 // Load component
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-related/ubik-related.php' );
 
+
+
 // Add various custom taxonomies to the related posts feature
 function pendrell_related_taxonomies( $taxonomies = array() ) {
   if ( PENDRELL_UBIK_PLACES )
@@ -17,6 +19,8 @@ function pendrell_related_taxonomies( $taxonomies = array() ) {
 }
 add_filter( 'pendrell_related_taxonomies', 'pendrell_related_taxonomies' );
 
+
+
 // Extended taxonomies: a broader search for related posts using sibling terms
 function pendrell_related_taxonomies_extended( $taxonomies = array() ) {
   if ( PENDRELL_UBIK_PLACES )
@@ -25,36 +29,34 @@ function pendrell_related_taxonomies_extended( $taxonomies = array() ) {
 }
 add_filter( 'ubik_related_taxonomies_extended', 'pendrell_related_taxonomies_extended' );
 
+
+
 // Related posts display switch
 function pendrell_related_display( $switch = true ) {
   return $switch;
 }
 //add_filter( 'pendrell_related_display', 'pendrell_related_display' );
 
-// Comment score
-function pendrell_related_score_comments( $score = 1 ) {
-  return $score;
-}
-//add_filter( 'ubik_related_score_comments', 'pendrell_related_score_comments' );
 
-// Comment threshold
-function pendrell_related_score_comments_threshold( $score = 1 ) {
-  return $score;
-}
-//add_filter( 'ubik_related_score_comments_threshold', 'pendrell_related_score_comments_threshold' );
 
-// Thumbnail score
-function pendrell_related_score_thumbnail( $score = 1 ) {
-  return $score;
+// Adjust scoring based on various factors
+function pendrell_related_score( $related ) {
+  foreach ( $related as $id => $count ) {
+    $comments = wp_count_comments( $id );
+    if ( $comments->approved >= 3 )
+      $related[$id]++;
+    if ( has_post_thumbnail( $id ) )
+      $related[$id]++;
+    if ( !has_post_thumbnail( $id ) )
+      $related[$id]--;
+    if ( PENDRELL_POST_FORMATS ) {
+      if ( in_array( get_post_format( $id ), array( 'aside', 'chat', 'link', 'quote', 'status' ) ) )
+        $related[$id] = 0;
+    }
+  }
+  return $related;
 }
-//add_filter( 'ubik_related_score_thumbnail', 'pendrell_related_score_thumbnail' );
-
-// Post formats exclusion; accepts an array of port format slugs e.g. link, quote, etc.
-function pendrell_related_score_formats_exclude( $formats = array() ) {
-  return array( 'aside', 'chat', 'link', 'quote', 'status' );
-}
-if ( PENDRELL_POST_FORMATS )
-  add_filter( 'ubik_related_score_formats_exclude', 'pendrell_related_score_formats_exclude' );
+add_filter( 'ubik_related_score', 'pendrell_related_score' );
 
 
 
@@ -132,7 +134,7 @@ function pendrell_related_posts_gallery( $related_posts = '' ) {
       $alt      = '',
       $rel      = '',
       $class    = 'related-post overlay',
-      $contents = pendrell_image_overlay_metadata( get_comments_number( $related_post ) . ' ' . ubik_svg_icon( pendrell_icon( 'related-comments' ), __( 'Comments', 'pendrell' ) ) ),
+      $contents = pendrell_image_overlay_metadata( $related_post ),
       $context  = array( 'group', 'static' )
     );
   }

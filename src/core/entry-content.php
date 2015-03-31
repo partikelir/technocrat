@@ -86,7 +86,7 @@ if ( !function_exists( 'pendrell_entry_meta_link' ) ) : function pendrell_entry_
   $buttons .= '<a class="button" href="' . get_permalink() . '" rel="bookmark" role="button">' . pendrell_icon( 'anchor', __( 'Link', 'pendrell' ) ) . '</a>';
   return $buttons;
 } endif;
-add_filter( 'pendrell_entry_buttons', 'pendrell_entry_meta_link', 3 );
+add_filter( 'pendrell_entry_footer_buttons', 'pendrell_entry_meta_link', 3 );
 
 
 

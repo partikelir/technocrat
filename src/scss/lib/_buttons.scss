@@ -100,7 +100,8 @@
 }
 @mixin button-capsule-theme( $i: 1 ) {
   @include button-gradient( colour(button#{$i}-bg-1), colour(button#{$i}-bg-2), colour(button#{$i}-bg-3) );
-  @include text-shadow-svg( colour(button#{$i}-s) );
+  @include text-shadow-small( colour(button#{$i}-s) );
+  @include text-shadow-small-svg( colour(button#{$i}-s) );
   border: 1px solid colour(button#{$i}-b);
   color: colour(button#{$i});
   &:hover {
