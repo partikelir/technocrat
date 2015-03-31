@@ -80,12 +80,12 @@ $_colours: (
 , code-box-bg:    rgba( k-colour(shark), .9 )
 
   // Buttons
-, button1:        darken( $c-text, 3 )    // Normal text
-, button1-h:      lighten( $c-text, 17 )  // Hover text
+, button1:        lighten( $c-text, 7 )//darken( $c-text, 3 )    // Normal text
+, button1-h:      darken( $c-text, 3 )//lighten( $c-text, 17 )  // Hover text
 , button1-a:      lighten( $c-text, 23 )  // Active text
-, button1-b:      rgba( grey(133), .5 )   // Border
+, button1-b:      rgba( grey(158), .47 )   // Border
 , button1-s:      rgba( white(), .85 )   // Shadow
-, button1-bg-1:   grey(252)
+, button1-bg-1:   grey(249)//grey(252)
 , button1-bg-2:   grey(218)
 , button1-bg-3:   grey(192)
 , button2:        lighten( k-colour(mako), 7 )
@@ -112,9 +112,9 @@ $_colours: (
 , shadow-darkest: grey(8, .29)
 , shadow-darker:  grey(24, .18)
 , shadow-dark:    grey(96, .32)
-, shadow-light:   grey(113, .16)
+, shadow-light:   grey(113, .14)
 , shadow-lighter: grey(128, .07)
-, text-input-b:   rgba( grey(179), .47 )
+, text-input-b:   rgba( grey(158), .27 )
 
 
   // Various

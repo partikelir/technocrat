@@ -1,5 +1,8 @@
 // ==== REM GENERATOR ==== //
 
+// Legacy mode; output styles for older browsers (usually pre-IE9)
+$legacy: false;
+
 // Rem generator via Twenty Twelve; specify property, pixel values, and optional offset to account for borders and such
 @mixin rem($property, $px-values, $offset: 0) {
 

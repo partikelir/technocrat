@@ -78,7 +78,6 @@ figure.wp-caption {
       @include k-media-above( break(medium) ) {
         @include font-size(text-bigger);
         @include text-shadow-bigger;
-        letter-spacing: .02em;
       }
     }
     .gallery-static & {

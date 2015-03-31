@@ -7,14 +7,14 @@
 %button {
   @include button-capsule;
 }
-%button-capsule-theme-1 {
-  @include button-capsule-theme(1);
+%button-1 {
+  @include button-capsule-flat;
 }
-%button-capsule-theme-2 {
-  @include button-capsule-theme(2);
+%button-2 {
+  @include button-capsule-gradient(2);
 }
-%button-capsule-theme-3 {
-  @include button-capsule-theme(3);
+%button-3 {
+  @include button-capsule-gradient(3);
 }
 button,
 .button,
@@ -22,7 +22,7 @@ input[type="button"], // @TODO: eliminate `input`, introduce `button` elements i
 input[type="reset"],
 input[type="submit"] {
   @extend %button;
-  @extend %button-capsule-theme-1;
+  @extend %button-1;
 }
 button[type="submit"],
 input[type="submit"] {

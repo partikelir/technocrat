@@ -114,24 +114,6 @@
   font-feature-settings: 'lnum'; // To go with all uppercase letters
   text-transform: uppercase;
 }
-%core-light {
-  font-family: $f-core;
-  font-weight: $w-core-light;
-}
-%core-normal {
-  font-family: $f-core;
-  font-weight: $w-core-normal;
-}
-%core-bold {
-  font-family: $f-core;
-  font-weight: $w-core-bold;
-}
-%core-bold-uppercase {
-  font-family: $f-core;
-  font-weight: $w-core-bold;
-  font-feature-settings: 'lnum';
-  text-transform: uppercase;
-}
 %head-light {
   font-family: $f-head;
   font-weight: $w-head-light;
