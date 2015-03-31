@@ -96,7 +96,7 @@
   @include k-media-above( break(medium) ) {
     display: none;
   }
-  &.active svg {
+  &.active {
     @include text-shadow-small-svg( $y: -1px );
   }
 }

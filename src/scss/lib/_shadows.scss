@@ -15,9 +15,9 @@
   text-shadow: 0px 1px .5px $c;
 }
 
-// SVG equivalent to the above
+// SVG equivalent to the above; be sure to apply this to `svg.icon` otherwise Firefox will pre-render icons for some weird reason
 @mixin text-shadow-small-svg( $c: rgba( colour(body-bg), .85 ), $y: 1px ) {
-  svg {
+  svg.icon {
     filter: drop-shadow( 0 $y .5px $c );
   }
 }

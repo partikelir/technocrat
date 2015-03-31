@@ -52,8 +52,6 @@ svg {
 
   // Fix jQuery bug: http://bugs.jquery.com/ticket/11352
   use {
-    height: 100%;
-    width: 100%;
     pointer-events: none;
   }
 }
