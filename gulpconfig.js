@@ -15,7 +15,7 @@ module.exports = {
   bower: {
     normalize: { // Copies `normalize.css` from `bower_components` to `src/scss` and renames it to allow for it to imported as a Sass file
       src: bower+'normalize.css/normalize.css'
-    , dest: src+'scss/lib'
+    , dest: src+'scss'
     , rename: '_normalize.scss'
     }
   },
@@ -40,6 +40,7 @@ module.exports = {
     , icons: [
         'caret-down'
       , 'comment'
+      , 'sort'
       ]
     }
   , elusive: {
@@ -141,7 +142,7 @@ module.exports = {
     , prism: ['prism', 'core']
     }
   , chunks: { // Chunks are arrays of globs matching source files that combine to provide specific functionality
-      core: [bower+'svg4everybody/svg4everybody.js', bower+'autosize/dest/autosize.js', src+'js/navigation.js', src+'js/skip-link-focus-fix.js', src+'js/core.js']
+      core: [bower+'svg4everybody/svg4everybody.js', bower+'svg.icon.js/svg.icon.js', bower+'jquery-selectric/dist/jquery.selectric.js', bower+'autosize/dest/autosize.js', src+'js/navigation.js', src+'js/skip-link-focus-fix.js', src+'js/core.js']
     , contact: [bower+'jquery-validation/dist/jquery.validate.js', src+'js/contact-form.js']
     , pf: [bower+'picturefill/dist/picturefill.js']
     , pg8: [bower+'html5-history-api/history.iegte8.js', bower+'spin.js/spin.js', bower+'spin.js/jquery.spin.js', bower+'wp-ajax-page-loader/wp-ajax-page-loader.js', src+'js/page-loader.js']

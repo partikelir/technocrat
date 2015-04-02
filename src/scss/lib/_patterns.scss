@@ -1,0 +1,77 @@
+// ==== PATTERNS ==== //
+
+// User interface patterns
+@mixin disabled {
+  cursor: not-allowed;
+  opacity: .5; // Applies to `button` and `input` elements
+  pointer-events: none;
+}
+
+
+
+// == ICONS == //
+
+@mixin icon-size-inline {
+  @include rem( height, 18px );
+  @include rem( width, 18px );
+}
+
+@mixin icon-right {
+  @include rem( margin, 4px -3px 0 4px );
+  float: right;
+}
+
+@mixin icon-left {
+  @include rem( margin, 4px 4px 0 -3px );
+  float: left;
+}
+
+
+
+// == SHADOWS == //
+
+// Text input
+@mixin box-shadow-inner-small( $c: colour(shadow-light) ) {
+  box-shadow: inset 1px 1px 4px $c;
+}
+
+// Blockquote and such
+@mixin box-shadow-inner-big( $c: colour(shadow-light) ) {
+  box-shadow: inset 3px 3px 7px $c;
+}
+
+// Dropdown menu shadow
+@mixin box-shadow-interface-small( $c: colour(shadow-light) ) {
+  box-shadow: inset 0 -2px 3px $c, 1px 1px 4px $c;
+}
+
+// Letterpress effect
+@mixin text-shadow-small( $c: rgba( colour(body-bg), .85 ) ) {
+  text-shadow: 0px 1px .5px $c;
+}
+
+// SVG equivalent to the above; be sure to apply this to `svg.icon` otherwise Firefox will pre-render icons for some weird reason
+@mixin text-shadow-small-svg( $c: rgba( colour(body-bg), .85 ), $y: 1px ) {
+  svg.icon {
+    filter: drop-shadow( 0 $y .5px $c );
+  }
+}
+
+// A bigger shadow intended for image overlays
+@mixin text-shadow-bigger( $c1: black(.76), $c2: black(.57) ) {
+  text-shadow: 0 0 2.5px $c1, 1px 2px 5px $c2;
+}
+
+
+
+// == KIPPLE == //
+
+// Wrappers for functions contained within the Kipple library
+@mixin border-radius($radius: $radius) {
+  //@include k-border-radius($radius);
+}
+
+// Triangles are cool
+@mixin triangle( $color: inherit, $direction: top, $size: 6px, $position: absolute, $offset: left 0 ) {
+  @include k-triangle($color, $direction, $size, $position, $offset);
+}

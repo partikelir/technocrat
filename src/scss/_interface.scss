@@ -7,14 +7,8 @@
 %button {
   @include button-flat;
 }
-%button-capsule-theme-1 {
-  @include button-capsule-theme(1);
-}
-%button-capsule-theme-2 {
-  @include button-capsule-theme(2);
-}
-%button-capsule-theme-3 {
-  @include button-capsule-theme(3);
+%button-1 {
+  @include button-capsule-flat;
 }
 %button-flat-theme-1 {
   @include button-flat-theme(1);
@@ -140,7 +134,7 @@ label {
 .form-post-password {
   @extend %spacer-below;
   button {
-    margin: 0 0 0 6px;
+    @include rem( margin, 0 0 0 6px );
   }
 }
 
@@ -175,6 +169,13 @@ label {
 .search-submit {
   float: right;
 }
+
+
+
+// == SELECTRIC == //
+
+// Replaces default select menus with a bit of jQuery magic; see `lib/_selectric.scss` for actual styling
+@include selectric;
 
 
 

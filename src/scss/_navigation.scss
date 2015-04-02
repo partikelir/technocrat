@@ -50,6 +50,7 @@
 }
 .breadcrumbs {
   @extend %breadcrumbs-static;
+  @extend %links-no-border;
   li + li:before {
     content: "\00a0\2192\00a0"; // Right-facing arrow: \2192; Greater than: \003e
   }

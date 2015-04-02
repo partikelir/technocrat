@@ -21,6 +21,7 @@
         "jQuery": true,
         "pendrellVars": true,
         "PG8Data": true,
+        "svgIcon": true,
         "autosize": true
     }
 }

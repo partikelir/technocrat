@@ -186,8 +186,14 @@ require_once( $path_modules . 'ubik-imagery.php' );
 
 // == LINGUAL == //
 
-if ( PENDRELL_UBIK_LINGUAL )
+if ( PENDRELL_UBIK_LINGUAL ) {
+  define( 'UBIK_LINGUAL_SANITIZE_SLUG', true );
   require_once( $path_modules . 'ubik-lingual/ubik-lingual.php' );
+  add_filter( 'the_title', 'ubik_lingual_pinyin_strip_marks' ); // Content titles
+  add_filter( 'ubik_title', 'ubik_lingual_pinyin_strip_marks' ); // Page titles
+  if ( PENDRELL_UBIK_PLACES )
+    add_filter( 'ubik_places_title', 'ubik_lingual_pinyin_strip_marks' ); // Small header in the faux widget
+}
 
 
 

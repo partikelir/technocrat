@@ -27,7 +27,8 @@ function pendrell_views_buttons( $buttons ) {
   $links = ubik_views_links();
   if ( !empty( $links ) ) {
     foreach ( $links as $view => $data ) {
-      $buttons .= '<a class="button view-link" href="' . $data['link'] . '" rel="nofollow" role="button">' . pendrell_icon( 'view-' . $view, $data['name'] ) . '</a>';
+      //$buttons .= '<a class="button view-link" href="' . $data['link'] . '" rel="nofollow" role="button">' . pendrell_icon( 'view-' . $view, $data['name'] ) . '</a>';
+      $buttons .= '<a class="button view-link" href="' . $data['link'] . '" rel="nofollow" role="button">' . $data['name'] . '</a>';
     }
   }
   return $buttons;

@@ -9,7 +9,7 @@
     @include border-radius( 0 0 $radius $radius );
     @include k-absolute(bottom 0 left 0);
     @include k-regular-italics;
-    @include rem( padding, 5px 10px );
+    @include rem( padding, 10px 12px );
     background-image: linear-gradient( black(0), black(.23) 62%,  black(.45) );
     background-repeat: repeat-x;
     max-height: calc( 100% - 35px ); // To leave a little room for the overlays at top left and right

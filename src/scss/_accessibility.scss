@@ -1,24 +1,9 @@
 // ==== ACCESSIBILITY ==== //
 
-// Screen reader text adapted from Twenty Twelve and _s
-%off-screen {
-  clip: rect( 1px, 1px, 1px, 1px );
-  height: 1px;
-  overflow: hidden;
-  position: absolute !important;
-  width: 1px;
-  &:focus {
-    clip: auto !important;
-    display: block;
-    height: auto;
-    left: 5px;
-    top: 5px;
-    width: auto;
-    z-index: 100000; // Above WP toolbar
-  }
-}
+// Screen reader text originally adapted from Twenty Twelve and _s
 .screen-reader-text {
   @extend %off-screen;
+  @extend %off-screen-focus;
   &:focus {
     @include border-radius;
     background-color: transparent;

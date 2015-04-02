@@ -31,16 +31,10 @@ $_sizes: (
 );
 
 // Body fonts; these are applied universally throughout the theme
-$f-body:            k-font-stack(Oxygen, helvetica-light);
+$f-body:            k-font-stack("Oxygen", helvetica-light);
 $w-body-light:      300;
 $w-body-normal:     400;
 $w-body-bold:       700;
-
-// Core fonts; an alternative for entry content and such
-$f-core:            k-font-stack(helvetica-light);
-$w-core-light:      300;
-$w-core-normal:     400;
-$w-core-bold:       600;
 
 // Header and probably menu fonts too
 $f-head:            k-font-stack(Ubuntu, calibri);

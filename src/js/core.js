@@ -1,8 +1,19 @@
 // ==== CORE ==== //
 
-// Anything entered here will end up at the top of `p-core.js`
+// Anything entered here will end up at the bottom of `p-core.js`
 ;(function($){
-  $(function(){ // Shortcut to $(document).ready(handler);
-    autosize(document.querySelectorAll('textarea')); // Autosizes textareas based on user input
+  $(function(){
+
+    // Autosizes textareas based on user input
+    autosize(document.querySelectorAll('textarea'));
+
+    // Allows for select menus to be styled somewhat sanely
+    $('select').selectric({
+      arrowButtonMarkup: svgIcon( 'awe-sort' )
+    , customClass: {
+        prefix: 's3c'
+      , postfixes: 'Input Items Open Disabled TempShow Hide Wrap Hover Responsive Above Drop'
+      }
+    });
   });
 }(jQuery));

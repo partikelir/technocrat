@@ -37,7 +37,7 @@ if ( !function_exists( 'pendrell_nav_content' ) ) : function pendrell_nav_conten
 
   // Conditional output of previous and next links followed by the actual output
   if ( !empty( $prev_link ) )
-    $output .= '<div class="nav-previous"><a class="button prev-page" href="' . $prev_link . '" role="button">' . pendrell_icon( 'nav-previous', __( 'Previous', 'pendrell' ) ) . '</a></div>';
+    $output .= '<div class="nav-previous"><a class="button button-left prev-page" href="' . $prev_link . '" role="button">' . pendrell_icon( 'nav-previous', __( 'Previous', 'pendrell' ) ) . '</a></div>';
   if ( !empty( $next_link ) )
     $output .= '<div class="nav-next"><a class="button button-action next-page" href="' . $next_link . '" role="button">' . pendrell_icon( 'nav-next', __( 'Next', 'pendrell' ) ) . '</a></div>';
   if ( !empty( $output ) )
