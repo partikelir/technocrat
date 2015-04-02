@@ -47,29 +47,28 @@
 
     // Styling specific to the first submenu
     > ul {
-      display: none; // Only display submenus on larger screens
       margin-top: spacer(-1/4); // Breaks vertical rhythm but gives a more natural look
+      @include k-media-below( break(medium) ) {
+        display: none; // Only display submenus on larger screens
+      }
       > li:first-child > a {
         @include triangle; // Pseudo triangle on first submenu only
-        border-color: colour(interface);
+        border-color: colour(drop-b); // Sets the colour of the triangle; doesn't actually display a border
         &:hover {
-          border-color: darken( colour(sub-bg), 13); // Must match value below
+          //border-color: darken( colour(sub-bg), 13);
         }
       }
     }
-
-    // Styling for all submenus
     ul {
-      @include dropdown-menu;
+      @include dropdown-menu; // Styling for all submenus
+      transition: opacity .3s ease-out, visibility .3s ease-out;
     }
   }
 
-  // Media query to enable all menu features on larger screens
-  @include k-media-above( break(medium) ) {
-    display: block;
-    > li > ul {
-      display: block;
-    }
+  // Transitions
+  li:hover > ul {
+    transition: opacity .12s ease-in, visibility .09s ease-in;
+    transition-delay: .3s;
   }
 }
 

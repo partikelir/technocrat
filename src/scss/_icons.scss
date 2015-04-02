@@ -11,21 +11,12 @@ svg {
 
     button &,
     .button & {
-      @include rem( height, 18px );
-      @include rem( width, 18px );
-      @include rem( margin, 4px -3px 0 4px );
-      float: right;
-      .nav-previous & {
-        @include rem( margin, 4px 4px 0 -3px );
-        float: left;
-      }
+      @include icon-size-inline;
+      @include icon-right;
     }
 
-    button &.icon-typ-th-list,
-    .button &.icon-typ-th-list {
-      @include rem( height, 12px );
-      @include rem( width, 12px );
-      @include rem( margin, 8px -2px 0 4px );
+    .button.button-left & {
+      @include icon-left; // Left aligned button icons (for previous page etc.)
     }
 
     .overlay & {

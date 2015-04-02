@@ -15,7 +15,7 @@ $c-link:          k-colour(norse-blue);
 $c-highlight:     k-colour(burnt-sienna);
 $c-code:          k-colour(iron);
 
-// General
+// General colour palette
 $_colours: (
   body-bg:        $c-body-bg
 , site-title:     grey(16)
@@ -49,11 +49,6 @@ $_colours: (
 , menu-link-h:    $c-highlight
 , menu-current:   lighten( $c-text, 33 )
 
-  // Submenus
-, sub:            lighten( $c-text, 17 )
-, sub-h:          white()
-, sub-bg:         darken( $c-body-bg, 13 )
-
   // Meta
 , meta:           lighten( $c-text, 37 )
 , meta-link:      grey(84)
@@ -80,19 +75,21 @@ $_colours: (
 , code-box-bg:    rgba( k-colour(shark), .9 )
 
   // Buttons
-, button1:        lighten( $c-text, 7 )//darken( $c-text, 3 )    // Normal text
-, button1-h:      darken( $c-text, 3 )//lighten( $c-text, 17 )  // Hover text
-, button1-a:      lighten( $c-text, 23 )  // Active text
-, button1-b:      rgba( grey(158), .47 )   // Border
-, button1-s:      rgba( white(), .85 )   // Shadow
-, button1-bg-1:   grey(249)//grey(252)
-, button1-bg-2:   grey(218)
+, button1:        lighten( $c-text, 7 )
+, button1-h:      darken( $c-text, 3 )
+, button1-a:      lighten( $c-text, 23 )
+, button1-b:      rgba( grey(158), .47 )
+, button1-s:      rgba( white(), .85 )
+, button1-bg-1:   darken( $c-body-bg, 3 )
+, button1-bg-1-h: darken( $c-body-bg, 7 )
+, button1-bg-1-a: darken( $c-body-bg, 9 )
+, button1-bg-2:   grey(212)
 , button1-bg-3:   grey(192)
 , button2:        lighten( k-colour(mako), 7 )
 , button2-h:      lighten( k-colour(mako), 11 )
 , button2-a:      k-colour(shark)
 , button2-b:      rgba( $c-link, .67 )
-, button2-s:      rgba( white(), .85 )   // Shadow
+, button2-s:      rgba( white(), .85 )
 , button2-bg-1:   lighten( $c-link, 33 )
 , button2-bg-2:   darken( $c-link, 3 )
 , button2-bg-3:   darken( $c-link, 17 )
@@ -100,24 +97,46 @@ $_colours: (
 , button3-h:      lighten( $c-text, 17 )
 , button3-a:      lighten( $c-text, 23 )
 , button3-b:      rgba( grey(133), .5 )
-, button3-s:      rgba( white(), .85 )   // Shadow
+, button3-s:      rgba( white(), .85 )
 , button3-bg-1:   grey(251)
 , button3-bg-2:   grey(215)
 , button3-bg-3:   grey(192)
 
-  // Interface
-, divider:        rgba( $c-text, .09 ) // For use with <hr> etc.
-, select-top:     grey(251)
-, select-bottom:  grey(227)
+  // Entry fields: input, textarea, and select element
+, field:          lighten( $c-text, 9 )//rgba( grey(158), .27 )
+, field-h:        lighten( $c-text, 7 )
+, field-a:        lighten( $c-text, 3 )
+, field-b:        rgba( grey(158), .27 )
+, field-bg:       darken( $c-body-bg, 3 )
+, field-bg-a:     darken( $c-body-bg, 9 )
+, field-bg-h:     darken( $c-body-bg, 6 )
+
+  // Dropdown
+, drop:           lighten( $c-text, 17 )
+, drop-h:         white()
+, drop-a:         lighten( $c-text, 33 )
+, drop-b:         grey(186)
+, drop-bg:        darken( $c-body-bg, 11 )
+, drop-bg-h:      darken( $c-body-bg, 23 )
+, drop-bg-a:      darken( $c-body-bg, 17 )
+
+  // Select menu dropdown
+, select:         lighten( $c-text, 3 )
+, select-h:       white()
+, select-a:       rgba( lighten( $c-text, 17 ), .37 )
+, select-bg:      darken( $c-body-bg, 3 )
+, select-bg-h:    darken( $c-body-bg, 23 )
+, select-bg-a:    none
+
+  // Patterns
 , shadow-darkest: grey(8, .29)
 , shadow-darker:  grey(24, .18)
 , shadow-dark:    grey(96, .32)
 , shadow-light:   grey(113, .14)
 , shadow-lighter: grey(128, .07)
-, text-input-b:   rgba( grey(158), .27 )
-
 
   // Various
+, divider:        rgba( $c-text, .09 ) // For use with <hr> etc.
 , highlight-bg:   k-colour(lemon-chiffon)
 
   // Prism (optional)

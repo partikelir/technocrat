@@ -23,9 +23,7 @@
   }
   &.disabled, // Emulating `:disabled` button functionality for regular anchor elements
   &:disabled {
-    cursor: not-allowed;
-    opacity: .5; // Applies to `button` and `input` elements
-    pointer-events: none;
+    @extend %disabled;
   }
   &::-moz-focus-inner { // Kill phantom spacing and dotted border that appears in Firefox; via Formalize: https://github.com/nathansmith/formalize
     border: 0;
@@ -36,12 +34,6 @@
 
 
 // == INGREDIENTS == //
-
-// Round the edges of a button by an arbitrary value
-// This will accept a single pixel value or a quoted string e.g. "33%/100%" for a capsule-like rounding effect
-@mixin button-rounded( $value: 5px ) {
-  border-radius: unquote( $value );
-}
 
 // A simple gradient mixin; button states are simulated by sliding this gradient up and down
 @mixin button-gradient( $c1: #000, $c2: #fff, $c3: #000 ) {
@@ -74,11 +66,11 @@
 // A capsule-like button design
 @mixin button-capsule {
   @include button-common;
-  @include button-rounded( "#{spacer(2/3)}/100%" );
   @include button-shadow( colour(shadow-light), colour(shadow-dark) );
   @include font-size(text-smaller, 2);
   @include font-style(button);
   @include rem( padding, 0 spacer(2/5) );
+  border-radius: #{spacer(2/3)} / 100%; // Capsule effect
 }
 @mixin button-capsule-flat( $i: 1 ) {
   @include text-shadow-small( colour(button#{$i}-s) );
@@ -88,15 +80,15 @@
   color: colour(button#{$i});
   transition: all .38s ease-out;
   &:hover {
-    background: darken( colour(button#{$i}-bg-1), 3 );
-    border-color: lighten( colour(button#{$i}-b), 7 );
+    background: colour(button#{$i}-bg-1-h);
+    border-color: lighten( colour(button#{$i}-b), 5 );
     color: colour(button#{$i}-h);
     transition: all .26s ease;
   }
   &.active,
   &:active {
-    background: darken( colour(button#{$i}-bg-1), 6 );
-    border-color: darken( colour(button#{$i}-b), 7 );
+    background: colour(button#{$i}-bg-1-a);
+    border-color: darken( colour(button#{$i}-b), 9 );
     color: colour(button#{$i}-a);
     transition: all .19s ease;
   }

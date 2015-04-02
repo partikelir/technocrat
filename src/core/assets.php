@@ -86,6 +86,10 @@ if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueu
   if ( !empty( $script_vars_pg8 ) )
     wp_localize_script( $script_handle, 'PG8Data', $script_vars_pg8 );
 
+  // Provision wp-iconize
+  if ( UBIK_SVG_ICONS_URL )
+    wp_localize_script( $script_handle, 'svgIconsUrl', UBIK_SVG_ICONS_URL );
+
 
 
   // == STYLES == //

@@ -1,0 +1,26 @@
+// ==== FUNCTIONS ==== //
+
+// Margins and positioning helper function
+@function spacer($val: 1) {
+  @return $base-line * $val + 0px;
+}
+
+// Configuration object manipulation; adapted from: http://codepen.io/AdamBlum/blog/config-objects-with-sass-maps
+@function config($map, $key) {
+  @return unquote(map-get($map, $key));
+}
+@function metadata($key) {
+  @return config($_metadata, $key);
+}
+@function module($key) {
+  @return config($_modules, $key);
+}
+@function break($key) {
+  @return config($_breaks, $key);
+}
+@function size($key) {
+  @return config($_sizes, $key);
+}
+@function colour($key) {
+  @return config($_colours, $key);
+}

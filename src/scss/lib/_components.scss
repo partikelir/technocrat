@@ -1,0 +1,65 @@
+// ==== UI ELEMENTS ==== //
+
+// A dropdown menu consisting of an unordered and potentially nested list of links
+@mixin dropdown-menu($nav-menu: true) {
+  @include border-radius;
+  @include box-shadow-interface-small;
+  @include font-size(sub);
+  @include text-shadow-small;
+  background: colour(drop-bg) linear-gradient( white(.42), white(0) ) repeat-x;
+  border: 1px solid colour(drop-b);
+  box-sizing: border-box;
+  li {
+    a {
+      @include rem( padding, 0 6px );
+      &,
+      &:visited {
+        color: colour(drop);
+      }
+      &:hover {
+        background: colour(drop-bg-h);
+        box-shadow: 0 -1px 3px black(.06) inset;
+        color: colour(drop-h);
+        text-shadow: none;
+      }
+      &:active,
+      &:focus {
+        color: colour(drop-a);
+      }
+    }
+    ul {
+      @include border-radius( 0 $radius $radius $radius );
+      @include rem( margin-top, spacer(1/4) - 1px ); // Be sure to offset the outer border if you don't stagger submenus
+    }
+  }
+  @if $nav-menu {
+    .current-menu-item,
+    .current-menu-ancestor,
+    .current_page_item,
+    .current_page_ancestor {
+      > a {
+        background: colour(drop-bg-a);
+        color: colour(drop-a);
+      }
+    }
+  }
+}
+
+
+
+// Text input; for use with forms, textarea, etc.
+@mixin text-input($font-size: text-smaller) {
+  @include border-radius;
+  @include box-shadow-inner-small;
+  @include font-size( $font-size, 8 );
+  @include font-style(input);
+  @include rem( padding, 3px 6px );
+  @include text-shadow-small;
+  background: colour(field-bg);
+  border: 1px solid colour(field-b);
+  color: lighten( colour(text), 23 );
+  &:focus {
+    color: colour(text);
+    background-color: colour(field-bg-a);
+  }
+}

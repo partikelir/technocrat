@@ -7,14 +7,16 @@
 
 // Library
 @import "lib/buttons";
+@import "lib/components";
+@import "lib/functions";
 @import "lib/images";
-@import "lib/interface";
 @import "lib/links";
-@import "lib/prism";
-@import "lib/rem";
-@import "lib/shadows";
-@import "lib/type";
+@import "lib/patterns";
 @import "lib/utils";
+
+// Third party styling
+@import "lib/prism";
+@import "lib/selectric";
 
 // Configuration
 @import "../config/settings";

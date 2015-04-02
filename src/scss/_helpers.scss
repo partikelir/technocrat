@@ -191,9 +191,34 @@
   }
 }
 
+// Move something off-screen (an alternative to display: none)
+%off-screen {
+  clip: rect( 1px, 1px, 1px, 1px );
+  height: 1px;
+  overflow: hidden;
+  position: absolute !important;
+  width: 1px;
+}
+
+// Allow for something to snap back into position on focus; used with the above
+%off-screen-focus {
+  &:focus {
+    clip: auto !important;
+    display: block;
+    height: auto;
+    left: 5px;
+    top: 5px;
+    width: auto;
+    z-index: 100000; // Above WP toolbar
+  }
+}
+
 // Various shortcuts
 %box-shadow-reset {
   box-shadow: none;
+}
+%disabled {
+  @include disabled;
 }
 %list-style-none {
   list-style: none;

@@ -327,21 +327,15 @@ input[type="radio"] {
   }
 }
 
-// Select dropdown; try something like Chosen or select-css if you need finer control: https://github.com/filamentgroup/select-css
+// Select dropdown, simplified; currently using Selectric to style selects
 select {
-  @include border-radius;
   @include font-size(text-smaller);
   @include rem( height, spacer(4/5) );
   @include rem( margin-bottom, spacer(1/5) );
-  background: colour(select-bottom);
-  background-image: linear-gradient( to top, colour(select-bottom), colour(select-top) );
   border: 1px solid colour(interface);
-  border-radius: 0;
-  box-shadow: 0 1px 2px colour(shadow-light);
   color: colour(text-light);
   cursor: pointer;
   display: inline-block;
-  font-weight: $w-body-normal;
   outline: 0;
 }
 
