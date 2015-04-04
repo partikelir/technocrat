@@ -328,9 +328,10 @@ add_filter( 'ubik_text_replace_simple', 'pendrell_text_replace' );
 
 
 
-// == TITLE * == //
+// == TIME * == //
 
 require_once( $path_modules . 'ubik-time/ubik-time.php' );
+add_filter( 'ubik_time_human_diff_case', 'ubik_time_human_diff_case_lower' );
 
 
 
