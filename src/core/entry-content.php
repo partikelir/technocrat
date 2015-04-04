@@ -39,11 +39,11 @@ if ( !function_exists( 'pendrell_entry_header_metadata' ) ) : function pendrell_
     // Get the parent (might be empty in the case of pages)
     $parent = ubik_meta_parent();
     if ( !empty( $parent ) )
-      $output = '<div class="parent">' . sprintf( __( 'Return to %s', 'pendrell' ), $parent ) . '&nbsp;&larrhk;</div>';
+      $output = '<span class="parent">' . sprintf( __( 'Return to %s', 'pendrell' ), $parent ) . '&nbsp;&larrhk;</span>';
 
   // Everything else should have a date of publication
   } else {
-    $output = '<div class="date">' . ubik_meta_date_published( 'F j, Y' ) . '</div>';
+    $output = '<span class="date">' . ubik_meta_date_published( 'F j, Y' ) . '</span>';
   }
 
   return $contents . $output;
@@ -79,7 +79,7 @@ if ( !function_exists( 'pendrell_entry_edit_link' ) ) : function pendrell_entry_
     return $buttons;
   if ( ! $url = get_edit_post_link( $post->ID ) )
     return $buttons;
-  $buttons .= '<a class="button post-edit-link" href="' . $url . '" rel="nofollow" role="button">' . pendrell_icon( 'content-edit', __( 'Edit', 'pendrell' ) ) . '</a>';
+  $buttons .= '<a class="button" href="' . $url . '" rel="nofollow" role="button">' . pendrell_icon( 'content-edit', __( 'Edit', 'pendrell' ) ) . '</a>';
   return $buttons;
 } endif;
 add_filter( 'pendrell_entry_footer_buttons', 'pendrell_entry_edit_link', 9 );

@@ -34,7 +34,7 @@ if ( !function_exists( 'pendrell_link_metadata' ) ) : function pendrell_link_met
   if ( has_post_format( 'link' ) ) {
     $link = get_post_meta( get_the_ID(), '_format_link_url', true );
     if ( !empty( $link ) )
-      $contents = '<div class="link"><a href="' . $link . '" rel="bookmark">' . str_replace( array( 'http://', 'https://' ), '', $link ) . '</a></div>';
+      $contents = '<span class="link"><a href="' . $link . '" rel="bookmark">' . str_replace( array( 'http://', 'https://' ), '', $link ) . '</a></span>';
   }
   return $contents;
 } endif;

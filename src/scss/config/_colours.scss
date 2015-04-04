@@ -80,9 +80,9 @@ $_colours: (
 , button1-a:      lighten( $c-text, 23 )
 , button1-b:      rgba( grey(158), .47 )
 , button1-s:      rgba( white(), .85 )
-, button1-bg-1:   darken( $c-body-bg, 3 )
-, button1-bg-1-h: darken( $c-body-bg, 7 )
-, button1-bg-1-a: darken( $c-body-bg, 9 )
+, button1-bg-1:   darken( $c-body-bg, 5 )
+, button1-bg-1-h: darken( $c-body-bg, 9 )
+, button1-bg-1-a: darken( $c-body-bg, 11 )
 , button1-bg-2:   grey(212)
 , button1-bg-3:   grey(192)
 , button2:        lighten( k-colour(mako), 7 )
@@ -116,16 +116,16 @@ $_colours: (
 , drop-h:         white()
 , drop-a:         lighten( $c-text, 33 )
 , drop-b:         grey(186)
-, drop-bg:        darken( $c-body-bg, 11 )
-, drop-bg-h:      darken( $c-body-bg, 23 )
+, drop-bg:        darken( $c-body-bg, 7 )
+, drop-bg-h:      darken( $c-body-bg, 21 )
 , drop-bg-a:      darken( $c-body-bg, 17 )
 
   // Select menu dropdown
-, select:         lighten( $c-text, 3 )
+, select:         lighten( $c-text, 7 )
 , select-h:       white()
 , select-a:       rgba( lighten( $c-text, 17 ), .37 )
 , select-bg:      darken( $c-body-bg, 3 )
-, select-bg-h:    darken( $c-body-bg, 23 )
+, select-bg-h:    darken( $c-body-bg, 21 )
 , select-bg-a:    none
 
   // Patterns
