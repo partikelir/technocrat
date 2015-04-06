@@ -1,17 +1,17 @@
 <?php // ==== NAVIGATION ==== //
 
 // Site navigation; this outputs the header menu and search form
-if ( !function_exists( 'pendrell_nav_site' ) ) : function pendrell_nav_site() {
+function pendrell_nav_site() {
   get_search_form(); // Responsive search bar; hidden except on small screens
   wp_nav_menu( array( 'theme_location' => 'header', 'menu_class' => 'menu-header inline-menu' ) );
-} endif;
+}
 add_action( 'pendrell_site_navigation', 'pendrell_nav_site' );
 
 
 
 // Content navigation: used in archive, index, and search templates
 // @filter: pendrell_nav_content
-if ( !function_exists( 'pendrell_nav_content' ) ) : function pendrell_nav_content( $id = 'nav-below' ) {
+function pendrell_nav_content( $id = 'nav-below' ) {
 
   // Raw material
   global $paged, $wp_query;
@@ -32,26 +32,26 @@ if ( !function_exists( 'pendrell_nav_content' ) ) : function pendrell_nav_conten
 
   // Get page links
   if ( $prev_page > 0 )
-    $prev_link = get_pagenum_link( $prev_page );
+    $prev_link = html_entity_decode( get_pagenum_link( $prev_page ) );
   if ( $next_page <= $max )
-    $next_link = get_pagenum_link( $next_page );
+    $next_link = html_entity_decode( get_pagenum_link( $next_page ) );
 
   // Conditional output of previous and next links followed by the actual output
   if ( !empty( $prev_link ) )
-    $output .= '<div class="nav-previous"><a class="button button-left prev-page" href="' . $prev_link . '" role="button">' . pendrell_icon( 'nav-previous', __( 'Previous', 'pendrell' ) ) . '</a></div>';
+    $output .= '<div class="nav-previous"><a class="button button-left prev-page" href="' . esc_url( $prev_link ) . '" role="button">' . pendrell_icon_text( 'nav-previous', __( 'Previous', 'pendrell' ) ) . '</a></div>';
   if ( !empty( $next_link ) )
-    $output .= '<div class="nav-next"><a class="button button-action next-page" href="' . $next_link . '" role="button">' . pendrell_icon( 'nav-next', __( 'Next', 'pendrell' ) ) . '</a></div>';
+    $output .= '<div class="nav-next"><a class="button button-action next-page" href="' . esc_url( $next_link ) . '" role="button">' . pendrell_icon_text( 'nav-next', __( 'Next', 'pendrell' ) ) . '</a></div>';
   if ( !empty( $output ) )
     $output = '<nav id="' . $id . '" class="nav-content" role="navigation"><h2 class="screen-reader-text">' . __( 'Content navigation', 'pendrell' ) . '</h2>' . $output  . '</nav>';
 
   // Output content navigation links
   echo apply_filters( 'pendrell_nav_content', $output );
-} endif;
+}
 
 
 
 // Page navigation: should only be used in page.php template
-if ( !function_exists( 'pendrell_nav_page' ) ) : function pendrell_nav_page( $id = 'nav-below' ) {
+function pendrell_nav_page( $id = 'nav-below' ) {
 
   global $post;
 
@@ -81,13 +81,13 @@ if ( !function_exists( 'pendrell_nav_page' ) ) : function pendrell_nav_page( $id
     $output = '<nav id="' . $id . '" class="nav-page ' . $id . '" role="navigation"><h2 class="screen-reader-text">' . __( 'Post navigation', 'pendrell' ) . '</h2>' . $parent . $child . '</nav>';
 
   echo apply_filters( 'pendrell_nav_page', $output );
-} endif;
+}
 
 
 
 // Post navigation; only used in single.php temple
 // @filter: pendrell_nav_post
-if ( !function_exists( 'pendrell_nav_post' ) ) : function pendrell_nav_post( $id = 'nav-below' ) {
+function pendrell_nav_post( $id = 'nav-below' ) {
 
   // Initialize
   $output = $prev = $next = '';
@@ -108,22 +108,22 @@ if ( !function_exists( 'pendrell_nav_post' ) ) : function pendrell_nav_post( $id
     $output = '<nav id="' . $id . '" class="nav-post ' . $id . '" role="navigation"><h2 class="screen-reader-text">' . __( 'Post navigation', 'pendrell' ) . '</h2>' . $prev . $next . '</nav>';
 
   echo apply_filters( 'pendrell_nav_post', $output );
-} endif;
+}
 
 
 
 // Wrapper for wp_link_pages(); @TODO: separate by comma or something; built-in separator functionality is coded by crazy people
-if ( !function_exists( 'pendrell_nav_link_pages' ) ) : function pendrell_nav_link_pages() {
+function pendrell_nav_link_pages() {
   wp_link_pages( array(
     'before' => '<nav class="page-links">' . __( 'Pages:', 'pendrell' ),
     'after' => '</nav>'
   ) );
-} endif;
+}
 
 
 
 // Comment navigation; @TODO: comment-loader.js script to pull in more comments via AJAX (low priority)
-if ( !function_exists( 'pendrell_nav_comments' ) ) : function pendrell_nav_comments() {
+function pendrell_nav_comments() {
 
   // Check to see whether comments are paged and if there is more than one page
   if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) {
@@ -133,5 +133,4 @@ if ( !function_exists( 'pendrell_nav_comments' ) ) : function pendrell_nav_comme
       <div class="nav-next"><?php next_comments_link( __( 'Next comments<span class="nav-arrow"> &rarr;</span>', 'pendrell' ) ); ?></div>
     </nav><?php
   }
-} endif;
-
+}

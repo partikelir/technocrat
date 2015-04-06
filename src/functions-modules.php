@@ -291,7 +291,7 @@ function pendrell_terms_edit_description_prompt( $content ) {
 add_filter( 'get_the_archive_description', 'pendrell_terms_edit_description_prompt' );
 
 function pendrell_terms_edit_link( $buttons ) {
-  $edit_link = ubik_terms_edit_link( pendrell_icon( 'term-edit', __( 'Edit', 'pendrell' ) ), 'button edit-link' );
+  $edit_link = ubik_terms_edit_link( pendrell_icon_text( 'term-edit', __( 'Edit', 'pendrell' ) ), 'button edit-link' );
   if ( !empty( $edit_link ) )
     $buttons .= $edit_link;
   return $buttons;

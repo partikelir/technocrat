@@ -61,7 +61,7 @@ if ( !function_exists( 'pendrell_image_overlay_metadata' ) ) : function pendrell
   // Comments
   $comments_count = get_comments_number( $id );
   if ( $comments_count > 0 ) {
-    $comments_meta = $comments_count . ' ' . ubik_svg_icon( pendrell_icon( 'overlay-comments' ), __( 'Comments', 'pendrell' ) );
+    $comments_meta = $comments_count . ' ' . pendrell_icon( 'overlay-comments', __( 'Comments', 'pendrell' ) );
     $output .= pendrell_image_overlay_wrapper( $comments_meta, 'top-right', 'comments' );
   }
 

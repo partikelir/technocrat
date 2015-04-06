@@ -43,7 +43,7 @@ if ( !function_exists( 'pendrell_entry_header_metadata' ) ) : function pendrell_
 
   // Everything else should have a date of publication
   } else {
-    $output = '<span class="date">' . ubik_meta_date_published( 'F j, Y' ) . '</span>';
+    $output = '<span class="date">' . ucfirst( ubik_meta_date_published( 'F j, Y' ) ) . '</span>';
   }
 
   return $contents . $output;
@@ -79,7 +79,7 @@ if ( !function_exists( 'pendrell_entry_edit_link' ) ) : function pendrell_entry_
     return $buttons;
   if ( ! $url = get_edit_post_link( $post->ID ) )
     return $buttons;
-  $buttons .= '<a class="button" href="' . $url . '" rel="nofollow" role="button">' . pendrell_icon( 'content-edit', __( 'Edit', 'pendrell' ) ) . '</a>';
+  $buttons .= '<a class="button" href="' . $url . '" rel="nofollow" role="button">' . pendrell_icon_text( 'content-edit', __( 'Edit', 'pendrell' ) ) . '</a>';
   return $buttons;
 } endif;
 add_filter( 'pendrell_entry_footer_buttons', 'pendrell_entry_edit_link', 9 );
@@ -111,7 +111,7 @@ if ( !function_exists( 'pendrell_entry_password_form' ) ) : function pendrell_en
   $input = '<input name="post_password" id="' . $id . '" type="password" size="20" required="" />';
 
   // Submit button
-  $submit = '<button id="submit" type="submit" name="submit">' . pendrell_icon( 'content-protected', __( 'Enter password', 'pendrell' ) ) . '</button>';
+  $submit = '<button id="submit" type="submit" name="submit">' . pendrell_icon_text( 'content-protected', __( 'Enter password', 'pendrell' ) ) . '</button>';
 
   // Form wrapper
   $output = $prompt . '<form action="' . esc_url( site_url( 'wp-login.php?action=postpass', 'login_post' ) ) . '" class="form-post-password" method="post">' . $label . $input . $submit . '</form>';

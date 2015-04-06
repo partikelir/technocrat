@@ -44,7 +44,7 @@ get_header(); ?>
                     <input id="cc" name="cc" type="checkbox" value="1" />
                     <label for="cc" class="checkbox-label"><?php _e( 'Send a copy to yourself', 'pendrell' ); ?></label>
                   </fieldset>
-                  <button id="submit" type="submit" name="submit"><?php echo pendrell_icon( 'contact-form-send', __( 'Send message', 'pendrell' ) ); ?></button>
+                  <button id="submit" type="submit" name="submit"><?php echo pendrell_icon_text( 'contact-form-send', __( 'Send message', 'pendrell' ) ); ?></button>
                   <div class="hide">
                     <label for="hades"><?php _e( 'Spam protection; do not fill this', 'pendrell' ); ?></label>
                     <input name="hades" type="text" />

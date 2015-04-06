@@ -1,9 +1,4 @@
-<?php
-/**
- * @package WordPress
- * @subpackage Pendrell
- * @since Pendrell 0.10
- */
+<?php // ==== CONTENT: GALLERY ==== //
 
 echo ubik_imagery(
   $html     = '',

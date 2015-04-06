@@ -64,7 +64,7 @@ if ( !function_exists( 'pendrell_author_edit_link' ) ) : function pendrell_autho
   if ( is_author() ) {
     $edit_author_link = get_edit_user_link(); // Author edit link for users with the appropriate capabilities
     if ( !empty( $edit_author_link ) )
-      $buttons .= '<a href="' . $edit_author_link . '" class="button edit-link">' . pendrell_icon( 'author-edit', __( 'Edit', 'pendrell' ) ) . '</a>';
+      $buttons .= '<a href="' . $edit_author_link . '" class="button edit-link">' . pendrell_icon_text( 'author-edit', __( 'Edit', 'pendrell' ) ) . '</a>';
   }
   return $buttons;
 } endif;
@@ -105,17 +105,17 @@ if ( !function_exists( 'pendrell_author_social' ) ) : function pendrell_author_s
 
   // Loop through the social icons we might want to display
   if ( !empty( $url ) )
-    $social .= '<a href="' . $url . '">' . ubik_svg_icon( pendrell_icon( 'social-home' ), 'Homepage' ) . '</a>';
+    $social .= '<a href="' . $url . '">' . pendrell_icon( 'social-home', 'Homepage' ) . '</a>';
   if ( !empty( $facebook ) )
-    $social .= '<a href="' . $facebook . '">' . ubik_svg_icon( pendrell_icon( 'social-facebook' ), 'Facebook' ) . '</a>';
+    $social .= '<a href="' . $facebook . '">' . pendrell_icon( 'social-facebook', 'Facebook' ) . '</a>';
   if ( !empty( $flickr ) )
-    $social .= '<a href="' . $flickr . '">' . ubik_svg_icon( pendrell_icon( 'social-flickr' ), 'Flickr' ) . '</a>';
+    $social .= '<a href="' . $flickr . '">' . pendrell_icon( 'social-flickr', 'Flickr' ) . '</a>';
   if ( !empty( $github ) )
-    $social .= '<a href="' . $github . '">' . ubik_svg_icon( pendrell_icon( 'social-github' ), 'GitHub' ) . '</a>';
+    $social .= '<a href="' . $github . '">' . pendrell_icon( 'social-github', 'GitHub' ) . '</a>';
   if ( !empty( $instagram ) )
-    $social .= '<a href="' . $instagram . '">' . ubik_svg_icon( pendrell_icon( 'social-instagram' ), 'Instagram' ) . '</a>';
+    $social .= '<a href="' . $instagram . '">' . pendrell_icon( 'social-instagram', 'Instagram' ) . '</a>';
   if ( !empty( $twitter ) )
-    $social .= '<a href="' . $twitter . '">' . ubik_svg_icon( pendrell_icon( 'social-twitter' ), 'Twitter' ) . '</a>';
+    $social .= '<a href="' . $twitter . '">' . pendrell_icon( 'social-twitter', 'Twitter' ) . '</a>';
 
   // Wrap it
   if ( !empty( $social ) )

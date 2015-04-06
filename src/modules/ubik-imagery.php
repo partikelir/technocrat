@@ -270,9 +270,9 @@ function pendrell_image_placeholder( $html = '' ) {
   // Post ID is set; let's use this for some conditional checks rather than relying on $post
   if ( !empty( $post ) ) {
     if ( has_tag( 'x', $post->ID ) ) {
-      $html = ubik_svg_icon( pendrell_icon( 'x' ), __( 'X placeholder', 'pendrell' ) );
+      $html = pendrell_icon( 'x', __( 'X placeholder', 'pendrell' ) );
     } elseif ( is_object_in_term( $post->ID, 'places' ) ) {
-      $html = ubik_svg_icon( pendrell_icon( 'places' ), __( 'Places placeholder', 'pendrell' ) );
+      $html = pendrell_icon( 'places', __( 'Places placeholder', 'pendrell' ) );
     }
   }
   return $html;
