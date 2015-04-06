@@ -42,7 +42,7 @@ function pendrell_icon( $name = '', $text = '', $desc = '', $class = array() ) {
   $icon = pendrell_icons( $name );
   if ( empty( $icon ) )
     return;
-  return ubik_svg_icon( $icon, $text );
+  return ubik_svg_icon( $icon, $text, $desc, $class );
 }
 
 
@@ -52,7 +52,7 @@ function pendrell_icon_text( $name = '', $text = '', $desc = '', $class = array(
   $icon = pendrell_icons( $name );
   if ( empty( $icon ) )
     return;
-  return ubik_svg_icon_text( $icon, $text );
+  return ubik_svg_icon_text( $icon, $text, $desc, $class );
 }
 
 
