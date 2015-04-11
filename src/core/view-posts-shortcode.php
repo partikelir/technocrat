@@ -38,7 +38,7 @@ add_shortcode( 'view-posts', 'pendrell_view_posts_shortcode' );
 // Generate HTML for the view-posts shortcode; @TODO: make this more customizable; currently it's very limited to just a few modes
 if ( !function_exists( 'pendrell_view_posts' ) ) : function pendrell_view_posts( $id = '', $view = 'list', $mode = '', $taxonomy = '', $title = '', $content ) {
 
-  global $post; // Must be declared
+  global $post, $wp_query; // Must be declared
 
   if ( empty( $id ) )
     $id = $post->ID;
@@ -84,16 +84,21 @@ if ( !function_exists( 'pendrell_view_posts' ) ) : function pendrell_view_posts(
   if ( empty( $args ) )
     return;
 
+  // Instatiate a new query; this should return a taxonomy archive of posts
   $query = new WP_Query( wp_parse_args( $args, $defaults ) );
 
+  // WordPress conditionals like `is_archive()` rely on the main query object; let's swap it out for our custom query to ensure that everything works as it should
   if ( $query->have_posts() ) {
-    while ( $query->have_posts() ) : $query->the_post();
-      ob_start(); // Start output buffering; necessary because get_template_part echoes contents
+    $wp_query_copy = $wp_query; // Copy the main query
+    $wp_query = $query; // Replace the main query with our custom query
+    while ( $wp_query->have_posts() ) : $wp_query->the_post();
+      ob_start(); // Start output buffering; necessary because `get_template_part` echoes contents
       get_template_part( 'content', $view );
       $html .= ob_get_clean(); // Clean the output buffer after every cycle
     endwhile;
+    $wp_query = $wp_query_copy; // Swap the main query back in; we could use `wp_reset_query()` but this approach handles the query exactly as we received it
+    wp_reset_postdata(); // Just in case anything went awry
   }
-  wp_reset_postdata();
 
   // HTML scaffolding specific to each view
   if ( !empty( $html ) ) {
