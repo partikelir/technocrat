@@ -2,6 +2,7 @@
 
 // Load plugin
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-views/ubik-views.php' );
+require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-views-shortcode.php' ); // @TODO: fix up this kludge
 
 
 

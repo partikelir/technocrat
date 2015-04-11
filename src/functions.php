@@ -32,7 +32,6 @@ require_once( $path . 'core/icons.php' );
 require_once( $path . 'core/images.php' );
 require_once( $path . 'core/post-formats.php' );
 require_once( $path . 'core/navigation.php' );
-require_once( $path . 'core/view-posts-shortcode.php' ); // @TODO: remove this
 
 
 
