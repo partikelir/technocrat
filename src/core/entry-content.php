@@ -39,11 +39,11 @@ if ( !function_exists( 'pendrell_entry_header_metadata' ) ) : function pendrell_
     // Get the parent (might be empty in the case of pages)
     $parent = ubik_meta_parent();
     if ( !empty( $parent ) )
-      $output = '<div class="parent">' . sprintf( __( 'Return to %s', 'pendrell' ), $parent ) . '&nbsp;&larrhk;</div>';
+      $output = '<span class="parent">' . sprintf( __( 'Return to %s', 'pendrell' ), $parent ) . '&nbsp;&larrhk;</span>';
 
   // Everything else
   } else {
-    $date = '<div class="date"><time datetime="' . date( 'c', get_the_time( 'U' ) ) . '">' . get_the_time( 'M j Y' ) . '</time></div>';
+    $date = '<div class="date"><time datetime="' . ubik_meta_date_published( 'F j, Y' ) . '</time></div>';
     $cats = get_the_category_list( '</div> <div class="cats">' );
     if ( !empty( $cats ) )
       $cats = ' <div class="cats">' . $cats . '</div>';
@@ -83,7 +83,7 @@ add_action( 'pendrell_entry_footer', 'pendrell_entry_footer_buttons', 5 );
 
 // Entry meta link button
 if ( !function_exists( 'pendrell_entry_meta_link' ) ) : function pendrell_entry_meta_link( $buttons ) {
-  $buttons .= '<a class="button" href="' . get_permalink() . '" rel="bookmark" role="button">' . pendrell_icon( 'anchor', __( 'Link', 'pendrell' ) ) . '</a>';
+  $buttons .= '<a class="button" href="' . get_permalink() . '" rel="bookmark" role="button">' . pendrell_icon_text( 'anchor', __( 'Link', 'pendrell' ) ) . '</a>';
   return $buttons;
 } endif;
 add_filter( 'pendrell_entry_footer_buttons', 'pendrell_entry_meta_link', 3 );
@@ -96,7 +96,7 @@ if ( !function_exists( 'pendrell_entry_edit_link' ) ) : function pendrell_entry_
     return $buttons;
   if ( ! $url = get_edit_post_link( $post->ID ) )
     return $buttons;
-  $buttons .= '<a class="button post-edit-link" href="' . $url . '" rel="nofollow" role="button">' . pendrell_icon( 'content-edit', __( 'Edit', 'pendrell' ) ) . '</a>';
+  $buttons .= '<a class="button" href="' . $url . '" rel="nofollow" role="button">' . pendrell_icon_text( 'content-edit', __( 'Edit', 'pendrell' ) ) . '</a>';
   return $buttons;
 } endif;
 add_filter( 'pendrell_entry_footer_buttons', 'pendrell_entry_edit_link', 9 );
@@ -128,7 +128,7 @@ if ( !function_exists( 'pendrell_entry_password_form' ) ) : function pendrell_en
   $input = '<input name="post_password" id="' . $id . '" type="password" size="20" required="" />';
 
   // Submit button
-  $submit = '<button id="submit" type="submit" name="submit">' . pendrell_icon( 'content-protected', __( 'Enter password', 'pendrell' ) ) . '</button>';
+  $submit = '<button id="submit" type="submit" name="submit">' . pendrell_icon_text( 'content-protected', __( 'Enter password', 'pendrell' ) ) . '</button>';
 
   // Form wrapper
   $output = $prompt . '<form action="' . esc_url( site_url( 'wp-login.php?action=postpass', 'login_post' ) ) . '" class="form-post-password" method="post">' . $label . $input . $submit . '</form>';

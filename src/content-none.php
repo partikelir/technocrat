@@ -1,10 +1,4 @@
-<?php
-/**
- * @package WordPress
- * @subpackage Pendrell
- * @since Pendrell 0.4
- */
-?>
+<?php // ==== CONTENT: NONE ==== // ?>
 
 <article id="post-0" class="post no-results not-found">
 	<?php if ( !is_404() ) { ?><header class="entry-header">

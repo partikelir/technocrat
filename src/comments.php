@@ -1,16 +1,4 @@
-<?php
-/**
- * The template for displaying Comments
- *
- * The area of the page that contains both current comments
- * and the comment form. The actual display of comments is
- * handled by a callback to twentytwelve_comment() which is
- * located in the functions.php file.
- *
- * @package WordPress
- * @subpackage Pendrell
- * @since Pendrell 0.4
- */
+<?php // ==== COMMENTS ==== //
 
 // Return if the post is password-protected and a password has not been entered
 if ( post_password_required() )

@@ -32,9 +32,6 @@ require_once( $path . 'core/icons.php' );
 require_once( $path . 'core/images.php' );
 require_once( $path . 'core/navigation.php' );
 
-// Fallback functionality is loaded last
-require_once( $path . 'core/fallback.php' );
-
 
 
 // == SETUP == //

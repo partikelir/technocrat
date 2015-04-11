@@ -1,10 +1,8 @@
 <?php // ==== ICONS ==== //
 
-// Returns an icon and optionally some text; this is just a simple wrapper function for `ubik_svg_icon_text` that allows for icons to be defined in a single location
-function pendrell_icon( $name = '', $text = '' ) {
-
-  // Icon assignments
-  $pendrell_icons = apply_filters( 'pendrell_icons', array(
+// Returns an icon association from a pre-defined list
+function pendrell_icons( $name = '' ) {
+  $icons = apply_filters( 'pendrell_icons', array(
     'anchor'                  => 'typ-anchor'
   , 'author-edit'             => 'typ-spanner'
   , 'comment-link'            => 'awe-comment'
@@ -33,18 +31,34 @@ function pendrell_icon( $name = '', $text = '' ) {
   , 'view-list'               => 'typ-th-list'
   , 'view-posts'              => 'typ-document-text'
   ) );
-
-  if ( !empty( $name ) && array_key_exists( $name, $pendrell_icons ) ) {
-    if ( !empty( $text ) )
-      return ubik_svg_icon_text( $pendrell_icons[$name], $text );
-    return $pendrell_icons[$name];
-  }
+  if ( !empty( $name ) && array_key_exists( $name, $icons ) )
+    return $icons[$name];
   return false;
 }
 
 
 
-// Add an icon to an Ubik search button
+// Returns an SVG icon
+function pendrell_icon( $name = '', $text = '', $desc = '', $class = array() ) {
+  $icon = pendrell_icons( $name );
+  if ( empty( $icon ) )
+    return;
+  return ubik_svg_icon( $icon, $text, $desc, $class );
+}
+
+
+
+// Returns an SVG icon and some text
+function pendrell_icon_text( $name = '', $text = '', $desc = '', $class = array() ) {
+  $icon = pendrell_icons( $name );
+  if ( empty( $icon ) )
+    return;
+  return ubik_svg_icon_text( $icon, $text, $desc, $class );
+}
+
+
+
+// Add an icon to the Ubik search button
 function pendrell_icon_search_button( $contents ) {
-  return pendrell_icon( 'search', $contents );
+  return pendrell_icon_text( 'search', $contents, __( 'Search button', 'pendrell' ) );
 }

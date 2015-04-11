@@ -70,11 +70,6 @@ $_colours: (
 , menu-sub:       lighten( $c-dark, 23 )
 , menu-sub-h:     $c-dark
 
-  // Submenus; @TODO: see if this stuff is obsolete
-, sub:            lighten( $c-text, 17 )
-, sub-h:          white()
-, sub-bg:         darken( $c-body-bg, 13 )
-
   // Sidebar
 , sidebar:        darken( $c-dark, 13 )
 , sidebar-h:      $c-highlight

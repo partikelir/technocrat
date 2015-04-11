@@ -23,6 +23,7 @@
       @include font-size(text-small);
       @include k-text-truncate; // Stops long URLs from overflowing the article width
       @include rem( margin-left, -3px );
+      display: block; // Constrains overflow
       &:before {
         content: "\00a0\27A5\00a0";
       }
@@ -37,9 +38,9 @@
         @include border-radius(6px);
         @include box-shadow-inner-big;
         @include font-size(text-bigger);
+        @include rem( padding, spacer(1/2) spacer() );
         border: none;
         color: colour(text);
-        @include rem( padding, spacer(1/2) spacer() );
         footer {
           @extend %text-small;
         }

@@ -14,7 +14,7 @@
     box-sizing: border-box;
     color: lighten( colour(text), 23 );
     height: spacer();
-    transition: all .7s ease;
+    transition: all .67s ease;
     width: 100%;
     p.label { // This element/class combo cannot be configured :|
       @include font-size( text-smaller, 2 );
@@ -30,7 +30,13 @@
       @include icon-right;
       @include text-shadow-small-svg;
     }
-    .s3cOpen & {
+    .s3cHover & {
+      background: colour(field-bg-h);
+      color: colour(field-h);
+      transition: all .23s ease-in;
+    }
+    .s3cOpen &,
+    .s3cOpen.s3cHover & {
       @include border-radius( $radius $radius 0 0 );
       background: colour(field-bg-a);
       color: colour(field-a);
@@ -40,12 +46,6 @@
     }
     .s3cOpen.s3cAbove & {
       @include border-radius( 0 0 $radius $radius );
-    }
-    &:hover {
-      background: colour(field-bg-h);
-      color: colour(field-h);
-      transition: all .23s ease-in;
-      transition-delay: .32s;
     }
   }
 

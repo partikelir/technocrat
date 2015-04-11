@@ -1,9 +1,4 @@
-<?php
-/**
- * @package WordPress
- * @subpackage Pendrell
- * @since Pendrell 0.4
- */
+<?php // ==== SINGLE ==== //
 
 get_header(); ?>
   <div id="wrap-content" class="wrap-content">
@@ -18,5 +13,4 @@ get_header(); ?>
     	</section>
     </div>
   </div>
-<?php get_sidebar(); ?>
-<?php get_footer(); ?>
+<?php get_sidebar(); get_footer();

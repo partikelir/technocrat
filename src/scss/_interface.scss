@@ -11,7 +11,7 @@
   @include button-capsule-flat;
 }
 %button-flat-theme-1 {
-  @include button-flat-theme(1);
+  @include button-flat-theme;
 }
 button,
 .button,

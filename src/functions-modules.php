@@ -311,7 +311,7 @@ function pendrell_terms_edit_description_prompt( $content ) {
 add_filter( 'get_the_archive_description', 'pendrell_terms_edit_description_prompt' );
 
 function pendrell_terms_edit_link( $buttons ) {
-  $edit_link = ubik_terms_edit_link( pendrell_icon( 'term-edit', __( 'Edit', 'pendrell' ) ), 'button edit-link' );
+  $edit_link = ubik_terms_edit_link( pendrell_icon_text( 'term-edit', __( 'Edit', 'pendrell' ) ), 'button edit-link' );
   if ( !empty( $edit_link ) )
     $buttons .= $edit_link;
   return $buttons;
@@ -332,18 +332,19 @@ if ( !is_categorized() )
 // == TEXT * == //
 
 require_once( $path_modules . 'ubik-text/ubik-text.php' );
-add_filter( 'the_content', 'ubik_text_replace', 99 );
-add_filter( 'the_excerpt', 'ubik_text_replace', 99 );
-add_filter( 'comment_text', 'ubik_text_replace', 99 );
+//add_filter( 'the_content', 'ubik_text_replace', 99 );
+//add_filter( 'the_excerpt', 'ubik_text_replace', 99 );
+//add_filter( 'comment_text', 'ubik_text_replace', 99 );
 add_filter( 'the_content_feed', 'ubik_text_strip_asides' );
 add_filter( 'the_excerpt_rss', 'ubik_text_strip_asides' );
 add_filter( 'the_content', 'ubik_text_strip_more_orphan', 99 ); // Strip paragraph tags from orphaned more tags
 
 
 
-// == TITLE * == //
+// == TIME * == //
 
 require_once( $path_modules . 'ubik-time/ubik-time.php' );
+add_filter( 'ubik_time_human_diff_case', 'ubik_time_human_diff_case_lower' );
 
 
 
