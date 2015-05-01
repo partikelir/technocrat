@@ -1,8 +1,8 @@
 // ==== MENU ==== //
 
 // Common
-.menu-header,
-.menu-footer {
+#menu-header,
+#menu-footer {
   width: 100%;
   > li {
     a {
@@ -38,7 +38,7 @@
 }
 
 // Header menu; applied to a ul element
-.menu-header {
+#menu-header {
   @include font-size(menu-header);
   @include rem( margin, spacer(1/2) 0 );
   li {
@@ -68,7 +68,7 @@
 }
 
 // Footer menu
-.menu-footer {
+#menu-footer {
   @include font-size( menu-footer );
   @include k-list-floated( spacer(1/2) );
   @include rem( padding, spacer(1/2) 0 );

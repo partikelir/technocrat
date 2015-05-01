@@ -19,7 +19,7 @@
   "require": {
     "synapticism/ubik-admin": "^0.0.4",
     "synapticism/ubik-analytics": "^0.0.1",
-    "synapticism/ubik-cleaner": "^0.0.3",
+    "synapticism/ubik-cleaner": "^0.0.4",
     "synapticism/ubik-colophon": "^0.0.1",
     "synapticism/ubik-comments": "^0.0.1",
     "synapticism/ubik-excerpt": "^0.0.4",
@@ -45,7 +45,7 @@
     "synapticism/ubik-terms": "^0.1.0",
     "synapticism/ubik-text": "^0.0.5",
     "synapticism/ubik-time": "^0.0.2",
-    "synapticism/ubik-title": "^0.0.2",
-    "synapticism/ubik-views": "^0.2.0"
+    "synapticism/ubik-title": "^0.0.3",
+    "synapticism/ubik-views": "^0.2.1"
   }
 }

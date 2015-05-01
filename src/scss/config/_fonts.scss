@@ -5,21 +5,25 @@ $_sizes: (
 
   // Text
   text-biggest:     32
-, text-bigger:      24
-, text-big:         22
-, text:             20 // Default body text font size
+, text-bigger:      23
+, text-big:         21
+, text:             19 // Default body text font size
 , text-small:       16
 , text-smaller:     14
 , text-smallest:    12
 
   // Headers
-, head-biggest:     48
-, head-bigger:      36
-, head-big:         26 // Don't want this too close to the baseline, line-height gets weird
-, head:             24
+, head-biggest:     42
+, head-bigger:      35
+, head-big:         25 // Don't want this too close to the baseline, line-height gets weird
+, head:             23
 , head-small:       18
 , head-smaller:     16
 , head-smallest:    14
+
+  // Site
+, site-title-big:   35
+, site-title-small: 26
 
   // Menus
 , menu-header:      18

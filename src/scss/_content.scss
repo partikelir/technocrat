@@ -124,7 +124,7 @@
   // Paragraph
   p {
     @extend %spacer-below;
-    hanging-punctuation: first; // Not supported by any browser yet
+    //hanging-punctuation: first; // Not supported by any browser yet
   }
 
   // Lists and definitions
