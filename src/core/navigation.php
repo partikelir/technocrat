@@ -2,8 +2,12 @@
 
 // Site navigation; this outputs the header menu and search form
 function pendrell_nav_site() {
-  get_search_form(); // Responsive search bar; hidden except on small screens
-  wp_nav_menu( array( 'theme_location' => 'header', 'menu_class' => 'menu-header inline-menu' ) );
+
+  // Responsive search bar; hidden except on small screens
+  get_search_form();
+
+  // Responsive menu wrapped in a container to handle the fact that `wp_nav_menu` defaults back to `wp_page_menu` when no menu is specified
+  wp_nav_menu( array( 'theme_location' => 'header', 'menu_id' => 'menu-header', 'menu_class' => 'menu-inline' ) );
 }
 add_action( 'pendrell_site_navigation', 'pendrell_nav_site' );
 

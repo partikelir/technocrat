@@ -105,10 +105,10 @@
 }
 .site-title {
   @extend %clearfix-below;
-  @include font-size(head);
+  @include font-size(site-title-small);
   @include font-style(site-title);
   @include k-media-above( break(medium) ) {
-    @include font-size(head-biggest);
+    @include font-size(site-title-big);
   }
   a {
     color: colour(site-title);

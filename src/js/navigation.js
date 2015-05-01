@@ -3,7 +3,7 @@
 // Navigation.js adapted from _s; changed to active the entire site navigation element, not just the menu within it
 ;(function($) {
 	var nav 			= document.getElementById('site-navigation'),
-			menu 			= nav.getElementsByTagName('ul')[0],
+			menu 			= document.getElementById('menu-header'),
 			button 		= document.getElementById('menu-toggle'),
 			icon      = button.getElementsByTagName('svg')[0];
 
@@ -20,11 +20,13 @@
 
 	// Toggle navigation; add or remove a class to both the button and the nav element itself
 	button.onclick = function() {
-		$(nav).toggle( 150 );
+		//$(nav).toggle( 150 ); // Looks nice but it's too sluggish on mobile
 		if (button.className.indexOf( 'active' ) !== -1) {
+			nav.style.display = 'none';
 			button.className = button.className.replace(' active', '');
 			icon.style.transform = '';
 		} else {
+			nav.style.display = 'block';
 			button.className += ' active';
 			icon.style.transform = 'scaleY(-1)';
 		}

@@ -1,7 +1,7 @@
 // ==== MENU ==== //
 
 // Inline menu; used in header and footer navigation; should be applied to ol or ul elements
-.inline-menu {
+.menu-inline {
   @include k-list-floated( spacer() );
   margin-bottom: 0;
   li {
@@ -16,7 +16,7 @@
 
 
 // Header menu; applied to a ul element
-.menu-header {
+#menu-header {
   @extend %links-no-border;
   @include font-size(menu-header);
   @include k-list-nested;
@@ -75,7 +75,7 @@
 
 
 // Footer menu
-.menu-footer {
+#menu-footer {
   // Links aren't styled differently here as they match the values for .site-footer in this theme
   @include font-size(menu-footer);
   @include rem( padding-bottom, spacer(1/2) );
