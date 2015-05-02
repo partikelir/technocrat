@@ -10,10 +10,7 @@
     // Allows for select menus to be styled somewhat sanely
     $('select').selectric({
       arrowButtonMarkup: svgIcon( 'awe-sort' )
-    , customClass: {
-        prefix: 's3c'
-      , postfixes: 'Input Items Open Disabled TempShow Hide Wrap Hover Responsive Above Drop'
-      }
+    , customClass: { prefix: 's3c' }
     });
   });
 }(jQuery));
