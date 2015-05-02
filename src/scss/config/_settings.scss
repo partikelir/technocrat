@@ -3,6 +3,9 @@
 // Development mode; switches on a few things that are otherwise build-specific
 $dev: true;
 
+// Output pixel fallback when generating rems for older browsers (pre-IE9)
+$pixel-values: false;
+
 // Base font size and line-height (unitless integers); base-size should be 16; set 'text' to alter body text font size
 $base-size:       16;
 $base-line:       30;

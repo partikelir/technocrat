@@ -184,9 +184,9 @@ module.exports = {
   , rubySass: { // Don't forget to run `gem install sass`; Compass is not included by default
       loadPath: bower // Adds the `bower_components` directory to the load path so you can @import directly
     , precision: 8
-    , 'sourcemap=none': true // Not yet ready for prime time! Sass 3.4 has srcmaps on by default but this causes some problems from the Gulp toolchain
+    , 'sourcemap=none': true // Not yet ready for prime time; Sass 3.4 has srcmaps on by default but this causes some problems from the Gulp toolchain
   }
-  , sass: { // For future reference: settings for Libsass, a promising project that hasn't reached feature parity with Ruby Sass just yet
+  , libsass: { // For future reference: settings for Libsass, a promising project that hasn't reached feature parity with Ruby Sass just yet
       includePaths: [bower]
     , precision: 8
     }

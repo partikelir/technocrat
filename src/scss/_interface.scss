@@ -176,6 +176,13 @@ label {
 // Replaces default select menus with a bit of jQuery magic; see `lib/_selectric.scss` for actual styling
 @include selectric;
 
+// Handles the flash of unstyled selects in the sidebar; note: if JavaScript fails to load these select elements won't function
+select {
+  .widget & {
+    opacity: 0;
+  }
+}
+
 
 
 // == TOOLTIPS == //
