@@ -23,56 +23,41 @@
 
 
 
-// ==== REM GENERATOR ==== //
+// ==== REM ==== //
 
-// Legacy mode; output styles for older browsers (usually pre-IE9)
-$legacy: false;
+// Get the rem equivalent of a value; via https://github.com/rowanmanning/rem
+@function rem-value ($value, $offset: 0) {
 
-// Rem generator via Twenty Twelve; specify property, pixel values, and optional offset to account for borders and such
-@mixin rem($property, $px-values, $offset: 0) {
+  // If value is a number, do some magic rem stuff
+  @if type-of($value) == "number" {
 
-  // Convert the base font size into rems
-  $base-rem: $base-size+0px / 1rem;
-
-  // Only print pixels when legacy browsers are supported
-  @if $legacy {
-
-    // Subtract the offset
-    @if type-of($px-values) == "number" {
-      $px-values: $px-values - $offset;
+    // Convert to unitless value
+    @if unit($value) == "px" {
+      $value: $value / ($value * 0 + 1);
     }
 
-    // Print the first line in pixel values
-    #{$property}: $px-values;
+    // Return rem value
+    @return #{($value - $offset) / $base-size}rem;
   }
 
-  // If there is only one (numeric) value, return the property/value line for it in rems
-  @if type-of($px-values) == "number" {
-    #{$property}: $px-values / $base-rem;
+  // Non-numeric value, just return
+  @return $value;
+}
+
+// Rem mixin
+@mixin rem($property, $values, $offset: 0) {
+
+  // Empty list to populate
+  $rem-values: unquote("");
+
+  // Loop over pixel values to get rem values
+  @each $value in $values {
+    $rem-values: append($rem-values, rem-value($value, $offset));
   }
 
-  // Create an empty list that we can dump values into
-  @else {
-    $rem-values: unquote("");
-    @each $value in $px-values {
-
-      // Return 0 when the value is either 0 or 0px
-      @if unit($value) == px {
-        @if $value == 0px {
-          $value: 0;
-        }
-      }
-      @if $value == 0 {
-        $rem-values: append($rem-values, $value);
-      }
-
-      // Return an actual rem value
-      @else {
-        $rem-values: append($rem-values, $value / $base-rem);
-      }
-    }
-
-    // Return the property and its list of converted values in rems
-    #{$property}: $rem-values;
+  // Set the pixel/rem values
+  @if $pixel-values {
+    #{$property}: $values;
   }
+  #{$property}: $rem-values;
 }

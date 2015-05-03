@@ -148,7 +148,7 @@ module.exports = {
       core: [
         bower+'svg4everybody/svg4everybody.js'
       , bower+'svg.icon.js/svg.icon.js'
-      , bower+'jquery-selectric/dist/jquery.selectric.js'
+      , bower+'jquery-selectric/public/jquery.selectric.js'
       , bower+'autosize/dest/autosize.js'
       , src+'js/navigation.js'
       , src+'js/skip-link-focus-fix.js'
@@ -156,7 +156,7 @@ module.exports = {
       ]
     , contact: [bower+'jquery-validation/dist/jquery.validate.js', src+'js/contact-form.js']
     , pf: [bower+'picturefill/dist/picturefill.js']
-    , pg8: [bower+'html5-history-api/history.iegte8.js', bower+'spin.js/spin.js', bower+'spin.js/jquery.spin.js', bower+'wp-ajax-page-loader/wp-ajax-page-loader.js', src+'js/page-loader.js']
+    , pg8: [bower+'html5-history-api/history.js', bower+'spin.js/spin.js', bower+'spin.js/jquery.spin.js', bower+'wp-ajax-page-loader/wp-ajax-page-loader.js', src+'js/page-loader.js']
     , prism: [
         bower+'prism/components/prism-core.js'
       , bower+'prism/components/prism-markup.js'
@@ -192,15 +192,16 @@ module.exports = {
     , minify: { keepSpecialComments: 1, roundingPrecision: 5 }
     , dest: dist
     }
+  , compiler: 'ruby-sass' // 'ruby-sass' or 'libsass'
   , autoprefixer: { browsers: ['> 3%', 'last 2 versions', 'ie 9', 'ios 6', 'android 4'] }
   , rename: { suffix: '.min' }
   , minify: { keepSpecialComments: 1, roundingPrecision: 5 }
   , rubySass: { // Don't forget to run `gem install sass`; Compass is not included by default
       loadPath: bower // Adds the `bower_components` directory to the load path so you can @import directly
     , precision: 8
-    , 'sourcemap=none': true // Not yet ready for prime time! Sass 3.4 has srcmaps on by default but this causes some problems from the Gulp toolchain
+    , 'sourcemap=none': true // Not yet ready for prime time; Sass 3.4 has srcmaps on by default but this causes some problems from the Gulp toolchain
   }
-  , sass: { // For future reference: settings for Libsass, a promising project that hasn't reached feature parity with Ruby Sass just yet
+  , libsass: { // For future reference: settings for Libsass, a promising project that hasn't reached feature parity with Ruby Sass just yet
       includePaths: [bower]
     , precision: 8
     }

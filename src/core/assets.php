@@ -5,7 +5,7 @@
 // == SCRIPTS & STYLES == //
 
 // Enqueue front-end scripts and styles; additional ideas to consider: https://github.com/roots/roots/blob/master/lib/scripts.php
-if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueue_scripts() {
+function pendrell_enqueue_scripts() {
 
   $script_name = '';                // Empty by default, may be populated by conditionals below
   $script_vars = array();           // An empty array that can be filled with variables to send to front-end scripts
@@ -98,7 +98,7 @@ if ( !function_exists( 'pendrell_enqueue_scripts' ) ) : function pendrell_enqueu
   wp_register_style( 'pendrell-style', get_stylesheet_uri(), $dependencies = array(), filemtime( get_template_directory() . '/style.css' ) );
   wp_enqueue_style( 'pendrell-style' );
 
-} endif; // end pendrell_enqueue_scripts()
+} // pendrell_enqueue_scripts()
 add_action( 'wp_enqueue_scripts', 'pendrell_enqueue_scripts' );
 
 

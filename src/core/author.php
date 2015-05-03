@@ -1,7 +1,7 @@
 <?php // ==== AUTHOR ==== //
 
 // Author info on posts (optional); not shown on certain post formats or pages
-if ( !function_exists( 'pendrell_author_meta' ) ) : function pendrell_author_meta() {
+function pendrell_author_meta() {
   if (
     is_singular()
     && get_the_author_meta( 'description' ) // Only if there is a description
@@ -10,14 +10,14 @@ if ( !function_exists( 'pendrell_author_meta' ) ) : function pendrell_author_met
   ) {
     pendrell_author_info();
   }
-} endif;
+}
 if ( PENDRELL_AUTHOR_META )
   add_filter( 'pendrell_entry_footer_after', 'pendrell_author_meta', 12 );
 
 
 
 // Author info box
-if ( !function_exists( 'pendrell_author_info' ) ) : function pendrell_author_info() {
+function pendrell_author_info() {
   if ( get_the_author_meta( 'description' ) ) {
     $author = '<span class="p-name p-author">' . get_the_author() . '</span>'; ?>
     <div class="author author-info h-card">
@@ -37,12 +37,12 @@ if ( !function_exists( 'pendrell_author_info' ) ) : function pendrell_author_inf
       </div>
     </div>
   <?php }
-} endif;
+}
 
 
 
 // Return the avatar with a link to the specified URL
-if ( !function_exists( 'pendrell_author_avatar' ) ) : function pendrell_author_avatar( $url ) {
+function pendrell_author_avatar( $url ) {
 
   // Size should be some multiple of the baseline
   $size = PENDRELL_BASELINE * 4;
@@ -55,25 +55,25 @@ if ( !function_exists( 'pendrell_author_avatar' ) ) : function pendrell_author_a
   } else {
     echo get_avatar( get_the_author_meta( 'user_email' ), $size, $default, $alt );
   }
-} endif;
+}
 
 
 
 // Add an "edit this user" link to author archives
-if ( !function_exists( 'pendrell_author_edit_link' ) ) : function pendrell_author_edit_link( $buttons ) {
+function pendrell_author_edit_link( $buttons ) {
   if ( is_author() ) {
     $edit_author_link = get_edit_user_link(); // Author edit link for users with the appropriate capabilities
     if ( !empty( $edit_author_link ) )
       $buttons .= '<a href="' . $edit_author_link . '" class="button edit-link">' . pendrell_icon_text( 'author-edit', __( 'Edit', 'pendrell' ) ) . '</a>';
   }
   return $buttons;
-} endif;
+}
 add_filter( 'pendrell_archive_buttons', 'pendrell_author_edit_link' );
 
 
 
 // Output social icons associated with the specified account holder
-if ( !function_exists( 'pendrell_author_social' ) ) : function pendrell_author_social( $id = 1 ) {
+function pendrell_author_social( $id = 1 ) {
 
   // Get user info
   $meta = get_user_meta( $id );
@@ -122,4 +122,4 @@ if ( !function_exists( 'pendrell_author_social' ) ) : function pendrell_author_s
     $social = '<div class="social-icons">' . $social . '</div>';
 
   return apply_filters( 'pendrell_author_social', $social );
-} endif;
+}

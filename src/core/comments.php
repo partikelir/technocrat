@@ -4,7 +4,7 @@
 // @filter: pendrell_comment_template
 // @action: pendrell_comment_template_before
 // @action: pendrell_comment_template_after
-if ( !function_exists( 'pendrell_comments_template' ) ) : function pendrell_comments_template() {
+function pendrell_comments_template() {
 
   do_action( 'pendrell_comment_template_before' );
 
@@ -17,12 +17,12 @@ if ( !function_exists( 'pendrell_comments_template' ) ) : function pendrell_comm
 
   do_action( 'pendrell_comment_template_after' );
 
-} endif;
+}
 
 
 
 // Load comments
-if ( !function_exists( 'pendrell_comments' ) ) : function pendrell_comments( $comment, $args, $depth ) {
+function pendrell_comments( $comment, $args, $depth ) {
   $GLOBALS['comment'] = $comment;
 
   // Handle different comment types differently
@@ -79,14 +79,14 @@ if ( !function_exists( 'pendrell_comments' ) ) : function pendrell_comments( $co
       </li><?php
       break;
   endswitch; // end comment_type check
-} endif;
+}
 
 
 
 // == COMMENTS FORM == //
 
 // A light refresh of the core `comment_form` function to provide more sensible markup and styling hooks
-if ( !function_exists( 'pendrell_comments_form' ) ) : function pendrell_comments_form() {
+function pendrell_comments_form() {
 
   // Setup required data
   $post_id = get_the_ID();
@@ -154,12 +154,12 @@ if ( !function_exists( 'pendrell_comments_form' ) ) : function pendrell_comments
   } else {
     do_action( 'comment_form_comments_closed' );
   }
-} endif;
+}
 
 
 
 // Explanatory notes that appear immediately below the comment form `textarea`
-if ( !function_exists( 'pendrell_comments_form_notes_after' ) ) : function pendrell_comments_form_notes_after() {
+function pendrell_comments_form_notes_after() {
   $notes_after = '';
   if ( get_option( 'wpcom_publish_comments_with_markdown' ) == true ) {
     $notes_after = sprintf( __( '<a href="https://daringfireball.net/projects/markdown/syntax" target="_blank"><span data-tooltip="%1$s">Markdown</span></a> and <span data-tooltip="%2$s">HTML</span> enabled in comments', 'pendrell' ),
@@ -174,14 +174,14 @@ if ( !function_exists( 'pendrell_comments_form_notes_after' ) ) : function pendr
   if ( !empty( $notes_after ) )
     $notes_after = '<div class="comment-notes-after">' . $notes_after . '.</div>';
   return $notes_after;
-} endif;
+}
 
 
 
 // == BUTTONS == //
 
 // Comments link wrapper; requires Ubik Comments to really shine
-if ( !function_exists( 'pendrell_comments_link' ) ) : function pendrell_comments_link( $buttons ) {
+function pendrell_comments_link( $buttons ) {
 
   // Do we have good reason to display the link?
   if ( !is_singular() && ( comments_open() || get_comments_number() !== 0 ) ) {
@@ -199,7 +199,7 @@ if ( !function_exists( 'pendrell_comments_link' ) ) : function pendrell_comments
   }
 
   return $buttons;
-} endif;
+}
 add_filter( 'pendrell_entry_buttons', 'pendrell_comments_link', 20 );
 
 

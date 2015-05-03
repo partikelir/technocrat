@@ -3,6 +3,9 @@
 // Development mode; switches on a few things that are otherwise build-specific
 $dev: false;
 
+// Output pixel fallback when generating rems for older browsers (pre-IE9)
+$pixel-values: false;
+
 // Base font size and line-height (unitless integers); base-size should be 16; set 'text' to alter body text font size
 $base-size:       16;
 $base-line:       28;
@@ -25,7 +28,7 @@ $_metadata: (
 , theme-author:             "Alexander Synaptic"
 , theme-author-uri:         "http://synapticism.com"
 , theme-description:        "Alexander Synaptic"
-, theme-version:            "0.0.11"
+, theme-version:            "0.0.12"
 , theme-license:            "GPLv3"
 , theme-license-uri:        "https://www.gnu.org/copyleft/gpl.txt"
 , theme-tags:               (light, gray, white, one-column, two-columns, right-sidebar, fixed-layout, responsive-layout, custom-menu, featured-images, microformats, post-formats, theme-options, translation-ready)

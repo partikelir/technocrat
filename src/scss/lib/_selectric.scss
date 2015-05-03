@@ -30,13 +30,13 @@
       @include icon-right;
       @include text-shadow-small-svg;
     }
-    .s3cHover & {
+    .s3c-hover & {
       background: colour(field-bg-h);
       color: colour(field-h);
       transition: all .23s ease-in;
     }
-    .s3cOpen &,
-    .s3cOpen.s3cHover & {
+    .s3c-open &,
+    .s3c-open.s3c-hover & {
       @include border-radius( $radius $radius 0 0 );
       background: colour(field-bg-a);
       color: colour(field-a);
@@ -44,13 +44,13 @@
         opacity: .5;
       }
     }
-    .s3cOpen.s3cAbove & {
+    .s3c-open.s3c-above & {
       @include border-radius( 0 0 $radius $radius );
     }
   }
 
   // Dropdown menu
-  .s3cItems {
+  .s3c-items {
     @include border-radius( 0 0 $radius $radius );
     @include box-shadow-inner-small;
     @include font-style(input);
@@ -64,14 +64,14 @@
     display: none;
     outline: 0;
     z-index: -1;
-    .s3cAbove & {
+    .s3c-above & {
       @include border-radius( $radius $radius 0 0 );
       border-top-width: 1px;
       border-bottom-width: 0px;
       bottom: 100%;
       top: auto;
     }
-    .s3cDrop {
+    .s3c-scroll {
       height: 100%;
       overflow: auto; // Overrides the specificity of widget margin declaration
       ul,
@@ -103,38 +103,38 @@
   }
 
   // Wrapper for the entire select unit
-  .s3cWrap {
+  .s3c-wrapper {
     cursor: pointer;
     max-width: 80%;
     position: relative;
   }
-  .s3cHover {}
-  .s3cOpen {
+  .s3c-hover {}
+  .s3c-open {
     z-index: 99;
-    .s3cItems {
+    .s3c-items {
       display: block;
     }
   }
-  .s3cDisabled {
+  .s3c-disabled {
     @extend %disabled;
   }
-  .s3cGroup { // Not implemented
-    .s3cGroupLabel {}
+  .s3c-group { // Not implemented
+    .s3c-group-label {}
     &.disabled li {}
   }
-  .s3cHide {
+  .s3c-hide-select {
     @extend %hide; // This hides the original `select` element
   }
 
   // Needed for the script, doesn't appear on the screen
-  .s3cInput {
+  .s3c-input {
     @extend %off-screen;
     margin: 0;
     padding: 0;
   }
 
   // Unsure what this is but it looks nasty
-  .s3cTempShow {
+  .s3c-temp-show {
     display: block !important;
     position: absolute !important;
     visibility: hidden !important;

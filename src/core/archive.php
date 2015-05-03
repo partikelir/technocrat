@@ -2,7 +2,7 @@
 
 // A simple wrapper for archive titles using Ubik Title; active in 404, search, and the links page template
 // @filter: pendrell_archive_title
-if ( !function_exists( 'pendrell_archive_title' ) ) : function pendrell_archive_title( $title = '' ) {
+function pendrell_archive_title( $title = '' ) {
   if ( empty( $title ) ) {
     if ( function_exists( 'ubik_title' ) ) {
       $title = ubik_title();
@@ -11,25 +11,25 @@ if ( !function_exists( 'pendrell_archive_title' ) ) : function pendrell_archive_
     }
   }
   echo '<h1 class="archive-title">' . apply_filters( 'pendrell_archive_title', $title ) . '</h1>';
-} endif;
+}
 add_action( 'pendrell_archive_header', 'pendrell_archive_title', 10 );
 
 
 
 // Archive buttons; a hook for interactive elements like edit links
 // @filter: pendrell_archive_buttons
-if ( !function_exists( 'pendrell_archive_buttons' ) ) : function pendrell_archive_buttons() {
+function pendrell_archive_buttons() {
   $buttons = apply_filters( 'pendrell_archive_buttons', '' );
   if ( !empty( $buttons ) )
     echo '<div class="buttons">' . $buttons . '</div>';
-} endif;
+}
 add_action( 'pendrell_archive_header', 'pendrell_archive_buttons', 5 );
 
 
 
 // Archive descriptions
 // @filter: pendrell_archive_description
-if ( !function_exists( 'pendrell_archive_description' ) ) : function pendrell_archive_description( $desc = '' ) {
+function pendrell_archive_description( $desc = '' ) {
 
   // Archive descriptions for categories, tags, taxonomies
   if ( is_category() || is_tag() || is_tax() ) {
@@ -51,5 +51,5 @@ if ( !function_exists( 'pendrell_archive_description' ) ) : function pendrell_ar
   } elseif ( !empty( $desc ) ) {
     echo '<div class="archive-desc">' . apply_filters( 'pendrell_archive_description', $desc ) . '</div>';
   }
-} endif;
+}
 add_action( 'pendrell_archive_header', 'pendrell_archive_description', 20 );
