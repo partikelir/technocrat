@@ -2,7 +2,7 @@
 
 // Abstracted function to test whether the current page is full-width; filter `pendrell_full_width` and return true to override
 // @filter: pendrell_full_width
-if ( !function_exists( 'pendrell_full_width' ) ) : function pendrell_full_width() {
+function pendrell_full_width() {
 
   // If we're on a full-width page, attachment, single image post format, or there is no sidebar active let's expand content area
   if (
@@ -19,32 +19,32 @@ if ( !function_exists( 'pendrell_full_width' ) ) : function pendrell_full_width(
 
   // Provide one last chance to override the full-width test
   return (bool) apply_filters( 'pendrell_full_width_override', $full_width );
-} endif;
+}
 
 
 
 // Full-width body class filter; adds a full-width class for styling purposes
-if ( !function_exists( 'pendrell_full_width_body_class' ) ) : function pendrell_full_width_body_class( $classes ) {
+function pendrell_full_width_body_class( $classes ) {
   if ( pendrell_full_width() )
     $classes[] = 'full-width';
   return $classes;
-} endif;
+}
 add_filter( 'body_class', 'pendrell_full_width_body_class' );
 
 
 
 // Sidebar filter; removes sidebar on full-width view
-if ( !function_exists( 'pendrell_full_width_sidebar' ) ) : function pendrell_full_width_sidebar( $sidebar ) {
+function pendrell_full_width_sidebar( $sidebar ) {
   if ( pendrell_full_width() )
     return false;
   return $sidebar;
-} endif;
+}
 add_filter( 'pendrell_sidebar', 'pendrell_full_width_sidebar' );
 
 
 
 // Full-width image size filter; assumes 'large' size images fill the window, which they should
-if ( !function_exists( 'pendrell_full_width_image_resize' ) ) : function pendrell_full_width_image_resize( $size ) {
+function pendrell_full_width_image_resize( $size ) {
   if ( pendrell_full_width() ) {
     if ( $size === 'medium' )
       $size = 'large';
@@ -53,5 +53,5 @@ if ( !function_exists( 'pendrell_full_width_image_resize' ) ) : function pendrel
       $size = 'medium';
   }
   return $size;
-} endif;
+}
 add_filter( 'ubik_imagery_size', 'pendrell_full_width_image_resize' );

@@ -3,11 +3,11 @@
 // == SIDEBAR == //
 
 // Sidebar filter; removes sidebar for certain post formats
-if ( !function_exists( 'pendrell_post_formats_sidebar' ) ) : function pendrell_post_formats_sidebar( $sidebar ) {
+function pendrell_post_formats_sidebar( $sidebar ) {
   if ( ( is_singular() && has_post_format( array( 'aside', 'link', 'quote', 'status' ) ) ) )
     $sidebar = false;
   return $sidebar;
-} endif;
+}
 if ( PENDRELL_POST_FORMATS )
 	add_filter( 'pendrell_sidebar', 'pendrell_post_formats_sidebar' );
 
@@ -28,7 +28,7 @@ if ( PENDRELL_POST_FORMATS )
 // == LINKS == //
 
 // Get link metadata; assumes WP-Post-Formats or equivalent is in use
-if ( !function_exists( 'pendrell_link_metadata' ) ) : function pendrell_link_meta( $contents ) {
+function pendrell_link_meta( $contents ) {
 
   // Link post format handling
   if ( has_post_format( 'link' ) ) {
@@ -37,7 +37,7 @@ if ( !function_exists( 'pendrell_link_metadata' ) ) : function pendrell_link_met
       $contents = '<span class="link"><a href="' . $link . '" rel="bookmark">' . rtrim( str_replace( array( 'http://', 'https://', 'www.' ), '', $link ), '/' ) . '</a></span>'; // Trims protocol and trailing slash
   }
   return $contents;
-} endif;
+}
 if ( PENDRELL_POST_FORMATS )
 	add_action( 'pendrell_entry_header_meta', 'pendrell_link_meta', 99 );
 
@@ -46,7 +46,7 @@ if ( PENDRELL_POST_FORMATS )
 // == QUOTATIONS == //
 
 // Generate markup for quotations; assumes WP Post Formats or equivalent is in use
-if ( !function_exists( 'pendrell_quotation_markup' ) ) : function pendrell_quotation_markup( $content ) {
+function pendrell_quotation_markup( $content ) {
 
 	// Return early if a password is required or this is not a quote or quotation post format post
 	if ( post_password_required() || ( !has_post_format( 'quote' ) && !has_post_format( 'quotation' ) ) )
@@ -113,6 +113,6 @@ if ( !function_exists( 'pendrell_quotation_markup' ) ) : function pendrell_quota
 
 	return $before . $content . $after;
 
-} endif;
+}
 if ( PENDRELL_POST_FORMATS )
 	add_filter( 'the_content', 'pendrell_quotation_markup' );
