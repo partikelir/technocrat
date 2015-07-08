@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh; // Enables sticky footer functionality with some help from flexbox
-  overflow: hidden;
+  overflow: inherit; // Fixes weird IE display (July 8, 2015)
 }
 
 // == WRAPPERS == //
@@ -129,6 +129,8 @@
   @extend %hide-below-medium; // Hide the site description on smaller screens
 }
 .site-navigation {
+  max-width: 100%;
+  overflow: hidden;
   @include k-media-below( break(medium) ) {
     display: none;
   }
@@ -174,13 +176,9 @@ main {
 
 // See also: `_widgets.scss`
 .site-sidebar {
-  max-width: $width-main;
   @include k-media-between( break(small), break(large) ) {
     @include rem( column-gap, spacer(2) );
-    column-count: 2;
-    .widget {
-      //break-inside: avoid; // Weird bug in Chrome
-    }
+    columns: auto 2;
   }
 }
 

@@ -148,6 +148,7 @@ label {
 // Search form input field stretches to the width of the contain; adapted from: http://boulderinformationservices.wordpress.com/2011/02/02/input-field-and-submit-button-on-the-same-line-full-width/
 .search-form {
   @include font-size(text-smallest); // Keeps the search button from getting too large for some reason; @TODO: puzzle this bug out
+  overflow: hidden; // Fixes weird IE display (July 8, 2015)
   width: 50%;
   .site-navigation &,
   .widget & {
