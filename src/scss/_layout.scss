@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh; // Enables sticky footer functionality with some help from flexbox
-  overflow: hidden;
+  overflow: inherit;//hidden;
 }
 
 // == WRAPPERS == //
