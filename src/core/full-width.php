@@ -57,4 +57,4 @@ function pendrell_full_width_image_resize( $size ) {
   }
   return $size;
 }
-add_filter( 'ubik_imagery_size', 'pendrell_full_width_image_resize' );
+//add_filter( 'ubik_imagery_size', 'pendrell_full_width_image_resize' );
