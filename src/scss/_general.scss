@@ -9,7 +9,7 @@ body {
   @include font-size(text);
   @include font-style(body);
   color: colour(text);
-  background-color: black();//colour(bg-body);
+  background: colour(bg-body);
   font-feature-settings: 'liga', 'opbd', 'size', 'init', 'fina'; // Ligatures; optical bounds; optical size; initial and final forms; via: http://www.microsoft.com/typography/otspec/featurelist.htm
   text-rendering: optimizeLegibility;
 }
