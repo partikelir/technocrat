@@ -3,9 +3,6 @@
 // Overall site layout
 .site {
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh; // Enables sticky footer functionality with some help from flexbox
   overflow: inherit; // Fixes weird IE display (July 8, 2015)
 }
 
@@ -37,17 +34,14 @@
 }
 .wrap-main {
   @extend %clearfix;
-  flex: 1;
   @include k-media-above( break(large) ) {
+    @include k-center-block( $width-content );
     @include rem( padding-left, spacer(1.5) );
     @include rem( padding-right, spacer(1.5) );
-    display: flex;
-    justify-content: center;
   }
 }
 .wrap-content {
   @extend %wrap;
-  flex: 1;
   @include rem( padding-top, spacer() );
   @include rem( padding-bottom, spacer() );
   @include k-media-above( break(large) ) {
@@ -129,8 +123,7 @@
   @extend %hide-below-medium; // Hide the site description on smaller screens
 }
 .site-navigation {
-  max-width: 100%;
-  overflow: hidden;
+  max-width: 100%; // Prevents hidden search box from overflowing container
   @include k-media-below( break(medium) ) {
     display: none;
   }
@@ -176,9 +169,17 @@ main {
 
 // See also: `_widgets.scss`
 .site-sidebar {
+  max-width: $width-main; // Keeps things tidy
   @include k-media-between( break(small), break(large) ) {
     @include rem( column-gap, spacer(2) );
     columns: auto 2;
+    overflow: hidden; // Required to hide extra space in Chrome
+    position: relative; // Required to hide extra space in Chrome
+    // @TODO: Selectric boxes don't play well with the sidebar in column mode :/
+    .widget {
+      display: inline-block;
+      width: 100%;
+    }
   }
 }
 
