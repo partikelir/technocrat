@@ -3,10 +3,7 @@
 // Overall site layout
 .site {
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh; // Enables sticky footer functionality with some help from flexbox
-  overflow: inherit;//hidden;
+  overflow: inherit; // Fixes weird IE display (July 8, 2015)
 }
 
 // == WRAPPERS == //
@@ -48,8 +45,6 @@
 }
 .wrap-main {
   @extend %clearfix-below;
-  background: colour(bg-sidebar); // Gutter colour
-  flex: 1; // Sticky footer
 }
 .wrap-sidebar {
   @extend %wrap;
@@ -145,6 +140,7 @@
   @include k-hide-visually; // No description in this theme
 }
 .site-navigation {
+  max-width: 100%; // Prevents hidden search box from overflowing container
   @include k-media-below( break(medium) ) {
     display: none;
     padding-bottom: spacer(1/2);
@@ -195,12 +191,16 @@ main {
 
 // See also: `_widgets.scss`
 .site-sidebar {
-  max-width: $width-main;
+  max-width: $width-main; // Keeps things tidy
   @include k-media-between( break(small), break(large) ) {
     @include rem( column-gap, spacer(2) );
-    column-count: 2;
+    columns: auto 2;
+    overflow: hidden; // Required to hide extra space in Chrome
+    position: relative; // Required to hide extra space in Chrome
+    // @TODO: Selectric boxes don't play well with the sidebar in column mode :/
     .widget {
-      //break-inside: avoid; // Weird bug in Chrome
+      display: inline-block;
+      width: 100%;
     }
   }
   @include k-media-above( break(large) ) {
