@@ -54,7 +54,7 @@ function pendrell_setup() {
     'search-form'
   ) );
 
-  // Adds RSS feed links to <head> for posts and comments.
+  // Adds RSS feed links to <head> for posts and comments
   add_theme_support( 'automatic-feed-links' );
 
   // Conditionally add post format support
@@ -129,3 +129,6 @@ function pendrell_widgets_init() {
   ) );
 }
 add_action( 'widgets_init', 'pendrell_widgets_init' );
+
+// Add shortcodes to sidebar widgets
+add_filter( 'widget_text', 'do_shortcode' );
