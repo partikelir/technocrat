@@ -5,7 +5,6 @@
 
   // Hiding aside, quotation, and status titles to preserve structured data and visual flow
   body:not(.list-view) { // There's no way to isolate this, alas
-    article.format-aside,
     article.format-quote,
     article.format-status {
       header {
