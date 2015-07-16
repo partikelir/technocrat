@@ -47,24 +47,21 @@ function pendrell_places_meta( $meta ) {
 
     // If there's only one term associated with the post let's add the inheritance chain; this was we get "Changhua, Taiwan" etc.
     if ( ubik_terms_count( '', 'places' ) === 1 ) {
-
       global $post;
       $term = get_the_terms( $post->ID, 'places' );
-      $ancestors = ubik_terms_ancestors( $term[0]->term_id, 'places' );
-
-      // Got something?
-      if ( !empty( $ancestors ) ) {
-        $ancestors = array_reverse( $ancestors );
-        foreach ( $ancestors as $ancestor ) {
-          if ( $ancestor != $term[0]->term_id ) {
-            $parent = get_term_by( 'id', $ancestor, 'places' );
-            $parents[] = '<a href="' . get_term_link( $parent->term_id, 'places' ) . '">' . $parent->name . '</a>';
+      if ( !empty( $term->parent ) ) {
+        $ancestors = ubik_terms_ancestors( $term[0]->term_id, 'places' );
+        if ( !empty( $ancestors ) ) {
+          $ancestors = array_reverse( $ancestors );
+          foreach ( $ancestors as $ancestor ) {
+            if ( $ancestor != $term[0]->term_id ) {
+              $parent = get_term_by( 'id', $ancestor, 'places' );
+              $parents[] = '<a href="' . get_term_link( $parent->term_id, 'places' ) . '">' . $parent->name . '</a>';
+            }
           }
         }
+        $top = $sep . implode( $sep, $parents );
       }
-
-      // Wrap it up
-      $top = $sep . implode( $sep, $parents );
     }
 
     // Add to post metadata
