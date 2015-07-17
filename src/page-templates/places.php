@@ -19,7 +19,8 @@ get_header(); ?>
           </div>
         </header>
         <main id="main" class="site-main" role="main">
-          <?php $data = pendrell_places_page_template();
+          <?php // The following is a total hack; @TODO: code this properly
+          $data = pendrell_places_page_template();
           if ( !empty( $data ) ) {
 
             // A hack to set thumbs for various places
@@ -37,7 +38,7 @@ get_header(); ?>
               $metadata = '';
               $place->thumb = '';
 
-              // This is a lousy hack to manually assign thumbnails to specific places; @TODO: code this properly
+              // This is the really hacky part of things: manually assign thumbnails to specific places
               if ( array_key_exists( $place->term_id, $pendrell_places_thumbs ) )
                 $place->thumb = $pendrell_places_thumbs[$place->term_id];
 
