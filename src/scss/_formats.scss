@@ -15,6 +15,20 @@
 
 
 
+  // Aside
+  body:not(.list-view) {
+    article.format-aside {
+      .entry-title {
+        @include font-size(head-small);
+        @include k-media-above( break(medium) ) {
+          @include font-size(head);
+        }
+      }
+    }
+  }
+
+
+
   // Link
   .entry-meta {
     .link { // Unique class; no need to nest it within article.format-link {}
