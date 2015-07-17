@@ -33,16 +33,6 @@ add_filter( 'body_class', 'pendrell_full_width_body_class' );
 
 
 
-// Sidebar filter; removes sidebar on full-width view
-function pendrell_full_width_sidebar( $sidebar ) {
-  if ( pendrell_full_width() )
-    return false;
-  return $sidebar;
-}
-add_filter( 'pendrell_sidebar', 'pendrell_full_width_sidebar' );
-
-
-
 // Full-width image size filter; assumes 'large' size images fill the window, which they should
 function pendrell_full_width_image_resize( $size ) {
   if ( pendrell_full_width() ) {

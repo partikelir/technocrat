@@ -71,6 +71,7 @@
     width: percentage( 1 - ( $width-main / $width-content ) );
     .full-width & {
       float: none;
+      max-width: $width-content;
       padding-left: 0;
       width: 100%;
     }
@@ -168,17 +169,27 @@ main {
 // == SIDEBAR == //
 
 // See also: `_widgets.scss`
+@mixin sidebar-columns {
+  @include rem( column-gap, spacer(2) );
+  columns: auto 2; // @TODO: Selectric boxes don't play well with the sidebar in column mode :/
+  overflow: hidden; // Required to hide extra space in Chrome
+  position: relative; // Required to hide extra space in Chrome
+  .widget {
+    display: inline-block;
+    width: 100%;
+  }
+}
 .site-sidebar {
   max-width: $width-main; // Keeps things tidy
   @include k-media-between( break(small), break(large) ) {
-    @include rem( column-gap, spacer(2) );
-    columns: auto 2;
-    overflow: hidden; // Required to hide extra space in Chrome
-    position: relative; // Required to hide extra space in Chrome
-    // @TODO: Selectric boxes don't play well with the sidebar in column mode :/
-    .widget {
-      display: inline-block;
-      width: 100%;
+    @include sidebar-columns;
+  }
+  .full-width & {
+    max-width: $width-content;
+    @include sidebar-columns;
+    @include k-media-above( break(full) ) {
+      @include rem( column-gap, spacer() );
+      columns: auto 3;
     }
   }
 }
