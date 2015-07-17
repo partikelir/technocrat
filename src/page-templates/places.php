@@ -19,9 +19,11 @@ get_header(); ?>
           </div>
         </header>
         <main id="main" class="site-main" role="main">
-          <?php $ancestors = ubik_places_ancestors();
-          if ( !empty( $ancestors ) ) {
+          <?php // The following is a total hack; @TODO: code this properly
+          $data = pendrell_places_page_template();
+          if ( !empty( $data ) ) {
 
+            // A hack to set thumbs for various places
             global $pendrell_places_thumbs;
             if ( !is_array( $pendrell_places_thumbs ) )
               $pendrell_places_thumbs = array();
@@ -30,12 +32,13 @@ get_header(); ?>
             $places = array();
 
             // Loop through all the top-most places
-            foreach ( $ancestors as $place ) {
+            foreach ( $data as $place ) {
 
               // Clear metadata
               $metadata = '';
+              $place->thumb = '';
 
-              // This is a hack to manually assign thumbnails to specific places; @TODO: code this properly
+              // This is the really hacky part of things: manually assign thumbnails to specific places
               if ( array_key_exists( $place->term_id, $pendrell_places_thumbs ) )
                 $place->thumb = $pendrell_places_thumbs[$place->term_id];
 

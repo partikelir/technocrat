@@ -211,8 +211,12 @@ if ( PENDRELL_UBIK_LINKS ) {
 
 // == MARKDOWN == //
 
-if ( PENDRELL_UBIK_MARKDOWN )
+if ( PENDRELL_UBIK_MARKDOWN ) {
+  define( 'UBIK_MARKDOWN_TERM_DESCRIPTION', true );
+  define( 'UBIK_MARKDOWN_WIDGET_TEXT', true );
   require_once( $path_modules . 'ubik-markdown/ubik-markdown.php' );
+  add_filter( 'ubik_imagery_caption_pre', 'ubik_markdown_transform' );
+}
 
 
 

@@ -5,11 +5,24 @@
 
   // Hiding aside, quotation, and status titles to preserve structured data and visual flow
   body:not(.list-view) { // There's no way to isolate this, alas
-    article.format-aside,
     article.format-quote,
     article.format-status {
       header {
         @extend %hide;
+      }
+    }
+  }
+
+
+
+  // Aside
+  body:not(.list-view) {
+    article.format-aside {
+      .entry-title {
+        @include font-size(head-small);
+        @include k-media-above( break(medium) ) {
+          @include font-size(head);
+        }
       }
     }
   }
