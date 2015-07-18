@@ -53,7 +53,7 @@ function pendrell_places_meta( $meta ) {
     }
 
     // Add to post metadata
-    $meta .= sprintf( __( 'Places: %s.', 'pendrell' ), ubik_meta_terms( 'places', '', $sep, $top ) );
+    $meta .= sprintf( __( 'Places: %s. ', 'pendrell' ), ubik_meta_terms( 'places', '', $sep, $top ) );
   }
   return $meta;
 }
