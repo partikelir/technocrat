@@ -19,7 +19,7 @@
   body:not(.list-view) {
     article.format-aside {
       .entry-title {
-        @include font-size(head-small);
+        @include font-size(head-small); // A slightly smaller title size for asides
         @include k-media-above( break(medium) ) {
           @include font-size(head);
         }
