@@ -55,13 +55,15 @@
     }
 
     // Full-width modifications
-    &.full-width {
-      @include k-media-above( break(large) ) {
-        .entry-title {
-          @include font-size(head);
-        }
-        .entry-content {
-          @include font-size(text-small);
+    @if module(full-width) {
+      &.full-width {
+        @include k-media-above( break(large) ) {
+          .entry-title {
+            @include font-size(head);
+          }
+          .entry-content {
+            @include font-size(text-small);
+          }
         }
       }
     }

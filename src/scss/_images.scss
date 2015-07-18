@@ -8,14 +8,18 @@ figure.wp-caption,
   overflow: auto; // Without this the floats won't float, but we'll reset it in a media query (below)
   &.alignleft {
     margin-right: percentage( spacer() / $width-main );
-    .full-width & {
-      margin-right: percentage( spacer() / $width-content );
+    @if module(full-width) {
+      .full-width & {
+        margin-right: percentage( spacer() / $width-content );
+      }
     }
   }
   &.alignright {
     margin-left: percentage( spacer() / $width-main );
-    .full-width & {
-      margin-left: percentage( spacer() / $width-content );
+    @if module(full-width) {
+      .full-width & {
+        margin-left: percentage( spacer() / $width-content );
+      }
     }
   }
   &.aligncenter {
@@ -58,9 +62,11 @@ figure.wp-caption {
   @include k-reverse-italics;
   color: colour(text-lightest);
   max-width: 100%;
-  .full-width & {
-    @include font-size(text-small);
-    color: colour(text-lighter);
+  @if module(full-width) {
+    .full-width & {
+      @include font-size(text-small);
+      color: colour(text-lighter);
+    }
   }
 }
 
@@ -73,13 +79,6 @@ figure.wp-caption {
   .wp-caption-text {
     @include font-size( text, 0, 25 );
     @include font-style(image-overlay-title);
-    .full-width & {
-      color: white();
-      @include k-media-above( break(medium) ) {
-        @include font-size(text-bigger);
-        @include text-shadow-bigger;
-      }
-    }
     .gallery-static & {
       @include k-media-below( break(small) ) {
         @include font-size( text-smaller, 0, 25 );
@@ -88,6 +87,15 @@ figure.wp-caption {
     .gallery-static.gallery-columns-4 & {
       @include k-media-below( break(medium) ) {
         @include font-size( text-smaller, 0, 25 );
+      }
+    }
+    @if module(full-width) {
+      .full-width & {
+        color: white();
+        @include k-media-above( break(medium) ) {
+          @include font-size(text-bigger);
+          @include text-shadow-bigger;
+        }
       }
     }
   }
@@ -101,12 +109,7 @@ figure.wp-caption {
       @include k-media-between( break(tiny), break(medium) ) {
         @include font-size( text-smaller, 0, 25 );
       }
-      .full-width & {
-        @include font-size( text, 0, 25 );
-        @include k-media-between( break(tiny), break(medium) ) {
-          @include font-size( text-small, 0, 25 );
-        }
-      }
+
       .gallery-static & {
         @include k-media-below( break(small) ) {
           @include font-size( text-smaller, 0, 25 );
@@ -117,6 +120,14 @@ figure.wp-caption {
           @include font-size( text-smaller, 0, 25 );
         }
       }
+      @if module(full-width) {
+        .full-width & {
+          @include font-size( text, 0, 25 );
+          @include k-media-between( break(tiny), break(medium) ) {
+            @include font-size( text-small, 0, 25 );
+          }
+        }
+      }
     }
     &.date {
       @include font-size( text-smaller, 0, 25 );
@@ -125,15 +136,17 @@ figure.wp-caption {
       @include k-media-between( break(tiny), break(medium) ) {
         @include font-size( text-smallest, 0, 25 );
       }
-      .full-width & {
-        @include font-size( text-small, 0, 25 );
-        @include k-media-between( break(tiny), break(medium) ) {
-          @include font-size( text-smaller, 0, 25 );
-        }
-      }
       .gallery-static & {
         @include k-media-below( break(medium) ) {
           display: none;
+        }
+      }
+      @if module(full-width) {
+        .full-width & {
+          @include font-size( text-small, 0, 25 );
+          @include k-media-between( break(tiny), break(medium) ) {
+            @include font-size( text-smaller, 0, 25 );
+          }
         }
       }
     }
@@ -156,8 +169,10 @@ figure.wp-caption {
   @include k-media-above( break(tiny) ) {
     float: left;
     margin: 0 percentage( $spacer-image / $width-main ) percentage( $spacer-image / $width-main ) 0;
-    .full-width & {
-      margin: 0 percentage( $spacer-image / $width-content ) percentage( $spacer-image / $width-content ) 0;
+    @if module(full-width) {
+      .full-width & {
+        margin: 0 percentage( $spacer-image / $width-content ) percentage( $spacer-image / $width-content ) 0;
+      }
     }
   }
   @include k-media-below( break(tiny) ) {
@@ -203,8 +218,10 @@ figure.wp-caption {
         &:nth-of-type(#{$i}n+1) {
           clear: left;
         }
-        .full-width & {
-          @include gallery-max-width( $i, $width-content );
+        @if module(full-width) {
+          .full-width & {
+            @include gallery-max-width( $i, $width-content );
+          }
         }
       }
     }
@@ -223,8 +240,10 @@ figure.wp-caption {
       &:nth-of-type(2n+1) {
         clear: left;
       }
-      .full-width & {
-        @include gallery-max-width( 2, $width-content );
+      @if module(full-width) {
+        .full-width & {
+          @include gallery-max-width( 2, $width-content );
+        }
       }
     }
   }
@@ -254,8 +273,10 @@ figure.wp-caption {
   figure.wp-caption {
     float: left;
     margin: 0 percentage( $spacer-image / $width-main ) percentage( $spacer-image / $width-main ) 0;
-    .full-width & {
-      margin: 0 percentage( $spacer-image / $width-content ) percentage( $spacer-image / $width-content ) 0;
+    @if module(full-width) {
+      .full-width & {
+        margin: 0 percentage( $spacer-image / $width-content ) percentage( $spacer-image / $width-content ) 0;
+      }
     }
   }
   @for $i from 2 to 5 {
@@ -271,8 +292,10 @@ figure.wp-caption {
         &:nth-of-type(#{$i}n+1) {
           clear: left;
         }
-        .full-width & {
-          @include gallery-max-width( $i, $width-content );
+        @if module(full-width) {
+          .full-width & {
+            @include gallery-max-width( $i, $width-content );
+          }
         }
       }
     }
@@ -291,8 +314,10 @@ figure.wp-caption {
       &:nth-of-type(2n+1) {
         clear: left;
       }
-      .full-width & {
-        @include gallery-max-width( 2, $width-content );
+      @if module(full-width) {
+        .full-width & {
+          @include gallery-max-width( 2, $width-content );
+        }
       }
     }
     @include k-media-above( break(medium) ) {
@@ -303,8 +328,10 @@ figure.wp-caption {
       &:nth-of-type(3n+1) {
         clear: left;
       }
-      .full-width & {
-        @include gallery-max-width( 3, $width-content );
+      @if module(full-width) {
+        .full-width & {
+          @include gallery-max-width( 3, $width-content );
+        }
       }
     }
   }

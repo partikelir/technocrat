@@ -167,12 +167,10 @@
 
 
 
-// Exclusive to post contents
-.entry-content {
-
-  // Full-width styling adjustments on viewports larger than the medium breakpoint
+// Full-width styling exclusive to the body of posts
+@if module(full-width) {
   @include k-media-above( break(medium) ) {
-    .full-width & {
+    .full-width .entry-content {
       @include font-size(text-bigger);
 
       // Increase top header sizes (the rest remain the same)
@@ -238,8 +236,10 @@
       @include rem( margin-top, 1px );
       @include font-size(text-smallest);
       color: colour(text-muted);
-      .full-width & {
-        @include font-size(text-smallest);
+      @if module(full-width) {
+        .full-width & {
+          @include font-size(text-smallest);
+        }
       }
     }
   }

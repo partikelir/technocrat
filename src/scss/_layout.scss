@@ -50,12 +50,21 @@
     max-width: $width-main;
     padding-left: 0;
     width: percentage( $width-main / $width-content );
-    .full-width &,
-    &:only-child {
-      float: none;
-      max-width: $width-content;
-      padding-right: 0;
-      width: 100%;
+    @if module(full-width) {
+      .full-width &,
+      &:only-child {
+        float: none;
+        max-width: $width-content;
+        padding-right: 0;
+        width: 100%;
+      }
+    } @else {
+      &:only-child {
+        float: none;
+        max-width: $width-content;
+        padding-right: 0;
+        width: 100%;
+      }
     }
   }
 }
@@ -69,11 +78,13 @@
     max-width: $width-content - $width-main;
     padding-right: 0;
     width: percentage( 1 - ( $width-main / $width-content ) );
-    .full-width & {
-      float: none;
-      max-width: $width-content;
-      padding-left: 0;
-      width: 100%;
+    @if module(full-width) {
+      .full-width & {
+        float: none;
+        max-width: $width-content;
+        padding-left: 0;
+        width: 100%;
+      }
     }
   }
 }
@@ -151,8 +162,10 @@
   &:focus {
     outline: none; // Prevent weird blue glow when using the skip link
   }
-  .full-width & {
-    max-width: $width-content;
+  @if module(full-width) {
+    .full-width & {
+      max-width: $width-content;
+    }
   }
 
   // Individual articles within the content area
@@ -184,12 +197,14 @@ main {
   @include k-media-between( break(small), break(large) ) {
     @include sidebar-columns;
   }
-  .full-width & {
-    max-width: $width-content;
-    @include sidebar-columns;
-    @include k-media-above( break(full) ) {
-      @include rem( column-gap, spacer() );
-      columns: auto 3;
+  @if module(full-width) {
+    .full-width & {
+      max-width: $width-content;
+      @include sidebar-columns;
+      @include k-media-above( break(full) ) {
+        @include rem( column-gap, spacer() );
+        columns: auto 3;
+      }
     }
   }
 }
