@@ -1,6 +1,6 @@
-// ==== NAVIGATION ==== //
+// ==== RESPONSIVE MENU ==== //
 
-// Navigation.js adapted from _s; changed to active the entire site navigation element, not just the menu within it
+// This script is adapted from _s
 ;(function($) {
 	var nav 			= document.getElementById('site-navigation'),
 			menu 			= document.getElementById('menu-header'),
