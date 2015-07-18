@@ -39,13 +39,9 @@ function pendrell_archive_description( $desc = '' ) {
       $desc = get_the_archive_description();
   }
 
-  // Archive descriptions for individual authors (direct output; must skip conditional description output)
-  if ( is_author() ) {
-    if ( get_the_author_meta( 'description' ) ) {
-      echo '<div class="archive-desc">';
-      pendrell_author_info();
-      echo '</div>';
-    }
+  // Archive descriptions for individual authors
+  if ( is_author() && get_the_author_meta( 'description' ) ) {
+    echo '<div class="archive-desc">' . pendrell_author_info() . '</div>';
 
   // Output the archive description for most terms
   } elseif ( !empty( $desc ) ) {

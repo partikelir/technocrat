@@ -188,6 +188,7 @@ if ( PENDRELL_UBIK_MARKDOWN ) {
   define( 'UBIK_MARKDOWN_TERM_DESCRIPTION', true );
   define( 'UBIK_MARKDOWN_WIDGET_TEXT', true );
   require_once( $path_modules . 'ubik-markdown/ubik-markdown.php' );
+  add_filter( 'get_the_author_description', 'ubik_markdown_transform' ); // See also: ./core/author.php
   add_filter( 'ubik_imagery_caption_pre', 'ubik_markdown_transform' );
 }
 
@@ -342,6 +343,7 @@ add_filter( 'ubik_time_human_diff_case', 'ubik_time_human_diff_case_lower' );
 
 // == TITLE * == //
 
+define( 'UBIK_TITLE_DOCUMENT', true );
 define( 'UBIK_TITLE_STRIP_ARCHIVES', true );
 require_once( $path_modules . 'ubik-title/ubik-title.php' );
 

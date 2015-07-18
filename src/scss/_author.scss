@@ -9,13 +9,12 @@
 }
 .author-avatar {
   @extend %links-reset-border;
-  @include rem( margin, spacer(1/2) spacer(1/2) spacer(1/2) 0 );
+  @include rem( margin, spacer(1/4) spacer(1/2) spacer(3/4) 0 );
   @include rem( width, spacer(4) );
   float: left;
   line-height: 0; // Keeps the container snug around the avatar image
   img {
-    @include k-circle;
-    @include k-greyscale;
+    @include border-radius;
     width: 100%;
   }
   @include k-media-below( break(medium) ) {
@@ -24,6 +23,26 @@
 }
 .author-description {
   p {
+    @extend %spacer-below;
     @extend %text-small;
+    &:last-child {
+      @extend %spacer-below-reset;
+    }
+  }
+  .author-link {
+    @extend %text-smaller;
+    font-style: italic;
+    text-align: right;
+  }
+}
+
+.author-box {
+  @extend %links-no-border;
+  @include k-media-above( break(small) ) {
+    @include border-radius(6px);
+    @include box-shadow-inner-big;
+    @include rem( margin, spacer(2.5) spacer(-1/2) );
+    @include rem( padding, spacer(1/2) );
+    background: colour(body-dark);
   }
 }
