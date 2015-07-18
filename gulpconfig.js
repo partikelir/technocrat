@@ -150,7 +150,7 @@ module.exports = {
       , bower+'svg.icon.js/svg.icon.js'
       , bower+'jquery-selectric/public/jquery.selectric.js'
       , bower+'autosize/dist/autosize.js'
-      , src+'js/navigation.js'
+      , src+'js/responsive-menu.js'
       , src+'js/skip-link-focus-fix.js'
       , src+'js/core.js'
       ]

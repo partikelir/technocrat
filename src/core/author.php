@@ -1,61 +1,96 @@
 <?php // ==== AUTHOR ==== //
 
-// Author info on posts (optional); not shown on certain post formats or pages
-function pendrell_author_meta() {
+// Author info box on posts (optional, disabled by default); not shown on certain post formats or pages
+// @filter: pendrell_author_box
+function pendrell_author_box() {
   if (
-    is_singular()
+    apply_filters( 'pendrell_author_box', true ) // A switch to allow for theme-specific rules
+    && is_singular()
     && get_the_author_meta( 'description' ) // Only if there is a description
     && !has_post_format( array( 'aside', 'image', 'link', 'quote', 'status' ) ) // Not for small content
     && !is_page() // Not on pages
   ) {
-    pendrell_author_info();
+    ?><section class="author-box"><?php echo pendrell_author_info(); ?></section><?php
   }
 }
-if ( PENDRELL_AUTHOR_META )
-  add_filter( 'pendrell_entry_footer_after', 'pendrell_author_meta', 12 );
+add_action( 'pendrell_comment_template_before', 'pendrell_author_box', 5 );
 
 
 
-// Author info box
-function pendrell_author_info() {
-  if ( get_the_author_meta( 'description' ) ) {
-    $author = '<span class="p-name p-author">' . get_the_author() . '</span>'; ?>
-    <div class="author author-info h-card">
-      <div class="author-avatar">
-        <?php pendrell_author_avatar( get_the_author_meta( 'user_url' ) ); ?>
-      </div>
-      <div class="author-description">
-        <?php if ( !is_archive() ) { ?><h3><?php printf( __( 'About %s', 'pendrell' ), $author ); ?></h3><?php } ?>
-        <p><?php the_author_meta( 'description' ); ?></p>
-        <?php if ( is_multi_author() ) { ?>
-        <div class="author-link">
-          <a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>" rel="author">
-            <?php printf( __( 'View all posts by %s<span class="nav-arrow">&nbsp;&rarr;</span>', 'pendrell' ), $author ); ?>
-          </a>
-        </div>
-        <?php } ?>
-      </div>
-    </div>
-  <?php }
+// Author box rules: when and where to display the extra author box
+function pendrell_author_box_rules( $switch ) {
+
+  // Off by default
+  $switch = false;
+
+  return $switch;
+}
+add_filter( 'pendrell_author_box', 'pendrell_author_box_rules' );
+
+
+
+// Author info; abstracted for use in author archive descriptions as well as inside author info boxes
+function pendrell_author_info( $avatar = true ) {
+
+  // Exit early if the author has no description
+  if ( !get_the_author_meta( 'description' ) )
+    return;
+
+  // Initialize
+  $output = $avatar_html = '';
+  $author = '<span class="p-name p-author">' . get_the_author() . '</span>';
+
+  // Author description
+  $output .= get_the_author_meta( 'description' );
+
+  // Only add this stuff to author info boxes
+  if ( is_singular() ) {
+    $output = '<h3>' . sprintf( __( 'Author profile: %s', 'pendrell' ), $author ) . '</h3>' . $output;
+    if ( is_multi_author() )
+      $output .= '<footer class="author-link"><a href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '" rel="author">' . sprintf( __( 'View all posts by %s<span class="nav-arrow">&nbsp;&rarr;</span>', 'pendrell' ), $author ) . '</a></footer>';
+  }
+
+  // Wrap the author description
+  $output = '<div class="author-description">' . $output . '</div>';
+
+  // Avatar handling
+  if ( $avatar === true ) {
+    $avatar_html = pendrell_author_avatar( get_the_author_meta( 'user_url' ), PENDRELL_BASELINE * 4 );
+    if ( !empty ( $avatar_html ) )
+      $output = '<div class="author-avatar">' . $avatar_html . '</div>' . $output;
+  }
+
+  // Wrap it all up and return
+  return '<div class="author author-info h-card">' . $output . '</div>';
 }
 
 
 
-// Return the avatar with a link to the specified URL
-function pendrell_author_avatar( $url ) {
+// Return the avatar with a link to the specified URL; size should be some multiple of the baseline
+// @filter: pendrell_author_avatar_default
+function pendrell_author_avatar( $url = '', $size = PENDRELL_BASELINE ) {
 
-  // Size should be some multiple of the baseline
-  $size = PENDRELL_BASELINE * 4;
-  $default = '';
+  // Initialize
+  $output = '';
+  $default = apply_filters( 'pendrell_author_avatar_default', '' );
   $alt = get_the_author();
 
   // Optionally wrap avatar in a link
   if ( !empty( $url ) ) {
-    echo '<a href="' . $url . '" rel="author">' . get_avatar( get_the_author_meta( 'user_email' ), $size, $default, $alt ) . '</a>';
+    $output = '<a href="' . $url . '" rel="author">' . get_avatar( get_the_author_meta( 'user_email' ), $size, $default, $alt ) . '</a>';
   } else {
-    echo get_avatar( get_the_author_meta( 'user_email' ), $size, $default, $alt );
+    $output = get_avatar( get_the_author_meta( 'user_email' ), $size, $default, $alt );
   }
+  return $output;
 }
+
+
+
+// Neaten author descriptions; Ubik Markdown can also be used to transform descriptions
+add_filter( 'get_the_author_description', 'wptexturize' );
+add_filter( 'get_the_author_description', 'do_shortcode' );
+add_filter( 'get_the_author_description', 'wpautop' );
+add_filter( 'get_the_author_description', 'shortcode_unautop' );
 
 
 

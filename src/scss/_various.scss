@@ -8,6 +8,11 @@
     outline: none; // Remove blue border when clicking on footnotes
     &:before {
       @include font-size(text-smallest);
+      @if module(full-width) {
+        .full-width & {
+          @include font-size(text-smaller);
+        }
+      }
     }
   }
 }

@@ -169,11 +169,15 @@
   &:focus {
     outline: none; // Prevent weird blue glow when using the skip link
   }
-
   @include k-media-above( break(large) ) {
     @include rem( padding, spacer(3.5) spacer(2) spacer() spacer(2) );
     @include rem( padding-right, spacer(2) );
     margin-left: auto;
+  }
+  @if module(full-width) {
+    .full-width & {
+      max-width: $width-content;
+    }
   }
 
   // Individual articles within the content area
@@ -207,6 +211,16 @@ main {
   }
   @include k-media-above( break(large) ) {
     max-width: $width-content - $width-main;
+  }
+  @if module(full-width) {
+    .full-width & {
+      max-width: $width-content;
+      @include sidebar-columns;
+      @include k-media-above( break(full) ) {
+        @include rem( column-gap, spacer() );
+        columns: auto 3;
+      }
+    }
   }
 }
 
