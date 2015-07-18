@@ -46,14 +46,15 @@ function pendrell_author_info( $avatar = true ) {
   // Only add this stuff to author info boxes
   if ( is_singular() ) {
     $output = '<h3>' . sprintf( __( 'Author profile: %s', 'pendrell' ), $author ) . '</h3>' . $output;
-    $output .= '<footer class="author-link"><a href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '" rel="author">' . sprintf( __( 'View all posts by %s<span class="nav-arrow">&nbsp;&rarr;</span>', 'pendrell' ), $author ) . '</a></footer>';
+    if ( is_multi_author() )
+      $output .= '<footer class="author-link"><a href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '" rel="author">' . sprintf( __( 'View all posts by %s<span class="nav-arrow">&nbsp;&rarr;</span>', 'pendrell' ), $author ) . '</a></footer>';
   }
 
   // Wrap the author description
   $output = '<div class="author-description">' . $output . '</div>';
 
   // Avatar handling
-  if ( $avatar == true ) {
+  if ( $avatar === true ) {
     $avatar_html = pendrell_author_avatar( get_the_author_meta( 'user_url' ), PENDRELL_BASELINE * 4 );
     if ( !empty ( $avatar_html ) )
       $output = '<div class="author-avatar">' . $avatar_html . '</div>' . $output;
