@@ -5,7 +5,7 @@
     <?php do_action( 'pendrell_entry_header' ); ?>
   </header>
   <div class="entry-content">
-    <?php the_content(); pendrell_nav_link_pages(); ?>
+    <?php the_content(); pendrell_nav_page_links(); ?>
   </div>
   <footer class="entry-footer">
     <?php do_action( 'pendrell_entry_footer' ); ?>

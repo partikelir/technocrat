@@ -190,6 +190,7 @@ if ( PENDRELL_UBIK_MARKDOWN ) {
   require_once( $path_modules . 'ubik-markdown/ubik-markdown.php' );
   add_filter( 'get_the_author_description', 'ubik_markdown_transform' ); // See also: ./core/author.php
   add_filter( 'ubik_imagery_caption_pre', 'ubik_markdown_transform' );
+  add_filter( 'get_the_excerpt', 'ubik_markdown_transform' ); // This comes up when generated meta descriptions from attachment captions
 }
 
 
@@ -251,12 +252,12 @@ add_filter( 'ubik_search_button', 'pendrell_icon_search_button' );
 
 if ( PENDRELL_UBIK_SEO ) {
   define( 'UBIK_SEO_YOAST_DEFAULT_DESC', true );
-  define( 'UBIK_SEO_YOAST_IMAGE_EXTRAS', true );
-  define( 'UBIK_SEO_YOAST_IMAGE_MORE', true );
+  define( 'UBIK_SEO_YOAST_OG', true );
   define( 'UBIK_SEO_YOAST_NO_ADMIN_BAR', true );
   define( 'UBIK_SEO_YOAST_NO_POST_FILTER', true );
   define( 'UBIK_SEO_YOAST_PINTEREST_AUTH', true );
-  define( 'UBIK_SEO_YOAST_TWITTER_CARDS', true );
+  define( 'UBIK_SEO_YOAST_TITLE_CLEANER', true );
+  define( 'UBIK_SEO_YOAST_TWITTER', true );
   require_once( $path_modules . 'ubik-seo/ubik-seo.php' );
 }
 
@@ -310,7 +311,7 @@ function is_categorized() {
 }
 
 // Don't display categories if the blog isn't categorized
-if ( !is_categorized() )
+if ( !ubik_terms_categorized() )
   add_filter( 'ubik_meta_categories', '__return_empty_string' );
 
 

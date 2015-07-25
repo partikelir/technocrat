@@ -50,8 +50,10 @@
     }
 
     // Link post format
-    .entry-link {
-      @extend %hide;
+    @if module(post-formats) {
+      .entry-link {
+        @extend %hide;
+      }
     }
 
     // Full-width modifications
