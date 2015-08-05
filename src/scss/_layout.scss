@@ -68,7 +68,7 @@
   @extend %wrap;
   background: colour(bg-footer);
   @include k-media-above( break(large) ) {
-    padding: 0;
+    padding: 0 33% 0 0; // See .site-footer
   }
 }
 
@@ -235,8 +235,6 @@ main {
     @include rem( padding-left, spacer(2) );
     margin-left: auto;
     max-width: $width-main + spacer(2);
-    width: 67%;
-    padding-right: 33%;
   }
   color: colour(footer);
   .buttons {

@@ -1,4 +1,4 @@
-<?php // ==== SINGLE ==== //
+<?php // ==== SINGULAR ==== //
 
 get_header(); ?>
   <div id="wrap-content" class="wrap-content">
@@ -9,7 +9,7 @@ get_header(); ?>
     				pendrell_template_part();
           endwhile; ?>
     		</main>
-        <?php pendrell_nav_post( 'nav-below' ); ?>
+        <?php do_action( 'pendrell_singular_below' ); ?>
     	</section>
     </div>
   </div>

@@ -4,15 +4,13 @@
 .page-links,
 .nav-comments,
 .nav-content,
-.nav-page,
-.nav-post {
+.nav-singular {
   @extend %clearfix;
   @extend %spacer-below;
 }
 .nav-comments,
-.nav-page,
-.nav-post {
-  @extend %links-no-border; // These are regular links, not buttons, and need styling
+.nav-singular {
+  @extend %links; // These are regular links, not buttons, and need styling
 }
 .nav-above {
   @include rem( margin-bottom, spacer() );
@@ -23,13 +21,13 @@
 .nav-comments {
   @extend %spacer-below-double;
 }
-.nav-previous {
+.nav-left {
   @include rem( padding-right, spacer(1/2) );
   box-sizing: border-box;
   float: left;
   width: 50%;
 }
-.nav-next {
+.nav-right {
   @include rem( padding-left, spacer(1/2) );
   box-sizing: border-box;
   float: right;
