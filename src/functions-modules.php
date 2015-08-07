@@ -25,20 +25,23 @@ if ( WP_LOCAL_DEV ) {
 defined( 'PENDRELL_UBIK_ADMIN' )          || define( 'PENDRELL_UBIK_ADMIN', false );
 defined( 'PENDRELL_UBIK_ANALYTICS' )      || define( 'PENDRELL_UBIK_ANALYTICS', false );
 defined( 'PENDRELL_UBIK_EXCLUDER' )       || define( 'PENDRELL_UBIK_EXCLUDER', false );
-defined( 'PENDRELL_UBIK_FEED' )           || define( 'PENDRELL_UBIK_FEED', true );
+defined( 'PENDRELL_UBIK_FEED' )           || define( 'PENDRELL_UBIK_FEED', false );
 defined( 'PENDRELL_UBIK_LINGUAL' )        || define( 'PENDRELL_UBIK_LINGUAL', false );
 defined( 'PENDRELL_UBIK_LINKS' )          || define( 'PENDRELL_UBIK_LINKS', false );
 defined( 'PENDRELL_UBIK_MARKDOWN' )       || define( 'PENDRELL_UBIK_MARKDOWN', false );
 defined( 'PENDRELL_UBIK_PHOTO_META' )     || define( 'PENDRELL_UBIK_PHOTO_META', false );
 defined( 'PENDRELL_UBIK_PLACES' )         || define( 'PENDRELL_UBIK_PLACES', false );
-defined( 'PENDRELL_UBIK_POST_FORMATS' )   || define( 'PENDRELL_UBIK_POST_FORMATS', true );
 defined( 'PENDRELL_UBIK_QUICK_TERMS' )    || define( 'PENDRELL_UBIK_QUICK_TERMS', false );
 defined( 'PENDRELL_UBIK_RECORDPRESS' )    || define( 'PENDRELL_UBIK_RECORDPRESS', false );
 defined( 'PENDRELL_UBIK_RELATED' )        || define( 'PENDRELL_UBIK_RELATED', false );
-defined( 'PENDRELL_UBIK_SEO' )            || define( 'PENDRELL_UBIK_SEO', true );
+defined( 'PENDRELL_UBIK_SEO' )            || define( 'PENDRELL_UBIK_SEO', false );
 defined( 'PENDRELL_UBIK_SERIES' )         || define( 'PENDRELL_UBIK_SERIES', false );
 
-// Modules path
+// Dependent on the Pendrell core post formats switch
+if ( PENDRELL_POST_FORMATS )
+  defined( 'PENDRELL_UBIK_POST_FORMATS' )   || define( 'PENDRELL_UBIK_POST_FORMATS', true );
+
+// Modules path; a shortcut for use below
 $path_modules = trailingslashit( get_stylesheet_directory() ) . 'modules/';
 
 
@@ -151,7 +154,7 @@ add_filter( 'pendrell_full_width', 'pendrell_full_width_content' );
 // == IMAGERY * == //
 
 // Enable `srcset` output only when Picturefill module is active
-if ( PENDRELL_SCRIPTS_PICTUREFILL )
+if ( PENDRELL_RESPONSIVE_IMAGES )
   define( 'UBIK_IMAGERY_SRCSET', true );
 define( 'UBIK_IMAGERY_DIMENSIONS', false );
 require_once( $path_modules . 'ubik-imagery.php' );
@@ -286,7 +289,7 @@ if ( UBIK_SVG_ICONS_PATH && UBIK_SVG_ICONS_URL === false )
 
 // == TERMS * == //
 
-define( 'UBIK_TERMS_CATEGORIZED', true ); // This blog has categories
+//define( 'UBIK_TERMS_CATEGORIZED', true ); // This blog has categories
 define( 'UBIK_TERMS_TAG_SHORTCODE', true );
 require_once( $path_modules . 'ubik-terms/ubik-terms.php' );
 
@@ -305,11 +308,6 @@ function pendrell_terms_edit_link( $buttons ) {
 }
 add_action( 'pendrell_archive_buttons', 'pendrell_terms_edit_link' );
 
-// An alias for ubik_terms_categorized()
-function is_categorized() {
-  return ubik_terms_categorized();
-}
-
 // Don't display categories if the blog isn't categorized
 if ( !ubik_terms_categorized() )
   add_filter( 'ubik_meta_categories', '__return_empty_string' );
@@ -319,9 +317,9 @@ if ( !ubik_terms_categorized() )
 // == TEXT * == //
 
 require_once( $path_modules . 'ubik-text/ubik-text.php' );
-add_filter( 'the_content', 'ubik_text_replace', 99 );
-add_filter( 'the_excerpt', 'ubik_text_replace', 99 );
-add_filter( 'comment_text', 'ubik_text_replace', 99 );
+//add_filter( 'the_content', 'ubik_text_replace', 99 ); // Commented out as simple search and replace doesn't always yield desireable results
+//add_filter( 'the_excerpt', 'ubik_text_replace', 99 );
+//add_filter( 'comment_text', 'ubik_text_replace', 99 );
 add_filter( 'the_content_feed', 'ubik_text_strip_asides' );
 add_filter( 'the_excerpt_rss', 'ubik_text_strip_asides' );
 add_filter( 'the_content', 'ubik_text_strip_more_orphan', 99 ); // Strip paragraph tags from orphaned more tags

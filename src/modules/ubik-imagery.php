@@ -163,10 +163,10 @@ function pendrell_sizes_media_queries( $queries = array(), $size = '', $width = 
   }
 
   // Return an array of arrays (required by Ubik Imagery)
-  return array( $queries );
+  return $queries;
 
 }
-if ( PENDRELL_SCRIPTS_PICTUREFILL )
+if ( PENDRELL_RESPONSIVE_IMAGES )
   add_filter( 'ubik_imagery_sizes_media_queries', 'pendrell_sizes_media_queries', 10, 4 );
 
 
@@ -222,7 +222,7 @@ function pendrell_sizes_default( $default = '', $size = '', $width = '', $contex
   // Return the default `sizes` attribute
   return $default;
 }
-if ( PENDRELL_SCRIPTS_PICTUREFILL )
+if ( PENDRELL_RESPONSIVE_IMAGES )
   add_filter( 'ubik_imagery_sizes_default', 'pendrell_sizes_default', 10, 4 );
 
 

@@ -23,9 +23,9 @@ function pendrell_enqueue_scripts() {
   // Figure out which script bundle to load based on various options set in `src/functions-config-defaults.php`
   // Note: bundles require less HTTP requests at the expense of addition caching hits when different scripts are requested
 
-  // WP AJAX Page Loader (PG8)
+  // AJAX page loading w/WP AJAX Page Loader (pg8)
   $script_vars_pg8 = '';
-  if ( PENDRELL_SCRIPTS_PAGELOAD && ( is_archive() || is_home() || is_search() ) ) {
+  if ( PENDRELL_AJAX_PAGE_LOADER && ( is_archive() || is_home() || is_search() ) ) {
     $script_name .= '-pg8';
 
     global $wp_query;
@@ -42,17 +42,12 @@ function pendrell_enqueue_scripts() {
     );
   } // end PG8
 
-  // Picturefill (PF): responsive images
-  if ( PENDRELL_SCRIPTS_PICTUREFILL ) {
-    if ( is_404() || ( is_attachment() && !wp_attachment_is_image() ) ) { // Could also add certain post formats guaranteed not to have images
-      // Nothing
-    } else {
-      $script_name .= '-pf';
-    }
-  } // end PF
+  // Responsive images w/Picturefill (pf)
+  if ( PENDRELL_RESPONSIVE_IMAGES && !is_404() )
+    $script_name .= '-pf';
 
-  // Prism: code highlighting
-  if ( PENDRELL_SCRIPTS_PRISM && !is_404() && !is_attachment() && !is_search()  )
+  // Syntax highlighting w/Prism (prism)
+  if ( PENDRELL_SYNTAX_HIGHLIGHT && !is_404() && !is_attachment() && !is_search()  )
     $script_name .= '-prism';
 
   // Default script name
