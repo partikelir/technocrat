@@ -119,6 +119,7 @@ module.exports = {
     bundles: {
       core: ['core']
     , contact: ['contact']
+    , magnific: ['magnific']
     , pf: ['pf', 'core']
     , pf_prism: ['pf', 'prism', 'core']
     , pg8: ['pg8', 'core']
@@ -140,7 +141,18 @@ module.exports = {
       , src+'js/core.js'
       ]
     , contact: [bower+'jquery-validation/dist/jquery.validate.js', src+'js/contact-form.js']
-    , pf: [bower+'picturefill/dist/picturefill.js']
+    , magnific: [
+        bower+'parse-srcset/src/parse-srcset.js'
+      , src+'js/magnific-popup-1.js' // Must precede core Magnific Popup scripts
+      , bower+'magnific-popup/src/js/core.js'
+      , bower+'magnific-popup/src/js/image.js'
+      , bower+'magnific-popup/src/js/gallery.js'
+      , bower+'magnific-popup/src/js/fastclick.js'
+      , src+'js/magnific-popup-2.js' // Must follow core Magnific Popup scripts
+      ]
+    , pf: [
+        bower+'picturefill/dist/picturefill.js'
+      ]
     , pg8: [bower+'html5-history-api/history.js', bower+'spin.js/spin.js', bower+'spin.js/jquery.spin.js', bower+'wp-ajax-page-loader/wp-ajax-page-loader.js', src+'js/page-loader.js']
     , prism: [
         bower+'prism/components/prism-core.js'
@@ -231,7 +243,6 @@ module.exports = {
       , 'comments'
       , 'excerpt' // *
       , 'excluder'
-      , 'favicons'
       , 'feed'
       , 'fonts' // *
       , 'imagery' // *

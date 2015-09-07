@@ -24,7 +24,6 @@
     "synapticism/ubik-comments": "^0.0.1",
     "synapticism/ubik-excerpt": "^0.0.4",
     "synapticism/ubik-excluder": "^0.1.0",
-    "synapticism/ubik-favicons": "^0.0.2",
     "synapticism/ubik-feed": "^0.0.2",
     "synapticism/ubik-fonts": "^0.0.1",
     "synapticism/ubik-imagery": "^0.1.5",
@@ -43,7 +42,7 @@
     "synapticism/ubik-series": "^0.0.2",
     "synapticism/ubik-svg-icons": "^0.0.4",
     "synapticism/ubik-terms": "^0.2.0",
-    "synapticism/ubik-text": "^0.0.7",
+    "synapticism/ubik-text": "^0.0.8",
     "synapticism/ubik-time": "^0.0.2",
     "synapticism/ubik-title": "^0.0.3",
     "synapticism/ubik-views": "^0.2.1"

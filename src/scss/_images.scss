@@ -367,3 +367,11 @@ figure.wp-caption {
 .no-image {
   @include image-placeholder;
 }
+
+
+
+// Magnific Popup
+@if module(magnific-popup) {
+  @include magnific-popup;
+}
+

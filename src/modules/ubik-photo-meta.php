@@ -6,7 +6,7 @@ require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-phot
 
 // A simple wrapper for the photo meta function
 function pendrell_photo_meta() {
-  if ( !is_singular() )
+  if ( !is_attachment() )
     return;
 
   $photo_meta = ubik_photo_meta_table();

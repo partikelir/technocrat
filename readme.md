@@ -22,8 +22,9 @@ An incomplete list in no particular order:
 * Consistent vertical rhythm (excluding images and parts of the sidebar; that's just too much trouble).
 * Full-width view for images and galleries. Great for photo-blogging.
 * Truly responsive images and complex layouts with [Ubik Imagery](https://github.com/synapticism/ubik-imagery) and [Picturefill](https://github.com/scottjehl/picturefill). Visitors on mobile will load smaller images than those on bigger screens!
-* Built-in [AJAX Page Loader](https://github.com/synapticism/wp-ajax-page-loader) script (click "next" and more content will appear). Not unlike Infinite Scroll but custom-coded for high performance.
-* Built-in AJAX contact form page template with form validation; no need for a wasteful plugin.
+* Optional built-in [AJAX Page Loader](https://github.com/synapticism/wp-ajax-page-loader) script (click "next" and more content will appear). Not unlike Infinite Scroll but custom-coded for high performance.
+* Optional built-in AJAX contact form page template with form validation; no need for a wasteful plugin.
+* Optional built-in lightbox/image gallery with [Magnific Popup](http://dimsemenov.com/plugins/magnific-popup/).
 * Improved post format styling and support for asides, images (really just a thin wrapper for attachments), links, quotations, and status updates.
 * Custom template swapping; display posts in a gallery of thumbnails, a list, or as the original posts. Great for portfolios. Built with [Ubik Views](https://github.com/synapticism/ubik-views).
 * Smart context-dependent search form and search redirects (singletons and blank queries) with [Ubik Search](https://github.com/synapticism/ubik-search).
@@ -42,7 +43,7 @@ An incomplete list in no particular order:
 
 ## REQUIREMENTS
 
-To use the theme: WordPress 3.9+ and PHP 5.2. For development and customization: gem, npm, Sass, Bower, Composer, and Gulp. Browser support: IE9+ intended, latest 2 versions otherwise.
+To use the theme: WordPress 4.3 and PHP 5.2. For development and customization: gem, npm, Sass, Bower, Composer, and Gulp. Browser support: IE9+ intended, latest 2 versions otherwise.
 
 
 
@@ -72,7 +73,7 @@ When making modifications in development be sure to alter files in the `src` fol
 
 To create a new production-ready distribution under `pendrell/dist/pendrell` use `gulp dist`. This can also be tested locally using a variation on the symbolic link command above.
 
-Pendrell uses vanilla Sass (sans Compass) alongside [Kipple](https://github.com/synapticism/kipple), my zygotic library of Sass hacks, and [Normalize.css](https://necolas.github.io/normalize.css/), among other projects. Have a look at `bower.json` and `composer.json` for a full list.
+Pendrell uses vanilla Sass (sans Compass) alongside [Kipple](https://github.com/synapticism/kipple), my zygotic library of Sass hacks, and [Normalize.css](https://necolas.github.io/normalize.css/), among other projects. Have a look at `bower.json` and `composer.json` for a complete list.
 
 
 
@@ -83,6 +84,7 @@ These plugins are recommended for use with Pendrell:
 * [My fork](https://github.com/synapticism/wp-post-formats) of Crowd Favorite's [WP-Post-Formats plugin](https://github.com/crowdfavorite/wp-post-formats).
 * [JP Markdown](http://wordpress.org/plugins/jetpack-markdown/) to enable Markdown. Works well with [Ubik Markdown](https://github.com/synapticism/ubik-markdown) (included in Pendrell).
 * [WordPress SEO](https://wordpress.org/plugins/wordpress-seo/) by Yoast. Plays nice with [Ubik SEO](https://github.com/synapticism/ubik-seo) (included in Pendrell).
+* [Favicon by RealFaviconGenerator](https://wordpress.org/plugins/favicon-by-realfavicongenerator/).
 * [WP-Super-Cache](http://ocaoimh.ie/wp-super-cache/) or some other caching plugin. *Cache you must!*
 * [Akismet](http://akismet.com/).
 

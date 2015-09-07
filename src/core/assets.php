@@ -5,7 +5,7 @@
 // == SCRIPTS & STYLES == //
 
 // Enqueue front-end scripts and styles; additional ideas to consider: https://github.com/roots/roots/blob/master/lib/scripts.php
-function pendrell_enqueue_scripts() {
+function pendrell_scripts_enqueue() {
 
   $script_name = '';                // Empty by default, may be populated by conditionals below
   $script_vars = array();           // An empty array that can be filled with variables to send to front-end scripts
@@ -22,6 +22,7 @@ function pendrell_enqueue_scripts() {
 
   // Figure out which script bundle to load based on various options set in `src/functions-config-defaults.php`
   // Note: bundles require less HTTP requests at the expense of addition caching hits when different scripts are requested
+  // Be wary of adding needless conditionals as this will increase the diversity of scripts the user might encounter
 
   // AJAX page loading w/WP AJAX Page Loader (pg8)
   $script_vars_pg8 = '';
@@ -43,11 +44,11 @@ function pendrell_enqueue_scripts() {
   } // end PG8
 
   // Responsive images w/Picturefill (pf)
-  if ( PENDRELL_RESPONSIVE_IMAGES && !is_404() )
+  if ( PENDRELL_RESPONSIVE_IMAGES )
     $script_name .= '-pf';
 
   // Syntax highlighting w/Prism (prism)
-  if ( PENDRELL_SYNTAX_HIGHLIGHT && !is_404() && !is_attachment() && !is_search()  )
+  if ( PENDRELL_SYNTAX_HIGHLIGHT )
     $script_name .= '-prism';
 
   // Default script name
@@ -62,6 +63,10 @@ function pendrell_enqueue_scripts() {
   // Contact form (CF1) setup
   if ( is_page_template( 'page-templates/contact-form.php' ) )
     wp_enqueue_script( 'pendrell-contact-form', get_stylesheet_directory_uri() . '/js/p-contact' . $suffix . '.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/p-contact' . $suffix . '.js' ), true );
+
+  // Magnific popup
+  if ( PENDRELL_MAGNIFIC && is_singular() && !is_attachment() && !has_post_format( 'image' ) )
+    wp_enqueue_script( 'pendrell-magnific', get_stylesheet_directory_uri() . '/js/p-magnific' . $suffix . '.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/p-magnific' . $suffix . '.js' ), true );
 
   // Adds JavaScript to pages with the comment form to support sites with threaded comments
   if ( is_singular() && comments_open() && get_option( 'thread_comments' ) )
@@ -94,7 +99,7 @@ function pendrell_enqueue_scripts() {
   wp_enqueue_style( 'pendrell-style' );
 
 } // pendrell_enqueue_scripts()
-add_action( 'wp_enqueue_scripts', 'pendrell_enqueue_scripts' );
+add_action( 'wp_enqueue_scripts', 'pendrell_scripts_enqueue' );
 
 
 

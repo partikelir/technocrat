@@ -113,12 +113,6 @@ if ( PENDRELL_UBIK_EXCLUDER )
 
 
 
-// == FAVICONS * == //
-
-require_once( $path_modules . 'ubik-favicons/ubik-favicons.php' );
-
-
-
 // == FEED == //
 
 if ( PENDRELL_UBIK_FEED ) {
