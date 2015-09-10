@@ -194,6 +194,7 @@ if ( PENDRELL_UBIK_MARKDOWN ) {
 
 // == META * == //
 
+define('UBIK_META_DATE_HUMANIZE', true);
 require_once( $path_modules . 'ubik-meta/ubik-meta.php' );
 add_filter( 'ubik_meta_date_grace_period', '__return_true' );
 add_filter( 'ubik_meta_microformats', '__return_true' );
@@ -330,7 +331,6 @@ add_filter( 'ubik_text_replace_simple', 'pendrell_text_replace' );
 // == TIME * == //
 
 require_once( $path_modules . 'ubik-time/ubik-time.php' );
-add_filter( 'ubik_time_human_diff_case', 'ubik_time_human_diff_case_lower' );
 
 
 

@@ -135,6 +135,7 @@ module.exports = {
         bower+'svg4everybody/svg4everybody.js'
       , bower+'svg.icon.js/svg.icon.js'
       , bower+'jquery-selectric/public/jquery.selectric.js'
+      , bower+'jquery-timeago/jquery.timeago.js'
       , bower+'autosize/dist/autosize.js'
       , src+'js/responsive-menu.js'
       , src+'js/skip-link-focus-fix.js'

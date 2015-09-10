@@ -24,11 +24,11 @@
   ],
   "devDependencies": {
     "autosize": "^3.0.8",
-    "chocolat": "~0.4.9",
     "font-awesome-svg-png": "^1.1.2",
     "html5-history-api": "^4.2.2",
     "ionicons": "^2.0.1",
     "jquery-selectric": "^1.9.3",
+    "jquery-timeago": "~1.4.2",
     "jquery-validation": "^1.14.0",
     "kipple": "https://github.com/synapticism/kipple.git",
     "magnific-popup": "^1.0.0",

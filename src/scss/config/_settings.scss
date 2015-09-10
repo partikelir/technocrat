@@ -28,7 +28,7 @@ $_metadata: (
 , theme-author:             "Alexander Synaptic"
 , theme-author-uri:         "http://synapticism.com"
 , theme-description:        "Alexander Synaptic"
-, theme-version:            "0.38.0"
+, theme-version:            "0.39.0"
 , theme-license:            "GPLv3"
 , theme-license-uri:        "https://www.gnu.org/copyleft/gpl.txt"
 , theme-tags:               (light, gray, white, one-column, two-columns, right-sidebar, fixed-layout, responsive-layout, custom-menu, featured-images, full-width-template, microformats, post-formats, theme-options, translation-ready)
@@ -49,7 +49,7 @@ $_breaks: (
 $_modules: (
   full-width:         true
 , gallery-shortcode:  false // WordPress core; activation creates some useless duplicate styles; disable if you don't use [gallery]
-, magnific-popup:     true
+, magnific-popup:     false
 , post-formats:       false
 , prism:              false
 , ubik-links:         false

@@ -21,7 +21,7 @@ An incomplete list in no particular order:
 * Big, beautiful typesetting for [easy reading](http://ia.net/blog/100e2r/).
 * Consistent vertical rhythm (excluding images and parts of the sidebar; that's just too much trouble).
 * Full-width view for images and galleries. Great for photo-blogging.
-* Truly responsive images and complex layouts with [Ubik Imagery](https://github.com/synapticism/ubik-imagery) and [Picturefill](https://github.com/scottjehl/picturefill). Visitors on mobile will load smaller images than those on bigger screens!
+* Truly responsive images and complex layouts with [Ubik Imagery](https://github.com/synapticism/ubik-imagery) and [Picturefill](https://github.com/scottjehl/picturefill). Visitors on mobile will load smaller image files than those with larger screens!
 * Optional built-in [AJAX Page Loader](https://github.com/synapticism/wp-ajax-page-loader) script (click "next" and more content will appear). Not unlike Infinite Scroll but custom-coded for high performance.
 * Optional built-in AJAX contact form page template with form validation; no need for a wasteful plugin.
 * Optional built-in lightbox/image gallery with [Magnific Popup](http://dimsemenov.com/plugins/magnific-popup/).
@@ -34,6 +34,7 @@ An incomplete list in no particular order:
 * SVG icon sheet support with [Ubik SVG Icons](https://github.com/synapticism/ubik); seamlessly integrate SVG icons from any open source icon set; IE9+ support with [SVG 4 Everybody](https://github.com/jonathantneal/svg4everybody).
 * Code highlighting with [Prism](http://prismjs.com).
 * [Autosize](https://github.com/jackmoore/autosize) `textarea` elements.
+* Live updating human-readable dates on content from the last two weeks thanks to [jQuery-Timeago](https://github.com/rmm5t/jquery-timeago).
 * Absolutely no options screen or database bloat.
 * A halfway decent print media stylesheet.
 * Verbosely commented source code to walk you through everything that Pendrell can do.
