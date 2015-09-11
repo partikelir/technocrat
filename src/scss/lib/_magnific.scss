@@ -1,38 +1,30 @@
 // ==== MAGNIFIC ==== //
 
-// Adapted from the Magnific Popup source file
-// @TODO: this still needs a lot of work...
+// Adapted from the Magnific Popup source file; @TODO: this still needs a lot of work...
+
+// Magnific settings
+$_magnific: (
+  image-background: #444
+, overlay-color: #FFF
+, overlay-opacity: 0.8
+, shadow: 2px 2px 7px rgba(0, 0, 0, 0.23)
+, visually-hidden: true // Hide content from browsers, but make it available for screen readers
+, z-index-base: 1001
+);
 
 // A shortcut function to retrieve settings
 @function magnific($key) {
   @return config($_magnific, $key);
 }
 
-// Settings
-$_magnific: (
-  overlay-color: #FFF
-, overlay-opacity: 0.8
-, z-index-base: 1040
-, shadow: 2px 2px 6px rgba(0, 0, 0, 0.3)
-, include-image-type:              true
-, image-background:                #444
-, include-mobile-layout-for-image: true // Removes paddings from top and bottom
-
-
-, visually-hidden: true
-);
-
-
 @mixin magnific-popup {
-
-  // Blur the page background
   #page {
     &.blur {
-      filter: blur(5px); // @TODO: animate this
+      filter: blur(5px); // Blur the page background; @TODO: animate this?
     }
   }
 
-  // Fixed helper
+  // Fixed screen helper
   %mfp-full-screen-fixed {
     @include k-fixed( left 0 top 0 );
     overflow: hidden;
@@ -97,7 +89,7 @@ $_magnific: (
     z-index: magnific(z-index-base) + 5;
   }
 
-  // Cursors
+  // Cursors; @TODO: remove unnecessary bloat here
   .mfp-ajax-cur {
     cursor: progress;
   }
@@ -119,7 +111,6 @@ $_magnific: (
       cursor: auto;
     }
   }
-
   .mfp-close,
   .mfp-arrow,
   .mfp-preloader,
@@ -133,17 +124,6 @@ $_magnific: (
   .mfp-loading {
     &.mfp-figure {
       @extend %mfp-display-none;
-    }
-  }
-
-  // Helper class for hiding stuff
-  @if magnific(visually-hidden) {
-    .mfp-hide {
-      @extend %off-screen;
-    }
-  } @else {
-    .mfp-hide {
-      display: none !important;
     }
   }
 
@@ -191,17 +171,19 @@ $_magnific: (
     height: 100%;
     opacity: .3;
     padding: 0;
+    transition: opacity .47s ease-out;
     width: spacer(3);
     -webkit-tap-highlight-color: rgba(0,0,0,0);
     &:hover,
     &:focus {
       opacity: 1;
-      // @TODO: transitions
+      transition: opacity .23s ease;
     }
     svg.icon {
       @include k-absolute( top 50% );
       margin: 0;
       margin-top: spacer(-1);
+      pointer-events: none;
     }
   }
   .mfp-arrow-left {
@@ -250,26 +232,34 @@ $_magnific: (
 
   .mfp-bottom-bar {
     @include k-absolute( top 100% left 0 );
-    color: colour(text-lighter); // Not as light as regular captions to account for the blurred background
     cursor: auto;
     margin: spacer(-1) 0;
-    //position: relative;
     width: 100%;
   }
   .mfp-title {
     @include font-size(text-smaller);
     @include k-reverse-italics;
     @include k-text-truncate;
-    padding-right: 40px; // Leave some space for counter at right side
+    color: colour(text-lighter); // Not as light as regular captions to account for the blurred background
+    padding-right: spacer(1.5); // Leave some space for counter at right side
     text-align: left;
     word-wrap: break-word;
   }
   .mfp-counter {
     @include k-absolute( top 0 right 0 );
     @include font-size(text-smallest);
+    color: colour(text-lightest);
     white-space: nowrap;
   }
 
-
-
+  // Helper class for hiding stuff
+  @if magnific(visually-hidden) {
+    .mfp-hide {
+      @extend %off-screen;
+    }
+  } @else {
+    .mfp-hide {
+      display: none !important;
+    }
+  }
 }

@@ -14,7 +14,7 @@ defined( 'PENDRELL_AJAX_PAGE_LOADER' )    || define( 'PENDRELL_AJAX_PAGE_LOADER'
 defined( 'PENDRELL_BASELINE' )            || define( 'PENDRELL_BASELINE', 30 );
 
 // Master switch for post formats
-defined( 'PENDRELL_MAGNIFIC' )            || define( 'PENDRELL_MAGNIFIC', false ); // Experimental feature
+defined( 'PENDRELL_MAGNIFIC' )            || define( 'PENDRELL_MAGNIFIC', true ); // Experimental feature
 
 // Master switch for post formats
 defined( 'PENDRELL_POST_FORMATS' )        || define( 'PENDRELL_POST_FORMATS', false );

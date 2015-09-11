@@ -9,8 +9,6 @@
 //
 ;(function($){
   $(function(){
-
-    // Magnific Popup lightbox settings
     var magnificOptions = {
       disableOn: 500, // Don't load the popup gallery on screens with a viewport width less than this
       delegate: 'figure.wp-caption', // Open the popup by clicking on child elements matching this selector
@@ -29,7 +27,7 @@
         arrowMarkup: '<div class="mfp-arrow mfp-arrow-%dir%">' + svgIcon( 'typ-arrow-%dir%-thick', '%title%', '%title%' ) + '</div>',
         tPrev: 'Previous', // title for left button
         tNext: 'Next', // title for right button
-        tCounter: '<span class="mfp-counter">%curr% of %total%</span>' // markup of counter
+        tCounter: '<span class="mfp-counter">%curr%/%total%</span>'
       },
       callbacks: {
         open: function() {
@@ -45,6 +43,9 @@
         },
         imageLoadComplete: function() {
           // Fires when image in current popup finished loading; use this to remove spinner
+        },
+        markupParse: function(template, values, item) {
+          // Parse markup
         },
         elementParse: function(item) {
 
