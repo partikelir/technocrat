@@ -10,8 +10,14 @@
 ;(function($){
   $(function(){
 
+    // EXPERIMENTAL HTML5 HISTORY API VERSION
+
+    // Initialize HTML5-History-API polyfill with this single line
+    var location = window.history.location || window.location;
+
     // Magnific options
     var magnificOptions = {
+      baseURL: location.href, // Save this for future use
       disableOn: 500, // Don't load the popup gallery on screens with a viewport width less than this
       delegate: 'figure.wp-caption', // Open the popup by clicking on child elements matching this selector
       key: 'mfp-main',
@@ -42,6 +48,11 @@
         close: function() {
           $('#page').addClass('blur-out');
           $('#page').removeClass('blur');
+
+          // Restore the original base URL
+          if (typeof this.st.baseURL !== 'undefined' && this.st.baseURL !== location.href) {
+            history.pushState(null,null,this.st.baseURL);
+          }
         },
         resize: function() {
           // @TODO: display a different image size from `srcset` attribute as needed
@@ -50,7 +61,8 @@
 
           // Get the image and link (if available)
           var img   = $('.mfp-img'),
-              link  = this.currItem.el.find('a:first').clone().empty();
+              link  = this.currItem.el.find('a:first').clone().empty(),
+              url   = '';
 
           // Remove any existing link
           if ( img.parent().is('a') ) {
@@ -60,6 +72,14 @@
           // Add the link from the body of the post and update the URL
           if (typeof link !== 'undefined' && link.length) {
             img.wrap(link);
+            url = link.attr('href');
+          } else if (typeof this.st.baseURL !== 'undefined') {
+            url = this.st.baseURL;
+          }
+
+          // Update address bar
+          if (url !== location.href) {
+            history.pushState(null,null,url);
           }
         },
         elementParse: function(item) {

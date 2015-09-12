@@ -154,7 +154,13 @@ module.exports = {
     , pf: [
         bower+'picturefill/dist/picturefill.js'
       ]
-    , pg8: [bower+'html5-history-api/history.js', bower+'spin.js/spin.js', bower+'spin.js/jquery.spin.js', bower+'wp-ajax-page-loader/wp-ajax-page-loader.js', src+'js/page-loader.js']
+    , pg8: [
+        bower+'html5-history-api/history.js'
+      , bower+'spin.js/spin.js'
+      , bower+'spin.js/jquery.spin.js'
+      , bower+'wp-ajax-page-loader/wp-ajax-page-loader.js'
+      , src+'js/page-loader.js'
+      ]
     , prism: [
         bower+'prism/components/prism-core.js'
       , bower+'prism/components/prism-markup.js'
