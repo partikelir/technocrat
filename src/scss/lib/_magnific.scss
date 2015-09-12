@@ -5,9 +5,9 @@
 // Magnific settings
 $_magnific: (
   image-background: #444
-, overlay-color: #FFF
+, overlay-color: #EEE
 , overlay-opacity: 0.8
-, shadow: 2px 2px 7px rgba(0, 0, 0, 0.23)
+, shadow: 1px 1px 6px rgba(0, 0, 0, 0.17)
 , visually-hidden: true // Hide content from browsers, but make it available for screen readers
 , z-index-base: 1001
 );
@@ -20,7 +20,7 @@ $_magnific: (
 @mixin magnific-popup {
   #page {
     &.blur {
-      filter: blur(5px); // Blur the page background; @TODO: animate this?
+      filter: blur(5px) grayscale(100%); // Blur the page background; @TODO: animate this if it's not too CPU-intensive
     }
   }
 
@@ -76,6 +76,10 @@ $_magnific: (
     svg.icon {
       height: spacer(2);
       width: spacer(2);
+      @include k-media-below( break(medium) ) {
+        height: spacer();
+        width: spacer();
+      }
     }
   }
 
@@ -184,6 +188,12 @@ $_magnific: (
       margin: 0;
       margin-top: spacer(-1);
       pointer-events: none;
+      filter: drop-shadow( 1px 1px 6px magnific(overlay-color) );
+      stroke: magnific(overlay-color);
+      stroke-width: 1;
+      @include k-media-below( break(medium) ) {
+        margin-top: spacer(-1/2);
+      }
     }
   }
   .mfp-arrow-left {
@@ -196,6 +206,13 @@ $_magnific: (
     right: 0;
     svg.icon {
       right: spacer(1/2);
+    }
+  }
+
+  a {
+    &:active,
+    &:focus {
+      outline: none;
     }
   }
 
