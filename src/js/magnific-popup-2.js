@@ -29,7 +29,7 @@
         enabled: true,
         arrowMarkup: '<div class="mfp-arrow mfp-arrow-%dir%">' + svgIcon( 'typ-arrow-%dir%-thick', '%title%', '%title%' ) + '</div>',
         navigateByImgClick: false,
-        preload: [0,3], // Lazy loading options: # of previous / next images
+        preload: [0,4], // Lazy loading options: # of previous / next images
         tCounter: '%curr%/%total%',
         tNext: 'Next',
         tPrev: 'Previous'
