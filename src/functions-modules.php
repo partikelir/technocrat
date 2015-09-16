@@ -255,7 +255,6 @@ if ( PENDRELL_UBIK_SEO ) {
   define( 'UBIK_SEO_YOAST_NO_POST_FILTER', true );
   define( 'UBIK_SEO_YOAST_PINTEREST_AUTH', true );
   define( 'UBIK_SEO_YOAST_TITLE_CLEANER', true );
-  define( 'UBIK_SEO_YOAST_TWITTER', true );
   require_once( $path_modules . 'ubik-seo/ubik-seo.php' );
 }
 
