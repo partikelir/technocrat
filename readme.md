@@ -92,6 +92,7 @@ These plugins are recommended for use with Pendrell:
 Utilities (as needed):
 
 * [Regenerate Thumbnails](http://wordpress.org/extend/plugins/regenerate-thumbnails/) since Pendrell uses custom image sizes.
+* [EWWW Image Optimizer](https://wordpress.org/plugins/ewww-image-optimizer/). Saves a bit of space but more importantly uses *progressive* JPEGs.
 * [Un-attach and re-attach media attachments](http://wordpress.org/plugins/unattach-and-re-attach-attachments/) in case you get mixed up.
 * [Post type switcher](http://wordpress.org/extend/post-type-switcher/).
 
