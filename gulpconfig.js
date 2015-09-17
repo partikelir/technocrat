@@ -7,6 +7,7 @@ var project     = 'pendrell'
   , dist        = './dist/'+project+'/'
   , bower       = './bower_components/'
   , composer    = './vendor/'
+  , modules     = './node_modules/'
 ;
 
 // Project settings
@@ -132,45 +133,48 @@ module.exports = {
     // Some chunks are defined on a line by line basis to improve git workflow
   , chunks: {
       core: [
-        bower+'svg4everybody/svg4everybody.js'
-      , bower+'svg.icon.js/svg.icon.js'
-      , bower+'jquery-selectric/public/jquery.selectric.js'
-      , bower+'jquery-timeago/jquery.timeago.js'
-      , bower+'autosize/dist/autosize.js'
+        modules+'svg4everybody/svg4everybody.js'
+      , modules+'svg.icon.js/svg.icon.js'
+      , modules+'selectric/public/jquery.selectric.js'
+      , modules+'timeago/jquery.timeago.js'
+      , modules+'autosize/dist/autosize.js'
       , src+'js/responsive-menu.js'
       , src+'js/skip-link-focus-fix.js'
       , src+'js/core.js'
       ]
-    , contact: [bower+'jquery-validation/dist/jquery.validate.js', src+'js/contact-form.js']
+    , contact: [
+        modules+'jquery-validation/dist/jquery.validate.js'
+      , src+'js/contact-form.js'
+      ]
     , magnific: [
         bower+'parse-srcset/src/parse-srcset.js'
       , src+'js/magnific-popup-1.js' // Must precede core Magnific Popup scripts
-      , bower+'magnific-popup/src/js/core.js'
-      , bower+'magnific-popup/src/js/image.js'
-      , bower+'magnific-popup/src/js/gallery.js'
-      , bower+'magnific-popup/src/js/fastclick.js'
+      , modules+'magnific-popup/src/js/core.js'
+      , modules+'magnific-popup/src/js/image.js'
+      , modules+'magnific-popup/src/js/gallery.js'
+      , modules+'magnific-popup/src/js/fastclick.js'
       , src+'js/magnific-popup-2.js' // Must follow core Magnific Popup scripts
       ]
     , pf: [
-        bower+'picturefill/dist/picturefill.js'
+        modules+'picturefill/dist/picturefill.js' // Includes matchMedia in this iteration
       ]
     , pg8: [
-        bower+'html5-history-api/history.js'
-      , bower+'spin.js/spin.js'
-      , bower+'spin.js/jquery.spin.js'
-      , bower+'wp-ajax-page-loader/wp-ajax-page-loader.js'
+        modules+'html5-history-api/history.js'
+      , modules+'spin.js/spin.js'
+      , modules+'spin.js/jquery.spin.js'
+      , modules+'wp-ajax-page-loader/wp-ajax-page-loader.js'
       , src+'js/page-loader.js'
       ]
     , prism: [
-        bower+'prism/components/prism-core.js'
-      , bower+'prism/components/prism-markup.js'
-      , bower+'prism/components/prism-css.js'
-      , bower+'prism/components/prism-css-extras.js'
-      , bower+'prism/components/prism-clike.js'
-      , bower+'prism/components/prism-javascript.js'
-      , bower+'prism/components/prism-scss.js'
-      , bower+'prism/components/prism-php.js'
-      , bower+'prism/components/prism-php-extras.js'
+        modules+'prismjs/components/prism-core.js'
+      , modules+'prismjs/components/prism-markup.js'
+      , modules+'prismjs/components/prism-css.js'
+      , modules+'prismjs/components/prism-css-extras.js'
+      , modules+'prismjs/components/prism-clike.js'
+      , modules+'prismjs/components/prism-javascript.js'
+      , modules+'prismjs/components/prism-scss.js'
+      , modules+'prismjs/components/prism-php.js'
+      , modules+'prismjs/components/prism-php-extras.js'
       ]
     }
   , dest: build+'js/' // Where the scripts end up
@@ -188,22 +192,20 @@ module.exports = {
 
   styles: {
     build: {
-      src: [src+'scss/*.scss', '!'+src+'scss/_*.scss'] // Ignore partials
+      src: src+'scss/**/*.scss'
     , dest: build
     }
   , dist: {
-      src: [dist+'**/*.css', '!'+dist+'**/*.min.css']
-    , minify: { keepSpecialComments: 1, roundingPrecision: 5 }
+      src: build+'**/*.css'
     , dest: dist
     }
   , compiler: 'ruby-sass' // 'ruby-sass' or 'libsass'
   , autoprefixer: { browsers: ['> 3%', 'last 2 versions', 'ie 9', 'ios 6', 'android 4'] }
-  , rename: { suffix: '.min' }
   , minify: { keepSpecialComments: 1, roundingPrecision: 5 }
   , rubySass: { // Don't forget to run `gem install sass`; Compass is not included by default
-      loadPath: bower // Adds the `bower_components` directory to the load path so you can @import directly
+      loadPath: ['src/scss', bower] // Adds the `bower_components` directory to the load path so you can @import directly
     , precision: 8
-    , 'sourcemap=none': true // Not yet ready for prime time; Sass 3.4 has srcmaps on by default but this causes some problems from the Gulp toolchain
+    , sourcemap: true
   }
   , libsass: { // For future reference: settings for Libsass, a promising project that hasn't reached feature parity with Ruby Sass just yet
       includePaths: [bower]
@@ -282,7 +284,7 @@ module.exports = {
   , wipe: [dist] // Clear things out before packaging; @TODO: also clear out the `build` folder
   , icons: src+'icons/'
   , dist: {
-      src: [build+'**/*', '!'+build+'**/*.min.css']
+      src: build+'**/*'
     , dest: dist
     }
   },
@@ -290,10 +292,10 @@ module.exports = {
   watch: { // What to watch before triggering each specified task
     src: {
       styles:       src+'scss/**/*.scss'
-    , scripts:      [src+'js/**/*.js', bower+'**/*.js']
+    , scripts:      src+'js/**/*.js'
     , images:       src+'**/*(*.png|*.jpg|*.jpeg|*.gif)'
     , theme:        src+'**/*.php'
-    , livereload:   [build+'**/*']
+    , livereload:   build+'**/*'
     }
   , watcher: 'livereload' // Who watches the watcher? Easily switch between BrowserSync ('browsersync') and Livereload ('livereload')
   }
