@@ -130,18 +130,18 @@ if ( PENDRELL_UBIK_QUICK_TERMS ) {
 
 
 // Add places to photo metadata
+// @filter: pendrell_places_photo_meta_city
+// @filter: pendrell_places_photo_meta_country
 function pendrell_places_photo_meta( $location = '', $d ) {
 
   // An array of possible places this photo may have been tagged with
   $places = array();
 
   // Attempt to add to the places array
-  if ( ubik_photo_meta_set( 'sublocation', $d ) )
-    $places[] = $d['sublocation'];
   if ( ubik_photo_meta_set( 'city', $d ) )
-    $places[] = $d['city'];
+    $places[] = apply_filters( 'pendrell_places_photo_meta_city', $d['city'], $d );
   if ( ubik_photo_meta_set( 'country', $d ) )
-    $places[] = $d['country'];
+    $places[] = apply_filters( 'pendrell_places_photo_meta_country', $d['country'], $d );
 
   // Return existing location if nothing came up
   if ( empty( $places ) )
@@ -153,5 +153,33 @@ function pendrell_places_photo_meta( $location = '', $d ) {
   // Return a formatted string
   return do_shortcode( $places ) . ' (' . $d['string_microdata_linked'] . ')';
 }
-if ( PENDRELL_UBIK_PHOTO_META )
+
+
+
+// Modify the name of the city to handle certain edge cases
+function pendrell_places_photo_meta_city( $city = '', $d ) {
+
+  // Exit early if necessary
+  if ( empty( $city ) )
+    return;
+
+  // Country may influence the following rules
+  $country = '';
+  if ( ubik_photo_meta_set( 'country', $d ) )
+    $country = $d['country'];
+
+  // Specific to Taiwan's geography
+  if ( empty( $country ) || ( !empty( $country ) && $country === 'Taiwan' ) )
+    $city = trim( str_replace( array( 'Township', 'District' ), '', $city ) );
+
+  // Return what we have
+  return $city;
+}
+
+
+
+// Activate the previous functions only if Ubik Photo Meta is defined
+if ( PENDRELL_UBIK_PHOTO_META ) {
   add_filter( 'ubik_photo_meta_location_formatted', 'pendrell_places_photo_meta', 999, 2 );
+  add_filter( 'pendrell_places_photo_meta_city', 'pendrell_places_photo_meta_city', '', 2 );
+}
