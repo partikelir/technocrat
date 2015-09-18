@@ -23,24 +23,14 @@
     "build"
   ],
   "devDependencies": {
-    "kipple": "https://github.com/synapticism/kipple.git",
-    "normalize.css": "^3.0.3",
-    "sass-font-stacker": "^0.2.0",
-    "sass-named-colors": "^0.2.0",
-    "autosize": "^3.0.8",
-    "html5-history-api": "^4.2.2",
-    "jquery-selectric": "^1.9.3",
-    "jquery-validation": "^1.14.0",
-    "picturefill": "^2.3.1",
-    "prism": "git://github.com/LeaVerou/prism.git#gh-pages",
-    "spin.js": "^2.3.2",
-    "svg4everybody": "^1.0.0",
-    "svg.icon.js": "^0.1.1",
-    "wp-ajax-page-loader": "^0.1.3",
     "font-awesome-svg-png": "^1.1.2",
     "ionicons": "^2.0.1",
-    "octicons": "^2.4.1",
+    "kipple": "https://github.com/synapticism/kipple.git",
+    "normalize.css": "^3.0.3",
     "open-iconic": "^1.1.1",
+    "parse-srcset": "https://github.com/albell/parse-srcset.git",
+    "sass-font-stacker": "^0.3.0",
+    "sass-named-colors": "^0.2.0",
     "typicons": "^2.0.7"
   }
 }

@@ -136,14 +136,6 @@ if ( PENDRELL_UBIK_EXCLUDER )
 
 
 
-// == FAVICONS * == //
-
-// define( 'UBIK_FAVICONS_PATH', '/dev' ); // @TODO: activate
-define( 'UBIK_FAVICONS_TILE_COLOUR', '#00aba9' );
-require_once( $path_modules . 'ubik-favicons/ubik-favicons.php' );
-
-
-
 // == FEED == //
 
 if ( PENDRELL_UBIK_FEED ) {
@@ -227,6 +219,7 @@ if ( PENDRELL_UBIK_MARKDOWN ) {
 
 // == META * == //
 
+define('UBIK_META_DATE_HUMANIZE', true);
 require_once( $path_modules . 'ubik-meta/ubik-meta.php' );
 add_filter( 'ubik_meta_date_grace_period', '__return_true' );
 add_filter( 'ubik_meta_microformats', '__return_true' );
@@ -280,7 +273,6 @@ if ( PENDRELL_UBIK_SEO ) {
   define( 'UBIK_SEO_YOAST_NO_POST_FILTER', true );
   define( 'UBIK_SEO_YOAST_PINTEREST_AUTH', true );
   define( 'UBIK_SEO_YOAST_TITLE_CLEANER', true );
-  define( 'UBIK_SEO_YOAST_TWITTER', true );
   require_once( $path_modules . 'ubik-seo/ubik-seo.php' );
 }
 

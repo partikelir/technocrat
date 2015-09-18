@@ -122,7 +122,7 @@ $_colours: (
 , button1:        white()    // Normal text
 , button1-h:      white(.9)  // Hover text
 , button1-a:      white(.8)  // Active text
-, button1-b:      rgba( grey(133), .5 )   // Border
+, button1-b:      grey(133, .5)   // Border
 , button1-s:      rgba( white(), .85 )   // Shadow
 , button1-bg-1:   $c-link
 , button1-bg-1-h: darken( $c-link, 7 )
@@ -140,7 +140,7 @@ $_colours: (
 , button3:        darken( $c-text, 3 )
 , button3-h:      lighten( $c-text, 17 )
 , button3-a:      lighten( $c-text, 23 )
-, button3-b:      rgba( grey(133), .5 )
+, button3-b:      grey(133, .5)
 , button3-s:      rgba( white(), .85 )
 , button3-bg-1:   grey(251)
 , button3-bg-2:   grey(215)
@@ -150,7 +150,7 @@ $_colours: (
 , field:          lighten( $c-text, 9 )//rgba( grey(158), .27 )
 , field-h:        lighten( $c-text, 7 )
 , field-a:        lighten( $c-text, 3 )
-, field-b:        rgba( grey(158), .27 )
+, field-b:        grey(158, .27)
 , field-bg:       darken( $c-body-bg, 3 )
 , field-bg-a:     darken( $c-body-bg, 9 )
 , field-bg-h:     darken( $c-body-bg, 6 )

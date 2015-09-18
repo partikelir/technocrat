@@ -28,7 +28,7 @@ $_metadata: (
 , theme-author:             "Alexander Synaptic"
 , theme-author-uri:         "http://synapticism.com"
 , theme-description:        "Alexander Synaptic"
-, theme-version:            "0.0.15"
+, theme-version:            "0.1.0"
 , theme-license:            "GPLv3"
 , theme-license-uri:        "https://www.gnu.org/copyleft/gpl.txt"
 , theme-tags:               (light, gray, white, one-column, two-columns, right-sidebar, fixed-layout, responsive-layout, custom-menu, featured-images, microformats, post-formats, theme-options, translation-ready)
@@ -49,6 +49,7 @@ $_breaks: (
 $_modules: (
   full-width:         false
 , gallery-shortcode:  false // WordPress core; activation creates some useless duplicate styles; disable if you don't use [gallery]
+, magnific-popup:     false
 , post-formats:       false
 , prism:              true
 , ubik-links:         true
@@ -64,6 +65,7 @@ $_modules: (
   $_modules: (
     full-width:         true
   , gallery-shortcode:  true // WordPress core; activation creates some useless duplicate styles
+  , magnific-popup:     true
   , post-formats:       true
   , prism:              true
   , ubik-links:         true

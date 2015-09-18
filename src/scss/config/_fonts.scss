@@ -36,6 +36,7 @@ $_sizes: (
 
 // Body fonts; these are applied universally throughout the theme
 $f-body:            k-font-stack("Oxygen", helvetica-light);
+//$f-body:            k-font-stack("Oxygen", k-font-stack-trim(helvetica-light), zh-heiti-tc);
 $w-body-light:      300;
 $w-body-normal:     400;
 $w-body-bold:       700;
