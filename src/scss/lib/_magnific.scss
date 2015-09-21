@@ -6,7 +6,7 @@
 $_magnific: (
   image-background: #999
 , overlay-color: #EEE
-, overlay-opacity: 0.8
+, overlay-opacity: 0.77
 , shadow: 1px 1px 6px rgba(0, 0, 0, 0.17)
 , visually-hidden: true // Hide content from browsers, but make it available for screen readers
 , z-index-base: 1001
@@ -133,10 +133,9 @@ $_magnific: (
 
   // Preloader and text that displays error messages
   .mfp-preloader {
-    @include k-absolute( top 50% left 8px right 8px );
-    text-align: center;
+    @include k-absolute( top 50% left 50% right 50% );
     width: auto;
-    z-index: magnific(z-index-base) + 4;
+    z-index: magnific(z-index-base) + 14;
   }
 
   // Hide preloader when content successfully loaded
@@ -173,7 +172,7 @@ $_magnific: (
     @include k-absolute( top 0 );
     display: block;
     height: 100%;
-    opacity: .3;
+    opacity: .44;
     padding: 0;
     transition: opacity .47s ease-out;
     width: spacer(3);
@@ -257,7 +256,7 @@ $_magnific: (
     @include font-size(text-smaller);
     @include k-reverse-italics;
     @include k-text-truncate;
-    color: colour(text-lighter); // Not as light as regular captions to account for the blurred background
+    color: colour(text-light); // Not as light as regular captions to account for the blurred background
     padding-right: spacer(1.5); // Leave some space for counter at right side
     text-align: left;
     word-wrap: break-word;
@@ -265,7 +264,7 @@ $_magnific: (
   .mfp-counter {
     @include k-absolute( top 0 right 0 );
     @include font-size(text-smallest);
-    color: colour(text-lightest);
+    color: colour(text-lighter);
     white-space: nowrap;
   }
 
