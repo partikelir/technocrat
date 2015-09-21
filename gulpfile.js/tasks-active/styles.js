@@ -36,9 +36,9 @@ gulp.task('styles-libsass', function() {
 // Copy stylesheets from the `build` folder to `dist` and minify them along the way
 gulp.task('styles-dist', ['utils-dist'], function() {
   return gulp.src(config.dist.src)
-  .pipe(plugins.sourcemaps.init())
+  //.pipe(plugins.sourcemaps.init())
   .pipe(plugins.minifyCss(config.minify))
-  .pipe(plugins.sourcemaps.write('./'))
+  //.pipe(plugins.sourcemaps.write('./'))
   .pipe(gulp.dest(config.dist.dest));
 });
 
