@@ -135,7 +135,7 @@ $_magnific: (
   .mfp-preloader {
     @include k-absolute( top 50% left 50% right 50% );
     width: auto;
-    z-index: magnific(z-index-base) + 14;
+    z-index: magnific(z-index-base) + 4;
   }
 
   // Hide preloader when content successfully loaded

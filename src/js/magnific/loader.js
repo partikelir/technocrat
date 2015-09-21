@@ -10,6 +10,7 @@
       key: 'mfp-main',
       overflowY: 'scroll', // Assumes there is a scrollbar; prevents elements from shifting around in Chrome and perhaps other browsers
       closeBtnInside: false,
+      preloader: false, // Magnific Popup default preloader is text-based; we're using a spinner
       showCloseBtn: false,
       tLoading: '', // Empties "loading" text
       type: 'image',
@@ -32,6 +33,9 @@
         open: function() {
           $('#page').removeClass('blur-out');
           $('#page').addClass('blur');
+
+          // Fake the preloader; we don't need any of Magnific's status update and text switching features
+          $('.mfp-container').append('<div class="mfp-preloader"></div>');
 
           // Invoke spin.js (if it exists); reference: https://fgnass.github.io/spin.js/
           if ( $.isFunction(window.Spinner) ) {
