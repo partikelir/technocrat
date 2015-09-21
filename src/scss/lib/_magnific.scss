@@ -131,8 +131,12 @@ $_magnific: (
     }
   }
 
-  // Preloader and text that displays error messages
+  // Preloader and text that displays error messages (unused in this implementation)
   .mfp-preloader {
+    @extend %mfp-display-none;
+  }
+
+  .mfp-spinner {
     @include k-absolute( top 50% left 50% right 50% );
     width: auto;
     z-index: magnific(z-index-base) + 4;
@@ -140,7 +144,7 @@ $_magnific: (
 
   // Hide preloader when content successfully loaded
   .mfp-s-ready {
-    .mfp-preloader {
+    .mfp-spinner {
       @extend %mfp-display-none;
     }
   }
