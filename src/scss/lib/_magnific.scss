@@ -6,7 +6,7 @@
 $_magnific: (
   image-background: #999
 , overlay-color: #EEE
-, overlay-opacity: 0.8
+, overlay-opacity: 0.77
 , shadow: 1px 1px 6px rgba(0, 0, 0, 0.17)
 , visually-hidden: true // Hide content from browsers, but make it available for screen readers
 , z-index-base: 1001
@@ -58,12 +58,24 @@ $_magnific: (
 
   // Root container
   .mfp-container {
-    @extend %wrap; // Extends padding style from the default layout
     @include k-absolute( left 0 top 0 );
     box-sizing: border-box;
     height: 100%;
     text-align: center;
     width: 100%;
+    // Padding should match the width of the arrows below, under `mfp-arrows`
+    @include k-media-below( break(small) ) {
+      @include rem( padding-left, spacer(3/2) );
+      @include rem( padding-right, spacer(3/2) );
+    }
+    @include k-media-between( break(small), break(medium) ) {
+      @include rem( padding-left, spacer(2) );
+      @include rem( padding-right, spacer(2) );
+    }
+    @include k-media-above( break(medium) ) {
+      @include rem( padding-left, spacer(3) );
+      @include rem( padding-right, spacer(3) );
+    }
     &:before {
       content: '';
       display: inline-block;
@@ -73,13 +85,10 @@ $_magnific: (
     .mfp-align-top &:before {
       @extend %mfp-display-none; // Remove vertical centering when popup has class `mfp-align-top`
     }
+    // General icon declarations; see also class `mfp-arrow`
     svg.icon {
       height: spacer(2);
       width: spacer(2);
-      @include k-media-below( break(medium) ) {
-        height: spacer();
-        width: spacer();
-      }
     }
   }
 
@@ -131,17 +140,15 @@ $_magnific: (
     }
   }
 
-  // Preloader and text that displays error messages
+  // Preloader and text that displays error messages (unused in this implementation)
   .mfp-preloader {
-    @include k-absolute( top 50% left 8px right 8px );
-    text-align: center;
-    width: auto;
-    z-index: magnific(z-index-base) + 4;
+    @extend %mfp-display-none;
   }
 
   // Hide preloader when content successfully loaded
+  .mfp-s-error,
   .mfp-s-ready {
-    .mfp-preloader {
+    .mfp-spinner {
       @extend %mfp-display-none;
     }
   }
@@ -151,6 +158,13 @@ $_magnific: (
     .mfp-content {
       @extend %mfp-display-none;
     }
+  }
+
+  // Spinner invoked by spin.js
+  .mfp-spinner {
+    @include k-absolute( top 50% left 50% right 50% );
+    width: auto;
+    z-index: magnific(z-index-base) + 4;
   }
 
   // Icons
@@ -173,11 +187,19 @@ $_magnific: (
     @include k-absolute( top 0 );
     display: block;
     height: 100%;
-    opacity: .3;
+    opacity: .44;
     padding: 0;
     transition: opacity .47s ease-out;
-    width: spacer(3);
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    @include k-media-below( break(small) ) {
+      width: spacer(3/2);
+    }
+    @include k-media-between( break(small), break(medium) ) {
+      width: spacer(2);
+    }
+    @include k-media-above( break(medium) ) {
+      width: spacer(3);
+    }
     &:hover,
     &:focus {
       opacity: 1;
@@ -191,8 +213,10 @@ $_magnific: (
       filter: drop-shadow( 1px 1px 6px magnific(overlay-color) );
       stroke: magnific(overlay-color);
       stroke-width: 1;
-      @include k-media-below( break(medium) ) {
-        margin-top: spacer(-1/2);
+      @include k-media-below( break(small) ) {
+        margin-top: spacer(-0.75); // 50% of the height
+        height: spacer(1.5);
+        width: spacer(1.5);
       }
     }
   }
@@ -200,12 +224,24 @@ $_magnific: (
     left: 0;
     svg.icon {
       left: spacer(1/2);
+      @include k-media-below( break(large) ) {
+        left: spacer(1/4);
+      }
+      @include k-media-below( break(medium) ) {
+        left: 0;
+      }
     }
   }
   .mfp-arrow-right {
     right: 0;
     svg.icon {
       right: spacer(1/2);
+      @include k-media-below( break(large) ) {
+        right: spacer(1/4);
+      }
+      @include k-media-below( break(medium) ) {
+        right: 0;
+      }
     }
   }
 
@@ -257,7 +293,7 @@ $_magnific: (
     @include font-size(text-smaller);
     @include k-reverse-italics;
     @include k-text-truncate;
-    color: colour(text-lighter); // Not as light as regular captions to account for the blurred background
+    color: colour(text-light); // Not as light as regular captions to account for the blurred background
     padding-right: spacer(1.5); // Leave some space for counter at right side
     text-align: left;
     word-wrap: break-word;
@@ -265,7 +301,7 @@ $_magnific: (
   .mfp-counter {
     @include k-absolute( top 0 right 0 );
     @include font-size(text-smallest);
-    color: colour(text-lightest);
+    color: colour(text-lighter);
     white-space: nowrap;
   }
 

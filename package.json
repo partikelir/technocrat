@@ -26,6 +26,7 @@
     "autoprefixer": "^6.0.3",
     "autosize": "^3.0.12",
     "browser-sync": "^2.9.3",
+    "browserify": "^11.1.0",
     "del": "^2.0.2",
     "gulp": "^3.9.0",
     "gulp-cache": "^0.3.0",
@@ -58,7 +59,9 @@
     "spin.js": "^2.3.2",
     "svg.icon.js": "^0.1.2",
     "svg4everybody": "^1.0.0",
-    "timeago": "^1.4.2",
+    "timeago": "^1.4.3",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.4.0",
     "wp-ajax-page-loader": "^0.2.0"
   },
   "scripts": {

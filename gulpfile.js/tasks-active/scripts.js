@@ -13,6 +13,9 @@ gulp.task('scripts-lint', function() {
   .pipe(plugins.jshint.reporter('default')); // No need to pipe this anywhere
 });
 
+// Browserify certain scripts; not currently active
+gulp.task('scripts-browserify', ['browserify']);
+
 // Generate an array of script bundles defined in the configuration file
 // Adapted from https://github.com/gulpjs/gulp/blob/master/docs/recipes/running-task-steps-per-folder.md
 gulp.task('scripts-bundle', ['scripts-lint'], function(){
@@ -48,7 +51,9 @@ gulp.task('scripts-bundle', ['scripts-lint'], function(){
 gulp.task('scripts-minify', ['scripts-bundle'], function(){
   return gulp.src(config.minify.src)
   .pipe(plugins.rename(config.minify.rename))
+  //.pipe(plugins.sourcemaps.init())
   .pipe(plugins.uglify(config.minify.uglify))
+  //.pipe(plugins.sourcemaps.write('./'))
   .pipe(gulp.dest(config.minify.dest));
 });
 

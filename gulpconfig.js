@@ -131,8 +131,20 @@ module.exports = {
   },
 
   scripts: {
+    // Experimental Browserify integration
+    browserify: {
+      debug: true
+    , dest: build+'js/'
+    , extensions: [] // Additional file extensions
+    , bundleConfigs: [{
+        entries: src+'js/magnific/srcset.js'
+      , dest: src+'js/temp/'
+      , outputName: 'magnific-srcset.js'
+      }]
+    }
+
     // Bundles are defined by a name and an array of chunks to concatenate; warning: it's up to you to manage dependencies!
-    bundles: {
+  , bundles: {
       core: ['core']
     , contact: ['contact']
     , magnific: ['magnific']
@@ -144,11 +156,13 @@ module.exports = {
     , pg8_pf_prism: ['pg8', 'pf', 'prism', 'core']
     , prism: ['prism', 'core']
     }
-    // Chunks are arrays of globs matching source files that combine to provide specific functionality
-    // Some chunks are defined on a line by line basis to improve git workflow
+    // Chunks are arrays of globs matching source files that combine to provide specific functionality defined on a line-by-line basis to improve git workflow
   , chunks: {
       core: [
-        modules+'svg4everybody/svg4everybody.js'
+        modules+'html5-history-api/history.js'
+      , modules+'spin.js/spin.js'
+      , modules+'spin.js/jquery.spin.js'
+      , modules+'svg4everybody/svg4everybody.js'
       , modules+'svg.icon.js/svg.icon.js'
       , modules+'selectric/public/jquery.selectric.js'
       , modules+'timeago/jquery.timeago.js'
@@ -163,21 +177,19 @@ module.exports = {
       ]
     , magnific: [
         bower+'parse-srcset/src/parse-srcset.js'
-      , src+'js/magnific-popup-1.js' // Must precede core Magnific Popup scripts
+      , src+'js/magnific/wrapper-1.js' // Must precede core Magnific Popup scripts
       , modules+'magnific-popup/src/js/core.js'
       , modules+'magnific-popup/src/js/image.js'
       , modules+'magnific-popup/src/js/gallery.js'
       , modules+'magnific-popup/src/js/fastclick.js'
-      , src+'js/magnific-popup-2.js' // Must follow core Magnific Popup scripts
+      , src+'js/magnific/wrapper-2.js' // Must follow core Magnific Popup scripts
+      , src+'js/magnific/loader.js'
       ]
     , pf: [
         modules+'picturefill/dist/picturefill.js' // Includes matchMedia in this iteration
       ]
     , pg8: [
-        modules+'html5-history-api/history.js'
-      , modules+'spin.js/spin.js'
-      , modules+'spin.js/jquery.spin.js'
-      , modules+'wp-ajax-page-loader/wp-ajax-page-loader.js'
+        modules+'wp-ajax-page-loader/wp-ajax-page-loader.js'
       , src+'js/page-loader.js'
       ]
     , prism: [
@@ -194,13 +206,15 @@ module.exports = {
     }
   , dest: build+'js/' // Where the scripts end up
   , lint: {
-      src: [src+'js/**/*.js'] // Lint core scripts (for everything else we're relying on the original authors)
+      src: [
+        src+'js/**/*.js' // Lint core scripts (for everything else we're relying on the original authors)
+      ]
     }
   , minify: {
       src: [build+'js/**/*.js', '!'+build+'js/**/*.min.js'] // Avoid recursive min.min.min.js
+    , dest: build+'js/'
     , rename: { suffix: '.min' }
     , uglify: {}
-    , dest: build+'js/'
     }
   , namespace: 'p-' // Script filenames will be prefaced with this
   },
@@ -233,7 +247,7 @@ module.exports = {
   , dest: build+'img/'
   , transform: {
       before: {
-        run: function ($) {
+        run: function($) {
           // Remove various attributes to allow for greater control via CSS
           $('[fill]').removeAttr('fill');
           $('[fill-rule]').removeAttr('fill-rule');
