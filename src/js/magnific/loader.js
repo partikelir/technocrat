@@ -17,7 +17,7 @@
         titleSrc: function(item) {
           return item.el.find('figcaption').text();
         },
-        tError: '<a href="%url%">This image</a> could not be loaded.' // Error message
+        tError: '<a href="%url%">This image</a> could not be loaded.' // Error message; @TODO: error handling
       },
       gallery: {
         enabled: true,
@@ -87,7 +87,7 @@
             imagesAvailable.sort( function(a, b) {
               return a.w - b.w;
             }).forEach( function(a) {
-              if ( a.w < ( targetWidth * 1.2 ) ) { // Fudge factor
+              if ( a.w < ( targetWidth * 1.15 ) ) { // Fudge factor
                 item.src = a.url; // Last one standing wins
               }
             });
