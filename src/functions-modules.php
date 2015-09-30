@@ -9,7 +9,6 @@ if ( WP_LOCAL_DEV ) {
   defined( 'PENDRELL_UBIK_EXCLUDER' )       || define( 'PENDRELL_UBIK_EXCLUDER', true );
   defined( 'PENDRELL_UBIK_FEED' )           || define( 'PENDRELL_UBIK_FEED', true );
   defined( 'PENDRELL_UBIK_LINGUAL' )        || define( 'PENDRELL_UBIK_LINGUAL', true );
-  defined( 'PENDRELL_UBIK_LINKS' )          || define( 'PENDRELL_UBIK_LINKS', true );
   defined( 'PENDRELL_UBIK_MARKDOWN' )       || define( 'PENDRELL_UBIK_MARKDOWN', true );
   defined( 'PENDRELL_UBIK_PHOTO_META' )     || define( 'PENDRELL_UBIK_PHOTO_META', true );
   defined( 'PENDRELL_UBIK_PLACES' )         || define( 'PENDRELL_UBIK_PLACES', true );
@@ -26,7 +25,6 @@ defined( 'PENDRELL_UBIK_ANALYTICS' )      || define( 'PENDRELL_UBIK_ANALYTICS', 
 defined( 'PENDRELL_UBIK_EXCLUDER' )       || define( 'PENDRELL_UBIK_EXCLUDER', false );
 defined( 'PENDRELL_UBIK_FEED' )           || define( 'PENDRELL_UBIK_FEED', false );
 defined( 'PENDRELL_UBIK_LINGUAL' )        || define( 'PENDRELL_UBIK_LINGUAL', false );
-defined( 'PENDRELL_UBIK_LINKS' )          || define( 'PENDRELL_UBIK_LINKS', false );
 defined( 'PENDRELL_UBIK_MARKDOWN' )       || define( 'PENDRELL_UBIK_MARKDOWN', false );
 defined( 'PENDRELL_UBIK_PHOTO_META' )     || define( 'PENDRELL_UBIK_PHOTO_META', false );
 defined( 'PENDRELL_UBIK_PLACES' )         || define( 'PENDRELL_UBIK_PLACES', false );
@@ -163,17 +161,6 @@ if ( PENDRELL_UBIK_LINGUAL ) {
   add_filter( 'ubik_title', 'ubik_lingual_pinyin_strip_marks' ); // Page titles
   if ( PENDRELL_UBIK_PLACES )
     add_filter( 'ubik_places_title', 'ubik_lingual_pinyin_strip_marks' ); // Small header in the faux widget
-}
-
-
-
-// == LINKS == //
-
-if ( PENDRELL_UBIK_LINKS ) {
-  define( 'UBIK_LINKS_PAGE_TEMPLATE', 'page-templates/links.php' );
-  define( 'UBIK_LINKS_SEARCH_FORM_REVERSE', true );
-  require_once( $path_modules . 'ubik-links.php' );
-  add_filter( 'ubik_links_search_button', 'pendrell_icon_search_button' );
 }
 
 

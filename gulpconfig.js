@@ -270,7 +270,6 @@ module.exports = {
       , 'fonts' // *
       , 'imagery' // *
       , 'lingual'
-      , 'links'
       , 'markdown'
       , 'meta' // *
       , 'places'
