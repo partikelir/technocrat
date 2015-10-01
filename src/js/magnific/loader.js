@@ -6,9 +6,11 @@
     // Initialize HTML5-History-API polyfill with this single line
     var location = window.history.location || window.location;
 
+    // Save a copy of the initial URL for future use
+    var magnificInitURL = location.href;
+
     // Magnific options
     var magnificOptions = {
-      baseURL: location.href, // Save this for future use
       disableOn: 500, // Don't load the popup gallery on screens with a viewport width less than this
       delegate: 'figure.wp-caption', // Open the popup by clicking on child elements matching this selector
       key: 'mfp-main',
@@ -35,19 +37,16 @@
       callbacks: {
         open: function() {
           magnificPendrell.blurOpen();
-          magnificPendrell.invokeSpinner();
+          magnificPendrell.spinner();
         },
         close: function() {
           magnificPendrell.blurClose();
-
-          // Restore the original base URL
-          if (typeof this.st.baseURL !== 'undefined' && this.st.baseURL !== location.href) {
-            history.pushState(null,null,this.st.baseURL);
-          }
+          magnificPendrell.popstateClose();
         },
         resize: function() {
           // @TODO: display a different image size from `srcset` attribute as needed
-          //magnificPendrell.imageSelect(this.currItem);
+          // @TODO: debounce this function
+          //magnificPendrell.srcSelect(this.currItem);
         },
         imageLoadComplete: function() {
 
@@ -65,17 +64,17 @@
           if (typeof link !== 'undefined' && link.length) {
             img.wrap(link);
             url = link.attr('href');
-          } else if (typeof this.st.baseURL !== 'undefined') {
-            url = this.st.baseURL;
+          } else if (typeof magnificInitURL !== 'undefined') {
+            url = magnificInitURL;
           }
 
           // Update address bar
           if (url !== location.href) {
-            history.pushState(null,null,url);
+            history.pushState({ magnific: 1, index: this.currItem.index }, null, url);
           }
         },
         elementParse: function(item) {
-          magnificPendrell.imageSelect(item);
+          magnificPendrell.srcSelect(item);
         }
       }
     };
@@ -95,8 +94,18 @@
         $('#page').removeClass('blur');
       },
 
+      // Restore the original base URL when closing the popup
+      popstateClose: function() {
+        history.pushState(null, null, magnificInitURL);
+      },
+
+      // Popstate handler; mainly used to move to the appropriate image when the back button is pressed
+      popstateHandler: function(state) {
+        $.magnificPopup.instance.goTo(state.index);
+      },
+
       // Create spinner and invoke spin.js (if it exists); reference: https://fgnass.github.io/spin.js/
-      invokeSpinner: function() {
+      spinner: function() {
         $('.mfp-container').append('<div class="mfp-spinner"></div>');
         if ( $.isFunction(window.Spinner) ) {
           $('.mfp-spinner').append('<div id="spinner" style="position: relative;"></div>');
@@ -113,11 +122,11 @@
       },
 
       // Magnific-based image selector; requires an item object
-      imageSelect: function(item) {
+      srcSelect: function(item) {
         var srcset = item.el.find('img').attr('srcset');
         if (srcset.length) {
           item.src = this.srcsetHandler(srcset); // Pick a source from the `srcset` attribute; @TODO: retina support?
-        } else if ( typeof item.src === undefined || item.src === '' ) {
+        } else if (typeof item.src === undefined || item.src === '') {
           item.src = item.el.find('img').attr('src'); // Fallback on the main `src` attribute for the image if no `srcset` exists
         }
       },
@@ -125,20 +134,20 @@
       // Magnific Popup `srcset` handler
       srcsetHandler: function(srcset) {
 
-        // Initialize the URL to return
-        var url = null;
+        // Initialize the source URL to return
+        var src = null;
 
         // Set target width; https://stackoverflow.com/questions/1248081/get-the-browser-viewport-dimensions-with-javascript
         var targetWidth   = Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
             targetHeight  = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
 
         // Parse `srcset` attribute; https://github.com/albell/parse-srcset
-        var imagesAvailable = parseSrcset( srcset ),
+        var srcAvailable = parseSrcset( srcset ),
             pattern  = /-(\d+)x(\d+)/, // Matches standard WordPress image dimensions in resized image filenames
             fudge    = 1.15; // Fudge factor
 
         // Sort backwards from smallest to largest and cycle through to find an appropriate image choice
-        imagesAvailable.sort( function(a, b) {
+        srcAvailable.sort( function(a, b) {
           return a.w - b.w;
         }).forEach( function(a) {
           var filename = a.url.substring(a.url.lastIndexOf('/')+1),
@@ -154,18 +163,23 @@
 
           // Make an informed guess about which image to load
           if ( a.w < ( targetWidth * fudge ) && a.h < ( targetHeight * fudge ) ) {
-            url = a.url; // Last one standing wins
+            src = a.url; // Last one standing wins
           }
         });
 
         // Return whatever we've got
-        return url;
+        return src;
       }
     };
 
-    // Return to the base URL when the back button is pressed
-    $(window).on('popstate', function() {
-      location.href = magnificOptions.baseURL;
+    // Handle browser back button action from within Magnific Popup
+    $(window).on('popstate', function(e) {
+      var state = e.originalEvent.state || null;
+      if (state !== null && state.hasOwnProperty('magnific')) {
+        magnificPendrell.popstateHandler(state);
+      } else {
+        $.magnificPopup.instance.close(); // Attempt to close the popup (will fail gracefully if none was instantiated)
+      }
     });
 
     // Engage
