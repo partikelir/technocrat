@@ -48,28 +48,33 @@ function pendrell_image_overlay_wrapper( $html = '', $position = 'top-right', $c
 
 
 
-// Image overlay metadata; displays comment count and date by default
-function pendrell_image_overlay_metadata( $id = '' ) {
-
-  // Try to guess the ID
+// Image overlay contents; displays comment count and date by default (but you can filter this to insert your own stuff)
+function pendrell_image_overlay_contents( $id = '' ) {
   if ( empty( $id ) )
-    $id = get_the_ID();
+    $id = get_the_ID(); // Try to guess the ID
+  return apply_filters( 'pendrell_image_overlay_top_left', '', $id ) . apply_filters( 'pendrell_image_overlay_top_right', '', $id );
+}
 
-  // Initialize
-  $output = '';
 
-  // Comments
+
+// Standard image overlay: comments
+function pendrell_image_overlay_comments( $data = '', $id = '' ) {
   $comments_count = get_comments_number( $id );
   if ( $comments_count > 0 ) {
     $comments_meta = $comments_count . ' ' . pendrell_icon( 'overlay-comments', __( 'Comments', 'pendrell' ) );
-    $output .= pendrell_image_overlay_wrapper( $comments_meta, 'top-right', 'comments' );
+    $data = pendrell_image_overlay_wrapper( $comments_meta, 'top-right', 'comments small' );
   }
-
-  // Date
-  $output .= pendrell_image_overlay_wrapper( get_the_date( 'M Y', $id ), 'top-left', 'date' );
-
-  return $output;
+  return $data;
 }
+add_filter( 'pendrell_image_overlay_top_right', 'pendrell_image_overlay_comments', '', 2 );
+
+
+
+// Standard image overlay: date
+function pendrell_image_overlay_date( $data = '', $id = '' ) {
+  return pendrell_image_overlay_wrapper( get_the_date( 'M Y', $id ), 'top-left', 'date smaller' );
+}
+add_filter( 'pendrell_image_overlay_top_left', 'pendrell_image_overlay_date', '', 2 );
 
 
 

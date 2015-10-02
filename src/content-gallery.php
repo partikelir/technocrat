@@ -11,6 +11,6 @@ echo ubik_imagery(
   $alt      = '',
   $rel      = '',
   $class    = array_merge( get_post_class(), array( 'overlay ' ) ),
-  $contents = pendrell_image_overlay_metadata(),
+  $contents = pendrell_image_overlay_contents(),
   $context  = array( 'group', 'responsive' )
 );

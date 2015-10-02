@@ -109,6 +109,19 @@ add_filter( 'pendrell_full_width', 'pendrell_places_full_width' );
 
 
 
+// A simple function to put a single place name into the image overlay
+function pendrell_places_image_overlay( $data = '', $id = '' ) {
+  if ( has_term( '', 'places' ) && ubik_terms_count( '', 'places' ) === 1 ) {
+    $places = wp_get_post_terms( $id, 'places' );
+    if ( !empty( $places ) )
+      $data = pendrell_image_overlay_wrapper( $places[0]->name . ' ' . pendrell_icon( 'places', __( 'Places', 'pendrell' ) ), 'top-right', 'place smaller' );
+  }
+  return $data;
+}
+//add_filter( 'pendrell_image_overlay_top_right', 'pendrell_places_image_overlay', 99, 2 );
+
+
+
 // Add places to the views taxonomy
 function pendrell_places_views( $taxonomies ) {
   $taxonomies[] = 'places';
