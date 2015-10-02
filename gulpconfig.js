@@ -147,7 +147,7 @@ module.exports = {
         modules+'html5-history-api/history.js'
       , modules+'spin.js/spin.js'
       , modules+'spin.js/jquery.spin.js'
-      , modules+'svg4everybody/svg4everybody.js'
+      , modules+'svg4everybody/dist/svg4everybody.js'
       , modules+'svg.icon.js/svg.icon.js'
       , modules+'selectric/public/jquery.selectric.js'
       , modules+'timeago/jquery.timeago.js'

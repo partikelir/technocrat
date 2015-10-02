@@ -4,6 +4,9 @@
 ;(function($){
   $(function(){
 
+    // Initialize svg4everybody 2.0.0+
+    svg4everybody();
+
     // Autosizes textareas based on user input
     autosize(document.querySelectorAll('textarea'));
 

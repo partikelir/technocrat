@@ -22,6 +22,7 @@
         "pendrellVars": true,
         "PG8Data": true,
         "svgIcon": true,
+        "svg4everybody": true,
         "autosize": true,
         "parseSrcset": true
     }
