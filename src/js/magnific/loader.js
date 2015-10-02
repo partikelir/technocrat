@@ -49,29 +49,8 @@
           //magnificPendrell.srcSelect(this.currItem);
         },
         imageLoadComplete: function() {
-
-          // Get the image and link (if available)
-          var img   = $('.mfp-img'),
-              link  = this.currItem.el.find('a:first').clone().empty(),
-              url   = '';
-
-          // Remove any existing link
-          if ( img.parent().is('a') ) {
-            img.unwrap();
-          }
-
-          // Add the link from the body of the post and update the URL
-          if (typeof link !== 'undefined' && link.length) {
-            img.wrap(link);
-            url = link.attr('href');
-          } else if (typeof magnificInitURL !== 'undefined') {
-            url = magnificInitURL;
-          }
-
-          // Update address bar
-          if (url !== location.href) {
-            history.pushState({ magnific: 1, index: this.currItem.index }, null, url);
-          }
+          magnificPendrell.imageLink(this.currItem);
+          //magnificPendrell.imageSrcset(this.currItem);
         },
         elementParse: function(item) {
           magnificPendrell.srcSelect(item);
@@ -92,6 +71,40 @@
       blurClose: function() {
         $('#page').addClass('blur-out');
         $('#page').removeClass('blur');
+      },
+
+      // Wrap an image in a link to the attachment page (or other link) where relevant
+      imageLink: function(item) {
+        var img   = $('.mfp-img'),
+            link  = item.el.find('a:first').clone().empty(),
+            url   = '';
+
+        // Remove any existing link
+        if ( img.parent().is('a') ) {
+          img.unwrap();
+        }
+
+        // Add the link from the body of the post and update the URL
+        if (typeof link !== 'undefined' && link.length) {
+          img.wrap(link);
+          url = link.attr('href');
+        } else if (typeof magnificInitURL !== 'undefined') {
+          url = magnificInitURL;
+        }
+
+        // Update address bar
+        if (url !== location.href) {
+          history.pushState({ magnific: 1, index: item.index }, null, url);
+        }
+      },
+
+      // Copy the srcset to the gallery image
+      imageSrcset: function(item) {
+        var srcset = item.el.find('img').attr('srcset');
+        if (srcset.length) {
+          $('img.mfp-img:first').attr('srcset', srcset);
+          picturefill();
+        }
       },
 
       // Restore the original base URL when closing the popup
