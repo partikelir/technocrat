@@ -15,11 +15,19 @@
       delegate: 'figure.wp-caption', // Open the popup by clicking on child elements matching this selector
       key: 'mfp-main',
       overflowY: 'scroll', // Assumes there is a scrollbar; prevents elements from shifting around in Chrome and perhaps other browsers
-      closeBtnInside: false,
-      showCloseBtn: false,
+      closeBtnInside: false, // Gets rid of some unnecessary styling
+      closeMarkup: '<div class="mfp-action mfp-close">' + svgIcon( 'typ-times', '%title%' ) + '</div>', // Can also use 'typ-cancel'
+      showCloseBtn: true,
       tLoading: '', // Empties "loading" text; Magnific Popup default preloader is text-based but we're using a spinner
       type: 'image',
       image: {
+        markup: '<div class="mfp-figure">'+
+            '<div class="mfp-img"></div>'+
+            '<div class="mfp-caption">'+
+              '<div class="mfp-title"></div>'+
+              '<div class="mfp-counter"></div>'+
+            '</div>'+
+          '</div>',
         titleSrc: function(item) {
           return item.el.find('figcaption').text();
         },
@@ -27,7 +35,7 @@
       },
       gallery: {
         enabled: true,
-        arrowMarkup: '<div class="mfp-arrow mfp-arrow-%dir%">' + svgIcon( 'typ-arrow-%dir%-thick', '%title%', '%title%' ) + '</div>',
+        arrowMarkup: '<div class="mfp-action mfp-arrow mfp-arrow-%dir%">' + svgIcon( 'typ-arrow-%dir%-thick', '%title%' ) + '</div>',
         navigateByImgClick: false,
         preload: [0,4], // Lazy loading options: # of previous / next images
         tCounter: '%curr%/%total%',
@@ -100,10 +108,11 @@
 
       // Copy the srcset to the gallery image
       imageSrcset: function(item) {
-        var srcset = item.el.find('img').attr('srcset');
+        var srcset = item.el.find('img').attr('srcset'),
+            img = $('img.mfp-img:first');
         if (srcset.length) {
-          $('img.mfp-img:first').attr('srcset', srcset);
-          picturefill();
+          img.attr('srcset', srcset);
+          picturefill({ elements: [ img ] });
         }
       },
 

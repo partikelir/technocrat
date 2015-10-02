@@ -87,6 +87,7 @@ module.exports = {
       , 'location'
       , 'spanner'
       , 'th-list'
+      , 'times'
       ]
     }
   , custom: {
