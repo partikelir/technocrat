@@ -1,6 +1,6 @@
 # PENDRELL
 
-Pendrell is a minimal yet powerful WordPress theme for multimedia blogs. It emphasizes beautiful typesetting alongside advanced image-handling. Use it for long-form journalism, photo-blogging, and more--but be prepared to dive into the code! Pendrell is something of a hacker theme; there is no options page, theme customizer, or bloat, and you won't find it in the WordPress theme repository. Instead, what you get is a highly optimized and fully featured theme [built with the goodness of Gulp, Bower, and Sass](https://github.com/synapticism/wordpress-gulp-bower-sass).
+Pendrell is a minimal yet powerful WordPress theme for multimedia blogs. It emphasizes beautiful typesetting alongside responsive image handling. Use it for long-form journalism, photo-blogging, and more--but be prepared to dive into the code! Pendrell is something of a hacker theme; there is no options page, theme customizer, or bloat, and you won't find it in the WordPress theme repository. Instead, what you get is a highly optimized and fully featured theme [built with the goodness of Gulp, Bower, and Sass](https://github.com/synapticism/wordpress-gulp-bower-sass).
 
 Pendrell is built with [Ubik](https://github.com/synapticism/ubik), my suite of WordPress components. All necessary components are integrated into Pendrell during the build process; no extra plugins need to be installed *but you do need to build this theme from source files yourself*.
 
@@ -16,9 +16,9 @@ You can see Pendrell in action on my personal blog, [Synapticism](http://synapti
 
 An incomplete list in no particular order:
 
-* HTML5-compliant markup; clean and efficient CSS3 styling based on Sass.
-* Automated CSS/JS minification via Gulp/Bower build system and intelligent asset loading. This theme is *highly* optimized.
-* Big, beautiful typesetting for [easy reading](http://ia.net/blog/100e2r/).
+* HTML5-compliant markup; clean and efficient CSS styling based on Sass.
+* Automated CSS/JS minification with a [Gulp build system](https://github.com/synapticism/wordpress-gulp-starter-kit) and intelligent asset loading. This theme is *highly* optimized.
+* Big, beautiful type for [easy reading](http://ia.net/blog/100e2r/).
 * Consistent vertical rhythm (excluding images and parts of the sidebar; that's just too much trouble).
 * Full-width view for images and galleries. Great for photo-blogging.
 * Truly responsive images and complex layouts with [Ubik Imagery](https://github.com/synapticism/ubik-imagery) and [Picturefill](https://github.com/scottjehl/picturefill). Visitors on mobile will load smaller image files than those with larger screens!
@@ -74,7 +74,7 @@ When making modifications in development be sure to alter files in the `src` fol
 
 To create a new production-ready distribution under `pendrell/dist/pendrell` use `gulp dist`. This can also be tested locally using a variation on the symbolic link command above.
 
-Pendrell uses vanilla Sass (sans Compass) alongside [Kipple](https://github.com/synapticism/kipple), my zygotic library of Sass hacks, and [Normalize.css](https://necolas.github.io/normalize.css/), among other projects. Have a look at `bower.json` and `composer.json` for a complete list.
+Pendrell uses vanilla Sass (without Compass) alongside [Kipple](https://github.com/synapticism/kipple), my zygotic library of Sass hacks, and [Normalize.css](https://necolas.github.io/normalize.css/), among other projects. Have a look at `bower.json` and `composer.json` for a complete list.
 
 
 

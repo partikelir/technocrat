@@ -5,6 +5,7 @@ var project     = 'pendrell'
   , src         = './src/'
   , build       = './build/'
   , dist        = './dist/'+project+'/'
+  , assets      = './assets/'
   , bower       = './bower_components/'
   , composer    = './vendor/'
   , modules     = './node_modules/'
@@ -34,7 +35,7 @@ module.exports = {
 
   // Icons from each set will be copied to the theme folder and combined to make a master icon sheet
   icons: {
-    dest: src+'icons/'
+    dest: assets+'icons/'
   , awesome: {
       src: bower+'font-awesome-svg-png/black/svg/' // Doesn't matter whether you're black or white
     , prefix: 'awe-'
@@ -98,11 +99,11 @@ module.exports = {
 
   images: {
     build: { // Copies images from `src` to `build`; does not optimize
-      src: src+'**/*(*.png|*.jpg|*.jpeg|*.gif)'
+      src: src+'**/*(*.png|*.jpg|*.jpeg|*.gif|*.svg)'
     , dest: build
     }
   , dist: {
-      src: [dist+'**/*(*.png|*.jpg|*.jpeg|*.gif)', '!'+dist+'screenshot.png', '!'+dist+'icons.*.png'] // No need to compress the PNG fallback
+      src: [dist+'**/*(*.png|*.jpg|*.jpeg|*.gif|*.svg)', '!'+dist+'screenshot.png', '!'+dist+'icons.*.png'] // No need to compress the PNG fallback (if they exist)
     , imagemin: {
         optimizationLevel: 7
       , progressive: true
@@ -229,8 +230,8 @@ module.exports = {
   },
 
   svg: {
-    src: src+'icons/**/*.svg'
-  , dest: build+'img/'
+    src: [assets+'icons/**/*.svg', assets+'icons-custom/**/*.svg']
+  , dest: src+'img/'
   , transform: {
       before: {
         run: function($) {

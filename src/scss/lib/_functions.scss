@@ -7,7 +7,7 @@
 
 // Configuration object manipulation; adapted from: http://codepen.io/AdamBlum/blog/config-objects-with-sass-maps
 @function config($map, $key) {
-  @return unquote(map-get($map, $key));
+  @return map-get($map, $key);
 }
 @function metadata($key) {
   @return config($_metadata, $key);
