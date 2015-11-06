@@ -376,6 +376,6 @@ figure.wp-caption {
 
 // Magnific Popup
 @if module(magnific-popup) {
-  @include magnific-popup;
+  @include magnific-popup; // ./lib/_magnific.scss
 }
 
