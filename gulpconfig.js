@@ -98,16 +98,19 @@ module.exports = {
   },
 
   images: {
-    build: { // Copies images from `src` to `build`; does not optimize
+    build: { // Copies images from `src` to `build`; does not optimize or modify anything at all
       src: src+'**/*(*.png|*.jpg|*.jpeg|*.gif|*.svg)'
     , dest: build
     }
   , dist: {
-      src: [dist+'**/*(*.png|*.jpg|*.jpeg|*.gif|*.svg)', '!'+dist+'screenshot.png', '!'+dist+'icons.*.png'] // No need to compress the PNG fallback (if they exist)
+      src: [dist+'**/*(*.png|*.jpg|*.jpeg|*.gif|*.svg)', '!'+dist+'screenshot.png', '!'+dist+'img/icons.*.png', '!'+dist+'img/icons.svg'] // No need to compress the PNG fallback (if they exist)
     , imagemin: {
         optimizationLevel: 7
       , progressive: true
       , interlaced: true
+      , svgoPlugins: [
+          // Optionally disable SVG plugins here
+        ]
       }
     , dest: dist
     }
