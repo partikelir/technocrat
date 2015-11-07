@@ -34,7 +34,7 @@ function pendrell_nav_content( $id = 'nav-below' ) {
   if ( !empty( $next_link ) )
     $output .= '<div class="nav-right"><a class="button button-action next-page" href="' . esc_url( $next_link ) . '" role="button">' . pendrell_icon_text( 'nav-next', __( 'Next', 'pendrell' ) ) . '</a></div>';
   if ( !empty( $output ) )
-    $output = '<nav id="' . $id . '" class="nav-content ' . $id . '" role="navigation"><h2 class="screen-reader-text">' . __( 'Content navigation', 'pendrell' ) . '</h2>' . $output  . '</nav>';
+    $output = '<nav id="' . $id . '" class="nav-content ' . $id . '"><h2 class="screen-reader-text">' . __( 'Content navigation', 'pendrell' ) . '</h2>' . $output  . '</nav>';
 
   // Output content navigation links
   echo apply_filters( 'pendrell_nav_content', $output );
@@ -68,7 +68,7 @@ function pendrell_nav_singular() {
 
   // Only output if we have something
   if ( !empty( $output ) )
-    echo '<nav id="' . $id . '" class="nav-singular ' . $class . '" role="navigation"><h2 class="screen-reader-text">' . $help . '</h2>' . $output . '</nav>';
+    echo '<nav id="' . $id . '" class="nav-singular ' . $class . '"><h2 class="screen-reader-text">' . $help . '</h2>' . $output . '</nav>';
 }
 add_action( 'pendrell_singular_below', 'pendrell_nav_singular' );
 
@@ -174,7 +174,7 @@ function pendrell_nav_comments() {
 
   // Check to see whether comments are paged and if there is more than one page
   if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) {
-    ?><nav id="nav-comments" class="nav-comments" role="navigation">
+    ?><nav id="nav-comments" class="nav-comments">
       <h1 class="screen-reader-text"><?php _e( 'Comment navigation', 'pendrell' ); ?></h1>
       <div class="nav-left"><?php previous_comments_link( pendrell_nav_arrows( 'left' ) . '&nbsp;' . __( 'Previous comments', 'pendrell' ) ); ?></div>
       <div class="nav-right"><?php next_comments_link( __( 'Next comments', 'pendrell' ) . '%nbsp;' . pendrell_nav_arrows( 'right' ) ); ?></div>

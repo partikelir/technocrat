@@ -7,7 +7,7 @@ get_header(); ?>
       	<header class="archive-header">
           <?php pendrell_archive_title(); ?>
         </header>
-        <main id="main" class="site-main" role="main">
+        <main id="main" class="site-main">
       		<?php get_template_part( 'content', 'none' ); ?>
       	</main>
       </section>

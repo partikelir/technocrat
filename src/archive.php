@@ -8,7 +8,7 @@ get_header(); ?>
           <?php do_action( 'pendrell_archive_header' ); ?>
         </header>
         <?php pendrell_nav_content( 'nav-above' ); ?>
-        <main id="main" class="site-main" role="main">
+        <main id="main" class="site-main">
           <?php if ( have_posts() ) {
             while ( have_posts() ) : the_post();
               pendrell_template_part();

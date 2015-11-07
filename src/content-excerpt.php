@@ -1,6 +1,6 @@
 <?php // ==== CONTENT: EXCERPT ==== // ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> itemscope itemtype="http://schema.org/Article">
   <header class="entry-header">
     <?php do_action( 'pendrell_entry_header' ); ?>
   </header>

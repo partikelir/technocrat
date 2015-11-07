@@ -11,7 +11,7 @@
 </head>
 <body <?php body_class(); ?>>
 	<?php do_action( 'pendrell_body_before' ); ?>
-	<a name="top"></a>
+	<a id="top"></a>
 	<div id="page" class="site hfeed h-feed">
 		<div id="wrap-header" class="wrap-header">
 			<header id="masthead" class="site-header" role="banner">
@@ -20,10 +20,10 @@
 					<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
 				</div>
 				<div id="site-interface" class="site-interface">
-					<button id="menu-toggle" class="menu-toggle" role="button"><?php echo pendrell_icon_text( 'menu-toggle', __( 'Menu', 'pendrell' ) ); ?></button>
+					<button id="menu-toggle" class="menu-toggle"><?php echo pendrell_icon_text( 'menu-toggle', __( 'Menu', 'pendrell' ) ); ?></button>
 					<a href="#content" class="button skip-link" role="button" rel="nofollow"><?php echo __( 'Skip to content', 'pendrell' ); ?></a>
 				</div>
-				<nav id="site-navigation" class="site-navigation" role="navigation">
+				<nav id="site-navigation" class="site-navigation">
 					<?php do_action( 'pendrell_site_navigation' ); ?>
 				</nav>
 			</header>
