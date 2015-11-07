@@ -109,7 +109,7 @@ module.exports = {
       , progressive: true
       , interlaced: true
       , svgoPlugins: [
-          // Optionally disable SVG plugins here
+          // Optionally disable SVG plugins here; see here for more: https://github.com/sindresorhus/grunt-svgmin#available-optionsplugins
         ]
       }
     , dest: dist
@@ -218,7 +218,7 @@ module.exports = {
       src: build+'**/*.css'
     , dest: dist
     }
-  , compiler: 'ruby-sass' // 'ruby-sass' or 'libsass'
+  , compiler: 'rubysass' // 'rubysass' or 'libsass'
   , autoprefixer: { browsers: ['> 3%', 'last 2 versions', 'ie 9', 'ios 6', 'android 4'] }
   , minify: { keepSpecialComments: 1, roundingPrecision: 5 }
   , rubySass: { // Don't forget to run `gem install sass`; Compass is not included by default
@@ -302,7 +302,7 @@ module.exports = {
   , wipe: [dist] // Clear things out before packaging; @TODO: also clear out the `build` folder
   , icons: src+'icons/'
   , dist: {
-      src: build+'**/*'
+      src: [build+'**/*', '!'+build+'**/*.map']
     , dest: dist
     }
   },
@@ -311,7 +311,7 @@ module.exports = {
     src: {
       styles:       src+'scss/**/*.scss'
     , scripts:      src+'js/**/*.js'
-    , images:       src+'**/*(*.png|*.jpg|*.jpeg|*.gif)'
+    , images:       src+'**/*(*.png|*.jpg|*.jpeg|*.gif|*.svg)'
     , theme:        src+'**/*.php'
     , livereload:   build+'**/*'
     }
