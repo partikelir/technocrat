@@ -43,21 +43,29 @@ function pendrell_places_meta( $meta ) {
 
     // Initialize
     $sep = ', ';
-    $top = '';
+    $after = '';
 
     // If there's only one term associated with the post let's add the inheritance chain; this was we get "Changhua, Taiwan" etc.
     if ( ubik_terms_count( '', 'places' ) === 1 ) {
-      $top = ubik_places_ancestors();
-      if ( !empty( $top ) )
-        $top = $sep . $top;
+      $after = ubik_places_ancestors();
+      if ( !empty( $after ) )
+        $after = $sep . $after;
     }
 
     // Add to post metadata
-    $meta .= sprintf( __( 'Places: %s. ', 'pendrell' ), ubik_meta_terms( 'places', '', $sep, $top ) );
+    $meta .= sprintf( __( 'Places: %s. ', 'pendrell' ), ubik_meta_terms( 'places', $before = '', $sep, $after ) );
   }
   return $meta;
 }
 add_filter( 'ubik_meta_taxonomies', 'pendrell_places_meta' );
+
+
+
+// Add schema.org data to places metadata
+function pendrell_places_meta_schema( $links ) {
+  return str_replace( 'rel="tag"', 'itemprop="contentLocation" itemscope itemtype="https://schema.org/Place"', $links );
+}
+add_filter( 'term_links-places', 'pendrell_places_meta_schema' );
 
 
 

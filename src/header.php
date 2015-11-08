@@ -11,10 +11,9 @@
 </head>
 <body <?php body_class(); ?>>
 	<?php do_action( 'pendrell_body_before' ); ?>
-	<a id="top"></a>
 	<div id="page" class="site hfeed h-feed">
 		<div id="wrap-header" class="wrap-header">
-			<header id="masthead" class="site-header" role="banner">
+			<header id="masthead" class="site-header">
 				<div class="site-branding">
 					<h1 class="site-title"><a href="<?php echo esc_url( site_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 					<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
