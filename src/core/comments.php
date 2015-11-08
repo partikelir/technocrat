@@ -38,16 +38,14 @@ function pendrell_comments( $comment, $args, $depth ) {
           comment_author_link();
           $pingback_edit_link = pendrell_comments_edit_link();
           if ( !empty( $pingback_edit_link ) )
-            echo '<div class="comments-buttons buttons buttons-merge">' . $pingback_edit_link . '</div>';
+            echo '<div class="comments-buttons buttons buttons-merge" role="button">' . $pingback_edit_link . '</div>';
         ?></article>
       </li><?php
       break;
 
     // Normal comments
     default:
-
       global $post;
-
       ?><li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
         <article id="comment-<?php comment_ID(); ?>" class="comment-article">
           <header class="comment-author vcard">
@@ -72,9 +70,9 @@ function pendrell_comments( $comment, $args, $depth ) {
           <?php if ( $comment->comment_approved == '0' ) {
             echo '<p class="warning comment-warning">' . __( 'Your comment is awaiting moderation.', 'pendrell' ) . '</p>';
           } ?>
-          <section class="comment-content">
+          <div class="comment-content">
             <?php comment_text(); ?>
-          </section>
+          </div>
         </article>
       </li><?php
       break;

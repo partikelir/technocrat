@@ -63,7 +63,10 @@ add_filter( 'ubik_meta_taxonomies', 'pendrell_places_meta' );
 
 // Add schema.org data to places metadata
 function pendrell_places_meta_schema( $links ) {
-  return str_replace( 'rel="tag"', 'itemprop="contentLocation" itemscope itemtype="https://schema.org/Place"', $links );
+  $links = str_replace( 'rel="tag"', 'itemprop="contentLocation" itemscope itemtype="https://schema.org/Place"', $links );
+  $links = str_replace( 'Place">', 'Place"><span itemprop="name">', $links );
+  $links = str_replace( '</a>', '</span></a>', $links );
+  return $links;
 }
 add_filter( 'term_links-places', 'pendrell_places_meta_schema' );
 
