@@ -11,7 +11,7 @@ function pendrell_entry_title( $title = '' ) {
     $title = get_the_title();
   if ( !is_singular() )
     $title = '<a href="' . get_permalink() . '" rel="bookmark">' . $title . '</a>';
-  echo apply_filters( 'pendrell_entry_title', '<h2 class="entry-title p-name">' . $title . '</h2>' );
+  echo apply_filters( 'pendrell_entry_title', '<h2 class="entry-title p-name" itemprop="headline">' . $title . '</h2>' );
 }
 add_action( 'pendrell_entry_header', 'pendrell_entry_title' );
 

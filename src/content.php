@@ -4,7 +4,7 @@
   <header class="entry-header">
     <?php do_action( 'pendrell_entry_header' ); ?>
   </header>
-  <div class="entry-content">
+  <div class="entry-content" itemprop="articleBody">
     <?php the_content(); pendrell_nav_page_links(); ?>
   </div>
   <footer class="entry-footer">
