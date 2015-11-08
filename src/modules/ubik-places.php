@@ -47,7 +47,7 @@ function pendrell_places_meta( $meta ) {
 
     // If there's only one term associated with the post let's add the inheritance chain; this was we get "Changhua, Taiwan" etc.
     if ( ubik_terms_count( '', 'places' ) === 1 ) {
-      $after = ubik_places_ancestors();
+      $after = apply_filters( 'pendrell_places_ancestors', ubik_places_ancestors() );
       if ( !empty( $after ) )
         $after = $sep . $after;
     }
@@ -68,7 +68,8 @@ function pendrell_places_meta_schema( $links ) {
   $links = str_replace( '</a>', '</span></a>', $links );
   return $links;
 }
-add_filter( 'term_links-places', 'pendrell_places_meta_schema' );
+add_filter( 'term_links-places', 'pendrell_places_meta_schema' ); // Built-in
+add_filter( 'pendrell_places_ancestors', 'pendrell_places_meta_schema' ); // Also handles ancestors on posts with only one place
 
 
 

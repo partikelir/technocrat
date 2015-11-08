@@ -47,9 +47,9 @@ function pendrell_sizes_media_queries( $queries = array(), $size = '', $width = 
   $width = min( $width, $bounding_width );
 
   // Test the context object for various scenarios; this allows the theme to handle the sizes attribute in different ways depending on how images are being used
-  $group        = pendrell_sizes_context( $context, 'group' );
-  $responsive   = pendrell_sizes_context( $context, 'responsive' );
-  $static       = pendrell_sizes_context( $context, 'static' );
+  $group        = ubik_imagery_context( $context, 'group' );
+  $responsive   = ubik_imagery_context( $context, 'responsive' );
+  $static       = ubik_imagery_context( $context, 'static' );
 
   // The margins can be filtered; this is mostly in case the inner margin (the space *between* grouped images) is not the same as the page margins
   // Example: your outer page margins are 30px on each side but the spacing between images is 20px
@@ -194,9 +194,9 @@ function pendrell_sizes_default( $default = '', $size = '', $width = '', $contex
   $margin_inner = pendrell_sizes_margin_inner();
 
   // Test the context object for various scenarios
-  $content      = pendrell_sizes_context( $context, 'content' ); // Defaults back to 100vw as images fill the viewport
-  $group        = pendrell_sizes_context( $context, 'group' );
-  $static       = pendrell_sizes_context( $context, 'static' );
+  $content      = ubik_imagery_context( $context, 'content' ); // Defaults back to 100vw as images fill the viewport
+  $group        = ubik_imagery_context( $context, 'group' );
+  $static       = ubik_imagery_context( $context, 'static' );
 
   // Static galleries are a special case; for everything else we can safely default back to the full viewport minus basic page margins
   // This presumes that Ubik Imagery's sizing conventions are being followed; see: https://github.com/synapticism/ubik-imagery
@@ -239,23 +239,6 @@ function pendrell_sizes_margin() {
 }
 function pendrell_sizes_margin_inner() {
   return (int) apply_filters( 'pendrell_sizes_margin_inner', PENDRELL_BASELINE );
-}
-
-
-
-// == CONTEXT == //
-
-// Test the context object, which is either an array of contexts or a string (possibly comma-delimited)
-function pendrell_sizes_context( $context = '', $test = '' ) {
-  if ( !empty( $context ) && !empty( $test ) ) {
-    if ( ( is_array( $context ) && in_array( $test, $context ) ) ) {
-      return true;
-    } elseif ( is_string( $context ) ) {
-      if ( strpos( $test, $context ) !== false )
-        return true;
-    }
-  }
-  return false;
 }
 
 
