@@ -35,8 +35,11 @@ defined( 'PENDRELL_UBIK_SEO' )            || define( 'PENDRELL_UBIK_SEO', false 
 defined( 'PENDRELL_UBIK_SERIES' )         || define( 'PENDRELL_UBIK_SERIES', false );
 
 // Dependent on the Pendrell core post formats switch
-if ( PENDRELL_POST_FORMATS )
+if ( PENDRELL_POST_FORMATS ) {
   defined( 'PENDRELL_UBIK_POST_FORMATS' )   || define( 'PENDRELL_UBIK_POST_FORMATS', true );
+} else {
+  defined( 'PENDRELL_UBIK_POST_FORMATS' )   || define( 'PENDRELL_UBIK_POST_FORMATS', false );
+}
 
 // Modules path; a shortcut for use below
 $path_modules = trailingslashit( get_stylesheet_directory() ) . 'modules/';
@@ -203,7 +206,7 @@ if ( PENDRELL_UBIK_PLACES )
 
 // == POST FORMATS == //
 
-if ( PENDRELL_UBIK_POST_FORMATS && PENDRELL_POST_FORMATS )
+if ( PENDRELL_UBIK_POST_FORMATS )
   require_once( $path_modules . 'ubik-post-formats/ubik-post-formats.php' );
 
 
