@@ -43,21 +43,33 @@ function pendrell_places_meta( $meta ) {
 
     // Initialize
     $sep = ', ';
-    $top = '';
+    $after = '';
 
     // If there's only one term associated with the post let's add the inheritance chain; this was we get "Changhua, Taiwan" etc.
     if ( ubik_terms_count( '', 'places' ) === 1 ) {
-      $top = ubik_places_ancestors();
-      if ( !empty( $top ) )
-        $top = $sep . $top;
+      $after = apply_filters( 'pendrell_places_ancestors', ubik_places_ancestors() );
+      if ( !empty( $after ) )
+        $after = $sep . $after;
     }
 
     // Add to post metadata
-    $meta .= sprintf( __( 'Places: %s. ', 'pendrell' ), ubik_meta_terms( 'places', '', $sep, $top ) );
+    $meta .= sprintf( __( 'Places: %s. ', 'pendrell' ), ubik_meta_terms( 'places', $before = '', $sep, $after ) );
   }
   return $meta;
 }
 add_filter( 'ubik_meta_taxonomies', 'pendrell_places_meta' );
+
+
+
+// Add schema.org data to places metadata
+function pendrell_places_meta_schema( $links ) {
+  $links = str_replace( 'rel="tag"', 'itemprop="contentLocation" itemscope itemtype="https://schema.org/Place"', $links );
+  $links = str_replace( 'Place">', 'Place"><span itemprop="name">', $links );
+  $links = str_replace( '</a>', '</span></a>', $links );
+  return $links;
+}
+add_filter( 'term_links-places', 'pendrell_places_meta_schema' ); // Built-in
+add_filter( 'pendrell_places_ancestors', 'pendrell_places_meta_schema' ); // Also handles ancestors on posts with only one place
 
 
 
@@ -106,6 +118,19 @@ function pendrell_places_full_width( $test ) {
   return $test;
 }
 add_filter( 'pendrell_full_width', 'pendrell_places_full_width' );
+
+
+
+// A simple function to put a single place name into the image overlay
+function pendrell_places_image_overlay( $data = '', $id = '' ) {
+  if ( has_term( '', 'places' ) && ubik_terms_count( '', 'places' ) === 1 ) {
+    $places = wp_get_post_terms( $id, 'places' );
+    if ( !empty( $places ) )
+      $data = pendrell_image_overlay_wrapper( $places[0]->name . ' ' . pendrell_icon( 'places', __( 'Places', 'pendrell' ) ), 'top-right', 'place smaller' );
+  }
+  return $data;
+}
+//add_filter( 'pendrell_image_overlay_top_right', 'pendrell_places_image_overlay', 99, 2 );
 
 
 

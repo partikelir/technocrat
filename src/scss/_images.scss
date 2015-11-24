@@ -103,8 +103,13 @@ figure.wp-caption {
   // The footer contains additional data e.g. comment count
   footer {
     &.comments {
-      @include font-size( text-small, 0, 25 );
       @include font-style(image-overlay-comments);
+    }
+    &.date {
+      @include font-style(image-overlay-date);
+    }
+    &.small {
+      @include font-size( text-small, 0, 25 );
       transition-delay: .23s;
       @include k-media-between( break(tiny), break(medium) ) {
         @include font-size( text-smaller, 0, 25 );
@@ -128,9 +133,8 @@ figure.wp-caption {
         }
       }
     }
-    &.date {
+    &.smaller {
       @include font-size( text-smaller, 0, 25 );
-      @include font-style(image-overlay-date);
       transition-delay: .23s;
       @include k-media-between( break(tiny), break(medium) ) {
         @include font-size( text-smallest, 0, 25 );
@@ -371,6 +375,6 @@ figure.wp-caption {
 
 // Magnific Popup
 @if module(magnific-popup) {
-  @include magnific-popup;
+  @include magnific-popup; // ./lib/_magnific.scss
 }
 

@@ -4,11 +4,11 @@
 if ( post_password_required() )
 	return; ?>
 
-  <section class="entry-comments" id="comments">
+  <section id="comments" class="entry-comments">
   	<?php if ( have_comments() ) : ?>
   		<h2 class="comments-title">
-  			<?php printf( _n( 'One comment on &lsquo;%2$s&rsquo;', '%1$s comments on &lsquo;%2$s&rsquo;', get_comments_number(), 'pendrell' ),
-  					number_format_i18n( get_comments_number() ), '<span>' . get_the_title() . '</span>' ); ?>
+  			<?php printf( _n( '<span itemprop="commentCount">1</span> response to &lsquo;%2$s&rsquo;', '%1$s responses to &lsquo;%2$s&rsquo;', get_comments_number(), 'pendrell' ),
+  					'<span itemprop="commentCount">' . number_format_i18n( get_comments_number() ) . '</span>', '<span>' . get_the_title() . '</span>' ); ?>
   		</h2>
   		<ol class="comment-list">
   			<?php wp_list_comments( array(

@@ -21,7 +21,9 @@
         "jQuery": true,
         "pendrellVars": true,
         "PG8Data": true,
+        "picturefill": true,
         "svgIcon": true,
+        "svg4everybody": true,
         "autosize": true,
         "parseSrcset": true
     }

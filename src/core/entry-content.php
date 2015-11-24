@@ -11,7 +11,7 @@ function pendrell_entry_title( $title = '' ) {
     $title = get_the_title();
   if ( !is_singular() )
     $title = '<a href="' . get_permalink() . '" rel="bookmark">' . $title . '</a>';
-  echo apply_filters( 'pendrell_entry_title', '<h1 class="entry-title p-name">' . $title . '</h1>' );
+  echo apply_filters( 'pendrell_entry_title', '<h2 class="entry-title p-name" itemprop="headline">' . $title . '</h2>' );
 }
 add_action( 'pendrell_entry_header', 'pendrell_entry_title' );
 
@@ -21,7 +21,7 @@ add_action( 'pendrell_entry_header', 'pendrell_entry_title' );
 function pendrell_entry_header_meta() {
   $output = apply_filters( 'pendrell_entry_header_meta', '' ); // Hook for other functions to add metadata
   if ( !empty( $output ) )
-    echo '<footer class="entry-meta">' . $output . '</footer>';
+    echo '<div class="entry-meta" role="contentinfo">' . $output . '</div>';
 }
 add_action( 'pendrell_entry_header', 'pendrell_entry_header_meta', 12 );
 
@@ -64,7 +64,7 @@ add_filter( 'pendrell_entry_header_meta', 'pendrell_entry_header_metadata' );
 
 // Entry footer meta
 function pendrell_entry_footer_meta() {
-  echo '<div class="entry-meta">' . ubik_meta_date_statement() . '</div>';
+  echo '<div class="entry-meta">' . ubik_meta_date_statement() . '</div>'; // role="contentinfo" should be implied by the `footer` wrapping element
 }
 add_action( 'pendrell_entry_footer', 'pendrell_entry_footer_meta', 10 );
 

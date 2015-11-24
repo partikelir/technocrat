@@ -29,6 +29,11 @@ svg {
         vertical-align: -2px;
       }
     }
+    @if module(ubik-places) {
+      .overlay .place.top-right & {
+        margin-right: -3px; // Moves icons to the right a bit
+      }
+    }
 
     .no-image & {
       @include k-absolute(top 0 left 0 bottom 0 right 0);

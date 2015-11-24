@@ -54,6 +54,11 @@ $_magnific: (
     &::-webkit-scrollbar {
       opacity: 0; // Scrollbar is present but invisible; used to maintain the position of elements
     }
+    // General icon declarations; see also class `mfp-action` etc.
+    svg.icon {
+      height: spacer(2);
+      width: spacer(2);
+    }
   }
 
   // Root container
@@ -84,11 +89,6 @@ $_magnific: (
     }
     .mfp-align-top &:before {
       @extend %mfp-display-none; // Remove vertical centering when popup has class `mfp-align-top`
-    }
-    // General icon declarations; see also class `mfp-arrow`
-    svg.icon {
-      height: spacer(2);
-      width: spacer(2);
     }
   }
 
@@ -167,39 +167,21 @@ $_magnific: (
     z-index: magnific(z-index-base) + 4;
   }
 
-  // Icons
-  .mfp-close,
-  .mfp-arrow {
+  // Actions: icon holders that perform various functions
+  .mfp-action {
     background: transparent;
     border: 0;
     box-shadow: none;
     cursor: pointer;
     display: block;
+    opacity: .44;
     outline: none;
     overflow: visible;
     padding: 0;
+    transition: opacity .47s ease-out;
     z-index: magnific(z-index-base) + 6;
     -webkit-appearance: none;
-  }
-
-  // Navigation arrows
-  .mfp-arrow {
-    @include k-absolute( top 0 );
-    display: block;
-    height: 100%;
-    opacity: .44;
-    padding: 0;
-    transition: opacity .47s ease-out;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    @include k-media-below( break(small) ) {
-      width: spacer(3/2);
-    }
-    @include k-media-between( break(small), break(medium) ) {
-      width: spacer(2);
-    }
-    @include k-media-above( break(medium) ) {
-      width: spacer(3);
-    }
     &:hover,
     &:focus {
       opacity: 1;
@@ -220,6 +202,23 @@ $_magnific: (
       }
     }
   }
+
+  // Navigation arrows
+  .mfp-arrow {
+    @include k-absolute( top 0 );
+    height: 100%;
+    @include k-media-below( break(small) ) {
+      width: spacer(3/2);
+    }
+    @include k-media-between( break(small), break(medium) ) {
+      width: spacer(2);
+    }
+    @include k-media-above( break(medium) ) {
+      width: spacer(3);
+    }
+    svg.icon {
+    }
+  }
   .mfp-arrow-left {
     left: 0;
     svg.icon {
@@ -232,7 +231,8 @@ $_magnific: (
       }
     }
   }
-  .mfp-arrow-right {
+  .mfp-arrow-right,
+  .mfp-close {
     right: 0;
     svg.icon {
       right: spacer(1/2);
@@ -243,6 +243,13 @@ $_magnific: (
         right: 0;
       }
     }
+  }
+
+  .mfp-close {
+    @include k-absolute( top 0 right 0 ); // Top right
+    height: spacer(2); // Height/width defines the clickable area
+    width: spacer(3);
+    z-index: magnific(z-index-base) + 8; // Higher than the arrows
   }
 
   a {
@@ -283,7 +290,7 @@ $_magnific: (
     }
   }
 
-  .mfp-bottom-bar {
+  .mfp-caption {
     @include k-absolute( top 100% left 0 );
     cursor: auto;
     margin: spacer(-1) 0;

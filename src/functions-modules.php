@@ -9,11 +9,9 @@ if ( WP_LOCAL_DEV && 1==0 ) {
   defined( 'PENDRELL_UBIK_EXCLUDER' )       || define( 'PENDRELL_UBIK_EXCLUDER', true );
   defined( 'PENDRELL_UBIK_FEED' )           || define( 'PENDRELL_UBIK_FEED', true );
   defined( 'PENDRELL_UBIK_LINGUAL' )        || define( 'PENDRELL_UBIK_LINGUAL', true );
-  defined( 'PENDRELL_UBIK_LINKS' )          || define( 'PENDRELL_UBIK_LINKS', true );
   defined( 'PENDRELL_UBIK_MARKDOWN' )       || define( 'PENDRELL_UBIK_MARKDOWN', true );
   defined( 'PENDRELL_UBIK_PHOTO_META' )     || define( 'PENDRELL_UBIK_PHOTO_META', true );
   defined( 'PENDRELL_UBIK_PLACES' )         || define( 'PENDRELL_UBIK_PLACES', true );
-  defined( 'PENDRELL_UBIK_POST_FORMATS' )   || define( 'PENDRELL_UBIK_POST_FORMATS', true );
   defined( 'PENDRELL_UBIK_QUICK_TERMS' )    || define( 'PENDRELL_UBIK_QUICK_TERMS', true );
   defined( 'PENDRELL_UBIK_RECORDPRESS' )    || define( 'PENDRELL_UBIK_RECORDPRESS', true );
   defined( 'PENDRELL_UBIK_RELATED' )        || define( 'PENDRELL_UBIK_RELATED', true );
@@ -27,7 +25,6 @@ defined( 'PENDRELL_UBIK_ANALYTICS' )      || define( 'PENDRELL_UBIK_ANALYTICS', 
 defined( 'PENDRELL_UBIK_EXCLUDER' )       || define( 'PENDRELL_UBIK_EXCLUDER', false );
 defined( 'PENDRELL_UBIK_FEED' )           || define( 'PENDRELL_UBIK_FEED', false );
 defined( 'PENDRELL_UBIK_LINGUAL' )        || define( 'PENDRELL_UBIK_LINGUAL', false );
-defined( 'PENDRELL_UBIK_LINKS' )          || define( 'PENDRELL_UBIK_LINKS', true );
 defined( 'PENDRELL_UBIK_MARKDOWN' )       || define( 'PENDRELL_UBIK_MARKDOWN', true );
 defined( 'PENDRELL_UBIK_PHOTO_META' )     || define( 'PENDRELL_UBIK_PHOTO_META', false );
 defined( 'PENDRELL_UBIK_PLACES' )         || define( 'PENDRELL_UBIK_PLACES', false );
@@ -38,8 +35,11 @@ defined( 'PENDRELL_UBIK_SEO' )            || define( 'PENDRELL_UBIK_SEO', true )
 defined( 'PENDRELL_UBIK_SERIES' )         || define( 'PENDRELL_UBIK_SERIES', false );
 
 // Dependent on the Pendrell core post formats switch
-if ( PENDRELL_POST_FORMATS )
+if ( PENDRELL_POST_FORMATS ) {
   defined( 'PENDRELL_UBIK_POST_FORMATS' )   || define( 'PENDRELL_UBIK_POST_FORMATS', true );
+} else {
+  defined( 'PENDRELL_UBIK_POST_FORMATS' )   || define( 'PENDRELL_UBIK_POST_FORMATS', false );
+}
 
 // Modules path; a shortcut for use below
 $path_modules = trailingslashit( get_stylesheet_directory() ) . 'modules/';
@@ -193,17 +193,6 @@ if ( PENDRELL_UBIK_LINGUAL ) {
 
 
 
-// == LINKS == //
-
-if ( PENDRELL_UBIK_LINKS ) {
-  define( 'UBIK_LINKS_PAGE_TEMPLATE', 'page-templates/links.php' );
-  define( 'UBIK_LINKS_SEARCH_FORM_REVERSE', true );
-  require_once( $path_modules . 'ubik-links.php' );
-  add_filter( 'ubik_links_search_button', 'pendrell_icon_search_button' );
-}
-
-
-
 // == MARKDOWN == //
 
 if ( PENDRELL_UBIK_MARKDOWN ) {
@@ -230,20 +219,6 @@ add_filter( 'ubik_meta_microformats', '__return_true' );
 
 if ( PENDRELL_UBIK_PHOTO_META )
   require_once( $path_modules . 'ubik-photo-meta.php' );
-
-
-
-// == RELATED POSTS == //
-
-if ( PENDRELL_UBIK_RELATED )
-  require_once( $path_modules . 'ubik-related.php' );
-
-
-
-// == PLACES == //
-
-if ( PENDRELL_UBIK_PLACES )
-  require_once( $path_modules . 'ubik-places.php' );
 
 
 

@@ -134,8 +134,8 @@ function pendrell_related_posts_gallery( $related_posts = '' ) {
       $alt      = '',
       $rel      = '',
       $class    = 'related-post overlay',
-      $contents = pendrell_image_overlay_metadata( $related_post ),
-      $context  = array( 'group', 'static' )
+      $contents = pendrell_image_overlay_contents( $related_post ),
+      $context  = array( 'group', 'static', 'related' )
     );
   }
 

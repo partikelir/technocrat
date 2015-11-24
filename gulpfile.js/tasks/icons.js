@@ -95,8 +95,8 @@ gulp.task('icons-custom', function() {
 });
 
 // Utility function to clean out the icons folder prior to building a new sprite sheet (use this anytime you change icons)
-gulp.task('icons-clean', function(cb) {
-  del(config.dest, cb)
+gulp.task('icons-clean', function() {
+  return del(config.dest);
 });
 
 // Support for multiple icon sources; use one task per set to handle different prefixes and source locations

@@ -5,6 +5,7 @@ var project     = 'technocrat'
   , src         = './src/'
   , build       = './build/'
   , dist        = './dist/'+project+'/'
+  , assets      = './assets/'
   , bower       = './bower_components/'
   , composer    = './vendor/'
   , modules     = './node_modules/'
@@ -12,14 +13,6 @@ var project     = 'technocrat'
 
 // Project settings
 module.exports = {
-
-  bower: {
-    normalize: { // Copies `normalize.css` from `bower_components` to `src/scss` and renames it to allow for it to imported as a Sass file
-      src: bower+'normalize.css/normalize.css'
-    , dest: src+'scss'
-    , rename: '_normalize.scss'
-    }
-  },
 
   browsersync: {
     files: [build+'/**', '!'+build+'/**.map'] // Exclude map files
@@ -34,7 +27,7 @@ module.exports = {
 
   // Icons from each set will be copied to the theme folder and combined to make a master icon sheet
   icons: {
-    dest: src+'icons/'
+    dest: assets+'icons/'
   , awesome: {
       src: bower+'font-awesome-svg-png/black/svg/' // Doesn't matter whether you're black or white
     , prefix: 'awe-'
@@ -102,6 +95,7 @@ module.exports = {
       , 'social-instagram-circular'
       , 'social-twitter-circular'
       , 'th-list'
+      , 'times'
       ]
     }
   , custom: {
@@ -111,16 +105,19 @@ module.exports = {
   },
 
   images: {
-    build: { // Copies images from `src` to `build`; does not optimize
-      src: src+'**/*(*.png|*.jpg|*.jpeg|*.gif)'
+    build: { // Copies images from `src` to `build`; does not optimize or modify anything at all
+      src: src+'**/*(*.png|*.jpg|*.jpeg|*.gif|*.svg)'
     , dest: build
     }
   , dist: {
-      src: [dist+'**/*(*.png|*.jpg|*.jpeg|*.gif)', '!'+dist+'screenshot.png', '!'+dist+'icons.*.png'] // No need to compress the PNG fallback
+      src: [dist+'**/*(*.png|*.jpg|*.jpeg|*.gif|*.svg)', '!'+dist+'screenshot.png', '!'+dist+'img/icons.*.png', '!'+dist+'img/icons.svg'] // No need to compress the PNG fallback (if they exist)
     , imagemin: {
         optimizationLevel: 7
       , progressive: true
       , interlaced: true
+      , svgoPlugins: [
+          // Optionally disable SVG plugins here; see here for more: https://github.com/sindresorhus/grunt-svgmin#available-optionsplugins
+        ]
       }
     , dest: dist
     }
@@ -162,7 +159,7 @@ module.exports = {
         modules+'html5-history-api/history.js'
       , modules+'spin.js/spin.js'
       , modules+'spin.js/jquery.spin.js'
-      , modules+'svg4everybody/svg4everybody.js'
+      , modules+'svg4everybody/dist/svg4everybody.js'
       , modules+'svg.icon.js/svg.icon.js'
       , modules+'selectric/public/jquery.selectric.js'
       , modules+'timeago/jquery.timeago.js'
@@ -228,7 +225,7 @@ module.exports = {
       src: build+'**/*.css'
     , dest: dist
     }
-  , compiler: 'ruby-sass' // 'ruby-sass' or 'libsass'
+  , compiler: 'rubysass' // 'rubysass' or 'libsass'
   , autoprefixer: { browsers: ['> 3%', 'last 2 versions', 'ie 9', 'ios 6', 'android 4'] }
   , minify: { keepSpecialComments: 1, roundingPrecision: 5 }
   , rubySass: { // Don't forget to run `gem install sass`; Compass is not included by default
@@ -243,8 +240,8 @@ module.exports = {
   },
 
   svg: {
-    src: src+'icons/**/*.svg'
-  , dest: build+'img/'
+    src: [assets+'icons/**/*.svg', assets+'icons-custom/**/*.svg']
+  , dest: src+'img/'
   , transform: {
       before: {
         run: function($) {
@@ -285,7 +282,6 @@ module.exports = {
       , 'fonts' // *
       , 'imagery' // *
       //, 'lingual'
-      , 'links'
       , 'markdown'
       , 'meta' // *
       //, 'places'
@@ -313,8 +309,13 @@ module.exports = {
   , wipe: [dist] // Clear things out before packaging; @TODO: also clear out the `build` folder
   , icons: src+'icons/'
   , dist: {
-      src: build+'**/*'
+      src: [build+'**/*', '!'+build+'**/*.map']
     , dest: dist
+    }
+  , normalize: { // Copies `normalize.css` from `node_modules` to `src/scss` and renames it to allow for it to imported as a Sass file
+      src: modules+'normalize.css/normalize.css'
+    , rename: '_normalize.scss'
+    , dest: src+'scss'
     }
   },
 
@@ -322,7 +323,7 @@ module.exports = {
     src: {
       styles:       src+'scss/**/*.scss'
     , scripts:      src+'js/**/*.js'
-    , images:       src+'**/*(*.png|*.jpg|*.jpeg|*.gif)'
+    , images:       src+'**/*(*.png|*.jpg|*.jpeg|*.gif|*.svg)'
     , theme:        src+'**/*.php'
     , livereload:   build+'**/*'
     }
