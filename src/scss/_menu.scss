@@ -52,11 +52,7 @@
         display: none; // Only display submenus on larger screens
       }
       > li:first-child > a {
-        @include triangle; // Pseudo triangle on first submenu only
-        border-color: colour(drop-b); // Sets the colour of the triangle; doesn't actually display a border
-        &:hover {
-          //border-color: darken( colour(sub-bg), 13);
-        }
+        @include k-triangle(colour(drop-b), top, 6px, absolute, left 0); // Pseudo triangle on first submenu only
       }
     }
     ul {

@@ -210,17 +210,17 @@ module.exports = {
       src: build+'**/*.css'
     , dest: dist
     }
-  , compiler: 'rubysass' // 'rubysass' or 'libsass'
+  , compiler: 'libsass' // 'rubysass' or 'libsass'
   , autoprefixer: { browsers: ['> 3%', 'last 2 versions', 'ie 9', 'ios 6', 'android 4'] }
   , minify: { keepSpecialComments: 1, roundingPrecision: 5 }
   , rubySass: { // Don't forget to run `gem install sass`; Compass is not included by default
-      loadPath: ['src/scss', bower] // Adds the `bower_components` directory to the load path so you can @import directly
-    , precision: 8
+      loadPath: ['src/scss', bower, modules] // Adds the `bower_components` directory to the load path so you can @import directly
+    , precision: 7
     , sourcemap: true
   }
   , libsass: { // For future reference: settings for Libsass, a promising project that hasn't reached feature parity with Ruby Sass just yet
-      includePaths: [bower]
-    , precision: 8
+      includePaths: [bower, modules]
+    , precision: 7
     }
   },
 

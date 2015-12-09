@@ -35,7 +35,7 @@
 .wrap-main {
   @extend %clearfix;
   @include k-media-above( break(large) ) {
-    @include k-center-block( $width-content );
+    @include scut-center-block( $width-content );
     @include rem( padding-left, spacer(1.5) );
     @include rem( padding-right, spacer(1.5) );
   }
@@ -98,7 +98,7 @@
 // == HEADER == //
 
 .site-header {
-  @include k-center-block( $width-content );
+  @include scut-center-block( $width-content );
   position: relative; // For use with the skip link and menu toggle
 }
 .site-branding {
@@ -215,12 +215,12 @@ main {
 
 .site-footer {
   @extend %links-meta-no-border;
-  @include k-center-block( $width-content );
+  @include scut-center-block( $width-content );
   @include rem( padding-bottom, spacer() );
   color: colour(footer);
   .buttons {
     @include k-media-above( break(medium) ) {
-      @include k-hide-visually;
+      @include scut-hide-visually;
     }
   }
 }

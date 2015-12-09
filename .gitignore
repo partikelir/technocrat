@@ -29,6 +29,7 @@ sitemap.xml
 sitemap.xml.gz
 
 ## Development
+.eyeglass_cache
 .sass-cache
 bower_components
 node_modules
@@ -38,5 +39,4 @@ dist
 assets/icons
 
 ## Project specific
-
 src/scss/_normalize.scss

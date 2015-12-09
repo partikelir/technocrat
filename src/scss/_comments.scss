@@ -15,7 +15,7 @@
   @include rem( padding, spacer(1/2) );
   .bypostauthor & { // Specific to the post author's comments
     @include k-media-above( break(small) ) {
-      @include border-radius(6px);
+      @include border-rounded(6px);
       @include box-shadow-inner-big;
       background: colour(body-dark);
     }
@@ -38,7 +38,7 @@
   float: left;
   line-height: 0; // Keeps the container snug around the avatar image
   img.avatar {
-    @include border-radius( spacer(1/4) );
+    border-radius: spacer(1/4);
   }
 }
 .comment-content {
@@ -79,7 +79,7 @@
 }
 .comment-pingback { // Pingbacks/trackbacks
   @include font-size(head-smaller);
-  @include k-ghost;
+  @include ghost;
 }
 .comment-warning { // Comment awaiting moderation
   @extend %text-smaller;

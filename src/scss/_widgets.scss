@@ -38,7 +38,7 @@
 
   // Images
   img {
-    @include border-radius;
+    @include border-rounded;
   }
 
   // Eliminate margin on the very last widget

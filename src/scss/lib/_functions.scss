@@ -1,5 +1,16 @@
 // ==== FUNCTIONS ==== //
 
+// Black and white functions by Sacha Greif: http://sachagreif.com/useful-sass-mixins/
+@function black($opacity: 1) {
+  @return rgba(0, 0, 0, $opacity);
+}
+@function white($opacity: 1) {
+  @return rgba(255, 255, 255, $opacity);
+}
+@function grey($shade: 128, $opacity: 1) {
+  @return rgba($shade, $shade, $shade, $opacity);
+}
+
 // Margins and positioning helper function
 @function spacer($val: 1) {
   @return $base-line * $val + 0px;

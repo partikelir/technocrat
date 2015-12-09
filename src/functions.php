@@ -93,6 +93,8 @@ function pendrell_setup() {
   update_option( 'thumbnail_crop', 1 );
   update_option( 'medium_size_w', $main_width );
   update_option( 'medium_size_h', 9999 );
+  //update_option( 'medium_large_size_w', $main_width ); // New size with WP 4.4
+  //update_option( 'medium_large_size_h', 9999 );
   update_option( 'large_size_w', $content_width );
   update_option( 'large_size_h', 9999 );
 

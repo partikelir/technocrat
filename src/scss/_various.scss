@@ -27,7 +27,7 @@
     }
   }
   li {
-    @include k-hanging-indent( spacer() );
+    @include scut-hanging-indent( spacer() );
     margin: 0;
   }
 }

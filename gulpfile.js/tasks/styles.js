@@ -9,6 +9,8 @@ var gulp          = require('gulp')
   , mqpacker      = require('css-mqpacker') // @TODO: configure and use
   , zindex        = require('postcss-zindex')
   , processors    = [autoprefixer(config.autoprefixer), pleaseFilters, zindex]
+  //, Eyeglass      = require("eyeglass").Eyeglass
+  //, eyeglass      = new Eyeglass(config.libsass)
 ;
 
 // Build stylesheets from source SCSS files with the Ruby version of Sass
@@ -24,6 +26,7 @@ gulp.task('styles-rubysass', function() {
 gulp.task('styles-libsass', function() {
   return gulp.src(config.build.src)
   .pipe(plugins.sourcemaps.init())
+  //.pipe(plugins.sass(eyeglass.sassOptions()).on("error", plugins.sass.logError))
   .pipe(plugins.sass(config.libsass))
   .pipe(plugins.postcss(processors))
   .pipe(plugins.sourcemaps.write('./'))

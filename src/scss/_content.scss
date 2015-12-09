@@ -140,7 +140,7 @@
   aside {
     @extend %spacer-below;
     @include font-size(text-small);
-    @include k-reverse-italics;
+    @include scut-reverse-italics;
     color: lighten( colour(text-lightest), 10 );
     &:first-child p { // Style opening asides here
       color: colour(text-lightest);
@@ -149,7 +149,7 @@
 
   // Images
   img {
-    @include border-radius;
+    @include border-rounded;
     display: block;
     @include k-media-below( break(tiny) ) { // Full-width images on mobile; this should match up with values specified in the Ubik Imagery adapter file
       border-radius: 0;

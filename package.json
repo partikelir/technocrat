@@ -1,6 +1,6 @@
 {
   "name": "pendrell",
-  "version": "0.43.0",
+  "version": "0.44.0",
   "description": "A minimal yet powerful WordPress theme for multimedia blogs",
   "homepage": "https://github.com/synapticism/pendrell",
   "repository": {
@@ -23,14 +23,15 @@
   "main": "index.js",
   "private": true,
   "devDependencies": {
-    "autoprefixer": "^6.1.1",
+    "autoprefixer": "^6.1.2",
     "autosize": "^3.0.14",
     "browser-sync": "^2.10.0",
     "browserify": "^12.0.1",
     "css-mqpacker": "^4.0.0",
-    "del": "^2.1.0",
+    "del": "^2.2.0",
+    "eyeglass": "^0.7.1",
     "gulp": "^3.9.0",
-    "gulp-cache": "^0.4.0",
+    "gulp-cache": "^0.4.1",
     "gulp-changed": "^1.3.0",
     "gulp-cheerio": "^0.6.2",
     "gulp-concat": "^2.6.0",
@@ -39,7 +40,7 @@
     "gulp-jshint": "^2.0.0",
     "gulp-livereload": "^3.8.1",
     "gulp-load-plugins": "^1.1.0",
-    "gulp-minify-css": "^1.2.1",
+    "gulp-minify-css": "^1.2.2",
     "gulp-postcss": "^6.0.1",
     "gulp-rename": "^1.2.2",
     "gulp-ruby-sass": "^2.0.6",
@@ -52,15 +53,20 @@
     "jquery-validation": "^1.14.0",
     "magnific-popup": "^1.0.0",
     "merge-stream": "^1.0.0",
+    "normalize.css": "^3.0.3",
     "picturefill": "^3.0.1",
     "pleeease-filters": "^2.0.0",
     "postcss-zindex": "^2.0.0",
     "prismjs": "1.3.0",
     "require-dir": "^0.3.0",
+    "sass-font-stacker": "^0.4.0",
+    "sass-kipple": "^0.0.1",
+    "sass-named-colors": "^0.3.0",
+    "scut": "^1.3.0",
     "selectric": "^1.9.4",
     "spin.js": "^2.3.2",
     "svg.icon.js": "^0.1.4",
-    "svg4everybody": "^2.0.0",
+    "svg4everybody": "^2.0.1",
     "timeago": "^1.4.3",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.6.1",
@@ -68,8 +74,5 @@
   },
   "scripts": {
     "postinstall": "bower install"
-  },
-  "dependencies": {
-    "normalize.css": "^3.0.3"
   }
 }

@@ -5,7 +5,7 @@
   @extend %off-screen;
   @extend %off-screen-focus;
   &:focus {
-    @include border-radius;
+    @include border-rounded;
     background-color: transparent;
     border-radius: 3px;
     box-shadow: 0 0 2px 2px black(.6);

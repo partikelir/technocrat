@@ -114,7 +114,7 @@ strike {
   text-decoration: line-through;
 }
 ins {
-  @include k-highlight( colour(highlight-bg), $radius );
+  @include highlight( colour(highlight-bg), $radius );
   text-decoration: none;
 }
 hr {
@@ -144,7 +144,7 @@ blockquote {
   @extend %spacer-below;
   @include font-style(quotation);
   @include font-size(text-small);
-  @include k-reverse-italics;
+  @include scut-reverse-italics;
   @include rem( padding, spacer(1/2) spacer(1/2) spacer(1/2) spacer() - 9px );
   @include text-shadow-small;
   background: rgba( colour(body-darker), .25); // Transparent so that blockquotes can be nested
@@ -172,7 +172,7 @@ blockquote {
     font-style: normal;
     text-align: right;
     cite {
-      font-style: italic; // Cancelled out by the k-reverse-italics mixin above
+      font-style: italic; // Cancelled out by the scut-reverse-italics mixin above
     }
     &:before {
       content: "\2014\00a0"; // Citation dash
@@ -199,7 +199,7 @@ code {
 }
 pre {
   @extend %spacer-below;
-  @include border-radius;
+  @include border-rounded;
   @include box-shadow-inner-big( colour(shadow-darkest) );
   @include font-size(text-small);
   @include text-shadow-small( black(.28) );
@@ -227,7 +227,7 @@ code {
   li > &,
   p > &,
   strong > & {
-    @include k-highlight( rgba( colour(body-darker), .33 ), $radius );
+    @include highlight( rgba( colour(body-darker), .33 ), $radius );
     color: colour(text-lighter);
     font-size: 80%; // Hack for fixing over-sized monospace fonts
   }

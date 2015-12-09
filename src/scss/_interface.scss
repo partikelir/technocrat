@@ -122,7 +122,7 @@ label {
   color: colour(text-lighter);
   code {
     @include font-size(text-smallest);
-    @include k-highlight-reset;
+    @include highlight-reset;
     display: inline;
   }
 }

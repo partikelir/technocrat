@@ -20,16 +20,15 @@
     "bower_components",
     "test",
     "tests",
-    "build"
+    "build",
+    "dist",
+    "vendor"
   ],
   "devDependencies": {
     "font-awesome-svg-png": "^1.1.2",
     "ionicons": "^2.0.1",
-    "kipple": "https://github.com/synapticism/kipple.git",
     "open-iconic": "^1.1.1",
     "parse-srcset": "https://github.com/albell/parse-srcset.git",
-    "sass-font-stacker": "^0.3.0",
-    "sass-named-colors": "^0.2.0",
     "typicons": "^2.0.7"
   }
 }
