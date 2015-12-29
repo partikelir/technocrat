@@ -113,13 +113,17 @@ label {
 }
 
 // Specific to the comments form
-.comment-form-wrap {
+.comment-respond {
   @extend %spacer-below-double; // Needed for when the comment form moves around
+}
+.comment-form-submit {
+  @extend %spacer-above;
 }
 .comment-notes-after {
   @extend %spacer-below-half;
   @include font-size(text-smaller);
   color: colour(text-lighter);
+  margin-top: spacer(-0.5);
   code {
     @include font-size(text-smallest);
     @include highlight-reset;

@@ -18,14 +18,15 @@ if ( post_password_required() )
         ) ); ?>
   		</ol>
 
-  		<?php pendrell_nav_comments(); ?>
+  		<?php pendrell_nav_comments();
 
-  		<?php // If there are no comments and comments are closed, let's make a note
-  		if ( !comments_open() && get_comments_number() != '0' && post_type_supports( get_post_type(), 'comments' ) ) : ?>
+      // If there are no comments and comments are closed, let's make a note
+  		if ( !comments_open() && get_comments_number() != '0' && post_type_supports( get_post_type(), 'comments' ) ) { ?>
   		  <p class="notice"><?php _e( 'Comments are closed.' , 'pendrell' ); ?></p>
-  		<?php endif; ?>
+  		<?php }
 
-  	<?php endif; // have_comments() ?>
+  	endif; // have_comments()
 
-  	<?php pendrell_comments_form(); ?>
+    // Now spit out the default comment form
+  	comment_form(); ?>
   </section>
