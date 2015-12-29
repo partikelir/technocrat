@@ -134,3 +134,12 @@ add_action( 'widgets_init', 'pendrell_widgets_init' );
 
 // Add shortcodes to sidebar widgets
 add_filter( 'widget_text', 'do_shortcode' );
+
+// Maximum allowable image size, theme-wide; WordPress 4.4 feature
+function pendrell_srcset_image_width( $width ) {
+  global $content_width;
+  if ( $content_width < $width )
+    $width = $content_width;
+  return $width;
+}
+add_filter( 'max_srcset_image_width', 'pendrell_srcset_image_width' );
