@@ -5,7 +5,6 @@
 // @action: pendrell_comment_template_before
 // @action: pendrell_comment_template_after
 function pendrell_comments_template() {
-
   do_action( 'pendrell_comment_template_before' );
 
   // Allow the display of the comments template to be filtered by other functions
@@ -16,7 +15,6 @@ function pendrell_comments_template() {
     comments_template( '', true );
 
   do_action( 'pendrell_comment_template_after' );
-
 }
 
 
@@ -91,22 +89,19 @@ function pendrell_comments_form_defaults( $defaults ) {
   $commenter = wp_get_current_commenter();
   $user = wp_get_current_user();
   $user_identity = $user->exists() ? $user->display_name : '';
-  $req = get_option( 'require_name_email' );
-  $req_html = ( $req ? ' aria-required="true" required=""' : '' );
-  $req_text = ' <span class="required">*</span>';
-  $req_help = sprintf( ' ' . __( 'Required fields are marked %s' ), trim( $req_text ) );
+  $required = pendrell_comments_form_required();
 
   // Custom settings to make the comments form match the theme
   return array_merge( $defaults, array(
     'fields'                => array(
-      'author'  => '<fieldset class="comment-form-author"><label for="author">' . __( 'Name', 'pendrell' ) . $req_text . '</label><input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30" placeholder="' . esc_attr( __( 'Your name&#x0085;', 'pendrell' ) ) . '"' . $req_html . ' /></fieldset>',
-      'email'   => '<fieldset class="comment-form-email"><label for="email">' . __( 'Email', 'pendrell' ) . $req_text . '</label><input id="email" name="email" type="email" value="' . esc_attr(  $commenter['comment_author_email'] ) . '" size="30" placeholder="' . esc_attr( __( 'your@email.com', 'pendrell' ) ) . '" aria-describedby="email-notes"' . $req_html  . ' /></fieldset>',
+      'author'  => '<fieldset class="comment-form-author"><label for="author">' . __( 'Name', 'pendrell' ) . $required['text'] . '</label><input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30" placeholder="' . esc_attr( __( 'Your name&#x0085;', 'pendrell' ) ) . '"' . $required['attr'] . ' /></fieldset>',
+      'email'   => '<fieldset class="comment-form-email"><label for="email">' . __( 'Email', 'pendrell' ) . $required['text'] . '</label><input id="email" name="email" type="email" value="' . esc_attr(  $commenter['comment_author_email'] ) . '" size="30" placeholder="' . esc_attr( __( 'your@email.com', 'pendrell' ) ) . '" aria-describedby="email-notes"' . $required['attr']  . ' /></fieldset>',
       'url'     => '<fieldset class="comment-form-url"><label for="url">' . __( 'URL', 'pendrell' ) . '</label><input id="url" name="url" type="url" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" placeholder="' . esc_attr( __( 'Your web site (optional)&#x0085;', 'pendrell' ) ) . '" /></fieldset>'
     ),
-    'comment_field'         => '<fieldset class="comment-form-comment"><label for="comment">' . _x( 'Comment', 'noun' ) . '</label><textarea id="comment" name="comment" cols="45" rows="5"' . $req_html . '></textarea></fieldset>',
+    'comment_field'         => '<fieldset class="comment-form-comment"><label for="comment">' . _x( 'Comment', 'noun' ) . '</label><textarea id="comment" name="comment" cols="45" rows="5"' . $required['attr'] . '></textarea></fieldset>',
     'must_log_in'           => '<div class="must-log-in">' . sprintf( __( 'You must be <a href="%s">logged in</a> to post a comment.' ), wp_login_url( apply_filters( 'the_permalink', get_permalink( $post_id ) ) ) ) . '</div>',
     'logged_in_as'          => '<div class="logged-in-as">' . sprintf( __( 'Logged in as <a href="%1$s" aria-label="Logged in as %2$s. Edit your profile.">%2$s</a>. <a href="%3$s">Log out</a>?' ), admin_url( 'profile.php' ), $user_identity, wp_logout_url( apply_filters( 'the_permalink', get_permalink( $post_id ) ) ) ) . '</div>',
-    'comment_notes_before'  => '<div class="comment-notes"><span id="email-notes">' . __( 'Your email address will not be published.' ) . '</span>'. ( $req ? $req_help : '' ) . '</div>',
+    'comment_notes_before'  => '',
     'comment_notes_after'   => pendrell_comments_form_notes_after(),
     'title_reply'           => __( 'Respond', 'pendrell' ),
     'title_reply_to'        => __( 'Respond to %s', 'pendrell' ),
@@ -139,6 +134,28 @@ function pendrell_comments_form_notes_after() {
   if ( !empty( $notes ) )
     $notes = '<div class="comment-notes-after">' . $notes . '.</div>';
   return $notes;
+}
+
+
+
+// Only print this line for users who are logged out; we could integrate this into the regular form but it looks nicer down near the submit button instead of cluttering up the textarea
+function pendrell_comments_form_after_fields() {
+  echo '<div class="comment-notes"><span id="email-notes">' . __( 'Your email address will not be published.', 'pendrell' ) . '</span>'. pendrell_comments_form_required( 'help' ) . '</div>';
+}
+add_action( 'comment_form_after_fields', 'pendrell_comments_form_after_fields' );
+
+
+
+// A helper function that returns useful strings for use with required data on the comments form
+function pendrell_comments_form_required( $key = '' ) {
+  $required = array();
+  $required['flag'] = (bool) get_option( 'require_name_email' );
+  $required['text'] = ( $required['flag'] ? ' <span class="required">*</span>' : '' );
+  $required['attr'] = ( $required['flag'] ? ' aria-required="true" required=""' : '' );
+  $required['help'] = ( $required['flag'] ? sprintf( ' ' . __( 'Required fields are marked %s', 'pendrell' ), trim( $required['text'] ) ) : '' );
+  if ( !empty( $key ) && isset( $required[$key] ) )
+    return $required[$key];
+  return $required;
 }
 
 

@@ -347,6 +347,8 @@ fieldset {
 }
 
 // Remove default Firefox styling of invalid form input; via: https://developer.mozilla.org/en-US/docs/Web/CSS/:invalid
-:invalid {
+//:invalid
+:-moz-submit-invalid,
+:-moz-ui-invalid {
   @extend %box-shadow-reset;
 }
