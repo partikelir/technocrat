@@ -88,6 +88,17 @@ add_filter( 'prepend_attachment', 'pendrell_image_prepend' );
 
 
 
+// Full-width image size filter; assumes 'large' size images fill the window, which they should
+function pendrell_image_full_width_resize( $size ) {
+  if ( pendrell_full_width() && $size === 'medium' )
+    $size = 'large';
+  return $size;
+}
+//if ( UBIK_IMAGERY_SRCSET === false )
+  //add_filter( 'ubik_imagery_size', 'pendrell_image_full_width_resize' );
+
+
+
 // Thumbnail ID fallback
 function pendrell_thumbnail_id( $post_id = null, $fallback_id = null ) {
   if ( function_exists( 'ubik_imagery_thumbnail_id' ) )

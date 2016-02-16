@@ -30,18 +30,3 @@ function pendrell_full_width_body_class( $classes ) {
   return $classes;
 }
 add_filter( 'body_class', 'pendrell_full_width_body_class' );
-
-
-
-// Full-width image size filter; assumes 'large' size images fill the window, which they should
-function pendrell_full_width_image_resize( $size ) {
-  if ( pendrell_full_width() ) {
-    if ( $size === 'medium' )
-      $size = 'large';
-  } else {
-    if ( $size === 'large' || $size === 'full' ) // Try to catch images that are exactly 960 px
-      $size = 'medium';
-  }
-  return $size;
-}
-add_filter( 'ubik_imagery_size', 'pendrell_full_width_image_resize' );
