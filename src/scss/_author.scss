@@ -1,5 +1,15 @@
 // ==== AUTHORS ==== //
 
+.author-box {
+  @extend %links-no-border;
+  @include rem( margin, spacer(2.5) spacer(-1/2) );
+  @include rem( padding, spacer(1/2) );
+  @include k-media-above( break(small) ) {
+    @include border-rounded(6px);
+    @include box-shadow-inner-big;
+    background: colour(body-dark);
+  }
+}
 .author-info {
   .entry-meta & {
     @include rem( margin-top, spacer(), 1 );
@@ -9,7 +19,7 @@
 }
 .author-avatar {
   @extend %links-reset-border;
-  @include rem( margin, spacer(1/4) spacer(1/2) spacer(3/4) 0 );
+  @include rem( margin-right, spacer(1/2) );
   @include rem( width, spacer(4) );
   float: left;
   line-height: 0; // Keeps the container snug around the avatar image
@@ -33,16 +43,5 @@
     @extend %text-smaller;
     font-style: italic;
     text-align: right;
-  }
-}
-
-.author-box {
-  @extend %links-no-border;
-  @include k-media-above( break(small) ) {
-    @include border-rounded(6px);
-    @include box-shadow-inner-big;
-    @include rem( margin, spacer(2.5) spacer(-1/2) );
-    @include rem( padding, spacer(1/2) );
-    background: colour(body-dark);
   }
 }

@@ -4,6 +4,7 @@
 // @filter: pendrell_author_box
 function pendrell_author_box() {
   if (
+    1 == 1 ||
     apply_filters( 'pendrell_author_box', true ) // A switch to allow for theme-specific rules
     && is_singular()
     && get_the_author_meta( 'description' ) // Only if there is a description
@@ -45,7 +46,7 @@ function pendrell_author_info( $avatar = true ) {
 
   // Only add this stuff to author info boxes
   if ( is_singular() ) {
-    $output = '<h3>' . sprintf( __( 'Author profile: %s', 'pendrell' ), $author ) . '</h3>' . $output;
+    $output = '<h3>' . $author . '</h3>' . $output;
     if ( is_multi_author() )
       $output .= '<footer class="author-link"><a href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '" rel="author">' . sprintf( __( 'View all posts by %s<span class="nav-arrow">&nbsp;&rarr;</span>', 'pendrell' ), $author ) . '</a></footer>';
   }
@@ -55,7 +56,7 @@ function pendrell_author_info( $avatar = true ) {
 
   // Avatar handling
   if ( $avatar === true ) {
-    $avatar_html = pendrell_author_avatar( get_the_author_meta( 'user_url' ), PENDRELL_BASELINE * 4 );
+    $avatar_html = pendrell_author_avatar( get_the_author_meta( 'user_url' ), PENDRELL_BASELINE * 4 ); // Must match the value in `/src/scss/lib/_author.scss'
     if ( !empty ( $avatar_html ) )
       $output = '<div class="author-avatar">' . $avatar_html . '</div>' . $output;
   }
