@@ -4,5 +4,12 @@
 ;(function($){
   $(function(){
     $(document.body).ajaxPageLoader({ next: '#nav-below .next-page', prev: '#nav-below .prev-page' });
+
+    // Also update timestamps on AJAX page load
+    if ( $.timeago ) {
+      document.addEventListener("DOMContentLoaded", function (event) {
+        $('time').timeago();
+      });
+    }
   });
 }(jQuery));
