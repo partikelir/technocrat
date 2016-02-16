@@ -181,7 +181,7 @@ $_magnific: (
     transition: opacity .47s ease-out;
     z-index: magnific(z-index-base) + 6;
     -webkit-appearance: none;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: transparent;
     &:hover,
     &:focus {
       opacity: 1;

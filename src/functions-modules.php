@@ -66,6 +66,7 @@ if ( PENDRELL_UBIK_ANALYTICS )
 
 // == CLEANER * == //
 
+define( 'UBIK_CLEANER_REMOVE_EMBEDS', true );
 define( 'UBIK_CLEANER_REMOVE_EMOJI', true );
 define( 'UBIK_CLEANER_REMOVE_MIGRATE', true );
 define( 'UBIK_CLEANER_REMOVE_OPEN_SANS', true );

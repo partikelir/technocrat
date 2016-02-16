@@ -121,8 +121,8 @@ add_action( 'after_setup_theme', 'pendrell_setup', 11 );
 // Sidebar declarations
 function pendrell_widgets_init() {
   register_sidebar( array(
-    'name'          => __( 'Main sidebar', 'pendrell' ),
     'id'            => 'sidebar-main',
+    'name'          => __( 'Main sidebar', 'pendrell' ),
     'description'   => __( 'Appears to the right side of most posts and pages.', 'pendrell' ),
     'before_widget' => '<aside id="%1$s" class="widget %2$s">',
     'after_widget'  => '</aside>',
