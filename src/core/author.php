@@ -4,7 +4,6 @@
 // @filter: pendrell_author_box
 function pendrell_author_box() {
   if (
-    1 == 1 ||
     apply_filters( 'pendrell_author_box', true ) // A switch to allow for theme-specific rules
     && is_singular()
     && get_the_author_meta( 'description' ) // Only if there is a description
