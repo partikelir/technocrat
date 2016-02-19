@@ -94,8 +94,8 @@ function pendrell_image_full_width_resize( $size ) {
     $size = 'large';
   return $size;
 }
-//if ( UBIK_IMAGERY_SRCSET === false )
-  //add_filter( 'ubik_imagery_size', 'pendrell_image_full_width_resize' );
+if ( UBIK_IMAGERY_SRCSET === false )
+  add_filter( 'ubik_imagery_size', 'pendrell_image_full_width_resize' );
 
 
 
