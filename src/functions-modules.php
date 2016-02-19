@@ -126,7 +126,7 @@ if ( PENDRELL_UBIK_FEED ) {
 
 // == FONTS == * //
 
-define( 'UBIK_FONTS_GOOGLE', 'Raleway:200,300,600|Oxygen:300,300italic,400,400italic,600,600italic' );
+define( 'UBIK_FONTS_GOOGLE', 'Catamaran:100,300,500|Oxygen:300,300italic,400,400italic,600,600italic' ); // Raleway:200,300,600|
 require_once( $path_modules . 'ubik-fonts/ubik-fonts.php' );
 
 

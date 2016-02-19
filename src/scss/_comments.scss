@@ -28,7 +28,7 @@
   @extend %clearfix-below;
   @include rem( margin-bottom, spacer(1/2) );
   h1 {
-    @include font-size(text-big);
+    @include font-size(text);
     @include font-style(comment-author);
   }
 }

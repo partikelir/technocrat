@@ -5,9 +5,9 @@ $_sizes: (
 
   // Text
   text-biggest:     32
-, text-bigger:      23
-, text-big:         21
-, text:             19 // Default body text font size
+, text-bigger:      22
+, text-big:         20
+, text:             18 // Default body text font size
 , text-small:       16
 , text-smaller:     14
 , text-smallest:    12
@@ -22,13 +22,13 @@ $_sizes: (
 , head-smallest:    14
 
   // Site
-, site-title-big:   48
-, site-title-small: 26
+, site-title-big:   26
+, site-title-small: 18
 
   // Menus
 , menu-header:      20
 , menu-header-sm:   18 // Lower than 16 doesn't display well on mobile devices
-, menu-footer:      14
+, menu-footer:      16
 
   // Submenus
 , sub:              14
@@ -42,11 +42,11 @@ $w-body-normal:     400;
 $w-body-bold:       600;
 
 // Header and probably menu fonts too
-$f-head:            k-font-stack("Raleway", century);
-//$f-head:            k-font-stack("Raleway", k-font-stack-trim(century), zh-heiti-tc);
-$w-head-light:      200;
+$f-head:            k-font-stack("Catamaran", myriad);
+//$f-head:            k-font-stack("Catamaran", k-font-stack-trim(century), zh-heiti-tc);
+$w-head-light:      100;
 $w-head-normal:     300;
-$w-head-bold:       600;
+$w-head-bold:       500;
 
 // Monospace fonts
 $f-mono:            k-font-stack(andale);
@@ -73,9 +73,7 @@ $w-mono-bold:       700;
 
   // Masthead
   @if (site-title == $style) {
-    @extend %head-light;
-    font-feature-settings: 'lnum'; // To go with all uppercase letters
-    text-transform: uppercase;
+    @extend %head-bold-uppercase;
   }
   @if (site-description == $style) {
     @extend %body-normal;
@@ -107,7 +105,7 @@ $w-mono-bold:       700;
 
   // Comments
   @if (comment-author == $style) {
-    @extend %head-normal;
+    @extend %body-bold;
   }
 
   // Widgets
