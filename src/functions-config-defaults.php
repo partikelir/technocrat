@@ -2,6 +2,7 @@
 
 // Development mode
 if ( WP_LOCAL_DEV === true ) {
+  define( 'PENDRELL_JQUERY_FOOTER', true );
   define( 'PENDRELL_POST_FORMATS', true );
   define( 'PENDRELL_RESPONSIVE_IMAGES', true );
   define( 'PENDRELL_SYNTAX_HIGHLIGHT', true );
@@ -12,6 +13,9 @@ defined( 'PENDRELL_AJAX_PAGE_LOADER' )    || define( 'PENDRELL_AJAX_PAGE_LOADER'
 
 // Baseline for the vertical rhythm; should match whatever is set in _base_config.scss (integer; required)
 defined( 'PENDRELL_BASELINE' )            || define( 'PENDRELL_BASELINE', 30 );
+
+// Enqueue jQuery in the footer; may conflict with some plugins
+defined( 'PENDRELL_JQUERY_FOOTER' )       || define( 'PENDRELL_JQUERY_FOOTER', false );
 
 // Master switch for post formats
 defined( 'PENDRELL_MAGNIFIC' )            || define( 'PENDRELL_MAGNIFIC', true ); // Experimental feature

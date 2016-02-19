@@ -193,9 +193,8 @@ module.exports = {
       ]
     }
   , minify: {
-      src: [build+'js/**/*.js', '!'+build+'js/**/*.min.js'] // Avoid recursive min.min.min.js
+      src: build+'js/**/*.js'
     , dest: build+'js/'
-    , rename: { suffix: '.min' }
     , uglify: {}
     }
   , namespace: 'p-' // Script filenames will be prefaced with this

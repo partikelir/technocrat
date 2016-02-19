@@ -10,11 +10,17 @@ function pendrell_scripts_enqueue() {
   $script_name = '';                // Empty by default, may be populated by conditionals below
   $script_vars = array();           // An empty array that can be filled with variables to send to front-end scripts
   $script_handle = 'pendrell-core'; // A generic script handle used by WordPress
-  $suffix = '.min';                 // A suffix for minified scripts
 
-  // Load minified scripts if debug mode is off
-  if ( WP_DEBUG === true )
-    $suffix = '';
+
+
+  // == JQUERY == //
+
+  // Optionally move jQuery into the footer
+  if ( PENDRELL_JQUERY_FOOTER ) {
+    wp_deregister_script( 'jquery' );
+    wp_register_script( 'jquery', '/wp-includes/js/jquery/jquery.js', false, null, true ); // This should load version 1.11.3+
+    wp_enqueue_script( 'jquery' );
+  }
 
 
 
@@ -56,17 +62,16 @@ function pendrell_scripts_enqueue() {
     $script_name = '-core';
 
   // Load theme-specific JavaScript bundles with versioning based on last modified time; http://www.ericmmartin.com/5-tips-for-using-jquery-with-wordpress/
-  // These bundles are created with Gulp; see `/gulpfile.js`
-  // The handle is the same for each bundle since we're only loading one script; if you load others be sure to provide a new handle
-  wp_enqueue_script( $script_handle, get_stylesheet_directory_uri() . '/js/p' . $script_name . $suffix . '.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/p' . $script_name . $suffix . '.js' ), true );
+  // These bundles are created with Gulp and each of these has the same script handle
+  wp_enqueue_script( $script_handle, get_stylesheet_directory_uri() . '/js/p' . $script_name . '.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/p' . $script_name . '.js' ), true );
 
   // Contact form (CF1) setup
   if ( is_page_template( 'page-templates/contact-form.php' ) )
-    wp_enqueue_script( 'pendrell-contact-form', get_stylesheet_directory_uri() . '/js/p-contact' . $suffix . '.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/p-contact' . $suffix . '.js' ), true );
+    wp_enqueue_script( 'pendrell-contact-form', get_stylesheet_directory_uri() . '/js/p-contact.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/p-contact.js' ), true );
 
   // Magnific popup
   if ( PENDRELL_MAGNIFIC && is_singular() && !is_attachment() && !has_post_format( 'image' ) )
-    wp_enqueue_script( 'pendrell-magnific', get_stylesheet_directory_uri() . '/js/p-magnific' . $suffix . '.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/p-magnific' . $suffix . '.js' ), true );
+    wp_enqueue_script( 'pendrell-magnific', get_stylesheet_directory_uri() . '/js/p-magnific.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/p-magnific.js' ), true );
 
   // Adds JavaScript to pages with the comment form to support sites with threaded comments
   if ( is_singular() && comments_open() && get_option( 'thread_comments' ) )
@@ -86,7 +91,7 @@ function pendrell_scripts_enqueue() {
   if ( !empty( $script_vars_pg8 ) )
     wp_localize_script( $script_handle, 'PG8Data', $script_vars_pg8 );
 
-  // Provision wp-iconize
+  // Provision svg.icon.js
   if ( UBIK_SVG_ICONS_URL )
     wp_localize_script( $script_handle, 'svgIconsUrl', UBIK_SVG_ICONS_URL );
 
@@ -100,6 +105,16 @@ function pendrell_scripts_enqueue() {
 
 } // pendrell_enqueue_scripts()
 add_action( 'wp_enqueue_scripts', 'pendrell_scripts_enqueue' );
+
+
+
+// Asynchronous script loading filter
+function pendrell_scripts_async( $tag, $handle ) {
+  if ( 'jquery' !== $handle )
+    $tag = str_replace( ' src', ' defer="defer" src', $tag ); // Defer absolutely everything until after the page has loaded
+  return $tag;
+}
+add_filter( 'script_loader_tag', 'pendrell_scripts_async', 10, 2 );
 
 
 
