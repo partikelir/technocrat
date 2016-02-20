@@ -5,9 +5,9 @@ $_sizes: (
 
   // Text
   text-biggest:     32
-, text-bigger:      23
-, text-big:         21
-, text:             19 // Default body text font size
+, text-bigger:      22
+, text-big:         20
+, text:             18 // Default body text font size
 , text-small:       16
 , text-smaller:     14
 , text-smallest:    12
@@ -36,7 +36,6 @@ $_sizes: (
 
 // Body fonts; these are applied universally throughout the theme
 $f-body:            k-font-stack("Oxygen", helvetica-light);
-//$f-body:            k-font-stack("Oxygen", k-font-stack-trim(helvetica-light), zh-heiti-tc);
 $w-body-light:      300;
 $w-body-normal:     400;
 $w-body-bold:       700;
@@ -106,7 +105,7 @@ $w-mono-bold:       700;
 
   // Comments
   @if (comment-author == $style) {
-    @extend %head-normal;
+    @extend %body-bold;
   }
 
   // Widgets

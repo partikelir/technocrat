@@ -1,9 +1,10 @@
 // ==== LOADER ==== //
 
-// Dependencies; presumes that `bower_components` is in the path
-@import "kipple/kipple";
-@import "sass-font-stacker/font-stacker";
-@import "sass-named-colors/named-colours";
+// Dependencies
+@import "scut/dist/scut";
+@import "sass-font-stacker/sass/index"; // This won't be necessary once eyeglass starts working
+@import "sass-kipple/sass/index";
+@import "sass-named-colors/sass/index";
 
 // Library
 @import "lib/buttons";

@@ -15,6 +15,9 @@
   @include rem( padding, spacer(1/2) );
   .bypostauthor & { // Specific to the post author's comments
     @include k-media-above( break(small) ) {
+      //@include border-rounded(6px);
+      //@include box-shadow-inner-big;
+      //background: colour(body-dark);
     }
   }
 }
@@ -25,7 +28,7 @@
   @extend %clearfix-below;
   @include rem( margin-bottom, spacer(1/2) );
   h1 {
-    @include font-size(text-big);
+    @include font-size(text);
     @include font-style(comment-author);
   }
 }
@@ -35,7 +38,7 @@
   float: left;
   line-height: 0; // Keeps the container snug around the avatar image
   img.avatar {
-    @include border-radius( spacer(1/4) );
+    border-radius: spacer(1/4);
   }
 }
 .comment-content {
@@ -79,8 +82,33 @@
 }
 .comment-pingback { // Pingbacks/trackbacks
   @include font-size(head-smaller);
-  @include k-ghost;
+  @include ghost;
 }
 .comment-warning { // Comment awaiting moderation
   @extend %text-smaller;
+}
+
+// The following declarations apply only to the comment form
+.comment-respond {
+  @extend %spacer-below-double; // Needed for when the comment form moves around
+}
+.comment-form-comment {
+  @extend %spacer-above-half;
+  label {
+    @extend %hide;
+  }
+}
+.comment-notes {
+  @extend %text-smaller;
+}
+.comment-notes-after {
+  @extend %spacer-below-half;
+  @include font-size(text-smaller);
+  color: colour(text-lighter);
+  margin-top: spacer(-0.5);
+  code {
+    @include font-size(text-smallest);
+    @include highlight-reset;
+    display: inline;
+  }
 }

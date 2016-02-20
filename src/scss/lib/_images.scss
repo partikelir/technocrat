@@ -6,12 +6,12 @@
 
   // Caption container
   #{$caption} {
-    @include border-radius( 0 0 $radius $radius );
     @include k-absolute(bottom 0 left 0);
-    @include k-regular-italics;
+    @include reverse-italics-reset;
     @include rem( padding, 10px 12px );
     background-image: linear-gradient( black(0), black(.23) 62%,  black(.45) );
     background-repeat: repeat-x;
+    border-radius: 0 0 $radius $radius;
     max-height: calc( 100% - 35px ); // To leave a little room for the overlays at top left and right
   }
 
@@ -24,16 +24,16 @@
     max-width: 50%;
     white-space: nowrap;
     &.top-left {
-      @include border-radius( $radius 0 0 0 );
+      border-radius: $radius 0 0 0;
     }
     &.top-right {
-      @include border-radius( 0 $radius 0 0 );
+      border-radius: 0 $radius 0 0;
     }
     &.top-right {
       text-align: right;
     }
     &:only-of-type {
-      @include border-radius( $radius $radius 0 0 );
+      border-radius: $radius $radius 0 0;
       max-width: 100%;
     }
   }
@@ -81,7 +81,7 @@
 @mixin image-overlay-hover {
   overflow: hidden;
   img {
-    @include border-radius;
+    @include border-rounded;
     backface-visibility: hidden; // Prevents flicker
     display: block;
     transition: all .65s ease; // Can't transition "filter", probably because we'd have to add a bunch of vendor prefixes; let's just transition all
@@ -98,7 +98,7 @@
 
 // Image fallback; a stylized image placeholder
 @mixin image-placeholder {
-  @include border-radius;
+  @include border-rounded;
   background-color: colour(body-darker);
   background-image: repeating-linear-gradient( 45deg, transparent, transparent spacer(1/4), black(.04) spacer(1/4), black(.04) spacer(1/2) );
   box-shadow: 0 0 spacer(2) colour(shadow-dark) inset;

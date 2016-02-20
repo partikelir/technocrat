@@ -11,6 +11,6 @@ gulp.task('setup', ['icons', 'utils-normalize']);
 // Build a working copy of the theme
 gulp.task('build', ['images', 'scripts', 'styles', 'svg', 'theme']);
 
-// Dist task chain: wipe -> build -> clean -> copy -> styles -> images
+// Dist task chain: wipe -> build -> clean -> copy -> styles -> images-optimize
 // NOTE: this is a resource-intensive task!
-gulp.task('dist', ['images-dist']);
+gulp.task('dist', ['images-optimize']);

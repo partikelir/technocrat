@@ -115,21 +115,6 @@ label {
   font-style: italic;
 }
 
-// Specific to the comments form
-.comment-form-wrap {
-  @extend %spacer-below-double; // Needed for when the comment form moves around
-}
-.comment-notes-after {
-  @extend %spacer-below-half;
-  @include font-size(text-smaller);
-  color: colour(text-lighter);
-  code {
-    @include font-size(text-smallest);
-    @include k-highlight-reset;
-    display: inline;
-  }
-}
-
 // Post password form
 .form-post-password {
   @extend %spacer-below;

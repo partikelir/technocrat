@@ -24,7 +24,7 @@ figure.wp-caption,
   }
   &.aligncenter {
     img { // Applies centering to the image within the figure, not the figure element itself
-      @include k-center-block;
+      @include scut-center-block;
     }
   }
   @include k-media-below( break(small) ) {
@@ -59,7 +59,7 @@ figure.wp-caption {
 .wp-caption-text {
   @extend %clearfix-below;
   @include font-size(text-smaller);
-  @include k-reverse-italics;
+  @include scut-reverse-italics;
   color: colour(text-lightest);
   max-width: 100%;
   @if module(full-width) {

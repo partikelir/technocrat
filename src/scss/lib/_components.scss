@@ -2,7 +2,7 @@
 
 // A dropdown menu consisting of an unordered and potentially nested list of links
 @mixin dropdown-menu($nav-menu: true) {
-  @include border-radius;
+  @include border-rounded;
   @include box-shadow-interface-small;
   @include font-size(sub);
   @include text-shadow-small;
@@ -28,8 +28,8 @@
       }
     }
     ul {
-      @include border-radius( 0 $radius $radius $radius );
       @include rem( margin-top, spacer(1/4) - 1px ); // Be sure to offset the outer border if you don't stagger submenus
+      border-radius: 0 $radius $radius $radius;
     }
   }
   @if $nav-menu {
@@ -48,8 +48,8 @@
 
 
 // Text input; for use with forms, textarea, etc.
-@mixin text-input($font-size: text-smaller) {
-  @include border-radius;
+@mixin text-input( $font-size: text-smaller ) {
+  @include border-rounded;
   @include box-shadow-inner-small;
   @include font-size( $font-size, 6 );
   @include font-style(input);

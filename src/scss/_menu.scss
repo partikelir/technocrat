@@ -59,7 +59,7 @@
   @include k-media-below( break(large) ) {
     @include k-list-floated( spacer(1/2) );
     > li ul {
-      @include k-hide-visually; // This theme doesn't support submenus on smaller screens
+      @include scut-hide-visually; // This theme doesn't support submenus on smaller screens
     }
   }
   @include k-media-above( break(large) ) {

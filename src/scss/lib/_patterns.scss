@@ -1,10 +1,55 @@
 // ==== PATTERNS ==== //
 
-// User interface patterns
+// Border radius; mainly used to allow for a default site-wide setting
+@mixin border-rounded($radius: 0) {
+  border-radius: $radius;
+}
+
+// Disabled pattern
 @mixin disabled {
   cursor: not-allowed;
   opacity: .5; // Applies to `button` and `input` elements
   pointer-events: none;
+}
+
+// Ghosting; use on any element to obscure it from view except on hover
+@mixin ghost($value: .666) {
+  opacity: $value;
+  transition: opacity .5s ease;
+  &:hover {
+    opacity: 1;
+    transition: opacity .2s ease-in;
+  }
+}
+
+// Highlight text
+@mixin highlight($color, $radius) {
+  @include border-rounded($radius);
+  background: $color;
+  border: 1px solid darken($color, 7);
+  display: inline;
+  padding: 0.08em 0.25em 0.08em 0.25em; // Padding should be proportionate, not rooted to rems
+}
+
+// For the odd occasion where you need to reset a highlight for some reason
+@mixin highlight-reset {
+  background: inherit;
+  border: inherit;
+  border-radius: inherit;
+  display: inherit;
+  padding: inherit;
+}
+
+// To reverse reverse italics :3
+@mixin reverse-italics-reset($elements: null) {
+  $element-list: em, cite, i;
+  @each $el in $elements {
+    $element-list: append($element-list, $el, comma)
+  }
+  font-style: normal;
+  #{$element-list} {
+    font-style: italic;
+  }
 }
 
 
@@ -60,18 +105,4 @@
 // A bigger shadow intended for image overlays
 @mixin text-shadow-bigger( $c1: black(.76), $c2: black(.57) ) {
   text-shadow: 0 0 2.5px $c1, 1px 2px 5px $c2;
-}
-
-
-
-// == KIPPLE == //
-
-// Wrappers for functions contained within the Kipple library
-@mixin border-radius($radius: $radius) {
-  //@include k-border-radius($radius);
-}
-
-// Triangles are cool
-@mixin triangle( $color: inherit, $direction: top, $size: 6px, $position: absolute, $offset: left 0 ) {
-  @include k-triangle($color, $direction, $size, $position, $offset);
 }

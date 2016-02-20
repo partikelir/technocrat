@@ -37,6 +37,11 @@
     //@extend %spacer-below;
   }
 
+  // Images
+  img {
+    @include border-rounded;
+  }
+
   // Eliminate margin on the very last widget
   &:last-child {
     @extend %spacer-below-reset;

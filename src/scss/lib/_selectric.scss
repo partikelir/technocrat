@@ -5,7 +5,7 @@
 
   // Click here to open the select menu
   .s3c {
-    @include border-radius;
+    @include border-rounded;
     @include box-shadow-inner-small;
     @include font-style(input);
     @include rem( padding, 0 6px );
@@ -37,35 +37,35 @@
     }
     .s3c-open &,
     .s3c-open.s3c-hover & {
-      @include border-radius( $radius $radius 0 0 );
       background: colour(field-bg-a);
+      border-radius: $radius $radius 0 0;
       color: colour(field-a);
       p.label {
         opacity: .5;
       }
     }
     .s3c-open.s3c-above & {
-      @include border-radius( 0 0 $radius $radius );
+      border-radius: 0 0 $radius $radius;
     }
   }
 
   // Dropdown menu
   .s3c-items {
-    @include border-radius( 0 0 $radius $radius );
     @include box-shadow-inner-small;
     @include font-style(input);
     @include k-absolute( top 100% left 0 );
     @include text-shadow-small;
-    box-sizing: border-box; // Keeps the scrollbar in place
     background: colour(select-bg);
     border: 1px solid colour(field-b);
     border-top-width: 0px;
+    border-radius: 0 0 $radius $radius;
+    box-sizing: border-box; // Keeps the scrollbar in place
     color: colour(select);
     display: none;
     outline: 0;
     z-index: -1;
     .s3c-above & {
-      @include border-radius( $radius $radius 0 0 );
+      border-radius: $radius $radius 0 0;
       border-top-width: 1px;
       border-bottom-width: 0px;
       bottom: 100%;

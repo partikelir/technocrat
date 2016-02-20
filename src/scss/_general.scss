@@ -115,7 +115,7 @@ strike {
   text-decoration: line-through;
 }
 ins {
-  @include k-highlight( colour(highlight-bg), $radius );
+  @include highlight( colour(highlight-bg), $radius );
   text-decoration: none;
 }
 hr {
@@ -145,7 +145,7 @@ blockquote {
   @extend %spacer-below;
   @include font-style(quotation);
   @include font-size(text-small);
-  @include k-reverse-italics;
+  @include scut-reverse-italics;
   @include rem( padding, spacer(1/2) spacer(1/2) spacer(1/2) spacer() - 3px );
   @include text-shadow-small;
   background: colour(body-bg);
@@ -176,7 +176,7 @@ blockquote {
     font-style: normal;
     text-align: right;
     cite {
-      font-style: italic; // Cancelled out by the k-reverse-italics mixin above
+      font-style: italic; // Cancelled out by the scut-reverse-italics mixin above
     }
     &:before {
       content: "\2014\00a0"; // Citation dash
@@ -203,7 +203,7 @@ code {
 }
 pre {
   @extend %spacer-below;
-  @include border-radius;
+  @include border-rounded;
   @include box-shadow-inner-big( colour(shadow-darkest) );
   @include font-size(text-small);
   @include text-shadow-small( black(.28) );
@@ -232,7 +232,7 @@ code {
   li > &,
   p > &,
   strong > & {
-    @include k-highlight( colour(code-bg), 2px );
+    @include highlight( colour(code-bg), 2px );
     color: colour(code);
     font-size: 80%; // Hack for fixing over-sized monospace fonts
   }
@@ -352,6 +352,8 @@ fieldset {
 }
 
 // Remove default Firefox styling of invalid form input; via: https://developer.mozilla.org/en-US/docs/Web/CSS/:invalid
-:invalid {
+//:invalid
+:-moz-submit-invalid,
+:-moz-ui-invalid {
   @extend %box-shadow-reset;
 }

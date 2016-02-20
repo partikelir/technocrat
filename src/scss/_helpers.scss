@@ -57,7 +57,7 @@
 }
 %align-center {
   @extend %clearfix-below;
-  @include k-center-block;
+  @include scut-center-block;
   text-align: center; // Presumably we might be applying this to elements that contain text
 }
 %align-none {
@@ -82,16 +82,16 @@
 
 // Hide
 %hide {
-  @include k-hide-visually;
+  @include scut-hide-visually;
 }
 %hide-below-medium {
   @include k-media-below( break(medium) ) {
-    @include k-hide-visually;
+    @include scut-hide-visually;
   }
 }
 %hide-below-large {
   @include k-media-below( break(large) ) {
-    @include k-hide-visually;
+    @include scut-hide-visually;
   }
 }
 

@@ -181,7 +181,7 @@ $_magnific: (
     transition: opacity .47s ease-out;
     z-index: magnific(z-index-base) + 6;
     -webkit-appearance: none;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: transparent;
     &:hover,
     &:focus {
       opacity: 1;
@@ -298,8 +298,8 @@ $_magnific: (
   }
   .mfp-title {
     @include font-size(text-smaller);
-    @include k-reverse-italics;
-    @include k-text-truncate;
+    @include scut-reverse-italics;
+    @include scut-truncate;
     color: colour(text-light); // Not as light as regular captions to account for the blurred background
     padding-right: spacer(1.5); // Leave some space for counter at right side
     text-align: left;
