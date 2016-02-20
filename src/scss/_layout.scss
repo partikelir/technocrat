@@ -136,6 +136,9 @@
 }
 .site-navigation {
   max-width: 100%; // Prevents hidden search box from overflowing container
+  @include k-media-above( break(medium) ) {
+    display: block !important; // Prevents the responsive menu display state from hiding the menu on larger screens after a resize
+  }
   @include k-media-below( break(medium) ) {
     display: none;
   }
