@@ -234,6 +234,7 @@ $_magnific: (
   .mfp-arrow-right,
   .mfp-close {
     right: 0;
+    touch-action: manipulation;
     svg.icon {
       right: spacer(1/2);
       @include k-media-below( break(large) ) {
