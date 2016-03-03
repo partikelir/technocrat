@@ -25,6 +25,7 @@
         "svgIcon": true,
         "svg4everybody": true,
         "autosize": true,
-        "parseSrcset": true
+        "parseSrcset": true,
+        "FontFaceObserver": true
     }
 }

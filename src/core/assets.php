@@ -7,13 +7,34 @@
 // Enqueue front-end scripts and styles; additional ideas to consider: https://github.com/roots/roots/blob/master/lib/scripts.php
 function pendrell_scripts_enqueue() {
 
-  $script_name = '';                // Empty by default, may be populated by conditionals below
-  $script_vars = array();           // An empty array that can be filled with variables to send to front-end scripts
-  $script_handle = 'pendrell-core'; // A generic script handle used by WordPress
+  // Initialize
+  $scripts = array(
+    'header' => array(
+      'name' => 'p-header'
+    , 'file' => '-header'
+    , 'vars' => array()
+    )
+  , 'footer' => array(
+      'name' => 'p-footer'
+    , 'file' => '' // Empty by default, may be populated by conditionals below
+    , 'vars' => array()
+    )
+  );
 
 
 
-  // == JQUERY == //
+  // == HEADER == //
+
+  // Nothing fancy; loaded in the header but doesn't depend on jQuery
+  wp_enqueue_script( $scripts['header']['name'], get_stylesheet_directory_uri() . '/js/p' . $scripts['header']['file'] . '.js', null, filemtime( get_template_directory() . '/js/p' . $scripts['header']['file'] . '.js' ), false );
+
+
+
+  // == FOOTER == //
+
+  // Figure out which script bundle to load based on various options set in `src/functions-config-defaults.php`
+  // Note: bundles require less HTTP requests at the expense of addition caching hits when different scripts are requested
+  // Be wary of adding needless conditionals as this will increase the diversity of scripts the user might encounter
 
   // Optionally move jQuery into the footer
   if ( PENDRELL_JQUERY_FOOTER ) {
@@ -22,18 +43,10 @@ function pendrell_scripts_enqueue() {
     wp_enqueue_script( 'jquery' );
   }
 
-
-
-  // == CORE SCRIPTS == //
-
-  // Figure out which script bundle to load based on various options set in `src/functions-config-defaults.php`
-  // Note: bundles require less HTTP requests at the expense of addition caching hits when different scripts are requested
-  // Be wary of adding needless conditionals as this will increase the diversity of scripts the user might encounter
-
   // AJAX page loading w/WP AJAX Page Loader (pg8)
-  $script_vars_pg8 = '';
+  $scripts['footer']['vars_pg8'] = '';
   if ( PENDRELL_AJAX_PAGE_LOADER && ( is_archive() || is_home() || is_search() ) ) {
-    $script_name .= '-pg8';
+    $scripts['footer']['file'] .= '-pg8';
 
     global $wp_query;
 
@@ -42,7 +55,7 @@ function pendrell_scripts_enqueue() {
     $paged = ( get_query_var( 'paged' ) > 1 ) ? get_query_var( 'paged' ) : 1;
 
     // Prepare script variables; note that these are separate from the rest of the script variables
-    $script_vars_pg8 = array(
+    $scripts['footer']['vars_pg8'] = array(
       'startPage'   => $paged,
       'maxPages'    => $max,
       'nextLink'    => next_posts( $max, false )
@@ -51,19 +64,23 @@ function pendrell_scripts_enqueue() {
 
   // Responsive images w/Picturefill (pf)
   if ( PENDRELL_RESPONSIVE_IMAGES )
-    $script_name .= '-pf';
+    $scripts['footer']['file'] .= '-pf';
 
   // Syntax highlighting w/Prism (prism)
   if ( PENDRELL_SYNTAX_HIGHLIGHT )
-    $script_name .= '-prism';
+    $scripts['footer']['file'] .= '-prism';
 
   // Default script name
   if ( empty( $script_name ) )
-    $script_name = '-core';
+    $scripts['footer']['file'] = '-footer';
 
   // Load theme-specific JavaScript bundles with versioning based on last modified time; http://www.ericmmartin.com/5-tips-for-using-jquery-with-wordpress/
   // These bundles are created with Gulp and each of these has the same script handle
-  wp_enqueue_script( $script_handle, get_stylesheet_directory_uri() . '/js/p' . $script_name . '.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/p' . $script_name . '.js' ), true );
+  wp_enqueue_script( $scripts['footer']['name'], get_stylesheet_directory_uri() . '/js/p' . $scripts['footer']['file'] . '.js', array( 'jquery' ), filemtime( get_template_directory() . '/js/p' . $scripts['footer']['file'] . '.js' ), true );
+
+
+
+  // == OTHER SCRIPTS == //
 
   // Contact form (CF1) setup
   if ( is_page_template( 'page-templates/contact-form.php' ) )
@@ -83,17 +100,17 @@ function pendrell_scripts_enqueue() {
 
   // Pass variables to JavaScript at runtime; see: http://codex.wordpress.org/Function_Reference/wp_localize_script
   // @filter: pendrell_script_vars; see `modules/contact-form.php` for an example of usage
-  $script_vars = apply_filters( 'pendrell_script_vars', $script_vars );
-  if ( !empty( $script_vars ) )
-    wp_localize_script( $script_handle, 'pendrellVars', $script_vars );
+  $scripts['footer']['vars'] = apply_filters( 'pendrell_script_vars', $scripts['footer']['vars'] );
+  if ( !empty( $scripts['footer']['vars'] ) )
+    wp_localize_script( $scripts['footer']['name'], 'pendrellVars', $scripts['footer']['vars'] );
 
   // Script variables for WP AJAX Page Loader (these are separate from the main theme script variables due to the naming requirement)
-  if ( !empty( $script_vars_pg8 ) )
-    wp_localize_script( $script_handle, 'PG8Data', $script_vars_pg8 );
+  if ( !empty( $scripts['footer']['vars_pg8'] ) )
+    wp_localize_script( $scripts['footer']['name'], 'PG8Data', $scripts['footer']['vars_pg8'] );
 
   // Provision svg.icon.js
   if ( UBIK_SVG_ICONS_URL )
-    wp_localize_script( $script_handle, 'svgIconsUrl', UBIK_SVG_ICONS_URL );
+    wp_localize_script( $scripts['footer']['name'], 'svgIconsUrl', UBIK_SVG_ICONS_URL );
 
 
 
@@ -110,7 +127,7 @@ add_action( 'wp_enqueue_scripts', 'pendrell_scripts_enqueue' );
 
 // Asynchronous script loading filter
 function pendrell_scripts_async( $tag, $handle ) {
-  if ( 'jquery' !== $handle )
+  if ( 'jquery' !== $handle && 'p-header' !== $handle )
     $tag = str_replace( ' src', ' defer="defer" src', $tag ); // Defer absolutely everything until after the page has loaded
   return $tag;
 }
@@ -129,6 +146,6 @@ add_action( 'admin_enqueue_scripts', 'pendrell_admin_enqueue_scripts' );
 
 // Load an extra stylesheet for use with the visual editor
 function pendrell_admin_editor_style() {
-  add_editor_style( get_template_directory_uri() . '/style-editor.css?version=' . filemtime( get_template_directory() . '/style-editor.css' ) );
+  add_editor_style( get_template_directory_uri() . '/style-editor.css?v=' . filemtime( get_template_directory() . '/style-editor.css' ) );
 }
 add_action( 'after_setup_theme', 'pendrell_admin_editor_style' );

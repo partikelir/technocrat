@@ -35,6 +35,7 @@ An incomplete list in no particular order:
 * Code highlighting with [Prism](http://prismjs.com).
 * [Autosize](https://github.com/jackmoore/autosize) `textarea` elements.
 * Live updating human-readable dates on content from the last two weeks thanks to [jQuery-Timeago](https://github.com/rmm5t/jquery-timeago).
+* [Font Face Observer](https://github.com/bramstein/fontfaceobserver) to [improve web font performance](https://www.filamentgroup.com/lab/font-events.html).
 * Absolutely no options screen or database bloat.
 * A halfway decent print media stylesheet.
 * Verbosely commented source code to walk you through everything that Pendrell can do.
