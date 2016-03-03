@@ -26,9 +26,9 @@
       @extend %spacer-below-reset;
       .entry-meta {
         @extend %clearfix-reset;
+        @extend %uppercase;
         @include font-size(text-smallest);
         color: colour(text-lightest);
-        text-transform: uppercase;
       }
     }
 

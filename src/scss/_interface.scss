@@ -86,7 +86,7 @@ label {
     @include font-size(text-smaller);
     color: colour(error);
     display: block; // Errors go below inputs
-    font-weight: $w-body-bold;
+    font-weight: font(body-bold);
   }
 }
 
@@ -96,7 +96,7 @@ label {
 }
 .error {
   color: colour(error);
-  font-weight: $w-body-bold;
+  font-weight: font(body-bold);
 }
 .notice {
   font-style: italic;

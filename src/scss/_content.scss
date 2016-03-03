@@ -9,7 +9,7 @@
     @include font-style(entry-header-meta);
     color: colour(text-lightest);
     .date {
-      text-transform: uppercase;
+      @extend %uppercase;
     }
   }
 }
@@ -65,7 +65,7 @@
   h4,
   h5,
   h6 {
-    text-transform: uppercase; // The sizing of these headers is below that of the body copy; let's give them some punch
+    @extend %uppercase; // The sizing of these headers is below that of the body copy; let's give them some punch
   }
 
   // Links

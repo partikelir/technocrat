@@ -97,44 +97,63 @@
 
 // Font styling
 %body-light {
-  font-family: $f-body;
-  font-weight: $w-body-light;
+  font-family: font(body-full);
+  font-weight: font(body-light);
 }
 %body-normal {
-  font-family: $f-body;
-  font-weight: $w-body-normal;
+  font-family: font(body-full);
+  font-weight: font(body-normal);
 }
 %body-bold {
-  font-family: $f-body;
-  font-weight: $w-body-bold;
-}
-%body-bold-uppercase {
-  font-family: $f-body;
-  font-weight: $w-body-bold;
-  font-feature-settings: 'lnum'; // To go with all uppercase letters
-  text-transform: uppercase;
+  font-family: font(body-full);
+  font-weight: font(body-bold);
 }
 %head-light {
-  font-family: $f-head;
-  font-weight: $w-head-light;
+  font-family: font(head-full);
+  font-weight: font(head-light);
 }
 %head-normal {
-  font-family: $f-head;
-  font-weight: $w-head-normal;
+  font-family: font(head-full);
+  font-weight: font(head-normal);
 }
 %head-bold {
-  font-family: $f-head;
-  font-weight: $w-head-bold;
+  font-family: font(head-full);
+  font-weight: font(head-bold);
 }
-%head-bold-uppercase {
-  font-family: $f-head;
-  font-weight: $w-head-bold;
+
+%mono-normal {
+  font-family: font(mono-full);
+  font-weight: font(mono-normal);
+}
+%uppercase {
   font-feature-settings: 'lnum';
   text-transform: uppercase;
 }
-%mono-normal {
-  font-family: $f-mono;
-  font-weight: $w-mono-normal;
+
+// Font observers
+%body-light-observer {
+  @include font-observer(body);
+  font-weight: font(body-light);
+}
+%body-normal-observer {
+  @include font-observer(body);
+  font-weight: font(body-normal);
+}
+%body-bold-observer {
+  @include font-observer(body);
+  font-weight: font(body-bold);
+}
+%head-light-observer {
+  @include font-observer(head);
+  font-weight: font(head-light);
+}
+%head-normal-observer {
+  @include font-observer(head);
+  font-weight: font(head-normal);
+}
+%head-bold-observer {
+  @include font-observer(head);
+  font-weight: font(head-bold);
 }
 
 // Font sizes
