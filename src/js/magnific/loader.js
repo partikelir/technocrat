@@ -9,6 +9,9 @@
     // Save a copy of the initial URL for future use
     var magnificInitURL = location.href;
 
+    // Initialize main handler
+    var magnificPendrell;
+
     // Magnific options
     var magnificOptions = {
       disableOn: 500, // Don't load the popup gallery on screens with a viewport width less than this
@@ -67,7 +70,7 @@
     };
 
     // Custom functions for Pendrell's Magnific Popup integration
-    var magnificPendrell = {
+    magnificPendrell = {
 
       // Blur
       blurOpen: function() {
@@ -110,7 +113,7 @@
       imageSrcset: function(item) {
         var srcset = item.el.find('img').attr('srcset'),
             img = $('img.mfp-img:first');
-        if (srcset.length) {
+        if (srcset && srcset.length) {
           img.attr('srcset', srcset);
           picturefill({ elements: [ img ] });
         }
@@ -146,9 +149,10 @@
       // Magnific-based image selector; requires an item object
       srcSelect: function(item) {
         var srcset = item.el.find('img').attr('srcset');
-        if (srcset.length) {
+        if (srcset && srcset.length) {
           item.src = this.srcsetHandler(srcset); // Pick a source from the `srcset` attribute; @TODO: retina support?
-        } else if (typeof item.src === undefined || item.src === '') {
+        }
+        if (typeof item.src === 'undefined' || item.src === '') {
           item.src = item.el.find('img').attr('src'); // Fallback on the main `src` attribute for the image if no `srcset` exists
         }
       },
@@ -166,7 +170,7 @@
         // Parse `srcset` attribute; https://github.com/albell/parse-srcset
         var srcAvailable = parseSrcset( srcset ),
             pattern  = /-(\d+)x(\d+)/, // Matches standard WordPress image dimensions in resized image filenames
-            fudge    = 1.15; // Fudge factor
+            fudge    = 1.05; // Fudge factor
 
         // Sort backwards from smallest to largest and cycle through to find an appropriate image choice
         srcAvailable.sort( function(a, b) {
