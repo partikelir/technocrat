@@ -79,13 +79,10 @@ function pendrell_setup() {
 
   // == IMAGES == //
 
-  // This theme uses a custom image size for featured images; it isn't really a "thumbnail" and it actually differs from the thumbnail image size
+  // This theme uses a custom image size for featured images; it isn't really a "thumbnail"
   add_theme_support( 'post-thumbnails' );
   set_post_thumbnail_size( $main_width, $main_width );
-
-  // Add a few additional image sizes for various other purposes
-  if ( function_exists( 'ubik_imagery_add_fractional_sizes' ) )
-    ubik_imagery_add_fractional_sizes( $margin = PENDRELL_BASELINE );
+  update_option( 'image_default_size', 'medium' );
 
   // Forcing medium and large sizes to match $content_width and $main_width; explicitly setting thumbnail image size
   update_option( 'thumbnail_size_w', 150 );
@@ -93,17 +90,28 @@ function pendrell_setup() {
   update_option( 'thumbnail_crop', 1 );
   update_option( 'medium_size_w', $main_width );
   update_option( 'medium_size_h', 9999 );
-  //update_option( 'medium_large_size_w', $main_width ); // New size with WP 4.4
-  //update_option( 'medium_large_size_h', 9999 );
   update_option( 'large_size_w', $content_width );
   update_option( 'large_size_h', 9999 );
+  //update_option( 'medium_large_size_w', $main_width ); // New size with WP 4.4; not needed in this theme
+  //update_option( 'medium_large_size_h', 9999 );
 
   // Additional hard-cropped square versions of both medium and large image sizes
   add_image_size( 'medium-square', $main_width, $main_width, true );
   add_image_size( 'large-square', $content_width, $content_width, true );
 
-  // Set the medium and large size image sizes under media settings; default to our new full width image size in media uploader
-  update_option( 'image_default_size', 'medium' );
+  // Add fractional image sizes; this used to be in Ubik but applies mostly to this theme
+  $margin = PENDRELL_BASELINE;
+
+  $quarter_width  = (int) ceil( ( $content_width - $margin * 3 ) / 4 );
+  $third_width    = (int) ceil( ( $content_width - $margin * 2 ) / 3 );
+  $half_width     = (int) ceil( ( $content_width - $margin * 1 ) / 2 );
+
+  add_image_size( 'quarter', $quarter_width, 9999 );
+  add_image_size( 'quarter-square', $quarter_width, $quarter_width, true );
+  add_image_size( 'third', $third_width, 9999 );
+  add_image_size( 'third-square', $third_width, $third_width, true );
+  add_image_size( 'half', $half_width, 9999 );
+  add_image_size( 'half-square', $half_width, $half_width, true );
 
 
 
@@ -135,11 +143,13 @@ add_action( 'widgets_init', 'pendrell_widgets_init' );
 // Add shortcodes to sidebar widgets
 add_filter( 'widget_text', 'do_shortcode' );
 
-// Maximum allowable image size, theme-wide; WordPress 4.4 feature
+
+
+// Maximum allowable image size, theme-wide; WordPress 4.4 feature presently set to 2x $content_width to allow for retina display
 function pendrell_srcset_image_width( $width ) {
   global $content_width;
-  if ( $content_width < $width )
-    $width = $content_width;
+  if ( $content_width * 2 > $width )
+    $width = $content_width * 2;
   return $width;
 }
 add_filter( 'max_srcset_image_width', 'pendrell_srcset_image_width' );

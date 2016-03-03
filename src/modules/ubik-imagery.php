@@ -2,6 +2,7 @@
 
 // Requirements:
 // - Ubik Imagery: https://github.com/synapticism/ubik-imagery
+// - Lazysizes: https://github.com/aFarkas/lazysizes
 // - Picturefill: https://github.com/scottjehl/picturefill
 
 // Notes about the `sizes` attribute:
@@ -17,31 +18,27 @@
 //     = Static: image layout is maintained at all viewport widths
 //     = Responsive: column count decreases by 1 at various breakpoints (so a 4 column layout turns to 3, a 3 column layout turns to 2, etc.)
 
-// @TODO: investigate Firefox scrollbar inconsistencies; it may be necessary to add another fudge factor to ensure browsers choose the optimal image
-
 // Load plugin core
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-imagery/ubik-imagery.php' );
 
 
 
-// == SIZES ATTRIBUTE MEDIA QUERIES == //
+// == RESPONSIVE IMAGES == //
 
 // Setup a few media queries for the `sizes` attribute; must be an array even if there is only one value!
+// @filter: pendrell_sizes_margin
+// @filter: pendrell_sizes_margin_inner
+// @constant: PENDRELL_BASELINE
 function pendrell_sizes_media_queries( $queries = array(), $size = '', $width = '', $context = '' ) {
 
   // Exit early if we don't have the required size and width data
   if ( empty( $size ) || !is_string( $size ) || empty( $width ) || !is_int( $width ) )
     return $queries;
 
-  // Note: by core conventions $content_width is the maximum rendered width of an image; $main_width is a theme-specifc short-hand for the "normal" width of images
   global $content_width, $main_width;
 
-  // Set the bounding width (the maximum size for rendered images)
-  if ( pendrell_full_width() ) {
-    $bounding_width = $content_width;
-  } else {
-    $bounding_width = $main_width;
-  }
+  // Set bounding width
+  $bounding_width = pendrell_image_bounding_width();
 
   // Limit width by the bounding width; what we're interested in here is the *rendered size* of an image which won't be larger than the container
   $width = min( $width, $bounding_width );
@@ -54,8 +51,8 @@ function pendrell_sizes_media_queries( $queries = array(), $size = '', $width = 
   // The margins can be filtered; this is mostly in case the inner margin (the space *between* grouped images) is not the same as the page margins
   // Example: your outer page margins are 30px on each side but the spacing between images is 20px
   // Such functionality is superfluous for this theme as margins are all handled in increments of 30px
-  $margin         = pendrell_sizes_margin();
-  $margin_inner   = pendrell_sizes_margin_inner();
+  $margin         = (int) apply_filters( 'pendrell_sizes_margin', PENDRELL_BASELINE );
+  $margin_inner   = (int) apply_filters( 'pendrell_sizes_margin_inner', PENDRELL_BASELINE );
 
   // Breakpoints replicated from `src/scss/config/_settings.scss`
   $tiny           = ceil( $main_width / 1.5 );                    // 390px
@@ -171,27 +168,19 @@ if ( PENDRELL_RESPONSIVE_IMAGES )
 
 
 
-// == SIZES ATTRIBUTE DEFAULT == //
-
 // Default `sizes` attribute handling specific to Pendrell
 function pendrell_sizes_default( $default = '', $size = '', $width = '', $context = '' ) {
 
-  global $content_width, $main_width;
-
-  // Set the bounding width (the maximum size for rendered images)
-  if ( pendrell_full_width() ) {
-    $bounding_width = $content_width;
-  } else {
-    $bounding_width = $main_width;
-  }
+  // Set bounding width
+  $bounding_width = pendrell_image_bounding_width();
 
   // Default viewport width (integer)
   $viewport     = 100;
 
   // The margins can be filtered; this is mostly in case the inner margin (the space between grouped images) is not the same as the page margins
   // Example: your outer page margins are 30px on each side but the spacing between images is 20px
-  $margin       = pendrell_sizes_margin();
-  $margin_inner = pendrell_sizes_margin_inner();
+  $margin       = (int) apply_filters( 'pendrell_sizes_margin', PENDRELL_BASELINE );
+  $margin_inner = (int) apply_filters( 'pendrell_sizes_margin_inner', PENDRELL_BASELINE );
 
   // Test the context object for various scenarios
   $content      = ubik_imagery_context( $context, 'content' ); // Defaults back to 100vw as images fill the viewport
@@ -227,19 +216,39 @@ if ( PENDRELL_RESPONSIVE_IMAGES )
 
 
 
-// == MARGINS == //
+// == LAZYSIZES == //
 
-// Two functions to allow for margins to be filtered
-// These functions are somewhat unnecessary for this theme as the inner margin matches the outer page margin; just coding this for the sake of being complete
-// @filter: pendrell_sizes_margin
-// @filter: pendrell_sizes_margin_inner
-// @constant: PENDRELL_BASELINE
-function pendrell_sizes_margin() {
-  return (int) apply_filters( 'pendrell_sizes_margin', PENDRELL_BASELINE );
+// WordPress will not provision `srcset` unless there are 2 or more sources; as such, smaller images won't have a `srcset` attribute
+// This means we only want to swap the `srcset` attribute for a blank if there's already something there
+// A blank `srcset` and filled `data-srcset` allows Lazysizes to lazy load responsive images
+function pendrell_image_lazysizes_srcset( $html = '' ) {
+  if ( !empty( $html ) )
+    $html = 'data-' . $html . ' srcset="' . ubik_imagery_blank() . '" ';
+  return $html;
 }
-function pendrell_sizes_margin_inner() {
-  return (int) apply_filters( 'pendrell_sizes_margin_inner', PENDRELL_BASELINE );
+
+// Activates Lazysizes on associated images
+function pendrell_image_lazysizes_class( $html = '' ) {
+  return $html .= 'class="lazyload" ';
 }
+
+if ( PENDRELL_LAZYSIZES ) {
+  add_filter( 'ubik_imagery_img_attributes', 'pendrell_image_lazysizes_class' ); // Activates Lazysizes; we could also add `data-sizes="auto"` but this seems buggy
+  add_filter( 'ubik_imagery_srcset_html', 'pendrell_image_lazysizes_srcset' ); // Swap out the `srcset` attribute where available
+  add_filter( 'ubik_imagery_dimensions', 'pendrell_image_dimensions', 10, 3 ); // Force height/width attribute to conform to this theme's content width
+}
+
+
+
+// == STRUCTURED DATA == //
+
+// Dump structured data if the context prohibits it; we don't want certain item properties on related images
+function pendrell_image_schema( $schema, $context ) {
+  if ( ubik_imagery_context( $context, 'related' ) )
+    $schema = str_replace( ' itemprop="image"', '', $schema );
+  return $schema;
+}
+add_filter( 'ubik_imagery_wrapper_schema', 'pendrell_image_schema', 10, 2 );
 
 
 

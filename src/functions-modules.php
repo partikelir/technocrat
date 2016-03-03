@@ -150,8 +150,7 @@ add_filter( 'pendrell_full_width', 'pendrell_full_width_content' );
 
 // Enable `srcset` output only when Picturefill module is active
 if ( PENDRELL_RESPONSIVE_IMAGES )
-  define( 'UBIK_IMAGERY_SRCSET', true );
-define( 'UBIK_IMAGERY_DIMENSIONS', false );
+  define( 'UBIK_IMAGERY_RESPONSIVE', true );
 require_once( $path_modules . 'ubik-imagery.php' );
 
 

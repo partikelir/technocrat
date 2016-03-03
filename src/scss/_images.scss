@@ -1,11 +1,33 @@
 // ==== IMAGE ==== //
 
+// == GENERAL == //
+
+img {
+  // Force images to adhere to container width
+  // This is usually paired with `height: auto;` but we are managing height with the height attribute in this theme
+  max-width: 100%;
+  &.lazyloaded {
+    height: auto;
+  }
+
+  // Alt text styling
+  @include font-size(text-small);
+  background: colour(body-dark);
+  color: colour(text-lightest);
+  overflow: hidden;
+  text-align: center;
+  text-shadow: none;
+  vertical-align: middle;
+}
+
+
+// == CONTENT == //
+
 // Individual responsive images in posts, not comments; isolating these declarations from `_content.scss` reduces bloat
 figure.wp-caption,
 .entry-content p img {
   @extend %spacer-below;
   backface-visibility: hidden;
-  overflow: auto; // Without this the floats won't float, but we'll reset it in a media query (below)
   &.alignleft {
     margin-right: percentage( spacer() / $width-main );
     @if module(full-width) {
@@ -34,6 +56,7 @@ figure.wp-caption,
 
 // Reset borders and outlines for linked images
 figure.wp-caption {
+  overflow: auto; // Without this the floats won't float, but we'll reset it in a media query (above)
   a,
   a:visited,
   a:hover,
