@@ -71,7 +71,7 @@ function pendrell_scripts_enqueue() {
     $scripts['footer']['file'] .= '-prism';
 
   // Default script name
-  if ( empty( $script_name ) )
+  if ( empty( $scripts['footer']['file'] ) )
     $scripts['footer']['file'] = '-footer';
 
   // Load theme-specific JavaScript bundles with versioning based on last modified time; http://www.ericmmartin.com/5-tips-for-using-jquery-with-wordpress/
