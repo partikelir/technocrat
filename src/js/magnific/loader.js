@@ -111,11 +111,13 @@
 
       // Copy the srcset to the gallery image
       imageSrcset: function(item) {
-        var srcset = item.el.find('img').attr('srcset'),
+        var srcset = item.el.find('img').attr('data-srcset') || item.el.find('img').attr('srcset'),
             img = $('img.mfp-img:first');
         if (srcset && srcset.length) {
           img.attr('srcset', srcset);
-          picturefill({ elements: [ img ] });
+          if (picturefill) {
+            picturefill({ elements: [ img ] });
+          }
         }
       },
 
@@ -148,7 +150,7 @@
 
       // Magnific-based image selector; requires an item object
       srcSelect: function(item) {
-        var srcset = item.el.find('img').attr('srcset');
+        var srcset = item.el.find('img').attr('data-srcset') || item.el.find('img').attr('srcset'); // Try `data-srcset` first for compatibility with Lazysizes
         if (srcset && srcset.length) {
           item.src = this.srcsetHandler(srcset); // Pick a source from the `srcset` attribute; @TODO: retina support?
         }
@@ -192,8 +194,6 @@
             src = a.url; // Last one standing wins
           }
         });
-
-        // Return whatever we've got
         return src;
       }
     };
