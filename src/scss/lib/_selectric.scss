@@ -1,7 +1,7 @@
 // ==== SELECTRIC ==== //
 
 // For use with: https://lcdsantos.github.io/jQuery-selectric/index.html
-@mixin selectric {
+@mixin selectric( $align: left ) {
 
   // Click here to open the select menu
   .s3c {
@@ -14,6 +14,7 @@
     box-sizing: border-box;
     color: lighten( colour(text), 23 );
     height: spacer();
+    text-align: $align;
     transition: all .67s ease;
     width: 100%;
     p.label { // This element/class combo cannot be configured :|
@@ -63,6 +64,7 @@
     color: colour(select);
     display: none;
     outline: 0;
+    text-align: $align;
     z-index: -1;
     .s3c-above & {
       border-radius: $radius $radius 0 0;

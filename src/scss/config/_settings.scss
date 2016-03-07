@@ -2,6 +2,7 @@
 
 // Development mode; switches on a few things that are otherwise build-specific
 $dev: true;
+//$dev: false;
 
 // Output pixel fallback when generating rems for older browsers (pre-IE9)
 $pixel-values: false;
@@ -11,8 +12,8 @@ $base-size:       16;
 $base-line:       30;
 
 // Site widths
-$width-content:   960px;
-$width-main:      624px;
+$width-content:   900px;
+$width-medium:    624px;
 $width-thumb:     150px;
 
 // Image spacer; defines the space between gallery items and grouped images
@@ -28,30 +29,31 @@ $_metadata: (
 , theme-author:             "Alexander Synaptic"
 , theme-author-uri:         "http://synapticism.com"
 , theme-description:        "Alexander Synaptic"
-, theme-version:            "0.47.0"
+, theme-version:            "0.49.0"
 , theme-license:            "GPLv3"
 , theme-license-uri:        "https://www.gnu.org/copyleft/gpl.txt"
-, theme-tags:               (light, gray, white, one-column, two-columns, right-sidebar, fixed-layout, responsive-layout, custom-menu, featured-images, full-width-template, microformats, post-formats, theme-options, translation-ready)
+, theme-tags:               (light, gray, white, one-column, two-column, fixed-layout, responsive-layout, custom-menu, featured-images, microformats, post-formats, theme-options, translation-ready)
 , theme-text-domain:        "pendrell"
 , theme-text-domain-path:   "/languages/"
 );
 
 // Breakpoints; use break() to access; pixel values (in the comments) are defaults but assume nothing else has changed
 $_breaks: (
-  tiny:               ceil( $width-main / 1.5 )       // 416
-, small:              ceil( $width-main / 1.2 )       // 520
-, medium:             ceil( $width-main + spacer(3) ) // 714
-, large:              ceil( $width-main + spacer(8) ) // 864
-, full:               ceil( $width-content )          // 960
+  tiny:               ceil( $width-medium / 1.5 )       // 416
+, small:              ceil( $width-medium / 1.2 )       // 520
+, medium:             ceil( $width-medium + spacer(3) ) // 714
+, large:              ceil( $width-medium + spacer(8) ) // 864
+, full:               ceil( $width-content )          // 900
 );
 
 // Modules; reduce bloat by switching some of these off; test with @if module(name) {}
 $_modules: (
-  full-width:         true
-, gallery-shortcode:  false // WordPress core; activation creates some useless duplicate styles; disable if you don't use [gallery]
+  gallery-shortcode:  false // WordPress core; activation creates some useless duplicate styles; disable if you don't use [gallery]
+, lazysizes:          false
 , magnific-popup:     false
 , post-formats:       false
 , prism:              false
+, one-column:         true
 , ubik-links:         false
 , ubik-photo-meta:    false
 , ubik-places:        false
@@ -63,11 +65,12 @@ $_modules: (
 
 @if $dev {
   $_modules: (
-    full-width:         true
-  , gallery-shortcode:  true // WordPress core; activation creates some useless duplicate styles
+    gallery-shortcode:  true // WordPress core; activation creates some useless duplicate styles
+  , lazysizes:          true
   , magnific-popup:     true
   , post-formats:       true
   , prism:              true
+  , one-column:         true
   , ubik-links:         true
   , ubik-photo-meta:    true
   , ubik-places:        true

@@ -22,7 +22,7 @@
       <?php do_action( 'pendrell_entry_header' ); ?>
     </header>
     <div class="entry-content">
-      <?php pendrell_views_list_content(); ?>
+      <?php echo ubik_excerpt( '', 30 ); ?>
     </div>
   </div>
 </article>

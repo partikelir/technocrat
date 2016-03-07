@@ -8,9 +8,10 @@
  * @subpackage Pendrell
  * @since Pendrell 0.18
  */
+
 get_header(); ?>
   <div id="wrap-content" class="wrap-content">
-    <div id="content" class="site-content<?php pendrell_content_class(); ?>">
+    <div id="content" class="site-content">
       <header id="archive-header">
         <?php pendrell_entry_title(); ?>
         <div class="archive-desc">

@@ -1,12 +1,49 @@
 // ==== WIDGETS ==== //
 
-// Widgets :D see also `wrap-sidebar` and related classes in `_layout.scss`
+// See also `wrap-sidebar` and related classes in `_layout.scss`
+.sidebar {
+  @extend %spacer-below;
+}
+@if module(one-column) {
+  @include k-media-above( break(medium) ) {
+    .sidebar-1,
+    .sidebar-2 {
+      box-sizing: border-box;
+      width: 50%;
+      &:only-child {
+        float: none;
+        max-width: $width-medium;
+        padding: 0;
+        width: 100%;
+      }
+    }
+    .sidebar-1 {
+      @include rem( padding-right, spacer() );
+      float: left;
+    }
+    .sidebar-2 {
+      @include rem( padding-left, spacer() );
+      float: right;
+      .s3c-wrapper,
+      .search-form {
+        margin-left: auto; // Right-align selectric boxes
+      }
+      .widget {
+        text-align: right;
+      }
+    }
+  }
+}
 .widget {
   @extend %links-no-border;
   @extend %spacer-below;
   @include font-size(text-smaller);
   @include font-style(widget-text);
   color: colour(text-lighter);
+  display: inline-block;
+  max-width: $width-medium;
+  vertical-align: top;
+  width: 100%;
   word-wrap: break-word;
 
   // Titles
@@ -39,6 +76,13 @@
   // Images
   img {
     @include border-rounded;
+  }
+
+  // Form elements and dropdowns
+  .s3c-wrapper,
+  .search-form {
+    max-width: $width-content / 2;
+    width: 100%;
   }
 
   // Eliminate margin on the very last widget

@@ -2,12 +2,22 @@
 
 // == GENERAL == //
 
-img {
+.site-content img {
+
   // Force images to adhere to container width
   // This is usually paired with `height: auto;` but we are managing height with the height attribute in this theme
   max-width: 100%;
-  &.lazyloaded {
-    height: auto;
+
+  // Lazysizes switches to restore auto height
+  @if module(lazysizes) {
+    &.lazyloaded,
+    &:not(.ubik) {
+      height: auto;
+    }
+  } @else {
+    &:not(.ubik) {
+      height: auto;
+    }
   }
 
   // Alt text styling
@@ -29,20 +39,10 @@ figure.wp-caption,
   @extend %spacer-below;
   backface-visibility: hidden;
   &.alignleft {
-    margin-right: percentage( spacer() / $width-main );
-    @if module(full-width) {
-      .full-width & {
-        margin-right: percentage( spacer() / $width-content );
-      }
-    }
+    margin-right: percentage( spacer() / $width-content );
   }
   &.alignright {
-    margin-left: percentage( spacer() / $width-main );
-    @if module(full-width) {
-      .full-width & {
-        margin-left: percentage( spacer() / $width-content );
-      }
-    }
+    margin-left: percentage( spacer() / $width-content );
   }
   &.aligncenter {
     img { // Applies centering to the image within the figure, not the figure element itself
@@ -85,12 +85,6 @@ figure.wp-caption {
   @include scut-reverse-italics;
   color: colour(text-lightest);
   max-width: 100%;
-  @if module(full-width) {
-    .full-width & {
-      @include font-size(text-small);
-      color: colour(text-lighter);
-    }
-  }
 }
 
 // Image overlay class; apply this to any image container (likely a `figure` element)
@@ -102,6 +96,11 @@ figure.wp-caption {
   .wp-caption-text {
     @include font-size( text, 0, 25 );
     @include font-style(image-overlay-title);
+    color: white();
+    @include k-media-above( break(medium) ) {
+      @include font-size(text-bigger);
+      @include text-shadow-bigger;
+    }
     .gallery-static & {
       @include k-media-below( break(small) ) {
         @include font-size( text-smaller, 0, 25 );
@@ -112,18 +111,9 @@ figure.wp-caption {
         @include font-size( text-smaller, 0, 25 );
       }
     }
-    @if module(full-width) {
-      .full-width & {
-        color: white();
-        @include k-media-above( break(medium) ) {
-          @include font-size(text-bigger);
-          @include text-shadow-bigger;
-        }
-      }
-    }
   }
 
-  // The footer contains additional data e.g. comment count
+  // The footer contains additional data *e.g.* comment count
   footer {
     &.comments {
       @include font-style(image-overlay-comments);
@@ -148,14 +138,6 @@ figure.wp-caption {
           @include font-size( text-smaller, 0, 25 );
         }
       }
-      @if module(full-width) {
-        .full-width & {
-          @include font-size( text, 0, 25 );
-          @include k-media-between( break(tiny), break(medium) ) {
-            @include font-size( text-small, 0, 25 );
-          }
-        }
-      }
     }
     &.smaller {
       @include font-size( text-smaller, 0, 25 );
@@ -166,14 +148,6 @@ figure.wp-caption {
       .gallery-static & {
         @include k-media-below( break(medium) ) {
           display: none;
-        }
-      }
-      @if module(full-width) {
-        .full-width & {
-          @include font-size( text-small, 0, 25 );
-          @include k-media-between( break(tiny), break(medium) ) {
-            @include font-size( text-smaller, 0, 25 );
-          }
         }
       }
     }
@@ -195,12 +169,7 @@ figure.wp-caption {
   width: 100%; // Force images to fill the available space
   @include k-media-above( break(tiny) ) {
     float: left;
-    margin: 0 percentage( $spacer-image / $width-main ) percentage( $spacer-image / $width-main ) 0;
-    @if module(full-width) {
-      .full-width & {
-        margin: 0 percentage( $spacer-image / $width-content ) percentage( $spacer-image / $width-content ) 0;
-      }
-    }
+    margin: 0 percentage( $spacer-image / $width-content ) percentage( $spacer-image / $width-content ) 0;
   }
   @include k-media-below( break(tiny) ) {
     @include rem( margin, 0 0 spacer(1/2) 0 );
@@ -209,7 +178,7 @@ figure.wp-caption {
 }
 
 // A simple helper mixin to calculate the max-width from a column count and the bounding width
-@mixin gallery-max-width( $columns, $width: $width-main ) {
+@mixin gallery-max-width( $columns, $width: $width-medium ) {
   max-width: percentage( 1 / $columns ) - percentage( ( ( $spacer-image * ($columns - 1) ) / $width ) / $columns );
 }
 
@@ -235,7 +204,7 @@ figure.wp-caption {
     .gallery-item,
     figure.wp-caption {
       @include k-media-above( break(tiny) ) {
-        @include gallery-max-width( $i, $width-main );
+        @include gallery-max-width( $i, $width-content );
         img {
           width: 100%; // Force images to fill the available space
         }
@@ -244,11 +213,6 @@ figure.wp-caption {
         }
         &:nth-of-type(#{$i}n+1) {
           clear: left;
-        }
-        @if module(full-width) {
-          .full-width & {
-            @include gallery-max-width( $i, $width-content );
-          }
         }
       }
     }
@@ -260,17 +224,12 @@ figure.wp-caption {
   .gallery-item,
   figure.wp-caption {
     @include k-media-between( break(tiny), break(medium) ) {
-      @include gallery-max-width( 2, $width-main );
+      @include gallery-max-width( 2, $width-content );
       &:nth-of-type(2n) {
         margin-right: 0;
       }
       &:nth-of-type(2n+1) {
         clear: left;
-      }
-      @if module(full-width) {
-        .full-width & {
-          @include gallery-max-width( 2, $width-content );
-        }
       }
     }
   }
@@ -299,17 +258,12 @@ figure.wp-caption {
   // Re-instate some of the styling that is lost when dropping below the tiny breakpoint in the default declaration
   figure.wp-caption {
     float: left;
-    margin: 0 percentage( $spacer-image / $width-main ) percentage( $spacer-image / $width-main ) 0;
-    @if module(full-width) {
-      .full-width & {
-        margin: 0 percentage( $spacer-image / $width-content ) percentage( $spacer-image / $width-content ) 0;
-      }
-    }
+    margin: 0 percentage( $spacer-image / $width-content ) percentage( $spacer-image / $width-content ) 0;
   }
   @for $i from 2 to 5 {
     &.gallery-columns-#{$i} {
       figure.wp-caption {
-        @include gallery-max-width( $i, $width-main );
+        @include gallery-max-width( $i, $width-content );
         footer {
           @extend %gallery-static-overlay-footer-#{$i};
         }
@@ -318,11 +272,6 @@ figure.wp-caption {
         }
         &:nth-of-type(#{$i}n+1) {
           clear: left;
-        }
-        @if module(full-width) {
-          .full-width & {
-            @include gallery-max-width( $i, $width-content );
-          }
         }
       }
     }
@@ -334,31 +283,21 @@ figure.wp-caption {
 .gallery-flex {
   figure.wp-caption {
     @include k-media-between( break(tiny), break(medium) ) {
-      @include gallery-max-width( 2, $width-main );
+      @include gallery-max-width( 2, $width-content );
       &:nth-of-type(2n) {
         margin-right: 0;
       }
       &:nth-of-type(2n+1) {
         clear: left;
       }
-      @if module(full-width) {
-        .full-width & {
-          @include gallery-max-width( 2, $width-content );
-        }
-      }
     }
     @include k-media-above( break(medium) ) {
-      @include gallery-max-width( 3, $width-main );
+      @include gallery-max-width( 3, $width-content );
       &:nth-of-type(3n) {
         margin-right: 0;
       }
       &:nth-of-type(3n+1) {
         clear: left;
-      }
-      @if module(full-width) {
-        .full-width & {
-          @include gallery-max-width( 3, $width-content );
-        }
       }
     }
   }
@@ -367,7 +306,7 @@ figure.wp-caption {
 
 
 // This class is specific to the output of the WordPress `[gallery]` shortcode which cannot be filtered
-// If you don't use the built-in gallery shortcode be sure to switch this feature off; it wastefully duplicates a bunch of styles from the generalized overlay class
+// If you don't use the built-in gallery shortcode be sure to switch this feature off; it duplicates a bunch of styles from the generalized overlay class
 @if module(gallery-shortcode) {
   .gallery-item {
     @include gallery-item;

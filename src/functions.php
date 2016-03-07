@@ -19,25 +19,25 @@ if ( is_readable( $path . 'functions-modules.php' ) )
 
 // == LOADER == //
 
-// Pendrell core functions are abstracted into the `pendrell/core` directory
-require_once( $path . 'core/archive.php' );
-require_once( $path . 'core/assets.php' );
-require_once( $path . 'core/author.php' );
-require_once( $path . 'core/comments.php' );
-require_once( $path . 'core/contact-form.php' );
-require_once( $path . 'core/entry-content.php' );
-require_once( $path . 'core/full-width.php' );
-require_once( $path . 'core/general.php' );
-require_once( $path . 'core/icons.php' );
-require_once( $path . 'core/images.php' );
-require_once( $path . 'core/post-formats.php' );
-require_once( $path . 'core/navigation.php' );
+// Pendrell core functions are abstracted into the `pendrell/lib` directory
+require_once( $path . 'lib/archive.php' );
+require_once( $path . 'lib/assets.php' );
+require_once( $path . 'lib/author.php' );
+require_once( $path . 'lib/comments.php' );
+require_once( $path . 'lib/contact-form.php' );
+require_once( $path . 'lib/entry-content.php' );
+require_once( $path . 'lib/icons.php' );
+require_once( $path . 'lib/images.php' );
+require_once( $path . 'lib/post-formats.php' );
+require_once( $path . 'lib/navigation.php' );
 
 
 
 // == SETUP == //
 
 // Includes some image size definitions and other things that belong here in the config file
+// @filter: pendrell_content_width
+// @filter: pendrell_medium_width
 function pendrell_setup() {
 
   // == THEME SUPPORT == //
@@ -66,37 +66,34 @@ function pendrell_setup() {
   // == LAYOUT == //
 
   // $content_width limits the size of the largest image size available via the media uploader
+  // $medium_width is a handy shortcut, nothing more
   // It should be set once and left alone apart from that; don't do anything fancy with it; it is part of WordPress core
-  global $content_width, $main_width;
-  if ( !isset( $content_width ) || !is_int( $content_width ) )
-    $content_width = (int) 960;
-
-  // Width of the main content column; should correspond to equivalent values in the stylesheet; NOT a WordPress core thing
-  // This variable is mainly used here in functions.php; it should match the variable defined in _base.scss
-  $main_width = round( $content_width * 0.65 ); // = 624
+  global $content_width, $medium_width;
+  $content_width = (int) apply_filters( 'pendrell_content_width', 900 );
+  $medium_width = (int) apply_filters( 'pendrell_medium_width', 624 );
 
 
 
   // == IMAGES == //
 
-  // This theme uses a custom image size for featured images; it isn't really a "thumbnail"
+  // Post thumbnails"are actually featured images and don't have anything to do with the actual thumbnail size
   add_theme_support( 'post-thumbnails' );
-  set_post_thumbnail_size( $main_width, $main_width );
-  update_option( 'image_default_size', 'medium' );
+  set_post_thumbnail_size( $medium_width, $medium_width );
 
-  // Forcing medium and large sizes to match $content_width and $main_width; explicitly setting thumbnail image size
+  // Built-in image sizes
+  update_option( 'image_default_size', 'medium' );
   update_option( 'thumbnail_size_w', 150 );
   update_option( 'thumbnail_size_h', 150 );
   update_option( 'thumbnail_crop', 1 );
-  update_option( 'medium_size_w', $main_width );
+  update_option( 'medium_size_w', $medium_width );
   update_option( 'medium_size_h', 9999 );
   update_option( 'large_size_w', $content_width );
   update_option( 'large_size_h', 9999 );
-  //update_option( 'medium_large_size_w', $main_width ); // New size with WP 4.4; not needed in this theme
+  //update_option( 'medium_large_size_w', 800 ); // New size with WP 4.4; not needed in this theme
   //update_option( 'medium_large_size_h', 9999 );
 
   // Additional hard-cropped square versions of both medium and large image sizes
-  add_image_size( 'medium-square', $main_width, $main_width, true );
+  add_image_size( 'medium-square', $medium_width, $medium_width, true );
   add_image_size( 'large-square', $content_width, $content_width, true );
 
   // Add fractional image sizes; this used to be in Ubik but applies mostly to this theme
@@ -120,7 +117,6 @@ function pendrell_setup() {
   // Register header and footer menus
   register_nav_menu( 'header', __( 'Header menu', 'pendrell' ) );
   register_nav_menu( 'footer', __( 'Footer menu', 'pendrell' ) );
-
 }
 add_action( 'after_setup_theme', 'pendrell_setup', 11 );
 
@@ -129,27 +125,33 @@ add_action( 'after_setup_theme', 'pendrell_setup', 11 );
 // Sidebar declarations
 function pendrell_widgets_init() {
   register_sidebar( array(
-    'id'            => 'sidebar-main',
-    'name'          => __( 'Main sidebar', 'pendrell' ),
-    'description'   => __( 'Appears to the right side of most posts and pages.', 'pendrell' ),
-    'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-    'after_widget'  => '</aside>',
+    'id'            => 'sidebar-1',
+    'name'          => __( 'Sidebar 1', 'pendrell' ),
+    'description'   => __( 'The first sidebar.', 'pendrell' ),
+    'before_widget' => '<div id="%1$s" class="widget %2$s">',
+    'after_widget'  => '</div>',
+    'before_title'  => '<h2>',
+    'after_title'   => '</h2>'
+  ) );
+  register_sidebar( array(
+    'id'            => 'sidebar-2',
+    'name'          => __( 'Sidebar 2', 'pendrell' ),
+    'description'   => __( 'The second sidebar.', 'pendrell' ),
+    'before_widget' => '<div id="%1$s" class="widget %2$s">',
+    'after_widget'  => '</div>',
     'before_title'  => '<h2>',
     'after_title'   => '</h2>'
   ) );
 }
 add_action( 'widgets_init', 'pendrell_widgets_init' );
-
-// Add shortcodes to sidebar widgets
-add_filter( 'widget_text', 'do_shortcode' );
+add_filter( 'widget_text', 'do_shortcode' ); // Add shortcodes to sidebar widgets
 
 
 
-// Maximum allowable image size, theme-wide; WordPress 4.4 feature presently set to 2x $content_width to allow for retina display
-function pendrell_srcset_image_width( $width ) {
-  global $content_width;
-  if ( $content_width * 2 > $width )
-    $width = $content_width * 2;
-  return $width;
+// A wrapper for `get_template_part`, a core WordPress function that ships without a filter
+// @filter: pendrell_template_part
+function pendrell_template_part( $slug = 'content', $name = null ) {
+  if ( is_search() )
+    $name = 'excerpt';
+  return get_template_part( $slug, apply_filters( 'pendrell_template_part', $name ) );
 }
-add_filter( 'max_srcset_image_width', 'pendrell_srcset_image_width' );

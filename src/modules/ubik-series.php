@@ -5,12 +5,8 @@ require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-seri
 // Display series metadata
 function pendrell_series() {
 
-  // Check if this is singular content
-  if ( !is_singular() )
-    return;
-
-  // Additional constraints on displaying post series: not on pages, attachments, password-protected posts, or certain post formats
-  if ( post_password_required() || is_page() || is_attachment() || has_post_format( array( 'aside', 'link', 'quote', 'status' ) ) )
+  // Constraints on displaying post series: not on pages, attachments, password-protected posts, or certain post formats
+  if ( !is_singular() || post_password_required() || is_page() || is_attachment() || has_post_format( array( 'aside', 'link', 'quote', 'status' ) ) )
     return;
 
   // Get an array of formatted lists representing various series

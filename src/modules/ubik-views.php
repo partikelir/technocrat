@@ -58,21 +58,12 @@ add_filter( 'pendrell_nav_content_switch', 'pendrell_views_nav_content_switch', 
 // == PRESENTATION == //
 
 // View content class filter; adds classes to the main content element rather than body class (for compatibility with the full-width module)
-function pendrell_views_content_class( $classes ) {
+function pendrell_views_body_class( $classes ) {
   if ( ubik_views_test( 'gallery' ) )
     $classes[] = 'gallery gallery-flex';
   return $classes;
 }
-add_filter( 'pendrell_content_class', 'pendrell_views_content_class' );
-
-
-// Force certain views to be full-width
-function pendrell_views_full_width( $full_width_test ) {
-  if ( ubik_views_test( 'gallery' ) )
-    return true;
-  return $full_width_test;
-}
-add_filter( 'pendrell_full_width', 'pendrell_views_full_width' );
+add_filter( 'body_class', 'pendrell_views_body_class' );
 
 
 
@@ -121,10 +112,3 @@ function pendrell_views_list_meta( $contents ) {
   return $contents;
 }
 add_filter( 'pendrell_entry_header_meta', 'pendrell_views_list_meta', 999 );
-
-// List content; @DEPENDENCY: Ubik Excerpt
-function pendrell_views_list_content( $words = 15 ) {
-  if ( pendrell_full_width() )
-    $words = 30;
-  echo ubik_excerpt( '', $words );
-}

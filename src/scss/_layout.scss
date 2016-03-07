@@ -9,9 +9,7 @@
 // == WRAPPERS == //
 
 // These wrappers allow for backgrounds and layout options to be defined for each of the four sections (header, content, sidebar, and footer)
-// There is also a fifth meta-wrapper to bind content and sidebar on large screens
-
-// A general wrapper for various site elements
+// There is also a fifth meta-wrapper to bind content and sidebar on large screens in two column mode
 %wrap {
   box-sizing: border-box; // Makes life a little easier
   @include k-media-below( break(small) ) {
@@ -27,70 +25,74 @@
     @include rem( padding-right, spacer(1.5) );
   }
 }
-.wrap-header {
-  @extend %wrap;
-  @include rem( padding-top, spacer() );
-  position: relative; // Contains #site-interface, which is absolutely positioned
-}
-.wrap-main {
-  @extend %clearfix;
-  @include k-media-above( break(large) ) {
-    @include scut-center-block( $width-content );
-    @include rem( padding-left, spacer(1.5) );
-    @include rem( padding-right, spacer(1.5) );
-  }
-}
-.wrap-content {
-  @extend %wrap;
-  @include rem( padding-top, spacer() );
-  @include rem( padding-bottom, spacer() );
-  @include k-media-above( break(large) ) {
-    @include rem( padding-right, spacer() );
-    float: left;
-    max-width: $width-main;
-    padding-left: 0;
-    width: percentage( $width-main / $width-content );
-    @if module(full-width) {
-      .full-width &,
-      &:only-child {
-        float: none;
-        max-width: $width-content;
-        padding-right: 0;
-        width: 100%;
-      }
-    } @else {
-      &:only-child {
-        float: none;
-        max-width: $width-content;
-        padding-right: 0;
-        width: 100%;
-      }
-    }
-  }
-}
-.wrap-sidebar {
-  @extend %wrap;
-  @include rem( padding-top, spacer() );
-  @include rem( padding-bottom, spacer() );
-  @include k-media-above( break(large) ) {
-    @include rem( padding-left, spacer() );
-    float: right;
-    max-width: $width-content - $width-main;
-    padding-right: 0;
-    width: percentage( 1 - ( $width-main / $width-content ) );
-    @if module(full-width) {
-      .full-width & {
-        float: none;
-        max-width: $width-content;
-        padding-left: 0;
-        width: 100%;
-      }
-    }
-  }
-}
+.wrap-header,
 .wrap-footer {
   @extend %wrap;
-  position: relative; // For use with the "Back to top" button
+  position: relative; // Header contains #site-interface, which is absolutely positioned; footer contains "back to top" button
+}
+
+
+
+// == MAIN LAYOUT == //
+
+// One or two column layouts are both supported
+@mixin two-column( $width: $width-medium ) {
+  .wrap-main {
+    @extend %clearfix;
+    @include k-media-above( break(large) ) {
+      @include scut-center-block( $width-content );
+      @include rem( padding-left, spacer(1.5) );
+      @include rem( padding-right, spacer(1.5) );
+    }
+  }
+  .wrap-content {
+    @extend %wrap;
+    @include rem( padding-top, spacer() );
+    @include rem( padding-bottom, spacer() );
+    @include k-media-above( break(large) ) {
+      @include rem( padding-right, spacer() );
+      float: left;
+      max-width: $width;
+      padding-left: 0;
+      width: percentage( $width / $width-content );
+      &:only-child {
+        float: none;
+        max-width: $width-content;
+        padding-right: 0;
+        width: 100%;
+      }
+    }
+  }
+  .wrap-sidebar {
+    @extend %wrap;
+    @include rem( padding-top, spacer() );
+    @include rem( padding-bottom, spacer() );
+    @include k-media-above( break(large) ) {
+      @include rem( padding-left, spacer() );
+      float: right;
+      max-width: $width-content - $width;
+      padding-right: 0;
+      width: percentage( 1 - ( $width / $width-content ) );
+    }
+  }
+}
+@mixin one-column {
+  .wrap-content,
+  .wrap-sidebar {
+    @extend %clearfix;
+    @extend %wrap;
+    @include rem( padding-top, spacer() );
+    @include rem( padding-bottom, spacer() );
+  }
+  .site-content,
+  .site-sidebar {
+    @include scut-center-block( $width-content );
+  }
+}
+@if module(one-column) {
+  @include one-column;
+} @else {
+  @include two-column;
 }
 
 
@@ -98,6 +100,7 @@
 // == HEADER == //
 
 .site-header {
+  @include rem( padding-top, spacer() );
   @include scut-center-block( $width-content );
   position: relative; // For use with the skip link and menu toggle
 }
@@ -144,13 +147,14 @@
   }
   .search-form {
     @include rem( margin-bottom, spacer(1/2) );
+    width: 100%;
     @include k-media-above( break(medium) ) {
       display: none;
     }
   }
 }
 .site-interface { // Site interface: the toolbar/menu at top right
-  @include k-absolute(right 0 top 0);
+  @include k-absolute( right 0 top spacer() );
   display: block;
 }
 
@@ -160,20 +164,12 @@
 
 .site-content {
   @extend %clearfix-below;
-  max-width: $width-main; // Keeps content contained regardless of whether sidebar appears
   word-wrap: break-word; // Keep text content from overflowing
   &:focus {
     outline: none; // Prevent weird blue glow when using the skip link
   }
-  @if module(full-width) {
-    .full-width & {
-      max-width: $width-content;
-    }
-  }
-
-  // Individual articles within the content area
   article {
-    @extend %spacer-below-triple;
+    @extend %spacer-below-triple; // Individual articles within the content area
   }
 }
 main {
@@ -185,31 +181,8 @@ main {
 // == SIDEBAR == //
 
 // See also: `_widgets.scss`
-@mixin sidebar-columns {
-  @include rem( column-gap, spacer(2) );
-  columns: auto 2; // @TODO: Selectric boxes don't play well with the sidebar in column mode :/
-  overflow: hidden; // Required to hide extra space in Chrome
-  position: relative; // Required to hide extra space in Chrome
-  .widget {
-    display: inline-block;
-    width: 100%;
-  }
-}
 .site-sidebar {
-  max-width: $width-main; // Keeps things tidy
-  @include k-media-between( break(small), break(large) ) {
-    @include sidebar-columns;
-  }
-  @if module(full-width) {
-    .full-width & {
-      max-width: $width-content;
-      @include sidebar-columns;
-      @include k-media-above( break(full) ) {
-        @include rem( column-gap, spacer() );
-        columns: auto 3;
-      }
-    }
-  }
+  @extend %clearfix-below;
 }
 
 

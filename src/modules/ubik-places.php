@@ -13,14 +13,14 @@ add_action( 'pendrell_archive_header', 'pendrell_places_breadcrumbs', 15 );
 
 
 
-// Display the Ubik Places sidebar
+// Display the Ubik Places sidebar; @TODO: turn this into a real widget
 function pendrell_places_sidebar( $sidebar ) {
   if ( is_tax( 'places' ) ) {
 
     // Retrieve data from Ubik Places
     $widgets = ubik_places_list();
 
-    // Only output places widget markup if we have results; @TODO: turn this into a real widget
+    // Only output places widget markup if we have results
     if ( !empty( $widgets ) ) {
       $sidebar = '';
       foreach ( $widgets as $key => $widget ) {
@@ -33,7 +33,7 @@ function pendrell_places_sidebar( $sidebar ) {
   }
   return $sidebar;
 }
-add_filter( 'pendrell_sidebar', 'pendrell_places_sidebar' );
+//add_filter( 'pendrell_sidebar', 'pendrell_places_sidebar' );
 
 
 
@@ -73,7 +73,7 @@ add_filter( 'pendrell_places_ancestors', 'pendrell_places_meta_schema' ); // Als
 
 
 
-// Return an array of top-most places complete with counts and links for the "plages" page template
+// Return an array of top-most places complete with counts and links for the "places" page template
 function pendrell_places_page_template() {
 
   // Initialize
@@ -108,16 +108,6 @@ function pendrell_places_body_class( $classes ) {
   return $classes;
 }
 add_filter( 'body_class', 'pendrell_places_body_class' );
-
-
-
-// Force places base template to be full-width
-function pendrell_places_full_width( $test ) {
-  if ( is_page_template( 'page-templates/places.php' ) )
-    return true;
-  return $test;
-}
-add_filter( 'pendrell_full_width', 'pendrell_places_full_width' );
 
 
 

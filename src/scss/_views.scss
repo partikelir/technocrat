@@ -27,46 +27,24 @@
       .entry-meta {
         @extend %clearfix-reset;
         @extend %uppercase;
-        @include font-size(text-smallest);
-        color: colour(text-lightest);
       }
     }
-
-    .site-content article {
-      @extend %spacer-below;
-      @extend %text-small;
-    }
-
-    // Entry content (with more below for full-width styling)
     .entry-content-wrapper {
       @include rem( margin-left, $width-thumb + spacer() );
       @include k-media-below( break(small) ) {
         @include rem( margin-left, $width-thumb + spacer(1/2) );
       }
     }
-    .entry-content p {
+    .entry-content {
       @extend %text-small;
-      @extend %spacer-reset;
+      @extend %max-width-medium; // Smaller text means more characters per line; let's tighten it up a bit
+      p {
+        @extend %spacer-reset;
+      }
     }
-
-    // Link post format
     @if module(post-formats) {
       .entry-link {
         @extend %hide;
-      }
-    }
-
-    // Full-width modifications
-    @if module(full-width) {
-      &.full-width {
-        @include k-media-above( break(large) ) {
-          .entry-title {
-            @include font-size(head);
-          }
-          .entry-content {
-            @include font-size(text-small);
-          }
-        }
       }
     }
   }

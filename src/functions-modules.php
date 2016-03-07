@@ -131,21 +131,6 @@ require_once( $path_modules . 'ubik-fonts/ubik-fonts.php' );
 
 
 
-// == FULL-WIDTH * == //
-
-// Force full-width categories and/or tags (or anything else you can dream up, really)
-function pendrell_full_width_content( $full_width ) {
-  if ( $full_width === true )
-    return $full_width;
-
-  // Insert conditional checks here! Test for category archives, the presence of specific tags, etc.
-
-  return $full_width;
-}
-add_filter( 'pendrell_full_width', 'pendrell_full_width_content' );
-
-
-
 // == IMAGERY * == //
 
 // Enable `srcset` output only when Picturefill module is active

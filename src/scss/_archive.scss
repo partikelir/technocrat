@@ -5,27 +5,14 @@
 }
 .archive-title {
   @extend %spacer-below-half;
+  @include font-size(head-biggest);
   @include font-style(archive-title);
 }
 .archive-desc {
   @extend %clearfix-above;
   @extend %links;
   @extend %spacer-below-double;
-  @include font-size(text-small);
   p {
     @extend %spacer-below;
-  }
-}
-
-@if module(full-width) {
-  @include k-media-above( break(large) ) {
-    .full-width {
-      .archive-title {
-        @include font-size(head-biggest);
-      }
-      .archive-desc {
-        @include font-size(text-bigger);
-      }
-    }
   }
 }

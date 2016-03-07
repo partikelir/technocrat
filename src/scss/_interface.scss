@@ -48,14 +48,14 @@ input[type="reset"] {
   input[type="email"],
   input[type="text"],
   input[type="url"] {
-    width: percentage( ( ( $width-main / 2 ) - 8 ) / $width-main ); // Should yield a perfect 50% after accounting for borders and such
+    width: percentage( ( ( $width-medium / 2 ) - 8 ) / $width-medium ); // Should yield a perfect 50% after accounting for borders and such
   }
   button[type="submit"],
   input[type="submit"] {
     //display: block;
   }
   textarea {
-    max-width: $width-main;
+    max-width: $width-medium;
     width: 100%;
   }
   div { // Presumably explanatory text; let's give it some space to breathe
@@ -134,11 +134,7 @@ label {
 .search-form {
   @include font-size(text-smallest); // Keeps the search button from getting too large for some reason; @TODO: puzzle this bug out
   overflow: hidden; // Fixes weird IE display (July 8, 2015)
-  width: 50%;
-  .site-navigation &,
-  .widget & {
-    width: 100%; // Search form in the navigation and sidebar stretches to fill
-  }
+  width: 60%;
 }
 .search-field-wrap {
   overflow: hidden;

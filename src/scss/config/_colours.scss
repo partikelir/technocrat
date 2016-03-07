@@ -139,6 +139,10 @@ $_colours: (
 , divider:        rgba( $c-text, .09 ) // For use with <hr> etc.
 , highlight-bg:   k-colour(lemon-chiffon)
 
+  // Magnific (optional)
+, magnific-bg:    darken( $c-body-bg, 3 )
+, magnific-img:   darken( $c-body-bg, 13 )
+
   // Prism (optional)
 , p-text:         $c-code
 , p-comment:      darken( $c-code, 17 )

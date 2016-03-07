@@ -3,16 +3,11 @@
 // Footnotes; for use with Markdown Extra implementations e.g. JP Markdown
 .footnotes {
   @extend %links-reset-border;
-  @extend %text-small;
+  @extend %text-smaller;
   li {
     outline: none; // Remove blue border when clicking on footnotes
     &:before {
-      @include font-size(text-smallest);
-      @if module(full-width) {
-        .full-width & {
-          @include font-size(text-smaller);
-        }
-      }
+      @include font-size(text-smaller);
     }
   }
 }
@@ -31,6 +26,7 @@
     margin: 0;
   }
 }
+
 // Dividers; fleurons and asterisms via Ubik Text, activate by making a single asterisk (*) its own paragraph
 .divider {
   color: colour(text-dark);

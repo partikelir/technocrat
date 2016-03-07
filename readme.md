@@ -16,26 +16,27 @@ You can see Pendrell in action on my personal blog, [Synapticism](http://synapti
 
 An incomplete list in no particular order:
 
-* HTML5-compliant markup; clean and efficient CSS styling based on Sass.
-* Automated CSS/JS minification with a [Gulp build system](https://github.com/synapticism/wordpress-gulp-starter-kit) and intelligent asset loading. This theme is *highly* optimized.
+* HTML5-compliant markup with structured data.
+* Clean and efficient styles written in Sass.
+* Automated [Gulp build system](https://github.com/synapticism/wordpress-gulp-starter-kit) and intelligent asset loading. This theme is *highly* optimized.
 * Big, beautiful type for [easy reading](http://ia.net/blog/100e2r/).
 * Consistent vertical rhythm (excluding images and parts of the sidebar; that's just too much trouble).
-* Full-width view for images and galleries. Great for photo-blogging.
-* Truly responsive images and complex layouts with [Ubik Imagery](https://github.com/synapticism/ubik-imagery) and [Picturefill](https://github.com/scottjehl/picturefill). Visitors on mobile will load smaller image files than those with larger screens!
-* Optional built-in [AJAX Page Loader](https://github.com/synapticism/wp-ajax-page-loader) script (click "next" and more content will appear). Not unlike Infinite Scroll but custom-coded for high performance.
-* Optional built-in AJAX contact form page template with form validation; no need for a wasteful plugin.
-* Optional built-in lightbox/image gallery with [Magnific Popup](http://dimsemenov.com/plugins/magnific-popup/).
+* Wide format for images and galleries. Great for photo-blogging.
 * Improved post format styling and support for asides, images (really just a thin wrapper for attachments), links, quotations, and status updates.
-* Custom template swapping; display posts in a gallery of thumbnails, a list, or as the original posts. Great for portfolios. Built with [Ubik Views](https://github.com/synapticism/ubik-views).
-* Smart context-dependent search form and search redirects (singletons and blank queries) with [Ubik Search](https://github.com/synapticism/ubik-search).
-* Google font support for both the front-end and admin panel. Includes nicer type-setting for the non-visual editor. See [Ubik Fonts](https://github.com/synapticism/ubik).
-* Footer info module; customize the copyright blurb at the bottom of each page with [Ubik Colophon](https://github.com/synapticism/ubik-colophon).
-* Related posts optionally weighted by taxonomy, number of comments, presence of post thumbnail/featured image, etc. See [Ubik Related](https://github.com/synapticism/ubik) for more.
+* Display posts in gallery, list, or regular format with [Ubik Views](https://github.com/synapticism/ubik-views).
+* Optional: responsive images and magazine layouts with [Ubik Imagery](https://github.com/synapticism/ubik-imagery) and [Picturefill](https://github.com/scottjehl/picturefill).
+* Optional: lightbox/image gallery with [Magnific Popup](http://dimsemenov.com/plugins/magnific-popup/).
+* Optional: responsive image lazy loading with [Lazysizes](https://github.com/aFarkas/lazysizes).
+* Optional: [AJAX Page Loader](https://github.com/synapticism/wp-ajax-page-loader) script (click "next" and more content will appear). Not unlike Infinite Scroll but custom-coded for high performance.
+* Optional: AJAX contact form page template with form validation; no need for a wasteful plugin.
+* Optional: code highlighting with [Prism](http://prismjs.com).
+* Google Web Font support with [Font Face Observer](https://github.com/bramstein/fontfaceobserver) to [improve web font performance](https://www.filamentgroup.com/lab/font-events.html). Optionally set fonts on the front-end and admin panel. Includes nicer type-setting for the non-visual editor. See [Ubik Fonts](https://github.com/synapticism/ubik).
 * SVG icon sheet support with [Ubik SVG Icons](https://github.com/synapticism/ubik); seamlessly integrate SVG icons from any open source icon set; IE9+ support with [SVG 4 Everybody](https://github.com/jonathantneal/svg4everybody).
-* Code highlighting with [Prism](http://prismjs.com).
-* [Autosize](https://github.com/jackmoore/autosize) `textarea` elements.
+* Related posts optionally weighted by taxonomy, number of comments, presence of post thumbnail/featured image, etc. See [Ubik Related](https://github.com/synapticism/ubik) for more.
+* Context-dependent search form and search redirects (singletons and blank queries) with [Ubik Search](https://github.com/synapticism/ubik-search).
+* Footer info module; customize the copyright blurb at the bottom of each page with [Ubik Colophon](https://github.com/synapticism/ubik-colophon).
 * Live updating human-readable dates on content from the last two weeks thanks to [jQuery-Timeago](https://github.com/rmm5t/jquery-timeago).
-* [Font Face Observer](https://github.com/bramstein/fontfaceobserver) to [improve web font performance](https://www.filamentgroup.com/lab/font-events.html).
+* [Autosize](https://github.com/jackmoore/autosize) `textarea` elements.
 * Absolutely no options screen or database bloat.
 * A halfway decent print media stylesheet.
 * Verbosely commented source code to walk you through everything that Pendrell can do.
@@ -75,7 +76,7 @@ When making modifications in development be sure to alter files in the `src` fol
 
 To create a new production-ready distribution under `pendrell/dist/pendrell` use `gulp dist`. This can also be tested locally using a variation on the symbolic link command above.
 
-Pendrell uses vanilla Sass (without Compass) alongside [Kipple](https://github.com/synapticism/kipple), my zygotic library of Sass hacks, and [Normalize.css](https://necolas.github.io/normalize.css/), among other projects. Have a look at `bower.json` and `composer.json` for a complete list.
+Pendrell uses vanilla Sass (without Compass) alongside [Kipple](https://github.com/synapticism/kipple), my zygotic library of Sass hacks, and [Normalize.css](https://necolas.github.io/normalize.css/), among other projects. Have a look at `bower.json`, `composer.json`, and `package.json` for a complete list.
 
 
 
@@ -101,6 +102,6 @@ Utilities (as needed):
 
 ## LICENSE
 
-Copyright 2012-2015 [Alexander Synaptic](http://alexandersynaptic.com). The `master` branch is licensed under the [GPLv3](http://www.gnu.org/licenses/gpl.txt); all branches specific to my own personal projects are *not* released under a FOSS license.
+Copyright 2012-2016 [Alexander Synaptic](http://alexandersynaptic.com). The `master` branch is licensed under the [GPLv3](http://www.gnu.org/licenses/gpl.txt); all branches specific to my own personal projects are *not* released under a FOSS license.
 
 Please link back to [my web site](http://synapticism.com) and/or [this GitHub repository](https://github.com/synapticism/pendrell) if you make use of this theme!

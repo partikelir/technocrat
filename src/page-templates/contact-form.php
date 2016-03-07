@@ -11,7 +11,7 @@
 
 get_header(); ?>
   <div id="wrap-content" class="wrap-content">
-    <div id="content" class="site-content<?php pendrell_content_class(); ?>">
+    <div id="content" class="site-content">
   		<main>
   			<?php while ( have_posts() ) : the_post(); ?>
           <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>

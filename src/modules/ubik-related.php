@@ -96,21 +96,19 @@ add_action( 'pendrell_comment_template_before', 'pendrell_related_posts' );
 
 
 // Output related posts as a gallery
-function pendrell_related_posts_gallery( $related_posts = '' ) {
+function pendrell_related_posts_gallery( $related_posts = '', $count = 4, $size = 'quarter-square' ) {
 
   // Exit early if we don't have what we need
   if ( empty( $related_posts ) )
     return;
 
-  // Show more related posts on full size posts
-  $count = 3;
-  $size = 'third-square';
-  if ( pendrell_full_width() ) {
-    $count = 4;
-    $size = 'quarter-square';
+  // Display fewer
+  if ( PENDRELL_LAYOUT_COLUMNS && PENDRELL_LAYOUT_COLUMNS > 1 ) {
+    $count = 3;
+    $size = 'third-square';
   }
 
-  // We only want the first three results for this theme
+  // We only want the first few results for this theme
   $related_posts = array_slice( $related_posts, 0, $count );
 
   // Iterate through each related post and populate the gallery

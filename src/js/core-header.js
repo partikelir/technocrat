@@ -36,4 +36,8 @@
   // Initialize svg4everybody 2.0.0+
   svg4everybody();
 
+  // Lazysizes options
+  window.lazySizesConfig = window.lazySizesConfig || {};
+  lazySizesConfig.expFactor = 3; // Increase preloading
+
 })();

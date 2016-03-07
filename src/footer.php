@@ -1,5 +1,6 @@
-<?php // ==== FOOTER ==== // ?>
+<?php // ==== FOOTER ==== //
 
+get_sidebar(); ?>
       </div>
       <div id="wrap-footer" class="wrap-footer">
         <div class="site-footer">
