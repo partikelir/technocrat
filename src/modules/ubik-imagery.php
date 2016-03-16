@@ -40,9 +40,9 @@ function pendrell_sizes_media_queries( $queries = array(), $size = '', $width = 
   $width = min( $width, $content_width );
 
   // Test the context object for various scenarios; this allows the theme to handle the sizes attribute in different ways depending on how images are being used
-  $group        = ubik_imagery_context( $context, 'group' );
-  $responsive   = ubik_imagery_context( $context, 'responsive' );
-  $static       = ubik_imagery_context( $context, 'static' );
+  $group          = ubik_imagery_context( $context, 'group' );
+  $responsive     = ubik_imagery_context( $context, 'responsive' );
+  $static         = ubik_imagery_context( $context, 'static' );
 
   // The margins can be filtered; this is mostly in case the inner margin (the space *between* grouped images) is not the same as the page margins
   // Example: your outer page margins are 30px on each side but the spacing between images is 20px
@@ -55,7 +55,7 @@ function pendrell_sizes_media_queries( $queries = array(), $size = '', $width = 
   $small          = ceil( $medium_width / 1.2 );                    // 520px
   $medium         = $medium_width + ( $margin * 3 );                // 714px
   $large          = $medium_width + ( $margin * 8 );                // 864px
-  $full           = $content_width + ( $margin * 3 );               // 1050px
+  $full           = $content_width + ( $margin * 3 );               // 990px
 
   // Usable space for each breakpoint; for comparison with $width
   $tiny_content   = ceil( $medium_width / 1.5 ) - $margin;          // 360px
@@ -130,10 +130,7 @@ function pendrell_sizes_media_queries( $queries = array(), $size = '', $width = 
 
   // Return an array of arrays (required by Ubik Imagery)
   return $queries;
-
 }
-
-
 
 // Default `sizes` attribute handling specific to Pendrell
 function pendrell_sizes_default( $default = '', $size = '', $width = '', $context = '' ) {
@@ -193,31 +190,52 @@ if ( PENDRELL_RESPONSIVE_IMAGES ) {
 // WordPress will not provision `srcset` unless there are 2 or more sources; as such, smaller images won't have a `srcset` attribute
 // This means we only want to swap the `srcset` attribute for a blank if there's already something there
 // A blank `srcset` and filled `data-srcset` allows Lazysizes to lazy load responsive images
+// Note: you can filter the "count" where lazyloading will begin; this allows you to load images "above the fold" like normal, skipping any JS trickery
+// @filter: pendrell_image_lazysizes_count
 function pendrell_image_lazysizes_srcset( $html = '' ) {
-  if ( !empty( $html ) )
+  static $counter = 1; // This counter is presumably triggered as often as the one in the next function
+  if ( !empty( $html ) && $counter > apply_filters( 'pendrell_image_lazysizes_count', 1 ) )
     $html = 'data-' . $html . ' srcset="' . ubik_imagery_blank() . '" ';
+  $counter++;
   return $html;
 }
-function pendrell_image_lazysizes_class( $html = '' ) {
-  return $html .= 'class="ubik lazyload" '; // Activates Lazysizes on associated images
+function pendrell_image_lazysizes_class( $classes = array() ) {
+  static $counter = 1;
+  if ( $counter > apply_filters( 'pendrell_image_lazysizes_count', 1 ) )
+    $classes[] = 'lazyload'; // Activates Lazysizes on associated images
+  $counter++;
+  return $classes;
 }
 if ( PENDRELL_LAZYSIZES ) {
-  add_filter( 'ubik_imagery_img_attributes', 'pendrell_image_lazysizes_class' ); // Activates Lazysizes; we could also add `data-sizes="auto"` but this seems buggy
+  add_filter( 'ubik_imagery_img_class', 'pendrell_image_lazysizes_class' ); // Activates Lazysizes; we could also add `data-sizes="auto"` but this seems buggy
   add_filter( 'ubik_imagery_srcset_html', 'pendrell_image_lazysizes_srcset' ); // Swap out the `srcset` attribute where available
-  add_filter( 'ubik_imagery_dimensions', 'pendrell_image_dimensions', 10, 3 ); // Force height/width attribute to conform to this theme's content width
+  add_filter( 'ubik_imagery_dimensions', '__return_empty_string' ); // Force height/width attribute to conform to this theme's content width
 }
 
 
 
-// == STRUCTURED DATA == //
+// == IMAGE WRAPPERS == //
 
 // Dump structured data if the context prohibits it; we don't want certain item properties on related images
-function pendrell_image_schema( $schema, $context ) {
-  if ( ubik_imagery_context( $context, 'related' ) )
-    $schema = str_replace( ' itemprop="image"', '', $schema );
-  return $schema;
+function pendrell_image_wrap_attributes( $attributes, $html, $id, $caption, $class, $align, $contents, $context, $width, $height  ) {
+  if ( ubik_imagery_context( $context, 'related' ) && isset( $attributes['schema'] ) )
+    $attributes['schema'] = str_replace( ' itemprop="image"', '', $attributes['schema'] );
+  if ( !empty( $width ) )
+    $attributes['style'] = 'style="width: ' . $width . 'px;"'; // Setting an explicit width for use with the intrinsic ratio technique
+  return $attributes;
 }
-add_filter( 'ubik_imagery_wrapper_schema', 'pendrell_image_schema', 10, 2 );
+add_filter( 'ubik_imagery_wrap_attributes', 'pendrell_image_wrap_attributes', 10, 10 );
+
+
+
+// Add intrinsic ratio wrapper to the image element itself
+function pendrell_image_wrap_inner( $html, $width, $height ) {
+  $padding = ubik_imagery_sizes_percent( $width, $height );
+  if ( !empty( $padding ) )
+    $html = '<div class="ubik-wrap-inner" style="padding-bottom: ' . $padding . '%;">' . $html . '</div>';
+  return $html;
+}
+add_filter( 'ubik_imagery_img_html', 'pendrell_image_wrap_inner', 10, 3 );
 
 
 

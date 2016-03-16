@@ -9,7 +9,7 @@ require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-view
 // == CONFIGURATION == //
 
 // Set default views for different taxonomies; format is 'taxonomy' => array( 'term' => 'view' )
-function pendrell_views_defaults( $defaults = array() ) {
+function pendrell_views_default( $default = array() ) {
   return array(
     'category'    => array(),
     'post_format' => array(
@@ -19,7 +19,13 @@ function pendrell_views_defaults( $defaults = array() ) {
     'post_tag'    => array()
   );
 }
-add_filter( 'ubik_views_defaults', 'pendrell_views_defaults' );
+add_filter( 'ubik_views_default', 'pendrell_views_default' );
+
+// Default home view
+function pendrell_views_default_home() {
+  return 'gallery';
+}
+add_filter( 'ubik_views_default_home', 'pendrell_views_default_home' );
 
 
 
@@ -37,13 +43,7 @@ function pendrell_views_buttons( $buttons ) {
   }
   return $buttons;
 }
-add_filter( 'pendrell_archive_buttons', 'pendrell_views_buttons', 5 );
-
-// Do not display views navigation on certain terms
-function pendrell_views_buttons_display( $switch ) {
-  return $switch;
-}
-add_filter( 'ubik_views_links_display', 'pendrell_views_buttons_display' );
+add_filter( 'pendrell_header_buttons', 'pendrell_views_buttons', 10 );
 
 // Switch for next and previous pages
 function pendrell_views_nav_content_switch( $switch, $id ) {
@@ -51,7 +51,7 @@ function pendrell_views_nav_content_switch( $switch, $id ) {
     $switch = false;
   return $switch;
 }
-add_filter( 'pendrell_nav_content_switch', 'pendrell_views_nav_content_switch', 10, 2 );
+//add_filter( 'pendrell_nav_content_switch', 'pendrell_views_nav_content_switch', 10, 2 );
 
 
 
@@ -81,10 +81,8 @@ add_action( 'pre_get_posts', 'pendrell_views_pre_get_posts' );
 // Template selector based on current view
 function pendrell_views_template_part( $name ) {
 
-  // Get the current view
-  $current = ubik_views_current();
-
   // Assign a template name unless the view is empty or not the default 'posts' view
+  $current = ubik_views_current();
   if ( !empty( $current ) ) {
     if ( $current !== 'posts' )
       $name = $current;

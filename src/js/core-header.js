@@ -38,6 +38,7 @@
 
   // Lazysizes options
   window.lazySizesConfig = window.lazySizesConfig || {};
-  lazySizesConfig.expFactor = 3; // Increase preloading
+  lazySizesConfig.expand = 900; // How many pixels to expand the viewport for loading purposes
+  lazySizesConfig.expFactor = 3; // Triple the expanded viewport when network is idling
 
 })();
