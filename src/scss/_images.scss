@@ -213,7 +213,8 @@ figure.wp-caption {
 }
 
 // Individual gallery items with percentage-based margins
-.gallery figure.wp-caption {
+//.gallery figure.wp-caption {
+.gallery-item {
   @include gallery-item;
 }
 
@@ -240,8 +241,7 @@ figure.wp-caption {
 
 // The 4 column layout is a special case; it breaks from 4 columns to 2 between the tiny and medium breakpoints (but not for static galleries)
 .gallery-columns-4:not(.gallery-static) {
-  .gallery-item,
-  figure.wp-caption {
+  .gallery-item {
     @include k-media-between( break(tiny), break(medium) ) {
       @include gallery-max-width( 2, $width-content );
       &:nth-of-type(2n) {
@@ -275,13 +275,13 @@ figure.wp-caption {
 .gallery-static {
 
   // Re-instate some of the styling that is lost when dropping below the tiny breakpoint in the default declaration
-  figure.wp-caption {
+  .gallery-item {
     float: left;
     margin: 0 percentage( $spacer-image / $width-content ) percentage( $spacer-image / $width-content ) 0;
   }
   @for $i from 2 to 5 {
     &.gallery-columns-#{$i} {
-      figure.wp-caption {
+      .gallery-item {
         @include gallery-max-width( $i, $width-content );
         footer {
           @extend %gallery-static-overlay-footer-#{$i};
@@ -300,7 +300,7 @@ figure.wp-caption {
 // Responsive image layout; 3, 2, or 1 columns as determined by the viewport width
 // For greater enjoyment be sure to pull in content in some even multiple of 3 e.g. 12, 18, etc.
 .gallery-flex {
-  figure.wp-caption {
+  .gallery-item {
     @include k-media-between( break(tiny), break(medium) ) {
       @include gallery-max-width( 2, $width-content );
       &:nth-of-type(2n) {
