@@ -12,9 +12,9 @@
 get_header(); ?>
   <div id="wrap-content" class="wrap-content">
     <div id="content" class="site-content">
-      <header id="archive-header">
-        <?php pendrell_entry_title(); ?>
-        <div class="archive-desc">
+      <header class="main-header">
+        <?php pendrell_main_title(); ?>
+        <div class="main-desc">
           <?php the_content(); ?>
         </div>
       </header>

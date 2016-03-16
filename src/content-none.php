@@ -1,5 +1,3 @@
-<?php // ==== CONTENT: NONE ==== // ?>
-
 <article id="post-0" class="post no-results not-found">
 	<?php if ( !is_404() ) { ?><header class="entry-header">
 		<h1 class="entry-title"><?php _e( 'No results', 'pendrell' ); ?></h1>

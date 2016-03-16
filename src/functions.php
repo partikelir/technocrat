@@ -20,16 +20,17 @@ if ( is_readable( $path . 'functions-modules.php' ) )
 // == LOADER == //
 
 // Pendrell core functions are abstracted into the `pendrell/lib` directory
-require_once( $path . 'lib/archive.php' );
 require_once( $path . 'lib/assets.php' );
 require_once( $path . 'lib/author.php' );
 require_once( $path . 'lib/comments.php' );
 require_once( $path . 'lib/contact-form.php' );
-require_once( $path . 'lib/entry-content.php' );
+require_once( $path . 'lib/content.php' );
 require_once( $path . 'lib/icons.php' );
 require_once( $path . 'lib/images.php' );
-require_once( $path . 'lib/post-formats.php' );
+require_once( $path . 'lib/main.php' );
 require_once( $path . 'lib/navigation.php' );
+require_once( $path . 'lib/post-formats.php' );
+require_once( $path . 'lib/site.php' );
 
 
 

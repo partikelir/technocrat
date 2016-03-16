@@ -2,15 +2,13 @@
 
 // Generates HTML5 markup for image attachments and featured images/image posts; called in Pendrell's templates
 function pendrell_image_wrapper( $content = '' ) {
-
-  // Fail early if needed
   if ( ( has_post_format( 'image' ) && has_post_thumbnail() ) === false && !wp_attachment_is_image() )
     return $content;
 
   global $post;
 
   // Initialize
-  $html = $id = $caption = $title = $align = $url = $size = $alt = $rel = $class = $contents = '';
+  $html = $id = $caption = $title = $align = $url = $alt = $rel = $class = $contents = '';
 
   // Hooks into existing post_thumbnail_size filter
   $size = apply_filters( 'post_thumbnail_size', 'large' );
@@ -84,25 +82,6 @@ function pendrell_image_prepend( $content = '' ) {
   return $content;
 }
 add_filter( 'prepend_attachment', 'pendrell_image_prepend' );
-
-
-
-// For use with Ubik Imagery; this filter will squash height/width attributes that exceed the bounding width
-function pendrell_image_dimensions( $html, $width, $height ) {
-
-  // Set bounding width
-  global $content_width;
-
-  // If the image width is less than the bounding width we're in the clear, just return
-  if ( $width <= $content_width )
-    return $html;
-
-  $factor = $content_width / $width;
-  $width = $content_width;
-  $height = round( $height * $factor );
-
-  return image_hwstring( $width, $height );
-}
 
 
 

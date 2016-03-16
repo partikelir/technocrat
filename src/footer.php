@@ -5,13 +5,10 @@ get_sidebar(); ?>
       <div id="wrap-footer" class="wrap-footer">
         <div class="site-footer">
         	<nav id="site-footer-navigation">
-            <?php wp_nav_menu( array( 'theme_location' => 'footer', 'menu_id' => 'menu-footer', 'menu_class' => 'menu-inline' ) ); ?>
+            <?php do_action( 'pendrell_footer_navigation' ); ?>
           </nav>
-          <div class="buttons">
-            <a href="#page" class="button" rel="nofollow" role="button"><?php echo pendrell_icon_text( 'top-link', __( 'Top', 'pendrell' ) ); ?></a>
-          </div>
           <footer id="colophon" class="site-colophon">
-            <?php do_action( 'pendrell_footer' ); ?>
+            <?php do_action( 'pendrell_footer_colophon' ); ?>
         	</footer>
         </div>
       </div>

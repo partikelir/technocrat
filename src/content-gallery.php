@@ -1,6 +1,4 @@
-<?php // ==== CONTENT: GALLERY ==== //
-
-echo ubik_imagery(
+<?php echo ubik_imagery(
   $html     = '',
   $id       = pendrell_thumbnail_id(),
   $caption  = get_the_title(),
