@@ -57,7 +57,7 @@ get_header(); ?>
               $size     = 'third-square',
               $alt      = '',
               $rel      = '',
-              $class    = 'overlay no-fade',
+              $class    = array( 'gallery-item', 'overlay', 'no-fade' ),
               $contents = $metadata,
               $context  = array( 'group', 'responsive' )
             );

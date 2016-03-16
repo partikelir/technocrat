@@ -1,6 +1,4 @@
-<?php // ==== INDEX ==== //
-
-get_header(); ?>
+<?php get_header(); ?>
   <div id="wrap-content" class="wrap-content">
     <div id="content" class="site-content">
     	<?php do_action( 'pendrell_main_before' ); ?>

@@ -8,7 +8,7 @@
   $size     = 'third-square',
   $alt      = '',
   $rel      = '',
-  $class    = array_merge( get_post_class(), array( 'overlay ' ) ),
+  $class    = array_merge( get_post_class(), array( 'gallery-item', 'overlay' ) ),
   $contents = pendrell_image_overlay_contents(),
   $context  = array( 'group', 'responsive' )
 );
