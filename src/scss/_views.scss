@@ -18,6 +18,9 @@
 
   // This section is messy and disorganized mainly to prevent unnecessary nesting
   .list-view {
+    .site-content article {
+      @extend %spacer-below;
+    }
     .entry-title {
       @include font-size(head);
       margin: 0;

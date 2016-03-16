@@ -72,7 +72,7 @@
 
 // Footer menu
 #menu-footer {
-  // Links aren't styled differently here as they match the values for .site-footer in this theme
+  @extend %links-meta-no-border;
   @include font-size(menu-footer);
   @include rem( padding-bottom, spacer(1/2) );
   @include rem( padding-top, spacer(1/2), 1 );
@@ -81,17 +81,5 @@
   // No submenus in the footer
   ul {
     @extend %hide;
-  }
-}
-
-
-
-// Responsive menu toggle
-.menu-toggle { // Menu toggle for mobile phones and small screens
-  @include k-media-above( break(medium) ) {
-    display: none;
-  }
-  &.active {
-    @include text-shadow-small-svg( $y: -1px );
   }
 }

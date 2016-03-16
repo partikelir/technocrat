@@ -80,8 +80,8 @@ $_fonts: (
     @extend %head-normal-observer;
   }
 
-  // Archives
-  @if (archive-title == $style) {
+  // Main
+  @if (main-title == $style) {
     @extend %head-normal-observer;
   }
 

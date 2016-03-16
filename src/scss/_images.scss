@@ -3,21 +3,13 @@
 // == GENERAL == //
 
 .site-content img {
+  @include border-rounded;
 
   // Force images to adhere to container width
-  // This is usually paired with `height: auto;` but we are managing height with the height attribute in this theme
+  // This is usually paired with `height: auto;` but we are managing height with Ubik Imagery in this theme
   max-width: 100%;
-
-  // Lazysizes switches to restore auto height
-  @if module(lazysizes) {
-    &.lazyloaded,
-    &:not(.ubik) {
-      height: auto;
-    }
-  } @else {
-    &:not(.ubik) {
-      height: auto;
-    }
+  &:not(.ubik-img) {
+    height: auto;
   }
 
   // Alt text styling
@@ -28,7 +20,9 @@
   text-align: center;
   text-shadow: none;
   vertical-align: middle;
+  word-break: break-word;
 }
+
 
 
 // == CONTENT == //
@@ -56,6 +50,7 @@ figure.wp-caption,
 
 // Reset borders and outlines for linked images
 figure.wp-caption {
+  max-width: 100%;
   overflow: auto; // Without this the floats won't float, but we'll reset it in a media query (above)
   a,
   a:visited,
@@ -64,6 +59,28 @@ figure.wp-caption {
   a:active {
     border: none;
     outline: none;
+  }
+
+  // Force full-width images on small viewports
+  @include k-media-below( break(tiny) ) {
+    .entry-content &,
+    .comment-content & {
+      border-radius: 0;
+      margin-left: spacer(-1/2) !important;
+      margin-right: 0 !important;
+      max-width: 100vw !important;
+      width: 100vw !important;
+    }
+  }
+}
+
+// Intrinsic ratio hook for use with Ubik Imagery
+.ubik-wrap-inner {
+  display: block;
+  height: 0;
+  position: relative;
+  img {
+    @include k-absolute( top 0 left 0 right 0 bottom 0 );
   }
 }
 
@@ -90,7 +107,7 @@ figure.wp-caption {
 // Image overlay class; apply this to any image container (likely a `figure` element)
 .overlay {
   @include image-overlay;
-  @include text-shadow-small( black(.85) );
+  @include text-shadow-small( black(.75) );
 
   // Using a class instead of `figcaption` to combat the specificity of caption styles defined above
   .wp-caption-text {
@@ -110,6 +127,9 @@ figure.wp-caption {
       @include k-media-below( break(medium) ) {
         @include font-size( text-smaller, 0, 25 );
       }
+      @include k-media-below( break(tiny) ) {
+        display: none;
+      }
     }
   }
 
@@ -127,7 +147,6 @@ figure.wp-caption {
       @include k-media-between( break(tiny), break(medium) ) {
         @include font-size( text-smaller, 0, 25 );
       }
-
       .gallery-static & {
         @include k-media-below( break(small) ) {
           @include font-size( text-smaller, 0, 25 );

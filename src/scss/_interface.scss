@@ -128,6 +128,20 @@ label {
 
 
 
+// == RESPONSIVE MENU == //
+
+// Responsive menu toggle
+.menu-toggle { // Menu toggle for mobile phones and small screens
+  @include k-media-above( break(medium) ) {
+    display: none;
+  }
+  &.active {
+    @include text-shadow-small-svg( $y: -1px );
+  }
+}
+
+
+
 // == SEARCH FORM == //
 
 // Search form input field stretches to the width of the contain; adapted from: http://boulderinformationservices.wordpress.com/2011/02/02/input-field-and-submit-button-on-the-same-line-full-width/
@@ -135,6 +149,13 @@ label {
   @include font-size(text-smallest); // Keeps the search button from getting too large for some reason; @TODO: puzzle this bug out
   overflow: hidden; // Fixes weird IE display (July 8, 2015)
   width: 60%;
+  .site-navigation & {
+    @include rem( margin-bottom, spacer(1/2) );
+    width: 100%;
+    @include k-media-above( break(medium) ) {
+      display: none;
+    }
+  }
 }
 .search-field-wrap {
   overflow: hidden;
@@ -162,6 +183,30 @@ label {
 select {
   .widget & {
     opacity: 0;
+  }
+}
+
+
+
+// == SKIP LINKS == //
+
+// Hidden until focused; for accessibility purposes
+.skip-link {
+  opacity: 0;
+  position: fixed;
+  right: 99999%;
+  &:focus {
+    opacity: 1;
+    outline-width: 1px;
+    position: static;
+    transition: opacity .3s;
+  }
+}
+
+// Displays on smaller viewports
+.skip-top {
+  @include k-media-above( break(large) ) {
+    @include scut-hide-visually;
   }
 }
 

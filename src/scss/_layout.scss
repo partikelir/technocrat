@@ -137,25 +137,18 @@
   transition: opacity .8s ease-out;
   @extend %hide-below-medium; // Hide the site description on smaller screens
 }
+.site-interface { // Site interface: the toolbar/menu at top right
+  @include k-absolute( right 0 top spacer() );
+  display: block;
+}
 .site-navigation {
-  max-width: 100%; // Prevents hidden search box from overflowing container
+  @extend %max-width-100; // Prevents hidden search box from overflowing container
   @include k-media-above( break(medium) ) {
     display: block !important; // Prevents the responsive menu display state from hiding the menu on larger screens after a resize
   }
   @include k-media-below( break(medium) ) {
     display: none;
   }
-  .search-form {
-    @include rem( margin-bottom, spacer(1/2) );
-    width: 100%;
-    @include k-media-above( break(medium) ) {
-      display: none;
-    }
-  }
-}
-.site-interface { // Site interface: the toolbar/menu at top right
-  @include k-absolute( right 0 top spacer() );
-  display: block;
 }
 
 
@@ -175,6 +168,19 @@
 main {
   @extend %clearfix; // Mainly for gallery view (in which main is filed with floating figure elements)
 }
+.main-title {
+  @extend %spacer-below-half;
+  @include font-size(head-biggest);
+  @include font-style(main-title);
+}
+.main-desc {
+  @extend %clearfix-above;
+  @extend %links;
+  @extend %spacer-below-double;
+  p {
+    @extend %spacer-below;
+  }
+}
 
 
 
@@ -190,16 +196,11 @@ main {
 // == FOOTER == //
 
 .site-footer {
-  @extend %links-meta-no-border;
   @include scut-center-block( $width-content );
   @include rem( padding-bottom, spacer() );
   color: colour(footer);
-  .buttons {
-    @include k-media-above( break(medium) ) {
-      @include scut-hide-visually;
-    }
-  }
 }
 .site-footer-info {
+  @extend %links-meta-no-border;
   @extend %text-smallest;
 }
