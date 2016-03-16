@@ -25,7 +25,7 @@ add_filter( 'ubik_views_default', 'pendrell_views_default' );
 function pendrell_views_default_home() {
   return 'gallery';
 }
-add_filter( 'ubik_views_default_home', 'pendrell_views_default_home' );
+//add_filter( 'ubik_views_default_home', 'pendrell_views_default_home' );
 
 
 

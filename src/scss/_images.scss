@@ -177,24 +177,11 @@ figure.wp-caption {
 
 // == GALLERY & IMAGE LAYOUT == //
 
-// This section is a bit complicated, partly out of an interest in maintaining basic support for the core WordPress `[gallery]` shortcode, the output of which cannot be filtered
-// The `gallery` class in Pendrell is used anywhere you'd like to group images together; the `gallery-item` class is only used by the gallery shortcode itself
+// This section is a bit complicated, partly out of my previous interest in maintaining basic support for the core WordPress `[gallery]` shortcode, the output of which cannot be filtered
+// The `gallery` class in Pendrell is used anywhere you'd like to group images together; the `gallery-item` class should be used on individual `figure` or equivalent wrapping elements
 // Apart from the `gallery` class there are two special classes:
 // - `gallery-flex`, a responsive gallery that decreases the column count according to viewport width
 // - `gallery-static`, a non-responsive gallery that maintains the same layout at all viewport widths
-
-// Basic styling for a gallery item; used twice, once for the base styling and again if core `[gallery]` shortcode compatibility is switched on
-@mixin gallery-item {
-  width: 100%; // Force images to fill the available space
-  @include k-media-above( break(tiny) ) {
-    float: left;
-    margin: 0 percentage( $spacer-image / $width-content ) percentage( $spacer-image / $width-content ) 0;
-  }
-  @include k-media-below( break(tiny) ) {
-    @include rem( margin, 0 0 spacer(1/2) 0 );
-    float: none;
-  }
-}
 
 // A simple helper mixin to calculate the max-width from a column count and the bounding width
 @mixin gallery-max-width( $columns, $width: $width-medium ) {
@@ -213,16 +200,22 @@ figure.wp-caption {
 }
 
 // Individual gallery items with percentage-based margins
-//.gallery figure.wp-caption {
 .gallery-item {
-  @include gallery-item;
+  width: 100%; // Force images to fill the available space
+  @include k-media-above( break(tiny) ) {
+    float: left;
+    margin: 0 percentage( $spacer-image / $width-content ) percentage( $spacer-image / $width-content ) 0;
+  }
+  @include k-media-below( break(tiny) ) {
+    @include rem( margin, 0 0 spacer(1/2) 0 );
+    float: none;
+  }
 }
 
 // 2, 3, and 4 column layouts have the same declarations so they are grouped here for convenience
 @for $i from 2 to 5 {
   .gallery-columns-#{$i} {
-    .gallery-item,
-    figure.wp-caption {
+    .gallery-item {
       @include k-media-above( break(tiny) ) {
         @include gallery-max-width( $i, $width-content );
         img {
@@ -328,7 +321,6 @@ figure.wp-caption {
 // If you don't use the built-in gallery shortcode be sure to switch this feature off; it duplicates a bunch of styles from the generalized overlay class
 @if module(gallery-shortcode) {
   .gallery-item {
-    @include gallery-item;
     @include image-overlay(".gallery-caption"); // Will output some wasteful metadata classes but that can't be helped
     .gallery-caption {
       @include rem( font-size, size(text-small) + 0px );
