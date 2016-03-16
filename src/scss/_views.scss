@@ -4,6 +4,13 @@
 
 @if module(ubik-views) {
 
+  // Hide views control on small screens
+  .view-link {
+    @include k-media-below( break(tiny) ) {
+      display: none;
+    }
+  }
+
   // This class only appears in list-view so it is safe to declare it without nesting
   .entry-thumbnail {
     @include rem( width, $width-thumb );
