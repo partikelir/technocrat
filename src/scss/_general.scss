@@ -94,12 +94,12 @@ address {
   @extend %spacer-below;
   font-style: normal; // Italics is sometimes a bit harder to read
   &:first-line {
-    font-weight: $w-body-bold;
+    font-weight: font(body-bold);
   }
 }
 b,
 strong {
-  font-weight: $w-body-bold; // Potentially superfluous; normalize.css sets both to font-weight: bold;
+  font-weight: font(body-bold); // Potentially superfluous; normalize.css sets both to font-weight: bold;
 }
 cite,
 em,
@@ -257,7 +257,7 @@ ul {
 dl {
   @extend %list-style-none;
   dt {
-    font-weight: $w-body-bold;
+    font-weight: font(body-bold);
   }
 }
 
@@ -280,10 +280,6 @@ th {
 
 figure {
   @extend %spacer-reset; // Reset normalize.css
-}
-img {
-  height: auto; // Make sure images are scaled correctly
-  max-width: 100%; // Adhere to container width
 }
 embed,
 iframe,

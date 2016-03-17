@@ -142,31 +142,37 @@ module.exports = {
 
     // Bundles are defined by a name and an array of chunks to concatenate; warning: it's up to you to manage dependencies!
   , bundles: {
-      core: ['core']
+      header: ['header']
+    , footer: ['footer']
     , contact: ['contact']
     , magnific: ['magnific']
-    , pf: ['pf', 'core']
-    , pf_prism: ['pf', 'prism', 'core']
-    , pg8: ['pg8', 'core']
-    , pg8_pf: ['pg8', 'pf', 'core']
-    , pg8_prism: ['pg8', 'prism', 'core']
-    , pg8_pf_prism: ['pg8', 'pf', 'prism', 'core']
-    , prism: ['prism', 'core']
+    , pf: ['pf', 'footer']
+    , pf_prism: ['pf', 'prism', 'footer']
+    , pg8: ['pg8', 'footer']
+    , pg8_pf: ['pg8', 'pf', 'footer']
+    , pg8_prism: ['pg8', 'prism', 'footer']
+    , pg8_pf_prism: ['pg8', 'pf', 'prism', 'footer']
+    , prism: ['prism', 'footer']
     }
     // Chunks are arrays of globs matching source files that combine to provide specific functionality defined on a line-by-line basis to improve git workflow
   , chunks: {
-      core: [
+      header: [
+        modules+'fontfaceobserver/fontfaceobserver.js'
+      , modules+'svg4everybody/dist/svg4everybody.js'
+      , modules+'lazysizes/lazysizes.js'
+      , src+'js/core-header.js'
+      ]
+    , footer: [
         modules+'html5-history-api/history.js'
       , modules+'spin.js/spin.js'
       , modules+'spin.js/jquery.spin.js'
-      , modules+'svg4everybody/dist/svg4everybody.js'
       , modules+'svg.icon.js/svg.icon.js'
       , modules+'selectric/public/jquery.selectric.js'
       , modules+'timeago/jquery.timeago.js'
       , modules+'autosize/dist/autosize.js'
       , src+'js/responsive-menu.js'
       , src+'js/skip-link-focus-fix.js'
-      , src+'js/core.js'
+      , src+'js/core-footer.js'
       ]
     , contact: [
         modules+'jquery-validation/dist/jquery.validate.js'
@@ -178,12 +184,11 @@ module.exports = {
       , modules+'magnific-popup/src/js/core.js'
       , modules+'magnific-popup/src/js/image.js'
       , modules+'magnific-popup/src/js/gallery.js'
-      , modules+'magnific-popup/src/js/fastclick.js'
       , src+'js/magnific/wrapper-2.js' // Must follow core Magnific Popup scripts
       , src+'js/magnific/loader.js'
       ]
     , pf: [
-        modules+'picturefill/dist/picturefill.js' // Includes matchMedia in this iteration
+        modules+'picturefill/dist/picturefill.js'
       ]
     , pg8: [
         modules+'wp-ajax-page-loader/wp-ajax-page-loader.js'
@@ -232,7 +237,7 @@ module.exports = {
     , precision: 7
     , sourcemap: true
   }
-  , libsass: { // For future reference: settings for Libsass, a promising project that hasn't reached feature parity with Ruby Sass just yet
+  , libsass: {
       includePaths: [bower, modules]
     , precision: 7
     }

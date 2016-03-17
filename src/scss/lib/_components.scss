@@ -4,7 +4,7 @@
 @mixin dropdown-menu($nav-menu: true) {
   @include border-rounded;
   @include box-shadow-interface-small;
-  @include font-size(sub);
+  @include font-size(menu-sub);
   @include text-shadow-small;
   background: colour(drop-bg) linear-gradient( white(.42), white(0) ) repeat-x;
   border: 1px solid colour(drop-b);

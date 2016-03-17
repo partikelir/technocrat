@@ -51,14 +51,14 @@ input[type="reset"] {
   input[type="email"],
   input[type="text"],
   input[type="url"] {
-    width: percentage( ( ( $width-main / 2 ) - 8 ) / $width-main ); // Should yield a perfect 50% after accounting for borders and such
+    width: percentage( ( ( $width-medium / 2 ) - 8 ) / $width-medium ); // Should yield a perfect 50% after accounting for borders and such
   }
   button[type="submit"],
   input[type="submit"] {
     //display: block;
   }
   textarea {
-    max-width: $width-main;
+    max-width: $width-medium;
     width: 100%;
   }
   div { // Presumably explanatory text; let's give it some space to breathe
@@ -89,7 +89,7 @@ label {
     @include font-size(text-smaller);
     color: colour(error);
     display: block; // Errors go below inputs
-    font-weight: $w-body-bold;
+    font-weight: font(body-bold);
   }
 }
 
@@ -99,7 +99,7 @@ label {
 }
 .error {
   color: colour(error);
-  font-weight: $w-body-bold;
+  font-weight: font(body-bold);
 }
 .notice {
   font-style: italic;
@@ -127,6 +127,20 @@ label {
 .contact-form-spinner,
 .contact-form-status {
   @extend %spacer-above;
+}
+
+
+
+// == RESPONSIVE MENU == //
+
+// Responsive menu toggle
+.menu-toggle { // Menu toggle for mobile phones and small screens
+  @include k-media-above( break(medium) ) {
+    display: none;
+  }
+  &.active {
+    @include text-shadow-small-svg( $y: -1px );
+  }
 }
 
 
@@ -167,6 +181,32 @@ label {
 select {
   .widget & {
     opacity: 0;
+  }
+}
+
+
+
+// == SKIP LINKS == //
+
+// Hidden until focused; for accessibility purposes
+.skip-link {
+  opacity: 0;
+  position: fixed;
+  right: 99999%;
+  &:focus {
+    background: colour(button-alt);
+    float: right;
+    opacity: 1;
+    outline-width: 1px;
+    position: static;
+    transition: opacity .3s;
+  }
+}
+
+// Displays on smaller viewports
+.skip-top {
+  @include k-media-above( break(large) ) {
+    @include scut-hide-visually;
   }
 }
 

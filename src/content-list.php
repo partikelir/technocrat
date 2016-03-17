@@ -1,5 +1,3 @@
-<?php // ==== CONTENT: LIST ==== // ?>
-
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
   <div class="entry-thumbnail">
     <?php echo ubik_imagery(
@@ -12,7 +10,7 @@
       $size     = 'thumbnail',
       $alt      = '',
       $rel      = '',
-      $class    = array_merge( get_post_class(), array( 'overlay ' ) ),
+      $class    = array_merge( get_post_class(), array( 'overlay' ) ),
       $contents = '',
       $context  = 'list'
     ); ?>
@@ -22,7 +20,7 @@
       <?php do_action( 'pendrell_entry_header' ); ?>
     </header>
     <div class="entry-content">
-      <?php pendrell_views_list_content(); ?>
+      <?php echo ubik_excerpt( '', 30 ); ?>
     </div>
   </div>
 </article>

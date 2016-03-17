@@ -8,12 +8,13 @@
  * @subpackage Pendrell
  * @since Pendrell 0.18
  */
+
 get_header(); ?>
   <div id="wrap-content" class="wrap-content">
-    <div id="content" class="site-content<?php pendrell_content_class(); ?>">
-      <header id="archive-header">
-        <?php pendrell_entry_title(); ?>
-        <div class="archive-desc">
+    <div id="content" class="site-content">
+      <header class="main-header">
+        <?php pendrell_main_title(); ?>
+        <div class="main-desc">
           <?php the_content(); ?>
         </div>
       </header>
@@ -56,7 +57,7 @@ get_header(); ?>
               $size     = 'third-square',
               $alt      = '',
               $rel      = '',
-              $class    = 'overlay no-fade',
+              $class    = array( 'gallery-item', 'overlay', 'no-fade' ),
               $contents = $metadata,
               $context  = array( 'group', 'responsive' )
             );

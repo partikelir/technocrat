@@ -38,7 +38,7 @@
       color: colour(p-regex);
     }
     &.important {
-      font-weight: $w-mono-bold;
+      font-weight: font(mono-bold);
     }
     &.entity {
       cursor: help;

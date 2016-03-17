@@ -17,12 +17,8 @@ add_action( 'pendrell_comment_template_before', 'pendrell_author_box', 5 );
 
 
 
-// Author box rules: when and where to display the extra author box
-function pendrell_author_box_rules( $switch ) {
-
-  // Off by default
-  $switch = false;
-
+// Author box rules: when and where to display the extra author box; off by default
+function pendrell_author_box_rules( $switch = false ) {
   return $switch;
 }
 add_filter( 'pendrell_author_box', 'pendrell_author_box_rules' );

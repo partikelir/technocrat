@@ -9,7 +9,7 @@
 <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
-	<?php do_action( 'pendrell_body_before' ); ?>
+	<?php do_action( 'pendrell_site_before' ); ?>
 	<div id="page" class="site hfeed h-feed">
 		<div id="wrap-header" class="wrap-header">
 			<header id="masthead" class="site-header">
@@ -18,10 +18,10 @@
 					<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
 				</div>
 				<div id="site-interface" class="site-interface">
-					<a href="#content" class="button skip-link" role="button" rel="nofollow"><?php echo __( 'Skip to content', 'pendrell' ); ?></a><?php get_search_form(); ?><button id="menu-toggle" class="menu-toggle"><?php echo pendrell_icon_text( 'menu-toggle', __( 'Menu', 'pendrell' ) ); ?></button>
+					<?php do_action( 'pendrell_header_interface' ); ?>
 				</div>
 				<nav id="site-navigation" class="site-navigation">
-					<?php do_action( 'pendrell_site_navigation' ); ?>
+					<?php do_action( 'pendrell_header_navigation' ); ?>
 				</nav>
 			</header>
 		</div>

@@ -1,12 +1,8 @@
 // ==== MAGNIFIC ==== //
 
-// Adapted from the Magnific Popup source file; @TODO: this still needs a lot of work...
-
-// Magnific settings
+// Magnific settings; adapted from the Magnific Popup source file; colours are set in `/src/scss/config/_colours.scss`
 $_magnific: (
-  image-background: #999
-, overlay-color: #EEE
-, overlay-opacity: 0.77
+  overlay-opacity: 0.77
 , shadow: 1px 1px 6px rgba(0, 0, 0, 0.17)
 , visually-hidden: true // Hide content from browsers, but make it available for screen readers
 , z-index-base: 1001
@@ -20,7 +16,7 @@ $_magnific: (
 @mixin magnific-popup {
   #page {
     &.blur {
-      filter: blur(5px) grayscale(100%); // Blur the page background; @TODO: animate this if it's not too CPU-intensive
+      filter: blur(5px) grayscale(100%); // Blur the page background
     }
   }
 
@@ -40,7 +36,7 @@ $_magnific: (
   // Transluscent overlay
   .mfp-bg {
     @extend %mfp-full-screen-fixed;
-    background: magnific(overlay-color);
+    background: colour(magnific-bg);
     opacity: magnific(overlay-opacity);
     z-index: magnific(z-index-base) + 2;
   }
@@ -192,8 +188,8 @@ $_magnific: (
       margin: 0;
       margin-top: spacer(-1);
       pointer-events: none;
-      filter: drop-shadow( 1px 1px 6px magnific(overlay-color) );
-      stroke: magnific(overlay-color);
+      filter: drop-shadow( 1px 1px 6px colour(magnific-bg) );
+      stroke: colour(magnific-bg);
       stroke-width: 1;
       @include k-media-below( break(small) ) {
         margin-top: spacer(-0.75); // 50% of the height
@@ -234,6 +230,7 @@ $_magnific: (
   .mfp-arrow-right,
   .mfp-close {
     right: 0;
+    touch-action: manipulation;
     svg.icon {
       right: spacer(1/2);
       @include k-media-below( break(large) ) {
@@ -277,7 +274,7 @@ $_magnific: (
     line-height: 0;
     &:after {
       @include k-absolute( top spacer() bottom spacer() left 0 right 0 );
-      background: magnific(image-background);
+      background: colour(magnific-img);
       box-shadow: magnific(shadow);
       content: '';
       display: block;

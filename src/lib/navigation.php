@@ -184,19 +184,6 @@ function pendrell_nav_comments() {
 
 
 
-// Site navigation; this outputs the header menu and search form
-function pendrell_nav_site() {
-
-  // Responsive search bar; hidden except on small screens
-  //get_search_form();
-
-  // Responsive menu wrapped in a container to handle the fact that `wp_nav_menu` defaults back to `wp_page_menu` when no menu is specified
-  wp_nav_menu( array( 'theme_location' => 'header', 'menu_id' => 'menu-header', 'menu_class' => 'menu-inline' ) );
-}
-add_action( 'pendrell_site_navigation', 'pendrell_nav_site' );
-
-
-
 // Navigation arrows; centralized in this utility function to allow for consistency across different forms of navigation
 // @filter: pendrell_nav_arrows
 function pendrell_nav_arrows( $name = '' ) {

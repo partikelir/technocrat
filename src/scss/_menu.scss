@@ -69,25 +69,18 @@
 
 // Footer menu
 #menu-footer {
-  @include font-size( menu-footer );
+  @extend %links-meta-no-border;
+  @include font-size(menu-footer);
   @include k-list-floated( spacer(1/2) );
   @include rem( padding, spacer(1/2) 0 );
   //@include rem( padding-top, spacer(1/2) );
+
+  // No submenus in the footer
   ul {
     @extend %hide; // No submenus in the footer
   }
   > li {
     @include font-style(menu);
     white-space: nowrap;
-  }
-}
-
-
-
-// Menu toggle for mobile phones and small screens
-.menu-toggle {
-  @include k-absolute( right 0 top 0 );
-  @include k-media-above( break(medium) ) {
-    display: none;
   }
 }

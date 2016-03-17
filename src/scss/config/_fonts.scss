@@ -2,8 +2,6 @@
 
 // Sizes; use size() to access
 $_sizes: (
-
-  // Text
   text-biggest:     32
 , text-bigger:      22
 , text-big:         20
@@ -12,7 +10,6 @@ $_sizes: (
 , text-smaller:     14
 , text-smallest:    12
 
-  // Headers
 , head-biggest:     42
 , head-bigger:      35
 , head-big:         25 // Don't want this too close to the baseline, line-height gets weird
@@ -20,37 +17,36 @@ $_sizes: (
 , head-small:       18
 , head-smaller:     16
 , head-smallest:    14
-
-  // Site
 , site-title-big:   35
 , site-title-small: 26
 
-  // Menus
 , menu-header:      18
 , menu-header-sm:   15 // Lower than 16 doesn't display well on mobile devices
 , menu-footer:      15
-
-  // Submenus
-, sub:              14
+, menu-sub:         14 // Submenu
 );
 
-// Body fonts; these are applied universally throughout the theme
-$f-body:            k-font-stack("Oxygen", helvetica-light);
-$w-body-light:      300;
-$w-body-normal:     400;
-$w-body-bold:       700;
+// Fonts; use fonts() to access
+$_fonts: (
+  head-full:        k-font-stack(Ubuntu, calibri)
+, head-web:         Ubuntu
+, head-system:      k-font-stack(calibri) // k-font-stack(k-font-stack-trim(myriad), zh-heiti-tc)
+, head-light:       300
+, head-normal:      400
+, head-bold:        700
 
-// Header and probably menu fonts too
-$f-head:            k-font-stack(Ubuntu, calibri);
-$w-head-light:      300;
-$w-head-normal:     400;
-$w-head-bold:       700;
+, body-full:        k-font-stack("Oxygen", helvetica-light)
+, body-web:         "Oxygen"
+, body-system:      k-font-stack(helvetica-light) // k-font-stack(k-font-stack-trim(helvetica-light), zh-heiti-tc)
+, body-light:       300
+, body-normal:      400
+, body-bold:        700
 
-// Monospace fonts
-$f-mono:            k-font-stack(menlo);
-$w-mono-light:      300;
-$w-mono-normal:     400;
-$w-mono-bold:       700;
+, mono-full:        k-font-stack(menlo)
+, mono-light:       300
+, mono-normal:      400
+, mono-bold:        700
+);
 
 // Font styles are wrapped in a mixin for ease of use and configuration; leave blank to inherit
 @mixin font-style($style: body) {
@@ -60,10 +56,10 @@ $w-mono-bold:       700;
 
   // Standard stuff
   @if (head == $style) {
-    @extend %head-bold;
+    @extend %head-bold-observer;
   }
   @if (body == $style) {
-    @extend %body-normal;
+    @extend %body-normal-observer;
   }
   @if (mono == $style) {
     @extend %mono-normal;
@@ -71,7 +67,7 @@ $w-mono-bold:       700;
 
   // Masthead
   @if (site-title == $style) {
-    @extend %head-light;
+    @extend %head-light-observer;
     text-transform: lowercase;
   }
   @if (site-description == $style) {
@@ -80,55 +76,56 @@ $w-mono-bold:       700;
 
   // Menu
   @if (menu == $style) {
-    @extend %head-light;
+    @extend %head-light-observer;
   }
 
-  // Archives
-  @if (archive-title == $style) {
-    @extend %head-normal;
+  // Main
+  @if (main-title == $style) {
+    @extend %head-normal-observer;
   }
 
   // Content
   @if (entry-title == $style) {
-    @extend %head-normal;
+    @extend %head-normal-observer;
   }
   @if (entry-header-meta == $style) {
-    @extend %head-light;
-    text-transform: uppercase;
+    @extend %head-light-observer;
+    @extend %uppercase;
   }
   @if (entry-content == $style) {
-    @extend %body-normal;
+    // Inherit from body
   }
   @if (entry-footer-meta == $style) {
-    @extend %body-normal;
+    @extend %body-normal; // Below the fold
   }
 
   // Comments
   @if (comment-author == $style) {
-    @extend %body-bold;
+    @extend %body-bold; // Below the fold
   }
 
   // Widgets
   @if (widget-title == $style) {
-    @extend %head-light;
+    @extend %head-light-observer;
   }
   @if (widget-text == $style) {
-    @extend %body-normal;
+    @extend %body-normal-observer;
   }
 
   // User interface
   @if (table-head == $style) {
-    @extend %head-bold-uppercase;
+    @extend %head-bold; // Below the fold
+    @extend %uppercase;
   }
   @if (button == $style) {
-    @extend %body-normal;
+    @extend %body-normal-observer;
   }
   @if (label == $style) {
     @extend %head-normal;
-    text-transform: uppercase;
+    @extend %uppercase;
   }
   @if (input == $style) {
-    @extend %body-normal;
+    @extend %body-normal-observer;
   }
 
   // Post formats
@@ -152,6 +149,14 @@ $w-mono-bold:       700;
   }
   @if (image-overlay-date == $style) {
     //@extend %body-bold;
-    text-transform: uppercase;
+    @extend %uppercase;
+  }
+}
+
+// Font stack mixin for use with Font Face Observer (to improve web font performance)
+@mixin font-observer($stack: body) {
+  font-family: font(#{$stack}-system);
+  .wf-active & {
+    font-family: font(#{$stack}-web);
   }
 }

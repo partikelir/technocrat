@@ -1,18 +1,5 @@
 <?php // ==== POST FORMATS ==== //
 
-// == SIDEBAR == //
-
-// Sidebar filter; removes sidebar for certain post formats
-function pendrell_post_formats_sidebar( $sidebar ) {
-  if ( ( is_singular() && has_post_format( array( 'aside', 'link', 'quote', 'status' ) ) ) )
-    $sidebar = false;
-  return $sidebar;
-}
-if ( PENDRELL_POST_FORMATS )
-	add_filter( 'pendrell_sidebar', 'pendrell_post_formats_sidebar' );
-
-
-
 // == VIEWS == //
 
 // Add post formats to the views taxonomy

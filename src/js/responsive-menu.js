@@ -1,7 +1,7 @@
 // ==== RESPONSIVE MENU ==== //
 
 // This script is adapted from _s
-;(function($) {
+;(function() {
 	var nav 			= document.getElementById('site-navigation'),
 			menu 			= document.getElementById('menu-header'),
 			button 		= document.getElementById('menu-toggle'),
@@ -20,7 +20,6 @@
 
 	// Toggle navigation; add or remove a class to both the button and the nav element itself
 	button.onclick = function() {
-		//$(nav).toggle( 150 ); // Looks nice but it's too sluggish on mobile
 		if (button.className.indexOf( 'active' ) !== -1) {
 			nav.style.display = 'none';
 			button.className = button.className.replace(' active', '');
@@ -31,4 +30,4 @@
 			icon.style.transform = 'scaleY(-1)';
 		}
 	};
-})(jQuery);
+})();

@@ -9,9 +9,7 @@
 // == WRAPPERS == //
 
 // These wrappers allow for backgrounds and layout options to be defined for each of the four sections (header, content, sidebar, and footer)
-// There is also a fifth meta-wrapper to bind content and sidebar on large screens
-
-// A general wrapper for various site elements
+// There is also a fifth meta-wrapper to bind content and sidebar on large screens in two column mode
 %wrap {
   box-sizing: border-box; // Makes life a little easier
   @include k-media-below( break(small) ) {
@@ -45,6 +43,7 @@
 }
 .wrap-main {
   @extend %clearfix-below;
+  background: colour(bg-content);
 }
 .wrap-sidebar {
   @extend %wrap;
@@ -79,7 +78,7 @@
 .site-header {
   position: relative; // For use with the skip link and menu toggle
   @include k-media-above( break(large) ) {
-    max-width: $width-content - $width-main;
+    max-width: $width-content - $width-medium;
   }
 }
 .site-branding {
@@ -139,22 +138,26 @@
   transition: opacity .8s ease-out;
   @include scut-hide-visually; // No description in this theme
 }
+.site-interface { // Site interface: the toolbar/menu at top right
+  //display: block;
+  @extend %clearfix-below;
+  @include k-media-below( break(medium) ) {
+    margin-top: spacer(-3/2);
+  }
+  > * {
+    @include k-media-below( break(large) ) {
+      @include rem( margin-bottom, spacer(1/2) );
+    }
+  }
+}
 .site-navigation {
-  max-width: 100%; // Prevents hidden search box from overflowing container
+  @extend %max-width-100; // Prevents hidden search box from overflowing container
   @include k-media-above( break(medium) ) {
     display: block !important; // Prevents the responsive menu display state from hiding the menu on larger screens after a resize
   }
   @include k-media-below( break(medium) ) {
     display: none;
-    padding-bottom: spacer(1/2);
-  }
-}
-.site-interface { // Site interface: the toolbar/menu at top right
-  @extend %clearfix-below;
-  > * {
-    @include k-media-below( break(large) ) {
-      @include rem( margin-bottom, spacer(1/2) );
-    }
+    //padding-bottom: spacer(1/2);
   }
 }
 
@@ -166,8 +169,7 @@
   @extend %clearfix-below;
   @include rem( padding-top, spacer() );
   @include rem( padding-bottom, spacer() );
-  background: colour(bg-content);
-  max-width: $width-main; // Keeps content contained regardless of whether sidebar appears
+  max-width: $width-medium; // Keeps content contained regardless of whether sidebar appears
   word-wrap: break-word; // Keep text content from overflowing
   &:focus {
     outline: none; // Prevent weird blue glow when using the skip link
@@ -177,19 +179,27 @@
     @include rem( padding-right, spacer(2) );
     margin-left: auto;
   }
-  @if module(full-width) {
-    .full-width & {
-      max-width: $width-content;
-    }
-  }
 
   // Individual articles within the content area
   article {
-    @extend %spacer-below-triple;
+    @extend %spacer-below-triple; // Individual articles within the content area
   }
 }
 main {
   @extend %clearfix; // Mainly for gallery view (in which main is filed with floating figure elements)
+}
+.main-title {
+  @extend %spacer-below-half;
+  @include font-size(head-biggest);
+  @include font-style(main-title);
+}
+.main-desc {
+  @extend %clearfix-above;
+  @extend %links;
+  @extend %spacer-below-double;
+  p {
+    @extend %spacer-below;
+  }
 }
 
 
@@ -197,35 +207,6 @@ main {
 // == SIDEBAR == //
 
 // See also: `_widgets.scss`
-@mixin sidebar-columns {
-  @include rem( column-gap, spacer(2) );
-  columns: auto 2; // @TODO: Selectric boxes don't play well with the sidebar in column mode :/
-  overflow: hidden; // Required to hide extra space in Chrome
-  position: relative; // Required to hide extra space in Chrome
-  .widget {
-    display: inline-block;
-    width: 100%;
-  }
-}
-.site-sidebar {
-  max-width: $width-main; // Keeps things tidy
-  @include k-media-between( break(small), break(large) ) {
-    @include sidebar-columns;
-  }
-  @include k-media-above( break(large) ) {
-    max-width: $width-content - $width-main;
-  }
-  @if module(full-width) {
-    .full-width & {
-      max-width: $width-content;
-      @include sidebar-columns;
-      @include k-media-above( break(full) ) {
-        @include rem( column-gap, spacer() );
-        columns: auto 3;
-      }
-    }
-  }
-}
 
 
 
@@ -237,17 +218,29 @@ main {
   @include k-media-above( break(large) ) {
     @include rem( padding-left, spacer(2) );
     margin-left: auto;
-    max-width: $width-main + spacer(2);
+    max-width: $width-medium + spacer(2);
   }
   color: colour(footer);
-  .buttons {
-    @include k-media-above( break(medium) ) {
-      @include scut-hide-visually;
-    }
-  }
 }
-.site-colophon {
+.site-footer-info {
+  @extend %links-meta-no-border;
   @extend %text-smallest;
   @include links( colour(footer-link), false, colour(highlight), $link-border: false );
   color: colour(footer);
 }
+
+
+
+/*
+ @include font-style(archive-title);
+}
+.archive-desc {
+  @extend %clearfix-above;
+  @extend %links;
+  @extend %spacer-below-double;
+  @include font-size(text-small);
+  p {
+    @extend %spacer-below;
+    color: colour(text-muted);
+  }
+*/

@@ -1,6 +1,4 @@
-<?php // ==== CONTENT: GALLERY ==== //
-
-echo ubik_imagery(
+<?php echo ubik_imagery(
   $html     = '',
   $id       = pendrell_thumbnail_id(),
   $caption  = get_the_title(),
@@ -10,7 +8,7 @@ echo ubik_imagery(
   $size     = 'third-square',
   $alt      = '',
   $rel      = '',
-  $class    = array_merge( get_post_class(), array( 'overlay ' ) ),
+  $class    = array_merge( get_post_class(), array( 'gallery-item', 'overlay' ) ),
   $contents = pendrell_image_overlay_contents(),
   $context  = array( 'group', 'responsive' )
 );

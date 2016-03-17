@@ -108,7 +108,7 @@ function pendrell_colophon() {
   if ( !empty( $colophon ) )
     echo '<div class="site-footer-info">' . $colophon . '</div>';
 }
-add_action( 'pendrell_footer', 'pendrell_colophon' );
+add_action( 'pendrell_footer_colophon', 'pendrell_colophon' );
 
 
 
@@ -154,28 +154,8 @@ require_once( $path_modules . 'ubik-fonts/ubik-fonts.php' );
 
 
 
-// == FULL-WIDTH * == //
-
-// Unused in this theme
-
-// Force full-width categories and/or tags (or anything else you can dream up, really)
-function pendrell_full_width_content( $full_width ) {
-  if ( $full_width === true )
-    return $full_width;
-
-  // Insert conditional checks here! Test for category archives, the presence of specific tags, etc.
-
-  return $full_width;
-}
-
-
-
 // == IMAGERY * == //
 
-// Enable `srcset` output only when Picturefill module is active
-if ( PENDRELL_RESPONSIVE_IMAGES )
-  define( 'UBIK_IMAGERY_SRCSET', true );
-define( 'UBIK_IMAGERY_DIMENSIONS', false );
 define( 'UBIK_IMAGERY_URL_MORE_SHORTCUT', true );
 require_once( $path_modules . 'ubik-imagery.php' );
 
@@ -209,7 +189,7 @@ if ( PENDRELL_UBIK_MARKDOWN ) {
 
 // == META * == //
 
-define('UBIK_META_DATE_HUMANIZE', true);
+define('UBIK_META_DATE_HUMANIZE', true); // Not entirely necessary with the timeago jQuery plugin; used mainly as a backup
 require_once( $path_modules . 'ubik-meta/ubik-meta.php' );
 add_filter( 'ubik_meta_date_grace_period', '__return_true' );
 add_filter( 'ubik_meta_microformats', '__return_true' );
@@ -271,7 +251,7 @@ require_once( $path_modules . 'ubik-svg-icons/ubik-svg-icons.php' );
 
 // If we have a path and no URL we probably mean to inject the SVG icon file
 if ( UBIK_SVG_ICONS_PATH && UBIK_SVG_ICONS_URL === false )
-  add_action( 'pendrell_body_before', 'ubik_svg_icon_sheet_inline' );
+  add_action( 'pendrell_site_before', 'ubik_svg_icon_sheet_inline' );
 
 
 
@@ -282,8 +262,11 @@ define( 'UBIK_TERMS_TAG_SHORTCODE', true );
 require_once( $path_modules . 'ubik-terms/ubik-terms.php' );
 
 function pendrell_terms_edit_description_prompt( $content ) {
-  if ( empty( $content ) )
-    return '<span class="warning">' . ubik_terms_edit_description_prompt( __( 'This term description is empty.', 'pendrell' ) ) . '</span>';
+  if ( empty( $content ) ) {
+    $prompt = ubik_terms_edit_description_prompt( __( 'This term description is empty.', 'pendrell' ) );
+    if ( !empty( $prompt ) )
+      return '<span class="warning">' . $prompt . '</span>';
+  }
   return $content;
 }
 add_filter( 'get_the_archive_description', 'pendrell_terms_edit_description_prompt' );

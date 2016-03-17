@@ -29,6 +29,7 @@
 @if module(ubik-photo-meta) {
   .photo-meta {
     @extend %links-no-border;
+    @extend %max-width-medium;
     table,
     ul {
       @include font-size(text-small);
@@ -85,5 +86,6 @@
 @if module(ubik-series) {
   .series {
     @extend %links-no-border;
+    @extend %max-width-medium;
   }
 }

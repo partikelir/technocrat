@@ -4,6 +4,13 @@
 
 @if module(ubik-views) {
 
+  // Hide views control on small screens
+  .view-link {
+    @include k-media-below( break(tiny) ) {
+      display: none;
+    }
+  }
+
   // This class only appears in list-view so it is safe to declare it without nesting
   .entry-thumbnail {
     @include rem( width, $width-thumb );
@@ -18,6 +25,10 @@
 
   // This section is messy and disorganized mainly to prevent unnecessary nesting
   .list-view {
+    .site-content article {
+      @extend %spacer-below;
+      @extend %text-small;
+    }
     .entry-title {
       @include font-size(head);
       margin: 0;
@@ -26,15 +37,8 @@
       @extend %spacer-below-reset;
       .entry-meta {
         @extend %clearfix-reset;
-        @include font-size(text-smallest);
-        color: colour(text-lightest);
-        text-transform: uppercase;
+        @extend %uppercase;
       }
-    }
-
-    .site-content article {
-      @extend %spacer-below;
-      @extend %text-small;
     }
 
     // Entry content
@@ -44,29 +48,16 @@
         @include rem( margin-left, $width-thumb + spacer(1/2) );
       }
     }
-    .entry-content p {
+    .entry-content {
       @extend %text-small;
-      @extend %spacer-reset;
+      @extend %max-width-medium; // Smaller text means more characters per line; let's tighten it up a bit
+      p {
+        @extend %spacer-reset;
+      }
     }
-
-    // Link post format
     @if module(post-formats) {
       .entry-link {
         @extend %hide;
-      }
-    }
-
-    // Full-width modifications
-    @if module(full-width) {
-      &.full-width {
-        @include k-media-above( break(large) ) {
-          .entry-title {
-            @include font-size(head);
-          }
-          .entry-content {
-            @include font-size(text-small);
-          }
-        }
       }
     }
   }

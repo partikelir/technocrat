@@ -1,26 +1,42 @@
 // ==== IMAGE ==== //
 
+// == GENERAL == //
+
+.site-content img {
+  @include border-rounded;
+
+  // Force images to adhere to container width
+  // This is usually paired with `height: auto;` but we are managing height with Ubik Imagery in this theme
+  max-width: 100%;
+  &:not(.ubik-img) {
+    height: auto;
+  }
+
+  // Alt text styling
+  @include font-size(text-small);
+  background: colour(body-dark);
+  color: colour(text-lightest);
+  overflow: hidden;
+  text-align: center;
+  text-shadow: none;
+  vertical-align: middle;
+  word-break: break-word;
+}
+
+
+
+// == CONTENT == //
+
 // Individual responsive images in posts, not comments; isolating these declarations from `_content.scss` reduces bloat
 figure.wp-caption,
 .entry-content p img {
   @extend %spacer-below;
   backface-visibility: hidden;
-  overflow: auto; // Without this the floats won't float, but we'll reset it in a media query (below)
   &.alignleft {
-    margin-right: percentage( spacer() / $width-main );
-    @if module(full-width) {
-      .full-width & {
-        margin-right: percentage( spacer() / $width-content );
-      }
-    }
+    margin-right: percentage( spacer() / $width-medium );
   }
   &.alignright {
-    margin-left: percentage( spacer() / $width-main );
-    @if module(full-width) {
-      .full-width & {
-        margin-left: percentage( spacer() / $width-content );
-      }
-    }
+    margin-left: percentage( spacer() / $width-medium );
   }
   &.aligncenter {
     img { // Applies centering to the image within the figure, not the figure element itself
@@ -34,6 +50,8 @@ figure.wp-caption,
 
 // Reset borders and outlines for linked images
 figure.wp-caption {
+  max-width: 100%;
+  overflow: auto; // Without this the floats won't float, but we'll reset it in a media query (above)
   a,
   a:visited,
   a:hover,
@@ -41,6 +59,33 @@ figure.wp-caption {
   a:active {
     border: none;
     outline: none;
+  }
+
+  // Force full-width images on small viewports
+  @include k-media-below( break(tiny) ) {
+    .entry-content &,
+    .comment-content & {
+      margin-left: spacer(-1/2) !important;
+      margin-right: 0 !important;
+      max-width: 100vw !important;
+      width: 100vw !important;
+      img {
+        border-radius: 0;
+      }
+      .wp-caption-text {
+        @include rem( margin-left, spacer(1/2) ); // Should match left page margin
+      }
+    }
+  }
+}
+
+// Intrinsic ratio hook for use with Ubik Imagery
+.ubik-wrap-inner {
+  display: block;
+  height: 0;
+  position: relative;
+  img {
+    @include k-absolute( top 0 left 0 right 0 bottom 0 );
   }
 }
 
@@ -62,23 +107,22 @@ figure.wp-caption {
   @include scut-reverse-italics;
   color: colour(text-lightest);
   max-width: 100%;
-  @if module(full-width) {
-    .full-width & {
-      @include font-size(text-small);
-      color: colour(text-lighter);
-    }
-  }
 }
 
 // Image overlay class; apply this to any image container (likely a `figure` element)
 .overlay {
   @include image-overlay;
-  @include text-shadow-small( black(.85) );
+  @include text-shadow-small( black(.75) );
 
   // Using a class instead of `figcaption` to combat the specificity of caption styles defined above
   .wp-caption-text {
     @include font-size( text, 0, 25 );
     @include font-style(image-overlay-title);
+    color: white();
+    @include k-media-above( break(medium) ) {
+      @include font-size(text-bigger);
+      @include text-shadow-bigger;
+    }
     .gallery-static & {
       @include k-media-below( break(small) ) {
         @include font-size( text-smaller, 0, 25 );
@@ -88,19 +132,13 @@ figure.wp-caption {
       @include k-media-below( break(medium) ) {
         @include font-size( text-smaller, 0, 25 );
       }
-    }
-    @if module(full-width) {
-      .full-width & {
-        color: white();
-        @include k-media-above( break(medium) ) {
-          @include font-size(text-bigger);
-          @include text-shadow-bigger;
-        }
+      @include k-media-below( break(tiny) ) {
+        display: none;
       }
     }
   }
 
-  // The footer contains additional data e.g. comment count
+  // The footer contains additional data *e.g.* comment count
   footer {
     &.comments {
       @include font-style(image-overlay-comments);
@@ -124,14 +162,6 @@ figure.wp-caption {
           @include font-size( text-smaller, 0, 25 );
         }
       }
-      @if module(full-width) {
-        .full-width & {
-          @include font-size( text, 0, 25 );
-          @include k-media-between( break(tiny), break(medium) ) {
-            @include font-size( text-small, 0, 25 );
-          }
-        }
-      }
     }
     &.smaller {
       @include font-size( text-smaller, 0, 25 );
@@ -144,14 +174,6 @@ figure.wp-caption {
           display: none;
         }
       }
-      @if module(full-width) {
-        .full-width & {
-          @include font-size( text-small, 0, 25 );
-          @include k-media-between( break(tiny), break(medium) ) {
-            @include font-size( text-smaller, 0, 25 );
-          }
-        }
-      }
     }
   }
 }
@@ -160,32 +182,14 @@ figure.wp-caption {
 
 // == GALLERY & IMAGE LAYOUT == //
 
-// This section is a bit complicated, partly out of an interest in maintaining basic support for the core WordPress `[gallery]` shortcode, the output of which cannot be filtered
-// The `gallery` class in Pendrell is used anywhere you'd like to group images together; the `gallery-item` class is only used by the gallery shortcode itself
+// This section is a bit complicated, partly out of my previous interest in maintaining basic support for the core WordPress `[gallery]` shortcode, the output of which cannot be filtered
+// The `gallery` class in Pendrell is used anywhere you'd like to group images together; the `gallery-item` class should be used on individual `figure` or equivalent wrapping elements
 // Apart from the `gallery` class there are two special classes:
 // - `gallery-flex`, a responsive gallery that decreases the column count according to viewport width
 // - `gallery-static`, a non-responsive gallery that maintains the same layout at all viewport widths
 
-// Basic styling for a gallery item; used twice, once for the base styling and again if core `[gallery]` shortcode compatibility is switched on
-@mixin gallery-item {
-  width: 100%; // Force images to fill the available space
-  @include k-media-above( break(tiny) ) {
-    float: left;
-    margin: 0 percentage( $spacer-image / $width-main ) percentage( $spacer-image / $width-main ) 0;
-    @if module(full-width) {
-      .full-width & {
-        margin: 0 percentage( $spacer-image / $width-content ) percentage( $spacer-image / $width-content ) 0;
-      }
-    }
-  }
-  @include k-media-below( break(tiny) ) {
-    @include rem( margin, 0 0 spacer(1/2) 0 );
-    float: none;
-  }
-}
-
 // A simple helper mixin to calculate the max-width from a column count and the bounding width
-@mixin gallery-max-width( $columns, $width: $width-main ) {
+@mixin gallery-max-width( $columns, $width: $width-medium ) {
   max-width: percentage( 1 / $columns ) - percentage( ( ( $spacer-image * ($columns - 1) ) / $width ) / $columns );
 }
 
@@ -201,17 +205,24 @@ figure.wp-caption {
 }
 
 // Individual gallery items with percentage-based margins
-.gallery figure.wp-caption {
-  @include gallery-item;
+.gallery-item {
+  width: 100%; // Force images to fill the available space
+  @include k-media-above( break(tiny) ) {
+    float: left;
+    margin: 0 percentage( $spacer-image / $width-medium ) percentage( $spacer-image / $width-medium ) 0;
+  }
+  @include k-media-below( break(tiny) ) {
+    @include rem( margin, 0 0 spacer(1/2) 0 );
+    float: none;
+  }
 }
 
 // 2, 3, and 4 column layouts have the same declarations so they are grouped here for convenience
 @for $i from 2 to 5 {
   .gallery-columns-#{$i} {
-    .gallery-item,
-    figure.wp-caption {
+    .gallery-item {
       @include k-media-above( break(tiny) ) {
-        @include gallery-max-width( $i, $width-main );
+        @include gallery-max-width( $i, $width-medium );
         img {
           width: 100%; // Force images to fill the available space
         }
@@ -221,11 +232,6 @@ figure.wp-caption {
         &:nth-of-type(#{$i}n+1) {
           clear: left;
         }
-        @if module(full-width) {
-          .full-width & {
-            @include gallery-max-width( $i, $width-content );
-          }
-        }
       }
     }
   }
@@ -233,20 +239,14 @@ figure.wp-caption {
 
 // The 4 column layout is a special case; it breaks from 4 columns to 2 between the tiny and medium breakpoints (but not for static galleries)
 .gallery-columns-4:not(.gallery-static) {
-  .gallery-item,
-  figure.wp-caption {
+  .gallery-item {
     @include k-media-between( break(tiny), break(medium) ) {
-      @include gallery-max-width( 2, $width-main );
+      @include gallery-max-width( 2, $width-medium );
       &:nth-of-type(2n) {
         margin-right: 0;
       }
       &:nth-of-type(2n+1) {
         clear: left;
-      }
-      @if module(full-width) {
-        .full-width & {
-          @include gallery-max-width( 2, $width-content );
-        }
       }
     }
   }
@@ -273,19 +273,14 @@ figure.wp-caption {
 .gallery-static {
 
   // Re-instate some of the styling that is lost when dropping below the tiny breakpoint in the default declaration
-  figure.wp-caption {
+  .gallery-item {
     float: left;
-    margin: 0 percentage( $spacer-image / $width-main ) percentage( $spacer-image / $width-main ) 0;
-    @if module(full-width) {
-      .full-width & {
-        margin: 0 percentage( $spacer-image / $width-content ) percentage( $spacer-image / $width-content ) 0;
-      }
-    }
+    margin: 0 percentage( $spacer-image / $width-medium ) percentage( $spacer-image / $width-medium ) 0;
   }
   @for $i from 2 to 5 {
     &.gallery-columns-#{$i} {
-      figure.wp-caption {
-        @include gallery-max-width( $i, $width-main );
+      .gallery-item {
+        @include gallery-max-width( $i, $width-medium );
         footer {
           @extend %gallery-static-overlay-footer-#{$i};
         }
@@ -295,11 +290,6 @@ figure.wp-caption {
         &:nth-of-type(#{$i}n+1) {
           clear: left;
         }
-        @if module(full-width) {
-          .full-width & {
-            @include gallery-max-width( $i, $width-content );
-          }
-        }
       }
     }
   }
@@ -308,33 +298,23 @@ figure.wp-caption {
 // Responsive image layout; 3, 2, or 1 columns as determined by the viewport width
 // For greater enjoyment be sure to pull in content in some even multiple of 3 e.g. 12, 18, etc.
 .gallery-flex {
-  figure.wp-caption {
+  .gallery-item {
     @include k-media-between( break(tiny), break(medium) ) {
-      @include gallery-max-width( 2, $width-main );
+      @include gallery-max-width( 2, $width-medium );
       &:nth-of-type(2n) {
         margin-right: 0;
       }
       &:nth-of-type(2n+1) {
         clear: left;
       }
-      @if module(full-width) {
-        .full-width & {
-          @include gallery-max-width( 2, $width-content );
-        }
-      }
     }
     @include k-media-above( break(medium) ) {
-      @include gallery-max-width( 3, $width-main );
+      @include gallery-max-width( 3, $width-medium );
       &:nth-of-type(3n) {
         margin-right: 0;
       }
       &:nth-of-type(3n+1) {
         clear: left;
-      }
-      @if module(full-width) {
-        .full-width & {
-          @include gallery-max-width( 3, $width-content );
-        }
       }
     }
   }
@@ -343,10 +323,9 @@ figure.wp-caption {
 
 
 // This class is specific to the output of the WordPress `[gallery]` shortcode which cannot be filtered
-// If you don't use the built-in gallery shortcode be sure to switch this feature off; it wastefully duplicates a bunch of styles from the generalized overlay class
+// If you don't use the built-in gallery shortcode be sure to switch this feature off; it duplicates a bunch of styles from the generalized overlay class
 @if module(gallery-shortcode) {
   .gallery-item {
-    @include gallery-item;
     @include image-overlay(".gallery-caption"); // Will output some wasteful metadata classes but that can't be helped
     .gallery-caption {
       @include rem( font-size, size(text-small) + 0px );

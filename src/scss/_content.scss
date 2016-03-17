@@ -30,7 +30,7 @@
     .date time {
       background: colour(bg-date);
       color: colour(meta-date);
-      font-weight: $w-head-bold;
+      font-weight: font(head-bold);
     }
     .cats a {
       background: colour(bg-cats);
@@ -63,7 +63,7 @@
   @include font-size(head-big);
   @include font-style(entry-title);
   @include k-media-above( break(medium) ) {
-    @include font-size(head-bigger); // This is the normal title size seen on the homepage and on singular posts
+    @include font-size(head-biggest); // This is the normal title size seen on the homepage and on singular posts
   }
 
   // Drop the size of entry titles on archives, 404 pages, and in search results
@@ -71,7 +71,7 @@
   .error404 &,
   .search-results &,
   .search-no-results & {
-    @include font-size(head-big);
+    @include font-size(head-bigger);
   }
 }
 
@@ -113,7 +113,7 @@
   h5,
   h6 {
     color: colour(headers);
-    text-transform: uppercase; // The sizing of these headers is below that of the body copy; let's give them some punch
+    @extend %uppercase; // The sizing of these headers is below that of the body copy; let's give them some punch
   }
 
   // Links
@@ -124,7 +124,6 @@
   // Paragraph
   p {
     @extend %spacer-below;
-    //hanging-punctuation: first; // Not supported by any browser yet
   }
 
   // Lists and definitions
@@ -192,35 +191,18 @@
     color: colour(text-muted);
     &:first-child p { // Style opening asides here
       color: colour(text-muted);
-      font-weight: $w-body-bold;
-    }
-  }
-
-  // Images
-  img {
-    @include border-rounded;
-    display: block;
-    @include k-media-below( break(tiny) ) { // Full-width images on mobile; this should match up with values specified in the Ubik Imagery adapter file
-      border-radius: 0;
-      @include rem( margin-left, spacer(-1/2) );
-      max-width: 100vw; // Force image to fill the entire viewport width
-      width: 100vw;
-    }
-  }
-  figure.wp-caption {
-    @include k-media-below( break(tiny) ) {
-      margin-right: 0 !important; // Shame
+      font-weight: font(body-bold);
     }
   }
 }
 
 
 
-// Full-width styling exclusive to the body of posts
-@if module(full-width) {
-  @include k-media-above( break(medium) ) {
-    .full-width .entry-content {
-      @include font-size(text-bigger);
+// Specific to entry contents
+.entry-content {
+  @if module(one-column) {
+    @include k-media-above( break(medium) ) {
+      @include font-size(text-big);
 
       // Increase top header sizes (the rest remain the same)
       h1 {
@@ -244,9 +226,7 @@
       // These are all usually size(text-small; kick it up a notch
       aside,
       table caption,
-      .entry-caption,
-      .footnotes,
-      .references {
+      .entry-caption {
         @include font-size(text);
       }
       td {
@@ -285,11 +265,6 @@
       @include rem( margin-top, 1px );
       @include font-size(text-smallest);
       color: colour(text-muted);
-      @if module(full-width) {
-        .full-width & {
-          @include font-size(text-smallest);
-        }
-      }
     }
   }
   li {
@@ -301,6 +276,6 @@
 
 // Comments layout and styling
 .entry-comments {
+  @extend %max-width-medium;
   @extend %spacer-above-double;
-  max-width: $width-main; // Required to limit the width of the comments area when there is no sidebar displayed
 }

@@ -1,8 +1,6 @@
-<?php // ==== SINGULAR ==== //
-
-get_header(); ?>
+<?php get_header(); ?>
   <div id="wrap-content" class="wrap-content">
-    <div id="content" class="site-content<?php pendrell_content_class(); ?>">
+    <div id="content" class="site-content">
   		<main>
   			<?php while ( have_posts() ) : the_post();
   				pendrell_template_part();
@@ -11,4 +9,4 @@ get_header(); ?>
       <?php do_action( 'pendrell_singular_below' ); ?>
     </div>
   </div>
-<?php get_sidebar(); get_footer();
+<?php get_footer();

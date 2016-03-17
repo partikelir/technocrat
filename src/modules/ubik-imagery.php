@@ -2,6 +2,7 @@
 
 // Requirements:
 // - Ubik Imagery: https://github.com/synapticism/ubik-imagery
+// - Lazysizes: https://github.com/aFarkas/lazysizes
 // - Picturefill: https://github.com/scottjehl/picturefill
 
 // Notes about the `sizes` attribute:
@@ -17,58 +18,54 @@
 //     = Static: image layout is maintained at all viewport widths
 //     = Responsive: column count decreases by 1 at various breakpoints (so a 4 column layout turns to 3, a 3 column layout turns to 2, etc.)
 
-// @TODO: investigate Firefox scrollbar inconsistencies; it may be necessary to add another fudge factor to ensure browsers choose the optimal image
-
 // Load plugin core
 require_once( trailingslashit( get_stylesheet_directory() ) . 'modules/ubik-imagery/ubik-imagery.php' );
 
 
 
-// == SIZES ATTRIBUTE MEDIA QUERIES == //
+// == RESPONSIVE IMAGES == //
 
 // Setup a few media queries for the `sizes` attribute; must be an array even if there is only one value!
+// @filter: pendrell_sizes_margin
+// @filter: pendrell_sizes_margin_inner
+// @constant: PENDRELL_BASELINE
 function pendrell_sizes_media_queries( $queries = array(), $size = '', $width = '', $context = '' ) {
 
   // Exit early if we don't have the required size and width data
   if ( empty( $size ) || !is_string( $size ) || empty( $width ) || !is_int( $width ) )
     return $queries;
 
-  // Note: by core conventions $content_width is the maximum rendered width of an image; $main_width is a theme-specifc short-hand for the "normal" width of images
-  global $content_width, $main_width;
-
-  // Set the bounding width (the maximum size for rendered images)
-  if ( pendrell_full_width() ) {
-    $bounding_width = $content_width;
+  // Limit width by the content width; what we're interested in here is the *rendered size* of an image which won't be larger than the container
+  global $content_width, $medium_width;
+  if ( PENDRELL_COLUMNS === 1 ) {
+    $width = min( $width, $content_width );
   } else {
-    $bounding_width = $main_width;
+    $width = min( $width, $medium_width );
   }
 
-  // Limit width by the bounding width; what we're interested in here is the *rendered size* of an image which won't be larger than the container
-  $width = min( $width, $bounding_width );
-
   // Test the context object for various scenarios; this allows the theme to handle the sizes attribute in different ways depending on how images are being used
-  $group        = ubik_imagery_context( $context, 'group' );
-  $responsive   = ubik_imagery_context( $context, 'responsive' );
-  $static       = ubik_imagery_context( $context, 'static' );
+  $group          = ubik_imagery_context( $context, 'group' );
+  $responsive     = ubik_imagery_context( $context, 'responsive' );
+  $static         = ubik_imagery_context( $context, 'static' );
 
   // The margins can be filtered; this is mostly in case the inner margin (the space *between* grouped images) is not the same as the page margins
   // Example: your outer page margins are 30px on each side but the spacing between images is 20px
   // Such functionality is superfluous for this theme as margins are all handled in increments of 30px
-  $margin         = pendrell_sizes_margin();
-  $margin_inner   = pendrell_sizes_margin_inner();
+  $margin         = (int) apply_filters( 'pendrell_sizes_margin', PENDRELL_BASELINE );
+  $margin_inner   = (int) apply_filters( 'pendrell_sizes_margin_inner', PENDRELL_BASELINE );
 
   // Breakpoints replicated from `src/scss/config/_settings.scss`
-  $tiny           = ceil( $main_width / 1.5 );                    // 390px
-  $small          = ceil( $main_width / 1.2 );                    // 520px
-  $medium         = $main_width + ( $margin * 3 );                // 714px
-  $large          = $main_width + ( $margin * 8 );                // 864px
-  $full           = $content_width + ( $margin * 3 );             // 1050px
+  $tiny           = ceil( $medium_width / 1.5 );                    // 390px
+  $small          = ceil( $medium_width / 1.2 );                    // 520px
+  $medium         = $medium_width + ( $margin * 3 );                // 714px
+  $large          = $medium_width + ( $margin * 8 );                // 864px
+  $full           = $content_width + ( $margin * 3 );               // 990px
 
   // Usable space for each breakpoint; for comparison with $width
-  $tiny_content   = ceil( $main_width / 1.5 ) - $margin;          // 360px
-  $small_content  = ceil( $main_width / 1.2 ) - ( $margin * 2 );  // 460px
-  $medium_content = $main_width;                                  // 624px
-  $large_content  = $main_width + ( $margin * 5 );                // 774px
+  $tiny_content   = ceil( $medium_width / 1.5 ) - $margin;          // 360px
+  $small_content  = ceil( $medium_width / 1.2 ) - ( $margin * 2 );  // 460px
+  $medium_content = $medium_width;                                  // 624px
+  $large_content  = $medium_width + ( $margin * 5 );                // 774px
 
   // This first chunk of code deals with grouped fractional width images
   // These sizes are defined as fractions of $content_width by `ubik_imagery_add_fractional_sizes()`
@@ -83,10 +80,6 @@ function pendrell_sizes_media_queries( $queries = array(), $size = '', $width = 
       $factor = 4;
 
     // We lead with a media query specifying the minimum pixel width at which an image is *fixed* in size (not fluid)
-    // In this theme only images displayed in full-width mode will render at the requested width ($width); everything else will be fixed but downsized
-    // As such we test whether this is a full-width view and, if not, attempt to calculate the downsized width given a smaller $bounding_width
-    if ( !pendrell_full_width() )
-      $width = round( ( $bounding_width - ( $margin_inner * ( $factor - 1 ) ) ) / $factor, 5 );
     $queries[] = '(min-width: ' . $full . 'px) ' . $width . 'px';
 
     // A regular grouped gallery; a helper class like `gallery-columns-3` and the corresponding image size (e.g. `third-square`) must be passed to Ubik Imagery
@@ -96,13 +89,13 @@ function pendrell_sizes_media_queries( $queries = array(), $size = '', $width = 
       // By this point all images are rendered smaller than their intrinsic sizes and will be sized based on a percentage width of the viewport minus page margins and margins between images within a group
       // For example: third-width images will take up one third of the viewport width minus one third of the total width of the inner margins (of which there will be two in this case) minus the *fixed* width of the page margins (hence the use of `calc`)
       // Note: these values won't add up to 100 due to the presence of the inner margins
-      $viewport = round( ( 1 / $factor - ( ( ( $margin_inner * ( $factor - 1 ) ) / $bounding_width ) ) / $factor ) * 100, 5 );
+      $viewport = round( ( 1 / $factor - ( ( ( $margin_inner * ( $factor - 1 ) ) / $content_width ) ) / $factor ) * 100, 5 );
       $queries[] = '(min-width: ' . $medium . 'px) calc(' . $viewport . 'vw - ' . round( ( $margin * 3 ) / $factor, 5 ) . 'px)';
 
       // Special case: for non-static galleries the 4 column layout collapses into a 2 column layout below the medium breakpoint
       if ( $static === false && $factor === 4 ) {
         $factor = 2;
-        $viewport = round( ( 1 / $factor - ( ( ( $margin_inner * ( $factor - 1 ) ) / $bounding_width ) ) / $factor ) * 100, 5 );
+        $viewport = round( ( 1 / $factor - ( ( ( $margin_inner * ( $factor - 1 ) ) / $content_width ) ) / $factor ) * 100, 5 );
       }
 
       // The 2 and 3 column layouts only need to have the page margins progressively reduced; everything else remains the same
@@ -124,18 +117,14 @@ function pendrell_sizes_media_queries( $queries = array(), $size = '', $width = 
     }
   } else {
 
-    // Calculate the usable space on the cusp of the large breakpoint in when not in full-width mode
-    // This will determine whether we add a couple of extra media queries to the top of the stack
-    // These extra queries handle things when the main content and sidebar are starting to squish together and the sidebar hasn't yet dropped down to the bottom
-    $large_usable = floor( ( $large_content - ( $margin * 2 ) ) * ( ( $main_width + $margin ) / $content_width ) ); // Works out to around 487px
-    if ( $width >= $large_usable ) {
-      $queries[] = '(min-width: ' . $full . 'px) ' . $width . 'px';
-      $queries[] = '(min-width: ' . $large . 'px) calc(' . round( ( $main_width / ( $content_width - $margin * 2 ) ) * 100, 5 ) . 'vw - ' . ( $margin * 5 ) . 'px)';
-    }
-
-    // Now we must output another media query declaring at what width an image will be displayed at the requested size
-    // Note: all images not displayed in full-width mode will top out at 624px meaning we only need to concern ourself with the small breakpoint (from 2x page margins to 1x page margins)
-    if ( ( $width + $margin ) > $small ) {
+    // As before, the first media query must specify the minimum width at which an image is rendered at the *requested* width
+    // Page margins also introduce some ambiguity at the small and medium breakpoints
+    // Note: viewport calculations will *not* add up to 100 due to the presence of margins around the content area
+    if ( ( $width + ( $margin * 2 ) ) > $medium ) {
+      $queries[] = '(min-width: ' . ( $width + ( $margin * 3 ) ) . 'px) ' . $width . 'px';
+      $queries[] = '(min-width: ' . $medium . 'px) calc(100vw - ' . ( $margin * 3 ) . 'px)';
+      $queries[] = '(min-width: ' . $small . 'px) calc(100vw - ' . ( $margin * 2 ) . 'px)';
+    } elseif ( ( $width + $margin ) > $small ) {
       $queries[] = '(min-width: ' . ( $width + ( $margin * 2 ) ) . 'px) ' . $width . 'px';
       $queries[] = '(min-width: ' . $small . 'px) calc(100vw - ' . ( $margin * 2 ) . 'px)';
     } else {
@@ -145,25 +134,17 @@ function pendrell_sizes_media_queries( $queries = array(), $size = '', $width = 
 
   // Return an array of arrays (required by Ubik Imagery)
   return $queries;
-
 }
-if ( PENDRELL_RESPONSIVE_IMAGES )
-  add_filter( 'ubik_imagery_sizes_media_queries', 'pendrell_sizes_media_queries', 10, 4 );
-
-
-
-// == SIZES ATTRIBUTE DEFAULT == //
 
 // Default `sizes` attribute handling specific to Pendrell
 function pendrell_sizes_default( $default = '', $size = '', $width = '', $context = '' ) {
 
-  global $content_width, $main_width;
-
-  // Set the bounding width (the maximum size for rendered images)
-  if ( pendrell_full_width() ) {
+  // Set bounding width
+  global $content_width, $medium_width;
+  if ( PENDRELL_COLUMNS === 1 ) {
     $bounding_width = $content_width;
   } else {
-    $bounding_width = $main_width;
+    $bounding_width = $medium_width;
   }
 
   // Default viewport width (integer)
@@ -171,8 +152,8 @@ function pendrell_sizes_default( $default = '', $size = '', $width = '', $contex
 
   // The margins can be filtered; this is mostly in case the inner margin (the space between grouped images) is not the same as the page margins
   // Example: your outer page margins are 30px on each side but the spacing between images is 20px
-  $margin       = pendrell_sizes_margin();
-  $margin_inner = pendrell_sizes_margin_inner();
+  $margin       = (int) apply_filters( 'pendrell_sizes_margin', PENDRELL_BASELINE );
+  $margin_inner = (int) apply_filters( 'pendrell_sizes_margin_inner', PENDRELL_BASELINE );
 
   // Test the context object for various scenarios
   $content      = ubik_imagery_context( $context, 'content' ); // Defaults back to 100vw as images fill the viewport
@@ -203,24 +184,77 @@ function pendrell_sizes_default( $default = '', $size = '', $width = '', $contex
   // Return the default `sizes` attribute
   return $default;
 }
-if ( PENDRELL_RESPONSIVE_IMAGES )
+
+// Activate the previous functions
+if ( PENDRELL_RESPONSIVE_IMAGES ) {
+  add_filter( 'ubik_imagery_sizes_media_queries', 'pendrell_sizes_media_queries', 10, 4 );
   add_filter( 'ubik_imagery_sizes_default', 'pendrell_sizes_default', 10, 4 );
-
-
-
-// == MARGINS == //
-
-// Two functions to allow for margins to be filtered
-// These functions are somewhat unnecessary for this theme as the inner margin matches the outer page margin; just coding this for the sake of being complete
-// @filter: pendrell_sizes_margin
-// @filter: pendrell_sizes_margin_inner
-// @constant: PENDRELL_BASELINE
-function pendrell_sizes_margin() {
-  return (int) apply_filters( 'pendrell_sizes_margin', PENDRELL_BASELINE );
 }
-function pendrell_sizes_margin_inner() {
-  return (int) apply_filters( 'pendrell_sizes_margin_inner', PENDRELL_BASELINE );
+
+
+
+// == LAZYSIZES == //
+
+// WordPress will not provision `srcset` unless there are 2 or more sources; as such, smaller images won't have a `srcset` attribute
+// This means we only want to swap the `srcset` attribute for a blank if there's already something there
+// A blank `srcset` and filled `data-srcset` allows Lazysizes to lazy load responsive images
+// Note: you can filter the "count" where lazyloading will begin; this allows you to load images "above the fold" like normal, skipping any JS trickery
+// @filter: pendrell_image_lazysizes_count
+function pendrell_image_lazysizes_srcset( $html = '' ) {
+  static $counter = 1; // This counter is presumably triggered as often as the one in the next function
+  if ( !empty( $html ) && $counter > apply_filters( 'pendrell_image_lazysizes_count', 1 ) )
+    $html = 'data-' . $html . ' srcset="' . ubik_imagery_blank() . '" ';
+  $counter++;
+  return $html;
 }
+function pendrell_image_lazysizes_class( $classes = array() ) {
+  static $counter = 1;
+  if ( $counter > apply_filters( 'pendrell_image_lazysizes_count', 1 ) )
+    $classes[] = 'lazyload'; // Activates Lazysizes on associated images
+  $counter++;
+  return $classes;
+}
+if ( PENDRELL_LAZYSIZES ) {
+  add_filter( 'ubik_imagery_img_class', 'pendrell_image_lazysizes_class' ); // Activates Lazysizes; we could also add `data-sizes="auto"` but this seems buggy
+  add_filter( 'ubik_imagery_srcset_html', 'pendrell_image_lazysizes_srcset' ); // Swap out the `srcset` attribute where available
+  add_filter( 'ubik_imagery_dimensions', '__return_empty_string' ); // Force height/width attribute to conform to this theme's content width
+}
+add_filter( 'ubik_imagery_dimensions', '__return_empty_string' ); // Force height/width attribute to conform to this theme's content width
+
+
+
+// == IMAGE WRAPPERS == //
+
+// Dump structured data if the context prohibits it; we don't want certain item properties on related images
+function pendrell_image_wrap_attributes( $attributes, $html, $id, $caption, $class, $align, $contents, $context, $width, $height  ) {
+  if ( ubik_imagery_context( $context, 'related' ) && isset( $attributes['schema'] ) )
+    $attributes['schema'] = str_replace( ' itemprop="image"', '', $attributes['schema'] );
+  if ( !empty( $width ) )
+    $attributes['style'] = 'style="width: ' . $width . 'px;"'; // Setting an explicit width for use with the intrinsic ratio technique
+  return $attributes;
+}
+add_filter( 'ubik_imagery_wrap_attributes', 'pendrell_image_wrap_attributes', 10, 10 );
+
+
+
+// Add intrinsic ratio wrapper to the image element itself
+function pendrell_image_wrap_inner( $html, $width, $height ) {
+  $padding = ubik_imagery_sizes_percent( $width, $height );
+  if ( !empty( $padding ) )
+    $html = '<div class="ubik-wrap-inner" style="padding-bottom: ' . $padding . '%;">' . $html . '</div>';
+  return $html;
+}
+//add_filter( 'ubik_imagery_img_html', 'pendrell_image_wrap_inner', 10, 3 );
+
+
+
+// Set default image size for the entire theme
+function pendrell_image_default_size( $size ) {
+  if ( PENDRELL_COLUMNS > 1 )
+    return 'medium';
+  return 'large';
+}
+add_filter( 'ubik_imagery_default_size', 'pendrell_image_default_size' );
 
 
 

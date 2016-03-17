@@ -1,6 +1,7 @@
 // ==== DEFAULT CONFIGURATION ==== //
 
 // Development mode; switches on a few things that are otherwise build-specific
+//$dev: true;
 $dev: false;
 
 // Output pixel fallback when generating rems for older browsers (pre-IE9)
@@ -12,7 +13,7 @@ $base-line:       28;
 
 // Site widths
 $width-content:   1020px;
-$width-main:      720px;
+$width-medium:    720px;
 $width-thumb:     150px;
 
 // Image spacer; defines the space between gallery items and grouped images
@@ -28,7 +29,7 @@ $_metadata: (
 , theme-author:             "Alexander Synaptic"
 , theme-author-uri:         "http://synapticism.com"
 , theme-description:        "Alexander Synaptic"
-, theme-version:            "0.3.0"
+, theme-version:            "0.5.0"
 , theme-license:            "GPLv3"
 , theme-license-uri:        "https://www.gnu.org/copyleft/gpl.txt"
 , theme-tags:               (light, gray, white, one-column, two-columns, right-sidebar, fixed-layout, responsive-layout, custom-menu, featured-images, microformats, post-formats, theme-options, translation-ready)
@@ -38,20 +39,21 @@ $_metadata: (
 
 // Breakpoints; use break() to access; pixel values (in the comments) are defaults but assume nothing else has changed
 $_breaks: (
-  tiny:               ceil( $width-main / 1.8 )       // 400
-, small:              ceil( $width-main / 1.5 )       // 480
-, medium:             ceil( $width-main + spacer(2) ) // 780
-, large:              ceil( $width-main + spacer(7) ) // 930
-, full:               ceil( $width-content )          // 1020
+  tiny:               ceil( $width-medium / 1.8 )       // 400
+, small:              ceil( $width-medium / 1.5 )       // 480
+, medium:             ceil( $width-medium + spacer(2) ) // 780
+, large:              ceil( $width-medium + spacer(7) ) // 930
+, full:               ceil( $width-content )            // 1020
 );
 
 // Modules; reduce bloat by switching some of these off; test with @if module(name) {}
 $_modules: (
-  full-width:         false
-, gallery-shortcode:  false // WordPress core; activation creates some useless duplicate styles; disable if you don't use [gallery]
+  gallery-shortcode:  false // WordPress core; activation creates some useless duplicate styles; disable if you don't use [gallery]
+, lazysizes:          false
 , magnific-popup:     false
 , post-formats:       false
 , prism:              true
+, one-column:         false
 , ubik-links:         true
 , ubik-photo-meta:    false
 , ubik-places:        false
@@ -63,11 +65,12 @@ $_modules: (
 
 @if $dev {
   $_modules: (
-    full-width:         true
-  , gallery-shortcode:  true // WordPress core; activation creates some useless duplicate styles
+    gallery-shortcode:  true // WordPress core; activation creates some useless duplicate styles
+  , lazysizes:          true
   , magnific-popup:     true
   , post-formats:       true
   , prism:              true
+  , one-column:         true
   , ubik-links:         true
   , ubik-photo-meta:    true
   , ubik-places:        true

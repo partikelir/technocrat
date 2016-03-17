@@ -32,6 +32,9 @@
 @function size($key) {
   @return config($_sizes, $key);
 }
+@function font($key) {
+  @return config($_fonts, $key);
+}
 @function colour($key) {
   @return config($_colours, $key);
 }

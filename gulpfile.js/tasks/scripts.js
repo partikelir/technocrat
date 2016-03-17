@@ -9,7 +9,7 @@ var gulp        = require('gulp')
 // Check core scripts for errors
 gulp.task('scripts-lint', function() {
   return gulp.src(config.lint.src)
-  .pipe(plugins.jshint('.jshintrc'))
+  .pipe(plugins.jshint())
   .pipe(plugins.jshint.reporter('default')); // No need to pipe this anywhere
 });
 
