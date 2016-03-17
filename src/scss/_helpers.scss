@@ -100,27 +100,74 @@
   font-family: font(body-full);
   font-weight: font(body-light);
 }
+%body-light-system {
+  font-family: font(body-system);
+  font-weight: font(body-light);
+}
+%body-light-observer {
+  @include font-observer(body);
+  font-weight: font(body-light);
+}
 %body-normal {
   font-family: font(body-full);
+  font-weight: font(body-normal);
+}
+%body-normal-system {
+  font-family: font(body-system);
+  font-weight: font(body-normal);
+}
+%body-normal-observer {
+  @include font-observer(body);
   font-weight: font(body-normal);
 }
 %body-bold {
   font-family: font(body-full);
   font-weight: font(body-bold);
 }
+%body-bold-system {
+  font-family: font(body-system);
+  font-weight: font(body-bold);
+}
+%body-bold-observer {
+  @include font-observer(body);
+  font-weight: font(body-bold);
+}
 %head-light {
   font-family: font(head-full);
+  font-weight: font(head-light);
+}
+%head-light-system {
+  font-family: font(head-system);
+  font-weight: font(head-light);
+}
+%head-light-observer {
+  @include font-observer(head);
   font-weight: font(head-light);
 }
 %head-normal {
   font-family: font(head-full);
   font-weight: font(head-normal);
 }
+%head-normal-system {
+  font-family: font(head-system);
+  font-weight: font(head-normal);
+}
+%head-normal-observer {
+  @include font-observer(head);
+  font-weight: font(head-normal);
+}
 %head-bold {
   font-family: font(head-full);
   font-weight: font(head-bold);
 }
-
+%head-bold-system {
+  font-family: font(head-system);
+  font-weight: font(head-bold);
+}
+%head-bold-observer {
+  @include font-observer(head);
+  font-weight: font(head-bold);
+}
 %mono-normal {
   font-family: font(mono-full);
   font-weight: font(mono-normal);
@@ -128,32 +175,6 @@
 %uppercase {
   font-feature-settings: 'lnum';
   text-transform: uppercase;
-}
-
-// Font observers
-%body-light-observer {
-  @include font-observer(body);
-  font-weight: font(body-light);
-}
-%body-normal-observer {
-  @include font-observer(body);
-  font-weight: font(body-normal);
-}
-%body-bold-observer {
-  @include font-observer(body);
-  font-weight: font(body-bold);
-}
-%head-light-observer {
-  @include font-observer(head);
-  font-weight: font(head-light);
-}
-%head-normal-observer {
-  @include font-observer(head);
-  font-weight: font(head-normal);
-}
-%head-bold-observer {
-  @include font-observer(head);
-  font-weight: font(head-bold);
 }
 
 // Font sizes

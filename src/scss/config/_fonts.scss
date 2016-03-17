@@ -31,19 +31,19 @@ $_sizes: (
 $_fonts: (
   head-full:        k-font-stack("Catamaran", myriad)
 , head-web:         "Catamaran"
-, head-system:      k-font-stack(myriad) // k-font-stack(k-font-stack-trim(myriad), zh-heiti-tc)
+, head-system:      k-font-stack(myriad)
 , head-light:       100
 , head-normal:      300
 , head-bold:        500
 
 , body-full:        k-font-stack("Oxygen", helvetica-light)
 , body-web:         "Oxygen"
-, body-system:      k-font-stack(helvetica-light) // k-font-stack(k-font-stack-trim(helvetica-light), zh-heiti-tc)
+, body-system:      k-font-stack(helvetica-light)
 , body-light:       300
 , body-normal:      400
 , body-bold:        600
 
-, mono-full:        k-font-stack(andale)
+, mono-full:        k-font-stack(menlo)
 , mono-light:       300
 , mono-normal:      400
 , mono-bold:        600
@@ -157,7 +157,7 @@ $_fonts: (
 // Font stack mixin for use with Font Face Observer (to improve web font performance)
 @mixin font-observer($stack: body) {
   font-family: font(#{$stack}-system);
-  .wf-active & {
+  .wf-#{$stack}-active & {
     font-family: font(#{$stack}-web);
   }
 }
