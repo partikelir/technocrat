@@ -96,6 +96,42 @@
 }
 
 // Font styling
+%head-light {
+  font-family: font(head-full);
+  font-weight: font(head-light);
+}
+%head-light-system {
+  font-family: font(head-system);
+  font-weight: font(head-light);
+}
+%head-light-observer {
+  @include font-observer(head);
+  font-weight: font(head-light);
+}
+%head-normal {
+  font-family: font(head-full);
+  font-weight: font(head-normal);
+}
+%head-normal-system {
+  font-family: font(head-system);
+  font-weight: font(head-normal);
+}
+%head-normal-observer {
+  @include font-observer(head);
+  font-weight: font(head-normal);
+}
+%head-bold {
+  font-family: font(head-full);
+  font-weight: font(head-bold);
+}
+%head-bold-system {
+  font-family: font(head-system);
+  font-weight: font(head-bold);
+}
+%head-bold-observer {
+  @include font-observer(head);
+  font-weight: font(head-bold);
+}
 %body-light {
   font-family: font(body-full);
   font-weight: font(body-light);
@@ -132,41 +168,41 @@
   @include font-observer(body);
   font-weight: font(body-bold);
 }
-%head-light {
-  font-family: font(head-full);
-  font-weight: font(head-light);
+%text-light {
+  font-family: font(text-full);
+  font-weight: font(text-light);
 }
-%head-light-system {
-  font-family: font(head-system);
-  font-weight: font(head-light);
+%text-light-system {
+  font-family: font(text-system);
+  font-weight: font(text-light);
 }
-%head-light-observer {
-  @include font-observer(head);
-  font-weight: font(head-light);
+%text-light-observer {
+  @include font-observer(text);
+  font-weight: font(text-light);
 }
-%head-normal {
-  font-family: font(head-full);
-  font-weight: font(head-normal);
+%text-normal {
+  font-family: font(text-full);
+  font-weight: font(text-normal);
 }
-%head-normal-system {
-  font-family: font(head-system);
-  font-weight: font(head-normal);
+%text-normal-system {
+  font-family: font(text-system);
+  font-weight: font(text-normal);
 }
-%head-normal-observer {
-  @include font-observer(head);
-  font-weight: font(head-normal);
+%text-normal-observer {
+  @include font-observer(text);
+  font-weight: font(text-normal);
 }
-%head-bold {
-  font-family: font(head-full);
-  font-weight: font(head-bold);
+%text-bold {
+  font-family: font(text-full);
+  font-weight: font(text-bold);
 }
-%head-bold-system {
-  font-family: font(head-system);
-  font-weight: font(head-bold);
+%text-bold-system {
+  font-family: font(text-system);
+  font-weight: font(text-bold);
 }
-%head-bold-observer {
-  @include font-observer(head);
-  font-weight: font(head-bold);
+%text-bold-observer {
+  @include font-observer(text);
+  font-weight: font(text-bold);
 }
 %mono-normal {
   font-family: font(mono-full);

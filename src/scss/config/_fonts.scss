@@ -43,6 +43,13 @@ $_fonts: (
 , body-normal:      400
 , body-bold:        600
 
+, text-full:        k-font-stack(helvetica-light)
+, text-web:         k-font-stack(helvetica-light)
+, text-system:      k-font-stack(helvetica-light)
+, text-light:       300
+, text-normal:      400
+, text-bold:        600
+
 , mono-full:        k-font-stack(menlo)
 , mono-light:       300
 , mono-normal:      400
@@ -83,6 +90,9 @@ $_fonts: (
   // Main
   @if (main-title == $style) {
     @extend %head-normal-observer;
+  }
+  @if (main-desc == $style) {
+    // Inherit from body
   }
 
   // Content
