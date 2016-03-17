@@ -37,6 +37,7 @@ vendor
 build
 dist
 assets/icons
+src/icons
 
 ## Project specific
 src/scss/_normalize.scss
