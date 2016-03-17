@@ -103,7 +103,7 @@ function pendrell_related_posts_gallery( $related_posts = '', $count = 4, $size 
     return;
 
   // Display fewer
-  if ( PENDRELL_LAYOUT_COLUMNS && PENDRELL_LAYOUT_COLUMNS > 1 ) {
+  if ( PENDRELL_COLUMNS > 1 ) {
     $count = 3;
     $size = 'third-square';
   }

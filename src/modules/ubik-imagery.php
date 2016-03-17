@@ -37,7 +37,7 @@ function pendrell_sizes_media_queries( $queries = array(), $size = '', $width = 
 
   // Limit width by the content width; what we're interested in here is the *rendered size* of an image which won't be larger than the container
   global $content_width, $medium_width;
-  if ( PENDRELL_LAYOUT_COLUMNS === 1 ) {
+  if ( PENDRELL_COLUMNS === 1 ) {
     $width = min( $width, $content_width );
   } else {
     $width = min( $width, $medium_width );
@@ -141,7 +141,7 @@ function pendrell_sizes_default( $default = '', $size = '', $width = '', $contex
 
   // Set bounding width
   global $content_width, $medium_width;
-  if ( PENDRELL_LAYOUT_COLUMNS === 1 ) {
+  if ( PENDRELL_COLUMNS === 1 ) {
     $bounding_width = $content_width;
   } else {
     $bounding_width = $medium_width;
@@ -250,7 +250,7 @@ add_filter( 'ubik_imagery_img_html', 'pendrell_image_wrap_inner', 10, 3 );
 
 // Set default image size for the entire theme
 function pendrell_image_default_size( $size ) {
-  if ( PENDRELL_LAYOUT_COLUMNS && PENDRELL_LAYOUT_COLUMNS > 1 )
+  if ( PENDRELL_COLUMNS > 1 )
     return 'medium';
   return 'large';
 }

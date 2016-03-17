@@ -8,10 +8,15 @@ function pendrell_image_wrapper( $content = '' ) {
   global $post;
 
   // Initialize
-  $html = $id = $caption = $title = $align = $url = $alt = $rel = $class = $contents = '';
+  $html = $id = $caption = $title = $align = $url = $alt = $rel = $class = $contents = $default = '';
 
   // Hooks into existing post_thumbnail_size filter
-  $size = apply_filters( 'post_thumbnail_size', 'large' );
+  if ( PENDRELL_COLUMNS === 1 ) {
+    $default = 'large';
+  } else {
+    $default = 'medium';
+  }
+  $size = apply_filters( 'post_thumbnail_size', $default );
 
   // Image post formats: load thumbnail and metadata from the attachment
   if ( has_post_format( 'image' ) && has_post_thumbnail() ) {
