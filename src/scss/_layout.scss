@@ -197,6 +197,7 @@ main {
   @extend %clearfix-above;
   @extend %links;
   @extend %spacer-below-double;
+  @include font-style(main-desc);
   p {
     @extend %spacer-below;
   }

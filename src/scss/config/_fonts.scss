@@ -30,17 +30,24 @@ $_sizes: (
 $_fonts: (
   head-full:        k-font-stack(Ubuntu, calibri)
 , head-web:         Ubuntu
-, head-system:      k-font-stack(calibri) // k-font-stack(k-font-stack-trim(myriad), zh-heiti-tc)
+, head-system:      k-font-stack(calibri)
 , head-light:       300
 , head-normal:      400
 , head-bold:        700
 
 , body-full:        k-font-stack("Oxygen", helvetica-light)
 , body-web:         "Oxygen"
-, body-system:      k-font-stack(helvetica-light) // k-font-stack(k-font-stack-trim(helvetica-light), zh-heiti-tc)
+, body-system:      k-font-stack(helvetica-light)
 , body-light:       300
 , body-normal:      400
 , body-bold:        700
+
+, text-full:        k-font-stack(helvetica-light)
+, text-web:         k-font-stack(helvetica-light)
+, text-system:      k-font-stack(helvetica-light)
+, text-light:       300
+, text-normal:      400
+, text-bold:        600
 
 , mono-full:        k-font-stack(menlo)
 , mono-light:       300
@@ -82,6 +89,9 @@ $_fonts: (
   // Main
   @if (main-title == $style) {
     @extend %head-normal-observer;
+  }
+  @if (main-desc == $style) {
+    // Inherit from body
   }
 
   // Content
@@ -156,7 +166,7 @@ $_fonts: (
 // Font stack mixin for use with Font Face Observer (to improve web font performance)
 @mixin font-observer($stack: body) {
   font-family: font(#{$stack}-system);
-  .wf-active & {
+  .wf-#{$stack}-active & {
     font-family: font(#{$stack}-web);
   }
 }
