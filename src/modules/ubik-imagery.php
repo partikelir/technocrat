@@ -37,7 +37,11 @@ function pendrell_sizes_media_queries( $queries = array(), $size = '', $width = 
 
   // Limit width by the content width; what we're interested in here is the *rendered size* of an image which won't be larger than the container
   global $content_width, $medium_width;
-  $width = min( $width, $content_width );
+  if ( PENDRELL_LAYOUT_COLUMNS === 1 ) {
+    $width = min( $width, $content_width );
+  } else {
+    $width = min( $width, $medium_width );
+  }
 
   // Test the context object for various scenarios; this allows the theme to handle the sizes attribute in different ways depending on how images are being used
   $group          = ubik_imagery_context( $context, 'group' );
@@ -136,7 +140,12 @@ function pendrell_sizes_media_queries( $queries = array(), $size = '', $width = 
 function pendrell_sizes_default( $default = '', $size = '', $width = '', $context = '' ) {
 
   // Set bounding width
-  global $content_width;
+  global $content_width, $medium_width;
+  if ( PENDRELL_LAYOUT_COLUMNS === 1 ) {
+    $bounding_width = $content_width;
+  } else {
+    $bounding_width = $medium_width;
+  }
 
   // Default viewport width (integer)
   $viewport     = 100;
@@ -161,7 +170,7 @@ function pendrell_sizes_default( $default = '', $size = '', $width = '', $contex
       $factor = 4;
 
     // Divide the default viewport width for half/third/quarter-width images (minus the inner margin contribution on a per image basis)
-    $viewport = round( ( 1 / $factor - ( ( ( $margin_inner * ( $factor - 1 ) ) / $content_width ) ) / $factor ) * 100, 5 ) + 0.001;
+    $viewport = round( ( 1 / $factor - ( ( ( $margin_inner * ( $factor - 1 ) ) / $bounding_width ) ) / $factor ) * 100, 5 ) + 0.001;
     $margin   = $margin / $factor;
   }
 
