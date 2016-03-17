@@ -43,7 +43,6 @@
 }
 .wrap-main {
   @extend %clearfix-below;
-  background: colour(bg-content);
 }
 .wrap-sidebar {
   @extend %wrap;
@@ -169,6 +168,7 @@
   @extend %clearfix-below;
   @include rem( padding-top, spacer() );
   @include rem( padding-bottom, spacer() );
+  background: colour(bg-content);
   max-width: $width-medium; // Keeps content contained regardless of whether sidebar appears
   word-wrap: break-word; // Keep text content from overflowing
   &:focus {
