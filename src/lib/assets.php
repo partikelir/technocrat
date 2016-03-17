@@ -126,12 +126,12 @@ add_action( 'wp_enqueue_scripts', 'pendrell_scripts_enqueue' );
 
 
 // Asynchronous script loading filter
-function pendrell_scripts_async( $tag, $handle ) {
-  if ( 'jquery' !== $handle && 'p-header' !== $handle )
+function pendrell_scripts_defer( $tag, $handle ) {
+  if ( !is_admin() && 'jquery' !== $handle && 'p-header' !== $handle )
     $tag = str_replace( ' src', ' defer="defer" src', $tag ); // Defer absolutely everything until after the page has loaded
   return $tag;
 }
-add_filter( 'script_loader_tag', 'pendrell_scripts_async', 10, 2 );
+add_filter( 'script_loader_tag', 'pendrell_scripts_defer', 10, 2 );
 
 
 
