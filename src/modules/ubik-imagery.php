@@ -185,12 +185,14 @@ function pendrell_sizes_default( $default = '', $size = '', $width = '', $contex
   return $default;
 }
 
-// Activate the previous functions
+// Activate the previous functions OR disable `srcset` and `sizes` output
 if ( PENDRELL_RESPONSIVE_IMAGES ) {
   add_filter( 'ubik_imagery_sizes_media_queries', 'pendrell_sizes_media_queries', 10, 4 );
   add_filter( 'ubik_imagery_sizes_default', 'pendrell_sizes_default', 10, 4 );
+} else {
+  add_filter( 'ubik_imagery_srcset_html', '__return_empty_string' );
+  add_filter( 'ubik_imagery_sizes_html', '__return_empty_string' );
 }
-
 
 
 
