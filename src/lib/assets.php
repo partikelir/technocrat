@@ -26,6 +26,8 @@ function pendrell_scripts_enqueue() {
   // == HEADER == //
 
   // Nothing fancy; loaded in the header but doesn't depend on jQuery
+  if ( PENDRELL_LAZYSIZES )
+    $scripts['header']['file'] = '-header-lazy';
   wp_enqueue_script( $scripts['header']['name'], get_stylesheet_directory_uri() . '/js/p' . $scripts['header']['file'] . '.js', null, filemtime( get_template_directory() . '/js/p' . $scripts['header']['file'] . '.js' ), false );
 
 

@@ -128,6 +128,7 @@ module.exports = {
     // Bundles are defined by a name and an array of chunks to concatenate; warning: it's up to you to manage dependencies!
   , bundles: {
       header: ['header']
+    , header_lazy: ['header', 'lazysizes']
     , footer: ['footer']
     , contact: ['contact']
     , magnific: ['magnific']
@@ -144,7 +145,6 @@ module.exports = {
       header: [
         modules+'fontfaceobserver/fontfaceobserver.js'
       , modules+'svg4everybody/dist/svg4everybody.js'
-      , modules+'lazysizes/lazysizes.js'
       , src+'js/core-header.js'
       ]
     , footer: [
@@ -162,6 +162,10 @@ module.exports = {
     , contact: [
         modules+'jquery-validation/dist/jquery.validate.js'
       , src+'js/contact-form.js'
+      ]
+    , lazysizes: [
+        modules+'lazysizes/lazysizes.js'
+      , src+'js/lazysizes.js'
       ]
     , magnific: [
         bower+'parse-srcset/src/parse-srcset.js'
