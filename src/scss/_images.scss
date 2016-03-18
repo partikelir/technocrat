@@ -51,7 +51,7 @@ figure.wp-caption,
 // Reset borders and outlines for linked images
 figure.wp-caption {
   max-width: 100%;
-  overflow: auto; // Without this the floats won't float, but we'll reset it in a media query (above)
+  //overflow: auto; // Without this the floats won't float, but we'll reset it in a media query (above) // Commented out as it was hiding caption beginnings
   a,
   a:visited,
   a:hover,
