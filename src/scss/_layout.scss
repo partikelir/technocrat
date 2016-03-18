@@ -170,8 +170,11 @@ main {
 }
 .main-title {
   @extend %spacer-below-half;
-  @include font-size(head-biggest);
+  @include font-size(head-bigger);
   @include font-style(main-title);
+  @include k-media-above( break(medium) ) {
+    @include font-size(head-biggest);
+  }
 }
 .main-desc {
   @extend %clearfix-above;

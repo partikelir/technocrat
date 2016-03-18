@@ -14,18 +14,10 @@
   }
 }
 .entry-title {
-  @include font-size(head-bigger);
+  @include font-size(head-big);
   @include font-style(entry-title);
   @include k-media-above( break(medium) ) {
-    @include font-size(head-biggest); // This is the normal title size seen on the homepage and on singular posts
-  }
-
-  // Drop the size of entry titles on archives, 404 pages, and in search results
-  .archive &,
-  .error404 &,
-  .search-results &,
-  .search-no-results & {
-    @include font-size(head-bigger);
+    @include font-size(head-bigger); // This is the normal title size seen on the homepage and on singular posts
   }
 }
 
