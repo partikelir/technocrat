@@ -107,6 +107,9 @@ figure.wp-caption {
   @include scut-reverse-italics;
   color: colour(text-lightest);
   max-width: 100%;
+  @include k-media-above( break(medium) ) {
+    @include font-size(text-small);
+  }
 }
 
 // Image overlay class; apply this to any image container (likely a `figure` element)
