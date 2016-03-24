@@ -40,6 +40,8 @@ get_header(); ?>
                 <fieldset>
                   <label for="text"><?php _e( 'Message', 'pendrell' ); ?></label>
                   <textarea id="message" name="message" rows="5" placeholder="<?php esc_attr_e( 'Your message&#x0085;', 'pendrell' ); ?>" required="" ></textarea>
+                </fieldset>
+                <fieldset>
                   <input id="cc" name="cc" type="checkbox" value="1" />
                   <label for="cc" class="checkbox-label"><?php _e( 'Send a copy to yourself', 'pendrell' ); ?></label>
                 </fieldset>
