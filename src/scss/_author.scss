@@ -10,13 +10,6 @@
     background: colour(body-dark);
   }
 }
-.author-info {
-  .entry-meta & {
-    @include rem( margin-top, spacer(), 1 );
-    @include rem( padding-top, spacer() );
-    border-top: 1px solid colour(divider);
-  }
-}
 .author-avatar {
   @extend %links-reset-border;
   @include rem( margin-right, spacer(1/2) );

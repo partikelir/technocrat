@@ -48,7 +48,7 @@
 
 
 // Text input; for use with forms, textarea, etc.
-@mixin text-input( $font-size: text-smaller ) {
+@mixin input-text( $font-size: text-smaller ) {
   @include border-rounded;
   @include box-shadow-inner-small;
   @include font-size( $font-size, 8 );

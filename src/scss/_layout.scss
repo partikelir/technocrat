@@ -114,28 +114,14 @@
 }
 .site-title {
   @extend %clearfix-below;
-  @include font-size(site-title-small);
   @include font-style(site-title);
-  @include k-media-above( break(medium) ) {
-    @include font-size(site-title-big);
-  }
-  a {
-    color: colour(site-title);
-    display: inline-block;
-    text-decoration: none;
-    &:hover {
-      color: colour(link-h);
-    }
-  }
 }
 .site-description {
   @extend %clearfix-below;
-  @include font-size(text-smaller);
+  @extend %hide-below-medium; // Hide the site description on smaller screens
   @include font-style(site-description);
-  color: colour(site-desc);
   opacity: 0;
   transition: opacity .8s ease-out;
-  @extend %hide-below-medium; // Hide the site description on smaller screens
 }
 .site-interface { // Site interface: the toolbar/menu at top right
   @include k-absolute( right 0 top spacer() );
@@ -170,11 +156,7 @@ main {
 }
 .main-title {
   @extend %spacer-below-half;
-  @include font-size(head-bigger);
   @include font-style(main-title);
-  @include k-media-above( break(medium) ) {
-    @include font-size(head-biggest);
-  }
 }
 .main-desc {
   @extend %clearfix-above;

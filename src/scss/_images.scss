@@ -62,7 +62,6 @@ figure.wp-caption,
 // Specific to the image wrapper
 figure.wp-caption {
 
-
   // Force full-width images on small viewports
   @include k-media-below( break(tiny) ) {
     .entry-content & {
@@ -103,13 +102,8 @@ figure.wp-caption {
 .entry-caption,
 .wp-caption-text {
   @extend %clearfix-below;
-  @include font-size(text-smaller);
-  @include scut-reverse-italics;
-  color: colour(text-lightest);
+  @include font-style(entry-caption);
   max-width: 100%;
-  @include k-media-above( break(medium) ) {
-    @include font-size(text-small);
-  }
 }
 
 // Image overlay class; apply this to any image container (likely a `figure` element)
@@ -119,13 +113,7 @@ figure.wp-caption {
 
   // Using a class instead of `figcaption` to combat the specificity of caption styles defined above
   .wp-caption-text {
-    @include font-size( text, 0, 25 );
     @include font-style(image-overlay-title);
-    color: white();
-    @include k-media-above( break(medium) ) {
-      @include font-size(text-bigger);
-      @include text-shadow-bigger;
-    }
     .gallery-static & {
       @include k-media-below( break(small) ) {
         @include font-size( text-smaller, 0, 25 );

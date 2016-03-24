@@ -4,36 +4,25 @@
 .entry-header {
   @extend %links-no-border;
   @extend %spacer-below-half;
-  .entry-meta {
-    @include font-size(text-smaller);
-    @include font-style(entry-header-meta);
-    color: colour(text-lightest);
-    .date {
-      @extend %uppercase;
-    }
-  }
+}
+.entry-header-meta {
+  @include font-style(entry-header-meta);
 }
 .entry-title {
-  @include font-size(head-big);
   @include font-style(entry-title);
-  @include k-media-above( break(medium) ) {
-    @include font-size(head-bigger); // This is the normal title size seen on the homepage and on singular posts
-  }
 }
 
 
 
-// Shared post and comment contents
-// Additional styling specific to just post contents can be found below this block; styling specific to comments can be found in comments.scss
+// Shared post and comment contents; for individual styling look below or in `comments.scss`
 .entry-content,
 .comment-content {
   @extend %clearfix-below;
   @extend %links;
-  @include font-style(entry-content);
   letter-spacing: 0.01rem;
   word-wrap: break-word;
 
-  // Header spacing
+  // Headers
   h1,
   h2,
   h3,
@@ -42,8 +31,6 @@
   h6 {
     @extend %spacer-below-half;
   }
-
-  // Headers
   h1,
   h2,
   h3 {
@@ -60,14 +47,21 @@
     @extend %uppercase; // The sizing of these headers is below that of the body copy; let's give them some punch
   }
 
-  // Links
+  // Text formatting
+  p {
+    @extend %spacer-below;
+  }
   a {
     outline: none;
   }
-
-  // Paragraph
-  p {
-    @extend %spacer-below;
+  small {
+    @include font-size(text-small);
+    color: lighten( colour(text-lightest), 7);
+  }
+  sup {
+    @extend %links-reset-border;
+    margin-left: .06em; // Makes superscript text a little more visible, particularly footnotes
+    outline: none;
   }
 
   // Lists and definitions
@@ -101,13 +95,6 @@
     @include rem( margin, 0 spacer(2/3) );
   }
 
-  // Superscript
-  sup {
-    @extend %links-reset-border;
-    margin-left: .06em; // Makes superscript text a little more visible, particularly footnotes
-    outline: none;
-  }
-
   // Tables
   table {
     @extend %links-reset-border;
@@ -119,15 +106,21 @@
     }
   }
   th {
-    @include font-size(head-smaller);
     @include font-style(table-head);
   }
   td {
     @include font-size( text-smaller, 1 );
     border-top: 1px solid colour(divider);
   }
+}
 
-  // Asides; use this instead of <small> in post contents; does not appear in comments but the styling is kept here for ease of maintenance
+
+
+// Specific to entry contents
+.entry-content {
+  @include font-style(entry-content);
+
+  // Asides; use this instead of <small> in post contents
   aside {
     @extend %spacer-below;
     @include font-size(text-small);
@@ -137,15 +130,9 @@
       color: colour(text-lightest);
     }
   }
-}
 
-
-
-// Specific to entry contents
-.entry-content {
   @if module(one-column) {
     @include k-media-above( break(medium) ) {
-      @include font-size(text-big);
 
       // Increase top header sizes (the rest remain the same)
       h1 {
@@ -184,12 +171,10 @@
 // Entry meta
 .entry-footer {
   @extend %clearfix;
+}
+.entry-footer-meta {
+  @extend %links-meta;
   @include font-style(entry-footer-meta);
-  .entry-meta {
-    @extend %links-meta;
-    @include font-size(text-smaller);
-    color: colour(meta);
-  }
 }
 
 

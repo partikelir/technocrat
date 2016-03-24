@@ -37,9 +37,7 @@
 .widget {
   @extend %links-no-border;
   @extend %spacer-below;
-  @include font-size(text-smaller);
   @include font-style(widget-text);
-  color: colour(text-lighter);
   display: inline-block;
   max-width: $width-medium;
   vertical-align: top;
@@ -48,7 +46,6 @@
 
   // Titles
   h2 {
-    @include font-size(head-smallest);
     @include font-style(widget-title);
     color: colour(text-dark);
   }
