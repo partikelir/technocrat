@@ -30,8 +30,8 @@
 
 
   // Link
-  .entry-meta {
-    .link { // Unique class; no need to nest it within article.format-link {}
+  .entry-header-meta {
+    .link { // Unique class; no need to nest it within `article.format-link`
       @extend %links-meta;
       @include font-size(text-small);
       @include scut-truncate; // Stops long URLs from overflowing the article width
@@ -50,13 +50,9 @@
       blockquote {
         @include border-rounded(6px);
         @include box-shadow-inner-big;
-        @include font-size(text-bigger);
+        @include font-style(format-quotation);
         @include rem( padding, spacer(1/2) spacer() );
         border: none;
-        color: colour(text);
-        footer {
-          @extend %text-small;
-        }
       }
     }
   }
@@ -67,8 +63,7 @@
   body:not(.list-view) {
     article.format-status {
       .entry-content {
-        @include font-size(text-bigger);
-        @include font-style(status);
+        @include font-style(format-status);
       }
     }
   }

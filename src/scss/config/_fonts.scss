@@ -64,9 +64,16 @@ $_fonts: (
   // Standard stuff
   @if (head == $style) {
     @extend %head-bold-observer;
+    color: colour(text-dark);
+    font-feature-settings: 'lnum';
+    margin-left: -0.04em;
   }
   @if (body == $style) {
     @extend %body-normal-observer;
+    @include font-size(text);
+    color: colour(text);
+    font-feature-settings: 'liga', 'opbd', 'size', 'init', 'fina'; // Ligatures; optical bounds; optical size; initial and final forms; via: http://www.microsoft.com/typography/otspec/featurelist.htm
+    text-rendering: optimizeLegibility;
   }
   @if (mono == $style) {
     @extend %mono-normal;
@@ -76,9 +83,23 @@ $_fonts: (
   @if (site-title == $style) {
     @extend %head-light-observer;
     text-transform: lowercase;
+    white-space: nowrap;
+    @include k-media-above( break(medium) ) {
+      @include font-size(site-title-big);
+    }
+    a {
+      color: colour(site-title);
+      display: inline-block;
+      text-decoration: none;
+      &:hover {
+        color: colour(highlight);
+      }
+    }
   }
-  @if (site-description == $style) {
+  @if (site-description == $style) { // Not used in this theme
     @extend %body-normal;
+    @include font-size(text-smaller);
+    color: colour(site-desc);
   }
 
   // Menu
@@ -89,43 +110,106 @@ $_fonts: (
   // Main
   @if (main-title == $style) {
     @extend %head-normal-observer;
+    @include font-size(head-bigger);
+    @include k-media-above( break(medium) ) {
+      @include font-size(head-biggest);
+    }
   }
   @if (main-desc == $style) {
-    // Inherit from body
+    color: colour(text-muted);
   }
 
   // Content
   @if (entry-title == $style) {
     @extend %head-normal-observer;
+    @include font-size(head-big);
+    @include k-media-above( break(medium) ) {
+      @include font-size(head-bigger);
+    }
   }
   @if (entry-header-meta == $style) {
     @extend %head-light-observer;
     @extend %uppercase;
+    @include font-size(text-smaller);
+    color: colour(text-lighter);
   }
   @if (entry-content == $style) {
-    // Inherit from body
+    @if module(one-column) {
+      @include k-media-above( break(medium) ) {
+        @include font-size(text-big);
+      }
+    }
+  }
+  @if (entry-blockquote == $style) {
+
+  }
+  @if (entry-caption == $style) {
+    @include font-size(text-smaller);
+    @include scut-reverse-italics;
+    color: colour(text-lightest);
+    @include k-media-above( break(medium) ) {
+      @include font-size(text-small);
+    }
   }
   @if (entry-footer-meta == $style) {
     @extend %body-normal; // Below the fold
+    @include font-size(text-smaller);
+    color: colour(meta);
   }
 
   // Comments
   @if (comment-author == $style) {
     @extend %body-bold; // Below the fold
+    @include font-size(text);
+  }
+  @if (comment-content == $style) {
+    @include font-size(text-small);
+    h1 {
+      @include font-size(head-big);
+    }
+    h2 {
+      @include font-size(head);
+    }
+    h3 {
+      @include font-size(head-small);
+    }
+    h4,
+    h5,
+    h6 {
+      @include font-size(head-smallest);
+    }
+    blockquote {
+      @include font-size(text-smaller);
+      footer {
+        @include font-size(text-smallest);
+      }
+    }
+    pre {
+      @include font-size(text-smaller);
+    }
+  }
+  @if (comment-meta == $style) {
+    @include font-size(text-smaller);
+    color: colour(meta);
   }
 
   // Widgets
   @if (widget-title == $style) {
     @extend %head-light-observer;
+    @include font-size(head-small);
+    color: colour(sidebar-h);
   }
   @if (widget-text == $style) {
     @extend %body-normal-observer;
+    @include font-size(text-smaller);
+    color: colour(sidebar);
   }
 
   // User interface
   @if (table-head == $style) {
     @extend %head-bold; // Below the fold
     @extend %uppercase;
+    @include font-size(head-smaller);
   }
   @if (button == $style) {
     @extend %body-normal-observer;
@@ -138,20 +222,18 @@ $_fonts: (
     @extend %body-normal-observer;
   }
 
-  // Post formats
-  @if (quotation == $style) {
-    // Inherit
-  }
-  @if (status == $style) {
-    // Inherit
-  }
-
   // Image overlays
   @if (image-overlay-title == $style) {
-    //@extend %body-normal;
+    @include font-size( text, 0, 25 ); // Breaks the visual rhythm on purpose
+    color: white();
     text-align: center;
+    @include k-media-above( break(medium) ) {
+      @include font-size(text-bigger);
+      @include text-shadow-bigger;
+    }
   }
   @if (image-overlay-caption == $style) {
+    // Is this used?
     //@extend %body-normal;
   }
   @if (image-overlay-comments == $style) {
@@ -160,6 +242,18 @@ $_fonts: (
   @if (image-overlay-date == $style) {
     //@extend %body-bold;
     @extend %uppercase;
+  }
+
+  // Post formats; only relevant when switched on in `config/_settings.scss`
+  @if (format-quotation == $style) {
+    @include font-size(text-bigger);
+    color: colour(text);
+    footer {
+      @extend %text-small;
+    }
+  }
+  @if (format-status == $style) {
+    @include font-size(text-bigger);
   }
 }
 

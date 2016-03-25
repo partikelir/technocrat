@@ -3,11 +3,9 @@
 // == LIST VIEW == //
 
 @if module(ubik-views) {
-
-  // Hide views control on small screens
   .view-link {
     @include k-media-below( break(tiny) ) {
-      display: none;
+      display: none; // Hide views control on small screens
     }
   }
 
@@ -35,10 +33,10 @@
     }
     .entry-header {
       @extend %spacer-below-reset;
-      .entry-meta {
-        @extend %clearfix-reset;
-        @extend %uppercase;
-      }
+    }
+    .entry-header-meta {
+      @extend %clearfix-reset;
+      @extend %uppercase;
     }
 
     // Entry content

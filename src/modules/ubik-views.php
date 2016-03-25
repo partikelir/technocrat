@@ -95,14 +95,6 @@ add_filter( 'pendrell_template_part', 'pendrell_views_template_part' );
 
 // == LIST VIEW == //
 
-// Display metadata below the entry title
-function pendrell_views_entry_header_meta() {
-  $output = apply_filters( 'pendrell_views_entry_header_meta', '' ); // Hook for other functions to add metadata
-  if ( !empty( $output ) )
-    echo '<footer class="entry-meta">' . $output . '</footer>';
-}
-add_action( 'pendrell_views_entry_header', 'pendrell_views_entry_header_meta', 12 );
-
 // Entry meta for list view, called directly from the template; overwrites whatever $contents might already be there
 function pendrell_views_list_meta( $contents ) {
   if ( ubik_views_test( 'list' ) )

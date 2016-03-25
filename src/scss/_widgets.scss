@@ -39,10 +39,8 @@
 }
 .widget {
   @extend %spacer-below;
-  @include font-size(text-smaller);
   @include font-style(widget-text);
   @include links( colour(sidebar-link), false, colour(sidebar-link-h), false, false, false );
-  color: colour(sidebar);
   display: inline-block;
   max-width: $width-medium;
   vertical-align: top;
@@ -51,10 +49,8 @@
 
   // Titles
   h2 {
-    @include font-size(head-small);
     @include font-style(widget-title);
     @include rem( margin-bottom, spacer(1/4) );
-    color: colour(sidebar-h);
   }
 
   // Lists

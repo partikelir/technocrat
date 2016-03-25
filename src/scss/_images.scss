@@ -12,7 +12,7 @@
     height: auto;
   }
 
-  // Alt text styling
+  // Alt text and image placeholder styling
   @include font-size(text-small);
   background: colour(body-dark);
   color: colour(text-lightest);
@@ -27,11 +27,12 @@
 
 // == CONTENT == //
 
-// Individual responsive images in posts, not comments; isolating these declarations from `_content.scss` reduces bloat
+// Individual responsive images in posts, not comments
 figure.wp-caption,
 .entry-content p img {
   @extend %spacer-below;
   backface-visibility: hidden;
+  max-width: 100%;
   &.alignleft {
     margin-right: percentage( spacer() / $width-medium );
   }
@@ -39,19 +40,10 @@ figure.wp-caption,
     margin-left: percentage( spacer() / $width-medium );
   }
   &.aligncenter {
-    img { // Applies centering to the image within the figure, not the figure element itself
-      @include scut-center-block;
-    }
+    @include scut-center-block;
   }
-  @include k-media-below( break(small) ) {
-    overflow: visible;
-  }
-}
 
-// Reset borders and outlines for linked images
-figure.wp-caption {
-  max-width: 100%;
-  overflow: auto; // Without this the floats won't float, but we'll reset it in a media query (above)
+  // Reset borders and outlines for linked images
   a,
   a:visited,
   a:hover,
@@ -61,14 +53,21 @@ figure.wp-caption {
     outline: none;
   }
 
+  //overflow: auto; // Without this the floats won't float, but we'll reset it in a media query (above) // Commented out as it was hiding caption beginnings
+  @include k-media-below( break(small) ) {
+    //overflow: visible;
+  }
+}
+
+// Specific to the image wrapper
+figure.wp-caption {
+
   // Force full-width images on small viewports
   @include k-media-below( break(tiny) ) {
-    .entry-content &,
-    .comment-content & {
+    .entry-content & {
       margin-left: spacer(-1/2) !important;
       margin-right: 0 !important;
       max-width: 100vw !important;
-      width: 100vw !important;
       img {
         border-radius: 0;
       }
@@ -103,9 +102,7 @@ figure.wp-caption {
 .entry-caption,
 .wp-caption-text {
   @extend %clearfix-below;
-  @include font-size(text-smaller);
-  @include scut-reverse-italics;
-  color: colour(text-lightest);
+  @include font-style(entry-caption);
   max-width: 100%;
 }
 
@@ -116,13 +113,7 @@ figure.wp-caption {
 
   // Using a class instead of `figcaption` to combat the specificity of caption styles defined above
   .wp-caption-text {
-    @include font-size( text, 0, 25 );
     @include font-style(image-overlay-title);
-    color: white();
-    @include k-media-above( break(medium) ) {
-      @include font-size(text-bigger);
-      @include text-shadow-bigger;
-    }
     .gallery-static & {
       @include k-media-below( break(small) ) {
         @include font-size( text-smaller, 0, 25 );

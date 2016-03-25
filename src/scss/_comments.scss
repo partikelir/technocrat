@@ -28,7 +28,6 @@
   @extend %clearfix-below;
   @include rem( margin-bottom, spacer(1/2) );
   h1 {
-    @include font-size(text);
     @include font-style(comment-author);
   }
 }
@@ -42,40 +41,14 @@
   }
 }
 .comment-content {
+  @include font-style(comment-content);
   :last-child {
     @extend %spacer-below-reset; // Remove margin on the last element for a snug fit
   }
-
-  // Make comments a little smaller
-  @include font-size(text-small);
-  h1 {
-    @include font-size(head-big);
-  }
-  h2 {
-    @include font-size(head);
-  }
-  h3 {
-    @include font-size(head-small);
-  }
-  h4,
-  h5,
-  h6 {
-    @include font-size(head-smallest);
-  }
-  blockquote {
-    @include font-size(text-smaller);
-    footer {
-      @include font-size(text-smallest);
-    }
-  }
-  pre {
-    @include font-size(text-smaller);
-  }
 }
 .comment-meta {
+  @include font-style(comment-meta);
   @include links( colour(comment-link), false, colour(comment-link-h), $link-border: false );
-  @include font-size(text-smaller);
-  color: colour(meta);
   h1 {
     @include links( colour(comment-auth), false, colour(comment-auth-h) );
   }

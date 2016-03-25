@@ -6,12 +6,8 @@ html {
   height: 100%;
 }
 body {
-  @include font-size(text);
   @include font-style(body);
-  color: colour(text);
-  background: colour(bg-body);
-  font-feature-settings: 'liga', 'opbd', 'size', 'init', 'fina'; // Ligatures; optical bounds; optical size; initial and final forms; via: http://www.microsoft.com/typography/otspec/featurelist.htm
-  text-rendering: optimizeLegibility;
+  background-color: colour(body-bg);
 }
 
 // Headers
@@ -41,9 +37,6 @@ h4,
 h5,
 h6 {
   @include font-style(head);
-  color: colour(text-dark);
-  font-feature-settings: 'lnum';
-  margin-left: -0.04em;
 }
 
 // Monospaced
@@ -131,9 +124,7 @@ mark {
   color: colour(highlight); // Reset normalize.css
   text-decoration: none;
 }
-small { // Set to font-size: 80% in Normalize.css; reset to size(text-small here
-  @include font-size(text-small);
-  color: lighten( colour(text-lightest), 7);
+small { // Set to font-size: 80% in Normalize.css
   display: inline-block; // This is non-standard but HTML5 now defines this element as "fine print"
 }
 
@@ -143,10 +134,9 @@ small { // Set to font-size: 80% in Normalize.css; reset to size(text-small here
 
 blockquote {
   @extend %spacer-below;
-  @include font-style(quotation);
   @include font-size(text-small);
-  @include scut-reverse-italics;
   @include rem( padding, spacer(1/2) spacer(1/2) spacer(1/2) spacer() - 3px );
+  @include scut-reverse-italics;
   @include text-shadow-small;
   background: colour(body-bg);
   border-left: 3px solid colour(blockquote);
@@ -310,7 +300,7 @@ input[type="search"],
 input[type="text"],
 input[type="url"],
 textarea {
-  @include text-input;
+  @include input-text;
   vertical-align: top;
 }
 
